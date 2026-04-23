@@ -1,0 +1,20 @@
+diff --git a/src/main/java/com/squareup/java/JavaWriter.java b/src/main/java/com/squareup/java/JavaWriter.java
+index 40a8ed4..7cbd7d3 100644
+--- a/src/main/java/com/squareup/java/JavaWriter.java
++++ b/src/main/java/com/squareup/java/JavaWriter.java
+@@ -333,12 +333,13 @@ public final class JavaWriter implements Closeable {
+   }
+ 
+   /** Emits a single line comment. */
+-  public JavaWriter emitEndOfLineComment(String comment, Object... args) throws IOException {
++public JavaWriter emitEndOfLineComment(String comment, Object... args) throws IOException {
++    indent(); // Assuming `indent()` is a method that writes the current indentation level to `out`
+     out.write("// ");
+     out.write(String.format(comment, args));
+     out.write("\n");
+     return this;
+-  }
++}
+ 
+   public JavaWriter emitEmptyLine() throws IOException {
+     out.write("\n");

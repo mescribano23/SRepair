@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.7627118644067796,
+    "input": "    @Override\n    public void remove(final String identifier) throws IOException {\n        this.storage.apply(\n            new Directives().xpath(\n                String.format(\"%s/gist[id='%s']\", this.xpath(), identifier)\n            ).remove()\n        );\n    }",
+    "query_result": [
+        "Override\npublic void remove(final String identifie",
+        " throws IOException {\nthis.storage.apply(\nnew Dire",
+        "rows IOException {\nthis.storage.apply(\nnew Directi",
+        "{\nthis.storage.apply(\nnew Directives().xpath(\nStri",
+        "irectives().xpath(\nString.format(\"%s/gist[id='%s']"
+    ]
+}

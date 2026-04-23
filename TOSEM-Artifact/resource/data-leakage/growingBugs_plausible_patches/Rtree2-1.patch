@@ -1,0 +1,34 @@
+diff --git a/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java b/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
+index 5112f80..09890e3 100644
+--- a/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
++++ b/src/main/java/com/github/davidmoten/rx/operators/OperatorBoundedPriorityQueue.java
+@@ -17,6 +17,7 @@ public final class OperatorBoundedPriorityQueue<T> implements Operator<T, T> {
+         this.comparator = comparator;
+     }
+ 
++// Fixed Function
+     @Override
+     public Subscriber<? super T> call(final Subscriber<? super T> child) {
+         final MinMaxPriorityQueue<T> q = MinMaxPriorityQueue.orderedBy(comparator)
+@@ -25,10 +26,8 @@ public final class OperatorBoundedPriorityQueue<T> implements Operator<T, T> {
+ 
+             @Override
+             public void onCompleted() {
+-                for (T t : q) {
+-                    if (isUnsubscribed())
+-                        return;
+-                    child.onNext(t);
++                while (!q.isEmpty() && !isUnsubscribed()) {
++                    child.onNext(q.poll());
+                 }
+                 if (isUnsubscribed())
+                     return;
+@@ -44,7 +43,7 @@ public final class OperatorBoundedPriorityQueue<T> implements Operator<T, T> {
+             @Override
+             public void onNext(T t) {
+                 if (!isUnsubscribed())
+-                    q.add(t);
++                    q.offer(t);
+             }
+         };
+     }

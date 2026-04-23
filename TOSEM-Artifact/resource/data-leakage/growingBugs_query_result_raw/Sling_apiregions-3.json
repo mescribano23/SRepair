@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.896797153024911,
+    "input": "    public static Properties getBundleIDtoFeaturesMap(Feature app) {\n        Map<ArtifactId, Set<ArtifactId>> map = new HashMap<>();\n\n        for (Artifact bundle : app.getBundles())\n        {\n            map.compute(bundle.getId(), (id, features) ->\n            {\n                if (features == null)\n                {\n                    features = new HashSet<>();\n                }\n                features.addAll(Arrays.asList(bundle.getFeatureOrigins(app.getId())));\n                return features;\n            });\n        }\n\n        Properties result = new Properties();\n\n        for (Map.Entry<ArtifactId, Set<ArtifactId>> entry : map.entrySet()) {\n            result.setProperty(entry.getKey().toMvnId(), entry.getValue().stream().map(ArtifactId::toMvnId).collect(Collectors.joining(\",\")));\n        }\n\n        return result;\n    }",
+    "query_result": [
+        "lic static Properties getBundleIDtoFeaturesMap(Feature app) {\nMap<ArtifactId, Set<ArtifactId>> map = new HashMap<>();\nfor (Artifact bundle : app.getBundles())\n{\nmap.compute(bundle.getId(), (id, features) ->\n{\nif (features == null)\n{\nfeatures = new HashSet<>();\n}\nfeatures.addAll(Arrays.asList(bundle.",
+        "erties result = new Properties();\nfor (Map.Entry<ArtifactId, Set<ArtifactId>> entry : map.entrySet()) {\nresult.setProperty(entry.getKey().toMvnId(), entry.getValue().stream().map(ArtifactId::toMvnId).collect(Collectors.joining(\",\")));\n}\nreturn result",
+        "c static Properties getBundleIDtoFeaturesMap(Featu",
+        "> map = new HashMap<>();\nfor (Artifact bundle : ap",
+        "roperties result = new Properties();\nfor (Map.Entr",
+        "operties result = new Properties();\nfor (Map.Entry",
+        "= new Properties();\nfor (Map.Entry<ArtifactId, Set",
+        "ry : map.entrySet()) {\nresult.setProperty(entry.ge",
+        "entrySet()) {\nresult.setProperty(entry.getKey().to"
+    ]
+}

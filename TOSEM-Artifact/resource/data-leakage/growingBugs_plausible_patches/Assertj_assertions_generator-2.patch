@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/assertj/assertions/generator/description/DataDescription.java b/src/main/java/org/assertj/assertions/generator/description/DataDescription.java
+index ded665e..c9a13e7 100644
+--- a/src/main/java/org/assertj/assertions/generator/description/DataDescription.java
++++ b/src/main/java/org/assertj/assertions/generator/description/DataDescription.java
+@@ -181,20 +181,19 @@ public abstract class DataDescription {
+     return PREDICATE_PREFIXES_FOR_ERROR_MESSAGE_PART2.get(predicatePrefix);
+   }
+ 
+-  protected String readablePropertyName() {
+-    // sort by bigger length so that when cannotPlay is given, prefix found is "cannot" instead of "can"
++protected String readablePropertyName() {
+     List<String> prefixesSortedByBiggerLength = BY_BIGGER_LENGTH_ORDERING.immutableSortedCopy(PREDICATE_PREFIXES_FOR_JAVADOC.keySet());
+ 
+     for (String predicatePrefix : prefixesSortedByBiggerLength) {
+-      if (originalMember.startsWith(predicatePrefix)) {
+-        // get rid of prefix
+-        String propertyName = remove(originalMember, predicatePrefix);
+-        // make it human readable
+-        return camelCaseToWords(propertyName);
+-      }
++        if (originalMember.startsWith(predicatePrefix)) {
++            // get rid of prefix correctly
++            String propertyName = originalMember.substring(predicatePrefix.length());
++            // make it human readable
++            return camelCaseToWords(propertyName);
++        }
+     }
+     // should not arrive here ! return for best effort.
+     return name;
+-  }
++}
+ 
+ }
+\ No newline at end of file

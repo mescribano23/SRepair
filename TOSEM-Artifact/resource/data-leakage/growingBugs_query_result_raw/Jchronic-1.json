@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.30258620689655175,
+    "input": "  public static ScalarYear scan(Token token, Token postToken, Options options) {\n    if (ScalarYear.YEAR_PATTERN.matcher(token.getWord()).matches()) {\n      int scalarValue = Integer.parseInt(token.getWord());\n      if (!(postToken != null && Scalar.TIMES.contains(postToken.getWord()))) {\n        Pointer.PointerType context = options.getContext();\n        switch (context) {\n          case NONE:\n            // If the context indicates no bias,\n            // treat anything up to 37 as 20xx, anything from 69-99 as 19xx,\n            // anything from 100-137 as 20xx, and leave 38-68 alone (treating\n            // that range as ambiguous, I guess).\n            // This used to be the behavior regardless of the context.\n            if (scalarValue <= 37) {\n              scalarValue += 2000;\n            }\n            else if (scalarValue <= 137 && scalarValue >= 69) {\n              scalarValue += 1900;\n            }\n            break;\n\n          case PAST:\n            // If the context indicates a bias to past dates,\n            // treat anything from 20-99 as 19xx, and otherwise\n            // match the NONE behavior.\n            if (scalarValue <= 19) {\n              scalarValue += 2000;\n            }\n            else if (scalarValue <= 99) {\n              scalarValue += 1900;\n            }\n            else if (scalarValue <= 137) {\n              scalarValue += 1900;\n            }\n            break;\n\n          case FUTURE:\n            // If the context indicates a bias to future dates,\n            // treat anything up to 68 as 20xx, and otherwise\n            // match the NONE behavior.\n            if (scalarValue <= 68) {\n              scalarValue += 2000;\n            }\n            else if (scalarValue <= 137) {\n              scalarValue += 1900;\n            }\n            break;\n        }\n        return new ScalarYear(Integer.valueOf(scalarValue));\n      }\n    }\n    return null;\n  }",
+    "query_result": [
+        "ear scan(Token token, Token postToken, Options options) {\nif (ScalarYear.YEAR_PATTERN.matcher(token.getWord()).matches()) {\nint scalarValue = Integer.parseInt(token.getWord());\nif (!(postToken != null && Scalar.TIMES.contains(postToken.getWord()))) {",
+        " scan(Token token, Token postToken, Options options) {\nif (ScalarYear.YEAR_PATTERN.matcher(token.getWord()).matches()) {\nint scalarValue = Integer.parseInt(token.getWord());\nif (!(postToken != null &&",
+        "PATTERN.matcher(token.getWord()).matches()) {\nint scalarValue = Integer.parseInt(token.getWord());\nif (!(postToken != null && Scalar.TIMES.contains(po",
+        " (scalarValue <= 37) {\nscalarValue += 2000;\n}\nelse if (scalarValue <= 137 && scalarValue >= 69) {\nsc",
+        "t scalarValue = Integer.parseInt(token.getWord());",
+        "alarValue = Integer.parseInt(token.getWord());\nif ",
+        "// anything from 100-137 as 20xx, and leave 38-68 ",
+        "}\nelse if (scalarValue <= 137 && scalarValue >= 69",
+        "lse if (scalarValue <= 137 && scalarValue >= 69) {"
+    ]
+}

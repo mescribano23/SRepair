@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.8076923076923077,
+    "input": "    public static boolean equals(\n            String filename1, String filename2,\n            boolean normalized, IOCase caseSensitivity) {\n        \n        if (filename1 == null || filename2 == null) {\n            return filename1 == filename2;\n        }\n        if (normalized) {\n            filename1 = normalize(filename1);\n            filename2 = normalize(filename2);\n            if (filename1 == null || filename2 == null) {\n                throw new NullPointerException(\n                    \"Error normalizing one or both of the file names\");\n            }\n        }\n        if (caseSensitivity == null) {\n            caseSensitivity = IOCase.SENSITIVE;\n        }\n        return caseSensitivity.checkEquals(filename1, filename2);\n    }",
+    "query_result": [
+        ") {\nfilename1 = normalize(filename1);\nfilename2 = normalize(filename2);\nif (filename1 == null || filename2 == null) {\nthrow new NullPointerException(\n\"Error normalizing one or both of the file names\");\n}\n}\nif (caseSensitivity == null) {\ncaseSensitivity = IOCase.SENSITIVE;\n}\nreturn caseSensitivity.ch",
+        "f (filename1 == null || filename2 == null) {\nthrow new NullPointerException(\n\"Error normalizing one or both of the file names\");\n}\n}\nif (caseSensitivity == null) {\ncaseSensitivity = IOCase.SENSITIVE;\n}\nreturn caseSensitivity.checkEquals(filename1, fi",
+        "Error normalizing one or both of the file names\");\n}\n}\nif (caseSensitivity == null) {\ncaseSensitivity = IOCase.SENSITIVE;\n}\nreturn caseSensitivity.che",
+        " filename2,\nboolean normalized, IOCase caseSensiti",
+        "\nif (filename1 == null || filename2 == null) {\nret",
+        "ame1 == null || filename2 == null) {\nreturn filena",
+        "ull || filename2 == null) {\nthrow new NullPointerE",
+        " == null) {\nthrow new NullPointerException(\n\"Error",
+        "n(\n\"Error normalizing one or both of the file name",
+        "rror normalizing one or both of the file names\");\n",
+        "ror normalizing one or both of the file names\");\n}",
+        "caseSensitivity == null) {\ncaseSensitivity = IOCas",
+        "itivity == null) {\ncaseSensitivity = IOCase.SENSIT",
+        "vity == null) {\ncaseSensitivity = IOCase.SENSITIVE",
+        "eturn caseSensitivity.checkEquals(filename1, filen"
+    ]
+}

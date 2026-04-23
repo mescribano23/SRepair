@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5722356739305892,
+    "input": "    @SuppressWarnings(\"unchecked\")\n    @Override\n    public T deserialize(JsonParser p, DeserializationContext ctxt) throws IOException\n    {\n        // 22-Sep-2012, tatu: For 2.1, use this new method, may force coercion:\n        String text = p.getValueAsString();\n        if (text != null) { // has String representation\n            if (text.length() == 0 || (text = text.trim()).length() == 0) {\n                // 04-Feb-2013, tatu: Usually should become null; but not always\n                return _deserializeFromEmptyString();\n            }\n            Exception cause = null;\n            try {\n                // 19-May-2017, tatu: Used to require non-null result (assuming `null`\n                //    indicated error; but that seems wrong. Should be able to return\n                //    `null` as value.\n                return _deserialize(text, ctxt);\n            } catch (IllegalArgumentException iae) {\n                cause = iae;\n            } catch (MalformedURLException me) {\n                cause = me;\n            }\n            String msg = \"not a valid textual representation\";\n            if (cause != null) {\n                String m2 = cause.getMessage();\n                if (m2 != null) {\n                    msg = msg + \", problem: \"+m2;\n                }\n            }\n            // 05-May-2016, tatu: Unlike most usage, this seems legit, so...\n            JsonMappingException e = ctxt.weirdStringException(text, _valueClass, msg);\n            if (cause != null) {\n                e.initCause(cause);\n            }\n            throw e;\n            // nothing to do here, yet? We'll fail anyway\n        }\n        JsonToken t = p.getCurrentToken();\n        // [databind#381]\n        if (t == JsonToken.START_ARRAY) {\n            return _deserializeFromArray(p, ctxt);\n        }\n        if (t == JsonToken.VALUE_EMBEDDED_OBJECT) {\n            // Trivial cases; null to null, instance of type itself returned as is\n            Object ob = p.getEmbeddedObject();\n            i",
+    "query_result": [
+        "ption cause = null;\ntry {\n// 19-May-2017, tatu: Used to require non-null result (assuming `null`\n// indicated error; but that seems wrong. Should be able to return\n// `null` as value.\nreturn _deserialize(text, ctxt);\n} catch (IllegalArgumentException",
+        "rentToken();\n// [databind#381]\nif (t == JsonToken.START_ARRAY) {\nreturn _deserializeFromArray(p, ctxt);\n}\nif (t == JsonToken.VALUE_EMBEDDED_OBJECT) {\n// Trivial cases; null to null, instance of type itself returned as is\nObject ob = p.getEmbeddedObje",
+        "cause = null;\ntry {\n// 19-May-2017, tatu: Used to require non-null result (assuming `null`\n// indicated error; but that seems wrong. Should be able to return\n// `null` as value.\nreturn _deserialize(te",
+        "st usage, this seems legit, so...\nJsonMappingException e = ctxt.weirdStringException(text, _valueClass, msg);\nif (cause != null) {\ne.initCause(cause);\n}\nthrow e;\n// nothing to do here, yet? We'll fail",
+        "Token.START_ARRAY) {\nreturn _deserializeFromArray(p, ctxt);\n}\nif (t == JsonToken.VALUE_EMBEDDED_OBJECT) {\n// Trivial cases; null to null, instance of type itself returned as is\nObject ob = p.getEmbedd",
+        "@SuppressWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext c",
+        "SuppressWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ct",
+        "uppressWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctx",
+        "ppressWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt",
+        "pressWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt)",
+        "ressWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) ",
+        "essWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) t",
+        "ssWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) th",
+        "sWarnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) thr",
+        "Warnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) thro",
+        "arnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) throw",
+        "rnings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) throws",
+        "nings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) throws ",
+        "ings(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) throws I",
+        "s(\"unchecked\")\n@Override\npublic T deserialize(JsonParser p, DeserializationContext ctxt) throws IOEx"
+    ]
+}

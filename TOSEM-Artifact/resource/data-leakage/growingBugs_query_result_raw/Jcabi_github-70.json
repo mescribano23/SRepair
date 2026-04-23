@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7117903930131004,
+    "input": "    @Override\n    public void add(\n        @NotNull(message = \"User is never null\") final String user)\n        throws IOException {\n        this.request.method(Request.PUT)\n            .uri().path(user).back()\n            .fetch()\n            .as(RestResponse.class)\n            .assertStatus(HttpURLConnection.HTTP_NO_CONTENT);\n    }",
+    "query_result": [
+        " String user)\nthrows IOException {\nthis.request.method(Request.PUT)\n.uri().path(user).back()\n.fetch()\n.as(RestResponse.class)\n.assertStatus(HttpURLCon",
+        "\nthrows IOException {\nthis.request.method(Request.PUT)\n.uri().path(user).back()\n.fetch()\n.as(RestResponse.class)\n.assertStatus(HttpURLConnection.HTTP_",
+        "ws IOException {\nthis.request.method(Request.PUT)\n.uri().path(user).back()\n.fetch()\n.as(RestResponse",
+        ").path(user).back()\n.fetch()\n.as(RestResponse.class)\n.assertStatus(HttpURLConnection.HTTP_NO_CONTENT",
+        "path(user).back()\n.fetch()\n.as(RestResponse.class)",
+        ").back()\n.fetch()\n.as(RestResponse.class)\n.assertS",
+        ".back()\n.fetch()\n.as(RestResponse.class)\n.assertSt",
+        "back()\n.fetch()\n.as(RestResponse.class)\n.assertSta",
+        "ck()\n.fetch()\n.as(RestResponse.class)\n.assertStatu",
+        "k()\n.fetch()\n.as(RestResponse.class)\n.assertStatus",
+        "()\n.fetch()\n.as(RestResponse.class)\n.assertStatus(",
+        ")\n.fetch()\n.as(RestResponse.class)\n.assertStatus(H",
+        "\n.fetch()\n.as(RestResponse.class)\n.assertStatus(Ht",
+        ".fetch()\n.as(RestResponse.class)\n.assertStatus(Htt",
+        "fetch()\n.as(RestResponse.class)\n.assertStatus(Http",
+        "etch()\n.as(RestResponse.class)\n.assertStatus(HttpU",
+        "tch()\n.as(RestResponse.class)\n.assertStatus(HttpUR",
+        "ch()\n.as(RestResponse.class)\n.assertStatus(HttpURL",
+        "h()\n.as(RestResponse.class)\n.assertStatus(HttpURLC",
+        "()\n.as(RestResponse.class)\n.assertStatus(HttpURLCo"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9499105545617174,
+    "input": "  private Optional<FileInfo> getNextFile() {\n    /* Filter to exclude finished or hidden files */\n    FileFilter filter = new FileFilter() {\n      public boolean accept(File pathName) {\n        if ((pathName.getName().endsWith(completedSuffix)) ||\n            (pathName.getName().startsWith(\".\"))) {\n          return false;\n        }\n        return true;\n      }\n    };\n    List<File> candidateFiles = Arrays.asList(directory.listFiles(filter));\n    if (candidateFiles.isEmpty()) {\n      return Optional.absent();\n    } else {\n      Collections.sort(candidateFiles, new Comparator<File>() {\n        public int compare(File a, File b) {\n          int timeComparison = new Long(a.lastModified()).compareTo(\n              new Long(b.lastModified()));\n          if (timeComparison != 0) {\n            return timeComparison;\n          }\n          else {\n            return a.getName().compareTo(b.getName());\n          }\n        }\n      });\n      File nextFile = candidateFiles.get(0);\n      try {\n        int bufferSize = bufferMaxLines * bufferMaxLineLength;\n        BufferedReader reader = new BufferedReader(new FileReader(nextFile),\n            bufferSize);\n        reader.mark(bufferSize);\n        return Optional.of(new FileInfo(nextFile, reader));\n      } catch (FileNotFoundException e) {\n        // File could have been deleted in the interim\n        logger.warn(\"Could not find file: \" + nextFile, e);\n        return Optional.absent();\n      } catch (IOException e) {\n        logger.error(\"Exception opening file: \" + nextFile, e);\n        return Optional.absent();\n      }\n    }\n  }",
+    "query_result": [
+        " Filter to exclude finished or hidden files */\nFileFilter filter = new FileFilter() {\npublic boolean accept(File pathName) {\nif ((pathName.getName().endsWith(completedSuffix)) ||\n(pathName.getName().startsWith(\".\"))) {\nreturn false;\n}\nreturn true;\n}\n};\nList<File> candidateFiles = Arrays.asList(directory.listFiles(filter));\nif (candidateFiles.isEmpty()) {\nreturn Optional.absent();\n} else {\nCollections.sort(candidateFiles, new Comparator<File>() {\npublic int compare(File a, File b) {\nint timeComparison = new Long(a.lastModified()).compareTo(\nnew Long(b.lastModified()));\nif (timeComparison != 0) {\nreturn timeComparison;\n}\nelse {\nreturn a.getName().compareTo(b.getName());\n}\n}\n});\nFile nextFile = candidateFiles.get(0);\ntry {\nint bufferSize = bufferMaxLines * bufferMaxLineLength;\nBufferedReader reader = new BufferedReader(new FileReader(nextFile),\nbufferSize);\nreader.mark(bufferSize);\nreturn Optional.of(new FileInfo(nextFile, reader));\n} catch (FileNotFoundException e) {\n// File could have been deleted in the interim\nlogger.warn(\"Could not find file: \" + nextFile, e);\nreturn Optional.absent();\n} catch (IOException e) {\nlogger.error(\"Exception opening file: \" + nextFile, e);\nreturn Option",
+        "shed or hidden files */\nFileFilter filter = new FileFilter() {\npublic boolean accept(File pathName) ",
+        "er));\n} catch (FileNotFoundException e) {\n// File could have been deleted in the interim\nlogger.warn",
+        "} catch (FileNotFoundException e) {\n// File could have been deleted in the interim\nlogger.warn(\"Coul",
+        "NotFoundException e) {\n// File could have been deleted in the interim\nlogger.warn(\"Could not find fi",
+        " hidden files */\nFileFilter filter = new FileFilte",
+        "en files */\nFileFilter filter = new FileFilter() {",
+        "\nFileFilter filter = new FileFilter() {\npublic boo",
+        "FileFilter filter = new FileFilter() {\npublic bool",
+        "ileFilter filter = new FileFilter() {\npublic boole",
+        "leFilter filter = new FileFilter() {\npublic boolea",
+        "Filter filter = new FileFilter() {\npublic boolean ",
+        "ilter filter = new FileFilter() {\npublic boolean a",
+        "lter filter = new FileFilter() {\npublic boolean ac",
+        "ter filter = new FileFilter() {\npublic boolean acc",
+        "er filter = new FileFilter() {\npublic boolean acce",
+        "r filter = new FileFilter() {\npublic boolean accep",
+        " filter = new FileFilter() {\npublic boolean accept",
+        "filter = new FileFilter() {\npublic boolean accept(",
+        "ilter = new FileFilter() {\npublic boolean accept(F"
+    ]
+}

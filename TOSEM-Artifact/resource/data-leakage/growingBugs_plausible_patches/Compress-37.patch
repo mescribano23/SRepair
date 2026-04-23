@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
+index 7a409d65..7ac7309d 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
+@@ -457,9 +457,11 @@ public class TarArchiveInputStream extends ArchiveInputStream {
+             int ch;
+             int len = 0;
+             int read = 0;
++            boolean hasKeyword = false;
+             while((ch = i.read()) != -1) {
+                 read++;
+                 if (ch == ' '){
++                    hasKeyword = true;
+                     // Get keyword
+                     final ByteArrayOutputStream coll = new ByteArrayOutputStream();
+                     while((ch = i.read()) != -1) {
+@@ -491,6 +493,10 @@ public class TarArchiveInputStream extends ArchiveInputStream {
+                     }
+                     break; // Processed single header
+                 }
++                if (ch == '\n' && !hasKeyword) {
++                    // Skip blank line
++                    break;
++                }
+                 len *= 10;
+                 len += ch - '0';
+             }

@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.45936395759717313,
+    "input": "    @Override\n    public boolean isCachable() {\n        /* As per [databind#735], existence of value or key deserializer (only passed\n         * if annotated to use non-standard one) should also prevent caching.\n         */\n        return (_valueDeserializer == null)\n                && (_keyDeserializer == null)\n                && (_valueTypeDeserializer == null)\n                && (_ignorableProperties == null);\n    }",
+    "query_result": [
+        "ll) && (_keyDeserializer == null) && (_valueTypeDeserializer == null) && (_ignorableProperties == nu",
+        "if annotated to use non-standard one) should also",
+        "eserializer == null) && (_valueTypeDeserializer ==",
+        "r == null) && (_valueTypeDeserializer == null) &&"
+    ]
+}

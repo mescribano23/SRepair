@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.9892280071813285,
+    "input": "    private void applySignatures() {\n        int end = signatures.size();\n\n        // Class signature is always the last element and should be processed first\n        Object last = end > 1 ? signatures.get(end - 1) : null;\n        if (last instanceof ClassInfo) {\n            parseClassSignature((String)signatures.get(end - 2), (ClassInfo)last);\n            end -= 2;\n        }\n\n        for (int i = 0; i < end; i += 2) {\n            String elementSignature = (String) signatures.get(i);\n            Object element = signatures.get(i + 1);\n\n            if (element instanceof FieldInfo) {\n                parseFieldSignature(elementSignature, (FieldInfo)element);\n            } else if (element instanceof MethodInfo) {\n                parseMethodSignature(elementSignature, (MethodInfo) element);\n            }\n        }\n    }",
+    "query_result": [
+        "ate void applySignatures() {\nint end = signatures.size();\n// Class signature is always the last element and should be processed first\nObject last = end > 1 ? signatures.get(end - 1) : null;\nif (last instanceof ClassInfo) {\nparseClassSignature((String)signatures.get(end - 2), (ClassInfo)last);\nend -= 2;\n}\nfor (int i = 0; i < end; i += 2) {\nString elementSignature = (String) signatures.get(i);\nObject element = signatures.get(i + 1);\nif (element instanceof FieldInfo) {\nparseFieldSignature(elementSignature, (FieldInfo)element);\n} else if (element instanceof MethodInfo) {\nparseMethodSignature(eleme",
+        "oid applySignatures() {\nint end = signatures.size();\n// Class signature is always the last element and should be processed first\nObject last = end > 1 ? signatures.get(end - 1) : null;\nif (last instanceof ClassInfo) {\nparseClassSignature((String)signatures.get(end - 2), (ClassInfo)last);\nend -= 2;\n}\nfor (int i = 0; i < end; i += 2) {\nString elementSignature = (String) signatures.get(i);\nObject element = signatures.get(i + 1);\nif (element instanceof FieldInfo) {\nparseFieldSignature(elementSignature, (FieldInfo)element);\n} else if (element instanceof MethodInfo) {\nparseMethodSignature(elementSig",
+        " (String) signatures.get(i);\nObject element = signatures.get(i + 1);\nif (element instanceof FieldInfo) {\nparseFieldSignature(elementSignature, (FieldI",
+        "et(i);\nObject element = signatures.get(i + 1);\nif (element instanceof FieldInfo) {\nparseFieldSignatu",
+        "if (element instanceof MethodInfo) {\nparseMethodSignature(elementSignature, (MethodInfo) element);\n}",
+        "odInfo) {\nparseMethodSignature(elementSignature, (",
+        "dInfo) {\nparseMethodSignature(elementSignature, (M"
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.7244582043343654,
+    "input": "    public <T> MappingIterator<T> readValues(byte[] src, int offset, int length)\n        throws IOException, JsonProcessingException\n    {\n        if (_dataFormatReaders != null) {\n            return _detectBindAndReadValues(_dataFormatReaders.findFormat(src, offset, length), false);\n        }\n        return _bindAndReadValues(_considerFilter(_parserFactory.createParser(src, offset, length),\n                true));\n    }",
+    "query_result": [
+        "T> readValues(byte[] src, int offset, int length) throws IOException, JsonProcessingException { if (_dataFormatReaders != null) { return _detectBindAn",
+        "MappingIterator<T> readValues(byte[] src, int off",
+        "terator<T> readValues(byte[] src, int offset, int",
+        "byte[] src, int offset, int length) throws IOExcep",
+        "e[] src, int offset, int length) throws IOExceptio",
+        "[] src, int offset, int length) throws IOException",
+        ") throws IOException, JsonProcessingException { if",
+        "throws IOException, JsonProcessingException { if",
+        "rows IOException, JsonProcessingException { if (_d",
+        "nProcessingException { if (_dataFormatReaders != n",
+        "ProcessingException { if (_dataFormatReaders != nu",
+        "aFormatReaders != null) { return _detectBindAndRea",
+        "n _detectBindAndReadValues(_dataFormatReaders.find",
+        "), false); } return _bindAndReadValues(_considerFi",
+        "false); } return _bindAndReadValues(_considerFilt",
+        "alse); } return _bindAndReadValues(_considerFilter"
+    ]
+}

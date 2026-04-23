@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8974654377880185,
+    "input": "boolean process(Token t, HtmlTreeBuilder tb) {\n    switch (t.type) {\n        case Character: {\n            Token.Character c = t.asCharacter();\n            if (c.getData().equals(nullString)) {\n                // todo confirm that check\n                tb.error(this);\n                return false;\n            } else if (tb.framesetOk() && isWhitespace(c)) { // don't check if whitespace if frames already closed\n                tb.reconstructFormattingElements();\n                tb.insert(c);\n            } else {\n                tb.reconstructFormattingElements();\n                tb.insert(c);\n                tb.framesetOk(false);\n            }\n            break;\n        }\n        case Comment: {\n            tb.insert(t.asComment());\n            break;\n        }\n        case Doctype: {\n            tb.error(this);\n            return false;\n        }\n        case StartTag:\n            Token.StartTag startTag = t.asStartTag();\n            // todo - refactor to a switch statement\n            String name = startTag.normalName();\n            if (name.equals(\"a\")) {\n                if (tb.getActiveFormattingElement(\"a\") != null) {\n                    tb.error(this);\n                    tb.processEndTag(\"a\");\n\n                    // still on stack?\n                    Element remainingA = tb.getFromStack(\"a\");\n                    if (remainingA != null) {\n                        tb.removeFromActiveFormattingElements(remainingA);\n                        tb.removeFromStack(remainingA);\n ",
+    "query_result": [
+        "b) {\nswitch (t.type) {\ncase Character: {\nToken.Character c = t.asCharacter();\nif (c.getData().equals(nullString)) {\n// todo confirm that check\ntb.error(this);\nreturn false;\n} else if (tb.framesetOk() && isWhitespace(c)) { // don't check if whitespace if frames already closed\ntb.reconstructFormattingElements();\ntb.insert(c);\n} else {\ntb.reconstructFormattingElements();\ntb.insert(c);\ntb.framesetOk(false);\n}\nbreak;\n}\ncase Comment: {\ntb.insert(t.asComment());\nbreak;\n}\ncase Doctype: {\ntb.error(this);\nreturn false;\n}\ncase StartTag:\nToken.StartTag sta",
+        "ck if whitespace if frames already closed\ntb.reconstructFormattingElements();\ntb.insert(c);\n} else {\ntb.reconstructFormattingElements();\ntb.insert(c);\ntb.framesetOk(false);\n}\nbreak;\n}\ncase Comment: {\ntb.insert(t.asComment());\nbreak;\n}\ncase Doctype: {\ntb.error(this);\nreturn false;\n}\ncase StartTag:\nTo",
+        "b.reconstructFormattingElements();\ntb.insert(c);\n} else {\ntb.reconstructFormattingElements();\ntb.insert(c);\ntb.framesetOk(false);\n}\nbreak;\n}\ncase Comment: {\ntb.insert(t.asComment());\nbreak;\n}\ncase Doctype: {\ntb.error(this);\nreturn false;\n}\ncase Start",
+        "e();\nif (name.equals(\"a\")) {\nif (tb.getActiveFormattingElement(\"a\") != null) {\ntb.error(this);\ntb.processEndTag(\"a\");\n// still on stack?\nElement remainingA = tb.getFromStack(\"a\");\nif (remainingA != null) {\ntb.removeFromActiveFormattingElements(remain",
+        "lean process(Token t, HtmlTreeBuilder tb) {\nswitch (t.type) {\ncase Character: {\nToken.Character c = t.asCharacter();\nif (c.getData().equals(nullString)) {\n// todo confirm that check\ntb.error(this);\nre",
+        "n process(Token t, HtmlTreeBuilder tb) {\nswitch (t.type) {\ncase Character: {\nToken.Character c = t.asCharacter();\nif (c.getData().equals(nullString)) ",
+        "\nswitch (t.type) {\ncase Character: {\nToken.Character c = t.asCharacter();\nif (c.getData().equals(nullString)) {\n// todo confirm that check\ntb.error(th",
+        "\n// still on stack?\nElement remainingA = tb.getFromStack(\"a\");\nif (remainingA != null) {\ntb.removeFromActiveFormattingElements(remainingA);\ntb.removeF",
+        "ss(Token t, HtmlTreeBuilder tb) {\nswitch (t.type) {\ncase Character: {\nToken.Character c = t.asCharac",
+        "lTreeBuilder tb) {\nswitch (t.type) {\ncase Character: {\nToken.Character c = t.asCharacter();\nif (c.ge",
+        " { // don't check if whitespace if frames already closed\ntb.reconstructFormattingElements();\ntb.inse",
+        "ngElements();\ntb.insert(c);\n} else {\ntb.reconstructFormattingElements();\ntb.insert(c);\ntb.framesetOk",
+        "nt: {\ntb.insert(t.asComment());\nbreak;\n}\ncase Doctype: {\ntb.error(this);\nreturn false;\n}\ncase StartT",
+        " {\ntb.insert(t.asComment());\nbreak;\n}\ncase Doctype: {\ntb.error(this);\nreturn false;\n}\ncase StartTag:",
+        "remainingA = tb.getFromStack(\"a\");\nif (remainingA != null) {\ntb.removeFromActiveFormattingElements(r",
+        ".getFromStack(\"a\");\nif (remainingA != null) {\ntb.removeFromActiveFormattingElements(remainingA);\ntb.",
+        "Stack(\"a\");\nif (remainingA != null) {\ntb.removeFromActiveFormattingElements(remainingA);\ntb.removeFr",
+        " (remainingA != null) {\ntb.removeFromActiveFormattingElements(remainingA);\ntb.removeFromStack(remain",
+        "boolean process(Token t, HtmlTreeBuilder tb) {\nswi",
+        "olean process(Token t, HtmlTreeBuilder tb) {\nswitc"
+    ]
+}

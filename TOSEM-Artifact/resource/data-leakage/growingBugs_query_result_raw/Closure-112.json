@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.2784503631961259,
+    "input": "  private boolean inferTemplatedTypesForCall(\n      Node n, FunctionType fnType) {\n    final ImmutableList<TemplateType> keys = fnType.getTemplateTypeMap()\n        .getTemplateKeys();\n    if (keys.isEmpty()) {\n      return false;\n    }\n\n    // Try to infer the template types\n    Map<TemplateType, JSType> inferred = Maps.filterKeys(\n        inferTemplateTypesFromParameters(fnType, n),\n        new Predicate<TemplateType>() {\n\n          @Override\n          public boolean apply(TemplateType key) {\n            return keys.contains(key);\n          }}\n        );\n\n    // Replace all template types. If we couldn't find a replacement, we\n    // replace it with UNKNOWN.\n    TemplateTypeReplacer replacer = new TemplateTypeReplacer(\n        registry, inferred);\n    Node callTarget = n.getFirstChild();\n\n    FunctionType replacementFnType = fnType.visit(replacer)\n        .toMaybeFunctionType();\n    Preconditions.checkNotNull(replacementFnType);\n\n    callTarget.setJSType(replacementFnType);\n    n.setJSType(replacementFnType.getReturnType());\n\n    return replacer.madeChanges;\n  }",
+    "query_result": [
+        "ype();\nPreconditions.checkNotNull(replacementFnType);\ncallTarget.setJSType(replacementFnType);\nn.setJSType(replacementFnType.getReturnType());\nreturn ",
+        " {\nreturn false;\n}\n// Try to infer the template ty",
+        "Target = n.getFirstChild();\nFunctionType replaceme"
+    ]
+}

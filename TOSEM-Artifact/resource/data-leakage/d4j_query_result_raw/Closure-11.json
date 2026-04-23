@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.41624365482233505,
+    "input": "private void visitGetProp(NodeTraversal t, Node n, Node parent) {\n  // obj.prop or obj.method()\n  // Lots of types can appear on the left, a call to a void function can\n  // never be on the left. getPropertyType will decide what is acceptable\n  // and what isn't.\n  Node property = n.getLastChild();\n  Node objNode = n.getFirstChild();\n  JSType childType = getJSType(objNode);\n\n  if (childType.isDict()) {\n    report(t, property, TypeValidator.ILLEGAL_PROPERTY_ACCESS, \"'.'\", \"dict\");\n  } else if (validator.expectNotNullOrUndefined(t, n, childType,\n      \"No properties on this expression\", getNativeType(OBJECT_TYPE))) {\n    checkPropertyAccess(childType, property.getString(), t, n);\n  }\n  ensureTyped(t, n);\n}",
+    "query_result": [
+        "defined(t, n, childType,\n\"No properties on this expression\", getNativeType(OBJECT_TYPE))) {\ncheckPropertyAccess(childType, property.getString(), t, n)",
+        "n't.\nNode property = n.getLastChild();\nNode objNod",
+        "dType.isDict()) {\nreport(t, property, TypeValidato",
+        "eport(t, property, TypeValidator.ILLEGAL_PROPERTY_"
+    ]
+}

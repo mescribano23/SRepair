@@ -1,0 +1,27 @@
+diff --git a/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java b/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java
+index 77c72b29..a3c162bf 100644
+--- a/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java
++++ b/common/src/main/java/org/apache/cxf/dosgi/common/proxy/ExceptionMapper.java
+@@ -50,11 +50,20 @@ public class ExceptionMapper {
+         return new ServiceException(REMOTE_EXCEPTION_TYPE, ex);
+     }
+     
+-    private void introspectTypeForExceptions(Class<?> iType) {
+-        for (Method m : iType.getDeclaredMethods()) {
++private void introspectTypeForExceptions(Class<?> iType) {
++    Class<?> currentType = iType;
++    while (currentType != null) {
++        for (Method m : currentType.getDeclaredMethods()) {
+             addExceptions(m);
+         }
++        for (Class<?> iface : currentType.getInterfaces()) {
++            for (Method m : iface.getDeclaredMethods()) {
++                addExceptions(m);
++            }
++        }
++        currentType = currentType.getSuperclass();
+     }
++}
+ 
+     private void addExceptions(Method m) {
+         for (Class<?> excType : m.getExceptionTypes()) {

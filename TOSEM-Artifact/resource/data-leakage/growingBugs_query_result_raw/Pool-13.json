@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.9095744680851063,
+    "input": "    public GenericKeyedObjectPool(KeyedPooledObjectFactory<K,T> factory,\n            GenericKeyedObjectPoolConfig config) {\n\n        super(config, ONAME_BASE, config.getJmxNamePrefix());\n\n        if (factory == null) {\n            jmxUnregister(); // tidy up\n            throw new IllegalArgumentException(\"factory may not be null\");\n        }\n        this.factory = factory;\n        this.fairness = config.getFairness();\n\n        setConfig(config);\n\n        startEvictor(getTimeBetweenEvictionRunsMillis());\n    }",
+    "query_result": [
+        "PooledObjectFactory<K,T> factory, GenericKeyedObjectPoolConfig config) { super(config, ONAME_BASE, config.getJmxNamePrefix()); if (factory == null) { jmxUnregister(); // tidy up throw new IllegalArgumentException(\"factory may not be null\"); } this.factory = factory; this.fairness = config.getFairness(); setConfig(config); startEvictor(getTimeBetwee",
+        "tory, GenericKeyedObjectPoolConfig config) { super(config, ONAME_BASE, config.getJmxNamePrefix()); if (factory == null) { jmxUnregister(); // tidy up throw new IllegalArgumentException(\"factory may no",
+        "lConfig config) { super(config, ONAME_BASE, config.getJmxNamePrefix()); if (factory == null) { jmxUnregister(); // tidy up throw new IllegalArgumentException(\"factory may not be null\"); } this.factory",
+        "super(config, ONAME_BASE, config.getJmxNamePrefix()); if (factory == null) { jmxUnregister(); // tidy up throw new IllegalArgumentException(\"factory m",
+        "onfig, ONAME_BASE, config.getJmxNamePrefix()); if (factory == null) { jmxUnregister(); // tidy up throw new IllegalArgumentException(\"factory may not",
+        "getJmxNamePrefix()); if (factory == null) { jmxUnregister(); // tidy up throw new IllegalArgumentException(\"factory may not be null\"); } this.factory",
+        "up throw new IllegalArgumentException(\"factory may not be null\"); } this.factory = factory; this.fairness = config.getFairness(); setConfig(config);",
+        "{ super(config, ONAME_BASE, config.getJmxNamePrefix()); if (factory == null) { jmxUnregister(); //",
+        "ster(); // tidy up throw new IllegalArgumentException(\"factory may not be null\"); } this.factory = f",
+        "er(); // tidy up throw new IllegalArgumentException(\"factory may not be null\"); } this.factory = fac",
+        "r(config, ONAME_BASE, config.getJmxNamePrefix());",
+        "ew IllegalArgumentException(\"factory may not be nu",
+        "IllegalArgumentException(\"factory may not be null",
+        "galArgumentException(\"factory may not be null\"); }",
+        "tConfig(config); startEvictor(getTimeBetweenEvicti",
+        "nfig(config); startEvictor(getTimeBetweenEvictionR",
+        "tartEvictor(getTimeBetweenEvictionRunsMillis()); }"
+    ]
+}

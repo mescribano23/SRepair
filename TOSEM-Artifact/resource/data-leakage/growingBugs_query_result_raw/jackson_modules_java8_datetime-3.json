@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7933070866141733,
+    "input": "    @Override\n    public void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,\n            JsonProcessingException {\n        /* [modules-java8#127]: Serialization of timezone data is disabled by default, but can be\n         * turned on by enabling `SerializationFeature.WRITE_DATES_WITH_ZONE_ID`\n         */\n        if (serializers.isEnabled(SerializationFeature.WRITE_DATES_WITH_ZONE_ID)) {\n            gen.writeFieldName(DateTimeFormatter.ISO_ZONED_DATE_TIME.format(value));\n        } else {\n            gen.writeFieldName(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(value));\n        }\n    }",
+    "query_result": [
+        "teTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,\nJsonProcessingException {\n/* [modules-java8#127]: Serialization of timezone data is disabled by default, but can be\n* turned on by enabling `SerializationFeature.WRITE_DATES_WITH_ZONE_ID`\n*/\nif (serializers.isEnabled(SerializationFeature.WRITE_DATES_WITH_ZONE_ID)) {\ngen.writeFieldName(DateTimeFormatter.ISO_ZONED_D",
+        "@Override\npublic void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,\nJsonProcessingException {\n",
+        "verride\npublic void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers",
+        "erride\npublic void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers)",
+        "e\npublic void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) thro",
+        "\npublic void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throw",
+        "public void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws",
+        "ublic void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws ",
+        "ic void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOE",
+        "c void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOEx",
+        "void serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOExce",
+        "oid serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOExcep",
+        "id serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOExcept",
+        "d serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOExcepti",
+        "serialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException",
+        "erialize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,",
+        "alize(ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,\nJs",
+        "ZonedDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,\nJsonProc",
+        "dDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,\nJsonProcessi",
+        "DateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException,\nJsonProcessin"
+    ]
+}

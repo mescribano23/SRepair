@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.6158357771260997,
+    "input": "public int[] getCounts(int index) {\n    if (index < 0 ||\n        index >= totalSize) {\n        throw new OutOfRangeException(index, 0, totalSize);\n    }\n\n    final int[] indices = new int[dimension];\n\n    int count = 0;\n    for (int i = 0; i < last; i++) {\n        int idx = 0;\n        final int offset = uniCounterOffset[i];\n        while (count <= index) {\n            count += offset;\n            ++idx;\n        }\n        --idx;\n        count -= offset;\n        indices[i] = idx;\n    }\n\n    indices[last] = index - count;\n\n    return indices;\n}",
+    "query_result": [
+        "inal int offset = uniCounterOffset[i];\nwhile (count <= index) {\ncount += offset;\n++idx;\n}\n--idx;\ncount -= offset;\nindices[i] = idx;\n}\nindices[last] = ",
+        ") {\nthrow new OutOfRangeException(index, 0, totalS",
+        "t[] indices = new int[dimension];\nint count = 0;\nf"
+    ]
+}

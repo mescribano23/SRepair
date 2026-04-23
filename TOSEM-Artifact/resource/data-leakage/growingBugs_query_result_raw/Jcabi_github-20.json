@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public Iterable<Release> iterate() {\n        return new MkIterable<Release>(\n            this.storage,\n            String.format(\"%s/release\", this.xpath()),\n            new MkIterable.Mapping<Release>() {\n                @Override\n                public Release map(final XML xml) {\n                    return MkReleases.this.get(\n                        Integer.parseInt(xml.xpath(\"id/text()\").get(0))\n                    );\n                }\n            }\n        );\n    }",
+    "query_result": []
+}

@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public Collection<MailAddress> match(Mail mail) {\n        String authUser = (String) mail.getAttribute(Mail.SMTP_AUTH_USER_ATTRIBUTE_NAME);\n        if (authUser != null) {\n            return mail.getRecipients();\n        } else {\n            return ImmutableList.of();\n        }\n    }",
+    "query_result": []
+}

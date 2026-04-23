@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9797395079594791,
+    "input": "    @Override\n    protected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {\n\n        //just redirect to the specified port:\n        int port = toPort(mappedValue);\n\n        String scheme = getScheme(request.getScheme(), port);\n\n        StringBuilder sb = new StringBuilder();\n        sb.append(scheme).append(\"://\");\n        sb.append(request.getServerName());\n        if (port != DEFAULT_HTTP_PORT && port != SslFilter.DEFAULT_HTTPS_PORT) {\n            sb.append(\":\");\n            sb.append(port);\n        }\n        if (request instanceof HttpServletRequest) {\n            sb.append(WebUtils.toHttp(request).getRequestURI());\n            String query = WebUtils.toHttp(request).getQueryString();\n            if (query != null) {\n                sb.append(\"?\").append(query);\n            }\n        }\n\n        WebUtils.issueRedirect(request, response, sb.toString());\n\n        return false;\n    }",
+    "query_result": [
+        "ean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {\n//just redirect to the specified port:\nint port = toPort(mappedValue);\nString scheme = getScheme(request.getScheme(), port);\nStringBuilder sb = new StringBuilder();\nsb.append(scheme).append(\"://\");\nsb.append(request.getServerName());\nif (port != DEFAULT_HTTP_PORT && port != SslFilter.DEFAULT_HTTPS_PORT) {\nsb.append(\":\");\nsb.append(port);\n}\nif (request instanceof HttpServletRequest) {\nsb.append(WebUtils.toHttp(request).getRequestURI());\nString query = WebUtils.toHttp(request).getQueryString();\nif (query != null) {\nsb.append(\"?\").append(query);\n}\n}\nWebUtils.issueRedirect(request, respo",
+        "ppedValue);\nString scheme = getScheme(request.getScheme(), port);\nStringBuilder sb = new StringBuilder();\nsb.append(scheme).append(\"://\");\nsb.append(request.getServerName());\nif (port != DEFAULT_HTTP_PORT && port != SslFilter.DEFAULT_HTTPS_PORT) {\nsb.append(\":\");\nsb.append(port);\n}\nif (request instanceof HttpServletRequest) {\nsb.append(WebUtils.toHttp(request).getRequestURI());\nString query = WebUtils.toHttp(request).getQueryString();\nif (query != null) {\nsb.append(\"?\").append(query);\n}\n}\nWebUtils.issueRedirect(request, response, sb.toString())",
+        "getScheme(), port);\nStringBuilder sb = new StringBuilder();\nsb.append(scheme).append(\"://\");\nsb.append(request.getServerName());\nif (port != DEFAULT_HTTP_PORT && port != SslFilter.DEFAULT_HTTPS_PORT) {\nsb.append(\":\");\nsb.append(port);\n}\nif (request i",
+        "quest instanceof HttpServletRequest) {\nsb.append(WebUtils.toHttp(request).getRequestURI());\nString query = WebUtils.toHttp(request).getQueryString();\nif (query != null) {\nsb.append(\"?\").append(query);\n}\n}\nWebUtils.issueRedirect(request, response, sb.",
+        "specified port:\nint port = toPort(mappedValue);\nString scheme = getScheme(request.getScheme(), port);\nStringBuilder sb = new StringBuilder();\nsb.append(scheme).append(\"://\");\nsb.append(request.getServ",
+        "rvletRequest request, ServletResponse response, Object mappedValue) throws IOException {\n//just redirect to the specified port:\nint port = toPort(mapp",
+        "@Override\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object ",
+        "Override\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object m",
+        "verride\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object ma",
+        "erride\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object map",
+        "rride\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mapp",
+        "ride\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappe",
+        "ide\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mapped",
+        "de\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedV",
+        "e\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedVa",
+        "\nprotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedVal",
+        "protected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValu",
+        "rotected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue",
+        "otected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue)",
+        "tected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue) "
+    ]
+}

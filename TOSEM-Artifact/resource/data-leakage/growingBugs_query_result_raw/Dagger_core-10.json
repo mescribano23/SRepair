@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7126760563380282,
+    "input": "  @Override public Binding<?> getAtInjectBinding(String key, String className,\n      ClassLoader classLoader, boolean mustHaveInjections) {\n      try {\n        return GeneratedAdapters.initInjectAdapter(className, classLoader);\n      } catch (ClassNotFoundException ignored /* failover case */) {\n        try {\n          // A null classloader is the system classloader.\n          classLoader = (classLoader != null) ? classLoader : ClassLoader.getSystemClassLoader();\n          Class<?> type = classLoader.loadClass(className);\n          if (type.isInterface()) {\n            return null; // Short-circuit since we can't build reflective bindings for interfaces.\n          }\n          return ReflectiveAtInjectBinding.create(type, mustHaveInjections);\n        } catch (ClassNotFoundException e) {\n          throw new TypeNotPresentException(\n              String.format(\"Could not find %s needed for binding %s\", className, key), e);\n        }\n      }\n  }",
+    "query_result": [
+        "e);\nif (type.isInterface()) {\nreturn null; // Short-circuit since we can't build reflective bindings for interfaces.\n}\nreturn ReflectiveAtInjectBinding.create(type, mustHaveInjections);\n} catch (ClassNotFoundException e) {\nthrow new TypeNotPresentException(\nString.format(\"Could not find %s needed fo",
+        ") {\ntry {\n// A null classloader is the system classloader.\nclassLoader = (classLoader != null) ? classLoader : ClassLoader.getSystemClassLoader();\nCla",
+        "assloader.\nclassLoader = (classLoader != null) ? classLoader : ClassLoader.getSystemClassLoader();\nC",
+        "Override public Binding<?> getAtInjectBinding(Stri",
+        "public Binding<?> getAtInjectBinding(String key, S",
+        "lassName, classLoader);\n} catch (ClassNotFoundExce",
+        "assName, classLoader);\n} catch (ClassNotFoundExcep",
+        "ssName, classLoader);\n} catch (ClassNotFoundExcept",
+        "me, classLoader);\n} catch (ClassNotFoundException ",
+        "e, classLoader);\n} catch (ClassNotFoundException i",
+        ", classLoader);\n} catch (ClassNotFoundException ig",
+        "lassLoader);\n} catch (ClassNotFoundException ignor",
+        "classLoader = (classLoader != null) ? classLoader ",
+        "ader = (classLoader != null) ? classLoader : Class",
+        " (classLoader != null) ? classLoader : ClassLoader",
+        " classLoader : ClassLoader.getSystemClassLoader();",
+        "rn ReflectiveAtInjectBinding.create(type, mustHave",
+        "ns);\n} catch (ClassNotFoundException e) {\nthrow ne",
+        "s);\n} catch (ClassNotFoundException e) {\nthrow new",
+        ");\n} catch (ClassNotFoundException e) {\nthrow new "
+    ]
+}

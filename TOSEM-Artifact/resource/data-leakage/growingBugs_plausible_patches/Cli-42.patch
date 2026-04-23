@@ -1,0 +1,41 @@
+diff --git a/src/java/org/apache/commons/cli/HelpFormatter.java b/src/java/org/apache/commons/cli/HelpFormatter.java
+index c4ff1c4..02c868c 100644
+--- a/src/java/org/apache/commons/cli/HelpFormatter.java
++++ b/src/java/org/apache/commons/cli/HelpFormatter.java
+@@ -819,9 +819,10 @@ public class HelpFormatter
+         // characters
+         final String padding = createPadding(nextLineTabStop);
+ 
+-            // stops infinite loop happening
++        int maxIterations = 1000; // Arbitrary large number
++        int iterationCount = 0;
+ 
+-        while (true)
++        while (iterationCount < maxIterations)
+         {
+             text = padding + text.substring(pos).trim();
+             pos = findWrapPos(text, width, 0);
+@@ -829,17 +830,20 @@ public class HelpFormatter
+             if (pos == -1)
+             {
+                 sb.append(text);
+-
+                 return sb;
+             }
+-            
+-            if ( (text.length() > width) && (pos == nextLineTabStop - 1) ) 
++
++            if (text.length() > width && pos <= nextLineTabStop)
+             {
+                 pos = width;
+             }
+ 
+             sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
++
++            iterationCount++;
+         }
++
++        throw new IllegalStateException("Infinite loop detected in renderWrappedText");
+     }
+ 
+     /**

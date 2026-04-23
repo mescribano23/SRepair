@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.3377926421404682,
+    "input": "public boolean isValid(String code) {\n        if (code == null || code.length() < 5) {\n            return false;\n        }\n        String check = code.substring(2,4);\n        if (\"00\".equals(check) || \"01\".equals(check) || \"99\".equals(check)) {\n            return false;\n        }\n        try {\n            int modulusResult = calculateModulus(code);\n            return (modulusResult == 1);\n        } catch (CheckDigitException  ex) {\n            return false;\n        }\n    }",
+    "query_result": [
+        "lic boolean isValid(String code) {\nif (code == nul",
+        "boolean isValid(String code) {\nif (code == null ||",
+        "ean isValid(String code) {\nif (code == null || cod",
+        "sValid(String code) {\nif (code == null || code.len",
+        "d(String code) {\nif (code == null || code.length()",
+        "alse;\n}\ntry {\nint modulusResult = calculateModulus"
+    ]
+}

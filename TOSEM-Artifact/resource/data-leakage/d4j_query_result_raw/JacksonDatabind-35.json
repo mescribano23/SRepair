@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.29396092362344584,
+    "input": "private final Object _deserialize(JsonParser p, DeserializationContext ctxt) throws IOException\n{\n    // 02-Aug-2013, tatu: May need to use native type ids\n    if (p.canReadTypeId()) {\n        Object typeId = p.getTypeId();\n        if (typeId != null) {\n            return _deserializeWithNativeTypeId(p, ctxt, typeId);\n        }\n    }\n    // first, sanity checks\n    JsonToken t = p.getCurrentToken();\n    if (t == JsonToken.START_OBJECT) {\n        // should always get field name, but just in case...\n        if (p.nextToken() != JsonToken.FIELD_NAME) {\n            throw ctxt.wrongTokenException(p, JsonToken.FIELD_NAME,\n                    \"need JSON String that contains type id (for subtype of \"+baseTypeName()+\")\");\n        }\n    } else if (t != JsonToken.FIELD_NAME) {\n        throw ctxt.wrongTokenException(p, JsonToken.START_OBJECT,\n                \"need JSON Object to contain As.WRAPPER_OBJECT type information for class \"+baseTypeName());\n    }\n    final String typeId = p.getText();\n    JsonDeserializer<Object> deser = _findDeserializer(ctxt, typeId);\n    p.nextToken();\n\n    // Minor complication: we may need to merge type id in?\n    if (_typeIdVisible && p.getCurrentToken() == JsonToken.START_OBJECT) {\n        // but what if there's nowhere to add it in? Error? Or skip? For now, skip.\n        TokenBuffer tb = new TokenBuffer(null, false);\n        tb.writeStartObject(); // recreate START_OBJECT\n        tb.writeFieldName(_typePropertyName);\n        tb.writeString(typeId);\n     ",
+    "query_result": [
+        "final Object _deserialize(JsonParser p, DeserializationContext ctxt) throws IOException\n{\n// 02-Aug-2013, tatu: May need to use native type ids\nif (p.canReadTypeId()) {\nObject typeId = p.getTypeId();\nif (typeId != null) {\nreturn _deserializeWithNativ",
+        "JsonParser p, DeserializationContext ctxt) throws IOException\n{\n// 02-Aug-2013, tatu: May need to use native type ids\nif (p.canReadTypeId()) {\nObject typeId = p.getTypeId();\nif (typeId != null) {\nreturn _deserializeWithNativeTypeId(p, ctxt, typeId);\n",
+        "eserializationContext ctxt) throws IOException\n{\n// 02-Aug-2013, tatu: May need to use native type ids\nif (p.canReadTypeId()) {\nObject typeId = p.getTypeId();\nif (typeId != null) {\nreturn _deserialize",
+        "nReadTypeId()) {\nObject typeId = p.getTypeId();\nif (typeId != null) {\nreturn _deserializeWithNativeT",
+        " tb = new TokenBuffer(null, false);\ntb.writeStartObject(); // recreate START_OBJECT\ntb.writeFieldNam",
+        "nal Object _deserialize(JsonParser p, Deserializat",
+        "ct _deserialize(JsonParser p, DeserializationConte",
+        "deserialize(JsonParser p, DeserializationContext c",
+        "eserialize(JsonParser p, DeserializationContext ct",
+        "serialize(JsonParser p, DeserializationContext ctx",
+        "erialize(JsonParser p, DeserializationContext ctxt",
+        "rialize(JsonParser p, DeserializationContext ctxt)",
+        "ialize(JsonParser p, DeserializationContext ctxt) ",
+        "alize(JsonParser p, DeserializationContext ctxt) t",
+        "lize(JsonParser p, DeserializationContext ctxt) th",
+        "ize(JsonParser p, DeserializationContext ctxt) thr",
+        "ze(JsonParser p, DeserializationContext ctxt) thro",
+        "e(JsonParser p, DeserializationContext ctxt) throw",
+        "(JsonParser p, DeserializationContext ctxt) throws",
+        "sonParser p, DeserializationContext ctxt) throws I"
+    ]
+}

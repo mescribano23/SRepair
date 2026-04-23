@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.5156017830609212,
+    "input": "    protected StringBuffer renderWrappedText(StringBuffer sb, int width, \n                                             int nextLineTabStop, String text)\n    {\n        int pos = findWrapPos(text, width, 0);\n\n        if (pos == -1)\n        {\n            sb.append(rtrim(text));\n\n            return sb;\n        }\n        sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);\n\n        // all following lines must be padded with nextLineTabStop space \n        // characters\n        final String padding = createPadding(nextLineTabStop);\n\n        while (true)\n        {\n            int lastPos = pos;\n            text = padding + text.substring(pos).trim();\n            pos = findWrapPos(text, width, 0);\n\n            if (pos == -1)\n            {\n                sb.append(text);\n\n                return sb;\n            } else\n            if (pos == lastPos)\n            {\n                throw new RuntimeException(\"Text too long for line - throwing exception to avoid infinite loop [CLI-162]: \" + text);\n            }\n\n            sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);\n        }\n    }",
+    "query_result": [
+        "uffer renderWrappedText(StringBuffer sb, int width",
+        "end(rtrim(text));\nreturn sb;\n}\nsb.append(rtrim(tex",
+        ");\nreturn sb;\n}\nsb.append(rtrim(text.substring(0, ",
+        ";\n// all following lines must be padded with nextL",
+        "l following lines must be padded with nextLineTabS",
+        "wing lines must be padded with nextLineTabStop spa",
+        "st be padded with nextLineTabStop space \n// charac",
+        "racters\nfinal String padding = createPadding(nextL",
+        "tring padding = createPadding(nextLineTabStop);\nwh",
+        "xt = padding + text.substring(pos).trim();\npos = f",
+        "dding + text.substring(pos).trim();\npos = findWrap",
+        "substring(pos).trim();\npos = findWrapPos(text, wid",
+        "trim();\npos = findWrapPos(text, width, 0);\nif (pos",
+        "xt.substring(0, pos))).append(defaultNewLine);\n}\n}"
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.2356828193832599,
+    "input": "    private String toCidrNotation(String addr, String mask) {\n        int maskInt = toInteger(mask);\n\n        /*\n         * Check the subnet mask\n         *\n         * An IPv4 subnet mask must consist of a set of contiguous 1-bits followed by a block of 0-bits.\n         * If the mask follows the format, the numbers of subtracting one from the lowest one bit of the mask,\n         * see Hacker's Delight section 2.1, equals to the bitwise complement of the mask.\n         */\n        if ((maskInt & -maskInt) - 1 != ~maskInt) {\n            throw new IllegalArgumentException(\"Could not parse [\" + mask + \"]\");\n        }\n\n        return addr + \"/\" + pop(maskInt);\n    }",
+    "query_result": [
+        "e String toCidrNotation(String addr, String mask) ",
+        "nt) {\nthrow new IllegalArgumentException(\"Could no",
+        ") {\nthrow new IllegalArgumentException(\"Could not ",
+        " {\nthrow new IllegalArgumentException(\"Could not p",
+        "{\nthrow new IllegalArgumentException(\"Could not pa",
+        "\nthrow new IllegalArgumentException(\"Could not par",
+        "throw new IllegalArgumentException(\"Could not pars",
+        "hrow new IllegalArgumentException(\"Could not parse",
+        "row new IllegalArgumentException(\"Could not parse ",
+        "w new IllegalArgumentException(\"Could not parse [\"",
+        " new IllegalArgumentException(\"Could not parse [\" ",
+        "ArgumentException(\"Could not parse [\" + mask + \"]\"",
+        "rgumentException(\"Could not parse [\" + mask + \"]\")"
+    ]
+}

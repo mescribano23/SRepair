@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9033970276008493,
+    "input": "protected void extractFile(ZipInputStream zipInputStream, FileHeader fileHeader, String outPath, String newFileName,\n                             ProgressMonitor progressMonitor) throws IOException {\n\n    progressMonitor.setFileName(fileHeader.getFileName());\n\n    if (!outPath.endsWith(FILE_SEPARATOR)) {\n      outPath += FILE_SEPARATOR;\n    }\n\n    // make sure no file is extracted outside of the target directory (a.k.a zip slip)\n    String fileName = fileHeader.getFileName();\n    String completePath = outPath + fileName;\n    if (!new File(completePath).getCanonicalPath().startsWith(new File(outPath).getPath())) {\n      throw new ZipException(\"illegal file name that breaks out of the target directory: \"\n          + fileHeader.getFileName());\n    }\n\n    verifyNextEntry(zipInputStream, fileHeader);\n\n    if (fileHeader.isDirectory()) {\n      File file = new File(completePath);\n      if (!file.exists()) {\n        if (!file.mkdirs()) {\n          throw new ZipException(\"Could not create directory: \" + file);\n        }\n      }\n    } else {\n      checkOutputDirectoryStructure(fileHeader, outPath, newFileName);\n      unzipFile(zipInputStream, fileHeader, outPath, newFileName, progressMonitor);\n    }\n  }",
+    "query_result": [
+        "().startsWith(new File(outPath).getPath())) {\nthrow new ZipException(\"illegal file name that breaks out of the target directory: \"\n+ fileHeader.getFileName());\n}\nverifyNextEntry(zipInputStream, fileHeader);\nif (fileHeader.isDirectory()) {\nFile file = new File(completePath);\nif (!file.exists()) {\nif (!file.mkdirs()) {\nthrow new ZipException(\"Could not create directory: \" + file);\n}\n}\n} else {\ncheckOutputDirectoryStructure(fileHeader, outPath, newFileName);\nunzipFile(zipInputStream, fileHeader, ou",
+        "protected void extractFile(ZipInputStream zipInputStream, FileHeader fileHeader, String outPath, String newFileName,\nProgressMonitor progressMonitor) throws IOException {\nprogressMonitor.setFileName(fileHeader.getFileName());\nif (!outPath.endsWith(FILE_SEPARATOR)) {\noutPath += FILE_SEPARATOR;\n}\n// make sure no file is extracted outside of the target directory (a.k.a zip slip)\nString fileName = fileHeader.getFileName();\nString completePath = outPa",
+        "oid extractFile(ZipInputStream zipInputStream, Fil",
+        "ame,\nProgressMonitor progressMonitor) throws IOExc",
+        "ProgressMonitor progressMonitor) throws IOExceptio",
+        "ogressMonitor progressMonitor) throws IOException ",
+        "gressMonitor progressMonitor) throws IOException {",
+        "ressMonitor progressMonitor) throws IOException {\n",
+        "ogressMonitor.setFileName(fileHeader.getFileName()",
+        "ePath);\nif (!file.exists()) {\nif (!file.mkdirs()) ",
+        "Path);\nif (!file.exists()) {\nif (!file.mkdirs()) {",
+        "ath);\nif (!file.exists()) {\nif (!file.mkdirs()) {\n",
+        "h);\nif (!file.exists()) {\nif (!file.mkdirs()) {\nth",
+        ");\nif (!file.exists()) {\nif (!file.mkdirs()) {\nthr",
+        "\nif (!file.exists()) {\nif (!file.mkdirs()) {\nthrow",
+        "if (!file.exists()) {\nif (!file.mkdirs()) {\nthrow ",
+        "f (!file.exists()) {\nif (!file.mkdirs()) {\nthrow n",
+        " (!file.exists()) {\nif (!file.mkdirs()) {\nthrow ne",
+        "(!file.exists()) {\nif (!file.mkdirs()) {\nthrow new",
+        "!file.exists()) {\nif (!file.mkdirs()) {\nthrow new "
+    ]
+}

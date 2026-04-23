@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8740157480314961,
+    "input": "    public void stop() {\n        if(this.runningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\n            throw new IllegalStateException(\"Stopwatch is not running. \");\n        }\n        if(this.runningState == STATE_RUNNING) {\n            stopTime = System.currentTimeMillis();\n        }\n        this.runningState = STATE_STOPPED;\n    }",
+    "query_result": [
+        "ic void stop() {\nif(this.runningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateException(\"Stopwatch is not running. \");\n}\nif(this.runningState == STATE_RUNNING) {\nstopTime = System.currentTimeMillis();\n}\nthis.",
+        "{\nif(this.runningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new Illegal",
+        "\nif(this.runningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalS",
+        "if(this.runningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalSt",
+        ".runningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateExce",
+        "nningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateExcepti",
+        "ningState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateExceptio",
+        "gState != STATE_RUNNING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateException(\"",
+        "ING && this.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateException(\"Stopwatch is not run",
+        "&& this.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateException(\"Stopwatch is not running",
+        "s.runningState != STATE_SUSPENDED) {\nthrow new IllegalStateException(\"Stopwatch is not running. \");\n",
+        "ngState != STATE_SUSPENDED) {\nthrow new IllegalSta",
+        "SPENDED) {\nthrow new IllegalStateException(\"Stopwa",
+        "hrow new IllegalStateException(\"Stopwatch is not r",
+        "w new IllegalStateException(\"Stopwatch is not runn",
+        "w IllegalStateException(\"Stopwatch is not running.",
+        "llegalStateException(\"Stopwatch is not running. \")",
+        "legalStateException(\"Stopwatch is not running. \");",
+        "galStateException(\"Stopwatch is not running. \");\n}",
+        "f(this.runningState == STATE_RUNNING) {\nstopTime ="
+    ]
+}

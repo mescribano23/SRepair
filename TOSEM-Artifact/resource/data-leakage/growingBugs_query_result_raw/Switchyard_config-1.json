@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public String getValue() {\n        Node text_node = getTextNode(false);\n        if (text_node instanceof Text) {\n            return ((Text)text_node).getWholeText();\n        } else if (text_node != null) {\n            return text_node.getNodeValue();\n        }\n        return null;\n    }",
+    "query_result": []
+}

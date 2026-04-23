@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9929577464788732,
+    "input": "    public static boolean equals(CharSequence cs1, CharSequence cs2) {\n        if (cs1 == cs2) {\n            return true;\n        }\n        if (cs1 == null || cs2 == null) {\n            return false;\n        }\n        if (cs1 instanceof String && cs2 instanceof String) {\n            return cs1.equals(cs2);\n        }\n        return CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, Math.max(cs1.length(), cs2.length()));\n    }",
+    "query_result": [
+        "ublic static boolean equals(CharSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, Math.max(",
+        "lic static boolean equals(CharSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, Math.max(cs",
+        "harSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, Math.max(cs1.length(), cs2.length()));",
+        "uence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSequenceUtils.regionMatches(cs1, false, 0, cs",
+        "ence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSequenceUtils.regionMatches(cs1, false, 0, cs2",
+        " static boolean equals(CharSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nre",
+        "atic boolean equals(CharSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nretur",
+        "arSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nr",
+        "quence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nretur",
+        "equence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSequenceUti",
+        " cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instance",
+        " CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof St",
+        "uence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\n",
+        "e cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nretu",
+        "{\nreturn true;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nret",
+        "ue;\n}\nif (cs1 == null || cs2 == null) {\nreturn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSeq",
+        "rn false;\n}\nif (cs1 instanceof String && cs2 instanceof String) {\nreturn cs1.equals(cs2);\n}\nreturn CharSequenceUtils.regionMatches(cs1, false, 0, cs2,",
+        " boolean equals(CharSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == nu",
+        "CharSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == nul",
+        "rSequence cs1, CharSequence cs2) {\nif (cs1 == cs2) {\nreturn true;\n}\nif (cs1 == null || cs2 == null) "
+    ]
+}

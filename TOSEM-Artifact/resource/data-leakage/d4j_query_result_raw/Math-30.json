@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7224669603524229,
+    "input": "private double calculateAsymptoticPValue(final double Umin,\n                                         final int n1,\n                                         final int n2)\n    throws ConvergenceException, MaxCountExceededException {\n\n    final double n1n2prod = n1 * n2;\n\n    // http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U#Normal_approximation\n    final double EU = n1n2prod / 2.0;\n    final double VarU = n1n2prod * (n1 + n2 + 1) / 12.0;\n\n    final double z = (Umin - EU) / FastMath.sqrt(VarU);\n\n    final NormalDistribution standardNormal = new NormalDistribution(0, 1);\n\n    return 2 * standardNormal.cumulativeProbability(z);\n}",
+    "query_result": [
+        "ttp://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U#Normal_approximation\nfinal double EU = n1n2prod /",
+        "inal NormalDistribution standardNormal = new NormalDistribution(0, 1);\nreturn 2 * standardNormal.cum",
+        "private double calculateAsymptoticPValue(final dou",
+        "hrows ConvergenceException, MaxCountExceededExcept",
+        "rows ConvergenceException, MaxCountExceededExcepti",
+        " ConvergenceException, MaxCountExceededException {",
+        "// http://en.wikipedia.org/wiki/Mann%E2%80%93Whitn",
+        "http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_",
+        "//en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U#Nor",
+        "edia.org/wiki/Mann%E2%80%93Whitney_U#Normal_approx",
+        ".org/wiki/Mann%E2%80%93Whitney_U#Normal_approximat",
+        "g/wiki/Mann%E2%80%93Whitney_U#Normal_approximation",
+        "wiki/Mann%E2%80%93Whitney_U#Normal_approximation\nf",
+        "Mann%E2%80%93Whitney_U#Normal_approximation\nfinal ",
+        "n%E2%80%93Whitney_U#Normal_approximation\nfinal dou",
+        "final double VarU = n1n2prod * (n1 + n2 + 1) / 12.",
+        "inal double VarU = n1n2prod * (n1 + n2 + 1) / 12.0",
+        ");\nfinal NormalDistribution standardNormal = new N",
+        "ormalDistribution standardNormal = new NormalDistr",
+        "Distribution standardNormal = new NormalDistributi"
+    ]
+}

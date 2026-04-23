@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.2669683257918552,
+    "input": "    public double cumulativeProbability(double x) throws MathException {\n        final double dev = x - mean;\n        if (FastMath.abs(dev) > 40 * standardDeviation) { \n            return dev < 0 ? 0.0d : 1.0d;\n        }\n        return 0.5 * (1.0 + Erf.erf((dev) /\n                    (standardDeviation * FastMath.sqrt(2.0))));\n    }",
+    "query_result": [
+        "blic double cumulativeProbability(double x) throws",
+        "lic double cumulativeProbability(double x) throws ",
+        "ouble cumulativeProbability(double x) throws MathE",
+        "uble cumulativeProbability(double x) throws MathEx",
+        "ble cumulativeProbability(double x) throws MathExc",
+        "cumulativeProbability(double x) throws MathExcepti",
+        "mulativeProbability(double x) throws MathException"
+    ]
+}

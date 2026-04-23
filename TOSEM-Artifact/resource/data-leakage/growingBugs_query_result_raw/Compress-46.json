@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.441025641025641,
+    "input": "    private static ZipLong unixTimeToZipLong(long l) {\n        if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {\n            throw new IllegalArgumentException(\"X5455 timestamps must fit in a signed 32 bit integer: \" + l);\n        }\n        return new ZipLong(l);\n    }",
+    "query_result": [
+        "long l) {\nif (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {\nthrow new IllegalArgumentException(\"",
+        "ong l) {\nif (l < Integer.MIN_VALUE || l > Integer.",
+        "ng l) {\nif (l < Integer.MIN_VALUE || l > Integer.M",
+        "g l) {\nif (l < Integer.MIN_VALUE || l > Integer.MA",
+        " l) {\nif (l < Integer.MIN_VALUE || l > Integer.MAX",
+        "l) {\nif (l < Integer.MIN_VALUE || l > Integer.MAX_",
+        ") {\nif (l < Integer.MIN_VALUE || l > Integer.MAX_V",
+        " {\nif (l < Integer.MIN_VALUE || l > Integer.MAX_VA",
+        "{\nif (l < Integer.MIN_VALUE || l > Integer.MAX_VAL",
+        "\nif (l < Integer.MIN_VALUE || l > Integer.MAX_VALU",
+        "if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE",
+        "f (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE)",
+        " (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) ",
+        "(l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {",
+        "l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {\n",
+        " < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {\nt",
+        "< Integer.MIN_VALUE || l > Integer.MAX_VALUE) {\nth",
+        " Integer.MIN_VALUE || l > Integer.MAX_VALUE) {\nthr",
+        "Integer.MIN_VALUE || l > Integer.MAX_VALUE) {\nthro",
+        "nteger.MIN_VALUE || l > Integer.MAX_VALUE) {\nthrow"
+    ]
+}

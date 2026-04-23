@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5842105263157895,
+    "input": "protected UnivariatePointValuePair doOptimize() {\n    final boolean isMinim = getGoalType() == GoalType.MINIMIZE;\n    final double lo = getMin();\n    final double mid = getStartValue();\n    final double hi = getMax();\n\n    // Optional additional convergence criteria.\n    final ConvergenceChecker<UnivariatePointValuePair> checker\n        = getConvergenceChecker();\n\n    double a;\n    double b;\n    if (lo < hi) {\n        a = lo;\n        b = hi;\n    } else {\n        a = hi;\n        b = lo;\n    }\n\n    double x = mid;\n    double v = x;\n    double w = x;\n    double d = 0;\n    double e = 0;\n    double fx = computeObjectiveValue(x);\n    if (!isMinim) {\n        fx = -fx;\n    }\n    double fv = fx;\n    double fw = fx;\n\n    UnivariatePointValuePair previous = null;\n    UnivariatePointValuePair current\n        = new UnivariatePointValuePair(x, isMinim ? fx : -fx);\n\n    int iter = 0;\n    while (true) {\n        final double m = 0.5 * (a + b);\n        final double tol1 = relativeThreshold * FastMath.abs(x) + absoluteThreshold;\n        final double tol2 = 2 * tol1;\n\n        // Default stopping criterion.\n        final boolean stop = FastMath.abs(x - m) <= tol2 - 0.5 * (b - a);\n        if (!stop) {\n            double p = 0;\n            double q = 0;\n            double r = 0;\n            double u = 0;\n\n            if (FastMath.abs(e) > tol1) { // Fit parabola.\n                r = (x - w) * (fx - fv);\n                q = (x - v) * (fx - fw);\n                p = (x - v) * q - (x - w) * r;\n        ",
+    "query_result": [
+        "er();\ndouble a;\ndouble b;\nif (lo < hi) {\na = lo;\nb = hi;\n} else {\na = hi;\nb = lo;\n}\ndouble x = mid;\ndouble v = x;\ndouble w = x;\ndouble d = 0;\ndouble e = 0;\ndouble fx = computeObjectiveValue(x);\nif (!i",
+        "nivariatePointValuePair previous = null;\nUnivariatePointValuePair current\n= new UnivariatePointValue",
+        "\nfinal boolean isMinim = getGoalType() == GoalType",
+        "final boolean isMinim = getGoalType() == GoalType.",
+        "inal boolean isMinim = getGoalType() == GoalType.M",
+        "nal boolean isMinim = getGoalType() == GoalType.MI",
+        "e lo = getMin();\nfinal double mid = getStartValue(",
+        "double x = mid;\ndouble v = x;\ndouble w = x;\ndouble",
+        "= new UnivariatePointValuePair(x, isMinim ? fx : -",
+        "w UnivariatePointValuePair(x, isMinim ? fx : -fx);",
+        "er = 0;\nwhile (true) {\nfinal double m = 0.5 * (a +",
+        "nal double tol1 = relativeThreshold * FastMath.abs",
+        "le tol1 = relativeThreshold * FastMath.abs(x) + ab",
+        "1 = relativeThreshold * FastMath.abs(x) + absolute",
+        "s(x) + absoluteThreshold;\nfinal double tol2 = 2 * ",
+        ";\nif (!stop) {\ndouble p = 0;\ndouble q = 0;\ndouble ",
+        "\ndouble p = 0;\ndouble q = 0;\ndouble r = 0;\ndouble ",
+        "uble p = 0;\ndouble q = 0;\ndouble r = 0;\ndouble u =",
+        ".\nr = (x - w) * (fx - fv);\nq = (x - v) * (fx - fw)",
+        "\nr = (x - w) * (fx - fv);\nq = (x - v) * (fx - fw);"
+    ]
+}

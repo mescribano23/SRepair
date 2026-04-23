@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.526361279170268,
+    "input": "public <T> void visitCtInvocation(CtInvocation<T> invocation) {\n        enterCtStatement(invocation);\n        enterCtExpression(invocation);\n//BCUTAG ??? \n//        if (invocation.getExecutable() ==null || invocation.getExecutable().getSimpleName() == null){\n//            exitCtExpression(invocation);\n//            return;\n//        }\n        if (invocation.getExecutable().getSimpleName().equals(\"<init>\")) {\n            // It's a constructor (super or this)\n            try {\n                CtType<?> parentType = invocation.getParent(CtType.class);\n                if ((parentType != null)\n                        && (parentType.getQualifiedName() != null)\n                        && parentType.getQualifiedName().equals(\n                                invocation.getExecutable().getDeclaringType()\n                                        .getQualifiedName())) {\n                    write(\"this\");\n                } else {\n                    if (invocation.getTarget() != null) {\n                        write(invocation.getTarget().getSignature() + '.');\n                    }\n                    write(\"super\");\n                }\n            } catch (Exception e) {\n                Launcher.logger.error(e.getMessage(), e);\n            }\n        } else {\n            // It's a method invocation\n            if (invocation.getExecutable().isStatic()) {\n                try {\n                    CtTypeReference<?> type = invocation.getExecutable()\n                            .getDeclaringType();\n                    if (env.isAutoImports()) {\n                        importsContext.imports.remove(type.getSimpleName());\n                    }\n                    context.ignoreGenerics = true;\n                    scan(type);\n                    context.ignoreGenerics = false;\n                    write(\".\");\n                } catch (Exception e) {\n                    Launcher.logger.error(e.getMessage(), e);\n                }\n            } else if (invocation.getTarget() != null) {\n    ",
+    "query_result": [
+        "n.getExecutable().getSimpleName().equals(\"<init>\")) {\n// It's a constructor (super or this)\ntry {\nCtType<?> parentType = invocation.getParent(CtType.class);\nif ((parentType != null)\n&& (parentType.getQualifiedName() != null)\n&& parentType.getQualifiedName().equals(\ninvocation.getExecutable().getDeclaringType()\n.getQualifiedName())) {\nwrite(\"this\");",
+        "le() ==null || invocation.getExecutable().getSimpleName() == null){\n// exitCtExpression(invocation);",
+        "se {\n// It's a method invocation\nif (invocation.getExecutable().isStatic()) {\ntry {\nCtTypeReference<",
+        "public <T> void visitCtInvocation(CtInvocation<T> ",
+        "ublic <T> void visitCtInvocation(CtInvocation<T> i",
+        "blic <T> void visitCtInvocation(CtInvocation<T> in",
+        " <T> void visitCtInvocation(CtInvocation<T> invoca",
+        "<T> void visitCtInvocation(CtInvocation<T> invocat",
+        "> void visitCtInvocation(CtInvocation<T> invocatio",
+        "void visitCtInvocation(CtInvocation<T> invocation)",
+        "oid visitCtInvocation(CtInvocation<T> invocation) ",
+        "erCtStatement(invocation);\nenterCtExpression(invoc",
+        "parentType = invocation.getParent(CtType.class);\ni",
+        "xecutable().getDeclaringType()\n.getQualifiedName()"
+    ]
+}

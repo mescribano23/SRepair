@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.0967741935483871,
+    "input": "  private void traverse(Node node) {\n    // The goal here is to avoid retraversing\n    // the entire AST to catch newly created opportunities.\n    // So we track whether a \"unit of code\" has changed,\n    // and revisit immediately.\n    if (!shouldVisit(node)) {\n      return;\n    }\n\n    int visits = 0;\n    do {\n      Node c = node.getFirstChild();\n      while(c != null) {\n        Node next = c.getNext();\n        traverse(c);\n        c = next;\n      }\n\n      visit(node);\n      visits++;\n\n      Preconditions.checkState(visits < 10000, \"too many interations\");\n    } while (shouldRetraverse(node));\n\n    exitNode(node);\n  }",
+    "query_result": [
+        "{\nNode c = node.getFirstChild();\nwhile(c != null) "
+    ]
+}

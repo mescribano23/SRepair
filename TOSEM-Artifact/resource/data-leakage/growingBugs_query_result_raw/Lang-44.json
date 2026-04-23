@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4876805437553101,
+    "input": "    public static Number createNumber(String val) throws NumberFormatException {\n        if (val == null) {\n            return null;\n        }\n        if (val.length() == 0) {\n            throw new NumberFormatException(\"\\\"\\\" is not a valid number.\");\n        }\n        if (val.length() == 1 && !Character.isDigit(val.charAt(0))) {\n            throw new NumberFormatException(val + \" is not a valid number.\");\n        }\n        if (val.startsWith(\"--\")) {\n            // this is protection for poorness in java.lang.BigDecimal.\n            // it accepts this as a legal value, but it does not appear \n            // to be in specification of class. OS X Java parses it to \n            // a wrong value.\n            return null;\n        }\n        if (val.startsWith(\"0x\") || val.startsWith(\"-0x\")) {\n            return createInteger(val);\n        }   \n        char lastChar = val.charAt(val.length() - 1);\n        String mant;\n        String dec;\n        String exp;\n        int decPos = val.indexOf('.');\n        int expPos = val.indexOf('e') + val.indexOf('E') + 1;\n\n        if (decPos > -1) {\n\n            if (expPos > -1) {\n                if (expPos < decPos) {\n                    throw new NumberFormatException(val + \" is not a valid number.\");\n                }\n                dec = val.substring(decPos + 1, expPos);\n            } else {\n                dec = val.substring(decPos + 1);\n            }\n            mant = val.substring(0, decPos);\n        } else {\n            if (expPos > -1) {\n                mant = val.substring(0, expPos);\n            } else {\n                mant = val;\n            }\n            dec = null;\n        }\n        if (!Character.isDigit(lastChar)) {\n            if (expPos > -1 && expPos < val.length() - 1) {\n                exp = val.substring(expPos + 1, val.length() - 1);\n            } else {\n                exp = null;\n            }\n            //Requesting a specific type..\n            String numeric = val.substring(0, val.length() - 1);\n        ",
+    "query_result": [
+        "tring(decPos + 1, expPos);\n} else {\ndec = val.substring(decPos + 1);\n}\nmant = val.substring(0, decPos);\n} else {\nif (expPos > -1) {\nmant = val.substring(0, expPos);\n} else {\nmant = val;\n}\ndec = null;\n}\nif (!Character.isDigit(lastChar)) {\nif (expPos > -1 && expPos < val.length() - 1) {\nexp = val.substring(expPos + 1, val.length() - 1);\n} else {\nexp ",
+        "tartsWith(\"--\")) {\n// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not appear \n// to be in specification of class. OS X Java parses it to \n",
+        "sWith(\"--\")) {\n// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not appear \n// to be in specification of class. OS X Java parses it to \n// a",
+        "// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not appear \n// to be in specification of ",
+        "rotection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not appear \n// to be in specification of class. OS X ",
+        "n for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not appear \n// to be in specification of class. OS X Java par",
+        "oorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not appear \n// to be in specification of class. OS X Java parses it ",
+        ";\nString mant;\nString dec;\nString exp;\nint decPos = val.indexOf('.');\nint expPos = val.indexOf('e') + val.indexOf('E') + 1;\nif (decPos > -1) {\nif (exp",
+        "ith(\"--\")) {\n// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a leg",
+        "h(\"--\")) {\n// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal",
+        "--\")) {\n// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal va",
+        ")) {\n// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value",
+        ") {\n// this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value,",
+        " this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but i",
+        "this is protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it",
+        "s protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does ",
+        " protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does n",
+        "protection for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does no",
+        "ction for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not app",
+        "tion for poorness in java.lang.BigDecimal.\n// it accepts this as a legal value, but it does not appe"
+    ]
+}

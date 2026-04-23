@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.18705035971223022,
+    "input": "        @Override\n        public void visit(LwM2mObject object) {\n            LOG.trace(\"Encoding object {} into TLV\", object);\n\n            Tlv[] tlvs;\n\n            // encoded as an array of instances\n            tlvs = new Tlv[object.getInstances().size()];\n            int i = 0;\n            for (Entry<Integer, LwM2mObjectInstance> instance : object.getInstances().entrySet()) {\n                Tlv[] resources = encodeResources(instance.getValue().getResources().values(),\n                        new LwM2mPath(object.getId(), instance.getKey()));\n                tlvs[i] = new Tlv(TlvType.OBJECT_INSTANCE, resources, null, instance.getKey());\n                i++;\n            }\n\n            try {\n                out.write(TlvEncoder.encode(tlvs).array());\n            } catch (IOException e) {\n                throw new RuntimeException(e);\n            }\n        }",
+    "query_result": [
+        "ide\npublic void visit(LwM2mObject object) {\nLOG.tr",
+        ".array());\n} catch (IOException e) {\nthrow new Run",
+        "rray());\n} catch (IOException e) {\nthrow new Runti",
+        "ray());\n} catch (IOException e) {\nthrow new Runtim",
+        "ay());\n} catch (IOException e) {\nthrow new Runtime",
+        "y());\n} catch (IOException e) {\nthrow new RuntimeE",
+        "());\n} catch (IOException e) {\nthrow new RuntimeEx",
+        "));\n} catch (IOException e) {\nthrow new RuntimeExc",
+        ");\n} catch (IOException e) {\nthrow new RuntimeExce",
+        ";\n} catch (IOException e) {\nthrow new RuntimeExcep",
+        "\n} catch (IOException e) {\nthrow new RuntimeExcept",
+        "} catch (IOException e) {\nthrow new RuntimeExcepti",
+        " catch (IOException e) {\nthrow new RuntimeExceptio",
+        "catch (IOException e) {\nthrow new RuntimeException",
+        "atch (IOException e) {\nthrow new RuntimeException(",
+        "tch (IOException e) {\nthrow new RuntimeException(e",
+        "ch (IOException e) {\nthrow new RuntimeException(e)",
+        "h (IOException e) {\nthrow new RuntimeException(e);",
+        " (IOException e) {\nthrow new RuntimeException(e);\n",
+        "(IOException e) {\nthrow new RuntimeException(e);\n}"
+    ]
+}

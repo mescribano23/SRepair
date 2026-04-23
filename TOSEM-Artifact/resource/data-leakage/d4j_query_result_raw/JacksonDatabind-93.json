@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.794921875,
+    "input": "public void validateSubType(DeserializationContext ctxt, JavaType type) throws JsonMappingException\n{\n    // There are certain nasty classes that could cause problems, mostly\n    // via default typing -- catch them here.\n    final Class<?> raw = type.getRawClass();\n    String full = raw.getName();\n\n    main_check:\n    do {\n        if (_cfgIllegalClassNames.contains(full)) {\n            break;\n        }\n\n        // 18-Dec-2017, tatu: As per [databind#1855], need bit more sophisticated handling\n        //    for some Spring framework types\n        // 05-Jan-2017, tatu: ... also, only applies to classes, not interfaces\n        if (!raw.isInterface() && full.startsWith(PREFIX_STRING)) {\n            for (Class<?> cls = raw; (cls != null) && (cls != Object.class); cls = cls.getSuperclass()) {\n                String name = cls.getSimpleName();\n                // looking for \"AbstractBeanFactoryPointcutAdvisor\" but no point to allow any is there?\n                if (\"AbstractPointcutAdvisor\".equals(name)\n                        // ditto  for \"FileSystemXmlApplicationContext\": block all ApplicationContexts\n                        || \"AbstractApplicationContext\".equals(name)) {\n                    break main_check;\n                }\n            }\n        }\n        return;\n    } while (false);\n\n    throw JsonMappingException.from(ctxt,\n            String.format(\"Illegal type (%s) to deserialize: prevented for security reasons\", full));\n}",
+    "query_result": [
+        "alizationContext ctxt, JavaType type) throws JsonMappingException\n{\n// There are certain nasty classes that could cause problems, mostly\n// via default typing -- catch them here.\nfinal Class<?> raw = type.getRawClass();\nString full = raw.getName();\nmain_check:\ndo {\nif (_cfgIllegalClassNames.contains(full)) {\nbreak;\n}\n// 18-Dec-2017, tatu: As per [databind#1855], need bit more sophisticated handling\n// for some Spring framework types\n// 05-Jan-2017, tatu: ... also, only applies to classes, not in",
+        "eName();\n// looking for \"AbstractBeanFactoryPointcutAdvisor\" but no point to allow any is there?\nif (\"AbstractPointcutAdvisor\".equals(name)\n// ditto for \"FileSystemXmlApplicationContext\": block all ApplicationContexts\n|| \"AbstractApplicationContext\".",
+        " for \"AbstractBeanFactoryPointcutAdvisor\" but no point to allow any is there?\nif (\"AbstractPointcutAdvisor\".equals(name)\n// ditto for \"FileSystemXmlApplicationContext\": block all ApplicationContexts\n|",
+        " are certain nasty classes that could cause problems, mostly\n// via default typing -- catch them her",
+        "lic void validateSubType(DeserializationContext ct",
+        "d validateSubType(DeserializationContext ctxt, Jav",
+        "(DeserializationContext ctxt, JavaType type) throw",
+        "DeserializationContext ctxt, JavaType type) throws",
+        "serializationContext ctxt, JavaType type) throws J",
+        "erializationContext ctxt, JavaType type) throws Js",
+        "izationContext ctxt, JavaType type) throws JsonMap",
+        "ationContext ctxt, JavaType type) throws JsonMappi",
+        "nContext ctxt, JavaType type) throws JsonMappingEx",
+        "w = type.getRawClass();\nString full = raw.getName(",
+        " raw; (cls != null) && (cls != Object.class); cls ",
+        "(cls != Object.class); cls = cls.getSuperclass()) ",
+        "ing.format(\"Illegal type (%s) to deserialize: prev",
+        "rmat(\"Illegal type (%s) to deserialize: prevented ",
+        "gal type (%s) to deserialize: prevented for securi",
+        "(%s) to deserialize: prevented for security reason"
+    ]
+}

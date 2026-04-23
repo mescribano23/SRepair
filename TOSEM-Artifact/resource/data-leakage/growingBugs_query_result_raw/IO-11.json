@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public boolean readBoolean()\n        throws IOException, EOFException\n    {\n        return ( 0 != readByte() );\n    }",
+    "query_result": []
+}

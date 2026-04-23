@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6099009900990099,
+    "input": "   private void processFieldAnnotations(FieldColumnInfo fcInfo)\n   {\n      Field field = fcInfo.field;\n\n      Column columnAnnotation = field.getAnnotation(Column.class);\n      if (columnAnnotation != null) {\n         processColumnAnnotation(fcInfo);\n      }\n      else  {\n         // If there is no Column annotation, is there a JoinColumn annotation?\n         JoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.class);\n         if (joinColumnAnnotation != null) {\n            processJoinColumnAnnotation(fcInfo);\n         }\n         else {\n            Id idAnnotation = field.getAnnotation(Id.class);\n            if (idAnnotation != null) {\n               // @Id without @Column annotation, so preserve case of property name.\n               fcInfo.columnName = field.getName();\n            }\n            else {\n               // CLARIFY Dead code? Never reached in tests.\n               fcInfo.columnName = field.getName().toLowerCase();\n            }\n         }\n      }\n\n      Transient transientAnnotation = field.getAnnotation(Transient.class);\n      if (transientAnnotation == null) {\n         String keyName = !(fcInfo.columnName.startsWith(\"\\\"\") && fcInfo.columnName.endsWith(\"\\\"\")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.columnName.length() - 1);\n         columnToField.put(keyName, fcInfo);\n         delimitedColumnToField.put(fcInfo.columnName, fcInfo);\n      }\n   }",
+    "query_result": [
+        "entAnnotation = field.getAnnotation(Transient.class);\nif (transientAnnotation == null) {\nString keyName = !(fcInfo.columnName.startsWith(\"\\\"\") && fcInfo.columnName.endsWith(\"\\\"\")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.columnName.length() - 1);\ncolumnToField.put(keyName, fcInfo);\ndelimitedColumnToField.put(fcInfo.columnName, fc",
+        "tAnnotation = field.getAnnotation(Transient.class);\nif (transientAnnotation == null) {\nString keyName = !(fcInfo.columnName.startsWith(\"\\\"\") && fcInfo.columnName.endsWith(\"\\\"\")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.columnName.length() - 1);\ncolumnToField.put(keyName, fcInfo);\ndelimitedColumnToField.put(fcInfo.columnName, fcIn",
+        "nnotation(Transient.class);\nif (transientAnnotation == null) {\nString keyName = !(fcInfo.columnName.startsWith(\"\\\"\") && fcInfo.columnName.endsWith(\"\\\"\")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.columnName.length() - 1);\ncolumnToField.put(keyName, fcInfo);\ndelimitedColumnToField.p",
+        "ation = field.getAnnotation(Transient.class);\nif (transientAnnotation == null) {\nString keyName = !(fcInfo.columnName.startsWith(\"\\\"\") && fcInfo.columnName.endsWith(\"\\\"\")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.columnName.length(",
+        "else {\n// If there is no Column annotation, is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.class);",
+        "If there is no Column annotation, is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.class);\nif (joinC",
+        "re is no Column annotation, is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.class);\nif (joinColumnA",
+        " no Column annotation, is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.class);\nif (joinColumnAnnota",
+        " annotation, is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.class);\nif (joinColumnAnnotation != nu",
+        "nnotation, is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.class);\nif (joinColumnAnnotation != null",
+        "ng keyName = !(fcInfo.columnName.startsWith(\"\\\"\") && fcInfo.columnName.endsWith(\"\\\"\")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.col",
+        "!(fcInfo.columnName.startsWith(\"\\\"\") && fcInfo.columnName.endsWith(\"\\\"\")) ? fcInfo.columnName : fcInfo.columnName.substring(1, fcInfo.columnName.lengt",
+        "dColumnInfo fcInfo)\n{\nField field = fcInfo.field;\nColumn columnAnnotation = field.getAnnotation(Colu",
+        "nfo fcInfo)\n{\nField field = fcInfo.field;\nColumn columnAnnotation = field.getAnnotation(Column.class",
+        "ield field = fcInfo.field;\nColumn columnAnnotation = field.getAnnotation(Column.class);\nif (columnAn",
+        "ield = fcInfo.field;\nColumn columnAnnotation = field.getAnnotation(Column.class);\nif (columnAnnotati",
+        " = fcInfo.field;\nColumn columnAnnotation = field.getAnnotation(Column.class);\nif (columnAnnotation !",
+        "fo.field;\nColumn columnAnnotation = field.getAnnotation(Column.class);\nif (columnAnnotation != null)",
+        "n annotation, is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotatio",
+        "is there a JoinColumn annotation?\nJoinColumn joinColumnAnnotation = field.getAnnotation(JoinColumn.c"
+    ]
+}

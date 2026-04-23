@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.5352112676056338,
+    "input": "public static byte[] toByteArray(BitSet bits) {\n    if (bits == null) {\n      return null;\n    }\n    byte[] bytes = new byte[(bits.length() + 7) / 8];\n    for (int i = 0; i < bits.length(); i++) {\n      if (bits.get(i)) {\n        bytes[(bytes.length) - (i / 8) - 1] |= 1 << (i % 8);\n      }\n    }\n    return bytes;\n  }",
+    "query_result": [
+        "byte[] bytes = new byte[(bits.length() + 7) / 8];\nfor (int i = 0; i < bits.length(); i++) {\nif (bits",
+        " == null) {\nreturn null;\n}\nbyte[] bytes = new byte",
+        "== null) {\nreturn null;\n}\nbyte[] bytes = new byte[",
+        "= null) {\nreturn null;\n}\nbyte[] bytes = new byte[(",
+        "yte[] bytes = new byte[(bits.length() + 7) / 8];\nf",
+        ";\nfor (int i = 0; i < bits.length(); i++) {\nif (bi",
+        "\nfor (int i = 0; i < bits.length(); i++) {\nif (bit",
+        "int i = 0; i < bits.length(); i++) {\nif (bits.get(",
+        "nt i = 0; i < bits.length(); i++) {\nif (bits.get(i",
+        " i = 0; i < bits.length(); i++) {\nif (bits.get(i))",
+        "= 0; i < bits.length(); i++) {\nif (bits.get(i)) {\n",
+        "0; i < bits.length(); i++) {\nif (bits.get(i)) {\nby",
+        "i < bits.length(); i++) {\nif (bits.get(i)) {\nbytes"
+    ]
+}

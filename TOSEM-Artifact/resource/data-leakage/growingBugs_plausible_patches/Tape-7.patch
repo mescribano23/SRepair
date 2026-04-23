@@ -1,0 +1,40 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index 26dd722..081a39e 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -243,21 +243,21 @@ public class QueueFile {
+    * @param buffer   to read into
+    * @param count    # of bytes to read
+    */
+-  private void ringRead(int position, byte[] buffer, int offset, int count) throws IOException {
+-    position = wrapPosition(position);
+-    if (position + count <= fileLength) {
+-      raf.seek(position);
+-      raf.readFully(buffer, 0, count);
+-    } else {
+-      // The read overlaps the EOF.
+-      // # of bytes to read before the EOF.
+-      int beforeEof = fileLength - position;
+-      raf.seek(position);
+-      raf.readFully(buffer, offset, beforeEof);
+-      raf.seek(HEADER_LENGTH);
+-      raf.readFully(buffer, offset + beforeEof, count - beforeEof);
+-    }
++private void ringRead(int position, byte[] buffer, int offset, int count) throws IOException {
++  position = wrapPosition(position);
++  if (position + count <= fileLength) {
++    raf.seek(position);
++    raf.readFully(buffer, offset, count); // Use the 'offset' parameter here
++  } else {
++    // The read overlaps the EOF.
++    // # of bytes to read before the EOF.
++    int beforeEof = fileLength - position;
++    raf.seek(position);
++    raf.readFully(buffer, offset, beforeEof);
++    raf.seek(HEADER_LENGTH);
++    raf.readFully(buffer, offset + beforeEof, count - beforeEof);
+   }
++}
+ 
+   /**
+    * Adds an element to the end of the queue.

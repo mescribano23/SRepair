@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.6717557251908397,
+    "input": "    public DomainPermission(String actions, String targets) {\n        this.domain = getDomain(getClass());\n        this.actions = StringUtils.splitToSet(actions, SUBPART_DIVIDER_TOKEN);\n        this.targets = StringUtils.splitToSet(targets, SUBPART_DIVIDER_TOKEN);\n        encodeParts(this.domain, actions, targets);\n    }",
+    "query_result": [
+        "());\nthis.actions = StringUtils.splitToSet(actions, SUBPART_DIVIDER_TOKEN);\nthis.targets = StringUtils.splitToSet(targets, SUBPART_DIVIDER_TOKEN);\nenc",
+        "s.actions = StringUtils.splitToSet(actions, SUBPART_DIVIDER_TOKEN);\nthis.targets = StringUtils.splitToSet(targets, SUBPART_DIVIDER_TOKEN);\nencodeParts",
+        "ctions = StringUtils.splitToSet(actions, SUBPART_DIVIDER_TOKEN);\nthis.targets = StringUtils.splitToSet(targets, SUBPART_DIVIDER_TOKEN);\nencodeParts(th",
+        " StringUtils.splitToSet(actions, SUBPART_DIVIDER_TOKEN);\nthis.targets = StringUtils.splitToSet(targets, SUBPART_DIVIDER_TOKEN);\nencodeParts(this.domai",
+        "tDomain(getClass());\nthis.actions = StringUtils.sp",
+        "getClass());\nthis.actions = StringUtils.splitToSet",
+        "is.actions = StringUtils.splitToSet(actions, SUBPA"
+    ]
+}

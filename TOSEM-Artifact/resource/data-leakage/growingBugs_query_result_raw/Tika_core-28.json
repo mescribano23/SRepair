@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "public static MediaType parse(String string) {\n        int colon = string.indexOf(';');\n        if (colon != -1 && colon != string.length()-1) {\n            String primarySubString = string.substring(0, colon);\n            String parameters = string\n                    .substring(colon + 1, string.length());\n\n            MediaType type = parseNoParams(primarySubString);\n            String[] paramBases = parameters.split(\";\");\n            for (int i = 0; i < paramBases.length; i++) {\n                String[] paramToks = paramBases[i].split(\"=\");\n                String paramName = paramToks[0].trim();\n                String paramValue = paramToks[1].trim();\n                type.parameters.put(paramName, paramValue);\n            }\n\n            return type;\n\n        } else\n            return parseNoParams(string);\n\n    }",
+    "query_result": []
+}

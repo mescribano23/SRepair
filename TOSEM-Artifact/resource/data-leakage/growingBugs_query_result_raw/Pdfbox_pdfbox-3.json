@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.17786561264822134,
+    "input": "        public String next()\n        {\n            if (!hasNext())\n            {\n                throw new NoSuchElementException();\n            }\n            StringBuilder buf = new StringBuilder();\n            if (labelInfo.getPrefix() != null)\n            {\n                String label = labelInfo.getPrefix();\n                // there may be some labels with some null bytes at the end\n                // which will lead to an incomplete output, see PDFBOX-1047\n                while (label.lastIndexOf(0) != -1)\n                {\n                    label = label.substring(0, label.length()-1);\n                }\n                buf.append(label);\n            }\n            if (labelInfo.getStyle() != null)\n            {\n                buf.append(getNumber(labelInfo.getStart() + currentPage,\n                        labelInfo.getStyle()));\n            }\n            currentPage++;\n            return buf.toString();\n        }",
+    "query_result": [
+        "next()\n{\nif (!hasNext())\n{\nthrow new NoSuchElementException();\n}\nStringBuilder buf = new StringBuild",
+        "t()\n{\nif (!hasNext())\n{\nthrow new NoSuchElementException();\n}\nStringBuilder buf = new StringBuilder(",
+        " next()\n{\nif (!hasNext())\n{\nthrow new NoSuchElemen",
+        "ext()\n{\nif (!hasNext())\n{\nthrow new NoSuchElementE",
+        "xt()\n{\nif (!hasNext())\n{\nthrow new NoSuchElementEx",
+        "()\n{\nif (!hasNext())\n{\nthrow new NoSuchElementExce",
+        ")\n{\nif (!hasNext())\n{\nthrow new NoSuchElementExcep",
+        "\n{\nif (!hasNext())\n{\nthrow new NoSuchElementExcept",
+        "{\nif (!hasNext())\n{\nthrow new NoSuchElementExcepti",
+        "\nif (!hasNext())\n{\nthrow new NoSuchElementExceptio",
+        "if (!hasNext())\n{\nthrow new NoSuchElementException",
+        "f (!hasNext())\n{\nthrow new NoSuchElementException(",
+        " (!hasNext())\n{\nthrow new NoSuchElementException()",
+        "(!hasNext())\n{\nthrow new NoSuchElementException();",
+        "!hasNext())\n{\nthrow new NoSuchElementException();\n",
+        "hasNext())\n{\nthrow new NoSuchElementException();\n}",
+        "asNext())\n{\nthrow new NoSuchElementException();\n}\n",
+        "{\nthrow new NoSuchElementException();\n}\nStringBuil",
+        "\nthrow new NoSuchElementException();\n}\nStringBuild",
+        "throw new NoSuchElementException();\n}\nStringBuilde"
+    ]
+}

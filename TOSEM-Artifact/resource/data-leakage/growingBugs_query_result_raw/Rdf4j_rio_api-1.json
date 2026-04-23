@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.07568807339449542,
+    "input": "public static final Literal createLiteral(String label, String lang, IRI datatype, ParserConfig parserConfig,\n            ParseErrorListener errListener, ValueFactory valueFactory, long lineNo, long columnNo)\n            throws RDFParseException {\n        if (label == null) {\n            throw new NullPointerException(\"Cannot create a literal using a null label\");\n        }\n\n        Literal result = null;\n        String workingLabel = label;\n        Optional<String> workingLang = Optional.ofNullable(lang);\n        IRI workingDatatype = datatype;\n\n        // In RDF-1.1 we must do lang check first as language literals will all\n        // have datatype RDF.LANGSTRING, but only language literals would have a\n        // non-null lang\n        if (workingLang.isPresent() && (workingDatatype == null || RDF.LANGSTRING.equals(workingDatatype))) {\n            boolean recognisedLanguage = false;\n            for (LanguageHandler nextHandler : parserConfig.get(BasicParserSettings.LANGUAGE_HANDLERS)) {\n                if (nextHandler.isRecognizedLanguage(workingLang.get())) {\n                    recognisedLanguage = true;\n                    if (parserConfig.get(BasicParserSettings.VERIFY_LANGUAGE_TAGS)) {\n                        try {\n                            if (!nextHandler.verifyLanguage(workingLabel, workingLang.get())) {\n                                reportError(\"'\" + lang + \"' is not a valid language tag \", lineNo, columnNo,\n                                        BasicParserSettings.VERIFY_LANGUAGE_TAGS, parserConfig, errListener);\n                            }\n                        } catch (LiteralUtilException e) {\n                            reportError(\"'\" + label\n                                    + \" could not be verified by a language handler that recognised it. language was \"\n                                    + lang, lineNo, columnNo, BasicParserSettings.VERIFY_LANGUAGE_TAGS, parserConfig,\n                                    errListener);\n                ",
+    "query_result": [
+        "{\nif (label == null) {\nthrow new NullPointerExcept",
+        "if (label == null) {\nthrow new NullPointerExceptio",
+        " == null) {\nthrow new NullPointerException(\"Cannot",
+        "== null) {\nthrow new NullPointerException(\"Cannot ",
+        "= null) {\nthrow new NullPointerException(\"Cannot c",
+        " null) {\nthrow new NullPointerException(\"Cannot cr",
+        "null) {\nthrow new NullPointerException(\"Cannot cre",
+        "ll) {\nthrow new NullPointerException(\"Cannot creat",
+        "l) {\nthrow new NullPointerException(\"Cannot create",
+        ") {\nthrow new NullPointerException(\"Cannot create ",
+        "{\nthrow new NullPointerException(\"Cannot create a ",
+        " {\nreportError(\"'\" + lang + \"' is not a valid lang"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4709784411276949,
+    "input": "    public TokenBuffer deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException\n    {\n        if (jp.getCurrentTokenId() != JsonToken.FIELD_NAME.id()) {\n            copyCurrentStructure(jp);\n            return this;\n        }\n        /* 28-Oct-2014, tatu: As per #592, need to support a special case of starting from\n         *    FIELD_NAME, which is taken to mean that we are missing START_OBJECT, but need\n         *    to assume one did exist.\n         */\n        JsonToken t;\n        writeStartObject();\n        do {\n            copyCurrentStructure(jp);\n        } while ((t = jp.nextToken()) == JsonToken.FIELD_NAME);\n        if (t != JsonToken.END_OBJECT) {\n            throw ctxt.mappingException(\"Expected END_OBJECT after copying contents of a JsonParser into TokenBuffer, got \"+t);\n        }\n        writeEndObject();\n        return this;\n    }",
+    "query_result": [
+        "tToken()) == JsonToken.FIELD_NAME); if (t != JsonToken.END_OBJECT) { throw ctxt.mappingException(\"Expected END_OBJECT after copying contents of a Json",
+        "NAME); if (t != JsonToken.END_OBJECT) { throw ctxt.mappingException(\"Expected END_OBJECT after copying contents of a JsonParser into TokenBuffer, got",
+        "DeserializationContext ctxt) throws IOException { if (jp.getCurrentTokenId() != JsonToken.FIELD_NAM",
+        "ECT) { throw ctxt.mappingException(\"Expected END_OBJECT after copying contents of a JsonParser into",
+        "kenBuffer deserialize(JsonParser jp, Deserializati",
+        "ffer deserialize(JsonParser jp, DeserializationCon",
+        "er deserialize(JsonParser jp, DeserializationConte",
+        "r deserialize(JsonParser jp, DeserializationContex",
+        "deserialize(JsonParser jp, DeserializationContext",
+        "deserialize(JsonParser jp, DeserializationContext",
+        "eserialize(JsonParser jp, DeserializationContext c",
+        "serialize(JsonParser jp, DeserializationContext ct",
+        "erialize(JsonParser jp, DeserializationContext ctx",
+        "rialize(JsonParser jp, DeserializationContext ctxt",
+        "ialize(JsonParser jp, DeserializationContext ctxt)",
+        "alize(JsonParser jp, DeserializationContext ctxt)",
+        "lize(JsonParser jp, DeserializationContext ctxt) t",
+        "ize(JsonParser jp, DeserializationContext ctxt) th",
+        "ze(JsonParser jp, DeserializationContext ctxt) thr",
+        "e(JsonParser jp, DeserializationContext ctxt) thro"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.456973293768546,
+    "input": "  public FluoConfiguration(File propertiesFile) {\n    this();\n    try {\n      PropertiesConfiguration config = new PropertiesConfiguration();\n      // disabled to prevent accumulo classpath value from being shortened\n      config.setDelimiterParsingDisabled(true);\n      config.load(propertiesFile);\n      addConfiguration(config);\n    } catch (ConfigurationException e) {\n      throw new IllegalArgumentException(e);\n    }\n  }",
+    "query_result": [
+        "ddConfiguration(config);\n} catch (ConfigurationException e) {\nthrow new IllegalArgumentException(e);",
+        "();\ntry {\nPropertiesConfiguration config = new Pro",
+        ";\ntry {\nPropertiesConfiguration config = new Prope",
+        "\ntry {\nPropertiesConfiguration config = new Proper",
+        "try {\nPropertiesConfiguration config = new Propert",
+        "ry {\nPropertiesConfiguration config = new Properti",
+        "y {\nPropertiesConfiguration config = new Propertie",
+        " {\nPropertiesConfiguration config = new Properties",
+        "{\nPropertiesConfiguration config = new PropertiesC",
+        "\nPropertiesConfiguration config = new PropertiesCo",
+        "PropertiesConfiguration config = new PropertiesCon",
+        "ropertiesConfiguration config = new PropertiesConf",
+        "opertiesConfiguration config = new PropertiesConfi",
+        "pertiesConfiguration config = new PropertiesConfig",
+        "ertiesConfiguration config = new PropertiesConfigu",
+        "rtiesConfiguration config = new PropertiesConfigur",
+        "tiesConfiguration config = new PropertiesConfigura",
+        "iesConfiguration config = new PropertiesConfigurat",
+        "esConfiguration config = new PropertiesConfigurati",
+        "sConfiguration config = new PropertiesConfiguratio"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.391304347826087,
+    "input": "protected void unread(String string) throws IOException {\n        int i = string.length();\n        while (i > 0) {\n            final int codePoint = string.codePointBefore(i);\n            if (Character.isSupplementaryCodePoint(codePoint)) {\n                final char[] surrogatePair = Character.toChars(codePoint);\n                reader.unread(surrogatePair);\n                i -= surrogatePair.length;\n            } else {\n                reader.unread(codePoint);\n                i--;\n            }\n        }\n    }",
+    "query_result": [
+        "racter.isSupplementaryCodePoint(codePoint)) {\nfinal char[] surrogatePair = Character.toChars(codePoi",
+        "yCodePoint(codePoint)) {\nfinal char[] surrogatePair = Character.toChars(codePoint);\nreader.unread(su",
+        "Point(codePoint)) {\nfinal char[] surrogatePair = Character.toChars(codePoint);\nreader.unread(surroga",
+        ";\nif (Character.isSupplementaryCodePoint(codePoint",
+        "\nif (Character.isSupplementaryCodePoint(codePoint)",
+        "if (Character.isSupplementaryCodePoint(codePoint))",
+        " (Character.isSupplementaryCodePoint(codePoint)) {"
+    ]
+}

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/jsoup/parser/Parser.java b/src/main/java/org/jsoup/parser/Parser.java
+index e6ea833..2582571 100644
+--- a/src/main/java/org/jsoup/parser/Parser.java
++++ b/src/main/java/org/jsoup/parser/Parser.java
+@@ -200,11 +200,13 @@ public class Parser {
+             }
+             tq.consumeWhitespace();
+         }
+-        if (key.length() != 0)
++        if (key.length() != 0) {
+             return Attribute.createFromEncoded(key, value);
+-        else {
+-            tq.consume();
+-                
++        } else {
++            // Safely skip malformed attribute without consuming
++            while (!tq.matchesAny("<", "/>", ">", " ", "\t", "\n", "\r") && !tq.isEmpty()) {
++                tq.consume();
++            }
+             return null;
+         }
+     }

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java
+index 0d4edf47..6173d113 100644
+--- a/src/main/java/org/joda/time/Partial.java
++++ b/src/main/java/org/joda/time/Partial.java
+@@ -427,6 +427,14 @@ public final class Partial
+         if (fieldType == null) {
+             throw new IllegalArgumentException("The field type must not be null");
+         }
++
++        // New validation: Check compatibility
++        for (DateTimeFieldType existingFieldType : iTypes) {
++            if (!isCompatible(existingFieldType, fieldType)) {
++                throw new IllegalArgumentException("Field type is not compatible with existing fields");
++            }
++        }
++
+         int index = indexOf(fieldType);
+         if (index == -1) {
+             DateTimeFieldType[] newTypes = new DateTimeFieldType[iTypes.length + 1];
+@@ -472,6 +480,12 @@ public final class Partial
+         newValues = getField(index).set(this, index, newValues, value);
+         return new Partial(this, newValues);
+     }
++    
++    private boolean isCompatible(DateTimeFieldType existing, DateTimeFieldType newField) {
++        // Define logic to determine if fields are compatible
++        // For example, clockhourOfDay might not be compatible with hourOfDay
++        return !existing.equals(DateTimeFieldType.hourOfDay()) || !newField.equals(DateTimeFieldType.clockhourOfDay());
++    }
+ 
+     /**
+      * Gets a copy of this date with the specified field removed.

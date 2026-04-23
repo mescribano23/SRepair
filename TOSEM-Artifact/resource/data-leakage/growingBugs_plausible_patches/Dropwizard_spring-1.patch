@@ -1,0 +1,12 @@
+diff --git a/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java b/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java
+index 3297072..54a5b4e 100644
+--- a/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java
++++ b/src/main/java/com/github/nhuray/dropwizard/spring/SpringBundle.java
+@@ -85,6 +85,7 @@ public class SpringBundle<T extends Configuration> implements ConfiguredBundle<T
+         if (placeholderConfigurer != null) registerPlaceholder(configuration, context);
+ 
+         // Register the Dropwizard environment
++        context.getBeanFactory().registerSingleton("dw-environment", environment);
+ 
+         // Refresh context if is not active
+         if (!context.isActive()) context.refresh();

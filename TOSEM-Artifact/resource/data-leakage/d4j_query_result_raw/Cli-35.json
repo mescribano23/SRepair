@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.4888888888888889,
+    "input": "public List<String> getMatchingOptions(String opt)\n{\n    opt = Util.stripLeadingHyphens(opt);\n    \n    List<String> matchingOpts = new ArrayList<String>();\n\n    // for a perfect match return the single option only\n    if(longOpts.keySet().contains(opt)) {\n        return Collections.singletonList(opt);\n    }\n\n    for (String longOpt : longOpts.keySet())\n    {\n        if (longOpt.startsWith(opt))\n        {\n            matchingOpts.add(longOpt);\n        }\n    }\n    \n    return matchingOpts;\n}",
+    "query_result": [
+        "or (String longOpt : longOpts.keySet())\n{\nif (longOpt.startsWith(opt))\n{\nmatchingOpts.add(longOpt);\n",
+        "etMatchingOptions(String opt)\n{\nopt = Util.stripLe",
+        "g>();\n// for a perfect match return the single opt"
+    ]
+}

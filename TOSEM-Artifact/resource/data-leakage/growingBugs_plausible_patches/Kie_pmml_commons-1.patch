@@ -1,0 +1,17 @@
+diff --git a/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java b/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
+index 0c4c3c3698..8ca93ebbb9 100644
+--- a/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
++++ b/kie-pmml-trusty/kie-pmml-commons/src/main/java/org/kie/pmml/commons/utils/KiePMMLModelUtils.java
+@@ -26,9 +26,9 @@ public class KiePMMLModelUtils {
+      * @param modelName
+      * @return
+      */
+-    public static String getSanitizedPackageName(String modelName) {
+-        return modelName.replace(" ", "").replace("_", "").toLowerCase();
+-    }
++public static String getSanitizedPackageName(String modelName) {
++    return modelName.replace(" ", "").replace("_", "").replace("-", "").toLowerCase();
++}
+ 
+     /**
+      * Convert the given <code>String</code> in a valid class name (i.e. no dots, no spaces, first letter upper case)

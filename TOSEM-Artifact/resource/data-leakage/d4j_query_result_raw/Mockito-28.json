@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.7056737588652482,
+    "input": "private void injectMockCandidate(Class<?> awaitingInjectionClazz, Set<Object> mocks, Object fieldInstance) {\n    for(Field field : orderedInstanceFieldsFrom(awaitingInjectionClazz)) {\n        Object injected = mockCandidateFilter.filterCandidate(mocks, field, fieldInstance).thenInject();\n        mocks.remove(injected);\n    }\n}",
+    "query_result": [
+        "edInstanceFieldsFrom(awaitingInjectionClazz)) {\nObject injected = mockCandidateFilter.filterCandidat",
+        " injectMockCandidate(Class<?> awaitingInjectionCla",
+        "Field field : orderedInstanceFieldsFrom(awaitingIn",
+        "ockCandidateFilter.filterCandidate(mocks, field, f",
+        "er.filterCandidate(mocks, field, fieldInstance).th",
+        "Candidate(mocks, field, fieldInstance).thenInject("
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.9523809523809523,
+    "input": "public void writeEmbeddedObject(Object object) throws IOException {\n    // 01-Sep-2016, tatu: As per [core#318], handle small number of cases\n    if (object == null) {\n        writeNull();\n        return;\n    }\n    if (object instanceof byte[]) {\n        writeBinary((byte[]) object);\n        return;\n    }\n    throw new JsonGenerationException(\"No native support for writing embedded objects of type \"\n            +object.getClass().getName(),\n            this);\n}",
+    "query_result": [
+        "ddedObject(Object object) throws IOException {\n// 01-Sep-2016, tatu: As per [core#318], handle small number of cases\nif (object == null) {\nwriteNull();\nreturn;\n}\nif (object instanceof byte[]) {\nwriteBinary((byte[]) object);\nreturn;\n}\nthrow new JsonGenerationException(\"No native support for writing embedded objects of type \"\n+object.getClass().getNa",
+        "ic void writeEmbeddedObject(Object object) throws ",
+        "void writeEmbeddedObject(Object object) throws IOE",
+        "riteEmbeddedObject(Object object) throws IOExcepti",
+        "hrow new JsonGenerationException(\"No native suppor",
+        "ow new JsonGenerationException(\"No native support ",
+        "w new JsonGenerationException(\"No native support f",
+        "ew JsonGenerationException(\"No native support for ",
+        " JsonGenerationException(\"No native support for wr",
+        "JsonGenerationException(\"No native support for wri",
+        "sonGenerationException(\"No native support for writ",
+        "nGenerationException(\"No native support for writin",
+        "rationException(\"No native support for writing emb",
+        " native support for writing embedded objects of ty",
+        "ative support for writing embedded objects of type"
+    ]
+}

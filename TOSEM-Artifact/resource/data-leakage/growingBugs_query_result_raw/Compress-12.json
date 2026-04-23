@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7129551227773073,
+    "input": "    public TarArchiveEntry getNextTarEntry() throws IOException {\n        if (hasHitEOF) {\n            return null;\n        }\n\n        if (currEntry != null) {\n            long numToSkip = entrySize - entryOffset;\n\n            while (numToSkip > 0) {\n                long skipped = skip(numToSkip);\n                if (skipped <= 0) {\n                    throw new RuntimeException(\"failed to skip current tar entry\");\n                }\n                numToSkip -= skipped;\n            }\n\n            readBuf = null;\n        }\n\n        byte[] headerBuf = getRecord();\n\n        if (hasHitEOF) {\n            currEntry = null;\n            return null;\n        }\n\n        try {\n            currEntry = new TarArchiveEntry(headerBuf);\n        } catch (IllegalArgumentException e) {\n            IOException ioe = new IOException(\"Error detected parsing the header\");\n            ioe.initCause(e);\n            throw ioe;\n        }\n        entryOffset = 0;\n        entrySize = currEntry.getSize();\n\n        if (currEntry.isGNULongNameEntry()) {\n            // read in the name\n            StringBuffer longName = new StringBuffer();\n            byte[] buf = new byte[SMALL_BUFFER_SIZE];\n            int length = 0;\n            while ((length = read(buf)) >= 0) {\n                longName.append(new String(buf, 0, length));\n            }\n            getNextEntry();\n            if (currEntry == null) {\n                // Bugzilla: 40334\n                // Malformed tar file - long entry name not followed by entry\n                return null;\n            }\n            // remove trailing null terminator\n            if (longName.length() > 0\n                && longName.charAt(longName.length() - 1) == 0) {\n                longName.deleteCharAt(longName.length() - 1);\n            }\n            currEntry.setName(longName.toString());\n        }\n\n        if (currEntry.isPaxHeader()){ // Process Pax headers\n            paxHeaders();\n        }\n\n        if (currEntry.isGNUSparse()){ // Process sparse file",
+    "query_result": [
+        "LongNameEntry()) {\n// read in the name\nStringBuffer longName = new StringBuffer();\nbyte[] buf = new byte[SMALL_BUFFER_SIZE];\nint length = 0;\nwhile ((length = read(buf)) >= 0) {\nlongName.append(new String(buf, 0, length));\n}\ngetNextEntry();\nif (currEntry == null) {\n// Bugzilla: 40334\n// Malformed tar file - long entry name not followed by entry\nreturn null;\n}\n// remove trailing null terminator\nif (longName.length() > 0\n&& longName.charAt(longName.length() - 1) == 0) {\nlongName.deleteCharAt(longName.length() - 1);\n}\ncurrEntry.setName(longName.toS",
+        "ull) {\n// Bugzilla: 40334\n// Malformed tar file - long entry name not followed by entry\nreturn null;\n}\n// remove trailing null terminator\nif (longName.length() > 0\n&& longName.charAt(longName.length() - 1) == 0) {\nlongName.deleteCharAt(longName.lengt",
+        "g(buf, 0, length));\n}\ngetNextEntry();\nif (currEntry == null) {\n// Bugzilla: 40334\n// Malformed tar file - long entry name not followed by entry\nreturn null;\n}\n// remove trailing null terminator\nif (lo",
+        "asHitEOF) {\nreturn null;\n}\nif (currEntry != null) {\nlong numToSkip = entrySize - entryOffset;\nwhile (numToSkip > 0) {\nlong skipped = skip(numToSkip);\n",
+        "mToSkip);\nif (skipped <= 0) {\nthrow new RuntimeException(\"failed to skip current tar entry\");\n}\nnumToSkip -= skipped;\n}\nreadBuf = null;\n}\nbyte[] heade",
+        "ntry() throws IOException {\nif (hasHitEOF) {\nreturn null;\n}\nif (currEntry != null) {\nlong numToSkip ",
+        "byte[] buf = new byte[SMALL_BUFFER_SIZE];\nint length = 0;\nwhile ((length = read(buf)) >= 0) {\nlongNa",
+        "kipped <= 0) {\nthrow new RuntimeException(\"failed ",
+        "\nthrow new RuntimeException(\"failed to skip curren",
+        "\"failed to skip current tar entry\");\n}\nnumToSkip -",
+        "\nnumToSkip -= skipped;\n}\nreadBuf = null;\n}\nbyte[] ",
+        ");\n} catch (IllegalArgumentException e) {\nIOExcept",
+        "tException e) {\nIOException ioe = new IOException(",
+        "Exception e) {\nIOException ioe = new IOException(\"",
+        "ion e) {\nIOException ioe = new IOException(\"Error ",
+        "ception ioe = new IOException(\"Error detected pars",
+        "currEntry.isGNULongNameEntry()) {\n// read in the n",
+        "y.isGNULongNameEntry()) {\n// read in the name\nStri",
+        "gzilla: 40334\n// Malformed tar file - long entry n",
+        "formed tar file - long entry name not followed by "
+    ]
+}

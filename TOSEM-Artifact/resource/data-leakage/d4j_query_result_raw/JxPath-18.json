@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.07580645161290323,
+    "input": "public boolean nextNode() {\n        super.setPosition(getCurrentPosition() + 1);\n        if (!setStarted) {\n            setStarted = true;\n            NodeNameTest nodeNameTest = null;\n            if (nodeTest instanceof NodeTypeTest) {\n                if (((NodeTypeTest) nodeTest).getNodeType() == Compiler.NODE_TYPE_NODE) {\n                    nodeNameTest = WILDCARD_TEST;\n                }\n            }\n            else if (nodeTest instanceof NodeNameTest) {\n                nodeNameTest = (NodeNameTest) nodeTest;\n            }\n            if (nodeNameTest == null) {\n                return false;\n            }\n            iterator = parentContext.getCurrentNodePointer().attributeIterator(\n                    nodeNameTest.getNodeName());\n        }\n        if (iterator == null) {\n            return false;\n        }\n        if (!iterator.setPosition(iterator.getPosition() + 1)) {\n            return false;\n        }\n        currentNodePointer = iterator.getNodePointer();\n        return true;\n    }",
+    "query_result": [
+        "terator.setPosition(iterator.getPosition() + 1)) {"
+    ]
+}

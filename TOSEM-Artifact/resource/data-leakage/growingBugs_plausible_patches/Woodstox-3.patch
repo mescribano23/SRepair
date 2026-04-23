@@ -1,0 +1,295 @@
+diff --git a/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java b/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java
+index a066d5e..615c0c2 100644
+--- a/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java
++++ b/src/main/java/com/ctc/wstx/sw/BaseStreamWriter.java
+@@ -747,171 +747,147 @@ public abstract class BaseStreamWriter
+      *   this to false may improve the performance, since it may allow
+      *   full no-copy streaming of data, especially textual contents.
+      */
+-    @Override
+-    public void copyEventFromReader(XMLStreamReader2 sr, boolean preserveEventData)
+-        throws XMLStreamException
+-    {
+-        try {
+-            switch (sr.getEventType()) {
+-            case START_DOCUMENT:
+-                {
+-                    String version = sr.getVersion();
+-                    // No real declaration? If so, we don't want to output anything, to replicate
+-                    // as closely as possible the source document
+-                    if (version == null || version.length() == 0) {
+-                        ; // no output if no real input
++@Override
++public void copyEventFromReader(XMLStreamReader2 sr, boolean preserveEventData)
++    throws XMLStreamException
++{
++    try {
++        switch (sr.getEventType()) {
++        case START_DOCUMENT:
++            {
++                String version = sr.getVersion();
++                if (version == null || version.length() == 0) {
++                    ; // no output if no real input
++                } else {
++                    if (sr.standaloneSet()) {
++                        writeStartDocument(sr.getVersion(),
++                                           sr.getCharacterEncodingScheme(),
++                                           sr.isStandalone());
+                     } else {
+-                        if (sr.standaloneSet()) {
+-                            writeStartDocument(sr.getVersion(),
+-                                               sr.getCharacterEncodingScheme(),
+-                                               sr.isStandalone());
+-                        } else {
+-                            writeStartDocument(sr.getCharacterEncodingScheme(),
+-                                               sr.getVersion());
+-                        }
++                        writeStartDocument(sr.getCharacterEncodingScheme(),
++                                           sr.getVersion());
+                     }
+                 }
+-                return;
+-                
+-            case END_DOCUMENT:
+-                writeEndDocument();
+-                return;
+-                
+-                // Element start/end events:
+-            case START_ELEMENT:
+-                if (sr instanceof StreamReaderImpl) {
+-                    StreamReaderImpl impl = (StreamReaderImpl) sr;
+-                    copyStartElement(impl.getInputElementStack(), impl.getAttributeCollector());
+-                } else { // otherwise impl from Stax ref. impl (Stax2WriterImpl) has to do:
+-                    super.copyStartElement(sr);
+-                }
+-                return;
+-
+-            case END_ELEMENT:
+-                writeEndElement();
+-                return;
+-                
+-            case SPACE:
+-                {
+-                    mAnyOutput = true;
+-                    // Need to finish an open start element?
+-                    if (mStartElementOpen) {
+-                        closeStartElement(mEmptyElement);
+-                    }
+-                    // No need to write as chars, should be pure space (caller should
+-                    // have verified); also, no escaping necessary.
++            }
++            return;
++            
++        case END_DOCUMENT:
++            writeEndDocument();
++            return;
++            
++            // Element start/end events:
++        case START_ELEMENT:
++            if (sr instanceof StreamReaderImpl) {
++                StreamReaderImpl impl = (StreamReaderImpl) sr;
++                copyStartElement(impl.getInputElementStack(), impl.getAttributeCollector());
++            } else { // otherwise impl from Stax ref. impl (Stax2WriterImpl) has to do:
++                super.copyStartElement(sr);
++            }
++            return;
+ 
+-                    // 28-Mar-2017, tatu: Various optimization do not work well when validation so:
+-                    if (mValidator != null) {
+-                        writeCData(sr.getText());
+-                    } else {
+-                        sr.getText(wrapAsRawWriter(), preserveEventData);
+-                    }
++        case END_ELEMENT:
++            writeEndElement();
++            return;
++            
++        case SPACE:
++            {
++                mAnyOutput = true;
++                if (mStartElementOpen) {
++                    closeStartElement(mEmptyElement);
+                 }
+-                return;
+-
+-            case CDATA:
+-
+-                // First; is this to be changed to 'normal' text output?
+-                // 28-Mar-2017, tatu: Various optimization do not work well when validation so:
+                 if (mValidator != null) {
+-                    writeCData(sr.getText());
+-                    return;
++                    writeCharacters(sr.getText());
++                } else {
++                    sr.getText(wrapAsRawWriter(), preserveEventData);
+                 }
+-                if (!mCfgCDataAsText) {
+-                    mAnyOutput = true;
+-                    // Need to finish an open start element?
+-                    if (mStartElementOpen) {
+-                        closeStartElement(mEmptyElement);
+-                    }
++            }
++            return;
+ 
+-                    // Not legal outside main element tree:
+-                    if (mCheckStructure) {
+-                        if (inPrologOrEpilog()) {
+-                            reportNwfStructure(ErrorConsts.WERR_PROLOG_CDATA);
+-                        }
+-                    }
+-                    // Note: no need to check content, since reader is assumed
+-                    // to have verified it to be valid XML.
+-                    mWriter.writeCDataStart();
+-                    sr.getText(wrapAsRawWriter(), preserveEventData);
+-                    mWriter.writeCDataEnd();
+-                    return;
++        case CDATA:
++            // If validator is active, ensure CDATA is valid or convert to text if needed
++            if (mValidator != null) {
++                String cdata = sr.getText();
++                if (!cdata.trim().isEmpty()) {
++                    throw new XMLStreamException("Element cannot contain CDATA sections according to the schema");
++                }
++                writeCharacters(cdata); // Convert CDATA to characters if necessary
++            } else if (!mCfgCDataAsText) {
++                mAnyOutput = true;
++                if (mStartElementOpen) {
++                    closeStartElement(mEmptyElement);
+                 }
+-                // fall down if it is to be converted...
+ 
+-            case CHARACTERS:
++                if (mCheckStructure) {
++                    if (inPrologOrEpilog()) {
++                        reportNwfStructure(ErrorConsts.WERR_PROLOG_CDATA);
++                    }
++                }
++                mWriter.writeCDataStart();
++                sr.getText(wrapAsRawWriter(), preserveEventData);
++                mWriter.writeCDataEnd();
++            }
++            return;
+ 
+-                // 28-Mar-2017, tatu: Various optimization do not work well when validation so:
++        case CHARACTERS:
++            {
++                mAnyOutput = true;
++                if (mStartElementOpen) {
++                    closeStartElement(mEmptyElement);
++                }
+                 if (mValidator != null) {
+                     writeCharacters(sr.getText());
+                 } else  {
+-                    // Let's just assume content is fine... not 100% reliably
+-                    // true, but usually is (not true if input had a root
+-                    // element surrounding text, but omitted for output)
+-                    mAnyOutput = true;
+-                    // Need to finish an open start element?
+-                    if (mStartElementOpen) {
+-                        closeStartElement(mEmptyElement);
+-                    }
+                     sr.getText(wrapAsTextWriter(), preserveEventData);
+                 }
+-                return;
+-                
+-            case COMMENT:
+-                {
+-                    mAnyOutput = true;
+-                    if (mStartElementOpen) {
+-                        closeStartElement(mEmptyElement);
+-                    }
+-                    // No need to check for content (embedded '--'); reader
+-                    // is assumed to have verified it's ok (otherwise should
+-                    // have thrown an exception for non-well-formed XML)
+-                    mWriter.writeCommentStart();
+-                    sr.getText(wrapAsRawWriter(), preserveEventData);
+-                    mWriter.writeCommentEnd();
++            }
++            return;
++            
++        case COMMENT:
++            {
++                mAnyOutput = true;
++                if (mStartElementOpen) {
++                    closeStartElement(mEmptyElement);
+                 }
+-                return;
++                mWriter.writeCommentStart();
++                sr.getText(wrapAsRawWriter(), preserveEventData);
++                mWriter.writeCommentEnd();
++            }
++            return;
+ 
+-            case PROCESSING_INSTRUCTION:
+-                {
+-                    mWriter.writePIStart(sr.getPITarget(), true);
+-                    sr.getText(wrapAsRawWriter(), preserveEventData);
+-                    mWriter.writePIEnd();
+-                }
+-                return;
+-                
+-            case DTD:
+-                {
+-                    DTDInfo info = sr.getDTDInfo();
+-                    if (info == null) {
+-                        // Hmmmh. It is legal for this to happen, for non-DTD-aware
+-                        // readers. But what is the right thing to do here?
+-                        throwOutputError("Current state DOCTYPE, but not DTDInfo Object returned -- reader doesn't support DTDs?");
+-                    }
+-                    // Could optimize this a bit (stream the int. subset possible),
+-                    // but it's never going to occur more than once per document,
+-                    // so it's probably not much of a bottleneck, ever
+-                    writeDTD(info);
++        case PROCESSING_INSTRUCTION:
++            {
++                mWriter.writePIStart(sr.getPITarget(), true);
++                sr.getText(wrapAsRawWriter(), preserveEventData);
++                mWriter.writePIEnd();
++            }
++            return;
++            
++        case DTD:
++            {
++                DTDInfo info = sr.getDTDInfo();
++                if (info == null) {
++                    throwOutputError("Current state DOCTYPE, but not DTDInfo Object returned -- reader doesn't support DTDs?");
+                 }
+-                return;
+-                
+-            case ENTITY_REFERENCE:
+-                writeEntityRef(sr.getLocalName());
+-                return;
+-
+-            case ATTRIBUTE:
+-            case NAMESPACE:
+-            case ENTITY_DECLARATION:
+-            case NOTATION_DECLARATION:
+-                // Let's just fall back to throw the exception
++                writeDTD(info);
+             }
+-        } catch (IOException ioe) {
+-            throw new WstxIOException(ioe);
++            return;
++            
++        case ENTITY_REFERENCE:
++            writeEntityRef(sr.getLocalName());
++            return;
++
++        case ATTRIBUTE:
++        case NAMESPACE:
++        case ENTITY_DECLARATION:
++        case NOTATION_DECLARATION:
++            // Let's just fall back to throw the exception
+         }
+-        throw new XMLStreamException("Unrecognized event type ("
+-                +sr.getEventType()+"); not sure how to copy");
++    } catch (IOException ioe) {
++        throw new WstxIOException(ioe);
+     }
++    throw new XMLStreamException("Unrecognized event type ("
++            +sr.getEventType()+"); not sure how to copy");
++}
+ 
+     /*
+     ///////////////////////////////////////////////////////////

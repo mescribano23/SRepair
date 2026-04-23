@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.733502538071066,
+    "input": "    public GenericKeyedObjectPool(KeyedPoolableObjectFactory factory, GenericKeyedObjectPool.Config config) {\n        this(factory,config.maxActive,config.whenExhaustedAction,config.maxWait,config.maxIdle,config.maxTotal, config.minIdle,config.testOnBorrow,config.testOnReturn,config.timeBetweenEvictionRunsMillis,config.numTestsPerEvictionRun,config.minEvictableIdleTimeMillis,config.testWhileIdle,config.lifo);\n    }",
+    "query_result": [
+        "estOnBorrow,config.testOnReturn,config.timeBetweenEvictionRunsMillis,config.numTestsPerEvictionRun,config.minEvictableIdleTimeMillis,config.testWhileI",
+        "ctory factory, GenericKeyedObjectPool.Config config) { this(factory,config.maxActive,config.whenExha",
+        "GenericKeyedObjectPool(KeyedPoolableObjectFactory"
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.8969072164948454,
+    "input": "public void head(org.jsoup.nodes.Node source, int depth) {\n    namespacesStack.push(new HashMap<>(namespacesStack.peek())); // inherit from above on the stack\n    if (source instanceof org.jsoup.nodes.Element) {\n        org.jsoup.nodes.Element sourceEl = (org.jsoup.nodes.Element) source;\n\n        String prefix = updateNamespaces(sourceEl);\n        String namespace = namespacesStack.peek().get(prefix);\n        String tagName = sourceEl.tagName();\n\n        Element el = namespace == null && tagName.contains(\":\") ?\n            doc.createElementNS(\"\", tagName) : // doesn't have a real namespace defined\n            doc.createElementNS(namespace, tagName);\n        copyAttributes(sourceEl, el);\n        if (dest == null) { // sets up the root\n            doc.appendChild(el);\n        } else {\n            dest.appendChild(el);\n        }\n        dest = el; // descend\n    } else if (source instanceof org.jsoup.nodes.TextNode) {\n        org.jsoup.nodes.TextNode sourceText = (org.jsoup.nodes.TextNode) source;\n        Text text = doc.createTextNode(sourceText.getWholeText());\n        dest.appendChild(text);\n    } else if (source instanceof org.jsoup.nodes.Comment) {\n        org.jsoup.nodes.Comment sourceComment = (org.jsoup.nodes.Comment) source;\n        Comment comment = doc.createComment(sourceComment.getData());\n        dest.appendChild(comment);\n    } else if (source instanceof org.jsoup.nodes.DataNode) {\n        org.jsoup.nodes.DataNode sourceData = (org.jsoup.nodes.DataNode) source;\n  ",
+    "query_result": [
+        "else if (source instanceof org.jsoup.nodes.TextNode) {\norg.jsoup.nodes.TextNode sourceText = (org.jsoup.nodes.TextNode) source;\nText text = doc.createTextNode(sourceText.getWholeText());\ndest.appendChild(text);\n} else if (source instanceof org.jsoup.nodes.Comment) {\norg.jsoup.nodes.Comment sourceComment = (org.jsoup.nodes.Comment) source;\nComment comment = doc.createComment(sourceComment.getData());\ndest.appendChild(comment);\n} else if (source instanceof org.jsoup.nodes.DataNode) {\norg.jsoup.nodes.DataNode sourceData = (org.jsoup.nodes.DataNode",
+        "up.nodes.TextNode) {\norg.jsoup.nodes.TextNode sourceText = (org.jsoup.nodes.TextNode) source;\nText text = doc.createTextNode(sourceText.getWholeText());\ndest.appendChild(text);\n} else if (source instanceof org.jsoup.nodes.Comment) {\norg.jsoup.nodes.Comment sourceComment = (org.jsoup.nodes.Comment) source;\nComment comment = doc.createComment(sourceComment.getData());\ndest.appendChild(comment);\n} else if (source instanceof org.jsoup.nodes.DataNode) {\norg.jsoup.nodes.DataNode sourceData = (org.jsou",
+        "int depth) {\nnamespacesStack.push(new HashMap<>(namespacesStack.peek())); // inherit from above on the stack\nif (source instanceof org.jsoup.nodes.Element) {\norg.jsoup.nodes.Element sourceEl = (org.jsoup.nodes.Element) source;\nString prefix = updateNamespaces(sourceEl);\nString namespace = namespacesStack.peek().get(prefix);\nString tagName = sourceE",
+        "me.contains(\":\") ?\ndoc.createElementNS(\"\", tagName) : // doesn't have a real namespace defined\ndoc.createElementNS(namespace, tagName);\ncopyAttributes",
+        "ic void head(org.jsoup.nodes.Node source, int dept",
+        "stanceof org.jsoup.nodes.Element) {\norg.jsoup.node",
+        "f org.jsoup.nodes.Element) {\norg.jsoup.nodes.Eleme",
+        "org.jsoup.nodes.Element) {\norg.jsoup.nodes.Element",
+        "Element) {\norg.jsoup.nodes.Element sourceEl = (org",
+        "org.jsoup.nodes.Element sourceEl = (org.jsoup.node",
+        "ement sourceEl = (org.jsoup.nodes.Element) source;",
+        "oc.appendChild(el);\n} else {\ndest.appendChild(el);",
+        "es.TextNode sourceText = (org.jsoup.nodes.TextNode",
+        "else if (source instanceof org.jsoup.nodes.Comment",
+        "anceof org.jsoup.nodes.Comment) {\norg.jsoup.nodes.",
+        "f org.jsoup.nodes.Comment) {\norg.jsoup.nodes.Comme",
+        "odes.Comment sourceComment = (org.jsoup.nodes.Comm",
+        "comment = doc.createComment(sourceComment.getData(",
+        "rg.jsoup.nodes.DataNode sourceData = (org.jsoup.no"
+    ]
+}

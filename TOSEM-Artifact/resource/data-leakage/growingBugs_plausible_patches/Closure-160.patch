@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 11850211..21838240 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -265,15 +265,12 @@ public class Compiler extends AbstractCompiler {
+             getDiagnosticGroups().getRegisteredGroups()));
+     guards.add(options.getWarningsGuard());
+ 
+-
+-    // All passes must run the variable check. This synthesizes
+-    // variables later so that the compiler doesn't crash. It also
+-    // checks the externs file for validity. If you don't want to warn
+-    // about missing variable declarations, we shut that specific
+-    // error off.
+-    if (!options.checkSymbols &&
+-        (warningsGuard == null || !warningsGuard.disables(
+-            DiagnosticGroups.CHECK_VARIABLES))) {
++    // Add priority handling for specific warnings.
++    boolean shouldCheckSymbols = options.checkSymbols || 
++                                 options.enables(DiagnosticGroups.CHECK_VARIABLES);
++    
++    if (!shouldCheckSymbols && 
++        (warningsGuard == null || !warningsGuard.disables(DiagnosticGroups.CHECK_VARIABLES))) {
+       guards.add(new DiagnosticGroupWarningsGuard(
+           DiagnosticGroups.CHECK_VARIABLES, CheckLevel.OFF));
+     }

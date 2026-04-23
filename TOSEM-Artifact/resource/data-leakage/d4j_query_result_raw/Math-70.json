@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9588235294117647,
+    "input": "public double solve(final UnivariateRealFunction f, double min, double max, double initial)\n    throws MaxIterationsExceededException, FunctionEvaluationException {\n    return solve(f, min, max);\n}",
+    "query_result": [
+        "public double solve(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEvaluationE",
+        "blic double solve(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEvaluationExc",
+        "c double solve(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEvaluationExcept",
+        "ouble solve(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEvaluationException",
+        "le solve(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEvaluationException {\n",
+        "olve(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExc",
+        "ve(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExcee",
+        "(final UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceede",
+        "UnivariateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededExcept",
+        "riateRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, ",
+        "teRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, Fun",
+        "eRealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, Func",
+        "ealFunction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, Functi",
+        "nction f, double min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEva",
+        "tion f, double min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEvalu",
+        "e min, double max, double initial)\nthrows MaxIterationsExceededException, FunctionEvaluationExceptio",
+        "le initial)\nthrows MaxIterationsExceededException, FunctionEvaluationException {\nreturn solve(f, min",
+        "ublic double solve(final UnivariateRealFunction f,",
+        "variateRealFunction f, double min, double max, dou",
+        "ateRealFunction f, double min, double max, double "
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.13224489795918368,
+    "input": "    @Override\n    public String nextTextValue() throws IOException\n    {\n        _binaryValue = null;\n        if (_nextToken != null) {\n            JsonToken t = _nextToken;\n            _currToken = t;\n            _nextToken = null;\n\n            // expected case; yes, got a String\n            if (t == JsonToken.VALUE_STRING) {\n                return _currText;\n            }\n            _updateState(t);\n            return null;\n        }\n\n        int token = _xmlTokens.next();\n\n        // mostly copied from 'nextToken()'\n        while (token == XmlTokenStream.XML_START_ELEMENT) {\n            if (_mayBeLeaf) {\n                _nextToken = JsonToken.FIELD_NAME;\n                _parsingContext = _parsingContext.createChildObjectContext(-1, -1);\n                _currToken = JsonToken.START_OBJECT;\n                return null;\n            }\n            if (_parsingContext.inArray()) {\n                token = _xmlTokens.next();\n                _mayBeLeaf = true;\n                continue;\n            }\n            String name = _xmlTokens.getLocalName();\n            _parsingContext.setCurrentName(name);\n            if (_namesToWrap != null && _namesToWrap.contains(name)) {\n                _xmlTokens.repeatStartElement();\n            }\n            _mayBeLeaf = true;\n            _currToken = JsonToken.FIELD_NAME;\n            return null;\n        }\n\n        // Ok; beyond start element, what do we get?\n        switch (token) {\n        case XmlTokenStream.XML_END_ELEMENT:\n            if (_mayBeLeaf) {\n                // NOTE: this is different from nextToken() -- produce \"\", NOT null\n                _mayBeLeaf = false;\n                _currToken = JsonToken.VALUE_STRING;\n                return (_currText = \"\");\n            }\n            _currToken = _parsingContext.inArray() ? JsonToken.END_ARRAY : JsonToken.END_OBJECT;\n            _parsingContext = _parsingContext.getParent();\n            _namesToWrap = _parsingContext.getNamesToWrap();\n            break;\n        case XmlTokenS",
+    "query_result": [
+        "Override\npublic String nextTextValue() throws IOEx",
+        "erride\npublic String nextTextValue() throws IOExce",
+        "rride\npublic String nextTextValue() throws IOExcep",
+        "ride\npublic String nextTextValue() throws IOExcept",
+        "de\npublic String nextTextValue() throws IOExceptio",
+        ";\n_parsingContext = _parsingContext.createChildObj",
+        "\n_parsingContext = _parsingContext.createChildObje",
+        "_parsingContext = _parsingContext.createChildObjec",
+        "parsingContext = _parsingContext.createChildObject",
+        "arsingContext = _parsingContext.createChildObjectC",
+        "rsingContext = _parsingContext.createChildObjectCo",
+        "singContext = _parsingContext.createChildObjectCon",
+        "ingContext = _parsingContext.createChildObjectCont",
+        "ngContext = _parsingContext.createChildObjectConte",
+        "Context = _parsingContext.createChildObjectContext",
+        "ontext = _parsingContext.createChildObjectContext(",
+        "ext = _parsingContext.createChildObjectContext(-1,",
+        " _parsingContext.createChildObjectContext(-1, -1);",
+        ";\n_parsingContext = _parsingContext.getParent();\n_"
+    ]
+}

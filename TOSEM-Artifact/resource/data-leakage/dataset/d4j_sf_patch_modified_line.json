@@ -1,0 +1,3355 @@
+{
+    "Chart-1": [
+        "        if (dataset == null) {"
+    ],
+    "Chart-10": [
+        "        return \" title=\\\"\" + ImageMapUtilities.htmlEscape(toolTipText) "
+    ],
+    "Chart-11": [
+        "        PathIterator iterator2 = p2.getPathIterator(null);"
+    ],
+    "Chart-12": [
+        "        setDataset(dataset);"
+    ],
+    "Chart-13": [
+        "                    new Range(0.0, Math.max(constraint.getWidth() - w[2], 0.0)),"
+    ],
+    "Chart-17": [
+        "        TimeSeries clone = (TimeSeries) super.clone();",
+        "        clone.data = (List) ObjectUtilities.deepClone(this.data);"
+    ],
+    "Chart-20": [
+        "        super(paint, stroke, outlinePaint, outlineStroke, alpha);"
+    ],
+    "Chart-24": [
+        "        int g = (int) ((v - this.lowerBound) / (this.upperBound "
+    ],
+    "Chart-26": [
+        "            if (owner != null) {",
+        "            }"
+    ],
+    "Chart-3": [
+        "        copy.minY = Double.NaN;",
+        "        copy.maxY = Double.NaN;"
+    ],
+    "Chart-4": [
+        "                if (r != null) {",
+        "                }"
+    ],
+    "Chart-5": [
+        "        if (this.allowDuplicateXValues) {",
+        "            add(x, y);",
+        "            return null;",
+        "        }",
+        "        if (index >= 0) {"
+    ],
+    "Chart-6": [
+        "        ShapeList that = (ShapeList) obj;",
+        "        int listSize = size();",
+        "        for (int i = 0; i < listSize; i++) {",
+        "           if (!ShapeUtilities.equal((Shape) get(i), (Shape) that.get(i))) {",
+        "               return false;",
+        "           }",
+        "        }",
+        "        return true;"
+    ],
+    "Chart-7": [
+        "            long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()",
+        "            long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()"
+    ],
+    "Chart-8": [
+        "        this(time, zone, Locale.getDefault());"
+    ],
+    "Chart-9": [
+        "        if ((endIndex < 0)  || (endIndex < startIndex)) {"
+    ],
+    "Cli-11": [
+        "        if (option.hasArg() && option.hasArgName())"
+    ],
+    "Cli-12": [
+        "                    if (opt.indexOf('=') != -1 && options.hasOption(opt.substring(0, opt.indexOf('='))))",
+        "                        tokens.add(arg.substring(0, arg.indexOf('='))); // --foo",
+        "                        tokens.add(arg.substring(arg.indexOf('=') + 1)); // value",
+        "                    }",
+        "                    else if (options.hasOption(arg.substring(0, 2)))",
+        "                    {"
+    ],
+    "Cli-14": [
+        "                validate = true;",
+        "            }",
+        "            if (validate) {"
+    ],
+    "Cli-15": [
+        "        if (defaultValues == null || defaultValues.isEmpty()) {",
+        "            defaultValues = (List) this.defaultValues.get(option);",
+        "        if (defaultValues != null && !defaultValues.isEmpty()) {",
+        "            if (valueList == null || valueList.isEmpty()) {",
+        "                valueList = defaultValues;",
+        "            } else {",
+        "                if (defaultValues.size() > valueList.size()) {",
+        "                    valueList = new ArrayList(valueList);",
+        "                    for (int i=valueList.size(); i<defaultValues.size(); i++) {",
+        "                        valueList.add(defaultValues.get(i));",
+        "                    }",
+        "                }",
+        "            }",
+        "        }"
+    ],
+    "Cli-17": [
+        "                break;"
+    ],
+    "Cli-19": [
+        "",
+        "        tokens.add(token);"
+    ],
+    "Cli-20": [
+        "                int pos = token.indexOf('=');",
+        "                String opt = pos == -1 ? token : token.substring(0, pos); // --foo",
+        "",
+        "                if (!options.hasOption(opt) && stopAtNonOption)",
+        "                    process(token);",
+        "                    tokens.add(opt);",
+        "                    if (pos != -1) {",
+        "                        tokens.add(token.substring(pos + 1));",
+        "                    }"
+    ],
+    "Cli-23": [
+        "            }",
+        "            ",
+        "            if ( (text.length() > width) && (pos == nextLineTabStop - 1) ) {",
+        "                sb.append(text);",
+        "",
+        "                return sb;"
+    ],
+    "Cli-24": [
+        "            nextLineTabStop = width - 1;"
+    ],
+    "Cli-25": [
+        "            nextLineTabStop = 1;"
+    ],
+    "Cli-26": [
+        "        Option option = null;",
+        "        try {",
+        "            option = new Option(opt, description);",
+        "        } finally {",
+        "        }"
+    ],
+    "Cli-27": [
+        "        if (selected == null || selected.equals(option.getKey()))",
+        "            selected = option.getKey();"
+    ],
+    "Cli-28": [
+        "                    continue;"
+    ],
+    "Cli-29": [
+        "        if (length > 1 && str.startsWith(\"\\\"\") && str.endsWith(\"\\\"\") && str.substring(1, length - 1).indexOf('\"') == -1)",
+        "            str = str.substring(1, length - 1);"
+    ],
+    "Cli-32": [
+        "        "
+    ],
+    "Cli-35": [
+        "        if(longOpts.keySet().contains(opt)) {",
+        "            return Collections.singletonList(opt);",
+        "        }"
+    ],
+    "Cli-37": [
+        "        if (!token.startsWith(\"-\") || token.length() == 1)",
+        "        {",
+        "            return false;",
+        "        }",
+        "        int pos = token.indexOf(\"=\");",
+        "        String optName = pos == -1 ? token.substring(1) : token.substring(1, pos);",
+        "        return options.hasShortOption(optName);"
+    ],
+    "Cli-38": [
+        "        if (options.hasShortOption(optName))",
+        "        {",
+        "            return true;",
+        "        }",
+        "        return optName.length() > 0 && options.hasShortOption(String.valueOf(optName.charAt(0)));"
+    ],
+    "Cli-4": [
+        "            StringBuffer buff = new StringBuffer(\"Missing required option\");",
+        "            buff.append(requiredOptions.size() == 1 ? \"\" : \"s\");",
+        "            buff.append(\": \");"
+    ],
+    "Cli-40": [
+        "            throw new ParseException(\"Unable to handle the class: \" + clazz);"
+    ],
+    "Cli-5": [
+        "        if (str == null) {",
+        "            return null;",
+        "        }"
+    ],
+    "Cli-8": [
+        "            pos = findWrapPos(text, width, 0);"
+    ],
+    "Cli-9": [
+        "                buff.append(\", \");",
+        "            throw new MissingOptionException(buff.substring(0, buff.length() - 2));"
+    ],
+    "Closure-1": [
+        "    if (!removeGlobals) {",
+        "      return;",
+        "    }"
+    ],
+    "Closure-10": [
+        "      return anyResultsMatch(n, MAY_BE_STRING_PREDICATE);"
+    ],
+    "Closure-101": [
+        "    options.closurePass = flags.process_closure_primitives;"
+    ],
+    "Closure-102": [
+        "    removeDuplicateDeclarations(root);"
+    ],
+    "Closure-104": [
+        "    if (!result.isNoType()) {"
+    ],
+    "Closure-105": [
+        "    StringBuilder sb = null;",
+        "        if (sb == null) {",
+        "          sb = new StringBuilder();",
+        "        } else {",
+        "        if (sb != null) {",
+        "          sb = null;",
+        "    if (sb != null) {"
+    ],
+    "Closure-107": [
+        "      options.setWarningLevel(JsMessageVisitor.MSG_CONVENTIONS, CheckLevel.OFF);"
+    ],
+    "Closure-109": [
+        "    if (token == JsDocToken.QMARK) {",
+        "      return newNode(Token.QMARK);",
+        "    } else {",
+        "      return parseBasicTypeExpression(token);",
+        "    }"
+    ],
+    "Closure-11": [],
+    "Closure-111": [
+        "          return topType.isAllType() ?",
+        "              getNativeType(ARRAY_TYPE) : topType;"
+    ],
+    "Closure-112": [
+        "    Map<TemplateType, JSType> inferred = Maps.filterKeys(",
+        "        inferTemplateTypesFromParameters(fnType, n),",
+        "        new Predicate<TemplateType>() {",
+        "",
+        "          @Override",
+        "          public boolean apply(TemplateType key) {",
+        "            return keys.contains(key);",
+        "          }}",
+        "        );"
+    ],
+    "Closure-113": [
+        "      if (provided != null || requiresLevel.isOn()) {"
+    ],
+    "Closure-114": [
+        "        } else if (!(parent.isCall() && parent.getFirstChild() == n)) {"
+    ],
+    "Closure-115": [],
+    "Closure-116": [
+        "    boolean hasSideEffects = false;  // empty function case",
+        "    if (block.hasChildren()) {",
+        "      Preconditions.checkState(block.hasOneChild());",
+        "      Node stmt = block.getFirstChild();",
+        "      if (stmt.isReturn()) {",
+        "        hasSideEffects = NodeUtil.mayHaveSideEffects(",
+        "            stmt.getFirstChild(), compiler);",
+        "      }",
+        "    }",
+        "          if (hasSideEffects && NodeUtil.canBeSideEffected(cArg)) {",
+        "            return CanInlineResult.NO;",
+        "          }"
+    ],
+    "Closure-117": [
+        "    JSType type = getJSType(n);",
+        "    if (dereference) {",
+        "      ObjectType dereferenced = type.dereference();",
+        "      if (dereferenced != null) {",
+        "        type = dereferenced;",
+        "      }",
+        "    }",
+        "    if (type.isFunctionPrototypeType() ||",
+        "        (type.toObjectType() != null &&",
+        "         type.toObjectType().getConstructor() != null)) {",
+        "      return type.toString();",
+        "    }"
+    ],
+    "Closure-118": [
+        "        if (child.isQuotedString()) {",
+        "          continue;",
+        "        }"
+    ],
+    "Closure-119": [
+        "              case Token.CATCH:"
+    ],
+    "Closure-12": [
+        "    List<DiGraphEdge<Node, Branch>> branchEdges = getCfg().getOutEdges(cfgNode);",
+        "    for (DiGraphEdge<Node, Branch> edge : branchEdges) {",
+        "      if (edge.getValue() == Branch.ON_EX) {",
+        "        return true;",
+        "      }",
+        "    }"
+    ],
+    "Closure-120": [
+        "          if (ref.getSymbol().getScope() != ref.scope) {",
+        "            return false;",
+        "          }"
+    ],
+    "Closure-121": [
+        "          referenceInfo.isAssignedOnceInLifetime() &&",
+        "          (isInlineableDeclaredConstant(v, referenceInfo) ||",
+        "           referenceInfo.isOnlyAssignmentSameScopeAsDeclaration())) {"
+    ],
+    "Closure-122": [
+        "    Pattern p = Pattern.compile(\"(/|(\\n[ \\t]*))\\\\*[ \\t]*@[a-zA-Z]\");",
+        "    if (p.matcher(comment.getValue()).find()) {"
+    ],
+    "Closure-123": [
+        "        Context rhsContext = getContextForNoInOperator(context);"
+    ],
+    "Closure-124": [
+        "    while (node.isGetProp()) {",
+        "    }"
+    ],
+    "Closure-125": [
+        "      if (fnType != null && fnType.hasInstanceType()) {"
+    ],
+    "Closure-126": [],
+    "Closure-128": [
+        "    if (len == 0) {",
+        "      return false;",
+        "    }",
+        "    return len == 1 || s.charAt(0) != '0';"
+    ],
+    "Closure-129": [
+        "      while (first.isCast()) {",
+        "        first = first.getFirstChild();",
+        "      }"
+    ],
+    "Closure-13": [
+        "        Node next = c.getNext();"
+    ],
+    "Closure-130": [
+        "      if (!name.inExterns && name.globalSets == 1 && name.localSets == 0 &&"
+    ],
+    "Closure-131": [
+        "          Character.isIdentifierIgnorable(s.charAt(0)) ||",
+        "        if (Character.isIdentifierIgnorable(s.charAt(i)) ||"
+    ],
+    "Closure-132": [
+        "              !mayEffectMutableState(lhs) &&",
+        "              (!mayHaveSideEffects(cond) ||",
+        "                  (thenOp.isAssign() && thenOp.getFirstChild().isName()))) {"
+    ],
+    "Closure-133": [
+        "    unreadToken = NO_UNREAD_TOKEN;"
+    ],
+    "Closure-14": [
+        "              cfa.createEdge(fromNode, Branch.ON_EX, finallyNode);"
+    ],
+    "Closure-145": [
+        "    if (n.getType() == Token.LABEL) {",
+        "      Node labeledStatement = n.getLastChild();",
+        "      if (labeledStatement.getType() != Token.BLOCK) {",
+        "        return isOneExactlyFunctionOrDo(labeledStatement);",
+        "      } else {",
+        "        if (getNonEmptyChildCount(n, 2) == 1) { ",
+        "          return isOneExactlyFunctionOrDo(getFirstNonEmptyChild(n));",
+        "        } else {",
+        "          return false;",
+        "        }",
+        "      }",
+        "    } else {",
+        "    }"
+    ],
+    "Closure-146": [
+        "        JSType noType = getNativeType(JSTypeNative.NO_TYPE);",
+        "        return new TypePair(noType, noType);"
+    ],
+    "Closure-15": [
+        "        if (n.isDelProp()) {",
+        "          return true;",
+        "        }"
+    ],
+    "Closure-150": [
+        "      super.visit(t, n, parent);"
+    ],
+    "Closure-152": [
+        "    JSType maybeTypeOfThis = safeResolve(typeOfThis, t, scope);",
+        "    if (maybeTypeOfThis instanceof ObjectType) {",
+        "      typeOfThis = (ObjectType) maybeTypeOfThis;",
+        "    }"
+    ],
+    "Closure-159": [
+        "    if (node.getType() == Token.NAME) {",
+        "      if (isCandidateUsage(node)) {",
+        "        changed.add(node.getString());"
+    ],
+    "Closure-160": [
+        "    ComposeWarningsGuard composedGuards = new ComposeWarningsGuard(guards);",
+        "        !composedGuards.enables(DiagnosticGroups.CHECK_VARIABLES)) {",
+        "      composedGuards.addGuard(new DiagnosticGroupWarningsGuard(",
+        "    this.warningsGuard = composedGuards;"
+    ],
+    "Closure-161": [
+        "    if (isAssignmentTarget(n)) {",
+        "      return n;",
+        "    }"
+    ],
+    "Closure-164": [
+        "      boolean thisIsOptional = thisIsVarArgs || thisParam.isOptionalArg();",
+        "      boolean thatIsOptional = thatIsVarArgs || thatParam.isOptionalArg();",
+        "      if (!thisIsOptional && thatIsOptional) {",
+        "        boolean isTopFunction =",
+        "            thatIsVarArgs &&",
+        "            (thatParamType == null ||",
+        "             thatParamType.isUnknownType() ||",
+        "             thatParamType.isNoType());",
+        "        if (!isTopFunction) {",
+        "          return false;",
+        "        }",
+        "      }",
+        "    if (thisParam != null",
+        "        && !thisParam.isOptionalArg() && !thisParam.isVarArgs()",
+        "        && thatParam == null) {",
+        "      return false;",
+        "    }"
+    ],
+    "Closure-166": [
+        "    } else if (constraint.isUnionType()) {",
+        "      for (JSType alt : constraint.toMaybeUnionType().getAlternates()) {",
+        "        if (alt.isRecordType()) {",
+        "          matchRecordTypeConstraint(alt.toObjectType());",
+        "        }",
+        "      }"
+    ],
+    "Closure-168": [
+        "      if (t.getScopeDepth() <= 1) {"
+    ],
+    "Closure-17": [
+        "              JSDocInfo rValueInfo = rValue.getJSDocInfo();",
+        "              if (rValueInfo != null && rValueInfo.hasType()) {",
+        "                return rValueInfo.getType().evaluate(scope, typeRegistry);",
+        "              } else if (rValue.getJSType() != null",
+        "                  && !rValue.getJSType().isUnknownType()) {"
+    ],
+    "Closure-172": [
+        "        String className = qName.substring(0, qName.lastIndexOf(\".prototype\"));",
+        "        Var slot = scope.getSlot(className);",
+        "        JSType classType = slot == null ? null : slot.getType();",
+        "        if (classType != null",
+        "            && (classType.isConstructor() || classType.isInterface())) {",
+        "        }"
+    ],
+    "Closure-176": [
+        "        JSType varType = var == null ? null : var.getType();",
+        "        boolean isVarDeclaration = left.hasChildren()",
+        "            && varType != null && !var.isTypeInferred();",
+        "        boolean isVarTypeBetter = isVarDeclaration &&",
+        "            !resultType.isNullType() && !resultType.isVoidType();",
+        "          redeclareSimpleVar(scope, left, varType);",
+        "        } else {",
+        "        left.setJSType(resultType);"
+    ],
+    "Closure-18": [
+        "      if (options.dependencyOptions.needsManagement()) {"
+    ],
+    "Closure-19": [
+        "      case Token.THIS:",
+        "        break;"
+    ],
+    "Closure-2": [
+        "    if (implicitProto == null) {",
+        "      currentPropertyNames = ImmutableSet.of();",
+        "    } else {",
+        "    }"
+    ],
+    "Closure-20": [
+        "      if (value != null && value.getNext() == null &&",
+        "          NodeUtil.isImmutableValue(value)) {"
+    ],
+    "Closure-21": [
+        "    if (n.isExprResult() || n.isBlock()) {",
+        "    if (!isResultUsed &&"
+    ],
+    "Closure-22": [
+        "    if (n.isExprResult() || n.isBlock()) {",
+        "    if (n.isQualifiedName() && n.getJSDocInfo() != null) {"
+    ],
+    "Closure-23": [
+        "    for (int i = 0; current != null; i++) {",
+        "      if (i != intIndex) {",
+        "        if (mayHaveSideEffects(current)) {",
+        "          return n;",
+        "        }",
+        "      } else {",
+        "      }"
+    ],
+    "Closure-24": [
+        "        if (parent.isVar() &&",
+        "            n.hasChildren() && n.getFirstChild().isQualifiedName()) {",
+        "        } else if (v.isBleedingFunction()) {",
+        "        } else if (parent.getType() == Token.LP) {"
+    ],
+    "Closure-25": [
+        "    scope = traverseChildren(n, scope);",
+        "          backwardsInferenceFromCallSite(n, ct);"
+    ],
+    "Closure-29": [
+        "      Set<String> validProperties = Sets.newHashSet();",
+        "          String propName = parent.getLastChild().getString();",
+        "          if (!validProperties.contains(propName)) {",
+        "            if (NodeUtil.isVarOrSimpleAssignLhs(parent, gramps)) {",
+        "              validProperties.add(propName);",
+        "            } else {",
+        "              return false;",
+        "            }",
+        "          }",
+        "          validProperties.add(child.getString());"
+    ],
+    "Closure-31": [],
+    "Closure-32": [
+        "    int lineStartChar = -1;",
+        "            lineStartChar = stream.getCharno() + 1;",
+        "          lineStartChar = 0;",
+        "          boolean isEOC = token == JsDocToken.EOC;",
+        "          if (!isEOC) {",
+        "            if (lineStartChar != -1 && option == WhitespaceOption.PRESERVE) {",
+        "              int numSpaces = stream.getCharno() - lineStartChar;",
+        "              for (int i = 0; i < numSpaces; i++) {",
+        "                builder.append(' ');",
+        "              }",
+        "              lineStartChar = -1;",
+        "            } else if (builder.length() > 0) {",
+        "              builder.append(' ');",
+        "            }",
+        "          }"
+    ],
+    "Closure-33": [
+        "    if (hasReferenceName()) {",
+        "      return;",
+        "    }"
+    ],
+    "Closure-35": [
+        "    if (constraintObj != null) {",
+        "      type.matchConstraint(constraintObj);"
+    ],
+    "Closure-36": [
+        "          if (convention.getSingletonGetterClassName(callNode) != null) {",
+        "            return false;",
+        "          }"
+    ],
+    "Closure-38": [
+        "    if ((x < 0 || negativeZero) && prev == '-') {"
+    ],
+    "Closure-39": [
+        "        sb.append(getPropertyType(property).toStringHelper(forAnnotations));",
+        "        if (!forAnnotations && i == MAX_PRETTY_PRINTED_PROPERTIES) {",
+        "      return forAnnotations ? \"?\" : \"{...}\";"
+    ],
+    "Closure-4": [
+        "    if (detectInheritanceCycle()) {",
+        "    if (detectInheritanceCycle()) {"
+    ],
+    "Closure-40": [
+        "          JsName name = getName(ns.name, true);"
+    ],
+    "Closure-42": [
+        "      if (loopNode.isForEach()) {",
+        "        errorReporter.error(",
+        "            \"unsupported language extension: for each\",",
+        "            sourceName,",
+        "            loopNode.getLineno(), \"\", 0);",
+        "        return newNode(Token.EXPR_RESULT, Node.newNumber(0));",
+        "      }"
+    ],
+    "Closure-44": [
+        "    } else if (c == '/' && getLastChar() == '/') {",
+        "      append(\" \");"
+    ],
+    "Closure-48": [
+        "      if (inferred && rhsValue != null && rhsValue.isFunction()) {",
+        "        if (info != null) {",
+        "          inferred = false;",
+        "        } else if (!scope.isDeclared(qName, false) &&",
+        "                   n.isUnscopedQualifiedName()) {",
+        "          inferred = false;",
+        "        }"
+    ],
+    "Closure-5": [
+        "          if (gramps.isDelProp()) {",
+        "            return false;",
+        "          }"
+    ],
+    "Closure-50": [
+        "      if (right.getNext() != null || !NodeUtil.isImmutableValue(right)) {",
+        "    if (right != null && right.getType() == Token.STRING",
+        "        && \",\".equals(right.getString())) {",
+        "      n.removeChild(right);",
+        "      reportCodeChange();",
+        "    }"
+    ],
+    "Closure-51": [
+        "    if ((long) x == x && !isNegativeZero(x)) {",
+        "  }",
+        "  static boolean isNegativeZero(double x) {",
+        "    return x == 0.0 && Math.copySign(1, x) == -1.0;"
+    ],
+    "Closure-52": [
+        "    return len > 0 && s.charAt(0) != '0';"
+    ],
+    "Closure-53": [
+        "      if (nodes.isEmpty()) {",
+        "        replacement = new Node(Token.TRUE);",
+        "      } else {",
+        "      }"
+    ],
+    "Closure-55": [
+        "    return NodeUtil.isFunctionExpression(n)",
+        "        && !NodeUtil.isGetOrSetKey(n.getParent());"
+    ],
+    "Closure-56": [
+        "      if (pos >= js.length()) {",
+        "      } else {",
+        "        return js.substring(pos, js.length());",
+        "      }"
+    ],
+    "Closure-57": [
+        "          if (target != null && target.getType() == Token.STRING) {"
+    ],
+    "Closure-58": [
+        "          if (NodeUtil.isName(lhs)) {",
+        "          } else {",
+        "            computeGenKill(lhs, gen, kill, conditional);",
+        "          }"
+    ],
+    "Closure-59": [
+        "    if (options.checkGlobalThisLevel.isOn() &&",
+        "        !options.disables(DiagnosticGroups.GLOBAL_THIS)) {"
+    ],
+    "Closure-61": [
+        "      if (nameNode.getFirstChild().getType() == Token.NAME) {",
+        "        String namespaceName = nameNode.getFirstChild().getString();",
+        "        if (namespaceName.equals(\"Math\")) {",
+        "          return false;",
+        "        }",
+        "      }"
+    ],
+    "Closure-62": [
+        "          && 0 <= charno && charno <= sourceExcerpt.length()) {"
+    ],
+    "Closure-65": [
+        "        case '\\0': sb.append(\"\\\\000\"); break;"
+    ],
+    "Closure-66": [
+        "        } else {",
+        "          typeable = false;"
+    ],
+    "Closure-67": [
+        "          && assign.getParent().getType() == Token.EXPR_RESULT) {"
+    ],
+    "Closure-69": [
+        "      if (functionType.isOrdinaryFunction() &&",
+        "          !functionType.getTypeOfThis().isUnknownType() &&",
+        "          !functionType.getTypeOfThis().isNativeObjectType() &&",
+        "          !(child.getType() == Token.GETELEM ||",
+        "            child.getType() == Token.GETPROP)) {",
+        "        report(t, n, EXPECTED_THIS_TYPE, functionType.toString());",
+        "      }"
+    ],
+    "Closure-7": [
+        "        if (resultEqualsValue) {",
+        "          return ctorType.getGreatestSubtype(type);",
+        "        } else {",
+        "          return type.isSubtype(ctorType) ? null : type;",
+        "        }"
+    ],
+    "Closure-70": [
+        "                  jsDocParameter.getJSType(), false);"
+    ],
+    "Closure-71": [
+        "      boolean isOverride = parent.getJSDocInfo() != null &&"
+    ],
+    "Closure-73": [
+        "            if (c > 0x1f && c < 0x7f) {"
+    ],
+    "Closure-77": [
+        "        case '\\0': sb.append(\"\\\\0\"); break;"
+    ],
+    "Closure-78": [],
+    "Closure-81": [
+        "        int functionType = functionNode.getFunctionType();",
+        "        if (functionType != FunctionNode.FUNCTION_EXPRESSION) {",
+        "          errorReporter.error(",
+        "            \"unnamed function statement\",",
+        "            sourceName,",
+        "            functionNode.getLineno(), \"\", 0);",
+        "        }"
+    ],
+    "Closure-82": [
+        "    return isNoType() || isNoObjectType() || isNoResolvedType() ||",
+        "        (registry.getNativeFunctionType(",
+        "             JSTypeNative.LEAST_FUNCTION_TYPE) == this);"
+    ],
+    "Closure-83": [
+        "        String param = null;",
+        "        try {",
+        "          param = params.getParameter(0);",
+        "        } catch (CmdLineException e) {}"
+    ],
+    "Closure-86": [
+        "        return false;"
+    ],
+    "Closure-87": [
+        "        if (maybeExpr.getType() == Token.EXPR_RESULT) {",
+        "          if (maybeExpr.getFirstChild().getType() == Token.CALL) {",
+        "            Node calledFn = maybeExpr.getFirstChild().getFirstChild();",
+        "            if (calledFn.getType() == Token.GETELEM) {",
+        "              return false;",
+        "            } else if (calledFn.getType() == Token.GETPROP &&",
+        "                       calledFn.getLastChild().getString().startsWith(\"on\")) {",
+        "              return false;",
+        "            }",
+        "          }",
+        "          return true;",
+        "        }",
+        "        return false;"
+    ],
+    "Closure-88": [
+        "        Preconditions.checkState(n.getParent().getType() == Token.ASSIGN);",
+        "        Node rhs = n.getNext();",
+        "        VariableLiveness state = isVariableReadBeforeKill(rhs, variable);",
+        "        if (state == VariableLiveness.READ) {",
+        "          return state;",
+        "        }"
+    ],
+    "Closure-91": [
+        "      Node gramps = parent.getParent();",
+        "      if (NodeUtil.isObjectLitKey(parent, gramps)) {",
+        "        JSDocInfo maybeLends = gramps.getJSDocInfo();",
+        "        if (maybeLends != null &&",
+        "            maybeLends.getLendsName() != null &&",
+        "            maybeLends.getLendsName().endsWith(\".prototype\")) {",
+        "          return false;",
+        "        }",
+        "      }"
+    ],
+    "Closure-92": [
+        "          int indexOfDot = namespace.lastIndexOf('.');"
+    ],
+    "Closure-94": [
+        "      case Token.ADD:",
+        "      case Token.DIV:",
+        "      case Token.EQ:",
+        "      case Token.GE:",
+        "      case Token.GT:",
+        "      case Token.LE:",
+        "      case Token.LSH:",
+        "      case Token.LT:",
+        "      case Token.MOD:",
+        "      case Token.MUL:",
+        "      case Token.NE:",
+        "      case Token.RSH:",
+        "      case Token.SHEQ:",
+        "      case Token.SHNE:",
+        "      case Token.SUB:",
+        "      case Token.URSH:",
+        "        return isValidDefineValue(val.getFirstChild(), defines)",
+        "            && isValidDefineValue(val.getLastChild(), defines);",
+        "      case Token.POS:"
+    ],
+    "Closure-95": [
+        "      if (n.getType() == Token.GETPROP && !scope.isGlobal() &&",
+        "          isQnameRootedInGlobalScope(n)) {",
+        "        Scope globalScope = scope.getGlobalScope();",
+        "        if (!globalScope.isDeclared(variableName, false)) {",
+        "          scopeToDeclareIn = scope.getGlobalScope();",
+        "        }",
+        "      }"
+    ],
+    "Closure-96": [
+        "           (parameters.hasNext() ||",
+        "            parameter != null && parameter.isVarArgs())) {",
+        "      if (parameters.hasNext()) {",
+        "      }"
+    ],
+    "Closure-97": [
+        "          long lvalLong = lvalInt & 0xffffffffL;",
+        "          result = lvalLong >>> rvalInt;"
+    ],
+    "Closure-99": [
+        "           jsDoc.isInterface() ||",
+        "        if (NodeUtil.isGet(lhs)) {",
+        "          Node llhs = lhs.getFirstChild();",
+        "          if (llhs.getType() == Token.GETPROP &&",
+        "              llhs.getLastChild().getString().equals(\"prototype\")) {",
+        "        }"
+    ],
+    "Codec-10": [
+        "        txt = txt.replaceAll(\"mb$\", \"m2\");"
+    ],
+    "Codec-15": [
+        "            for (int i=index-1 ; i>=0 ; i--) {",
+        "                final char prevChar = str.charAt(i);",
+        "                if (this.map(prevChar)==mappedChar) {",
+        "                if ('H'!=prevChar && 'W'!=prevChar) {",
+        "                    break;",
+        "                }"
+    ],
+    "Codec-17": [
+        "        return newString(bytes, Charsets.ISO_8859_1);"
+    ],
+    "Codec-18": [
+        "        return cs1.length() == cs2.length() && CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, cs1.length());"
+    ],
+    "Codec-2": [
+        "            if (lineLength > 0 && pos > 0) {"
+    ],
+    "Codec-3": [
+        "            } else if (contains(value, index + 1, 3, \"IER\")) {"
+    ],
+    "Codec-4": [
+        "        this(0);"
+    ],
+    "Codec-5": [
+        "            if (buffer == null || buffer.length - pos < decodeSize) {",
+        "                resizeBuffer();",
+        "            }"
+    ],
+    "Codec-6": [
+        "            int readLen = 0;",
+        "            while (readLen == 0) {",
+        "                readLen = base64.readResults(b, offset, len);",
+        "            }",
+        "            return readLen;"
+    ],
+    "Codec-7": [
+        "        return StringUtils.newStringUtf8(encodeBase64(binaryData, false));"
+    ],
+    "Codec-9": [
+        "        long len = getEncodeLength(binaryData, isChunked ? MIME_CHUNK_SIZE : 0, CHUNK_SEPARATOR);"
+    ],
+    "Collections-26": [
+        "    protected Object readResolve() {"
+    ],
+    "Compress-1": [
+        "            this.finish();"
+    ],
+    "Compress-10": [
+        "        Map<ZipArchiveEntry, OffsetEntry> origMap =",
+        "            new LinkedHashMap<ZipArchiveEntry, OffsetEntry>(entries);",
+        "        entries.clear();",
+        "        for (ZipArchiveEntry ze : origMap.keySet()) {",
+        "            OffsetEntry offsetEntry = origMap.get(ze);",
+        "            entries.put(ze, offsetEntry);"
+    ],
+    "Compress-11": [
+        "            if (signatureLength >= 512) {",
+        "            }"
+    ],
+    "Compress-12": [
+        "        try {",
+        "            currEntry = new TarArchiveEntry(headerBuf);",
+        "        } catch (IllegalArgumentException e) {",
+        "            IOException ioe = new IOException(\"Error detected parsing the header\");",
+        "            ioe.initCause(e);",
+        "            throw ioe;",
+        "        }"
+    ],
+    "Compress-13": [
+        "        if (name != null && getPlatform() == PLATFORM_FAT",
+        "            && name.indexOf(\"/\") == -1) {",
+        "            name = name.replace('\\\\', '/');",
+        "        }"
+    ],
+    "Compress-14": [
+        "        if (buffer[start] == 0) {"
+    ],
+    "Compress-15": [
+        "            myComment = \"\";",
+        "        }",
+        "        if (otherComment == null) {",
+        "            otherComment = \"\";",
+        "            && myComment.equals(otherComment)"
+    ],
+    "Compress-16": [
+        "                    if (tais.getNextTarEntry().isCheckSumOK()) {",
+        "                    }"
+    ],
+    "Compress-17": [
+        "        while (start < end - 1 && (trailer == 0 || trailer == ' ')) {",
+        "            trailer = buffer[end - 1];"
+    ],
+    "Compress-18": [
+        "        while (name.endsWith(\"/\")) {",
+        "            name = name.substring(0, name.length() - 1);",
+        "        }"
+    ],
+    "Compress-19": [
+        "            if (rawCentralDirectoryData.length < expectedLength) {"
+    ],
+    "Compress-21": [
+        "            if (--shift < 0) {",
+        "        if (shift != 7) {"
+    ],
+    "Compress-23": [
+        "                dictSize |= (coder.properties[i + 1] & 0xffl) << (8 * i);"
+    ],
+    "Compress-24": [
+        "        while (start < end && (trailer == 0 || trailer == ' ')) {",
+        "            trailer = buffer[end - 1];",
+        "        }",
+        "        if (start == end) {",
+        "                    exceptionMessage(buffer, offset, length, start, trailer));"
+    ],
+    "Compress-25": [
+        "        buf.limit(0);"
+    ],
+    "Compress-26": [
+        "        if (numToSkip > 0) {",
+        "            byte[] skipBuf = new byte[SKIP_BUF_SIZE];",
+        "            while (numToSkip > 0) {",
+        "                int read = readFully(input, skipBuf, 0,",
+        "                                     (int) Math.min(numToSkip, SKIP_BUF_SIZE));",
+        "                if (read < 1) {",
+        "                    break;",
+        "                }",
+        "                numToSkip -= read;",
+        "            }",
+        "        }"
+    ],
+    "Compress-27": [],
+    "Compress-28": [
+        "            if (numToRead > 0) {",
+        "                throw new IOException(\"Truncated TAR archive\");",
+        "            }",
+        "            count(totalRead);"
+    ],
+    "Compress-30": [
+        "        if (len == 0) {",
+        "            return 0;",
+        "        }"
+    ],
+    "Compress-31": [],
+    "Compress-32": [
+        "                currEntry.setGroupId(Long.parseLong(val));",
+        "                currEntry.setUserId(Long.parseLong(val));"
+    ],
+    "Compress-35": [
+        "        long storedSum = parseOctal(header, CHKSUM_OFFSET, CHKSUMLEN);"
+    ],
+    "Compress-36": [
+        "        if (archive.files[currentEntryIndex].getSize() == 0) {",
+        "            return new ByteArrayInputStream(new byte[0]);",
+        "        }"
+    ],
+    "Compress-37": [
+        "                if (ch == '\\n') { // blank line in header",
+        "                    break;",
+        "                } else if (ch == ' '){ // End of length string"
+    ],
+    "Compress-38": [
+        "        if (!isPaxHeader() && !isGlobalPaxHeader() && getName().endsWith(\"/\")) {"
+    ],
+    "Compress-40": [
+        "        while (bitsCachedSize < count && bitsCachedSize < 57) {",
+        "        int overflowBits = 0;",
+        "        long overflow = 0l;",
+        "        if (bitsCachedSize < count) {",
+        "            int bitsToAddCount = count - bitsCachedSize;",
+        "            overflowBits = 8 - bitsToAddCount;",
+        "            final long nextByte = in.read();",
+        "            if (nextByte < 0) {",
+        "                return nextByte;",
+        "            }",
+        "            if (byteOrder == ByteOrder.LITTLE_ENDIAN) {",
+        "                long bitsToAdd = nextByte & MASKS[bitsToAddCount];",
+        "                bitsCached |= (bitsToAdd << bitsCachedSize);",
+        "                overflow = (nextByte >>> bitsToAddCount) & MASKS[overflowBits];",
+        "            } else {",
+        "                bitsCached <<= bitsToAddCount;",
+        "                long bitsToAdd = (nextByte >>> (overflowBits)) & MASKS[bitsToAddCount];",
+        "                bitsCached |= bitsToAdd;",
+        "                overflow = nextByte & MASKS[overflowBits];",
+        "            }",
+        "            bitsCachedSize = count;",
+        "        }",
+        "        if (overflowBits == 0) {",
+        "        } else {",
+        "            bitsOut = bitsCached & MASKS[count];",
+        "            bitsCached = overflow;",
+        "            bitsCachedSize = overflowBits;",
+        "        }"
+    ],
+    "Compress-41": [
+        "            return null;",
+        "            throw new ZipException(String.format(\"Unexpected record signature: 0X%X\", sig.getValue()));"
+    ],
+    "Compress-44": [
+        "        if ( checksum == null ){",
+        "            throw new NullPointerException(\"Parameter checksum must not be null\");",
+        "        }",
+        "        if ( in == null ){",
+        "            throw new NullPointerException(\"Parameter in must not be null\");",
+        "        }"
+    ],
+    "Compress-45": [
+        "        } else {",
+        "            formatBigIntegerBinary(value, buf, offset, length, negative);"
+    ],
+    "Compress-46": [
+        "        if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {"
+    ],
+    "Compress-5": [
+        "            if (read == 0) {",
+        "                if (inf.finished()) {",
+        "                    return -1;",
+        "                } else if (lengthOfLastRead == -1) {",
+        "                    throw new IOException(\"Truncated ZIP file\");",
+        "                }"
+    ],
+    "Compress-7": [
+        "            byte b = buffer[i];",
+        "            if (b == 0) { // Trailing null",
+        "            result.append((char) (b & 0xFF)); // Allow for sign-extension"
+    ],
+    "Compress-8": [
+        "        if (length < 2){",
+        "            throw new IllegalArgumentException(\"Length \"+length+\" must be at least 2\");",
+        "        }",
+        "",
+        "        boolean allNUL = true;",
+        "            if (buffer[i] != 0){",
+        "                allNUL = false;",
+        "        }",
+        "        if (allNUL) {",
+        "            return 0L;",
+        "        }",
+        "        while (start < end){",
+        "            if (buffer[start] == ' '){",
+        "                start++;",
+        "            } else {",
+        "        }",
+        "        byte trailer;",
+        "        trailer = buffer[end-1];",
+        "        if (trailer == 0 || trailer == ' '){",
+        "            end--;",
+        "        } else {",
+        "            throw new IllegalArgumentException(",
+        "                    exceptionMessage(buffer, offset, length, end-1, trailer));",
+        "        }",
+        "        trailer = buffer[end-1];",
+        "        if (trailer == 0 || trailer == ' '){",
+        "            end--;",
+        "        }",
+        "        for ( ;start < end; start++) {",
+        "            final byte currentByte = buffer[start];"
+    ],
+    "Csv-1": [
+        "        if (current == '\\r' || (current == '\\n' && lastChar != '\\r')) {"
+    ],
+    "Csv-10": [
+        "        if (format.getHeader() != null) {",
+        "            this.printRecord((Object[]) format.getHeader());",
+        "        }"
+    ],
+    "Csv-11": [
+        "                    final boolean emptyHeader = header == null || header.trim().isEmpty();"
+    ],
+    "Csv-14": [
+        "                if (newRecord && (c < 0x20 || c > 0x21 && c < 0x23 || c > 0x2B && c < 0x2D || c > 0x7E)) {"
+    ],
+    "Csv-15": [
+        "                if (c <= COMMENT) {"
+    ],
+    "Csv-2": [
+        "        try {",
+        "        } catch (ArrayIndexOutOfBoundsException e) {",
+        "            throw new IllegalArgumentException(",
+        "                    String.format(",
+        "                            \"Index for header '%s' is %d but CSVRecord only has %d values!\",",
+        "                            name, index.intValue(), values.length));",
+        "        }"
+    ],
+    "Csv-3": [
+        "            if (isDelimiter(c) || isEscape(c) || isQuoteChar(c) || isCommentStart(c)) {",
+        "            }",
+        "            return END_OF_STREAM;"
+    ],
+    "Csv-4": [
+        "        return this.headerMap == null ? null : new LinkedHashMap<String, Integer>(this.headerMap);"
+    ],
+    "Csv-5": [
+        "        if (recordSeparator != null) {",
+        "        }"
+    ],
+    "Csv-6": [
+        "            if (col < values.length) {",
+        "            }"
+    ],
+    "Csv-9": [
+        "        if (mapping == null) {",
+        "            return map;",
+        "        }"
+    ],
+    "Gson-11": [
+        "      case STRING:"
+    ],
+    "Gson-12": [
+        "      if (stackSize > 0) {",
+        "      }",
+        "    if (stackSize > 0) {",
+        "    }"
+    ],
+    "Gson-13": [
+        "    if (last == NUMBER_CHAR_DIGIT && fitsInLong && (value != Long.MIN_VALUE || negative) && (value!=0 || false==negative)) {"
+    ],
+    "Gson-15": [
+        "    if (!lenient && (Double.isNaN(value) || Double.isInfinite(value))) {"
+    ],
+    "Gson-16": [
+        "        if (visitedTypeVariables.contains(typeVariable)) {",
+        "          return toResolve;",
+        "        } else {",
+        "          visitedTypeVariables.add(typeVariable);",
+        "        }"
+    ],
+    "Gson-17": [
+        "    if (in.peek() == JsonToken.NULL) {",
+        "      in.nextNull();",
+        "      return null;"
+    ],
+    "Gson-18": [
+        "    if (context instanceof WildcardType) {",
+        "      context = ((WildcardType)context).getUpperBounds()[0];",
+        "    }"
+    ],
+    "Gson-5": [
+        "                timezoneOffset = timezoneOffset.length() >= 5 ? timezoneOffset : timezoneOffset + \"00\";"
+    ],
+    "Gson-6": [
+        "    if (typeAdapter != null) {",
+        "    }"
+    ],
+    "JacksonCore-11": [
+        "            _verifyNeedForRehash();"
+    ],
+    "JacksonCore-15": [
+        "    \tif(!_allowMultipleMatches && _currToken != null && _exposedContext == null){",
+        "    \t\tif((_currToken.isStructEnd()  && _headContext.isStartHandled()) ){",
+        "    \t\t\treturn (_currToken = null);",
+        "    \t\t}",
+        "    \t\telse if(_currToken.isScalarValue() && !_headContext.isStartHandled() && !_includePath ",
+        "    \t\t\t\t&& _itemFilter == TokenFilter.INCLUDE_ALL) {",
+        "    \t\t\treturn (_currToken = null);",
+        "    \t\t}",
+        "    \t}"
+    ],
+    "JacksonCore-20": [
+        "        if (object == null) {",
+        "            writeNull();",
+        "            return;",
+        "        }",
+        "        if (object instanceof byte[]) {",
+        "            writeBinary((byte[]) object);",
+        "            return;",
+        "        }",
+        "        throw new JsonGenerationException(\"No native support for writing embedded objects of type \"",
+        "                +object.getClass().getName(),"
+    ],
+    "JacksonCore-21": [
+        "            if (!_includePath) {",
+        "                }"
+    ],
+    "JacksonCore-23": [
+        "        if (getClass() != DefaultPrettyPrinter.class) { // since 2.10",
+        "            throw new IllegalStateException(\"Failed `createInstance()`: \"+getClass().getName()",
+        "                    +\" does not override method; it has to\");",
+        "        }"
+    ],
+    "JacksonCore-25": [
+        "            if (i < maxCode) {"
+    ],
+    "JacksonCore-26": [
+        "        _currBufferStart = start;"
+    ],
+    "JacksonCore-3": [
+        "        _currInputRowStart = start;",
+        "        _currInputProcessed = -start;"
+    ],
+    "JacksonCore-4": [
+        "        int newLen = len + (len >> 1);",
+        "        if (newLen > MAX_SEGMENT_LEN) {",
+        "            newLen = len + (len >> 2);",
+        "        }"
+    ],
+    "JacksonCore-5": [
+        "            char c = str.charAt(i);"
+    ],
+    "JacksonCore-6": [
+        "        char c = str.charAt(0);",
+        "        if (c <= '0') {",
+        "            return (len == 1 && c == '0') ? 0 : -1;",
+        "        }",
+        "        if (c > '9') {",
+        "            return -1;",
+        "        }",
+        "        for (int i = 1; i < len; ++i) {",
+        "            c = str.charAt(i);"
+    ],
+    "JacksonCore-7": [
+        "            if (!_gotName) {",
+        "                return STATUS_EXPECT_NAME;",
+        "            }"
+    ],
+    "JacksonCore-8": [
+        "        if (!_hasSegments && _currentSegment != null)  return _currentSegment;"
+    ],
+    "JacksonDatabind-1": [
+        "            return;"
+    ],
+    "JacksonDatabind-100": [
+        "            if (n instanceof TextNode) {",
+        "                return ((TextNode) n).getBinaryValue(b64variant);",
+        "            return n.binaryValue();"
+    ],
+    "JacksonDatabind-101": [
+        "                    if (t != JsonToken.END_OBJECT) {",
+        "                        ctxt.reportWrongTokenException(this, JsonToken.END_OBJECT, ",
+        "                                \"Attempted to unwrap '%s' value\",",
+        "                                handledType().getName());",
+        "                    }"
+    ],
+    "JacksonDatabind-102": [],
+    "JacksonDatabind-107": [
+        "                        return NullifyingDeserializer.instance;"
+    ],
+    "JacksonDatabind-11": [
+        "            context = new TypeBindings(this, (Class<?>) null);",
+        "            JavaType actualType = context.findType(name, false);"
+    ],
+    "JacksonDatabind-112": [
+        "            AnnotatedWithParams delegateCreator = _valueInstantiator.getArrayDelegateCreator();",
+        "                JavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig());",
+        "                delegate = findDeserializer(ctxt, delegateType, property);",
+        "            } else if ((delegateCreator = _valueInstantiator.getDelegateCreator()) != null) {"
+    ],
+    "JacksonDatabind-12": [
+        "        return (_valueDeserializer == null)",
+        "                && (_keyDeserializer == null)",
+        "                && (_valueTypeDeserializer == null)"
+    ],
+    "JacksonDatabind-16": [
+        "        return (previous == null) || !previous.equals(ann);"
+    ],
+    "JacksonDatabind-17": [
+        "                                && !TreeNode.class.isAssignableFrom(t.getRawClass()));"
+    ],
+    "JacksonDatabind-19": [
+        "        if (rawClass == Properties.class) {",
+        "            return MapType.construct(rawClass, CORE_TYPE_STRING, CORE_TYPE_STRING);",
+        "        }"
+    ],
+    "JacksonDatabind-24": [
+        "                _timeZone, _defaultBase64);"
+    ],
+    "JacksonDatabind-27": [
+        "                if (ext.handlePropertyValue(p, ctxt, propName, null)) {"
+    ],
+    "JacksonDatabind-28": [
+        "            if (p.isExpectedStartObjectToken() || p.hasToken(JsonToken.FIELD_NAME)) {",
+        "            if (p.hasToken(JsonToken.END_OBJECT)) {",
+        "                return ctxt.getNodeFactory().objectNode();"
+    ],
+    "JacksonDatabind-33": [
+        "                    || _hasAnnotation(a, JsonRawValue.class)",
+        "                    || _hasAnnotation(a, JsonUnwrapped.class)",
+        "                    || _hasAnnotation(a, JsonBackReference.class)",
+        "                    || _hasAnnotation(a, JsonManagedReference.class)) {"
+    ],
+    "JacksonDatabind-34": [
+        "                visitFloatFormat(visitor, typeHint, JsonParser.NumberType.BIG_DECIMAL);"
+    ],
+    "JacksonDatabind-35": [
+        "        JsonToken t = p.getCurrentToken();",
+        "        if (t == JsonToken.START_OBJECT) {",
+        "        } else if (t != JsonToken.FIELD_NAME) {",
+        "            throw ctxt.wrongTokenException(p, JsonToken.START_OBJECT,",
+        "                    \"need JSON Object to contain As.WRAPPER_OBJECT type information for class \"+baseTypeName());",
+        "        }"
+    ],
+    "JacksonDatabind-37": [
+        "        return new SimpleType(subclass, _bindings, this, _superInterfaces,"
+    ],
+    "JacksonDatabind-39": [
+        "        if (p.hasToken(JsonToken.FIELD_NAME)) {",
+        "            while (true) {",
+        "                JsonToken t = p.nextToken();",
+        "                if ((t == null) || (t == JsonToken.END_OBJECT)) {",
+        "                    break;",
+        "                }",
+        "                p.skipChildren();",
+        "            }",
+        "        } else {",
+        "        }"
+    ],
+    "JacksonDatabind-42": [
+        "            if (_kind == STD_LOCALE) {",
+        "                return Locale.ROOT;",
+        "            }"
+    ],
+    "JacksonDatabind-44": [
+        "        if (!_class.isAssignableFrom(subclass)) {",
+        "        }",
+        "        Class<?> next = subclass.getSuperclass();",
+        "        if (next == _class) { // straight up parent class? Great.",
+        "            return new SimpleType(subclass, _bindings, this,",
+        "                    _superInterfaces, _valueHandler, _typeHandler, _asStatic);",
+        "        }",
+        "        if ((next != null) && _class.isAssignableFrom(next)) {",
+        "            JavaType superb = _narrow(next);",
+        "            return new SimpleType(subclass, _bindings, superb,",
+        "                    null, _valueHandler, _typeHandler, _asStatic);",
+        "        }",
+        "        Class<?>[] nextI = subclass.getInterfaces();",
+        "        for (Class<?> iface : nextI) {",
+        "            if (iface == _class) { // directly implemented",
+        "                return new SimpleType(subclass, _bindings, null,",
+        "                        new JavaType[] { this }, _valueHandler, _typeHandler, _asStatic);",
+        "            }",
+        "            if (_class.isAssignableFrom(iface)) { // indirect, so recurse",
+        "                JavaType superb = _narrow(iface);",
+        "                return new SimpleType(subclass, _bindings, null,",
+        "                        new JavaType[] { superb }, _valueHandler, _typeHandler, _asStatic);",
+        "            }",
+        "        }",
+        "        throw new IllegalArgumentException(\"Internal error: Can not resolve sub-type for Class \"+subclass.getName()+\" to \"",
+        "                +_class.getName());"
+    ],
+    "JacksonDatabind-45": [
+        "                if ((shape == JsonFormat.Shape.STRING) || format.hasPattern()",
+        "                                || format.hasLocale() || format.hasTimeZone()) {"
+    ],
+    "JacksonDatabind-46": [
+        "        sb.append(\">;\");"
+    ],
+    "JacksonDatabind-47": [
+        "                Class<?> currRaw = type.getRawClass();",
+        "                    if (serClass.isAssignableFrom(currRaw)) { // common case",
+        "                    } else if (currRaw.isAssignableFrom(serClass)) { // specialization, ok as well",
+        "                        type = tf.constructSpecializedType(type, serClass);",
+        "                    } else {",
+        "                        throw new JsonMappingException(null,",
+        "                                String.format(\"Can not refine serialization type %s into %s; types not related\",",
+        "                                        type, serClass.getName()));",
+        "                    }"
+    ],
+    "JacksonDatabind-49": [
+        "        if (id == null) {",
+        "        }"
+    ],
+    "JacksonDatabind-5": [
+        "                    am = mixIns.find(m);",
+        "                    if (am != null) {",
+        "                        _addMixUnders(m, am);",
+        "                    } else {",
+        "                    }"
+    ],
+    "JacksonDatabind-51": [
+        "                    if (!type.hasGenericTypes()) {",
+        "                    }"
+    ],
+    "JacksonDatabind-54": [
+        "            if (actualType.isReferenceType()) {",
+        "            if (actualType.isContainerType()"
+    ],
+    "JacksonDatabind-57": [
+        "        return _bindAndReadValues(_considerFilter(_parserFactory.createParser(src, offset, length),"
+    ],
+    "JacksonDatabind-58": [
+        "            if ((mutator instanceof AnnotatedField)",
+        "                    && \"cause\".equals(mutator.getName())) {",
+        "                ;",
+        "            } else {",
+        "            }"
+    ],
+    "JacksonDatabind-6": [
+        "                int timeLen = len - dateStr.lastIndexOf('T') - 6;",
+        "                if (timeLen < 12) { // 8 for hh:mm:ss, 4 for .sss",
+        "                    int offset = len - 5; // insertion offset, before tz-offset",
+        "                    switch (timeLen) {",
+        "                    case 11:",
+        "                        sb.insert(offset, '0'); break;",
+        "                    case 10:",
+        "                        sb.insert(offset, \"00\"); break;",
+        "                    case 9: // is this legal? (just second fraction marker)",
+        "                        sb.insert(offset, \"000\"); break;",
+        "                    case 8:",
+        "                        sb.insert(offset, \".000\"); break;",
+        "                    case 7: // not legal to have single-digit second",
+        "                        break;",
+        "                    case 6: // probably not legal, but let's allow",
+        "                        sb.insert(offset, \"00.000\");",
+        "                    case 5: // is legal to omit seconds",
+        "                        sb.insert(offset, \":00.000\");",
+        "                    }",
+        "                if (timeLen < 12) { // missing, or partial",
+        "                    switch (timeLen) {",
+        "                    case 11: sb.append('0');",
+        "                    case 10: sb.append('0');",
+        "                    case 9: sb.append('0');",
+        "                        break;",
+        "                    default:",
+        "                    }"
+    ],
+    "JacksonDatabind-62": [
+        "            } else if (_valueInstantiator.canCreateUsingArrayDelegate()) {",
+        "                JavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig());",
+        "                if (delegateType == null) {",
+        "                    throw new IllegalArgumentException(\"Invalid array-delegate-creator definition for \"+_collectionType",
+        "                            +\": value instantiator (\"+_valueInstantiator.getClass().getName()",
+        "                            +\") returned true for 'canCreateUsingArrayDelegate()', but null for 'getArrayDelegateType()'\");",
+        "                }",
+        "                delegateDeser = findDeserializer(ctxt, delegateType, property);"
+    ],
+    "JacksonDatabind-64": [
+        "            Object defaultBean;",
+        "            if (_useRealPropertyDefaults && (defaultBean = getDefaultBean()) != null) {",
+        "                try {",
+        "                    valueToSuppress = am.getValue(defaultBean);",
+        "                } catch (Exception e) {",
+        "                    _throwWrapped(e, propDef.getName(), defaultBean);",
+        "                }"
+    ],
+    "JacksonDatabind-67": [
+        "                deser = _createEnumKeyDeserializer(ctxt, type);",
+        "            } else {",
+        "                deser = StdKeyDeserializers.findStringBasedKeyDeserializer(config, type);"
+    ],
+    "JacksonDatabind-7": [
+        "        if (jp.getCurrentTokenId() != JsonToken.FIELD_NAME.id()) {",
+        "            return this;",
+        "        }",
+        "        JsonToken t;",
+        "        writeStartObject();",
+        "        do {",
+        "            copyCurrentStructure(jp);",
+        "        } while ((t = jp.nextToken()) == JsonToken.FIELD_NAME);",
+        "        if (t != JsonToken.END_OBJECT) {",
+        "            throw ctxt.mappingException(\"Expected END_OBJECT after copying contents of a JsonParser into TokenBuffer, got \"+t);",
+        "        }",
+        "        writeEndObject();"
+    ],
+    "JacksonDatabind-70": [
+        "                found = key.equals(_hashArea[i-1]);"
+    ],
+    "JacksonDatabind-71": [
+        "        if (raw == String.class || raw == Object.class || raw == CharSequence.class) {"
+    ],
+    "JacksonDatabind-74": [
+        "        } else if (p.getCurrentToken() == JsonToken.VALUE_STRING) {",
+        "            if (ctxt.isEnabled(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)) {",
+        "                String str = p.getText().trim();",
+        "                if (str.isEmpty()) {",
+        "                    return null;",
+        "                }",
+        "            }"
+    ],
+    "JacksonDatabind-76": [
+        "                buffer.assignParameter(creatorProp, creatorProp.deserialize(p, ctxt));"
+    ],
+    "JacksonDatabind-8": [
+        "            boolean verify;",
+        "                verify = true;",
+        "            } else {",
+        "                verify = !explicit;",
+        "            if (verify && (oldOne.getClass() == newOne.getClass())) {",
+        "                Class<?> oldType = oldOne.getRawParameterType(0);",
+        "                Class<?> newType = newOne.getRawParameterType(0);",
+        "                if (oldType == newType) {",
+        "                }",
+        "                if (newType.isAssignableFrom(oldType)) {",
+        "                    return;",
+        "                }"
+    ],
+    "JacksonDatabind-82": [
+        "            ignored = ignorals.findIgnoredForDeserialization();"
+    ],
+    "JacksonDatabind-83": [],
+    "JacksonDatabind-85": [
+        "        if (format.hasPattern()) {",
+        "            SimpleDateFormat df = new SimpleDateFormat(format.getPattern(), loc);",
+        "            TimeZone tz = format.hasTimeZone() ? format.getTimeZone()",
+        "                    : serializers.getTimeZone();",
+        "        final boolean hasLocale = format.hasLocale();",
+        "        final boolean hasTZ = format.hasTimeZone();",
+        "        final boolean asString = (shape == JsonFormat.Shape.STRING);",
+        "        if (!hasLocale && !hasTZ && !asString) {",
+        "            return this;",
+        "        }",
+        "        DateFormat df0 = serializers.getConfig().getDateFormat();",
+        "        if (df0 instanceof StdDateFormat) {",
+        "            StdDateFormat std = (StdDateFormat) df0;",
+        "            if (format.hasLocale()) {",
+        "                std = std.withLocale(format.getLocale());",
+        "            }",
+        "            if (format.hasTimeZone()) {",
+        "                std = std.withTimeZone(format.getTimeZone());",
+        "            }",
+        "            return withFormat(Boolean.FALSE, std);",
+        "        }",
+        "        if (!(df0 instanceof SimpleDateFormat)) {",
+        "            serializers.reportMappingProblem(",
+        "\"Configured `DateFormat` (%s) not a `SimpleDateFormat`; can not configure `Locale` or `TimeZone`\",",
+        "df0.getClass().getName());",
+        "        }",
+        "        SimpleDateFormat df = (SimpleDateFormat) df0;",
+        "        if (hasLocale) {",
+        "            df = new SimpleDateFormat(df.toPattern(), format.getLocale());",
+        "        } else {",
+        "            df = (SimpleDateFormat) df.clone();",
+        "        }",
+        "        TimeZone newTz = format.getTimeZone();",
+        "        boolean changeTZ = (newTz != null) && !newTz.equals(df.getTimeZone());",
+        "        if (changeTZ) {",
+        "            df.setTimeZone(newTz);",
+        "        }",
+        "        return withFormat(Boolean.FALSE, df);"
+    ],
+    "JacksonDatabind-88": [
+        "            if (!t.isTypeOrSubTypeOf(_baseType.getRawClass())) {",
+        "                throw new IllegalArgumentException(String.format(",
+        "                        \"Class %s not subtype of %s\", t.getRawClass().getName(), _baseType));",
+        "            }"
+    ],
+    "JacksonDatabind-9": [
+        "        Class<?> cls = value.getClass();",
+        "        if (cls == String.class) {",
+        "            str = (String) value;",
+        "        } else if (Date.class.isAssignableFrom(cls)) {",
+        "        } else if (cls == Class.class) {",
+        "            str = ((Class<?>) value).getName();"
+    ],
+    "JacksonDatabind-91": [
+        "                if ((ct.getValueHandler() != null) || (ct.getTypeHandler() != null)) {",
+        "                    return true;",
+        "                }",
+        "            }",
+        "            if (t.isMapLikeType()) {",
+        "                JavaType kt = t.getKeyType();",
+        "                if (kt.getValueHandler() != null) {",
+        "                    return true;",
+        "                }"
+    ],
+    "JacksonDatabind-93": [
+        "            if (!raw.isInterface() && full.startsWith(PREFIX_STRING)) {",
+        "                for (Class<?> cls = raw; (cls != null) && (cls != Object.class); cls = cls.getSuperclass()) {"
+    ],
+    "JacksonDatabind-96": [
+        "            paramName = candidate.paramName(0);"
+    ],
+    "JacksonDatabind-97": [
+        "            ctxt.defaultSerializeValue(_value, gen);"
+    ],
+    "JacksonDatabind-98": [
+        "                    final Object v;",
+        "                    if (typeProp.getType().hasRawClass(String.class)) {",
+        "                        v = typeId;",
+        "                    } else {",
+        "                        TokenBuffer tb = new TokenBuffer(p, ctxt);",
+        "                        tb.writeString(typeId);",
+        "                        v = typeProp.getValueDeserializer().deserialize(tb.asParserOnFirstToken(), ctxt);",
+        "                        tb.close();",
+        "                    }",
+        "                    buffer.assignParameter(typeProp, v);"
+    ],
+    "JacksonDatabind-99": [
+        "        sb.append('>');"
+    ],
+    "JacksonXml-1": [
+        "                if (_parsingContext.inArray()) {",
+        "                    _nextToken = JsonToken.END_OBJECT;",
+        "                    _parsingContext = _parsingContext.createChildObjectContext(-1, -1);",
+        "                    return (_currToken = JsonToken.START_OBJECT);",
+        "                }",
+        "                        _nextToken = JsonToken.END_OBJECT;",
+        "                        _parsingContext = _parsingContext.createChildObjectContext(-1, -1);",
+        "                        return (_currToken = JsonToken.START_OBJECT);"
+    ],
+    "JacksonXml-3": [
+        "            return (_currText = _xmlTokens.getText());"
+    ],
+    "JacksonXml-4": [
+        "        QName rootName = _rootNameFromConfig();",
+        "        if (rootName == null) {",
+        "            rootName = ROOT_NAME_FOR_NULL;",
+        "        }",
+        "            _initWithRootName((ToXmlGenerator) jgen, rootName);"
+    ],
+    "JacksonXml-5": [
+        "        _rootNameLookup = new XmlRootNameLookup();"
+    ],
+    "Jsoup-1": [
+        "            body().prependChild(node);",
+        "            body().prependChild(new TextNode(\" \", \"\"));"
+    ],
+    "Jsoup-10": [
+        "                if (relUrl.startsWith(\"?\"))",
+        "                    relUrl = base.getPath() + relUrl;"
+    ],
+    "Jsoup-13": [
+        "        if (attributeKey.toLowerCase().startsWith(\"abs:\")) {",
+        "            String key = attributeKey.substring(\"abs:\".length());",
+        "            if (attributes.hasKey(key) && !absUrl(key).equals(\"\"))",
+        "                return true;",
+        "        }"
+    ],
+    "Jsoup-15": [
+        "                    } else if (StringUtil.in(name, \"base\", \"basefont\", \"bgsound\", \"command\", \"link\", \"meta\", \"noframes\", \"script\", \"style\", \"title\")) {"
+    ],
+    "Jsoup-19": [
+        "        if (value.length() == 0)",
+        "            value = attr.getValue(); // if it could not be made abs, run as-is to allow custom unknown protocols"
+    ],
+    "Jsoup-2": [
+        "            popStackToClose(tag);"
+    ],
+    "Jsoup-20": [
+        "            if (docData.charAt(0) == 65279)",
+        "                docData = docData.substring(1);"
+    ],
+    "Jsoup-24": [],
+    "Jsoup-26": [
+        "        if (dirtyDocument.body() != null) // frameset documents won't have a body. the clean doc will have empty body."
+    ],
+    "Jsoup-27": [
+        "            if (Charset.isSupported(charset)) return charset;",
+        "            if (Charset.isSupported(charset)) return charset;"
+    ],
+    "Jsoup-32": [
+        "        clone.classNames = null; // derived on first hit, otherwise gets a pointer to source classnames"
+    ],
+    "Jsoup-33": [
+        "            tokeniser.transition(TokeniserState.Data); // handles <script />, otherwise needs breakout steps from script data"
+    ],
+    "Jsoup-34": [
+        "            if (offset < length && last <= length) {"
+    ],
+    "Jsoup-35": [
+        "                            adopter.attributes().addAll(formatEl.attributes());"
+    ],
+    "Jsoup-37": [
+        "        return getOutputSettings().prettyPrint() ? accum.toString().trim() : accum.toString();"
+    ],
+    "Jsoup-38": [
+        "                        if (tb.getFromStack(\"svg\") == null)",
+        "                        else",
+        "                            tb.insert(startTag);"
+    ],
+    "Jsoup-39": [
+        "            doc = null;"
+    ],
+    "Jsoup-40": [],
+    "Jsoup-41": [
+        "        return tag.equals(element.tag);"
+    ],
+    "Jsoup-42": [
+        "            if (el.hasAttr(\"disabled\")) continue; // skip disabled form inputs",
+        "                    final String val = el.val().length() >  0 ? el.val() : \"on\";"
+    ],
+    "Jsoup-43": [
+        "            if (element == search)"
+    ],
+    "Jsoup-45": [
+        "            } else if ((\"td\".equals(name) || \"th\".equals(name) && !last)) {"
+    ],
+    "Jsoup-46": [
+        "                            accum.append(\"&#xa0;\");"
+    ],
+    "Jsoup-47": [
+        "                        if (!inAttribute || escapeMode == EscapeMode.xhtml)"
+    ],
+    "Jsoup-48": [
+        "                    if (values.size() == 1)",
+        "                    else if (values.size() > 1) {",
+        "                        StringBuilder accum = new StringBuilder();",
+        "                        for (int i = 0; i < values.size(); i++) {",
+        "                            final String val = values.get(i);",
+        "                            if (i != 0)",
+        "                                accum.append(\", \");",
+        "                            accum.append(val);",
+        "                        }",
+        "                        header(name, accum.toString());",
+        "                    }"
+    ],
+    "Jsoup-49": [
+        "            reindexChildren(index);"
+    ],
+    "Jsoup-5": [
+        "            if (value.length() == 0) // no key, no val; unknown char, keep popping so not get stuck",
+        "                tq.advance();"
+    ],
+    "Jsoup-50": [
+        "        byteData.mark();",
+        "        byte[] bom = new byte[4];",
+        "        byteData.get(bom);",
+        "        byteData.rewind();",
+        "        if (bom[0] == 0x00 && bom[1] == 0x00 && bom[2] == (byte) 0xFE && bom[3] == (byte) 0xFF || // BE",
+        "                bom[0] == (byte) 0xFF && bom[1] == (byte) 0xFE && bom[2] == 0x00 && bom[3] == 0x00) { // LE",
+        "            charsetName = \"UTF-32\"; // and I hope it's on your system",
+        "        } else if (bom[0] == (byte) 0xFE && bom[1] == (byte) 0xFF || // BE",
+        "                bom[0] == (byte) 0xFF && bom[1] == (byte) 0xFE) {",
+        "            charsetName = \"UTF-16\"; // in all Javas",
+        "        } else if (bom[0] == (byte) 0xEF && bom[1] == (byte) 0xBB && bom[2] == (byte) 0xBF) {",
+        "            charsetName = \"UTF-8\"; // in all Javas",
+        "            byteData.position(3); // 16 and 32 decoders consume the BOM to determine be/le; utf-8 should be consumed",
+        "        }"
+    ],
+    "Jsoup-51": [
+        "        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || Character.isLetter(c);"
+    ],
+    "Jsoup-53": [
+        "        boolean inQuote = false;",
+        "                if (c.equals('\\'') || c.equals('\"') && c != open)",
+        "                    inQuote = !inQuote;",
+        "                if (inQuote)",
+        "                    continue;"
+    ],
+    "Jsoup-54": [
+        "                if (key.matches(\"[a-zA-Z_:]{1}[-a-zA-Z0-9_:.]*\"))"
+    ],
+    "Jsoup-55": [
+        "                    r.unconsume();"
+    ],
+    "Jsoup-57": [
+        "                it.remove();"
+    ],
+    "Jsoup-59": [
+        "                if (pendingAttributeName.length() > 0) {",
+        "                }"
+    ],
+    "Jsoup-6": [
+        "                m.appendReplacement(accum, Matcher.quoteReplacement(c));",
+        "                m.appendReplacement(accum, Matcher.quoteReplacement(m.group(0))); // replace with original string"
+    ],
+    "Jsoup-61": [
+        "        final String classAttr = attributes.getIgnoreCase(\"class\");"
+    ],
+    "Jsoup-62": [
+        "            String name = t.asEndTag().name(); // matches with case sensitivity if enabled"
+    ],
+    "Jsoup-64": [
+        "        tb.insert(startTag);"
+    ],
+    "Jsoup-68": [
+        "        final int bottom = stack.size() -1;"
+    ],
+    "Jsoup-70": [
+        "            int i = 0;",
+        "            do {",
+        "                el = el.parent();",
+        "                i++;",
+        "            } while (i < 6 && el != null);"
+    ],
+    "Jsoup-72": [
+        "        if (count < 1)",
+        "            return \"\";"
+    ],
+    "Jsoup-75": [
+        "            if (!Attribute.shouldCollapseAttribute(key, val, out)) {"
+    ],
+    "Jsoup-76": [
+        "                        tb.reader.matchConsume(\"\\n\"); // ignore LF if next token"
+    ],
+    "Jsoup-77": [
+        "        String elName = endTag.normalName();"
+    ],
+    "Jsoup-80": [
+        "                if (doc.childNodeSize() > 0) {",
+        "                } // else, we couldn't parse it as a decl, so leave as a comment"
+    ],
+    "Jsoup-82": [
+        "            if (!charset.canEncode()) {",
+        "                doc.charset(Charset.forName(defaultCharset));",
+        "            }"
+    ],
+    "Jsoup-84": [
+        "                Element el = namespace == null && tagName.contains(\":\") ?",
+        "                    doc.createElementNS(\"\", tagName) : // doesn't have a real namespace defined"
+    ],
+    "Jsoup-85": [
+        "        key = key.trim();",
+        "        this.key = key;"
+    ],
+    "Jsoup-86": [
+        "        if (doc.children().size() > 0) {"
+    ],
+    "Jsoup-88": [
+        "        return Attributes.checkNotNull(val);"
+    ],
+    "Jsoup-89": [
+        "        String oldVal = this.val;",
+        "            oldVal = parent.get(this.key); // trust the container more"
+    ],
+    "Jsoup-90": [
+        "                if (end >= input.length)",
+        "                    return false;"
+    ],
+    "Jsoup-93": [
+        "            if (type.equalsIgnoreCase(\"button\")) continue; // browsers don't submit these"
+    ],
+    "JxPath-10": [
+        "        return compute(args[0].compute(context), args[1].compute(context))"
+    ],
+    "JxPath-12": [
+        "                return equalStrings(namespaceURI, nodeNS) || nodeNS == null",
+        "                        && equalStrings(testPrefix, getPrefix(node));"
+    ],
+    "JxPath-21": [
+        "        Object baseValue = getBaseValue();",
+        "        return baseValue == null ? 1 : ValueUtils.getLength(baseValue);"
+    ],
+    "JxPath-22": [
+        "                        uri = attr.getValue();",
+        "                        break;",
+        "        return \"\".equals(uri) ? null : uri;"
+    ],
+    "JxPath-5": [
+        "            return 0;"
+    ],
+    "JxPath-6": [
+        "        if (l instanceof InitialContext) {",
+        "            ((EvalContext) l).reset();",
+        "        }",
+        "",
+        "        if (l instanceof SelfContext) {",
+        "        if (r instanceof InitialContext) {",
+        "            ((EvalContext) r).reset();",
+        "        }",
+        "",
+        "        if (r instanceof SelfContext) {"
+    ],
+    "JxPath-8": [
+        "        if (Double.isNaN(ld)) {",
+        "            return false;",
+        "        }",
+        "        if (Double.isNaN(rd)) {",
+        "            return false;",
+        "        }"
+    ],
+    "Lang-1": [
+        "            char firstSigDigit = 0; // strip leading zeroes",
+        "            for(int i = pfxLen; i < str.length(); i++) {",
+        "                firstSigDigit = str.charAt(i);",
+        "                if (firstSigDigit == '0') { // count leading zeroes",
+        "                    pfxLen++;",
+        "                } else {",
+        "                    break;",
+        "                }",
+        "            }",
+        "            if (hexDigits > 16 || (hexDigits == 16 && firstSigDigit > '7')) { // too many for Long",
+        "            if (hexDigits > 8 || (hexDigits == 8 && firstSigDigit > '7')) { // too many for an int"
+    ],
+    "Lang-10": [],
+    "Lang-11": [
+        "        } else {",
+        "            if (end <= start) {",
+        "                throw new IllegalArgumentException(\"Parameter end (\" + end + \") must be greater than start (\" + start + \")\");",
+        "            }"
+    ],
+    "Lang-12": [
+        "        if (chars != null && chars.length == 0) {",
+        "            throw new IllegalArgumentException(\"The chars array must not be empty\");",
+        "        }",
+        "            if (chars != null) {",
+        "                end = chars.length;",
+        "            } else {",
+        "            }"
+    ],
+    "Lang-14": [
+        "        if (cs1 instanceof String && cs2 instanceof String) {",
+        "        }",
+        "        return CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, Math.max(cs1.length(), cs2.length()));"
+    ],
+    "Lang-16": [
+        "        if (str.startsWith(\"0x\") || str.startsWith(\"-0x\") || str.startsWith(\"0X\") || str.startsWith(\"-0X\")) {"
+    ],
+    "Lang-17": [
+        "        int len = input.length();",
+        "                pos+= c.length;",
+        "                continue;"
+    ],
+    "Lang-18": [
+        "                if (tokenLen == 2) {",
+        "                    rule = TwoDigitYearField.INSTANCE;",
+        "                    rule = selectNumberRule(Calendar.YEAR, tokenLen < 4 ? 4 : tokenLen);"
+    ],
+    "Lang-19": [
+        "        if(input.charAt(index) == '&' && index < seqEnd - 2 && input.charAt(index + 1) == '#') {",
+        "                if(start == seqEnd) {",
+        "                    return 0;",
+        "                }",
+        "            while(end < seqEnd && ( (input.charAt(end) >= '0' && input.charAt(end) <= '9') ||",
+        "                                    (input.charAt(end) >= 'a' && input.charAt(end) <= 'f') ||",
+        "                                    (input.charAt(end) >= 'A' && input.charAt(end) <= 'F') ) )",
+        "            boolean semiNext = (end != seqEnd) && (input.charAt(end) == ';');",
+        "            return 2 + (end - start) + (isHex ? 1 : 0) + (semiNext ? 1 : 0);"
+    ],
+    "Lang-21": [
+        "                cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&"
+    ],
+    "Lang-22": [
+        "        if ((u == 0) || (v == 0)) {",
+        "            if ((u == Integer.MIN_VALUE) || (v == Integer.MIN_VALUE)) {",
+        "                throw new ArithmeticException(\"overflow: gcd is 2^31\");",
+        "            }",
+        "            return Math.abs(u) + Math.abs(v);",
+        "        }",
+        "        if (Math.abs(u) == 1 || Math.abs(v) == 1) {"
+    ],
+    "Lang-24": [
+        "                return foundDigit && !hasExp && !hasDecPoint;"
+    ],
+    "Lang-26": [
+        "        Calendar c = new GregorianCalendar(mTimeZone, mLocale);"
+    ],
+    "Lang-27": [
+        "                if (expPos < decPos || expPos > str.length()) {",
+        "                if (expPos > str.length()) {",
+        "                    throw new NumberFormatException(str + \" is not a valid number.\");",
+        "                }"
+    ],
+    "Lang-28": [
+        "            if(entityValue > 0xFFFF) {",
+        "                char[] chrs = Character.toChars(entityValue);",
+        "                out.write(chrs[0]);",
+        "                out.write(chrs[1]);",
+        "            } else {",
+        "            }"
+    ],
+    "Lang-29": [
+        "    static int toJavaVersionInt(String version) {"
+    ],
+    "Lang-3": [
+        "            if(numDecimals <= 7){// If number has 7 or fewer digits past the decimal point then make it a float",
+        "            }",
+        "            if(numDecimals <= 16){// If number has between 8 and 16 digits past the decimal point then make it a double",
+        "            }"
+    ],
+    "Lang-31": [
+        "\t\tint csLastIndex = csLength - 1;",
+        "\t\tint searchLastIndex = searchLength - 1;",
+        "\t\t\t\t\tif (i < csLastIndex && j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {",
+        "\t\t\t\t\t\tif (searchChars[j + 1] == cs.charAt(i + 1)) {",
+        "\t\t\t\t\t\t\treturn true;",
+        "\t\t\t\t\t\t}",
+        "\t\t\t\t\t} else {",
+        "\t\t\t\t\t}"
+    ],
+    "Lang-33": [
+        "            classes[i] = array[i] == null ? null : array[i].getClass();"
+    ],
+    "Lang-37": [
+        "        try {",
+        "        } catch (ArrayStoreException ase) {",
+        "            final Class<?> type2 = array2.getClass().getComponentType();",
+        "            if (!type1.isAssignableFrom(type2)){",
+        "                throw new IllegalArgumentException(\"Cannot store \"+type2.getName()+\" in an array of \"+type1.getName());",
+        "            }",
+        "            throw ase; // No, so rethrow original",
+        "        }"
+    ],
+    "Lang-38": [
+        "            calendar.getTime(); /// LANG-538"
+    ],
+    "Lang-39": [
+        "            if (searchList[i] == null || replacementList[i] == null) {",
+        "                continue;",
+        "            }"
+    ],
+    "Lang-40": [
+        "        int len = searchStr.length();",
+        "        int max = str.length() - len;",
+        "        for (int i = 0; i <= max; i++) {",
+        "            if (str.regionMatches(true, i, searchStr, 0, len)) {",
+        "                return true;",
+        "            }",
+        "        }",
+        "        return false;"
+    ],
+    "Lang-42": [
+        "            int c = Character.codePointAt(str, i); ",
+        "                if (c >= 0x010000 && i < len - 1) {",
+        "                    writer.write(\"&#\");",
+        "                    writer.write(Integer.toString(c, 10));",
+        "                    writer.write(';');",
+        "                    i++;",
+        "                } else if (c > 0x7F) { "
+    ],
+    "Lang-43": [
+        "            next(pos);"
+    ],
+    "Lang-44": [
+        "        if (val.length() == 1 && !Character.isDigit(val.charAt(0))) {",
+        "            throw new NumberFormatException(val + \" is not a valid number.\");",
+        "        }"
+    ],
+    "Lang-45": [
+        "        if (lower > str.length()) {",
+        "            lower = str.length();    ",
+        "        }"
+    ],
+    "Lang-48": [
+        "            if (lhs instanceof java.math.BigDecimal) {",
+        "                isEquals = (((java.math.BigDecimal)lhs).compareTo(rhs) == 0);",
+        "            } else {",
+        "            }"
+    ],
+    "Lang-49": [
+        "        if (numerator == 0) {",
+        "            return equals(ZERO) ? this : ZERO;",
+        "        }"
+    ],
+    "Lang-5": [
+        "        if (ch0 == '_') {",
+        "            if (len < 3) {",
+        "                throw new IllegalArgumentException(\"Invalid locale format: \" + str);",
+        "            }",
+        "            final char ch1 = str.charAt(1);",
+        "            final char ch2 = str.charAt(2);",
+        "            if (!Character.isUpperCase(ch1) || !Character.isUpperCase(ch2)) {",
+        "                throw new IllegalArgumentException(\"Invalid locale format: \" + str);",
+        "            }",
+        "            if (len == 3) {",
+        "                return new Locale(\"\", str.substring(1, 3));",
+        "            }",
+        "            if (len < 5) {",
+        "                throw new IllegalArgumentException(\"Invalid locale format: \" + str);",
+        "            }",
+        "            if (str.charAt(3) != '_') {",
+        "                throw new IllegalArgumentException(\"Invalid locale format: \" + str);",
+        "            }",
+        "            return new Locale(\"\", str.substring(1, 3), str.substring(4));",
+        "        } else {",
+        "        }"
+    ],
+    "Lang-51": [
+        "                return false;"
+    ],
+    "Lang-52": [
+        "                    case '/':",
+        "                        out.write('\\\\');",
+        "                        out.write('/');",
+        "                        break;"
+    ],
+    "Lang-53": [
+        "        }",
+        "        }"
+    ],
+    "Lang-54": [
+        "            if (ch3 == '_') {",
+        "                return new Locale(str.substring(0, 2), \"\", str.substring(4));",
+        "            }"
+    ],
+    "Lang-55": [
+        "        if(this.runningState == STATE_RUNNING) {",
+        "        }"
+    ],
+    "Lang-57": [
+        "        return availableLocaleList().contains(locale);"
+    ],
+    "Lang-58": [
+        "                        && (numeric.charAt(0) == '-' && isDigits(numeric.substring(1)) || isDigits(numeric))) {"
+    ],
+    "Lang-59": [
+        "                str.getChars(0, width, buffer, size);"
+    ],
+    "Lang-6": [
+        "                pos += Character.charCount(Character.codePointAt(input, pt));"
+    ],
+    "Lang-61": [
+        "        int len = size - strLen + 1;"
+    ],
+    "Lang-65": [
+        "        if (field == Calendar.MILLISECOND) {",
+        "            return;",
+        "        }",
+        "        Date date = val.getTime();",
+        "        long time = date.getTime();",
+        "        boolean done = false;",
+        "        int millisecs = val.get(Calendar.MILLISECOND);",
+        "        if (!round || millisecs < 500) {",
+        "            time = time - millisecs;",
+        "            if (field == Calendar.SECOND) {",
+        "                done = true;",
+        "            }",
+        "        }",
+        "        int seconds = val.get(Calendar.SECOND);",
+        "        if (!done && (!round || seconds < 30)) {",
+        "            time = time - (seconds * 1000L);",
+        "            if (field == Calendar.MINUTE) {",
+        "                done = true;",
+        "            }",
+        "        }",
+        "        int minutes = val.get(Calendar.MINUTE);",
+        "        if (!done && (!round || minutes < 30)) {",
+        "            time = time - (minutes * 60000L);",
+        "        }",
+        "        if (date.getTime() != time) {",
+        "            date.setTime(time);",
+        "            val.setTime(date);",
+        "        }",
+        "            if (offset != 0) {",
+        "            }"
+    ],
+    "Lang-9": [
+        "        if (patternMatcher.regionStart() != patternMatcher.regionEnd()) {",
+        "            throw new IllegalArgumentException(\"Failed to parse \\\"\"+pattern+\"\\\" ; gave up at index \"+patternMatcher.regionStart());",
+        "        }"
+    ],
+    "Math-10": [
+        "        result[resultOffset] = FastMath.atan2(y[yOffset], x[xOffset]);"
+    ],
+    "Math-101": [
+        "        if ((startIndex >= source.length()) ||",
+        "            (endIndex > source.length()) ||"
+    ],
+    "Math-102": [
+        "        double sumExpected = 0d;",
+        "        double sumObserved = 0d;",
+        "        for (int i = 0; i < observed.length; i++) {",
+        "            sumExpected += expected[i];",
+        "            sumObserved += observed[i];",
+        "        }",
+        "        double ratio = 1.0d;",
+        "        boolean rescale = false;",
+        "        if (Math.abs(sumExpected - sumObserved) > 10E-6) {",
+        "            ratio = sumObserved / sumExpected;",
+        "            rescale = true;",
+        "        }",
+        "            if (rescale) {",
+        "                dev = ((double) observed[i] - ratio * expected[i]);",
+        "                sumSq += dev * dev / (ratio * expected[i]);",
+        "            } else {",
+        "            }"
+    ],
+    "Math-103": [
+        "        try {",
+        "        } catch (MaxIterationsExceededException ex) {",
+        "            if (x < (mean - 20 * standardDeviation)) { // JDK 1.5 blows at 38",
+        "                return 0.0d;",
+        "            } else if (x > (mean + 20 * standardDeviation)) {",
+        "                return 1.0d;",
+        "            } else {",
+        "                throw ex;",
+        "            }",
+        "        }"
+    ],
+    "Math-105": [
+        "        return Math.max(0d, sumYY - sumXY * sumXY / sumXX);"
+    ],
+    "Math-106": [
+        "        if (num.intValue() < 0) {",
+        "            pos.setIndex(initialIndex);",
+        "            return null;",
+        "        }",
+        "        if (den.intValue() < 0) {",
+        "            pos.setIndex(initialIndex);",
+        "            return null;",
+        "        }"
+    ],
+    "Math-11": [
+        "        return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *"
+    ],
+    "Math-13": [
+        "        if (m instanceof DiagonalMatrix) {",
+        "            final int dim = m.getRowDimension();",
+        "            final RealMatrix sqrtM = new DiagonalMatrix(dim);",
+        "            for (int i = 0; i < dim; i++) {",
+        "               sqrtM.setEntry(i, i, FastMath.sqrt(m.getEntry(i, i)));",
+        "            }",
+        "            return sqrtM;",
+        "        } else {",
+        "        }"
+    ],
+    "Math-17": [
+        "        if (x >= 0 && x < RADIX) {",
+        "        } else {",
+        "            return multiply(newInstance(x));",
+        "        }"
+    ],
+    "Math-19": [
+        "                for (int i = 0; i < lB.length; i++) {",
+        "                    if (Double.isInfinite(boundaries[1][i] - boundaries[0][i])) {",
+        "                        final double max = Double.MAX_VALUE + boundaries[0][i];",
+        "                        final NumberIsTooLargeException e",
+        "                            = new NumberIsTooLargeException(boundaries[1][i],",
+        "                                                            max,",
+        "                                                            true);",
+        "                        e.getContext().addMessage(LocalizedFormats.OVERFLOW);",
+        "                        e.getContext().addMessage(LocalizedFormats.INDEX, i);",
+        "",
+        "                        throw e;",
+        "                    }",
+        "                }"
+    ],
+    "Math-2": [
+        "        return getSampleSize() * (getNumberOfSuccesses() / (double) getPopulationSize());"
+    ],
+    "Math-20": [
+        "            return boundaries != null && isRepairMode ?",
+        "                decode(repair(x)) :"
+    ],
+    "Math-21": [
+        "            int swapR = r;",
+        "                int isr = index[swapR];",
+        "                if (c[ii][ii] > c[isr][isr]) {",
+        "                    swapR = i;",
+        "            if (swapR != r) {",
+        "                final int tmpIndex    = index[r];",
+        "                index[r]              = index[swapR];",
+        "                index[swapR]          = tmpIndex;",
+        "                final double[] tmpRow = b[r];",
+        "                b[r]                  = b[swapR];",
+        "                b[swapR]              = tmpRow;",
+        "                final double inverse2 = 1 / c[ir][ir];",
+        "                    c[ii][ii] -= c[ii][ir] * c[ii][ir] * inverse2;"
+    ],
+    "Math-23": [
+        "        UnivariatePointValuePair best = current;",
+        "                best = best(best,",
+        "                            best(current,",
+        "                                 previous,",
+        "                                 isMinim),",
+        "                            isMinim);",
+        "                        return best;",
+        "                return best(best,",
+        "                                 isMinim),"
+    ],
+    "Math-24": [
+        "                        return best(current, previous, isMinim);",
+        "                return best(current, previous, isMinim);"
+    ],
+    "Math-25": [
+        "                if (c2 == 0) {",
+        "                    throw new MathIllegalStateException(LocalizedFormats.ZERO_DENOMINATOR);",
+        "                }"
+    ],
+    "Math-26": [
+        "        if (FastMath.abs(a0) > overflow) {",
+        "            if ((FastMath.abs(p2) > overflow) || (FastMath.abs(q2) > overflow)) {"
+    ],
+    "Math-27": [
+        "        return 100 * doubleValue();"
+    ],
+    "Math-28": [
+        "            if (tableau.getNumArtificialVariables() > 0) {",
+        "            }",
+        "            if (getIterations() < getMaxIterations() / 2) {",
+        "            }"
+    ],
+    "Math-3": [
+        "        if (len == 1) {",
+        "            return a[0] * b[0];",
+        "        }"
+    ],
+    "Math-30": [
+        "        final double n1n2prod = n1 * n2;"
+    ],
+    "Math-31": [
+        "            double dN = a + b * dPrev;",
+        "            if (Precision.equals(dN, 0.0, small)) {",
+        "                dN = small;",
+        "            }",
+        "            double cN = a + b / cPrev;",
+        "            if (Precision.equals(cN, 0.0, small)) {",
+        "                cN = small;",
+        "            dN = 1 / dN;",
+        "            final double deltaN = cN * dN;",
+        "            hN = hPrev * deltaN;",
+        "            dPrev = dN;",
+        "            cPrev = cN;",
+        "            hPrev = hN;"
+    ],
+    "Math-32": [
+        "            if (tree.getCut() == null && (Boolean) tree.getAttribute()) {"
+    ],
+    "Math-33": [
+        "            if (Precision.compareTo(entry, 0d, epsilon) > 0) {"
+    ],
+    "Math-34": [
+        "        return getChromosomes().iterator();"
+    ],
+    "Math-38": [
+        "//                     throw new PathIsExploredException(); // XXX",
+        "                final int iptMinus1 = ipt - 1;",
+        "                final int jptMinus1 = jpt - 1;",
+        "//                 throw new PathIsExploredException(); // XXX"
+    ],
+    "Math-39": [
+        "        if (forward) {",
+        "            if (stepStart + stepSize >= t) {",
+        "                stepSize = t - stepStart;",
+        "            }",
+        "        } else {",
+        "            if (stepStart + stepSize <= t) {",
+        "                stepSize = t - stepStart;",
+        "            }",
+        "        }"
+    ],
+    "Math-40": [
+        "                final int p = agingA - MAXIMAL_AGING;",
+        "                final double weightA = (1 << p) - 1;",
+        "                final double weightB = p + 1;",
+        "                targetY = (weightA * yA - weightB * REDUCTION_FACTOR * yB) / (weightA + weightB);",
+        "                final int p = agingB - MAXIMAL_AGING;",
+        "                final double weightA = p + 1;",
+        "                final double weightB = (1 << p) - 1;",
+        "                targetY = (weightB * yB - weightA * REDUCTION_FACTOR * yA) / (weightA + weightB);"
+    ],
+    "Math-41": [
+        "                for (int i = begin; i < begin + length; i++) {"
+    ],
+    "Math-42": [
+        "          if (basicRow != null && basicRow == 0) {",
+        "              coefficients[i] = 0;",
+        "          } else if (basicRows.contains(basicRow)) {"
+    ],
+    "Math-43": [
+        "        if (meanImpl != mean) {",
+        "        if (varianceImpl != variance) {",
+        "        if (geoMeanImpl != geoMean) {"
+    ],
+    "Math-44": [
+        "                    for (final EventState remaining : occuringEvents) {",
+        "                        remaining.stepAccepted(eventT, eventY);",
+        "                    }",
+        "                    for (final EventState remaining : occuringEvents) {",
+        "                        remaining.stepAccepted(eventT, eventY);",
+        "                    }"
+    ],
+    "Math-45": [
+        "        long lRow = (long) rowDimension;",
+        "        long lCol = (long) columnDimension;",
+        "        if (lRow * lCol >= (long) Integer.MAX_VALUE) {",
+        "            throw new NumberIsTooLargeException(lRow * lCol, Integer.MAX_VALUE, false);",
+        "        }"
+    ],
+    "Math-48": [
+        "                    if (x == x1) {",
+        "                        throw new ConvergenceException();",
+        "                    }"
+    ],
+    "Math-5": [
+        "            return INF;"
+    ],
+    "Math-50": [],
+    "Math-51": [
+        "                case REGULA_FALSI:",
+        "                    if (x == x1) {",
+        "                        final double delta = FastMath.max(rtol * FastMath.abs(x1),",
+        "                                                          atol);",
+        "                        x0 = 0.5 * (x0 + x1 - delta);",
+        "                        f0 = computeObjectiveValue(x0);",
+        "                    }",
+        "                    break;",
+        "                    throw new MathInternalError();"
+    ],
+    "Math-52": [
+        "  final double inPlaneThreshold = 0.001;",
+        "  if (c <= inPlaneThreshold * k.getNorm() * u3.getNorm()) {",
+        "    if (c <= inPlaneThreshold * k.getNorm() * u2Prime.getNorm()) {",
+        "      if (c <= 0) {"
+    ],
+    "Math-53": [
+        "        if (isNaN || rhs.isNaN) {",
+        "            return NaN;",
+        "        }"
+    ],
+    "Math-55": [
+        "      final double n1 = v1.getNormSq();",
+        "      final double n2 = v2.getNormSq();",
+        "      if ((n1 * n2) < MathUtils.SAFE_MIN) {",
+        "          return ZERO;",
+        "      }",
+        "      final int deltaExp = (FastMath.getExponent(n1) - FastMath.getExponent(n2)) / 4;",
+        "      final double x1    = FastMath.scalb(v1.x, -deltaExp);",
+        "      final double y1    = FastMath.scalb(v1.y, -deltaExp);",
+        "      final double z1    = FastMath.scalb(v1.z, -deltaExp);",
+        "      final double x2    = FastMath.scalb(v2.x,  deltaExp);",
+        "      final double y2    = FastMath.scalb(v2.y,  deltaExp);",
+        "      final double z2    = FastMath.scalb(v2.z,  deltaExp);",
+        "      final double ratio = (x1 * x2 + y1 * y2 + z1 * z2) / FastMath.scalb(n2, 2 * deltaExp);",
+        "      final double rho   = FastMath.rint(256 * ratio) / 256;",
+        "      final double x3 = x1 - rho * x2;",
+        "      final double y3 = y1 - rho * y2;",
+        "      final double z3 = z1 - rho * z2;",
+        "      return new Vector3D(y3 * z2 - z3 * y2, z3 * x2 - x3 * z2, x3 * y2 - y3 * x2);"
+    ],
+    "Math-56": [
+        "        indices[last] = index - count;"
+    ],
+    "Math-57": [
+        "            double sum = 0;"
+    ],
+    "Math-58": [
+        "        return fit(guess);"
+    ],
+    "Math-59": [
+        "        return (a <= b) ? b : (Float.isNaN(a + b) ? Float.NaN : a);"
+    ],
+    "Math-60": [
+        "        if (FastMath.abs(dev) > 40 * standardDeviation) { ",
+        "            return dev < 0 ? 0.0d : 1.0d;",
+        "        }"
+    ],
+    "Math-63": [
+        "        return equals(x, y, 1);"
+    ],
+    "Math-64": [
+        "        double[] oldObj  = new double[rows];",
+        "        double[] qtf     = new double[rows];",
+        "            for (int i=0;i<rows;i++) {",
+        "                qtf[i]=residuals[i];",
+        "            }",
+        "            qTy(qtf);",
+        "                            sum += jacobian[i][pj] * qtf[i];",
+        "            \tupdateResidualsAndCost();",
+        "            \tcurrent = new VectorialPointValuePair(point, objective);",
+        "                tmpVec    = objective;",
+        "                objective = oldObj;",
+        "                oldObj    = tmpVec;",
+        "                determineLMParameter(qtf, delta, diag, work1, work2, work3);",
+        "                    current = new VectorialPointValuePair(point, objective);",
+        "                    if (checker != null) {",
+        "                    \tif (checker.converged(getIterations(), previous, current)) {",
+        "                    \t\treturn current;",
+        "                    \t}",
+        "                    }",
+        "                    tmpVec    = objective;",
+        "                    objective = oldObj;",
+        "                    oldObj    = tmpVec;"
+    ],
+    "Math-69": [
+        "                    out[i][j] = 2 * tDistribution.cumulativeProbability(-t);"
+    ],
+    "Math-7": [
+        "                for (final EventState state : eventsStates) {",
+        "                    state.stepAccepted(eventT, eventY);",
+        "                    isLastStep = isLastStep || state.stop();",
+        "                }",
+        "                boolean needReset = false;",
+        "                for (final EventState state : eventsStates) {",
+        "                    needReset =  needReset || state.reset(eventT, eventY);",
+        "                }"
+    ],
+    "Math-70": [
+        "        return solve(f, min, max);"
+    ],
+    "Math-72": [
+        "            setResult(min, 0);",
+        "            setResult(max, 0);"
+    ],
+    "Math-73": [
+        "        if (yMin * yMax > 0) {",
+        "            throw MathRuntimeException.createIllegalArgumentException(",
+        "                  NON_BRACKETING_MESSAGE, min, max, yMin, yMax);",
+        "        }"
+    ],
+    "Math-74": [
+        "          final double[] scale = new double[y0.length];",
+        "              for (int i = 0; i < scale.length; ++i) {",
+        "                scale[i] = scalAbsoluteTolerance + scalRelativeTolerance * Math.abs(y[i]);",
+        "              }",
+        "              for (int i = 0; i < scale.length; ++i) {",
+        "                scale[i] = vecAbsoluteTolerance[i] + vecRelativeTolerance[i] * Math.abs(y[i]);",
+        "              }"
+    ],
+    "Math-75": [
+        "        return getPct((Comparable<?>) v);"
+    ],
+    "Math-78": [
+        "                    if (ga * gb > 0) {",
+        "                        final double epsilon = (forward ? 0.25 : -0.25) * convergence;",
+        "                        for (int k = 0; (k < 4) && (ga * gb > 0); ++k) {",
+        "                            ta += epsilon;",
+        "                            interpolator.setInterpolatedTime(ta);",
+        "                            ga = handler.g(ta, interpolator.getInterpolatedState());",
+        "                        }",
+        "                        if (ga * gb > 0) {",
+        "                            throw MathRuntimeException.createInternalError(null);",
+        "                        }",
+        "                    }"
+    ],
+    "Math-79": [
+        "      double sum = 0;",
+        "          final double dp = p1[i] - p2[i];"
+    ],
+    "Math-8": [
+        "    public Object[] sample(int sampleSize) throws NotStrictlyPositiveException {",
+        "        final Object[] out = new Object[sampleSize];"
+    ],
+    "Math-80": [
+        "            int j = 4 * (n - 1);"
+    ],
+    "Math-82": [
+        "            if (MathUtils.compareTo(entry, 0, epsilon) > 0) {"
+    ],
+    "Math-84": [
+        "        final RealConvergenceChecker checker = getConvergenceChecker();",
+        "                return;",
+        "            }",
+        "            final int iter = getIterations();",
+        "            boolean converged = true;",
+        "            for (int i = 0; i < simplex.length; ++i) {",
+        "                converged &= checker.converged(iter, original[i], simplex[i]);",
+        "            }",
+        "            if (converged) {"
+    ],
+    "Math-85": [
+        "        if (fa * fb > 0.0 ) {"
+    ],
+    "Math-86": [
+        "            if (ltI[i] < absolutePositivityThreshold) {",
+        "                throw new NotPositiveDefiniteMatrixException();",
+        "            }"
+    ],
+    "Math-87": [
+        "            if (MathUtils.equals(getEntry(i, col), 1.0, epsilon) && (row == null)) {",
+        "            } else if (!MathUtils.equals(getEntry(i, col), 0.0, epsilon)) {"
+    ],
+    "Math-88": [
+        "        Set<Integer> basicRows = new HashSet<Integer>();",
+        "            if (basicRows.contains(basicRow)) {",
+        "                coefficients[i] = 0;",
+        "            } else {",
+        "                basicRows.add(basicRow);"
+    ],
+    "Math-89": [
+        "        if (v instanceof Comparable<?>){",
+        "        } else {",
+        "            throw new IllegalArgumentException(\"Object must implement Comparable\");",
+        "        }"
+    ],
+    "Math-9": [
+        "        final Line reverted = new Line(this);",
+        "        reverted.direction = reverted.direction.negate();"
+    ],
+    "Math-90": [
+        "        addValue((Comparable<?>) v);",
+        "    }",
+        "    public void addValue(Comparable<?>v){"
+    ],
+    "Math-91": [
+        "        long nOd = ((long) numerator) * object.denominator;",
+        "        long dOn = ((long) denominator) * object.numerator;"
+    ],
+    "Math-94": [
+        "        if ((u == 0) || (v == 0)) {"
+    ],
+    "Math-95": [
+        "        double ret = 1.0;",
+        "        if (d > 2.0) {",
+        "        }"
+    ],
+    "Math-96": [
+        "                    ret = (real == rhs.real) && (imaginary == rhs.imaginary); "
+    ],
+    "Math-97": [
+        "        if (sign > 0) {",
+        "            if (Math.abs(yMin) <= functionValueAccuracy) {",
+        "                setResult(min, 0);",
+        "                ret = min;",
+        "            } else if (Math.abs(yMax) <= functionValueAccuracy) {",
+        "                setResult(max, 0);",
+        "                ret = max;",
+        "            } else {",
+        "            }",
+        "        } else if (sign < 0){",
+        "        } else {",
+        "            if (yMin == 0.0) {",
+        "                ret = min;",
+        "            } else {",
+        "                ret = max;",
+        "            }"
+    ],
+    "Mockito-1": [
+        "            for (int position = 0; position < indexOfVararg; position++) {",
+        "                Matcher m = matchers.get(position);",
+        "                if (m instanceof CapturesArguments) {",
+        "                    ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));",
+        "                }",
+        "            }",
+        "            for (int position = indexOfVararg; position < matchers.size(); position++) {",
+        "                Matcher m = matchers.get(position);",
+        "                if (m instanceof CapturesArguments) {",
+        "                    ((CapturesArguments) m).captureFrom(invocation.getRawArguments()[position - indexOfVararg]);",
+        "                }",
+        "            }"
+    ],
+    "Mockito-12": [
+        "            if (actual instanceof Class) {",
+        "            } else if (actual instanceof ParameterizedType) {",
+        "                return (Class) ((ParameterizedType) actual).getRawType();",
+        "            }"
+    ],
+    "Mockito-13": [
+        "            if (((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock()) {                ",
+        "            } else {",
+        "                mockingProgress.verificationStarted(verificationMode);"
+    ],
+    "Mockito-18": [
+        "        } else if (type == Iterable.class) {",
+        "            return new ArrayList<Object>(0);"
+    ],
+    "Mockito-20": [
+        "        Instantiator instantiator = new InstantiatorProvider().getInstantiator(settings);",
+        "            mockInstance = instantiator.newInstance(mockedProxyType);",
+        "                    \"  instance creation by : \" + instantiator.getClass().getSimpleName(),"
+    ],
+    "Mockito-22": [
+        "        if (o1 == o2 ) {",
+        "            return true;",
+        "\t} else if (o1 == null || o2 == null) {"
+    ],
+    "Mockito-24": [
+        "            return invocation.getMock() == invocation.getArguments()[0] ? 0 : 1;"
+    ],
+    "Mockito-27": [
+        "        MethodInterceptorFilter newFilter = newMethodInterceptorFilter(oldMockHandler.getMockSettings());"
+    ],
+    "Mockito-28": [
+        "            Object injected = mockCandidateFilter.filterCandidate(mocks, field, fieldInstance).thenInject();",
+        "            mocks.remove(injected);"
+    ],
+    "Mockito-29": [
+        "        description.appendText(wanted == null ? \"null\" : wanted.toString());"
+    ],
+    "Mockito-33": [
+        "        if (m1.getName() != null && m1.getName().equals(m2.getName())) {",
+        "        \tClass[] params1 = m1.getParameterTypes();",
+        "        \tClass[] params2 = m2.getParameterTypes();",
+        "        \tif (params1.length == params2.length) {",
+        "        \t    for (int i = 0; i < params1.length; i++) {",
+        "        \t\tif (params1[i] != params2[i])",
+        "        \t\t    return false;",
+        "        \t    }",
+        "        \t    return true;",
+        "        \t}",
+        "        }",
+        "        return false;"
+    ],
+    "Mockito-34": [
+        "            if (m instanceof CapturesArguments && i.getArguments().length > k) {"
+    ],
+    "Mockito-38": [
+        "        return StringDescription.toString(m).equals(arg == null? \"null\" : arg.toString());"
+    ],
+    "Mockito-5": [
+        "            catch (AssertionError e) {"
+    ],
+    "Mockito-7": [
+        "            registerTypeParametersOn(new TypeVariable[] { typeVariable });"
+    ],
+    "Mockito-8": [
+        "            } else if (typeParameter != actualTypeArgument) {"
+    ],
+    "Time-14": [
+        "        if (partial.size() > 0 && partial.getFieldType(0).equals(DateTimeFieldType.monthOfYear()) && fieldIndex == 0) {",
+        "            int curMonth0 = partial.getValue(0) - 1;",
+        "            int newMonth = ((curMonth0 + (valueToAdd % 12) + 12) % 12) + 1;",
+        "            return set(partial, 0, values, newMonth);",
+        "        }"
+    ],
+    "Time-15": [
+        "                if (val1 == Long.MIN_VALUE) {",
+        "                    throw new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);",
+        "                }"
+    ],
+    "Time-16": [
+        "            instantLocal, chrono, iLocale, iPivotYear, chrono.year().get(instantLocal));"
+    ],
+    "Time-17": [
+        "        long instantBefore = instant - 3 * DateTimeConstants.MILLIS_PER_HOUR;",
+        "        long instantAfter = instant + 3 * DateTimeConstants.MILLIS_PER_HOUR;",
+        "        long offsetBefore = getOffset(instantBefore);",
+        "        long offsetAfter = getOffset(instantAfter);",
+        "        if (offsetBefore <= offsetAfter) {",
+        "        long diff = offsetBefore - offsetAfter;",
+        "        long transition = nextTransition(instantBefore);",
+        "        long overlapStart = transition - diff;",
+        "        long overlapEnd = transition + diff;",
+        "        if (instant < overlapStart || instant >= overlapEnd) {",
+        "          return instant;  // not an overlap",
+        "        }",
+        "        long afterStart = instant - overlapStart;",
+        "        if (afterStart >= diff) {",
+        "          return earlierOrLater ? instant : instant - diff;",
+        "        } else {",
+        "          return earlierOrLater ? instant + diff : instant;",
+        "        }"
+    ],
+    "Time-18": [
+        "        try {",
+        "        } catch (IllegalFieldValueException ex) {",
+        "            if (monthOfYear != 2 || dayOfMonth != 29) {",
+        "                throw ex;",
+        "            }",
+        "            instant = iGregorianChronology.getDateTimeMillis",
+        "                (year, monthOfYear, 28,",
+        "                 hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);",
+        "            if (instant >= iCutoverMillis) {",
+        "                throw ex;",
+        "            }",
+        "        }"
+    ],
+    "Time-19": [
+        "        } else if (offsetLocal >= 0) {"
+    ],
+    "Time-20": [
+        "            String best = null;",
+        "                \tif (best == null || id.length() > best.length()) {",
+        "                \t\tbest = id;",
+        "                \t}",
+        "            if (best != null) {",
+        "                bucket.setZone(DateTimeZone.forID(best));",
+        "                return position + best.length();",
+        "            }"
+    ],
+    "Time-22": [
+        "        super();",
+        "        iType = PeriodType.time();",
+        "        int[] values = ISOChronology.getInstanceUTC().get(this, duration);",
+        "        iType = PeriodType.standard();",
+        "        iValues = new int[8];",
+        "        System.arraycopy(values, 0, iValues, 4, 4);"
+    ],
+    "Time-23": [
+        "            map.put(\"WET\", \"WET\");",
+        "            map.put(\"CET\", \"CET\");",
+        "            map.put(\"MET\", \"CET\");",
+        "            map.put(\"ECT\", \"CET\");",
+        "            map.put(\"EET\", \"EET\");",
+        "            map.put(\"IET\", \"America/Indiana/Indianapolis\");",
+        "            map.put(\"AGT\", \"America/Argentina/Buenos_Aires\");",
+        "            map.put(\"IST\", \"Asia/Kolkata\");",
+        "            map.put(\"VST\", \"Asia/Ho_Chi_Minh\");"
+    ],
+    "Time-24": [
+        "            if (resetFields) {",
+        "                for (int i = 0; i < count; i++) {",
+        "                    millis = savedFields[i].set(millis, i == (count - 1));",
+        "                }",
+        "            }"
+    ],
+    "Time-25": [
+        "        } else if (offsetLocal > 0) {",
+        "            long prev = previousTransition(instantAdjusted);",
+        "            if (prev < instantAdjusted) {",
+        "                int offsetPrev = getOffset(prev);",
+        "                int diff = offsetPrev - offsetLocal;",
+        "                if (instantAdjusted - prev <= diff) {",
+        "                    return offsetPrev;",
+        "                }",
+        "            }"
+    ],
+    "Time-27": [
+        "            if (sep.iAfterParser == null && sep.iAfterPrinter == null) {",
+        "            }"
+    ],
+    "Time-4": [
+        "            Partial newPartial = new Partial(newTypes, newValues, iChronology);"
+    ],
+    "Time-5": [
+        "            long totalMonths = years * 12L + months;",
+        "            if (type.isSupported(DurationFieldType.YEARS_TYPE)) {",
+        "                int normalizedYears = FieldUtils.safeToInt(totalMonths / 12);",
+        "                result = result.withYears(normalizedYears);",
+        "                totalMonths = totalMonths - (normalizedYears * 12);",
+        "            if (type.isSupported(DurationFieldType.MONTHS_TYPE)) {",
+        "                int normalizedMonths = FieldUtils.safeToInt(totalMonths);",
+        "                result = result.withMonths(normalizedMonths);",
+        "                totalMonths = totalMonths - normalizedMonths;",
+        "            }",
+        "            if (totalMonths != 0) {",
+        "                throw new UnsupportedOperationException(\"Unable to normalize as PeriodType is missing either years or months but period has a month/year amount: \" + toString());"
+    ],
+    "Time-7": [
+        "        int defaultYear = DateTimeUtils.getChronology(chrono).year().get(instantMillis);"
+    ],
+    "Time-8": [
+        "        if (minutesOffset < -59 || minutesOffset > 59) {",
+        "        if (hoursOffset > 0 && minutesOffset < 0) {",
+        "            throw new IllegalArgumentException(\"Positive hours must not have negative minutes: \" + minutesOffset);",
+        "        }",
+        "                minutesOffset = hoursInMinutes - Math.abs(minutesOffset);"
+    ],
+    "JacksonDatabind-50": [
+        "import com.fasterxml.jackson.databind.deser.impl.ReadableObjectId.Referring;",
+        "        List<BeanReferring> referrings = null;",
+        "                try {",
+        "                } catch (UnresolvedForwardReference reference) {",
+        "                    BeanReferring referring = handleUnresolvedReference(p, prop, buffer, reference);",
+        "                    if (referrings == null) {",
+        "                        referrings = new ArrayList<BeanReferring>();",
+        "                    }",
+        "                    referrings.add(referring);",
+        "                }",
+        "        if (referrings != null) {",
+        "            for (BeanReferring referring : referrings) {",
+        "               referring.setBean(bean);",
+        "            }",
+        "        }",
+        "    private BeanReferring handleUnresolvedReference(JsonParser p,",
+        "            SettableBeanProperty prop, PropertyValueBuffer buffer,",
+        "            UnresolvedForwardReference reference)",
+        "        throws JsonMappingException",
+        "    {",
+        "        BeanReferring referring = new BeanReferring(reference, prop.getType().getRawClass(),",
+        "                buffer, prop);",
+        "        reference.getRoid().appendReferring(referring);",
+        "        return referring;",
+        "    }",
+        "    static class BeanReferring extends Referring {",
+        "        private final SettableBeanProperty _prop;",
+        "        private Object _bean;",
+        "        public void setBean(Object bean) {",
+        "            _bean = bean;",
+        "        }",
+        "        BeanReferring(UnresolvedForwardReference ref,",
+        "                Class<?> valueType, PropertyValueBuffer buffer, SettableBeanProperty prop)",
+        "        {",
+        "            super(ref, valueType);",
+        "            _prop = prop;",
+        "        }",
+        "        @Override",
+        "        public void handleResolvedForwardReference(Object id, Object value) throws IOException {",
+        "            _prop.set(_bean, value);",
+        "        }",
+        "    }"
+    ],
+    "Math-15": [
+        "    private static final double TWO_POWER_53 = 2 * TWO_POWER_52;",
+        "            if (y >= TWO_POWER_53 || y <= -TWO_POWER_53) {"
+    ],
+    "JacksonDatabind-66": [
+        "import com.fasterxml.jackson.core.JsonParser;",
+        "import com.fasterxml.jackson.databind.util.TokenBuffer;",
+        "            TokenBuffer tb = new TokenBuffer(ctxt.getParser(), ctxt);",
+        "            tb.writeString(key);",
+        "                JsonParser p = tb.asParser();",
+        "                p.nextToken();",
+        "                Object result = _delegate.deserialize(p, ctxt);"
+    ],
+    "Mockito-9": [
+        "import java.lang.reflect.Modifier;",
+        "import org.mockito.internal.stubbing.defaultanswers.GloballyConfiguredAnswer;",
+        "    \tif (Modifier.isAbstract(invocation.getMethod().getModifiers())) {",
+        "    \t\treturn new GloballyConfiguredAnswer().answer(invocation);",
+        "    \t}"
+    ],
+    "Cli-39": [
+        "            return openFile(str);",
+        "    public static FileInputStream openFile(String str) throws ParseException",
+        "    {",
+        "        try",
+        "        {",
+        "            return new FileInputStream(str);",
+        "        }",
+        "        catch (FileNotFoundException e)",
+        "        {",
+        "            throw new ParseException(\"Unable to find file: \" + str);",
+        "        }",
+        "    }"
+    ],
+    "Mockito-31": [
+        "import java.util.Arrays;",
+        "\t\t\tString args = Arrays.toString(invocation.getArguments());",
+        "\t\t\treturn invocation.getMethod().getName() + \"(\" + args.substring(1, args.length() - 1) +\t\")\";"
+    ],
+    "JacksonDatabind-60": [
+        "import com.fasterxml.jackson.annotation.JsonTypeInfo.As;",
+        "import com.fasterxml.jackson.databind.jsontype.TypeIdResolver;",
+        "            TypeSerializerRerouter rr = new TypeSerializerRerouter(typeSer0, bean);",
+        "            ser.serializeWithType(value, gen, provider, rr);",
+        "    static class TypeSerializerRerouter",
+        "        extends TypeSerializer",
+        "    {",
+        "        protected final TypeSerializer _typeSerializer;",
+        "        protected final Object _forObject;",
+        "        public TypeSerializerRerouter(TypeSerializer ts, Object ob) {",
+        "            _typeSerializer = ts;",
+        "            _forObject = ob;",
+        "        }",
+        "        @Override",
+        "        public TypeSerializer forProperty(BeanProperty prop) { // should never get called",
+        "            throw new UnsupportedOperationException();",
+        "        }",
+        "        @Override",
+        "        public As getTypeInclusion() {",
+        "            return _typeSerializer.getTypeInclusion();",
+        "        }",
+        "        @Override",
+        "        public String getPropertyName() {",
+        "            return _typeSerializer.getPropertyName();",
+        "        }",
+        "        @Override",
+        "        public TypeIdResolver getTypeIdResolver() {",
+        "            return _typeSerializer.getTypeIdResolver();",
+        "        }",
+        "        @Override",
+        "        public void writeTypePrefixForScalar(Object value, JsonGenerator gen) throws IOException {",
+        "            _typeSerializer.writeTypePrefixForScalar(_forObject, gen);",
+        "        }",
+        "        @Override",
+        "        public void writeTypePrefixForObject(Object value, JsonGenerator gen) throws IOException {",
+        "            _typeSerializer.writeTypePrefixForObject(_forObject, gen);",
+        "        }",
+        "        @Override",
+        "        public void writeTypePrefixForArray(Object value, JsonGenerator gen) throws IOException {",
+        "            _typeSerializer.writeTypePrefixForArray(_forObject, gen);",
+        "        }",
+        "        @Override",
+        "        public void writeTypeSuffixForScalar(Object value, JsonGenerator gen) throws IOException {",
+        "            _typeSerializer.writeTypeSuffixForScalar(_forObject, gen);",
+        "        }",
+        "        @Override",
+        "        public void writeTypeSuffixForObject(Object value, JsonGenerator gen) throws IOException {",
+        "            _typeSerializer.writeTypeSuffixForObject(_forObject, gen);",
+        "        }",
+        "        @Override",
+        "        public void writeTypeSuffixForArray(Object value, JsonGenerator gen) throws IOException {",
+        "            _typeSerializer.writeTypeSuffixForArray(_forObject, gen);",
+        "        }",
+        "        public void writeTypePrefixForScalar(Object value, JsonGenerator gen, Class<?> type) throws IOException {",
+        "            _typeSerializer.writeTypePrefixForScalar(_forObject, gen, type);",
+        "        }",
+        "        public void writeTypePrefixForObject(Object value, JsonGenerator gen, Class<?> type) throws IOException {",
+        "            _typeSerializer.writeTypePrefixForObject(_forObject, gen, type);",
+        "        }",
+        "        public void writeTypePrefixForArray(Object value, JsonGenerator gen, Class<?> type) throws IOException {",
+        "            _typeSerializer.writeTypePrefixForArray(_forObject, gen, type);",
+        "        }",
+        "        @Override",
+        "        public void writeCustomTypePrefixForScalar(Object value, JsonGenerator gen, String typeId)",
+        "                throws IOException {",
+        "            _typeSerializer.writeCustomTypePrefixForScalar(_forObject, gen, typeId);",
+        "        }",
+        "        @Override",
+        "        public void writeCustomTypePrefixForObject(Object value, JsonGenerator gen, String typeId) throws IOException {",
+        "            _typeSerializer.writeCustomTypePrefixForObject(_forObject, gen, typeId);",
+        "        }",
+        "        @Override",
+        "        public void writeCustomTypePrefixForArray(Object value, JsonGenerator gen, String typeId) throws IOException {",
+        "            _typeSerializer.writeCustomTypePrefixForArray(_forObject, gen, typeId);",
+        "        }",
+        "        @Override",
+        "        public void writeCustomTypeSuffixForScalar(Object value, JsonGenerator gen, String typeId) throws IOException {",
+        "            _typeSerializer.writeCustomTypeSuffixForScalar(_forObject, gen, typeId);",
+        "        }",
+        "        @Override",
+        "        public void writeCustomTypeSuffixForObject(Object value, JsonGenerator gen, String typeId) throws IOException {",
+        "            _typeSerializer.writeCustomTypeSuffixForObject(_forObject, gen, typeId);",
+        "        }",
+        "        @Override",
+        "        public void writeCustomTypeSuffixForArray(Object value, JsonGenerator gen, String typeId) throws IOException {",
+        "            _typeSerializer.writeCustomTypeSuffixForArray(_forObject, gen, typeId);",
+        "        }",
+        "    }"
+    ],
+    "Mockito-36": [
+        "import org.mockito.exceptions.Reporter;",
+        "        if (this.getMethod().getDeclaringClass().isInterface()) {",
+        "            new Reporter().cannotCallRealMethodOnInterface();",
+        "        }"
+    ],
+    "JacksonDatabind-108": [
+        "        return (T) _bindAsTreeOrNull(p);",
+        "    protected final JsonNode _bindAsTreeOrNull(JsonParser p) throws IOException",
+        "    {",
+        "        _config.initialize(p);",
+        "        if (_schema != null) {",
+        "            p.setSchema(_schema);",
+        "        }",
+        "        JsonToken t = p.getCurrentToken();",
+        "        if (t == null) {",
+        "            t = p.nextToken();",
+        "            if (t == null) {",
+        "                return null;",
+        "            }",
+        "        }",
+        "        final JsonNode resultNode;",
+        "        if (t == JsonToken.VALUE_NULL) {",
+        "            resultNode = _config.getNodeFactory().nullNode();",
+        "        } else {",
+        "            final DeserializationContext ctxt = createDeserializationContext(p);",
+        "            final JsonDeserializer<Object> deser = _findTreeDeserializer(ctxt);",
+        "            if (_unwrapRoot) {",
+        "                resultNode = (JsonNode) _unwrapAndDeserialize(p, ctxt, JSON_NODE_TYPE, deser);",
+        "            } else {",
+        "                resultNode = (JsonNode) deser.deserialize(p, ctxt);",
+        "                if (_config.isEnabled(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)) {",
+        "                    _verifyNoTrailingTokens(p, ctxt, JSON_NODE_TYPE);",
+        "                }",
+        "            }",
+        "        }",
+        "        return resultNode;",
+        "    }"
+    ],
+    "Compress-9": [
+        "    @Deprecated",
+        "    @Override",
+        "    public int getCount() {",
+        "        return (int) getBytesWritten();",
+        "    }",
+        "    @Override",
+        "    public long getBytesWritten() {",
+        "        return ((CountingOutputStream) out).getBytesWritten();",
+        "    }"
+    ],
+    "Cli-2": [
+        "                tokens.add(token);",
+        "                break;",
+        "}"
+    ],
+    "Mockito-3": [
+        "            for (Matcher m : uniqueMatcherSet(indexOfVararg)) {",
+        "                    Object rawArgument = invocation.getRawArguments()[indexOfVararg];",
+        "                    for (int i = 0; i < Array.getLength(rawArgument); i++) {",
+        "                        ((CapturesArguments) m).captureFrom(Array.get(rawArgument, i));",
+        "                    }",
+        "    private Set<Matcher> uniqueMatcherSet(int indexOfVararg) {",
+        "        HashSet<Matcher> set = new HashSet<Matcher>();",
+        "        for (int position = indexOfVararg; position < matchers.size(); position++) {",
+        "            Matcher matcher = matchers.get(position);",
+        "            if(matcher instanceof MatcherDecorator) {",
+        "                set.add(((MatcherDecorator) matcher).getActualMatcher());",
+        "            } else {",
+        "                set.add(matcher);",
+        "            }",
+        "        }",
+        "        return set;",
+        "    }"
+    ],
+    "JxPath-15": [
+        "import java.util.Iterator;",
+        "import org.apache.commons.jxpath.Pointer;",
+        "            sortPointers(pointers);",
+        "",
+        "            for (Iterator it = pointers.iterator(); it.hasNext();) {",
+        "                nodeSet.add((Pointer) it.next());",
+        "            }",
+        "}"
+    ],
+    "JacksonDatabind-56": [
+        "                    int ix = _firstHyphenOrUnderscore(value);",
+        "                    ix = _firstHyphenOrUnderscore(value);",
+        "        protected int _firstHyphenOrUnderscore(String str)",
+        "        {",
+        "            for (int i = 0, end = str.length(); i < end; ++i) {",
+        "                char c = str.charAt(i);",
+        "                if (c == '_' || c == '-') {",
+        "                    return i;",
+        "                }",
+        "            }",
+        "            return -1;",
+        "        }"
+    ],
+    "Mockito-2": [
+        "import org.mockito.exceptions.Reporter;",
+        "        validateInput(durationMillis);",
+        "    private void validateInput(long durationMillis) {",
+        "        if (durationMillis < 0) {",
+        "            new Reporter().cannotCreateTimerWithNegativeDurationTime(durationMillis);",
+        "        }",
+        "    }"
+    ],
+    "Cli-33": [
+        "        renderWrappedTextBlock(sb, width, nextLineTabStop, text);",
+        "    private StringBuffer renderWrappedTextBlock(StringBuffer sb, int width, int nextLineTabStop, String text) {",
+        "        try {",
+        "            BufferedReader in = new BufferedReader(new StringReader(text));",
+        "            String line;",
+        "            boolean firstLine = true;",
+        "            while ((line = in.readLine()) != null) {",
+        "                if (!firstLine) {",
+        "                    sb.append(getNewLine());",
+        "                } else {",
+        "                    firstLine = false;",
+        "                }",
+        "                renderWrappedText(sb, width, nextLineTabStop, line);",
+        "            }",
+        "        } catch (IOException e) {",
+        "        }",
+        "        return sb;",
+        "    }"
+    ],
+    "Cli-3": [
+        "            if( str != null )",
+        "            {",
+        "                if( str.indexOf('.') != -1 )",
+        "                {",
+        "                    return Double.valueOf(str);",
+        "                }",
+        "                else",
+        "                {",
+        "                    return Long.valueOf(str);",
+        "                }",
+        "            }"
+    ],
+    "JacksonDatabind-105": [
+        "                ByteBuffer.class,",
+        "                Void.class",
+        "            if (rawType == Void.class) {",
+        "                return NullifyingDeserializer.instance;",
+        "            }"
+    ],
+    "JacksonDatabind-94": [
+        "    protected final static String PREFIX_C3P0 = \"com.mchange.v2.c3p0.\";",
+        "                }",
+        "            } else if (full.startsWith(PREFIX_C3P0)) {",
+        "                if (full.endsWith(\"DataSource\")) {",
+        "                    break main_check;"
+    ],
+    "Csv-7": [
+        "import java.util.Arrays;",
+        "                    if (hdrMap.containsKey(header[i])) {",
+        "                        throw new IllegalStateException(\"The header contains duplicate names: \" + Arrays.toString(header));",
+        "                    }"
+    ],
+    "JxPath-18": [
+        "import org.apache.commons.jxpath.ri.Compiler;",
+        "import org.apache.commons.jxpath.ri.compiler.NodeTypeTest;",
+        "    private static final NodeNameTest WILDCARD_TEST = new NodeNameTest(new QName(null, \"*\"));",
+        "            NodeNameTest nodeNameTest = null;",
+        "            if (nodeTest instanceof NodeTypeTest) {",
+        "                if (((NodeTypeTest) nodeTest).getNodeType() == Compiler.NODE_TYPE_NODE) {",
+        "                    nodeNameTest = WILDCARD_TEST;",
+        "                }",
+        "            }",
+        "            else if (nodeTest instanceof NodeNameTest) {",
+        "                nodeNameTest = (NodeNameTest) nodeTest;",
+        "            }",
+        "            if (nodeNameTest == null) {",
+        "            iterator = parentContext.getCurrentNodePointer().attributeIterator(",
+        "                    nodeNameTest.getNodeName());",
+        "}"
+    ],
+    "Mockito-37": [
+        "        if (answer instanceof CallsRealMethods) {",
+        "            validateMockingConcreteClass((CallsRealMethods) answer, invocation);",
+        "        }",
+        "    private void validateMockingConcreteClass(CallsRealMethods answer, Invocation invocation) {",
+        "        if (invocation.getMethod().getDeclaringClass().isInterface()) {",
+        "            reporter.cannotCallRealMethodOnInterface();",
+        "        }",
+        "    }"
+    ],
+    "JacksonDatabind-36": [
+        "    @Override // since 2.7",
+        "    public void setLenient(boolean enabled) {",
+        "        Boolean newValue = enabled;",
+        "        if (_lenient != newValue) {",
+        "            _lenient = newValue;",
+        "            _clearFormats();",
+        "        }",
+        "    }",
+        "        if (lenient != null) {",
+        "            df.setLenient(lenient.booleanValue());",
+        "        }"
+    ],
+    "JacksonDatabind-77": [
+        "        checkIllegalTypes(ctxt, type, beanDesc);",
+        "    protected void checkIllegalTypes(DeserializationContext ctxt, JavaType type,",
+        "            BeanDescription beanDesc)",
+        "        throws JsonMappingException",
+        "    {",
+        "        Class<?> raw = type.getRawClass();",
+        "        String name = raw.getSimpleName();",
+        "",
+        "        if (\"TemplatesImpl\".equals(name)) { // [databind#1599] ",
+        "            if (raw.getName().startsWith(\"com.sun.org.apache.xalan\")) {",
+        "                throw JsonMappingException.from(ctxt,",
+        "                        String.format(\"Illegal type (%s) to deserialize: prevented for security reasons\",",
+        "                                name));",
+        "            }",
+        "        }",
+        "    }"
+    ],
+    "JacksonDatabind-20": [
+        "import com.fasterxml.jackson.annotation.JsonIgnore;",
+        "    @JsonIgnore // work-around for [databind#815]"
+    ],
+    "JacksonXml-2": [
+        "    protected boolean _mixedText;",
+        "            final boolean startElementNext = _xmlReader.getEventType() == XMLStreamReader.START_ELEMENT;",
+        "            if (startElementNext) {",
+        "                if (text == null || _allWs(text)) {",
+        "                    _mixedText = false;",
+        "                }",
+        "                _mixedText = true;",
+        "                _textValue = text;",
+        "                return (_currentState = XML_TEXT);",
+        "                _mixedText = false;",
+        "            _mixedText = false;",
+        "            if (_mixedText){",
+        "                _mixedText = false;",
+        "                return _initStartElement();",
+        "            }",
+        "    protected boolean _allWs(String str)",
+        "    {",
+        "        final int len = (str == null) ? 0 : str.length();",
+        "        if (len > 0) {",
+        "            for (int i = 0; i < len; ++i) {",
+        "                if (str.charAt(i) > ' ') {",
+        "                    return false;",
+        "                }",
+        "            }",
+        "        }",
+        "        return true;",
+        "    }"
+    ],
+    "Cli-10": [
+        "import java.util.ArrayList;",
+        "        this.requiredOptions = new ArrayList(options.getRequiredOptions());"
+    ],
+    "JacksonDatabind-110": [
+        "    private final static Class<?> CLASS_UNMODIFIABLE_LIST_ALIAS;",
+        "        CLASS_UNMODIFIABLE_LIST_ALIAS = Collections.unmodifiableList(new LinkedList<Object>()).getClass();",
+        "        } else if (type.hasRawClass(CLASS_UNMODIFIABLE_LIST) || type.hasRawClass(CLASS_UNMODIFIABLE_LIST_ALIAS)) {"
+    ],
+    "JacksonDatabind-78": [
+        "    protected final static Set<String> DEFAULT_NO_DESER_CLASS_NAMES;",
+        "    static {",
+        "        Set<String> s = new HashSet<>();",
+        "        s.add(\"org.apache.commons.collections.functors.InvokerTransformer\");",
+        "        s.add(\"org.apache.commons.collections.functors.InstantiateTransformer\");",
+        "        s.add(\"org.apache.commons.collections4.functors.InvokerTransformer\");",
+        "        s.add(\"org.apache.commons.collections4.functors.InstantiateTransformer\");",
+        "        s.add(\"org.codehaus.groovy.runtime.ConvertedClosure\");",
+        "        s.add(\"org.codehaus.groovy.runtime.MethodClosure\");",
+        "        s.add(\"org.springframework.beans.factory.ObjectFactory\");",
+        "        s.add(\"com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesImpl\");",
+        "        DEFAULT_NO_DESER_CLASS_NAMES = Collections.unmodifiableSet(s);",
+        "    }",
+        "    protected Set<String> _cfgIllegalClassNames = DEFAULT_NO_DESER_CLASS_NAMES;",
+        "        checkIllegalTypes(ctxt, type, beanDesc);",
+        "    protected void checkIllegalTypes(DeserializationContext ctxt, JavaType type,",
+        "            BeanDescription beanDesc)",
+        "        throws JsonMappingException",
+        "    {",
+        "        String full = type.getRawClass().getName();",
+        "        if (_cfgIllegalClassNames.contains(full)) {",
+        "            ctxt.reportBadTypeDefinition(beanDesc,",
+        "                    \"Illegal type (%s) to deserialize: prevented for security reasons\", full);",
+        "        }",
+        "    }"
+    ],
+    "Mockito-15": [
+        "import org.mockito.internal.util.reflection.BeanPropertySetter;",
+        "                        if (!new BeanPropertySetter(fieldInstance, field).set(matchingMock)) {",
+        "                        }"
+    ],
+    "JacksonDatabind-43": [
+        "import com.fasterxml.jackson.core.JsonToken;",
+        "        if (p.hasToken(JsonToken.VALUE_NULL)) {",
+        "        Object id = _valueDeserializer.deserialize(p, ctxt);"
+    ],
+    "JacksonDatabind-14": [
+        "            JsonDeserializer<Object> deser = _findTreeDeserializer(ctxt);",
+        "    protected JsonDeserializer<Object> _findTreeDeserializer(DeserializationContext ctxt)",
+        "        throws JsonMappingException",
+        "    {",
+        "        JsonDeserializer<Object> deser = _rootDeserializers.get(JSON_NODE_TYPE);",
+        "        if (deser == null) {",
+        "            deser = ctxt.findRootValueDeserializer(JSON_NODE_TYPE);",
+        "            if (deser == null) { // can this happen?",
+        "                throw new JsonMappingException(\"Can not find a deserializer for type \"+JSON_NODE_TYPE);",
+        "            }",
+        "            _rootDeserializers.put(JSON_NODE_TYPE, deser);",
+        "        }",
+        "        return deser;",
+        "    }"
+    ],
+    "JacksonDatabind-55": [
+        "import com.fasterxml.jackson.databind.util.EnumValues;",
+        "                return EnumKeySerializer.construct(rawKeyType,",
+        "                        EnumValues.constructFromName(config, (Class<Enum<?>>) rawKeyType));",
+        "    public static class EnumKeySerializer extends StdSerializer<Object>",
+        "    {",
+        "        protected final EnumValues _values;",
+        "        protected EnumKeySerializer(Class<?> enumType, EnumValues values) {",
+        "            super(enumType, false);",
+        "            _values = values;",
+        "        }",
+        "        public static EnumKeySerializer construct(Class<?> enumType,",
+        "                EnumValues enumValues)",
+        "        {",
+        "            return new EnumKeySerializer(enumType, enumValues);",
+        "        }",
+        "        @Override",
+        "        public void serialize(Object value, JsonGenerator g, SerializerProvider serializers)",
+        "                throws IOException",
+        "        {",
+        "            if (serializers.isEnabled(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)) {",
+        "                g.writeFieldName(value.toString());",
+        "                return;",
+        "            }",
+        "            Enum<?> en = (Enum<?>) value;",
+        "            g.writeFieldName(_values.serializedValueFor(en));",
+        "        }",
+        "    }"
+    ],
+    "JxPath-20": [
+        "            return containsMatch(left, (Iterator) right);",
+        "    private boolean containsMatch(Object value, Iterator it) {",
+        "        while (it.hasNext()) {",
+        "            Object element = it.next();",
+        "            if (compute(value, element)) {",
+        "                return true;",
+        "            }",
+        "        }",
+        "        return false;",
+        "    }"
+    ],
+    "JacksonDatabind-63": [
+        "                    int arrays = 0;",
+        "                    while (cls.isArray()) {",
+        "                        cls = cls.getComponentType();",
+        "                        ++arrays;",
+        "                    }",
+        "                    sb.append(cls.getName());",
+        "                    while (--arrays >= 0) {",
+        "                        sb.append(\"[]\");",
+        "                    }",
+        "                    /* was:",
+        "                    */"
+    ],
+    "Compress-34": [
+        "    private static final ZipShort ZERO = new ZipShort(0);",
+        "        return ZERO;"
+    ],
+    "Mockito-32": [
+        "import static org.mockito.Mockito.withSettings;",
+        "                        field.set(testClass, Mockito.mock(instance.getClass(), withSettings()",
+        "                                .spiedInstance(instance)",
+        "                                .defaultAnswer(Mockito.CALLS_REAL_METHODS)",
+        "                                .name(field.getName())));"
+    ],
+    "Compress-39": [
+        "    private static final int MAX_SANITIZED_NAME_LENGTH = 255;",
+        "        final char[] cs = s.toCharArray();",
+        "        final char[] chars = cs.length <= MAX_SANITIZED_NAME_LENGTH ? cs : Arrays.copyOf(cs, MAX_SANITIZED_NAME_LENGTH);",
+        "        if (cs.length > MAX_SANITIZED_NAME_LENGTH) {",
+        "            for (int i = MAX_SANITIZED_NAME_LENGTH - 3; i < MAX_SANITIZED_NAME_LENGTH; i++) {",
+        "                chars[i] = '.';",
+        "            }",
+        "        }"
+    ],
+    "Math-61": [
+        "import org.apache.commons.math.exception.NotStrictlyPositiveException;",
+        "            throw new NotStrictlyPositiveException(LocalizedFormats.MEAN, p);"
+    ]
+}

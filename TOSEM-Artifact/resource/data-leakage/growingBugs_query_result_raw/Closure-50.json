@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6891228070175439,
+    "input": "  private Node tryFoldArrayJoin(Node n) {\n    Node callTarget = n.getFirstChild();\n\n    if (callTarget == null || !NodeUtil.isGetProp(callTarget)) {\n      return n;\n    }\n\n    Node right = callTarget.getNext();\n    if (right != null) {\n      if (right.getNext() != null || !NodeUtil.isImmutableValue(right)) {\n        return n;\n      }\n    }\n\n    Node arrayNode = callTarget.getFirstChild();\n    Node functionName = arrayNode.getNext();\n\n    if ((arrayNode.getType() != Token.ARRAYLIT) ||\n        !functionName.getString().equals(\"join\")) {\n      return n;\n    }\n\n    if (right != null && right.getType() == Token.STRING\n        && \",\".equals(right.getString())) {\n      // \",\" is the default, it doesn't need to be explicit\n      n.removeChild(right);\n      reportCodeChange();\n    }\n\n    String joinString = (right == null) ? \",\" : NodeUtil.getStringValue(right);\n    List<Node> arrayFoldedChildren = Lists.newLinkedList();\n    StringBuilder sb = null;\n    int foldedSize = 0;\n    Node prev = null;\n    Node elem = arrayNode.getFirstChild();\n    // Merges adjacent String nodes.\n    while (elem != null) {\n      if (NodeUtil.isImmutableValue(elem) || elem.getType() == Token.EMPTY) {\n        if (sb == null) {\n          sb = new StringBuilder();\n        } else {\n          sb.append(joinString);\n        }\n        sb.append(NodeUtil.getArrayElementStringValue(elem));\n      } else {\n        if (sb != null) {\n          Preconditions.checkNotNull(prev);\n          // + 2 for the quotes.\n          foldedSize += sb.length() + 2;\n          arrayFoldedChildren.add(\n              Node.newString(sb.toString()).copyInformationFrom(prev));\n          sb = null;\n        }\n        foldedSize += InlineCostEstimator.getCost(elem);\n        arrayFoldedChildren.add(elem);\n      }\n      prev = elem;\n      elem = elem.getNext();\n    }\n\n    if (sb != null) {\n      Preconditions.checkNotNull(prev);\n      // + 2 for the quotes.\n      foldedSize += sb.length() + 2;\n      arrayFoldedChildren.add(\n          Node.",
+    "query_result": [
+        "(elem));\n} else {\nif (sb != null) {\nPreconditions.checkNotNull(prev);\n// + 2 for the quotes.\nfoldedSize += sb.length() + 2;\narrayFoldedChildren.add(\nNode.newString(sb.toString()).copyInformationFrom(prev));\nsb = null;\n}\nfoldedSize += InlineCostEstimator.getCost(elem);\narrayFoldedChildren.add(elem);\n}\nprev = elem;\nelem = elem.getNext();\n}\nif (sb != null) {\nPreconditions.checkNotNull(prev);\n// + 2 for the quotes.\nfoldedSize += sb.length() + 2;\narra",
+        "ayFoldedChildren = Lists.newLinkedList();\nStringBuilder sb = null;\nint foldedSize = 0;\nNode prev = null;\nNode elem = arrayNode.getFirstChild();\n// Merges adjacent String nodes.\nwhile (elem != null) {\n",
+        "null) {\nPreconditions.checkNotNull(prev);\n// + 2 for the quotes.\nfoldedSize += sb.length() + 2;\narrayFoldedChildren.add(\nNode.newString(sb.toString())",
+        "ctionName = arrayNode.getNext();\nif ((arrayNode.getType() != Token.ARRAYLIT) ||\n!functionName.getStr",
+        "joinString = (right == null) ? \",\" : NodeUtil.getStringValue(right);\nList<Node> arrayFoldedChildren ",
+        "tring = (right == null) ? \",\" : NodeUtil.getStringValue(right);\nList<Node> arrayFoldedChildren = Lis",
+        "== null) ? \",\" : NodeUtil.getStringValue(right);\nList<Node> arrayFoldedChildren = Lists.newLinkedLis",
+        "checkNotNull(prev);\n// + 2 for the quotes.\nfoldedSize += sb.length() + 2;\narrayFoldedChildren.add(\nN",
+        "ode callTarget = n.getFirstChild();\nif (callTarget",
+        "\nNode right = callTarget.getNext();\nif (right != n",
+        "ght.getNext() != null || !NodeUtil.isImmutableValu",
+        "getNext() != null || !NodeUtil.isImmutableValue(ri",
+        "etNext() != null || !NodeUtil.isImmutableValue(rig",
+        "Next() != null || !NodeUtil.isImmutableValue(right",
+        "ext() != null || !NodeUtil.isImmutableValue(right)",
+        "xt() != null || !NodeUtil.isImmutableValue(right))",
+        "(right != null && right.getType() == Token.STRING\n",
+        "etType() == Token.STRING\n&& \",\".equals(right.getSt",
+        "tType() == Token.STRING\n&& \",\".equals(right.getStr",
+        "\",\".equals(right.getString())) {\n// \",\" is the def"
+    ]
+}

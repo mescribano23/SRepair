@@ -1,0 +1,19 @@
+diff --git a/src/java/org/apache/commons/io/input/SwappedDataInputStream.java b/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
+index 02a540bd..557755da 100644
+--- a/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
++++ b/src/java/org/apache/commons/io/input/SwappedDataInputStream.java
+@@ -53,11 +53,9 @@ public class SwappedDataInputStream extends ProxyInputStream
+      * @throws IOException if an I/O error occurs
+      * @throws EOFException if an end of file is reached unexpectedly
+      */
+-    public boolean readBoolean()
+-        throws IOException, EOFException
+-    {
+-        return ( 0 == readByte() );
+-    }
++public boolean readBoolean() throws IOException, EOFException {
++    return (readByte() != 0);
++}
+ 
+     /**
+      * Invokes the delegate's <code>read()</code> method.

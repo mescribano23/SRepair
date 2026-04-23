@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6204766107678729,
+    "input": "protected AxisState drawLabel(String label, Graphics2D g2, \n        Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge, \n        AxisState state, PlotRenderingInfo plotState) {\n\n    // it is unlikely that 'state' will be null, but check anyway...\n    if (state == null) {\n        throw new IllegalArgumentException(\"Null 'state' argument.\");\n    }\n    \n    if ((label == null) || (label.equals(\"\"))) {\n        return state;\n    }\n\n    Font font = getLabelFont();\n    RectangleInsets insets = getLabelInsets();\n    g2.setFont(font);\n    g2.setPaint(getLabelPaint());\n    FontMetrics fm = g2.getFontMetrics();\n    Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);\n    Shape hotspot = null;\n    \n    if (edge == RectangleEdge.TOP) {\n        AffineTransform t = AffineTransform.getRotateInstance(\n                getLabelAngle(), labelBounds.getCenterX(), \n                labelBounds.getCenterY());\n        Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);\n        labelBounds = rotatedLabelBounds.getBounds2D();\n        float w = (float) labelBounds.getWidth();\n        float h = (float) labelBounds.getHeight();\n        float labelx = (float) dataArea.getCenterX();\n        float labely = (float) (state.getCursor() - insets.getBottom() \n                - h / 2.0);\n        TextUtilities.drawRotatedString(label, g2, labelx, labely, \n                TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);\n        hotspot = new Rectangle2D.Float(labelx ",
+    "query_result": [
+        "bel == null) || (label.equals(\"\"))) {\nreturn state;\n}\nFont font = getLabelFont();\nRectangleInsets insets = getLabelInsets();\ng2.setFont(font);\ng2.setPaint(getLabelPaint());\nFontMetrics fm = g2.getFontMetrics();\nRectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);\nShape hotspot = nul",
+        "ounds.getCenterY());\nShape rotatedLabelBounds = t.createTransformedShape(labelBounds);\nlabelBounds = rotatedLabelBounds.getBounds2D();\nfloat w = (float) labelBounds.getWidth();\nfloat h = (float) labelBounds.getHeight();\nfloat labelx = (float) dataArea.getCenterX();\nfloat labely = (float) (state.getC",
+        "enterY());\nShape rotatedLabelBounds = t.createTransformedShape(labelBounds);\nlabelBounds = rotatedLabelBounds.getBounds2D();\nfloat w = (float) labelBounds.getWidth();\nfloat h = (float) labelBounds.getHeight();\nfloat labelx = (float) dataArea.getCenterX();\nfloat labely = (float) (state.getCursor() - ",
+        ")) {\nreturn state;\n}\nFont font = getLabelFont();\nRectangleInsets insets = getLabelInsets();\ng2.setFont(font);\ng2.setPaint(getLabelPaint());\nFontMetrics fm = g2.getFontMetrics();\nRectangle2D labelBound",
+        "();\nRectangleInsets insets = getLabelInsets();\ng2.setFont(font);\ng2.setPaint(getLabelPaint());\nFontMetrics fm = g2.getFontMetrics();\nRectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm",
+        "rotatedLabelBounds = t.createTransformedShape(labelBounds);\nlabelBounds = rotatedLabelBounds.getBounds2D();\nfloat w = (float) labelBounds.getWidth();\nfloat h = (float) labelBounds.getHeight();\nfloat l",
+        "belBounds = t.createTransformedShape(labelBounds);\nlabelBounds = rotatedLabelBounds.getBounds2D();\nfloat w = (float) labelBounds.getWidth();\nfloat h = (float) labelBounds.getHeight();\nfloat labelx = (",
+        "te drawLabel(String label, Graphics2D g2, \nRectangle2D plotArea, Rectangle2D dataArea, RectangleEdge",
+        "hrow new IllegalArgumentException(\"Null 'state' argument.\");\n}\n\nif ((label == null) || (label.equals",
+        "t());\nFontMetrics fm = g2.getFontMetrics();\nRectangle2D labelBounds = TextUtilities.getTextBounds(la",
+        ".getCenterY());\nShape rotatedLabelBounds = t.createTransformedShape(labelBounds);\nlabelBounds = rota",
+        "rY());\nShape rotatedLabelBounds = t.createTransformedShape(labelBounds);\nlabelBounds = rotatedLabelB",
+        "abelBounds = t.createTransformedShape(labelBounds);\nlabelBounds = rotatedLabelBounds.getBounds2D();\n",
+        "ectangle2D plotArea, Rectangle2D dataArea, Rectang",
+        "tangle2D plotArea, Rectangle2D dataArea, Rectangle",
+        "angle2D plotArea, Rectangle2D dataArea, RectangleE",
+        "ngle2D plotArea, Rectangle2D dataArea, RectangleEd",
+        "gle2D plotArea, Rectangle2D dataArea, RectangleEdg",
+        "e2D plotArea, Rectangle2D dataArea, RectangleEdge ",
+        "2D plotArea, Rectangle2D dataArea, RectangleEdge e"
+    ]
+}

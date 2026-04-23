@@ -1,0 +1,130 @@
+diff --git a/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java b/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java
+index 3adeef666..c597f4129 100644
+--- a/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java
++++ b/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/mvp/PlaceManagerImpl.java
+@@ -1087,77 +1087,66 @@ public class PlaceManagerImpl implements PlaceManager {
+         }
+     }
+ 
+-    private Command getCloseCommand(final PlaceRequest place,
+-                                    final boolean force,
+-                                    final Command onAfterClose) {
+-        return () -> {
++private Command getCloseCommand(final PlaceRequest place,
++                                final boolean force,
++                                final Command onAfterClose) {
++    return () -> {
+ 
+-            final Activity activity = existingWorkbenchActivities.get(place);
+-            if (activity == null) {
+-                return;
+-            }
++        final Activity activity = existingWorkbenchActivities.get(place);
++        if (activity == null) {
++            return;
++        }
+ 
+-            workbenchPartBeforeCloseEvent.fire(new BeforeClosePlaceEvent(place,
+-                                                                         force,
+-                                                                         true));
++        workbenchPartBeforeCloseEvent.fire(new BeforeClosePlaceEvent(place,
++                                                                     force,
++                                                                     true));
+ 
+-            closeSplashScreen(place);
+-            activePopups.remove(place.getIdentifier());
++        closeSplashScreen(place);
++        activePopups.remove(place.getIdentifier());
+ 
+-            if (activity.isType(ActivityResourceType.SCREEN.name()) || activity.isType(ActivityResourceType.EDITOR.name())) {
+-                WorkbenchActivity activity1 = (WorkbenchActivity) activity;
+-                if (force || onMayCloseList.containsKey(place) || activity1.onMayClose()) {
+-                    onMayCloseList.remove(place);
+-                    try {
+-                        activity1.onClose();
+-                    } catch (Exception ex) {
+-                        lifecycleErrorHandler.handle(activity1,
+-                                                     LifecyclePhase.CLOSE,
+-                                                     ex);
+-                    }
+-                } else {
+-                    return;
+-                }
+-            } else if (activity.isType(ActivityResourceType.POPUP.name())) {
+-                PopupActivity activity1 = (PopupActivity) activity;
+-                if (force || activity1.onMayClose()) {
+-                    try {
+-                        activity1.onClose();
+-                    } catch (Exception ex) {
+-                        lifecycleErrorHandler.handle(activity1,
+-                                                     LifecyclePhase.CLOSE,
+-                                                     ex);
+-                    }
++        if (force || onMayCloseList.containsKey(place) || activity instanceof WorkbenchActivity && ((WorkbenchActivity) activity).onMayClose() 
++            || activity instanceof PopupActivity && ((PopupActivity) activity).onMayClose()) {
++            try {
++                if (activity instanceof WorkbenchActivity) {
++                    ((WorkbenchActivity) activity).onClose();
++                } else if (activity instanceof PopupActivity) {
++                    ((PopupActivity) activity).onClose();
+                 } else {
+-                    return;
++                    activity.onClose();
+                 }
++            } catch (Exception ex) {
++                lifecycleErrorHandler.handle(activity,
++                                             LifecyclePhase.CLOSE,
++                                             ex);
+             }
++        } else {
++            return;
++        }
+ 
+-            getPlaceHistoryHandler().registerClose(activity,
+-                                                   place);
+-            workbenchPartCloseEvent.fire(new ClosePlaceEvent(place));
++        onMayCloseList.remove(place);
++        getPlaceHistoryHandler().registerClose(activity,
++                                               place);
++        workbenchPartCloseEvent.fire(new ClosePlaceEvent(place));
+ 
+-            panelManager.removePartForPlace(place);
+-            existingWorkbenchActivities.remove(place);
+-            visibleWorkbenchParts.remove(place);
+-            activityManager.destroyActivity(activity);
++        panelManager.removePartForPlace(place);
++        existingWorkbenchActivities.remove(place);
++        visibleWorkbenchParts.remove(place);
++        activityManager.destroyActivity(activity);
+ 
+-            // currently, we force all custom panels as Static panels, so they can only ever contain the one part we put in them.
+-            // we are responsible for cleaning them up when their place closes.
+-            PanelDefinition customPanelDef = customPanels.remove(place);
+-            if (customPanelDef != null) {
+-                panelManager.removeWorkbenchPanel(customPanelDef);
+-            }
++        PanelDefinition customPanelDef = customPanels.remove(place);
++        if (customPanelDef != null) {
++            panelManager.removeWorkbenchPanel(customPanelDef);
++        }
+ 
+-            if (place instanceof PathPlaceRequest) {
+-                ((PathPlaceRequest) place).getPath().dispose();
+-            }
++        if (place instanceof PathPlaceRequest) {
++            ((PathPlaceRequest) place).getPath().dispose();
++        }
+ 
+-            if (onAfterClose != null) {
+-                onAfterClose.execute();
+-            }
+-        };
+-    }
++        if (onAfterClose != null) {
++            onAfterClose.execute();
++        }
++    };
++}
+ 
+     @Override
+     public boolean canClosePlace(final PlaceRequest place) {

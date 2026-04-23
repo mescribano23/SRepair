@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.24060150375939848,
+    "input": "    public void captureArgumentsFrom(Invocation invocation) {\n        if (invocation.getMethod().isVarArgs()) {\n            int indexOfVararg = invocation.getRawArguments().length - 1;\n            for (int position = 0; position < indexOfVararg; position++) {\n                Matcher m = matchers.get(position);\n                if (m instanceof CapturesArguments) {\n                    ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));\n                }\n            }\n            for (int position = indexOfVararg; position < matchers.size(); position++) {\n                Matcher m = matchers.get(position);\n                if (m instanceof CapturesArguments) {\n                    ((CapturesArguments) m).captureFrom(invocation.getRawArguments()[position - indexOfVararg]);\n                }\n            }\n\n        } else {\n            for (int position = 0; position < matchers.size(); position++) {\n                Matcher m = matchers.get(position);\n                if (m instanceof CapturesArguments) {\n                    ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));\n                }\n            }\n        }\n\n//        for (int position = 0; position < matchers.size(); position++) {\n//            Matcher m = matchers.get(position);\n//            if (m instanceof CapturesArguments && invocation.getRawArguments().length > position) {\n//                //TODO SF - this whole lot can be moved captureFrom implementation\n//                if(isVariableArgument(invocation, position) && isVarargMatcher(m)) {\n//                    Object array = invocation.getRawArguments()[position];\n//                    for (int i = 0; i < Array.getLength(array); i++) {\n//                        ((CapturesArguments) m).captureFrom(Array.get(array, i));\n//                    }\n//                    //since we've captured all varargs already, it does not make sense to process other matchers.\n//                    return;\n/",
+    "query_result": [
+        "\n((CapturesArguments) m).captureFrom(invocation.ge",
+        "rs.size(); position++) {\nMatcher m = matchers.get(",
+        "\n((CapturesArguments) m).captureFrom(invocation.ge",
+        "rs.size(); position++) {\nMatcher m = matchers.get(",
+        "\n((CapturesArguments) m).captureFrom(invocation.ge",
+        "sVariableArgument(invocation, position) && isVarar",
+        "for (int i = 0; i < Array.getLength(array); i++) {",
+        "or (int i = 0; i < Array.getLength(array); i++) {\n"
+    ]
+}

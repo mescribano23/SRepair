@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.7315634218289085,
+    "input": "    public static boolean verifyCheckSum(byte[] header) {\n        long storedSum = parseOctal(header, CHKSUM_OFFSET, CHKSUMLEN);\n        long unsignedSum = 0;\n        long signedSum = 0;\n\n        int digits = 0;\n        for (int i = 0; i < header.length; i++) {\n            byte b = header[i];\n            if (CHKSUM_OFFSET  <= i && i < CHKSUM_OFFSET + CHKSUMLEN) {\n                b = ' ';\n            }\n            unsignedSum += 0xff & b;\n            signedSum += b;\n        }\n        return storedSum == unsignedSum || storedSum == signedSum;\n    }",
+    "query_result": [
+        "byte b = header[i];\nif (CHKSUM_OFFSET <= i && i < CHKSUM_OFFSET + CHKSUMLEN) {\nb = ' ';\n}\nunsignedSum += 0xff & b;\nsignedSum += b;\n}\nreturn storedSum ",
+        "ublic static boolean verifyCheckSum(byte[] header)",
+        "lic static boolean verifyCheckSum(byte[] header) {",
+        "um = parseOctal(header, CHKSUM_OFFSET, CHKSUMLEN);",
+        "ET, CHKSUMLEN);\nlong unsignedSum = 0;\nlong signedS",
+        " b = header[i];\nif (CHKSUM_OFFSET <= i && i < CHKS",
+        "f & b;\nsignedSum += b;\n}\nreturn storedSum == unsig"
+    ]
+}

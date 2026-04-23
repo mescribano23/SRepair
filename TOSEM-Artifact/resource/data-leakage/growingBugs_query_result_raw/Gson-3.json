@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.5265486725663717,
+    "input": "  @Override public void skipValue() throws IOException {\n    if (peek() == JsonToken.NAME) {\n      nextName();\n      pathNames[stackSize - 2] = \"null\";\n    } else {\n      popStack();\n      if (stackSize > 0) {\n        pathNames[stackSize - 1] = \"null\";\n      }\n    }\n    if (stackSize > 0) {\n      pathIndices[stackSize - 1]++;\n    }\n  }",
+    "query_result": [
+        "ride public void skipValue() throws IOException {\n",
+        "s IOException {\nif (peek() == JsonToken.NAME) {\nne",
+        "xception {\nif (peek() == JsonToken.NAME) {\nnextNam",
+        "(stackSize > 0) {\npathIndices[stackSize - 1]++;\n}\n"
+    ]
+}

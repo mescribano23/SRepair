@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.363103953147877,
+    "input": "    public VerboseProcess(final Process prc, final Level stdout,\n        final Level stderr) {\n        if (prc == null) {\n            throw new IllegalArgumentException(\"process can't be NULL\");\n        }\n        if (stdout == null) {\n            throw new IllegalArgumentException(\"stdout LEVEL can't be NULL\");\n        }\n        if (stderr == null) {\n            throw new IllegalArgumentException(\"stderr LEVEL can't be NULL\");\n        }\n        final String format = new StringBuilder(\"%s LEVEL can't be set to ALL \")\n                .append(\"because it is intended only for \")\n                .append(\"internal configuration\")\n                .toString();\n        if (Level.ALL.equals(stdout)) {\n            throw new IllegalArgumentException(\n                String.format(format, \"stdout\")\n            );\n        }\n        if (Level.ALL.equals(stderr)) {\n            throw new IllegalArgumentException(\n                String.format(format, \"stderr\")\n            );\n        }\n        this.process = prc;\n        this.olevel = stdout;\n        this.elevel = stderr;\n    }",
+    "query_result": [
+        "rc == null) {\nthrow new IllegalArgumentException(\"",
+        " == null) {\nthrow new IllegalArgumentException(\"pr",
+        "== null) {\nthrow new IllegalArgumentException(\"pro",
+        "= null) {\nthrow new IllegalArgumentException(\"proc",
+        " null) {\nthrow new IllegalArgumentException(\"proce",
+        "ull) {\nthrow new IllegalArgumentException(\"process",
+        "ll) {\nthrow new IllegalArgumentException(\"process ",
+        " (stdout == null) {\nthrow new IllegalArgumentExcep",
+        "out == null) {\nthrow new IllegalArgumentException(",
+        "ut == null) {\nthrow new IllegalArgumentException(\"",
+        "t == null) {\nthrow new IllegalArgumentException(\"s",
+        " == null) {\nthrow new IllegalArgumentException(\"st",
+        " (stderr == null) {\nthrow new IllegalArgumentExcep",
+        "rr == null) {\nthrow new IllegalArgumentException(\"",
+        "r == null) {\nthrow new IllegalArgumentException(\"s",
+        " == null) {\nthrow new IllegalArgumentException(\"st",
+        "t)) {\nthrow new IllegalArgumentException(\nString.f",
+        ")) {\nthrow new IllegalArgumentException(\nString.fo",
+        ") {\nthrow new IllegalArgumentException(\nString.for",
+        " {\nthrow new IllegalArgumentException(\nString.form"
+    ]
+}

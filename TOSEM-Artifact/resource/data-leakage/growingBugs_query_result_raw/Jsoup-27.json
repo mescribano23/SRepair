@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9817073170731707,
+    "input": "    static String getCharsetFromContentType(String contentType) {\n        if (contentType == null) return null;\n        Matcher m = charsetPattern.matcher(contentType);\n        if (m.find()) {\n            String charset = m.group(1).trim();\n            if (Charset.isSupported(charset)) return charset;\n            charset = charset.toUpperCase(Locale.ENGLISH);\n            if (Charset.isSupported(charset)) return charset;\n        }\n        return null;\n    }",
+    "query_result": [
+        "tring getCharsetFromContentType(String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = m.group(1).trim();\nif (Charset.isSupported(charset)) return charset;\ncharset = charset.toUpperCase(Locale.ENGLISH);\nif (Charset.isSupported(charset)) return charset;\n}\nreturn n",
+        "etCharsetFromContentType(String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = m.group(1).trim();\nif (Charset.isSupported(charset)) return charset;\ncharset = charset.toUpperCase(Locale.ENGLISH);\nif (Charset.isSup",
+        "rsetFromContentType(String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = m.group(1).trim();\nif (Charset.isSupported(charset)) return charset;\ncharset = charset.toUpperCase(Locale.ENGLISH);\nif (Charset.isSupporte",
+        "tatic String getCharsetFromContentType(String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = m.group(1).trim();\n",
+        "c String getCharsetFromContentType(String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.",
+        "entType(String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = ",
+        "(String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = m.group",
+        "String contentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = m.group(",
+        "CharsetFromContentType(String contentType) {\nif (contentType == null) return null;\nMatcher m = chars",
+        "ntentType) {\nif (contentType == null) return null;\nMatcher m = charsetPattern.matcher(contentType);\n",
+        "n null;\nMatcher m = charsetPattern.matcher(contentType);\nif (m.find()) {\nString charset = m.group(1)",
+        "Charset.isSupported(charset)) return charset;\ncharset = charset.toUpperCase(Locale.ENGLISH);\nif (Cha",
+        "upported(charset)) return charset;\ncharset = charset.toUpperCase(Locale.ENGLISH);\nif (Charset.isSupp",
+        "atic String getCharsetFromContentType(String conte",
+        "ic String getCharsetFromContentType(String content",
+        "ring getCharsetFromContentType(String contentType)",
+        "ing getCharsetFromContentType(String contentType) ",
+        "ng getCharsetFromContentType(String contentType) {",
+        "g getCharsetFromContentType(String contentType) {\n",
+        " getCharsetFromContentType(String contentType) {\ni"
+    ]
+}

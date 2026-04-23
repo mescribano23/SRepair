@@ -1,0 +1,161 @@
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+index 80616ef5..4921408d 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectiveAtInjectBinding.java
+@@ -145,85 +145,90 @@ final class ReflectiveAtInjectBinding<T> extends Binding<T> {
+    * @param mustBeInjectable true if the binding must have {@code @Inject}
+    *     annotations.
+    */
+-  public static <T> Binding<T> create(Class<T> type, boolean mustBeInjectable) {
+-    boolean singleton = type.isAnnotationPresent(Singleton.class);
+-    List<String> keys = new ArrayList<String>();
+-
+-    // Lookup the injectable fields and their corresponding keys.
+-    List<Field> injectedFields = new ArrayList<Field>();
+-    for (Class<?> c = type; c != Object.class; c = c.getSuperclass()) {
+-      for (Field field : c.getDeclaredFields()) {
+-        if (!field.isAnnotationPresent(Inject.class) || Modifier.isStatic(field.getModifiers())) {
+-          continue;
+-        }
+-        field.setAccessible(true);
+-        injectedFields.add(field);
+-        keys.add(Keys.get(field.getGenericType(), field.getAnnotations(), field));
+-      }
+-    }
+-
+-    // Look up @Inject-annotated constructors. If there's no @Inject-annotated
+-    // constructor, use a default public constructor if the class has other
+-    // injections. Otherwise treat the class as non-injectable.
+-    Constructor<T> injectedConstructor = null;
+-    for (Constructor<T> constructor : getConstructorsForType(type)) {
+-      if (!constructor.isAnnotationPresent(Inject.class)) {
++public static <T> Binding<T> create(Class<T> type, boolean mustBeInjectable) {
++  boolean singleton = type.isAnnotationPresent(Singleton.class);
++  List<String> keys = new ArrayList<String>();
++
++  // Lookup the injectable fields and their corresponding keys.
++  List<Field> injectedFields = new ArrayList<Field>();
++  for (Class<?> c = type; c != Object.class; c = c.getSuperclass()) {
++    for (Field field : c.getDeclaredFields()) {
++      if (!field.isAnnotationPresent(Inject.class) || Modifier.isStatic(field.getModifiers())) {
+         continue;
+       }
+-      if (injectedConstructor != null) {
+-        throw new IllegalArgumentException("Too many injectable constructors on " + type.getName());
+-      }
+-      injectedConstructor = constructor;
+-    }
+-    if (injectedConstructor == null) {
+-      if (injectedFields.isEmpty() && mustBeInjectable) {
+-        throw new IllegalArgumentException("No injectable members on " + type.getName()
+-            + ". Do you want to add an injectable constructor?");
+-      }
+-      try {
+-        injectedConstructor = type.getDeclaredConstructor();
+-      } catch (NoSuchMethodException ignored) {
++      // Add check to ensure the field is accessible before setting it as accessible.
++      if (!Modifier.isPrivate(field.getModifiers())) {
++        field.setAccessible(true);
++      } else {
++        throw new IllegalStateException("Attempt to access private field: " + field.getName());
+       }
++      injectedFields.add(field);
++      keys.add(Keys.get(field.getGenericType(), field.getAnnotations(), field));
+     }
++  }
+ 
+-    int parameterCount;
+-    String provideKey;
++  // Look up @Inject-annotated constructors. If there's no @Inject-annotated
++  // constructor, use a default public constructor if the class has other
++  // injections. Otherwise treat the class as non-injectable.
++  Constructor<T> injectedConstructor = null;
++  for (Constructor<T> constructor : getConstructorsForType(type)) {
++    if (!constructor.isAnnotationPresent(Inject.class)) {
++      continue;
++    }
+     if (injectedConstructor != null) {
+-
+-      provideKey = Keys.get(type);
+-      injectedConstructor.setAccessible(true);
+-      Type[] types = injectedConstructor.getGenericParameterTypes();
+-      parameterCount = types.length;
+-      if (parameterCount != 0) {
+-        Annotation[][] annotations = injectedConstructor.getParameterAnnotations();
+-        for (int p = 0; p < types.length; p++) {
+-          keys.add(Keys.get(types[p], annotations[p], injectedConstructor));
+-        }
+-      }
+-    } else {
+-      provideKey = null;
+-      parameterCount = 0;
+-      if (singleton) {
+-        throw new IllegalArgumentException(
+-            "No injectable constructor on @Singleton " + type.getName());
+-      }
++      throw new IllegalArgumentException("Too many injectable constructors on " + type.getName());
++    }
++    injectedConstructor = constructor;
++  }
++  if (injectedConstructor == null) {
++    if (injectedFields.isEmpty() && mustBeInjectable) {
++      throw new IllegalArgumentException("No injectable members on " + type.getName()
++          + ". Do you want to add an injectable constructor?");
+     }
++    try {
++      injectedConstructor = type.getDeclaredConstructor();
++    } catch (NoSuchMethodException ignored) {
++    }
++  }
+ 
+-    Class<? super T> supertype = type.getSuperclass();
+-    if (supertype != null) {
+-      if (Keys.isPlatformType(supertype.getName())) {
+-        supertype = null;
+-      } else {
+-        keys.add(Keys.getMembersKey(supertype));
++  int parameterCount;
++  String provideKey;
++  if (injectedConstructor != null) {
++
++    provideKey = Keys.get(type);
++    injectedConstructor.setAccessible(true);
++    Type[] types = injectedConstructor.getGenericParameterTypes();
++    parameterCount = types.length;
++    if (parameterCount != 0) {
++      Annotation[][] annotations = injectedConstructor.getParameterAnnotations();
++      for (int p = 0; p < types.length; p++) {
++        keys.add(Keys.get(types[p], annotations[p], injectedConstructor));
+       }
+     }
++  } else {
++    provideKey = null;
++    parameterCount = 0;
++    if (singleton) {
++      throw new IllegalArgumentException(
++          "No injectable constructor on @Singleton " + type.getName());
++    }
++  }
+ 
+-    String membersKey = Keys.getMembersKey(type);
+-    return new ReflectiveAtInjectBinding<T>(provideKey, membersKey, singleton, type,
+-        injectedFields.toArray(new Field[injectedFields.size()]), injectedConstructor,
+-        parameterCount, supertype, keys.toArray(new String[keys.size()]));
++  Class<? super T> supertype = type.getSuperclass();
++  if (supertype != null) {
++    if (Keys.isPlatformType(supertype.getName())) {
++      supertype = null;
++    } else {
++      keys.add(Keys.getMembersKey(supertype));
++    }
+   }
+ 
++  String membersKey = Keys.getMembersKey(type);
++  return new ReflectiveAtInjectBinding<T>(provideKey, membersKey, singleton, type,
++      injectedFields.toArray(new Field[injectedFields.size()]), injectedConstructor,
++      parameterCount, supertype, keys.toArray(new String[keys.size()]));
++}
++
+   @SuppressWarnings("unchecked") // Class.getDeclaredConstructors is an unsafe API.
+   private static <T> Constructor<T>[] getConstructorsForType(Class<T> type) {
+     return (Constructor<T>[]) type.getDeclaredConstructors();

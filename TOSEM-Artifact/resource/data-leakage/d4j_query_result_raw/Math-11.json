@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.7087719298245614,
+    "input": "public double density(final double[] vals) throws DimensionMismatchException {\n    final int dim = getDimension();\n    if (vals.length != dim) {\n        throw new DimensionMismatchException(vals.length, dim);\n    }\n\n    return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *\n        FastMath.pow(covarianceMatrixDeterminant, -0.5) *\n        getExponentTerm(vals);\n}",
+    "query_result": [
+        "c double density(final double[] vals) throws Dimen",
+        "ouble density(final double[] vals) throws Dimensio",
+        "nsity(final double[] vals) throws DimensionMismatc",
+        "y(final double[] vals) throws DimensionMismatchExc",
+        "al double[] vals) throws DimensionMismatchExceptio",
+        " double[] vals) throws DimensionMismatchException ",
+        "double[] vals) throws DimensionMismatchException {",
+        "als.length != dim) {\nthrow new DimensionMismatchEx",
+        "gth != dim) {\nthrow new DimensionMismatchException",
+        "hrow new DimensionMismatchException(vals.length, d",
+        " -0.5 * dim) *\nFastMath.pow(covarianceMatrixDeterm",
+        "ovarianceMatrixDeterminant, -0.5) *\ngetExponentTer"
+    ]
+}

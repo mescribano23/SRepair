@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8594871794871795,
+    "input": "private Fraction(double value, double epsilon, int maxDenominator, int maxIterations)\n    throws FractionConversionException\n{\n    long overflow = Integer.MAX_VALUE;\n    double r0 = value;\n    long a0 = (long)FastMath.floor(r0);\n    if (FastMath.abs(a0) > overflow) {\n        throw new FractionConversionException(value, a0, 1l);\n    }\n\n    // check for (almost) integer arguments, which should not go\n    // to iterations.\n    if (FastMath.abs(a0 - value) < epsilon) {\n        this.numerator = (int) a0;\n        this.denominator = 1;\n        return;\n    }\n\n    long p0 = 1;\n    long q0 = 0;\n    long p1 = a0;\n    long q1 = 1;\n\n    long p2 = 0;\n    long q2 = 1;\n\n    int n = 0;\n    boolean stop = false;\n    do {\n        ++n;\n        double r1 = 1.0 / (r0 - a0);\n        long a1 = (long)FastMath.floor(r1);\n        p2 = (a1 * p1) + p0;\n        q2 = (a1 * q1) + q0;\n        if ((FastMath.abs(p2) > overflow) || (FastMath.abs(q2) > overflow)) {\n            throw new FractionConversionException(value, p2, q2);\n        }\n\n        double convergent = (double)p2 / (double)q2;\n        if (n < maxIterations && FastMath.abs(convergent - value) > epsilon && q2 < maxDenominator) {\n            p0 = p1;\n            p1 = p2;\n            q0 = q1;\n            q1 = q2;\n            a0 = a1;\n            r0 = r1;\n        } else {\n            stop = true;\n        }\n    } while (!stop);\n\n    if (n >= maxIterations) {\n        throw new FractionConversionException(value, maxIterations);\n    }\n\n    if (q2 < maxDen",
+    "query_result": [
+        " - value) < epsilon) {\nthis.numerator = (int) a0;\nthis.denominator = 1;\nreturn;\n}\nlong p0 = 1;\nlong q0 = 0;\nlong p1 = a0;\nlong q1 = 1;\nlong p2 = 0;\nlong q2 = 1;\nint n = 0;\nboolean stop = false;\ndo {\n+",
+        "lue) > epsilon && q2 < maxDenominator) {\np0 = p1;\np1 = p2;\nq0 = q1;\nq1 = q2;\na0 = a1;\nr0 = r1;\n} else {\nstop = true;\n}\n} while (!stop);\nif (n >= maxIterations) {\nthrow new FractionConversionException(",
+        " double epsilon, int maxDenominator, int maxIterations)\nthrows FractionConversionException\n{\nlong overflow = Integer.MAX_VALUE;\ndouble r0 = value;\nlon",
+        "(value, p2, q2);\n}\ndouble convergent = (double)p2 / (double)q2;\nif (n < maxIterations && FastMath.abs(convergent - value) > epsilon && q2 < maxDenomin",
+        "double epsilon, int maxDenominator, int maxIterations)\nthrows FractionConversionException\n{\nlong ove",
+        "uble r0 = value;\nlong a0 = (long)FastMath.floor(r0);\nif (FastMath.abs(a0) > overflow) {\nthrow new Fr",
+        "throw new FractionConversionException(value, a0, 1l);\n}\n// check for (almost) integer arguments, whi",
+        "p1 = a0;\nlong q1 = 1;\nlong p2 = 0;\nlong q2 = 1;\nint n = 0;\nboolean stop = false;\ndo {\n++n;\ndouble r1",
+        "ong)FastMath.floor(r1);\np2 = (a1 * p1) + p0;\nq2 = (a1 * q1) + q0;\nif ((FastMath.abs(p2) > overflow) ",
+        "rgent - value) > epsilon && q2 < maxDenominator) {\np0 = p1;\np1 = p2;\nq0 = q1;\nq1 = q2;\na0 = a1;\nr0 =",
+        "axDenominator) {\np0 = p1;\np1 = p2;\nq0 = q1;\nq1 = q2;\na0 = a1;\nr0 = r1;\n} else {\nstop = true;\n}\n} whi",
+        " p1;\np1 = p2;\nq0 = q1;\nq1 = q2;\na0 = a1;\nr0 = r1;\n} else {\nstop = true;\n}\n} while (!stop);\nif (n >= ",
+        " (n >= maxIterations) {\nthrow new FractionConversionException(value, maxIterations);\n}\nif (q2 < maxD",
+        "rivate Fraction(double value, double epsilon, int ",
+        "te Fraction(double value, double epsilon, int maxD",
+        " Fraction(double value, double epsilon, int maxDen",
+        "ion(double value, double epsilon, int maxDenominat",
+        "ouble value, double epsilon, int maxDenominator, i",
+        "lue, double epsilon, int maxDenominator, int maxIt",
+        "le epsilon, int maxDenominator, int maxIterations)"
+    ]
+}

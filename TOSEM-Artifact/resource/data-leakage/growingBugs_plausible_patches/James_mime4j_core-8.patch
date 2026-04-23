@@ -1,0 +1,41 @@
+diff --git a/core/src/main/java/org/apache/james/mime4j/codec/EncoderUtil.java b/core/src/main/java/org/apache/james/mime4j/codec/EncoderUtil.java
+index f29a04f7..ef1f5a61 100644
+--- a/core/src/main/java/org/apache/james/mime4j/codec/EncoderUtil.java
++++ b/core/src/main/java/org/apache/james/mime4j/codec/EncoderUtil.java
+@@ -566,12 +566,13 @@ public class EncoderUtil {
+         if (totalLength <= ENCODED_WORD_MAX_LENGTH - usedCharacters) {
+             return prefix + encodeQ(bytes, usage) + ENC_WORD_SUFFIX;
+         } else {
+-            String part1 = text.substring(0, text.length() / 2);
++            int splitIndex = findSplitIndex(text, charset);
++            String part1 = text.substring(0, splitIndex);
+             byte[] bytes1 = encode(part1, charset);
+             String word1 = encodeQ(prefix, part1, usage, usedCharacters,
+                     charset, bytes1);
+ 
+-            String part2 = text.substring(text.length() / 2);
++            String part2 = text.substring(splitIndex);
+             byte[] bytes2 = encode(part2, charset);
+             String word2 = encodeQ(prefix, part2, usage, 0, charset, bytes2);
+ 
+@@ -579,6 +580,20 @@ public class EncoderUtil {
+         }
+     }
+ 
++    private static int findSplitIndex(String text, Charset charset) {
++        int splitIndex = text.length() / 2;
++        while (splitIndex > 0 && !isValidSplitPoint(text, splitIndex, charset)) {
++            splitIndex--;
++        }
++        return splitIndex;
++    }
++
++    private static boolean isValidSplitPoint(String text, int index, Charset charset) {
++        byte[] bytes1 = encode(text.substring(0, index), charset);
++        byte[] bytes2 = encode(text.substring(index), charset);
++        return (bytes1.length + bytes2.length) == encode(text, charset).length;
++    }
++
+     private static int qEncodedLength(byte[] bytes, Usage usage) {
+         BitSet qChars = usage == Usage.TEXT_TOKEN ? Q_REGULAR_CHARS
+                 : Q_RESTRICTED_CHARS;

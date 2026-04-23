@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9090157154673284,
+    "input": "public boolean isValidInet6Address(String inet6Address) {\n        boolean containsCompressedZeroes = inet6Address.contains(\"::\");\n        if (containsCompressedZeroes && (inet6Address.indexOf(\"::\") != inet6Address.lastIndexOf(\"::\"))) {\n            return false;\n        }\n        if ((inet6Address.startsWith(\":\") && !inet6Address.startsWith(\"::\"))\n                || (inet6Address.endsWith(\":\") && !inet6Address.endsWith(\"::\"))) {\n            return false;\n        }\n        String[] octets = inet6Address.split(\":\");\n        if (containsCompressedZeroes) {\n            List<String> octetList = new ArrayList<String>(Arrays.asList(octets));\n            if (inet6Address.endsWith(\"::\")) {\n                // String.split() drops ending empty segments\n                octetList.add(\"\");\n            } else if (inet6Address.startsWith(\"::\") && !octetList.isEmpty()) {\n                octetList.remove(0);\n            }\n            octets = octetList.toArray(new String[octetList.size()]);\n        }\n        if (octets.length > IPV6_MAX_HEX_GROUPS) {\n            return false;\n        }\n        int validOctets = 0;\n        int emptyOctets = 0; // consecutive empty chunks\n        for (int index = 0; index < octets.length; index++) {\n            String octet = octets[index];\n            if (octet.length() == 0) {\n                emptyOctets++;\n                if (emptyOctets > 1) {\n                    return false;\n                }\n            } else {\n                emptyOctets = 0;\n                // Is last chunk an IPv4 address?\n                if (index == octets.length - 1 && octet.contains(\".\")) {\n                    if (!isValidInet4Address(octet)) {\n                        return false;\n                    }\n                    validOctets += 2;\n                    continue;\n                }\n                if (octet.length() > IPV6_MAX_HEX_DIGITS_PER_GROUP) {\n                    return false;\n                }\n                int octetInt = 0;\n                try {\n         ",
+    "query_result": [
+        "blic boolean isValidInet6Address(String inet6Address) {\nboolean containsCompressedZeroes = inet6Address.contains(\"::\");\nif (containsCompressedZeroes && (inet6Address.indexOf(\"::\") != inet6Address.lastIndexOf(\"::\"))) {\nreturn false;\n}\nif ((inet6Address.startsWith(\":\") && !inet6Address.startsWith(\"::\"))\n|| (inet6Address.endsWith(\":\") && !inet6Address.endsWith(\"::\"))) {\nreturn false;\n}\nString[] octets = inet6Address.split(\":\");\nif (containsCompressedZeroes) {\nList<String> octetList = new ArrayList<String>(Arrays.asList(octets));\nif (inet6Address.endsWith(\"::\")) {\n// String.split() drops ending empty segments\noctetList.add(\"\");\n} else if (inet6Address.startsWith(\"::\") && !octetList.isEmpty()) {\noctetList.remove(0);\n}\noctets = octetList.toArray(new String[octetList.size()]);\n}\nif (octets.length",
+        "\nreturn false;\n}\nint validOctets = 0;\nint emptyOctets = 0; // consecutive empty chunks\nfor (int index = 0; index < octets.length; index++) {\nString oc",
+        "Zeroes = inet6Address.contains(\"::\");\nif (containsCompressedZeroes && (inet6Address.indexOf(\"::\") !=",
+        "}\nif ((inet6Address.startsWith(\":\") && !inet6Address.startsWith(\"::\"))\n|| (inet6Address.endsWith(\":\"",
+        "(Arrays.asList(octets));\nif (inet6Address.endsWith(\"::\")) {\n// String.split() drops ending empty seg",
+        "tsWith(\"::\") && !octetList.isEmpty()) {\noctetList.remove(0);\n}\noctets = octetList.toArray(new String",
+        "[index];\nif (octet.length() == 0) {\nemptyOctets++;\nif (emptyOctets > 1) {\nreturn false;\n}\n} else {\ne",
+        "emptyOctets++;\nif (emptyOctets > 1) {\nreturn false;\n}\n} else {\nemptyOctets = 0;\n// Is last chunk an ",
+        "else {\nemptyOctets = 0;\n// Is last chunk an IPv4 address?\nif (index == octets.length - 1 && octet.co",
+        "\n}\nvalidOctets += 2;\ncontinue;\n}\nif (octet.length() > IPV6_MAX_HEX_DIGITS_PER_GROUP) {\nreturn false;",
+        "t6Address) {\nboolean containsCompressedZeroes = in",
+        ");\nif (containsCompressedZeroes && (inet6Address.i",
+        "et6Address.startsWith(\":\") && !inet6Address.starts",
+        "endsWith(\"::\"))) {\nreturn false;\n}\nString[] octets",
+        ";\n}\nString[] octets = inet6Address.split(\":\");\nif ",
+        "it(\":\");\nif (containsCompressedZeroes) {\nList<Stri",
+        "t = new ArrayList<String>(Arrays.asList(octets));\n",
+        "ing.split() drops ending empty segments\noctetList.",
+        "() drops ending empty segments\noctetList.add(\"\");\n",
+        "ss.startsWith(\"::\") && !octetList.isEmpty()) {\noct"
+    ]
+}

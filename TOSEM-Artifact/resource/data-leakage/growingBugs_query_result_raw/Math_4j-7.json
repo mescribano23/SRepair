@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.48931297709923666,
+    "input": "    protected double acceptStep(final AbstractStepInterpolator interpolator,\n                                final double[] y, final double[] yDot, final double tEnd)\n        throws MaxCountExceededException, DimensionMismatchException, NoBracketingException {\n\n            double previousT = interpolator.getGlobalPreviousTime();\n            final double currentT = interpolator.getGlobalCurrentTime();\n\n            // initialize the events states if needed\n            if (! statesInitialized) {\n                for (EventState state : eventsStates) {\n                    state.reinitializeBegin(interpolator);\n                }\n                statesInitialized = true;\n            }\n\n            // search for next events that may occur during the step\n            final int orderingSign = interpolator.isForward() ? +1 : -1;\n            SortedSet<EventState> occuringEvents = new TreeSet<EventState>(new Comparator<EventState>() {\n\n                /** {@inheritDoc} */\n                public int compare(EventState es0, EventState es1) {\n                    return orderingSign * Double.compare(es0.getEventTime(), es1.getEventTime());\n                }\n\n            });\n\n            for (final EventState state : eventsStates) {\n                if (state.evaluateStep(interpolator)) {\n                    // the event occurs during the current step\n                    occuringEvents.add(state);\n                }\n            }\n\n            while (!occuringEvents.isEmpty()) {\n\n                // handle the chronologically first event\n                final Iterator<EventState> iterator = occuringEvents.iterator();\n                final EventState currentEvent = iterator.next();\n                iterator.remove();\n\n                // restrict the interpolator to the first part of the step, up to the event\n                final double eventT = currentEvent.getEventTime();\n                interpolator.setSoftPreviousTime(previousT);\n                interpolator.setSoftCurrentTime(eventT);",
+    "query_result": [
+        "atesInitialized) {\nfor (EventState state : eventsStates) {\nstate.reinitializeBegin(interpolator);\n}\nstatesInitialized = true;\n}\n// search for next events that may occur during the step\nfinal int order",
+        "mensionMismatchException, NoBracketingException {\ndouble previousT = interpolator.getGlobalPreviousTime();\nfinal double currentT = interpolator.getGlo",
+        "ouble[] y, final double[] yDot, final double tEnd)\nthrows MaxCountExceededException, DimensionMismat",
+        "eviousT = interpolator.getGlobalPreviousTime();\nfinal double currentT = interpolator.getGlobalCurren",
+        "sT = interpolator.getGlobalPreviousTime();\nfinal double currentT = interpolator.getGlobalCurrentTime",
+        "sInitialized = true;\n}\n// search for next events that may occur during the step\nfinal int orderingSi",
+        " state : eventsStates) {\nif (state.evaluateStep(interpolator)) {\n// the event occurs during the curr",
+        "currentEvent.getEventTime();\ninterpolator.setSoftPreviousTime(previousT);\ninterpolator.setSoftCurren",
+        "protected double acceptStep(final AbstractStepInte",
+        "l double[] y, final double[] yDot, final double tE",
+        "throws MaxCountExceededException, DimensionMismatc",
+        "hrows MaxCountExceededException, DimensionMismatch",
+        "rows MaxCountExceededException, DimensionMismatchE",
+        "ows MaxCountExceededException, DimensionMismatchEx",
+        "ws MaxCountExceededException, DimensionMismatchExc",
+        "s MaxCountExceededException, DimensionMismatchExce",
+        " MaxCountExceededException, DimensionMismatchExcep",
+        "MaxCountExceededException, DimensionMismatchExcept",
+        "axCountExceededException, DimensionMismatchExcepti",
+        "xCountExceededException, DimensionMismatchExceptio"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.126232741617357,
+    "input": "    public List<Object> getIntentsFromService(Object serviceBean) {\n        List<Object> intents = new ArrayList<>();\n        if (serviceBean instanceof IntentsProvider) {\n            intents.addAll(((IntentsProvider)serviceBean).getIntents());\n        }\n        Features features = serviceBean.getClass().getAnnotation(Features.class);\n        if (features != null && features.classes() != null) {\n            for (Class<?> clazz : features.classes()) {\n                try {\n                    intents.add(clazz.newInstance());\n                } catch (Exception e) {\n                    throw new RuntimeException(\"Could not instantiate feature from class \" + clazz.getName(), e);\n                }\n            }\n        }\n        return intents;\n    }",
+    "query_result": [
+        "clazz.newInstance());\n} catch (Exception e) {\nthro",
+        "z.newInstance());\n} catch (Exception e) {\nthrow ne",
+        ".newInstance());\n} catch (Exception e) {\nthrow new",
+        "newInstance());\n} catch (Exception e) {\nthrow new ",
+        "ewInstance());\n} catch (Exception e) {\nthrow new R",
+        "wInstance());\n} catch (Exception e) {\nthrow new Ru",
+        "Instance());\n} catch (Exception e) {\nthrow new Run",
+        "nstance());\n} catch (Exception e) {\nthrow new Runt",
+        "stance());\n} catch (Exception e) {\nthrow new Runti",
+        "tance());\n} catch (Exception e) {\nthrow new Runtim",
+        "ance());\n} catch (Exception e) {\nthrow new Runtime",
+        "nce());\n} catch (Exception e) {\nthrow new RuntimeE",
+        "ce());\n} catch (Exception e) {\nthrow new RuntimeEx",
+        "e());\n} catch (Exception e) {\nthrow new RuntimeExc",
+        "());\n} catch (Exception e) {\nthrow new RuntimeExce",
+        "));\n} catch (Exception e) {\nthrow new RuntimeExcep",
+        ");\n} catch (Exception e) {\nthrow new RuntimeExcept",
+        ";\n} catch (Exception e) {\nthrow new RuntimeExcepti",
+        "\n} catch (Exception e) {\nthrow new RuntimeExceptio",
+        "} catch (Exception e) {\nthrow new RuntimeException"
+    ]
+}

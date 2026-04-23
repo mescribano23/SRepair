@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9223529411764706,
+    "input": "public Date read(JsonReader in) throws IOException {\n  if (in.peek() == JsonToken.NULL) {\n    in.nextNull();\n    return null;\n  }\n  Date date = deserializeToDate(in.nextString());\n  if (dateType == Date.class) {\n    return date;\n  } else if (dateType == Timestamp.class) {\n    return new Timestamp(date.getTime());\n  } else if (dateType == java.sql.Date.class) {\n    return new java.sql.Date(date.getTime());\n  } else {\n    // This must never happen: dateType is guarded in the primary constructor\n    throw new AssertionError();\n  }\n}",
+    "query_result": [
+        "lic Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null;\n}\nDate date = deserializeToDate(in.nextString());\nif (dateType == Date.class) {\nreturn date;\n} else if (dateType == Timestamp.class) {\nreturn new Timestamp(date.getTime());\n} else if (dateType == java.sql.Date.class) {\nreturn new java.sql.Date(date.getTime());\n} else {\n// This must never happen: dateType is guarded in the primary const",
+        "public Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull(",
+        "ublic Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull()",
+        "blic Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();",
+        "ic Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nr",
+        "c Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nre",
+        " Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nret",
+        "Date read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nretu",
+        "te read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn",
+        "e read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn ",
+        " read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn n",
+        "read(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn nu",
+        "ead(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn nul",
+        "ad(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null",
+        "d(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null;",
+        "(JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null;\n",
+        "JsonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null;\n}",
+        "sonReader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null;\n}\n",
+        "ader in) throws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null;\n}\nDate ",
+        "ws IOException {\nif (in.peek() == JsonToken.NULL) {\nin.nextNull();\nreturn null;\n}\nDate date = deseri"
+    ]
+}

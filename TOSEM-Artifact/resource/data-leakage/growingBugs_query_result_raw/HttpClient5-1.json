@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9952076677316294,
+    "input": "    static List<SubjectName> getSubjectAltNames(final X509Certificate cert) {\n        try {\n            final Collection<List<?>> entries = cert.getSubjectAlternativeNames();\n            if (entries == null) {\n                return Collections.emptyList();\n            }\n            final List<SubjectName> result = new ArrayList<>();\n            for (final List<?> entry : entries) {\n                final Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : null;\n                if (type != null) {\n                    if (type == SubjectName.DNS || type == SubjectName.IP) {\n                        final Object o = entry.get(1);\n                        if (o instanceof String) {\n                            result.add(new SubjectName((String) o, type));\n                        } else if (o instanceof byte[]) {\n                            // TODO ASN.1 DER encoded form\n                        }\n                    }\n                }\n            }\n            return result;\n        } catch (final CertificateParsingException ignore) {\n            return Collections.emptyList();\n        }\n    }",
+    "query_result": [
+        "ectAltNames(final X509Certificate cert) {\ntry {\nfinal Collection<List<?>> entries = cert.getSubjectAlternativeNames();\nif (entries == null) {\nreturn Collections.emptyList();\n}\nfinal List<SubjectName> result = new ArrayList<>();\nfor (final List<?> entry : entries) {\nfinal Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : null;\nif (type != null) {\nif (type == SubjectName.DNS || type == SubjectName.IP) {\nfinal Object o = entry.get(1);\nif (o instanceof String) {\nresult.add(new SubjectName((String) o, type));\n} else if (o instanceof byte[]",
+        "entry : entries) {\nfinal Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : null;\nif (type != null) {\nif (type == SubjectName.DNS || type == SubjectName.IP) {\nfinal Object o = entry.get(1);\nif (o instanceof String) {\nresult.add(new SubjectName((String) o, type));\n} else if (o instanceof byte[]) {\n// TODO ASN.1 DER encoded form\n}\n}\n}\n}\nreturn result;\n} catch (final CertificateParsingExcept",
+        "= entry.size() >= 2 ? (Integer) entry.get(0) : null;\nif (type != null) {\nif (type == SubjectName.DNS || type == SubjectName.IP) {\nfinal Object o = entry.get(1);\nif (o instanceof String) {\nresult.add(new SubjectName((String) o, type));\n} else if (o instanceof byte[]) {\n// TODO ASN.1 DER encoded form\n}\n}\n}\n}\nreturn result;\n} catch (final CertificateParsingException ignore) {\nreturn Collections.empty",
+        "static List<SubjectName> getSubjectAltNames(final X509Certificate cert) {\ntry {\nfinal Collection<List<?>> entries = cert.getSubjectAlternativeNames();\nif (entries == null) {\nreturn Collections.emptyList();\n}\nfinal List<SubjectName> result = new Array",
+        "<SubjectName> getSubjectAltNames(final X509Certificate cert) {\ntry {\nfinal Collection<List<?>> entries = cert.getSubjectAlternativeNames();\nif (entries == null) {\nreturn Collections.emptyList();\n}\nfinal List<SubjectName> result = new ArrayList<>();\nf",
+        "ame> getSubjectAltNames(final X509Certificate cert) {\ntry {\nfinal Collection<List<?>> entries = cert.getSubjectAlternativeNames();\nif (entries == null) {\nreturn Collections.emptyList();\n}\nfinal List<S",
+        "getSubjectAltNames(final X509Certificate cert) {\ntry {\nfinal Collection<List<?>> entries = cert.getSubjectAlternativeNames();\nif (entries == null) {\nreturn Collections.emptyList();\n}\nfinal List<Subjec",
+        "mes(final X509Certificate cert) {\ntry {\nfinal Collection<List<?>> entries = cert.getSubjectAlternativeNames();\nif (entries == null) {\nreturn Collections.emptyList();\n}\nfinal List<SubjectName> result =",
+        "e = entry.size() >= 2 ? (Integer) entry.get(0) : null;\nif (type != null) {\nif (type == SubjectName.DNS || type == SubjectName.IP) {\nfinal Object o = entry.get(1);\nif (o instanceof String) {\nresult.add",
+        "\nfinal Object o = entry.get(1);\nif (o instanceof String) {\nresult.add(new SubjectName((String) o, type));\n} else if (o instanceof byte[]) {\n// TODO AS",
+        "ist<?>> entries = cert.getSubjectAlternativeNames();\nif (entries == null) {\nreturn Collections.empty",
+        "(final List<?> entry : entries) {\nfinal Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : ",
+        "tries) {\nfinal Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : null;\nif (type != null) {",
+        "}\nreturn result;\n} catch (final CertificateParsingException ignore) {\nreturn Collections.emptyList()",
+        "c List<SubjectName> getSubjectAltNames(final X509C",
+        ";\nif (entries == null) {\nreturn Collections.emptyL",
+        "entries == null) {\nreturn Collections.emptyList();",
+        "ntries == null) {\nreturn Collections.emptyList();\n",
+        "ries == null) {\nreturn Collections.emptyList();\n}\n",
+        "ies == null) {\nreturn Collections.emptyList();\n}\nf"
+    ]
+}

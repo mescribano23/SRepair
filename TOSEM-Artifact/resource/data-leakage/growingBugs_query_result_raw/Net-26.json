@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.5,
+    "input": "        public boolean isInRange(int address) {\n            if (address == 0) { // cannot ever be in range; rejecting now avoids problems with CIDR/31,32\n                return false;\n            }\n            long addLong = address & UNSIGNED_INT_MASK;\n            long lowLong = low() & UNSIGNED_INT_MASK;\n            long highLong = high() & UNSIGNED_INT_MASK;\n            return addLong >= lowLong && addLong <= highLong;\n        }",
+    "query_result": [
+        "= address & UNSIGNED_INT_MASK;\nlong lowLong = low() & UNSIGNED_INT_MASK;\nlong highLong = high() & UNSIGNED_INT_MASK;\nreturn addLong >= lowLong && addL",
+        "NSIGNED_INT_MASK;\nlong lowLong = low() & UNSIGNED_INT_MASK;\nlong highLong = high() & UNSIGNED_INT_MASK;\nreturn addLong >= lowLong && addLong <= highLo"
+    ]
+}

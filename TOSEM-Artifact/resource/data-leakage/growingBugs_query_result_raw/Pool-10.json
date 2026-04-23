@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5972073039742213,
+    "input": "    private PooledObject<T> create(K key) throws Exception {\n        int maxTotalPerKeySave = getMaxTotalPerKey(); // Per key\n        int maxTotal = getMaxTotal();   // All keys\n\n        // Check against the overall limit\n        boolean loop = true;\n\n        while (loop) {\n            int newNumTotal = numTotal.incrementAndGet();\n            if (maxTotal > -1 && newNumTotal > maxTotal) {\n                numTotal.decrementAndGet();\n                if (getNumIdle() == 0) {\n                    return null;\n                } else {\n                    clearOldest();\n                }\n            } else {\n                loop = false;\n            }\n        }\n\n        ObjectDeque<T> objectDeque = poolMap.get(key);\n        long newCreateCount = objectDeque.getCreateCount().incrementAndGet();\n\n        // Check against the per key limit\n        if (maxTotalPerKeySave > -1 && newCreateCount > maxTotalPerKeySave ||\n                newCreateCount > Integer.MAX_VALUE) {\n            numTotal.decrementAndGet();\n            objectDeque.getCreateCount().decrementAndGet();\n            return null;\n        }\n\n\n        PooledObject<T> p = null;\n        try {\n            p = factory.makeObject(key);\n        } catch (Exception e) {\n            numTotal.decrementAndGet();\n            objectDeque.getCreateCount().decrementAndGet();\n            throw e;\n        }\n\n        createdCount.incrementAndGet();\n        objectDeque.getAllObjects().put(p.getObject(), p);\n        return p;\n    }",
+    "query_result": [
+        "otal = numTotal.incrementAndGet(); if (maxTotal > -1 && newNumTotal > maxTotal) { numTotal.decrement",
+        "tal.incrementAndGet(); if (maxTotal > -1 && newNumTotal > maxTotal) { numTotal.decrementAndGet(); if",
+        "reateCount = objectDeque.getCreateCount().incrementAndGet(); // Check against the per key limit if (",
+        "} catch (Exception e) { numTotal.decrementAndGet(); objectDeque.getCreateCount().decrementAndGet();",
+        "ecrementAndGet(); objectDeque.getCreateCount().decrementAndGet(); throw e; } createdCount.incrementA",
+        "throws Exception { int maxTotalPerKeySave = getMa",
+        "{ int maxTotalPerKeySave = getMaxTotalPerKey(); //",
+        "// Check against the overall limit boolean loop =",
+        "ateCount = objectDeque.getCreateCount().incrementA",
+        "ount = objectDeque.getCreateCount().incrementAndGe",
+        "limit if (maxTotalPerKeySave > -1 && newCreateCou",
+        "TotalPerKeySave > -1 && newCreateCount > maxTotalP",
+        "Save > -1 && newCreateCount > maxTotalPerKeySave |",
+        "{ numTotal.decrementAndGet(); objectDeque.getCrea",
+        "Total.decrementAndGet(); objectDeque.getCreateCoun",
+        "ecrementAndGet(); objectDeque.getCreateCount().dec",
+        "t(); objectDeque.getCreateCount().decrementAndGet(",
+        "; objectDeque.getCreateCount().decrementAndGet();",
+        "ctDeque.getCreateCount().decrementAndGet(); return",
+        ".getCreateCount().decrementAndGet(); return null;"
+    ]
+}

@@ -1,0 +1,47 @@
+diff --git a/src/main/java/com/fasterxml/jackson/annotation/JsonInclude.java b/src/main/java/com/fasterxml/jackson/annotation/JsonInclude.java
+index 941eeec..698f769 100644
+--- a/src/main/java/com/fasterxml/jackson/annotation/JsonInclude.java
++++ b/src/main/java/com/fasterxml/jackson/annotation/JsonInclude.java
+@@ -235,24 +235,27 @@ public @interface JsonInclude
+          * settings of this value instance. If no overrides exist will return <code>this</code>
+          * instance; otherwise new {@link Value} with changed inclusion values.
+          */
+-        public Value withOverrides(Value overrides) {
+-            if ((overrides == null) || (overrides == EMPTY)) {
+-                return this;
+-            }
+-            Include vi = overrides._valueInclusion;
+-            Include ci = overrides._contentInclusion;
++public Value withOverrides(Value overrides) {
++    if ((overrides == null) || (overrides == EMPTY)) {
++        return this;
++    }
++    Include vi = overrides._valueInclusion;
++    Include ci = overrides._contentInclusion;
+ 
+-            boolean viDiff = (vi != _valueInclusion) && (vi != Include.USE_DEFAULTS);
+-            boolean ciDiff = (ci != _valueInclusion) && (ci != Include.USE_DEFAULTS);
++    boolean viDiff = (vi != _valueInclusion) && (vi != Include.USE_DEFAULTS);
++    boolean ciDiff = (ci != _contentInclusion) && (ci != Include.USE_DEFAULTS);
+ 
+-            if (viDiff) {
+-                if (ciDiff) {
+-                    return new Value(vi, ci);
+-                }
+-                return new Value(vi, _contentInclusion);
+-            }
+-            return this;
++    if (viDiff) {
++        if (ciDiff) {
++            return new Value(vi, ci);
+         }
++        return new Value(vi, _contentInclusion);
++    }
++    if (ciDiff) {  // Handle cases where only content inclusion differs
++        return new Value(_valueInclusion, ci);
++    }
++    return this;
++}
+ 
+         /**
+          * Factory method to use for constructing an instance for components

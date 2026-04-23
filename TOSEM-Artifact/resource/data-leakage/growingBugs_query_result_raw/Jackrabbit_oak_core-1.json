@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    boolean includes(@Nonnull Revision r) {\n        return high.getClusterId() == r.getClusterId()\n                && high.compareRevisionTime(r) >= 0\n                && low.compareRevisionTime(r) <= 0;\n    }",
+    "query_result": []
+}

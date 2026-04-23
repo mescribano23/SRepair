@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.7928388746803069,
+    "input": "public char[] getTextBuffer()\n{\n    // Are we just using shared input buffer?\n    if (_inputStart >= 0) return _inputBuffer;\n    if (_resultArray != null)  return _resultArray;\n    if (_resultString != null) {\n        return (_resultArray = _resultString.toCharArray());\n    }\n    // Nope; but does it fit in just one segment?\n    if (!_hasSegments && _currentSegment != null)  return _currentSegment;\n    // Nope, need to have/create a non-segmented array and return it\n    return contentsAsArray();\n}",
+    "query_result": [
+        "TextBuffer()\n{\n// Are we just using shared input buffer?\nif (_inputStart >= 0) return _inputBuffer;\nif (_resultArray != null) return _resultArray;\nif (_resultString != null) {\nreturn (_resultArray = _resultString.toCharArray());\n}\n// Nope; but does i",
+        "ing shared input buffer?\nif (_inputStart >= 0) return _inputBuffer;\nif (_resultArray != null) return _resultArray;\nif (_resultString != null) {\nreturn (_resultArray = _resultString.toCharArray());\n}\n// Nope; but does it fit in just one segment?\nif (!",
+        "tBuffer()\n{\n// Are we just using shared input buff",
+        "er()\n{\n// Are we just using shared input buffer?\ni",
+        "y = _resultString.toCharArray());\n}\n// Nope; but d",
+        "y());\n}\n// Nope; but does it fit in just one segme",
+        "eed to have/create a non-segmented array and retur",
+        "ve/create a non-segmented array and return it\nretu",
+        "/create a non-segmented array and return it\nreturn",
+        "te a non-segmented array and return it\nreturn cont",
+        "gmented array and return it\nreturn contentsAsArray",
+        "ed array and return it\nreturn contentsAsArray();\n}"
+    ]
+}

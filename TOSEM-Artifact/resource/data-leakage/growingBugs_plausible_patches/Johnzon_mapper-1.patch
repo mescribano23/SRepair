@@ -1,0 +1,35 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+index 0883b570..32366e63 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+@@ -590,7 +590,7 @@ public class Mapper {
+             throw new MapperException("Unable to parse " + jsonValue + " to boolean");
+         }
+ 
+-        if (Object.class == type) { // handling specific types here to keep exception in standard handling
++        if (Object.class == type) {
+             if (jsonValue == JsonValue.TRUE) {
+                 return true;
+             }
+@@ -598,7 +598,12 @@ public class Mapper {
+                 return false;
+             }
+             if (JsonNumber.class.isInstance(jsonValue)) {
+-                return JsonNumber.class.cast(jsonValue).intValue();
++                JsonNumber number = JsonNumber.class.cast(jsonValue);
++                if (number.isIntegral()) {
++                    return number.intValue();
++                } else {
++                    return number.doubleValue();
++                }
+             }
+         }
+ 
+@@ -611,7 +616,6 @@ public class Mapper {
+         } else if (JsonArray.class.isInstance(jsonValue)) {
+             return buildArray(type, JsonArray.class.cast(jsonValue));
+         } else if (JsonNumber.class.isInstance(jsonValue)) {
+-
+             final JsonNumber number = JsonNumber.class.cast(jsonValue);
+ 
+             if (type == Integer.class || type == int.class) {

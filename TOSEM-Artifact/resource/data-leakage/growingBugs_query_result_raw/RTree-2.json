@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.5755555555555556,
+    "input": "    public static Rectangle mbr(Collection<? extends HasGeometry> items) {\n        Preconditions.checkArgument(!items.isEmpty());\n        float minX1 = Float.MAX_VALUE;\n        float minY1 = Float.MAX_VALUE;\n        float maxX2 = -Float.MAX_VALUE;\n        float maxY2 = -Float.MAX_VALUE;\n        for (final HasGeometry item : items) {\n            Rectangle r = item.geometry().mbr();\n            if (r.x1() < minX1)\n                minX1 = r.x1();\n            if (r.y1() < minY1)\n                minY1 = r.y1();\n            if (r.x2() > maxX2)\n                maxX2 = r.x2();\n            if (r.y2() > maxY2)\n                maxY2 = r.y2();\n        }\n        return Rectangle.create(minX1, minY1, maxX2, maxY2);\n    }",
+    "query_result": [
+        "c Rectangle mbr(Collection<? extends HasGeometry> items) {\nPreconditions.checkArgument(!items.isEmpt",
+        "y1() < minY1)\nminY1 = r.y1();\nif (r.x2() > maxX2)\nmaxX2 = r.x2();\nif (r.y2() > maxY2)\nmaxY2 = r.y2()",
+        "gle mbr(Collection<? extends HasGeometry> items) {",
+        "\nfloat maxX2 = -Float.MAX_VALUE;\nfloat maxY2 = -Fl",
+        "em : items) {\nRectangle r = item.geometry().mbr();"
+    ]
+}

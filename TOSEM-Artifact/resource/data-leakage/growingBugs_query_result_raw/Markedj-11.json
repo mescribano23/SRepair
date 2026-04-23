@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.2555350553505535,
+    "input": "    protected void token(String src, boolean top, boolean bq, LexerContext context){\n        while(src.length() > 0){\n            // newline\n            {\n                List<String> cap = rules.get(\"newline\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.substring(cap.get(0).length());\n                    if(cap.get(0).length() > 1){\n                        context.pushToken(new SpaceToken());\n                    }\n                }\n            }\n\n            // code\n            {\n                List<String> cap = rules.get(\"code\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.substring(cap.get(0).length());\n                    String code = cap.get(0).replaceAll(\"(?m)^ {4}\", \"\");\n                    if(!options.isPedantic()){\n                        context.pushToken(new CodeToken(code.replaceAll(\"\\\\n+$\", \"\"), null, false));\n                    } else {\n                        context.pushToken(new CodeToken(code, null, false));\n                    }\n                    continue;\n                }\n            }\n\n            // fences (gfm)\n            {\n                List<String> cap = rules.get(\"fences\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.substring(cap.get(0).length());\n                    context.pushToken(new CodeToken(cap.get(3), cap.get(2), false));\n                    continue;\n                }\n            }\n\n            // heading\n            {\n                List<String> cap = rules.get(\"heading\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.substring(cap.get(0).length());\n                    context.pushToken(new HeadingToken(cap.get(1).length(), cap.get(2)));\n                    continue;\n                }\n            }\n\n            // table no leading pipe (gfm)\n            if(top){\n                List<String> cap = rules.get(\"nptable\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.",
+    "query_result": [
+        ").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substri",
+        ");\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get",
+        "{\nList<String> cap = rules.get(\"code\").exec(src);\n",
+        ").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substri",
+        ");\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get",
+        "\nsrc = src.substring(cap.get(0).length());\nString ",
+        ").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substri",
+        ");\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get",
+        ").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substri",
+        ");\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get"
+    ]
+}

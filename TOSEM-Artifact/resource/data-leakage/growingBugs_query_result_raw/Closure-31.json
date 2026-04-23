@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.26782006920415224,
+    "input": "  Node parseInputs() {\n    boolean devMode = options.devMode != DevMode.OFF;\n\n    // If old roots exist (we are parsing a second time), detach each of the\n    // individual file parse trees.\n    if (externsRoot != null) {\n      externsRoot.detachChildren();\n    }\n    if (jsRoot != null) {\n      jsRoot.detachChildren();\n    }\n\n    // Parse main js sources.\n    jsRoot = IR.block();\n    jsRoot.setIsSyntheticBlock(true);\n\n    externsRoot = IR.block();\n    externsRoot.setIsSyntheticBlock(true);\n\n    externAndJsRoot = IR.block(externsRoot, jsRoot);\n    externAndJsRoot.setIsSyntheticBlock(true);\n\n    if (options.tracer.isOn()) {\n      tracker = new PerformanceTracker(jsRoot, options.tracer);\n      addChangeHandler(tracker.getCodeChangeHandler());\n    }\n\n    Tracer tracer = newTracer(\"parseInputs\");\n\n    try {\n      // Parse externs sources.\n      for (CompilerInput input : externs) {\n        Node n = input.getAstRoot(this);\n        if (hasErrors()) {\n          return null;\n        }\n        externsRoot.addChildToBack(n);\n      }\n\n      // Modules inferred in ProcessCommonJS pass.\n      if (options.transformAMDToCJSModules || options.processCommonJSModules) {\n        processAMDAndCommonJSModules();\n      }\n\n      // Check if inputs need to be rebuilt from modules.\n      boolean staleInputs = false;\n\n      // Check if the sources need to be re-ordered.\n      if (options.dependencyOptions.needsManagement() &&\n          options.closurePass) {\n        for (CompilerInput input : inputs) {\n          // Forward-declare all the provided types, so that they\n          // are not flagged even if they are dropped from the process.\n          for (String provide : input.getProvides()) {\n            getTypeRegistry().forwardDeclareType(provide);\n          }\n        }\n\n        try {\n          inputs =\n              (moduleGraph == null ? new JSModuleGraph(modules) : moduleGraph)\n              .manageDependencies(options.dependencyOptions, inputs);\n          staleInputs = true;\n        } ca",
+    "query_result": [
+        "options.closurePass) {\nfor (CompilerInput input : inputs) {\n// Forward-declare all the provided types, so that they\n// are not flagged even if they ar",
+        "ons.closurePass) {\nfor (CompilerInput input : inputs) {\n// Forward-declare all the provided types, so that they\n// are not flagged even if they are dr",
+        "ns.closurePass) {\nfor (CompilerInput input : inputs) {\n// Forward-declare all the provided types, so that they\n// are not flagged even if they are dro",
+        "evMode != DevMode.OFF;\n// If old roots exist (we are parsing a second time), detach each of the\n// i",
+        "tions.closurePass) {\nfor (CompilerInput input : inputs) {\n// Forward-declare all the provided types,",
+        ".transformAMDToCJSModules || options.processCommon",
+        "k if the sources need to be re-ordered.\nif (option",
+        " to be re-ordered.\nif (options.dependencyOptions.n",
+        "ordered.\nif (options.dependencyOptions.needsManage",
+        "if (options.dependencyOptions.needsManagement() &&",
+        "{\nfor (CompilerInput input : inputs) {\n// Forward-",
+        "pilerInput input : inputs) {\n// Forward-declare al",
+        "()) {\ngetTypeRegistry().forwardDeclareType(provide"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.15436241610738255,
+    "input": "    public DataSourceResolver[] getDataSourceResolvers()\n    {\n        // clone the internal array to prevent external modification (see EMAIL-116)\n        final DataSourceResolver[] resolvers = new DataSourceResolver[dataSourceResolvers.length];\n        System.arraycopy(dataSourceResolvers, 0, resolvers, 0, dataSourceResolvers.length);\n        return resolvers;\n    }",
+    "query_result": [
+        "m.arraycopy(dataSourceResolvers, 0, resolvers, 0, "
+    ]
+}

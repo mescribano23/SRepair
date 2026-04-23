@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8046398046398047,
+    "input": "    public double solve(double min, double max) throws MaxIterationsExceededException, \n        FunctionEvaluationException {\n        \n        clearResult();\n        verifyInterval(min, max);\n        \n        double ret = Double.NaN;\n        \n        double yMin = f.value(min);\n        double yMax = f.value(max);\n        \n        // Verify bracketing\n        double sign = yMin * yMax;\n        if (sign > 0) {\n            // check if either value is close to a zero\n            if (Math.abs(yMin) <= functionValueAccuracy) {\n                setResult(min, 0);\n                ret = min;\n            } else if (Math.abs(yMax) <= functionValueAccuracy) {\n                setResult(max, 0);\n                ret = max;\n            } else {\n                // neither value is close to zero and min and max do not bracket root.\n                throw new IllegalArgumentException\n                (\"Function values at endpoints do not have different signs.\" +\n                        \"  Endpoints: [\" + min + \",\" + max + \"]\" + \n                        \"  Values: [\" + yMin + \",\" + yMax + \"]\");\n            }\n        } else if (sign < 0){\n            // solve using only the first endpoint as initial guess\n            ret = solve(min, yMin, max, yMax, min, yMin);\n        } else {\n            // either min or max is a root\n            if (yMin == 0.0) {\n                ret = min;\n            } else {\n                ret = max;\n            }\n        }\n\n        return ret;\n    }",
+    "query_result": [
+        "rify bracketing\ndouble sign = yMin * yMax;\nif (sign > 0) {\n// check if either value is close to a zero\nif (Math.abs(yMin) <= functionValueAccuracy) {\nsetResult(min, 0);\nret = min;\n} else if (Math.abs(yMax) <= functionValueAccuracy) {\nsetResult(max, 0);\nret = max;\n} else {\n// neither value is close to zero and min and max do not bracket root.\nthrow ",
+        "alue is close to zero and min and max do not bracket root.\nthrow new IllegalArgumentException\n(\"Function values at endpoints do not have different signs.\" +\n\" Endpoints: [\" + min + \",\" + max + \"]\" + \n",
+        "close to zero and min and max do not bracket root.\nthrow new IllegalArgumentException\n(\"Function values at endpoints do not have different signs.\" +\n\" Endpoints: [\" + min + \",\" + max + \"]\" + \n\" Values",
+        "d min and max do not bracket root.\nthrow new IllegalArgumentException\n(\"Function values at endpoints do not have different signs.\" +\n\" Endpoints: [\" + min + \",\" + max + \"]\" + \n\" Values: [\" + yMin + \",",
+        "n and max do not bracket root.\nthrow new IllegalArgumentException\n(\"Function values at endpoints do not have different signs.\" +\n\" Endpoints: [\" + min + \",\" + max + \"]\" + \n\" Values: [\" + yMin + \",\" + ",
+        "rgumentException\n(\"Function values at endpoints do not have different signs.\" +\n\" Endpoints: [\" + min + \",\" + max + \"]\" + \n\" Values: [\" + yMin + \",\" +",
+        "tException\n(\"Function values at endpoints do not have different signs.\" +\n\" Endpoints: [\" + min + \",\" + max + \"]\" + \n\" Values: [\" + yMin + \",\" + yMax ",
+        "ndpoints do not have different signs.\" +\n\" Endpoints: [\" + min + \",\" + max + \"]\" + \n\" Values: [\" + y",
+        "< 0){\n// solve using only the first endpoint as initial guess\nret = solve(min, yMin, max, yMax, min,",
+        "{\n// solve using only the first endpoint as initial guess\nret = solve(min, yMin, max, yMax, min, yMi",
+        "yMin, max, yMax, min, yMin);\n} else {\n// either min or max is a root\nif (yMin == 0.0) {\nret = min;\n}",
+        "double max) throws MaxIterationsExceededException,",
+        "\ndouble yMin = f.value(min);\ndouble yMax = f.value",
+        "ouble yMin = f.value(min);\ndouble yMax = f.value(m",
+        "uble yMin = f.value(min);\ndouble yMax = f.value(ma",
+        "ble yMin = f.value(min);\ndouble yMax = f.value(max",
+        "le yMin = f.value(min);\ndouble yMax = f.value(max)",
+        "e yMin = f.value(min);\ndouble yMax = f.value(max);",
+        " yMin = f.value(min);\ndouble yMax = f.value(max);\n",
+        "e(min);\ndouble yMax = f.value(max);\n\n// Verify bra"
+    ]
+}

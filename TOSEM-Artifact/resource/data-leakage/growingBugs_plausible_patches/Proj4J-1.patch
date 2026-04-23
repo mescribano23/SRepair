@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+index f00d2a3..98d8ba4 100644
+--- a/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
++++ b/src/main/java/org/locationtech/proj4j/proj/ExtendedTransverseMercatorProjection.java
+@@ -57,21 +57,20 @@ public class ExtendedTransverseMercatorProjection extends CylindricalProjection
+         return x < 0 ? -y : y;
+     }
+  
+-    static double gatg(double[] p1, int len_p1, double B) {
+-        double h = 0, h1, h2 = 0;
++static double gatg(double[] p1, int len_p1, double B) {
++    double h = 0, h1 = 0, h2 = 0;
+ 
+-        double cos_2B = 2*Math.cos(2*B);
+-     
+-        for (int p1i = len_p1; p1i > 0;) {
+-            h1 = p1[--p1i];
+-            h2 = h1;
+-            h1 = h;
+-            h = -h2 + cos_2B*h1 + p1[--p1i];
+-        }
+-        
+-        return (B + h*Math.sin(2*B));
++    double cos_2B = 2 * Math.cos(2 * B);
++
++    for (int p1i = len_p1 - 1; p1i >= 0; p1i--) {
++        h1 = h;
++        h = -h2 + cos_2B * h1 + p1[p1i];
++        h2 = h1;
+     }
+     
++    return (B + h * Math.sin(2 * B));
++}
++    
+     static double clenS(double[] a, int size, double arg_r, double arg_i, double[] R, double[] I) {
+         double      hr, hr1, hr2, hi, hi1, hi2;
+ 

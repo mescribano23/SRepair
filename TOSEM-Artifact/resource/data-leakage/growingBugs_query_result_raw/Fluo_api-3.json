@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.1910569105691057,
+    "input": "  public FluoConfiguration(Configuration configuration) {\n    this();\n    if(configuration instanceof AbstractConfiguration){\n      AbstractConfiguration aconf = (AbstractConfiguration) configuration;\n      aconf.setDelimiterParsingDisabled(true);\n    }\n    \n    addConfiguration(configuration);\n  }",
+    "query_result": [
+        "Configuration(Configuration configuration) {\nthis("
+    ]
+}

@@ -1,0 +1,22 @@
+diff --git a/gson/src/main/java/com/google/gson/internal/bind/JsonTreeReader.java b/gson/src/main/java/com/google/gson/internal/bind/JsonTreeReader.java
+index d24a1801..17dd1029 100644
+--- a/gson/src/main/java/com/google/gson/internal/bind/JsonTreeReader.java
++++ b/gson/src/main/java/com/google/gson/internal/bind/JsonTreeReader.java
+@@ -256,11 +256,15 @@ public final class JsonTreeReader extends JsonReader {
+   @Override public void skipValue() throws IOException {
+     if (peek() == JsonToken.NAME) {
+       nextName();
+-      pathNames[stackSize - 2] = "null";
++      if (stackSize > 1) {
++        pathNames[stackSize - 2] = "null";
++      }
+     } else {
+       popStack();
++      if (stackSize > 0) {
+         pathNames[stackSize - 1] = "null";
+-      pathIndices[stackSize - 1]++;
++        pathIndices[stackSize - 1]++;
++      }
+     }
+   }
+ 

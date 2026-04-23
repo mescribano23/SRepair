@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.97165991902834,
+    "input": "  private void readHeader() throws IOException {\n    raf.seek(0);\n    raf.readFully(buffer);\n    fileLength = readInt(buffer, 0);\n    if (fileLength > raf.length()) {\n      throw new IOException(\n          \"File is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n    } else if (fileLength <= 0) {\n      throw new IOException(\n          \"File is corrupt; length stored in header (\" + fileLength + \") is invalid.\");\n    }\n    elementCount = readInt(buffer, 4);\n    int firstOffset = readInt(buffer, 8);\n    int lastOffset = readInt(buffer, 12);\n    first = readElement(firstOffset);\n    last = readElement(lastOffset);\n  }",
+    "query_result": [
+        "ivate void readHeader() throws IOException {\nraf.seek(0);\nraf.readFully(buffer);\nfileLength = readInt(buffer, 0);\nif (fileLength > raf.length()) {\nthrow new IOException(\n\"File is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else if (fileLength <= 0) {\nthrow new IOException(\n\"File is corrupt; length stored in header (\" + fileLength + \") is invalid.\");\n}\nelementCount = readInt(buffer, 4);\nint firstOffset = readInt(buffer, 8);\nint lastOffset = readInt(buffer, 12);\nfirst = readElement(firstOffset);\nlast = read",
+        "e void readHeader() throws IOException {\nraf.seek(0);\nraf.readFully(buffer);\nfileLength = readInt(buffer, 0);\nif (fileLength > raf.length()) {\nthrow new IOException(\n\"File is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else if (fileLength <= 0) {\nthrow new IOException(\n\"File is corrupt; length stored in header (\" + fileLength + \") is invalid.\");\n}\nelementCount = readInt(buffer, 4);\nint firstOffset = readInt(buffer, 8);\nint lastOffset = readInt(buffer, 12);\nfirst = readElement(firstOffset);\nlast = readElem",
+        "d readHeader() throws IOException {\nraf.seek(0);\nraf.readFully(buffer);\nfileLength = readInt(buffer, 0);\nif (fileLength > raf.length()) {\nthrow new IOException(\n\"File is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else if (fileLength <= 0) {\nthrow new IOException(\n\"File is corrupt; length stored in header (\" + fileLength + \") is invalid.\");\n}\nelementCount = readInt(buffer, 4);\nint firstOffset = readInt(buffer, 8);\nint lastOffset = readInt(buffer, 12);\nfirst = readElement(firstOffset);\nlast = readElement(l",
+        "ader() throws IOException {\nraf.seek(0);\nraf.readFully(buffer);\nfileLength = readInt(buffer, 0);\nif (fileLength > raf.length()) {\nthrow new IOException(\n\"File is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else",
+        "uncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else if (fileLength <= 0) {\nthrow new IOException(\n\"File is corrupt; length stored in header (\" + fileLength + \") is i",
+        "Fully(buffer);\nfileLength = readInt(buffer, 0);\nif (fileLength > raf.length()) {\nthrow new IOException(\n\"File is truncated. Expected length: \" + fileL",
+        "length()) {\nthrow new IOException(\n\"File is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else if (fileLength <=",
+        "er (\" + fileLength + \") is invalid.\");\n}\nelementCount = readInt(buffer, 4);\nint firstOffset = readInt(buffer, 8);\nint lastOffset = readInt(buffer, 12)",
+        "lementCount = readInt(buffer, 4);\nint firstOffset = readInt(buffer, 8);\nint lastOffset = readInt(buffer, 12);\nfirst = readElement(firstOffset);\nlast =",
+        "ate void readHeader() throws IOException {\nraf.seek(0);\nraf.readFully(buffer);\nfileLength = readInt(",
+        "gth()) {\nthrow new IOException(\n\"File is truncated. Expected length: \" + fileLength + \", Actual leng",
+        "throw new IOException(\n\"File is truncated. Expected length: \" + fileLength + \", Actual length: \" + r",
+        "le is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else if (f",
+        " is truncated. Expected length: \" + fileLength + \", Actual length: \" + raf.length());\n} else if (fil",
+        "elementCount = readInt(buffer, 4);\nint firstOffset = readInt(buffer, 8);\nint lastOffset = readInt(bu",
+        "rstOffset = readInt(buffer, 8);\nint lastOffset = readInt(buffer, 12);\nfirst = readElement(firstOffse",
+        " throws IOException {\nraf.seek(0);\nraf.readFully(b",
+        "rupt; length stored in header (\" + fileLength + \")",
+        "upt; length stored in header (\" + fileLength + \") ",
+        "tored in header (\" + fileLength + \") is invalid.\")"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6181818181818182,
+    "input": "    @Override\n    public boolean equals(Object o) {\n        if (o == this) return true;\n        if (o == null) return false;\n        if (o.getClass() == getClass()) {\n            // 16-Jun-2017, tatu: as per [databind#1658], can not do recursive call since\n            //    there is likely to be a cycle...\n\n            // but... true or false?\n            return false;\n            \n            /*\n            // Do NOT ever match unresolved references\n            if (_referencedType == null) {\n                return false;\n            }\n            return (o.getClass() == getClass()\n                    && _referencedType.equals(((ResolvedRecursiveType) o).getSelfReferencedType()));\n                    */\n        }\n        return false;\n    }",
+    "query_result": [
+        "c boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getClass() == getClass()) {\n// 16-Jun-2017, tatu: as per [",
+        "resolved references\nif (_referencedType == null) {\nreturn false;\n}\nreturn (o.getClass() == getClass()\n&& _referencedType.equals(((ResolvedRecursiveTyp",
+        "@Override\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;",
+        "Override\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\n",
+        "erride\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif",
+        "rride\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif ",
+        "ride\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (",
+        "ide\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o",
+        "de\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.",
+        "e\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.g",
+        "\npublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.ge",
+        "ublic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getC",
+        "blic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getCl",
+        "lic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getCla",
+        "ic boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getClas",
+        " boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getClass(",
+        "boolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getClass()",
+        "oolean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getClass() ",
+        "olean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getClass() =",
+        "ean equals(Object o) {\nif (o == this) return true;\nif (o == null) return false;\nif (o.getClass() == "
+    ]
+}

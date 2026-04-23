@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.66015625,
+    "input": "    @VisibleForTesting\n    static byte[] readFully(InputStream is, int numBytes) throws IOException {\n        byte[] b = new byte[numBytes];\n        int count = 0;\n        do {\n            int n = is.read(b, count, numBytes - count);\n            if (n > 0) {\n                count += n;\n            } else {\n                throw new RuntimeException(\"unexpected\");\n            }\n        } while (count < numBytes);\n        return b;\n    }",
+    "query_result": [
+        "dFully(InputStream is, int numBytes) throws IOException {\nbyte[] b = new byte[numBytes];\nint count = 0;\ndo {\nint n = is.read(b, count, numBytes - coun",
+        "ully(InputStream is, int numBytes) throws IOExcept",
+        "(InputStream is, int numBytes) throws IOException ",
+        ";\n} else {\nthrow new RuntimeException(\"unexpected\""
+    ]
+}

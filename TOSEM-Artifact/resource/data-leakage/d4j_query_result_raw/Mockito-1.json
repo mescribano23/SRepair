@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.34203168685927304,
+    "input": "public void captureArgumentsFrom(Invocation invocation) {\n    if (invocation.getMethod().isVarArgs()) {\n        int indexOfVararg = invocation.getRawArguments().length - 1;\n        for (int position = 0; position < indexOfVararg; position++) {\n            Matcher m = matchers.get(position);\n            if (m instanceof CapturesArguments) {\n                ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));\n            }\n        }\n        for (int position = indexOfVararg; position < matchers.size(); position++) {\n            Matcher m = matchers.get(position);\n            if (m instanceof CapturesArguments) {\n                ((CapturesArguments) m).captureFrom(invocation.getRawArguments()[position - indexOfVararg]);\n            }\n        }\n\n    } else {\n        for (int position = 0; position < matchers.size(); position++) {\n            Matcher m = matchers.get(position);\n            if (m instanceof CapturesArguments) {\n                ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));\n            }\n        }\n    }\n\n      for (int position = 0; position < matchers.size(); position++) {\n          Matcher m = matchers.get(position);\n          if (m instanceof CapturesArguments && invocation.getRawArguments().length > position) {\n              //TODO SF - this whole lot can be moved captureFrom implementation\n              if(isVariableArgument(invocation, position) && isVarargMatcher(m)) {\n                 ",
+    "query_result": [
+        "rs.size(); position++) {\nMatcher m = matchers.get(position);\nif (m instanceof CapturesArguments && i",
+        "\n((CapturesArguments) m).captureFrom(invocation.ge",
+        "rs.size(); position++) {\nMatcher m = matchers.get(",
+        "\n((CapturesArguments) m).captureFrom(invocation.ge",
+        "rs.size(); position++) {\nMatcher m = matchers.get(",
+        "\n((CapturesArguments) m).captureFrom(invocation.ge",
+        "sVariableArgument(invocation, position) && isVarar"
+    ]
+}

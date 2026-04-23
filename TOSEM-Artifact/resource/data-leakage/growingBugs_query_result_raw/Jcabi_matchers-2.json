@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.8125,
+    "input": "    public static Matcher<String> containsPattern(final String pattern) {\n        return new RegexContainingPatternMatcher(pattern);\n    }",
+    "query_result": [
+        "c static Matcher<String> containsPattern(final String pattern) {\nreturn new RegexContainingPatternMa",
+        "atic Matcher<String> containsPattern(final String "
+    ]
+}

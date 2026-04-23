@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4096654275092937,
+    "input": "    public ArchiveInputStream createArchiveInputStream(final InputStream in)\n            throws ArchiveException {\n        if (in == null) {\n            throw new IllegalArgumentException(\"Stream must not be null.\");\n        }\n\n        if (!in.markSupported()) {\n            throw new IllegalArgumentException(\"Mark is not supported.\");\n        }\n\n        final byte[] signature = new byte[12];\n        in.mark(signature.length);\n        try {\n            int signatureLength = in.read(signature);\n            in.reset();\n            if (ZipArchiveInputStream.matches(signature, signatureLength)) {\n                return new ZipArchiveInputStream(in);\n            } else if (JarArchiveInputStream.matches(signature, signatureLength)) {\n                return new JarArchiveInputStream(in);\n            } else if (ArArchiveInputStream.matches(signature, signatureLength)) {\n                return new ArArchiveInputStream(in);\n            } else if (CpioArchiveInputStream.matches(signature, signatureLength)) {\n                return new CpioArchiveInputStream(in);\n            }\n\n            // Dump needs a bigger buffer to check the signature;\n            final byte[] dumpsig = new byte[32];\n            in.mark(dumpsig.length);\n            signatureLength = in.read(dumpsig);\n            in.reset();\n            if (DumpArchiveInputStream.matches(dumpsig, signatureLength)) {\n                return new DumpArchiveInputStream(in);\n            }\n\n            // Tar needs an even bigger buffer to check the signature; read the first block\n            final byte[] tarheader = new byte[512];\n            in.mark(tarheader.length);\n            signatureLength = in.read(tarheader);\n            in.reset();\n            if (TarArchiveInputStream.matches(tarheader, signatureLength)) {\n                return new TarArchiveInputStream(in);\n            }\n            // COMPRESS-117 - improve auto-recognition\n            if (signatureLength >= 512) {\n            try {\n                TarArchiveInput",
+    "query_result": [
+        "on {\nif (in == null) {\nthrow new IllegalArgumentException(\"Stream must not be null.\");\n}\nif (!in.markSupported()) {\nthrow new IllegalArgumentException(\"Mark is not supported.\");\n}\nfinal byte[] signature = new byte[12];\nin.mark(signature.length);\ntry ",
+        "ull) {\nthrow new IllegalArgumentException(\"Stream must not be null.\");\n}\nif (!in.markSupported()) {\nthrow new IllegalArgumentException(\"Mark is not su",
+        "set();\nif (ZipArchiveInputStream.matches(signature, signatureLength)) {\nreturn new ZipArchiveInputSt",
+        "else if (JarArchiveInputStream.matches(signature, signatureLength)) {\nreturn new JarArchiveInputStre",
+        "set();\nif (DumpArchiveInputStream.matches(dumpsig, signatureLength)) {\nreturn new DumpArchiveInputSt",
+        "rchiveInputStream createArchiveInputStream(final I",
+        "Exception {\nif (in == null) {\nthrow new IllegalArg",
+        "xception {\nif (in == null) {\nthrow new IllegalArgu",
+        "ception {\nif (in == null) {\nthrow new IllegalArgum",
+        "eption {\nif (in == null) {\nthrow new IllegalArgume",
+        "ption {\nif (in == null) {\nthrow new IllegalArgumen",
+        "tion {\nif (in == null) {\nthrow new IllegalArgument",
+        "ion {\nif (in == null) {\nthrow new IllegalArgumentE",
+        "n {\nif (in == null) {\nthrow new IllegalArgumentExc",
+        " {\nif (in == null) {\nthrow new IllegalArgumentExce",
+        "{\nif (in == null) {\nthrow new IllegalArgumentExcep",
+        "\nif (in == null) {\nthrow new IllegalArgumentExcept",
+        "if (in == null) {\nthrow new IllegalArgumentExcepti",
+        "f (in == null) {\nthrow new IllegalArgumentExceptio",
+        " (in == null) {\nthrow new IllegalArgumentException"
+    ]
+}

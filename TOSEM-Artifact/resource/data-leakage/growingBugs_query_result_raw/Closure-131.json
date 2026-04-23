@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.43333333333333335,
+    "input": "    public static boolean isJSIdentifier(String s) {\n      int length = s.length();\n\n      if (length == 0 ||\n          Character.isIdentifierIgnorable(s.charAt(0)) ||\n          !Character.isJavaIdentifierStart(s.charAt(0))) {\n        return false;\n      }\n\n      for (int i = 1; i < length; i++) {\n        if (Character.isIdentifierIgnorable(s.charAt(i)) ||\n            !Character.isJavaIdentifierPart(s.charAt(i))) {\n          return false;\n        }\n      }\n\n      return true;\n    }",
+    "query_result": [
+        "ntifierIgnorable(s.charAt(0)) ||\n!Character.isJavaIdentifierStart(s.charAt(0))) {\nreturn false;\n}\nfo",
+        "norable(s.charAt(0)) ||\n!Character.isJavaIdentifierStart(s.charAt(0))) {\nreturn false;\n}\nfor (int i ",
+        "(String s) {\nint length = s.length();\nif (length =",
+        "String s) {\nint length = s.length();\nif (length ==",
+        "tring s) {\nint length = s.length();\nif (length == ",
+        "ring s) {\nint length = s.length();\nif (length == 0",
+        "t(0)) ||\n!Character.isJavaIdentifierStart(s.charAt",
+        "haracter.isJavaIdentifierStart(s.charAt(0))) {\nret",
+        "aracter.isJavaIdentifierStart(s.charAt(0))) {\nretu",
+        "racter.isJavaIdentifierStart(s.charAt(0))) {\nretur",
+        "er.isJavaIdentifierStart(s.charAt(0))) {\nreturn fa",
+        "isJavaIdentifierStart(s.charAt(0))) {\nreturn false",
+        "sJavaIdentifierStart(s.charAt(0))) {\nreturn false;",
+        "JavaIdentifierStart(s.charAt(0))) {\nreturn false;\n",
+        "dentifierStart(s.charAt(0))) {\nreturn false;\n}\nfor",
+        "entifierStart(s.charAt(0))) {\nreturn false;\n}\nfor ",
+        "tifierStart(s.charAt(0))) {\nreturn false;\n}\nfor (i",
+        "ierStart(s.charAt(0))) {\nreturn false;\n}\nfor (int ",
+        "Start(s.charAt(0))) {\nreturn false;\n}\nfor (int i =",
+        "tart(s.charAt(0))) {\nreturn false;\n}\nfor (int i = "
+    ]
+}

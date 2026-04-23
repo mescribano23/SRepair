@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.4075829383886256,
+    "input": "public boolean matches(T element) {\n        switch (operator) {\n        case INTERSECTION:\n            for (Filter<T> f : filters) {\n                if (! hasMatch(f, element))\n                    return false;\n            }\n            return true;\n        case UNION:\n            for (Filter<T> f : filters) {\n                if (hasMatch(f, element))\n                    return true;\n            }\n            return false;\n        case SUBSTRACTION:\n            if (filters.length == 0)\n                return false;\n            if (!filters[0].matches(element))\n                return false;\n            for (int i = 1; i < filters.length; i++) {\n                if (filters[i].matches(element))\n                    return false;\n            }\n            return true;\n        default:\n            return false;\n        }\n    }",
+    "query_result": [
+        "s(T element) {\nswitch (operator) {\ncase INTERSECTI",
+        "NION:\nfor (Filter<T> f : filters) {\nif (hasMatch(f",
+        "t i = 1; i < filters.length; i++) {\nif (filters[i]",
+        ")\nreturn false;\n}\nreturn true;\ndefault:\nreturn fal",
+        "\nreturn false;\n}\nreturn true;\ndefault:\nreturn fals",
+        "return false;\n}\nreturn true;\ndefault:\nreturn false",
+        "eturn false;\n}\nreturn true;\ndefault:\nreturn false;",
+        "turn false;\n}\nreturn true;\ndefault:\nreturn false;\n",
+        "urn false;\n}\nreturn true;\ndefault:\nreturn false;\n}",
+        "rn false;\n}\nreturn true;\ndefault:\nreturn false;\n}\n",
+        "n false;\n}\nreturn true;\ndefault:\nreturn false;\n}\n}"
+    ]
+}

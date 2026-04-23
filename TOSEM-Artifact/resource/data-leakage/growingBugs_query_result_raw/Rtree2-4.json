@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8227334235453315,
+    "input": "        private void requestSome(long n) {\n            // back pressure path\n            // this algorithm copied roughly from\n            // rxjava-core/OnSubscribeFromIterable.java\n\n            // rxjava used AtomicLongFieldUpdater instead of AtomicLong\n            // but benchmarks showed no benefit here so reverted to AtomicLong\n            long previousCount = BackpressureUtils.getAndAddRequest(requested, n);\n            if (previousCount == 0) {\n                // don't touch stack every time during the loop because\n                // is a volatile and every write forces a thread memory\n                // cache flush\n                ImmutableStack<NodePosition<T, S>> st = stack;\n                while (true) {\n                    // minimize atomic reads by assigning to a variable here\n                    long r = requested.get();\n                    st = Backpressure.search(condition, subscriber, st, r);\n                    if (st.isEmpty()) {\n                        if (!subscriber.isUnsubscribed()) {\n                            subscriber.onCompleted();\n                            break;\n                        } else\n                            break;\n                    } else if (requested.addAndGet(-r) == 0)\n                        break;\n                }\n                stack = st;\n            }\n        }",
+    "query_result": [
+        "requested, n);\nif (previousCount == 0) {\n// don't touch stack every time during the loop because\n// is a volatile and every write forces a thread memory\n// cache flush\nImmutableStack<NodePosition<T, S>> st = stack;\nwhile (true) {\n// minimize atomic reads by assigning to a variable here\nlong r = requested.get();\nst = Backpressure.search(condition, s",
+        "ate void requestSome(long n) {\n// back pressure path\n// this algorithm copied roughly from\n// rxjava-core/OnSubscribeFromIterable.java\n// rxjava used AtomicLongFieldUpdater instead of AtomicLong\n// but benchmarks showed no benefit here so reverted to",
+        "nchmarks showed no benefit here so reverted to Ato",
+        "BackpressureUtils.getAndAddRequest(requested, n);\n",
+        "imize atomic reads by assigning to a variable here",
+        ")) {\nif (!subscriber.isUnsubscribed()) {\nsubscribe",
+        ") {\nif (!subscriber.isUnsubscribed()) {\nsubscriber",
+        " {\nif (!subscriber.isUnsubscribed()) {\nsubscriber.",
+        "{\nif (!subscriber.isUnsubscribed()) {\nsubscriber.o",
+        "\nif (!subscriber.isUnsubscribed()) {\nsubscriber.on",
+        "if (!subscriber.isUnsubscribed()) {\nsubscriber.onC",
+        "f (!subscriber.isUnsubscribed()) {\nsubscriber.onCo",
+        " (!subscriber.isUnsubscribed()) {\nsubscriber.onCom",
+        "(!subscriber.isUnsubscribed()) {\nsubscriber.onComp",
+        "!subscriber.isUnsubscribed()) {\nsubscriber.onCompl",
+        "subscriber.isUnsubscribed()) {\nsubscriber.onComple",
+        "ubscriber.isUnsubscribed()) {\nsubscriber.onComplet",
+        "bscriber.isUnsubscribed()) {\nsubscriber.onComplete",
+        "scriber.isUnsubscribed()) {\nsubscriber.onCompleted",
+        "criber.isUnsubscribed()) {\nsubscriber.onCompleted("
+    ]
+}

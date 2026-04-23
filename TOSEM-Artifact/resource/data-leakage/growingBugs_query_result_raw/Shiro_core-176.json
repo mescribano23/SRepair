@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.8802083333333334,
+    "input": "    protected AuthenticationInfo merge(AuthenticationInfo info, AuthenticationInfo aggregate) {\n        if (aggregate != null && !isEmpty(aggregate.getPrincipals())) {\n            return aggregate;\n        }\n        return info != null ? info : aggregate;\n    }",
+    "query_result": [
+        "protected AuthenticationInfo merge(AuthenticationInfo info, AuthenticationInfo aggregate) {\nif (aggr",
+        "enticationInfo merge(AuthenticationInfo info, AuthenticationInfo aggregate) {\nif (aggregate != null ",
+        "AuthenticationInfo merge(AuthenticationInfo info, ",
+        "thenticationInfo merge(AuthenticationInfo info, Au",
+        "nInfo merge(AuthenticationInfo info, Authenticatio",
+        "nfo merge(AuthenticationInfo info, AuthenticationI",
+        "rge(AuthenticationInfo info, AuthenticationInfo ag",
+        "nticationInfo info, AuthenticationInfo aggregate) ",
+        "gate.getPrincipals())) {\nreturn aggregate;\n}\nretur",
+        "e.getPrincipals())) {\nreturn aggregate;\n}\nreturn i",
+        "urn aggregate;\n}\nreturn info != null ? info : aggr"
+    ]
+}

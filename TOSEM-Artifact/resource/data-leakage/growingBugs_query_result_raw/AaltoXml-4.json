@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.2677777777777778,
+    "input": "    @Override\n    protected String parsePublicId(byte quoteChar) throws XMLStreamException\n    {\n        char[] outputBuffer = _nameBuffer;\n        int outPtr = 0;\n        final int[] TYPES = XmlCharTypes.PUBID_CHARS;\n        boolean addSpace = false;\n\n        main_loop:\n        while (true) {\n            if (_inputPtr >= _inputEnd) {\n                loadMoreGuaranteed();\n            }\n            // Easier to check without char type table, first:\n            byte b = _inputBuffer[_inputPtr++];\n            if (b == quoteChar) {\n                break main_loop;\n            }\n            int c = (int) b & 0xFF;\n            if (TYPES[c] != XmlCharTypes.PUBID_OK) {\n                throwUnexpectedChar(c, \" in public identifier\");\n            }\n\n            // White space? Needs to be coalesced\n            if (c <= INT_SPACE) {\n                addSpace = true;\n                continue;\n            }\n            if (addSpace) {\n                if (outPtr >= outputBuffer.length) {\n                    _nameBuffer = outputBuffer = DataUtil.growArrayBy(outputBuffer, outputBuffer.length);\n                    outPtr = 0;\n                }\n                outputBuffer[outPtr++] = ' ';\n                addSpace = false;\n            }\n            if (outPtr >= outputBuffer.length) {\n                _nameBuffer = outputBuffer = DataUtil.growArrayBy(outputBuffer, outputBuffer.length);\n                outPtr = 0;\n            }\n            outputBuffer[outPtr++] = (char) c;\n        }\n        return new String(outputBuffer, 0, outPtr);\n    }",
+    "query_result": [
+        "g parsePublicId(byte quoteChar) throws XMLStreamEx",
+        "while (true) {\nif (_inputPtr >= _inputEnd) {\nloadM",
+        "rue) {\nif (_inputPtr >= _inputEnd) {\nloadMoreGuara",
+        "{\nif (_inputPtr >= _inputEnd) {\nloadMoreGuaranteed",
+        "\nif (_inputPtr >= _inputEnd) {\nloadMoreGuaranteed(",
+        "if (_inputPtr >= _inputEnd) {\nloadMoreGuaranteed()",
+        "f (_inputPtr >= _inputEnd) {\nloadMoreGuaranteed();",
+        " (_inputPtr >= _inputEnd) {\nloadMoreGuaranteed();\n",
+        "(_inputPtr >= _inputEnd) {\nloadMoreGuaranteed();\n}",
+        "_inputPtr >= _inputEnd) {\nloadMoreGuaranteed();\n}\n",
+        "ffer = outputBuffer = DataUtil.growArrayBy(outputB",
+        " outputBuffer = DataUtil.growArrayBy(outputBuffer,",
+        "ataUtil.growArrayBy(outputBuffer, outputBuffer.len",
+        "ffer = outputBuffer = DataUtil.growArrayBy(outputB",
+        " outputBuffer = DataUtil.growArrayBy(outputBuffer,",
+        "ataUtil.growArrayBy(outputBuffer, outputBuffer.len"
+    ]
+}

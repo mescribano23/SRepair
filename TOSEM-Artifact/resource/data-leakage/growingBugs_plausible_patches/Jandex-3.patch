@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/jboss/jandex/Indexer.java b/src/main/java/org/jboss/jandex/Indexer.java
+index a9884c2..3d143dc 100644
+--- a/src/main/java/org/jboss/jandex/Indexer.java
++++ b/src/main/java/org/jboss/jandex/Indexer.java
+@@ -947,23 +947,21 @@ public final class Indexer {
+         clazz.setTypeParameters(classSignature.parameters());
+     }
+ 
+-    private void applySignatures() {
+-
+-        // Class signature is always the last element and should be processed first
+-
+-        for (int i = 0; i < signatures.size(); i += 2) {
+-            String elementSignature = (String) signatures.get(i);
+-            Object element = signatures.get(i + 1);
+-
+-            if (element instanceof FieldInfo) {
+-                parseFieldSignature(elementSignature, (FieldInfo)element);
+-            } else if (element instanceof MethodInfo) {
+-                parseMethodSignature(elementSignature, (MethodInfo) element);
+-            } else if (element instanceof ClassInfo) {
+-                parseClassSignature(elementSignature, (ClassInfo) element);
+-            }
++private void applySignatures() {
++    // Process the list in reverse order, starting from the last element, moving backwards
++    for (int i = signatures.size() - 2; i >= 0; i -= 2) {
++        String elementSignature = (String) signatures.get(i);
++        Object element = signatures.get(i + 1);
++
++        if (element instanceof FieldInfo) {
++            parseFieldSignature(elementSignature, (FieldInfo) element);
++        } else if (element instanceof MethodInfo) {
++            parseMethodSignature(elementSignature, (MethodInfo) element);
++        } else if (element instanceof ClassInfo) {
++            parseClassSignature(elementSignature, (ClassInfo) element);
+         }
+     }
++}
+ 
+     private void parseFieldSignature(String signature, FieldInfo field) {
+         Type type = signatureParser.parseFieldSignature(signature);

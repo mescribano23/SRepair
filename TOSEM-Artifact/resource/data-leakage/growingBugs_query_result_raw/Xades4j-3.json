@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.10336906584992343,
+    "input": "@Override\n    public QualifyingProperty verify(\n            GenericDOMData propData,\n            QualifyingPropertyVerificationContext ctx) throws InvalidPropertyException\n    {\n\n\n        XAdESVerificationResult res;\n        try\n        {\n            Element sigElem = DOMHelper.getFirstChildElement(propData.getPropertyElement());\n            res = verifier.verify(sigElem, null);\n        } catch (XAdES4jException ex)\n        {\n            throw new CounterSignatureXadesVerificationException(ex);\n        }\n\n        // \"Check that the enclosed signature correctly references the ds:SignatureValue\n        // present in the countersigned XAdES signature.\"\n\n        Node targetSigValueElem = ctx.getSignature().getElement().getElementsByTagNameNS(\n                Constants.SignatureSpecNS, Constants._TAG_SIGNATUREVALUE).item(0);\n\n        try\n        {\n            SignedInfo si = res.getXmlSignature().getSignedInfo();\n            for (int i = 0; i < si.getLength(); i++)\n            {\n                Reference r = si.item(i);\n                if (r.getContentsAfterTransformation().getSubNode() == targetSigValueElem)\n                {\n                    // The signature references the SignatureValue element.\n                    return new CounterSignatureProperty(res);\n                }\n                else if (r.getContentsBeforeTransformation().getSubNode() == targetSigValueElem && CanonicalizerUtils.allTransformsAreC14N(r))\n                {\n                    // The signature references the SignatureValue element with\n                    // C14N transforms only.\n                    return new CounterSignatureProperty(res);\n                }\n            }\n            throw new CounterSignatureSigValueRefException();\n        } catch (XMLSecurityException e)\n        {\n            // Shouldn't happen because the signature was already verified.\n            throw new CounterSignatureVerificationException(e);\n        }\n    }",
+    "query_result": [
+        "a,\nQualifyingPropertyVerificationContext ctx) thro",
+        "pertyVerificationContext ctx) throws InvalidProper",
+        "getElementsByTagNameNS(\nConstants.SignatureSpecNS,",
+        "entsByTagNameNS(\nConstants.SignatureSpecNS, Consta",
+        "ByTagNameNS(\nConstants.SignatureSpecNS, Constants.",
+        "yTagNameNS(\nConstants.SignatureSpecNS, Constants._",
+        "TagNameNS(\nConstants.SignatureSpecNS, Constants._T",
+        "agNameNS(\nConstants.SignatureSpecNS, Constants._TA",
+        "gNameNS(\nConstants.SignatureSpecNS, Constants._TAG",
+        "onstants.SignatureSpecNS, Constants._TAG_SIGNATURE"
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.8949308755760369,
+    "input": "private Node tryMinimizeIf(Node n) {\n\n  Node parent = n.getParent();\n\n  Node cond = n.getFirstChild();\n\n  /* If the condition is a literal, we'll let other\n   * optimizations try to remove useless code.\n   */\n  if (NodeUtil.isLiteralValue(cond, true)) {\n    return n;\n  }\n\n  Node thenBranch = cond.getNext();\n  Node elseBranch = thenBranch.getNext();\n\n  if (elseBranch == null) {\n    if (isFoldableExpressBlock(thenBranch)) {\n      Node expr = getBlockExpression(thenBranch);\n      if (!late && isPropertyAssignmentInExpression(expr)) {\n        // Keep opportunities for CollapseProperties such as\n        // a.longIdentifier || a.longIdentifier = ... -> var a = ...;\n        // until CollapseProperties has been run.\n        return n;\n      }\n\n      if (cond.isNot()) {\n        // if(!x)bar(); -> x||bar();\n        if (isLowerPrecedenceInExpression(cond, OR_PRECEDENCE) &&\n            isLowerPrecedenceInExpression(expr.getFirstChild(),\n                OR_PRECEDENCE)) {\n          // It's not okay to add two sets of parentheses.\n          return n;\n        }\n\n        Node or = IR.or(\n            cond.removeFirstChild(),\n            expr.removeFirstChild()).srcref(n);\n        Node newExpr = NodeUtil.newExpr(or);\n        parent.replaceChild(n, newExpr);\n        reportCodeChange();\n\n        return newExpr;\n      }\n\n      // if(x)foo(); -> x&&foo();\n      if (isLowerPrecedenceInExpression(cond, AND_PRECEDENCE) &&\n          isLowerPrecedenceInExpression(expr.getFirstChild(),\n              AND_P",
+    "query_result": [
+        " tryMinimizeIf(Node n) {\nNode parent = n.getParent();\nNode cond = n.getFirstChild();\n/* If the condition is a literal, we'll let other\n* optimizations try to remove useless code.\n*/\nif (NodeUtil.isLiteralValue(cond, true)) {\nreturn n;\n}\nNode thenBranch = cond.getNext();\nNode elseBranch = thenBranch.getNext();\nif (elseBranch == null) {\nif (isFoldableExpressBlock(thenBranch)) {\nNode expr = getBlockE",
+        "ull) {\nif (isFoldableExpressBlock(thenBranch)) {\nNode expr = getBlockExpression(thenBranch);\nif (!late && isPropertyAssignmentInExpression(expr)) {\n// Keep opportunities for CollapseProperties such as\n// a.longIdentifier || a.longIdentifier = ... -> var a = ...;\n// until CollapseProperties has been ",
+        ";\nNode newExpr = NodeUtil.newExpr(or);\nparent.replaceChild(n, newExpr);\nreportCodeChange();\nreturn newExpr;\n}\n// if(x)foo(); -> x&&foo();\nif (isLowerPrecedenceInExpression(cond, AND_PRECEDENCE) &&\nisLowerPrecedenceInExpression(expr.getFirstChild(),\nA",
+        "x||bar();\nif (isLowerPrecedenceInExpression(cond, OR_PRECEDENCE) &&\nisLowerPrecedenceInExpression(expr.getFirstChild(),\nOR_PRECEDENCE)) {\n// It's not okay to add two sets of parentheses.\nreturn n;\n}\nN",
+        "s a literal, we'll let other\n* optimizations try to remove useless code.\n*/\nif (NodeUtil.isLiteralVa",
+        "xpression(expr)) {\n// Keep opportunities for CollapseProperties such as\n// a.longIdentifier || a.lon",
+        "d.getNext();\nNode elseBranch = thenBranch.getNext(",
+        "etNext();\nNode elseBranch = thenBranch.getNext();\n",
+        "hild()).srcref(n);\nNode newExpr = NodeUtil.newExpr",
+        "d()).srcref(n);\nNode newExpr = NodeUtil.newExpr(or",
+        "PrecedenceInExpression(cond, AND_PRECEDENCE) &&\nis"
+    ]
+}

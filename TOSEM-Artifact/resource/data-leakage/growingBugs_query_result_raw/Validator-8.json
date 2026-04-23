@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7110817941952506,
+    "input": "public boolean isValid(String value) {\n        if (value == null) {\n            return false;\n        }\n\n        if (!ASCII_PATTERN.matcher(value).matches()) {\n            return false;\n        }\n\n        // Check the whole url address structure\n        Matcher urlMatcher = URL_PATTERN.matcher(value);\n        if (!urlMatcher.matches()) {\n            return false;\n        }\n\n        String scheme = urlMatcher.group(PARSE_URL_SCHEME);\n        if (!isValidScheme(scheme)) {\n            return false;\n        }\n\n        String authority = urlMatcher.group(PARSE_URL_AUTHORITY); \n        if (\"file\".equals(scheme) && \"\".equals(authority)) {\n           // Special case - file: allows an empty authority\n        } else {\n           // Validate the authority\n           if (!isValidAuthority(authority)) {\n               return false;\n            }\n        }\n\n        if (!isValidPath(urlMatcher.group(PARSE_URL_PATH))) {\n            return false;\n        }\n\n        if (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {\n            return false;\n        }\n\n        if (!isValidFragment(urlMatcher.group(PARSE_URL_FRAGMENT))) {\n            return false;\n        }\n\n        return true;\n    }",
+    "query_result": [
+        "k the whole url address structure\nMatcher urlMatcher = URL_PATTERN.matcher(value);\nif (!urlMatcher.matches()) {\nreturn false;\n}\nString scheme = urlMatcher.group(PARSE_URL_SCHEME);\nif (!isValidScheme(scheme)) {\nreturn false;\n}\nString authority = urlMa",
+        "rl address structure\nMatcher urlMatcher = URL_PATTERN.matcher(value);\nif (!urlMatcher.matches()) {\nreturn false;\n}\nString scheme = urlMatcher.group(PARSE_URL_SCHEME);\nif (!isValidScheme(scheme)) {\nreturn false;\n}\nString authority = urlMatcher.group(P",
+        "lidAuthority(authority)) {\nreturn false;\n}\n}\nif (!isValidPath(urlMatcher.group(PARSE_URL_PATH))) {\nreturn false;\n}\nif (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {\nreturn false;\n}\nif (!isValidFragment(urlMatcher.group(PARSE_URL_FRAGMENT))) {\nr",
+        "(!isValidPath(urlMatcher.group(PARSE_URL_PATH))) {\nreturn false;\n}\nif (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {\nreturn false;\n}\nif (!isValidFragment(urlMatcher.group(PARSE_URL_FRAGMENT))) {",
+        "r.group(PARSE_URL_PATH))) {\nreturn false;\n}\nif (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {\nreturn false;\n}\nif (!isValidFragment(urlMatcher.group(PARSE_URL_FRAGMENT))) {\nreturn false;\n}\nreturn",
+        "(urlMatcher.group(PARSE_URL_PATH))) {\nreturn false;\n}\nif (!isValidQuery(urlMatcher.group(PARSE_URL_Q",
+        "c boolean isValid(String value) {\nif (value == nul",
+        "boolean isValid(String value) {\nif (value == null)",
+        "oolean isValid(String value) {\nif (value == null) ",
+        "lean isValid(String value) {\nif (value == null) {\n",
+        "ean isValid(String value) {\nif (value == null) {\nr",
+        " isValid(String value) {\nif (value == null) {\nretu",
+        "isValid(String value) {\nif (value == null) {\nretur",
+        "sValid(String value) {\nif (value == null) {\nreturn",
+        "Valid(String value) {\nif (value == null) {\nreturn ",
+        "id(String value) {\nif (value == null) {\nreturn fal",
+        "(String value) {\nif (value == null) {\nreturn false",
+        "String value) {\nif (value == null) {\nreturn false;",
+        "tring value) {\nif (value == null) {\nreturn false;\n",
+        "ring value) {\nif (value == null) {\nreturn false;\n}"
+    ]
+}

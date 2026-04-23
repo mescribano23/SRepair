@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.962671905697446,
+    "input": "        void read(Tokeniser t, CharacterReader r) {\n            if (r.matchesLetter()) {\n                String name = r.consumeLetterSequence();\n                t.tagPending.appendTagName(name.toLowerCase());\n                t.dataBuffer.append(name);\n                return;\n            }\n\n            if (t.isAppropriateEndTagToken() && !r.isEmpty()) {\n                char c = r.consume();\n                switch (c) {\n                    case '\\t':\n                    case '\\n':\n                    case '\\f':\n                    case ' ':\n                        t.transition(BeforeAttributeName);\n                        break;\n                    case '/':\n                        t.transition(SelfClosingStartTag);\n                        break;\n                    case '>':\n                        t.emitTagPending();\n                        t.transition(Data);\n                        break;\n                    default:\n                        t.dataBuffer.append(c);\n                        anythingElse(t, r);\n                        break;\n                }\n            } else {\n                anythingElse(t, r);\n            }\n        }",
+    "query_result": [
+        "er t, CharacterReader r) {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSequence();\nt.tagPending.appendTagName(name.toLowerCase());\nt.dataBuffer.append(name);\nreturn;\n}\nif (t.isAppropriateEndTagToken() && !r.isEmpty()) {\nchar c = r.consume();\nswitch (c) {\ncase '\\t':\ncase '\\n':\ncase '\\f':\ncase ' ':\nt.transition(BeforeAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data);\nbreak;\ndefault:\nt.dataBuffer.append(c);\nanything",
+        ") {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSequence();\nt.tagPending.appendTagName(name.toLowerCase());\nt.dataBuffer.append(name);\nreturn;\n}\nif (t.isAppropriateEndTagToken() && !r.isEmpty()) {\nchar c = r.consume();\nswitch (c) {\ncase '\\t':\ncase '\\n':\ncase '\\f':\ncase ' ':\nt.transition(BeforeAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data);\nbreak;\ndefault:\nt.dat",
+        "t.isAppropriateEndTagToken() && !r.isEmpty()) {\nchar c = r.consume();\nswitch (c) {\ncase '\\t':\ncase '\\n':\ncase '\\f':\ncase ' ':\nt.transition(BeforeAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data);\nbreak;\ndefault:\nt.dataBuffer.append(c);\nanythingElse(t, r);\nbreak;\n}\n} else {\nan",
+        " (c) {\ncase '\\t':\ncase '\\n':\ncase '\\f':\ncase ' ':\nt.transition(BeforeAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data);\nbreak;",
+        "ead(Tokeniser t, CharacterReader r) {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSequence();\nt.tagPending.appendTagName(name.toLowerCase())",
+        "Reader r) {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSequence();\nt.tagPending.appendTagName(name.toLowerCase());\nt.dataBuffer.append(name",
+        "ase ' ':\nt.transition(BeforeAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data",
+        "' ':\nt.transition(BeforeAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data);\nb",
+        "uteName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data);\nbreak;\ndefault:\nt.dataBuffer.ap",
+        "oid read(Tokeniser t, CharacterReader r) {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSeq",
+        "(Tokeniser t, CharacterReader r) {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSequence();",
+        "r t, CharacterReader r) {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSequence();\nt.tagPen",
+        "r r) {\nif (r.matchesLetter()) {\nString name = r.consumeLetterSequence();\nt.tagPending.appendTagName(",
+        "r.matchesLetter()) {\nString name = r.consumeLetterSequence();\nt.tagPending.appendTagName(name.toLowe",
+        "ateEndTagToken() && !r.isEmpty()) {\nchar c = r.consume();\nswitch (c) {\ncase '\\t':\ncase '\\n':\ncase '\\",
+        "\nswitch (c) {\ncase '\\t':\ncase '\\n':\ncase '\\f':\ncase ' ':\nt.transition(BeforeAttributeName);\nbreak;\nc",
+        "ition(BeforeAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.e",
+        "eAttributeName);\nbreak;\ncase '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPendi",
+        "se '/':\nt.transition(SelfClosingStartTag);\nbreak;\ncase '>':\nt.emitTagPending();\nt.transition(Data);\n",
+        "id read(Tokeniser t, CharacterReader r) {\nif (r.ma"
+    ]
+}

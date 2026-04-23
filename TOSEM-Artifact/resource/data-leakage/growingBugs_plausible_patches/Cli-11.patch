@@ -1,0 +1,66 @@
+diff --git a/src/java/org/apache/commons/cli/HelpFormatter.java b/src/java/org/apache/commons/cli/HelpFormatter.java
+index 183cae3..ea254d5 100644
+--- a/src/java/org/apache/commons/cli/HelpFormatter.java
++++ b/src/java/org/apache/commons/cli/HelpFormatter.java
+@@ -610,36 +610,36 @@ public class HelpFormatter {
+      * @param option the Option to append
+      * @param required whether the Option is required or not
+      */
+-    private static void appendOption(final StringBuffer buff, 
+-                                     final Option option, 
+-                                     final boolean required)
++private static void appendOption(final StringBuffer buff, 
++                                 final Option option, 
++                                 final boolean required)
++{
++    if (!required)
+     {
+-        if (!required)
+-        {
+-            buff.append("[");
+-        }
++        buff.append("[");
++    }
+ 
+-        if (option.getOpt() != null)
+-        {
+-            buff.append("-").append(option.getOpt());
+-        }
+-        else
+-        {
+-            buff.append("--").append(option.getLongOpt());
+-        }
++    if (option.getOpt() != null)
++    {
++        buff.append("-").append(option.getOpt());
++    }
++    else
++    {
++        buff.append("--").append(option.getLongOpt());
++    }
+ 
+-        // if the Option has a value
+-        if (option.hasArg() && (option.getArgName() != null))
+-        {
+-            buff.append(" <").append(option.getArgName()).append(">");
+-        }
++    // if the Option has a value
++    if (option.hasArg() && option.getArgName() != null && !option.getArgName().isEmpty())
++    {
++        buff.append(" <").append(option.getArgName()).append(">");
++    }
+ 
+-        // if the Option is not a required option
+-        if (!required)
+-        {
+-            buff.append("]");
+-        }
++    // if the Option is not a required option
++    if (!required)
++    {
++        buff.append("]");
+     }
++}
+ 
+     /**
+      * <p>Print the cmdLineSyntax to the specified writer, using the

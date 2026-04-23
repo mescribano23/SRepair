@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.839622641509434,
+    "input": "    public static List toListOfStringsDelimitedByCommaOrSemicolon(String s) {\n        if (s == null) {\n            return Collections.EMPTY_LIST;\n        }\n\n        List results = new ArrayList();\n        // include empty last one, cft. http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#split%28java.lang.String,%20int%29\n        String[] terms = s.split(SEPARATOR,-1);\n\n        for (int i = 0; i < terms.length; i++) {\n            //this has empty string if nothing is found\n            String term = terms[i].trim();\n            results.add(term);\n        }\n\n        return results;\n    }",
+    "query_result": [
+        "edByCommaOrSemicolon(String s) {\nif (s == null) {\nreturn Collections.EMPTY_LIST;\n}\nList results = new ArrayList();\n// include empty last one, cft. http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#split%28java.lang.String,%20int%29\nString[] terms = s.split(SEPARATOR,-1);\nfor (int i = 0; i < terms.length; i++) {\n//this has empty string if nothing is found\nString term = terms[i].trim();",
+        "dByCommaOrSemicolon(String s) {\nif (s == null) {\nreturn Collections.EMPTY_LIST;\n}\nList results = new ArrayList();\n// include empty last one, cft. http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#split%28java.lang.String,%20int%29\nString[] terms = s.split(SEPARATOR,-1);\nfor (int i = 0; i < terms.length; i++) {\n//this has empty string if nothing is found\nString term = terms[i].trim();\n",
+        "terms.length; i++) {\n//this has empty string if nothing is found\nString term = terms[i].trim();\nresu",
+        " == null) {\nreturn Collections.EMPTY_LIST;\n}\nList ",
+        "rn Collections.EMPTY_LIST;\n}\nList results = new Ar",
+        " http://docs.oracle.com/javase/6/docs/api/java/lan",
+        "http://docs.oracle.com/javase/6/docs/api/java/lang",
+        "ttp://docs.oracle.com/javase/6/docs/api/java/lang/",
+        "tp://docs.oracle.com/javase/6/docs/api/java/lang/S",
+        "//docs.oracle.com/javase/6/docs/api/java/lang/Stri",
+        "/docs.oracle.com/javase/6/docs/api/java/lang/Strin",
+        "docs.oracle.com/javase/6/docs/api/java/lang/String",
+        "ocs.oracle.com/javase/6/docs/api/java/lang/String.",
+        "cs.oracle.com/javase/6/docs/api/java/lang/String.h",
+        "s.oracle.com/javase/6/docs/api/java/lang/String.ht",
+        ".oracle.com/javase/6/docs/api/java/lang/String.htm",
+        "oracle.com/javase/6/docs/api/java/lang/String.html",
+        "racle.com/javase/6/docs/api/java/lang/String.html#",
+        "acle.com/javase/6/docs/api/java/lang/String.html#s",
+        "cle.com/javase/6/docs/api/java/lang/String.html#sp"
+    ]
+}

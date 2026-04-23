@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.7028985507246377,
+    "input": "public CSVPrinter(final Appendable out, final CSVFormat format) throws IOException {\n    Assertions.notNull(out, \"out\");\n    Assertions.notNull(format, \"format\");\n\n    this.out = out;\n    this.format = format;\n    this.format.validate();\n    // TODO: Is it a good idea to do this here instead of on the first call to a print method?\n    // It seems a pain to have to track whether the header has already been printed or not.\n    if (format.getHeader() != null) {\n        this.printRecord((Object[]) format.getHeader());\n    }\n}",
+    "query_result": [
+        "ormat;\nthis.format.validate();\n// TODO: Is it a good idea to do this here instead of on the first call to a print method?\n// It seems a pain to have to track whether the header has already been printe",
+        "dea to do this here instead of on the first call to a print method?\n// It seems a pain to have to track whether the header has already been printed or",
+        "o this here instead of on the first call to a print method?\n// It seems a pain to have to track whether the header has already been printed or not.\nif",
+        "c CSVPrinter(final Appendable out, final CSVFormat",
+        "ppendable out, final CSVFormat format) throws IOEx",
+        "Format format) throws IOException {\nAssertions.not",
+        "sertions.notNull(out, \"out\");\nAssertions.notNull(f",
+        "s it a good idea to do this here instead of on the",
+        "to track whether the header has already been print"
+    ]
+}

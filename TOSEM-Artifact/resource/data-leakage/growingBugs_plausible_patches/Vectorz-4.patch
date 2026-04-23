@@ -1,0 +1,15 @@
+diff --git a/src/main/java/mikera/vectorz/util/IntArrays.java b/src/main/java/mikera/vectorz/util/IntArrays.java
+index 1c623ad5..124eb53c 100644
+--- a/src/main/java/mikera/vectorz/util/IntArrays.java
++++ b/src/main/java/mikera/vectorz/util/IntArrays.java
+@@ -223,7 +223,9 @@ public class IntArrays {
+ 		}
+ 		
+ 		while ((min+10)<max) {
+-			int mid=min+((max-min)*(x-lx))/((hx-lx)*2); // best estimate of position
++			long midCalc = (long)(max-min)*(x-lx);
++			midCalc /= ((long)(hx-lx)*2); // use long for intermediate calculation to avoid overflow
++			int mid = min + (int)midCalc;
+ 			int mx=data[mid];
+ 			if (x==mx) return mid;
+ 			if (x<mx) {

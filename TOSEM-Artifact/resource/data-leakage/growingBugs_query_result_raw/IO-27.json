@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.936046511627907,
+    "input": "    public synchronized void stop(final long stopInterval) throws Exception {\n        if (running == false) {\n            throw new IllegalStateException(\"Monitor is not running\");\n        }\n        running = false;\n        try {\n            thread.interrupt();\n            thread.join(stopInterval);\n        } catch (final InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n        for (final FileAlterationObserver observer : observers) {\n            observer.destroy();\n        }\n    }",
+    "query_result": [
+        "if (running == false) {\nthrow new IllegalStateException(\"Monitor is not running\");\n}\nrunning = false;\ntry {\nthread.interrupt();\nthread.join(stopInterval);\n} catch (final InterruptedException e) {\nThread.currentThread().interrupt();\n}\nfor (final FileAlterationObserver observer : observers) {\nobserver",
+        "chronized void stop(final long stopInterval) throws Exception {\nif (running == false) {\nthrow new IllegalStateException(\"Monitor is not running\");\n}\nrunning = false;\ntry {\nthread.interrupt();\nthread.join(stopInterval);\n} catch (final InterruptedExcep",
+        "top(final long stopInterval) throws Exception {\nif (running == false) {\nthrow new IllegalStateException(\"Monitor is not running\");\n}\nrunning = false;\ntry {\nthread.interrupt();\nthread.join(stopInterval);\n} catch (final InterruptedException e) {\nThread",
+        "al long stopInterval) throws Exception {\nif (running == false) {\nthrow new IllegalStateException(\"Monitor is not running\");\n}\nrunning = false;\ntry {\nt",
+        "row new IllegalStateException(\"Monitor is not running\");\n}\nrunning = false;\ntry {\nthread.interrupt()",
+        "hread.join(stopInterval);\n} catch (final InterruptedException e) {\nThread.currentThread().interrupt(",
+        "nterval);\n} catch (final InterruptedException e) {\nThread.currentThread().interrupt();\n}\nfor (final ",
+        "Exception e) {\nThread.currentThread().interrupt();\n}\nfor (final FileAlterationObserver observer : ob",
+        "zed void stop(final long stopInterval) throws Exce",
+        "tion {\nif (running == false) {\nthrow new IllegalSt",
+        "ning == false) {\nthrow new IllegalStateException(\"",
+        ") {\nthrow new IllegalStateException(\"Monitor is no",
+        " IllegalStateException(\"Monitor is not running\");\n",
+        "lStateException(\"Monitor is not running\");\n}\nrunni",
+        "\nrunning = false;\ntry {\nthread.interrupt();\nthread",
+        "terval);\n} catch (final InterruptedException e) {\n",
+        ";\n} catch (final InterruptedException e) {\nThread.",
+        "\n} catch (final InterruptedException e) {\nThread.c",
+        "} catch (final InterruptedException e) {\nThread.cu",
+        " catch (final InterruptedException e) {\nThread.cur"
+    ]
+}

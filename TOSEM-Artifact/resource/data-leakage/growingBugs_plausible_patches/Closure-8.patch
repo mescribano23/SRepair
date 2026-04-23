@@ -1,0 +1,47 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+index f2d36f54..df593bf7 100644
+--- a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
++++ b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+@@ -187,22 +187,28 @@ class CollapseVariableDeclarations implements CompilerPass {
+       }
+     }
+ 
+-    private boolean canBeRedeclared(Node n, Scope s) {
+-      if (!NodeUtil.isExprAssign(n)) {
+-        return false;
+-      }
+-      Node assign = n.getFirstChild();
+-      Node lhs = assign.getFirstChild();
++private boolean canBeRedeclared(Node n, Scope s) {
++  if (!NodeUtil.isExprAssign(n)) {
++    return false;
++  }
++  Node assign = n.getFirstChild();
++  Node lhs = assign.getFirstChild();
+ 
+-      if (!lhs.isName()) {
+-        return false;
+-      }
++  if (!lhs.isName()) {
++    return false;
++  }
+ 
+-      Var var = s.getVar(lhs.getString());
+-      return var != null
+-          && var.getScope() == s
+-          && !blacklistedVars.contains(var);
+-    }
++  Var var = s.getVar(lhs.getString());
++
++  // Additional check to ensure the variable is not a parameter
++  if (var != null && var.getNode().getParent().isParamList()) {
++    return false;
++  }
++
++  return var != null
++      && var.getScope() == s
++      && !blacklistedVars.contains(var);
++}
+   }
+ 
+ 

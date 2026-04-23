@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    private void doAutoAdjust(final int length) {\n        if (!autoAdjust) {\n            throw new ArrayIndexOutOfBoundsException(\"Buffer too small for such a long string\");\n        }\n\n        final char[] newArray = new char[fallBackCopyBuffer.length + Math.max(getBufferExtends(fallBackCopyBuffer.length), length)];\n        // TODO: log to adjust size once?\n        System.arraycopy(fallBackCopyBuffer, 0, newArray, 0, fallBackCopyBufferLength);\n        if (startOfValueInBuffer != -1) {\n            System.arraycopy(buffer, startOfValueInBuffer, newArray, fallBackCopyBufferLength, length);\n        }\n        if (releaseFallBackCopyBufferLength) {\n            bufferProvider.release(fallBackCopyBuffer);\n            releaseFallBackCopyBufferLength = false;\n        }\n        fallBackCopyBuffer = newArray;\n    }",
+    "query_result": []
+}

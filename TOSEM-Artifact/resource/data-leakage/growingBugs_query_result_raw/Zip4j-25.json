@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.7967871485943775,
+    "input": "private AESExtraDataRecord readAesExtraDataRecord(List<ExtraDataRecord> extraDataRecords, RawIO rawIO)\n      throws ZipException {\n\n    if (extraDataRecords == null) {\n      return null;\n    }\n\n    for (ExtraDataRecord extraDataRecord : extraDataRecords) {\n      if (extraDataRecord == null) {\n        continue;\n      }\n\n      if (extraDataRecord.getHeader() == HeaderSignature.AES_EXTRA_DATA_RECORD.getValue()) {\n\n        byte[] aesExtraDataRecordBytes = extraDataRecord.getData();\n        if (aesExtraDataRecordBytes == null || aesExtraDataRecordBytes.length != 7) {\n          throw new ZipException(\"corrupt AES extra data records\");\n        }\n\n        AESExtraDataRecord aesExtraDataRecord = new AESExtraDataRecord();\n\n        aesExtraDataRecord.setSignature(HeaderSignature.AES_EXTRA_DATA_RECORD);\n        aesExtraDataRecord.setDataSize(extraDataRecord.getSizeOfData());\n\n        byte[] aesData = extraDataRecord.getData();\n        aesExtraDataRecord.setAesVersion(AesVersion.getFromVersionNumber(rawIO.readShortLittleEndian(aesData, 0)));\n        byte[] vendorIDBytes = new byte[2];\n        System.arraycopy(aesData, 2, vendorIDBytes, 0, 2);\n        aesExtraDataRecord.setVendorID(new String(vendorIDBytes));\n        aesExtraDataRecord.setAesKeyStrength(AesKeyStrength.getAesKeyStrengthFromRawCode(aesData[4] & 0xFF));\n        aesExtraDataRecord.setCompressionMethod(\n            CompressionMethod.getCompressionMethodFromCode(rawIO.readShortLittleEndian(aesData, 5)));\n\n        return aesExtraDataRecord;\n      }\n    }\n\n    return null;\n  }",
+    "query_result": [
+        "ta records\");\n}\nAESExtraDataRecord aesExtraDataRecord = new AESExtraDataRecord();\naesExtraDataRecord.setSignature(HeaderSignature.AES_EXTRA_DATA_RECORD);\naesExtraDataRecord.setDataSize(extraDataRecord.getSizeOfData());\nbyte[] aesData = extraDataRecord.getData();\naesExtraDataRecord.setAesVersion(AesVersion.getFromVersionNumber(rawIO.readShortLittleEndian(aesData, 0)));\nbyte[] vendorIDBytes = new byte[2];\nSystem.arraycopy(aesData, 2, vendorIDBytes, 0, 2);\naesExtraDataRecord.setVendorID(new String(vendorIDBytes));\naesExtraDataRecord.setAesKeyStrength(AesKeyStrength.getAesKeyStrengthFromRawCode(aesData[4] & 0xFF));\naesExtraDataRecord.setCompressionMethod(\nCompressionMethod.getCompressionMethodFromCode(rawIO.readShortLittleEndian(aesData, 5)));\n",
+        "ord(List<ExtraDataRecord> extraDataRecords, RawIO rawIO)\nthrows ZipException {\nif (extraDataRecords == null) {\nreturn null;\n}\nfor (ExtraDataRecord extraDataRecord : extraDataRecords) {\nif (extraDataRecord == null) {\ncontinue;\n}\nif (extraDataRecord.getHeader() == HeaderSignature.AES_EXTRA_DATA_RECORD",
+        "r (ExtraDataRecord extraDataRecord : extraDataRecords) {\nif (extraDataRecord == null) {\ncontinue;\n}\n",
+        ".getHeader() == HeaderSignature.AES_EXTRA_DATA_REC",
+        "ader() == HeaderSignature.AES_EXTRA_DATA_RECORD.ge",
+        "ra data records\");\n}\nAESExtraDataRecord aesExtraDa",
+        "aRecord aesExtraDataRecord = new AESExtraDataRecor",
+        "ExtraDataRecord = new AESExtraDataRecord();\naesExt",
+        "aDataRecord = new AESExtraDataRecord();\naesExtraDa",
+        "ExtraDataRecord.setDataSize(extraDataRecord.getSiz",
+        "ord.setDataSize(extraDataRecord.getSizeOfData());\n",
+        "KeyStrength(AesKeyStrength.getAesKeyStrengthFromRa",
+        "CompressionMethodFromCode(rawIO.readShortLittleEnd"
+    ]
+}

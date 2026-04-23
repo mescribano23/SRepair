@@ -1,0 +1,41 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/std/JsonNodeDeserializer.java b/src/main/java/com/fasterxml/jackson/databind/deser/std/JsonNodeDeserializer.java
+index 0649b3b26..72a1facf1 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/std/JsonNodeDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/std/JsonNodeDeserializer.java
+@@ -362,27 +362,17 @@ abstract class BaseNodeDeserializer<T extends JsonNode>
+         return nodeFactory.numberNode(p.getBigIntegerValue());
+     }
+ 
+-    protected final JsonNode _fromFloat(JsonParser p, DeserializationContext ctxt,
+-            final JsonNodeFactory nodeFactory) throws IOException
+-    {
+-        JsonParser.NumberType nt = p.getNumberType();
+-        if (nt == JsonParser.NumberType.BIG_DECIMAL) {
+-            return nodeFactory.numberNode(p.getDecimalValue());
++protected final JsonNode _fromFloat(JsonParser p, DeserializationContext ctxt,
++        final JsonNodeFactory nodeFactory) throws IOException {
++    if (ctxt.isEnabled(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS)) {
++        double d = p.getDoubleValue();
++        if (Double.isInfinite(d) || Double.isNaN(d)) {
++            return nodeFactory.numberNode(d);
+         }
+-        if (ctxt.isEnabled(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS)) {
+-            // 20-May-2016, tatu: As per [databind#1028], need to be careful
+-            //   (note: JDK 1.8 would have `Double.isFinite()`)
+-            // 21-Aug-2016, tatu: Not optimal, really, because this may result in
+-            //   value getting parsed twice. But has to do for now, to resolve
+-            //  [databind#1315]
+-            double d = p.getDoubleValue();
+-            if (Double.isInfinite(d) || Double.isNaN(d)) {
+-                return nodeFactory.numberNode(d);
+-            }
+-            return nodeFactory.numberNode(BigDecimal.valueOf(d));
+-        }
+-        return nodeFactory.numberNode(p.getDoubleValue());
++        return nodeFactory.numberNode(p.getDecimalValue());
+     }
++    return nodeFactory.numberNode(p.getDoubleValue());
++}
+ 
+     protected final JsonNode _fromEmbedded(JsonParser p, DeserializationContext ctxt,
+             JsonNodeFactory nodeFactory) throws IOException

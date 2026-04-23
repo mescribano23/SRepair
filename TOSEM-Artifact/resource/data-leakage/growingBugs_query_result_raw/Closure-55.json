@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.6884057971014492,
+    "input": "  private static boolean isReduceableFunctionExpression(Node n) {\n    return NodeUtil.isFunctionExpression(n)\n        && !NodeUtil.isGetOrSetKey(n.getParent());\n  }",
+    "query_result": [
+        "te static boolean isReduceableFunctionExpression(N",
+        "NodeUtil.isFunctionExpression(n)\n&& !NodeUtil.isGe"
+    ]
+}

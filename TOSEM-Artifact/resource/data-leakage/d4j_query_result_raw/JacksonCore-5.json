@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.8068783068783069,
+    "input": "private final static int _parseIndex(String str) {\n    final int len = str.length();\n    // [Issue#133]: beware of super long indexes; assume we never\n    // have arrays over 2 billion entries so ints are fine.\n    if (len == 0 || len > 10) {\n        return -1;\n    }\n    for (int i = 0; i < len; ++i) {\n        char c = str.charAt(i);\n        if (c > '9' || c < '0') {\n            return -1;\n        }\n    }\n    if (len == 10) {\n        long l = NumberInput.parseLong(str);\n        if (l > Integer.MAX_VALUE) {\n            return -1;\n        }\n    }\n    return NumberInput.parseInt(str);\n}",
+    "query_result": [
+        "charAt(i);\nif (c > '9' || c < '0') {\nreturn -1;\n}\n}\nif (len == 10) {\nlong l = NumberInput.parseLong(str);\nif (l > Integer.MAX_VALUE) {\nreturn -1;\n}\n}\n",
+        "are of super long indexes; assume we never\n// have arrays over 2 billion entries so ints are fine.\ni",
+        "ndexes; assume we never\n// have arrays over 2 billion entries so ints are fine.\nif (len == 0 || len ",
+        "me we never\n// have arrays over 2 billion entries so ints are fine.\nif (len == 0 || len > 10) {\nretu",
+        "nt i = 0; i < len; ++i) {\nchar c = str.charAt(i);\nif (c > '9' || c < '0') {\nreturn -1;\n}\n}\nif (len =",
+        "eturn -1;\n}\n}\nif (len == 10) {\nlong l = NumberInput.parseLong(str);\nif (l > Integer.MAX_VALUE) {\nret",
+        "ic int _parseIndex(String str) {\nfinal int len = s",
+        "eIndex(String str) {\nfinal int len = str.length();",
+        "or (int i = 0; i < len; ++i) {\nchar c = str.charAt",
+        "r (int i = 0; i < len; ++i) {\nchar c = str.charAt(",
+        "int i = 0; i < len; ++i) {\nchar c = str.charAt(i);",
+        " i = 0; i < len; ++i) {\nchar c = str.charAt(i);\nif",
+        "i = 0; i < len; ++i) {\nchar c = str.charAt(i);\nif ",
+        " = 0; i < len; ++i) {\nchar c = str.charAt(i);\nif (",
+        " 0; i < len; ++i) {\nchar c = str.charAt(i);\nif (c "
+    ]
+}

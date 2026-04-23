@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.6763285024154589,
+    "input": "static String stripLeadingHyphens(String str)\n{\n    if (str == null) {\n        return null;\n    }\n    if (str.startsWith(\"--\"))\n    {\n        return str.substring(2, str.length());\n    }\n    else if (str.startsWith(\"-\"))\n    {\n        return str.substring(1, str.length());\n    }\n\n    return str;\n}",
+    "query_result": [
+        "ring str)\n{\nif (str == null) {\nreturn null;\n}\nif (",
+        " str)\n{\nif (str == null) {\nreturn null;\n}\nif (str.",
+        "f (str == null) {\nreturn null;\n}\nif (str.startsWit",
+        "g(2, str.length());\n}\nelse if (str.startsWith(\"-\")",
+        "rn str.substring(1, str.length());\n}\nreturn str;\n}"
+    ]
+}

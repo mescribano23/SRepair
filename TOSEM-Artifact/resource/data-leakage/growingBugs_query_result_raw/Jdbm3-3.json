@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.6717948717948717,
+    "input": "    void close() throws IOException {\n        if (!dirty.isEmpty()) {\n            commit();\n        }\n\n        if(!transactionsDisabled && txnMgr!=null){\n            txnMgr.shutdown();\n        }\n\n        if (!inTxn.isEmpty()) {\n            showList(inTxn.valuesIterator());\n            throw new Error(\"In transaction not empty\");\n        }\n\n        // these actually ain't that bad in a production release\n        if (!dirty.isEmpty()) {\n            System.out.println(\"ERROR: dirty pages at close time\");\n            showList(dirty.valuesIterator());\n            throw new Error(\"Dirty pages at close time\");\n        }\n        if (!inUse.isEmpty()) {\n            System.out.println(\"ERROR: inUse pages at close time\");\n            showList(inUse.valuesIterator());\n            throw new Error(\"inUse pages  at close time\");\n        }\n\n        storage.sync();\n        storage.forceClose();\n    }",
+    "query_result": [
+        " these actually ain't that bad in a production release\nif (!dirty.isEmpty()) {\nSystem.out.println(\"ERROR: dirty pages at close time\");\nshowList(dirty.valuesIterator());\nthrow new Error(\"Dirty pages at close time\");\n}\nif (!inUse.isEmpty()) {\nSystem.out.println(\"ERROR: inUse pages at close time\");\nshowList(inUse.valuesIterator());\nthrow new Error(\"in",
+        "w Error(\"In transaction not empty\");\n}\n// these actually ain't that bad in a production release\nif (!dirty.isEmpty()) {\nSystem.out.println(\"ERROR: dir",
+        "saction not empty\");\n}\n// these actually ain't that bad in a production release\nif (!dirty.isEmpty()",
+        "xn.isEmpty()) {\nshowList(inTxn.valuesIterator());\n",
+        "n.isEmpty()) {\nshowList(inTxn.valuesIterator());\nt",
+        "se time\");\n}\nif (!inUse.isEmpty()) {\nSystem.out.pr",
+        "(!inUse.isEmpty()) {\nSystem.out.println(\"ERROR: in"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8270762229806599,
+    "input": "public static DateTimeZone forOffsetHoursMinutes(int hoursOffset, int minutesOffset) throws IllegalArgumentException {\n    if (hoursOffset == 0 && minutesOffset == 0) {\n        return DateTimeZone.UTC;\n    }\n    if (hoursOffset < -23 || hoursOffset > 23) {\n        throw new IllegalArgumentException(\"Hours out of range: \" + hoursOffset);\n    }\n    if (minutesOffset < -59 || minutesOffset > 59) {\n        throw new IllegalArgumentException(\"Minutes out of range: \" + minutesOffset);\n    }\n    if (hoursOffset > 0 && minutesOffset < 0) {\n        throw new IllegalArgumentException(\"Positive hours must not have negative minutes: \" + minutesOffset);\n    }\n    int offset = 0;\n    try {\n        int hoursInMinutes = hoursOffset * 60;\n        if (hoursInMinutes < 0) {\n            minutesOffset = hoursInMinutes - Math.abs(minutesOffset);\n        } else {\n            minutesOffset = hoursInMinutes + minutesOffset;\n        }\n        offset = FieldUtils.safeMultiply(minutesOffset, DateTimeConstants.MILLIS_PER_MINUTE);\n    } catch (ArithmeticException ex) {\n        throw new IllegalArgumentException(\"Offset is too large\");\n    }\n    return forOffsetMillis(offset);\n}",
+    "query_result": [
+        "galArgumentException {\nif (hoursOffset == 0 && minutesOffset == 0) {\nreturn DateTimeZone.UTC;\n}\nif (hoursOffset < -23 || hoursOffset > 23) {\nthrow new IllegalArgumentException(\"Hours out of range: \" + hoursOffset);\n}\nif (minutesOffset < -59 || minutesOffset > 59) {\nthrow new IllegalArgumentException(\"Minutes out of range: \" + minutesOffset);\n}\nif (hoursOffset > 0 && minutesOffset < 0) {\nthrow new IllegalArgumentException(\"Positive hours must not have negative minutes: \" + minutesOffset);\n}\nint o",
+        "minutesOffset == 0) {\nreturn DateTimeZone.UTC;\n}\nif (hoursOffset < -23 || hoursOffset > 23) {\nthrow new IllegalArgumentException(\"Hours out of range: \" + hoursOffset);\n}\nif (minutesOffset < -59 || minutesOffset > 59) {\nthrow new IllegalArgumentException(\"Minutes out of range: \" + minutesOffset);\n}\nif (hoursOffset > 0 && minutesOffset < 0) {\nthrow new IllegalArgumentException(\"Positive hours must n",
+        " hoursInMinutes + minutesOffset;\n}\noffset = FieldUtils.safeMultiply(minutesOffset, DateTimeConstants.MILLIS_PER_MINUTE);\n} catch (ArithmeticException ",
+        "c DateTimeZone forOffsetHoursMinutes(int hoursOffset, int minutesOffset) throws IllegalArgumentExcep",
+        "legalArgumentException {\nif (hoursOffset == 0 && minutesOffset == 0) {\nreturn DateTimeZone.UTC;\n}\nif",
+        "et < -23 || hoursOffset > 23) {\nthrow new IllegalArgumentException(\"Hours out of range: \" + hoursOff",
+        "t < -23 || hoursOffset > 23) {\nthrow new IllegalArgumentException(\"Hours out of range: \" + hoursOffs",
+        "(minutesOffset < -59 || minutesOffset > 59) {\nthrow new IllegalArgumentException(\"Minutes out of ran",
+        "minutesOffset < -59 || minutesOffset > 59) {\nthrow new IllegalArgumentException(\"Minutes out of rang",
+        "sOffset < -59 || minutesOffset > 59) {\nthrow new IllegalArgumentException(\"Minutes out of range: \" +",
+        "|| minutesOffset > 59) {\nthrow new IllegalArgumentException(\"Minutes out of range: \" + minutesOffset",
+        "utesOffset < 0) {\nthrow new IllegalArgumentException(\"Positive hours must not have negative minutes:",
+        ";\n}\noffset = FieldUtils.safeMultiply(minutesOffset, DateTimeConstants.MILLIS_PER_MINUTE);\n} catch (A",
+        "offset = FieldUtils.safeMultiply(minutesOffset, DateTimeConstants.MILLIS_PER_MINUTE);\n} catch (Arith",
+        "cException ex) {\nthrow new IllegalArgumentException(\"Offset is too large\");\n}\nreturn forOffsetMillis",
+        "ion ex) {\nthrow new IllegalArgumentException(\"Offset is too large\");\n}\nreturn forOffsetMillis(offset",
+        "ic DateTimeZone forOffsetHoursMinutes(int hoursOff",
+        "one forOffsetHoursMinutes(int hoursOffset, int min",
+        " (hoursOffset == 0 && minutesOffset == 0) {\nreturn",
+        "(hoursOffset == 0 && minutesOffset == 0) {\nreturn "
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.809322033898305,
+    "input": "    public static boolean equals(\n            String filename1, String filename2,\n            boolean normalized, IOCase caseSensitivity) {\n        \n        if (filename1 == null || filename2 == null) {\n            return filename1 == filename2;\n        }\n        if (normalized) {\n            filename1 = normalize(filename1);\n            filename2 = normalize(filename2);\n            if (filename1 == null || filename2 == null) {\n                throw new IllegalArgumentException(\n                    \"Error normalizing one or both of the file names\");\n            }\n        }\n        if (caseSensitivity == null) {\n            caseSensitivity = IOCase.SENSITIVE;\n        }\n        return caseSensitivity.checkEquals(filename1, filename2);\n    }",
+    "query_result": [
+        "2 == null) {\nthrow new IllegalArgumentException(\n\"Error normalizing one or both of the file names\");\n}\n}\nif (caseSensitivity == null) {\ncaseSensitivity = IOCase.SENSITIVE;\n}\nreturn caseSensitivity.che",
+        "\"Error normalizing one or both of the file names\");\n}\n}\nif (caseSensitivity == null) {\ncaseSensitivity = IOCase.SENSITIVE;\n}\nreturn caseSensitivity.ch",
+        "or both of the file names\");\n}\n}\nif (caseSensitivity == null) {\ncaseSensitivity = IOCase.SENSITIVE;\n}\nreturn caseSensitivity.checkEquals(filename1, fi",
+        ") {\nfilename1 = normalize(filename1);\nfilename2 = normalize(filename2);\nif (filename1 == null || fil",
+        " == null) {\nthrow new IllegalArgumentException(\n\"Error normalizing one or both of the file names\");\n",
+        "== null) {\nthrow new IllegalArgumentException(\n\"Error normalizing one or both of the file names\");\n}",
+        " filename2,\nboolean normalized, IOCase caseSensiti",
+        "\nif (filename1 == null || filename2 == null) {\nret",
+        "ame1 == null || filename2 == null) {\nreturn filena",
+        "f (filename1 == null || filename2 == null) {\nthrow",
+        "ame2 == null) {\nthrow new IllegalArgumentException",
+        "= null) {\nthrow new IllegalArgumentException(\n\"Err",
+        " null) {\nthrow new IllegalArgumentException(\n\"Erro",
+        "n(\n\"Error normalizing one or both of the file name",
+        "caseSensitivity == null) {\ncaseSensitivity = IOCas",
+        "itivity == null) {\ncaseSensitivity = IOCase.SENSIT",
+        "vity == null) {\ncaseSensitivity = IOCase.SENSITIVE",
+        "eturn caseSensitivity.checkEquals(filename1, filen"
+    ]
+}

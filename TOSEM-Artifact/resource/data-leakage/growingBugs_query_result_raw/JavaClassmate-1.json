@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.051648351648351645,
+    "input": "    private ResolvedType _constructType(ClassStack context, Class<?> rawType, TypeBindings typeBindings)\n    {\n        // Ok: no easy shortcut, let's figure out type of type...\n        if (rawType.isArray()) {\n            ResolvedType elementType = _fromAny(context, rawType.getComponentType(), typeBindings);\n            return new ResolvedArrayType(rawType, typeBindings, elementType);\n        }\n        // For other types super interfaces are needed...\n        if (rawType.isInterface()) {\n            return new ResolvedInterfaceType(rawType, typeBindings,\n                    _resolveSuperInterfaces(context, rawType, typeBindings));\n            \n        }\n        // for issue 33: if the type has no type parameters,\n        // don't include typeBindings in the ResolvedType\n        if (rawType.getTypeParameters().length == 0) {\n            return new ResolvedObjectType(rawType, null,\n                    _resolveSuperClass(context, rawType, typeBindings),\n                    _resolveSuperInterfaces(context, rawType, typeBindings));\n        }\n        return new ResolvedObjectType(rawType, typeBindings,\n                _resolveSuperClass(context, rawType, typeBindings),\n                _resolveSuperInterfaces(context, rawType, typeBindings));\n    }",
+    "query_result": [
+        "(ClassStack context, Class<?> rawType, TypeBinding",
+        "ClassStack context, Class<?> rawType, TypeBindings"
+    ]
+}

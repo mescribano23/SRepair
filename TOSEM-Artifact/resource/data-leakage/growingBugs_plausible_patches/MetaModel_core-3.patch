@@ -1,0 +1,15 @@
+diff --git a/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java b/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java
+index 4df28055..ead199cf 100644
+--- a/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java
++++ b/core/src/main/java/org/apache/metamodel/schema/AbstractColumn.java
+@@ -84,7 +84,9 @@ public abstract class AbstractColumn implements Column {
+             if (getType() != other.getType()) {
+                 return false;
+             }
+-
++            if (getColumnNumber() != other.getColumnNumber()) {
++                return false;
++            }
+             final Table table1 = getTable();
+             final Table table2 = other.getTable();
+             if (table1 == null) {

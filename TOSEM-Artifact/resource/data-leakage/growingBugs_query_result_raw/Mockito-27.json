@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.2088888888888889,
+    "input": "    public <T> void resetMock(T mock) {\n        MockHandlerInterface<T> oldMockHandler = getMockHandler(mock);\n        MethodInterceptorFilter newFilter = newMethodInterceptorFilter(oldMockHandler.getMockSettings());\n        ((Factory) mock).setCallback(0, newFilter);\n    }",
+    "query_result": [
+        "hodInterceptorFilter newFilter = newMethodIntercep"
+    ]
+}

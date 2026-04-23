@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.9545454545454546,
+    "input": "    protected synchronized void enableSessionValidation() {\n        SessionValidationScheduler scheduler = getSessionValidationScheduler();\n        if (scheduler == null) {\n            scheduler = createSessionValidationScheduler();\n            setSessionValidationScheduler(scheduler);\n        }\n        // it is possible that that a scheduler was already created and set via 'setSessionValidationScheduler()'\n        // but would not have been enabled/started yet\n        if (!scheduler.isEnabled()) {\n            if (log.isInfoEnabled()) {\n                log.info(\"Enabling session validation scheduler...\");\n            }\n            scheduler.enableSessionValidation();\n            afterSessionValidationEnabled();\n        }\n    }",
+    "query_result": [
+        "alidation() {\nSessionValidationScheduler scheduler = getSessionValidationScheduler();\nif (scheduler == null) {\nscheduler = createSessionValidationScheduler();\nsetSessionValidationScheduler(scheduler);\n}\n// it is possible that that a scheduler was already created and set via 'setSessionValidationScheduler()'\n// but would not have been enabled/starte",
+        "enableSessionValidation() {\nSessionValidationScheduler scheduler = getSessionValidationScheduler();\nif (scheduler == null) {\nscheduler = createSessionValidationScheduler();\nsetSessionValidationSchedul",
+        "idation() {\nSessionValidationScheduler scheduler = getSessionValidationScheduler();\nif (scheduler == null) {\nscheduler = createSessionValidationScheduler();\nsetSessionValidationScheduler(scheduler);\n}",
+        "idationScheduler();\nsetSessionValidationScheduler(scheduler);\n}\n// it is possible that that a scheduler was already created and set via 'setSessionValidationScheduler()'\n// but would not have been ena",
+        "started yet\nif (!scheduler.isEnabled()) {\nif (log.isInfoEnabled()) {\nlog.info(\"Enabling session validation scheduler...\");\n}\nscheduler.enableSessionVa",
+        "d enableSessionValidation() {\nSessionValidationScheduler scheduler = getSessionValidationScheduler()",
+        "ableSessionValidation() {\nSessionValidationScheduler scheduler = getSessionValidationScheduler();\nif",
+        "bleSessionValidation() {\nSessionValidationScheduler scheduler = getSessionValidationScheduler();\nif ",
+        "Scheduler();\nif (scheduler == null) {\nscheduler = createSessionValidationScheduler();\nsetSessionVali",
+        "fo(\"Enabling session validation scheduler...\");\n}\nscheduler.enableSessionValidation();\nafterSessionV",
+        "lidation scheduler...\");\n}\nscheduler.enableSessionValidation();\nafterSessionValidationEnabled();\n}\n}",
+        "onValidationScheduler scheduler = getSessionValida",
+        "heduler scheduler = getSessionValidationScheduler(",
+        "alidationScheduler();\nsetSessionValidationSchedule"
+    ]
+}

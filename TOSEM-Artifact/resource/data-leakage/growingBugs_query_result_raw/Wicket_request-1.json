@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.07224770642201835,
+    "input": "public String toString(StringMode mode, Charset charset)\n    {\n        StringBuilder result = new StringBuilder();\n        final String path = getPath(charset);\n\n        if (StringMode.FULL == mode)\n        {\n            if (Strings.isEmpty(host))\n            {\n                throw new IllegalStateException(\"Cannot render this url in \" +\n                    StringMode.FULL.name() + \" mode because it does not have a host set.\");\n            }\n\n            if (Strings.isEmpty(protocol) == false)\n            {\n                result.append(protocol);\n                result.append(\"://\");\n            }\n            else if (Strings.isEmpty(protocol) && Strings.isEmpty(host) == false)\n            {\n                result.append(\"//\");\n            }\n            result.append(host);\n\n            if (port != null && port.equals(getDefaultPortForProtocol(protocol)) == false)\n            {\n                result.append(':');\n                result.append(port);\n            }\n\n            if (segments.contains(\"..\"))\n            {\n                throw new IllegalStateException(\"Cannot render this url in \" +\n                    StringMode.FULL.name() + \" mode because it has a `..` segment: \" + toString());\n            }\n\n            if (!path.startsWith(\"/\"))\n            {\n                result.append('/');\n            }\n\n        }\n\n\n        result.append(path);\n        result.append(getQueryString(charset));\n        return result.toString();\n    }",
+    "query_result": [
+        "rset charset)\n{\nStringBuilder result = new StringB",
+        "set)\n{\nStringBuilder result = new StringBuilder();",
+        "t)\n{\nStringBuilder result = new StringBuilder();\nf",
+        "{\nStringBuilder result = new StringBuilder();\nfina",
+        "\nStringBuilder result = new StringBuilder();\nfinal",
+        "StringBuilder result = new StringBuilder();\nfinal ",
+        "tringBuilder result = new StringBuilder();\nfinal S",
+        "ringBuilder result = new StringBuilder();\nfinal St",
+        "ingBuilder result = new StringBuilder();\nfinal Str",
+        "ngBuilder result = new StringBuilder();\nfinal Stri",
+        "gBuilder result = new StringBuilder();\nfinal Strin",
+        "Builder result = new StringBuilder();\nfinal String",
+        "uilder result = new StringBuilder();\nfinal String "
+    ]
+}

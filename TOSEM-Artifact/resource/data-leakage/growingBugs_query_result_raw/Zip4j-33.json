@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9496021220159151,
+    "input": "public static String decodeStringWithCharset(byte[] data, boolean isUtf8Encoded, Charset charset) {\n    if (InternalZipConstants.CHARSET_UTF_8.equals(charset) && !isUtf8Encoded) {\n      try {\n        return new String(data, ZIP_STANDARD_CHARSET);\n      } catch (UnsupportedEncodingException e) {\n        return new String(data);\n      }\n    }\n\n    if(charset != null) {\n      return new String(data, charset);\n    }\n\n    return new String(data, InternalZipConstants.CHARSET_UTF_8);\n  }",
+    "query_result": [
+        "ic String decodeStringWithCharset(byte[] data, boolean isUtf8Encoded, Charset charset) {\nif (InternalZipConstants.CHARSET_UTF_8.equals(charset) && !isUtf8Encoded) {\ntry {\nreturn new String(data, ZIP_STANDARD_CHARSET);\n} catch (UnsupportedEncodingException e) {\nreturn new String(data);\n}\n}\nif(charset != null) {\nreturn new String(data, charset);\n}\nreturn new String(data, InternalZipConstants.CHARSET",
+        "_CHARSET);\n} catch (UnsupportedEncodingException e",
+        "CHARSET);\n} catch (UnsupportedEncodingException e)",
+        "HARSET);\n} catch (UnsupportedEncodingException e) ",
+        "ARSET);\n} catch (UnsupportedEncodingException e) {",
+        "RSET);\n} catch (UnsupportedEncodingException e) {\n",
+        "SET);\n} catch (UnsupportedEncodingException e) {\nr",
+        "ET);\n} catch (UnsupportedEncodingException e) {\nre",
+        "T);\n} catch (UnsupportedEncodingException e) {\nret",
+        ");\n} catch (UnsupportedEncodingException e) {\nretu",
+        ";\n} catch (UnsupportedEncodingException e) {\nretur",
+        "\n} catch (UnsupportedEncodingException e) {\nreturn",
+        "} catch (UnsupportedEncodingException e) {\nreturn ",
+        " catch (UnsupportedEncodingException e) {\nreturn n",
+        "catch (UnsupportedEncodingException e) {\nreturn ne",
+        "atch (UnsupportedEncodingException e) {\nreturn new",
+        "tch (UnsupportedEncodingException e) {\nreturn new ",
+        "ch (UnsupportedEncodingException e) {\nreturn new S",
+        "h (UnsupportedEncodingException e) {\nreturn new St",
+        " (UnsupportedEncodingException e) {\nreturn new Str"
+    ]
+}

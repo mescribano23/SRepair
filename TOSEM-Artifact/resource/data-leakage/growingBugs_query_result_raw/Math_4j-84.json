@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7489063867016623,
+    "input": "    @Override\n    protected void iterateSimplex(final Comparator<RealPointValuePair> comparator)\n        throws FunctionEvaluationException, OptimizationException, IllegalArgumentException {\n\n        final RealConvergenceChecker checker = getConvergenceChecker();\n        while (true) {\n\n            incrementIterationsCounter();\n\n            // save the original vertex\n            final RealPointValuePair[] original = simplex;\n            final RealPointValuePair best = original[0];\n\n            // perform a reflection step\n            final RealPointValuePair reflected = evaluateNewSimplex(original, 1.0, comparator);\n            if (comparator.compare(reflected, best) < 0) {\n\n                // compute the expanded simplex\n                final RealPointValuePair[] reflectedSimplex = simplex;\n                final RealPointValuePair expanded = evaluateNewSimplex(original, khi, comparator);\n                if (comparator.compare(reflected, expanded) <= 0) {\n                    // accept the reflected simplex\n                    simplex = reflectedSimplex;\n                }\n\n                return;\n\n            }\n\n            // compute the contracted simplex\n            final RealPointValuePair contracted = evaluateNewSimplex(original, gamma, comparator);\n            if (comparator.compare(contracted, best) < 0) {\n                // accept the contracted simplex\n                return;\n            }\n\n            // check convergence\n            final int iter = getIterations();\n            boolean converged = true;\n            for (int i = 0; i < simplex.length; ++i) {\n                converged &= checker.converged(iter, original[i], simplex[i]);\n            }\n            if (converged) {\n                return;\n            }\n\n        }\n\n    }",
+    "query_result": [
+        "crementIterationsCounter();\n// save the original vertex\nfinal RealPointValuePair[] original = simplex;\nfinal RealPointValuePair best = original[0];\n// perform a reflection step\nfinal RealPointValuePair reflected = evaluateNewSimplex(original, 1.0, comparator);\nif (comparator.compare(reflected, best) < 0) {\n// compute the expanded simplex\nfinal RealPointValuePair[] reflectedSimplex = simplex;\nfinal RealPointValuePair expanded = evaluateNewSimplex(original, khi, comparator);\nif (comparator.compare(reflected, expanded) <= 0) {\n// accept the reflected simplex\nsimplex = reflectedSimplex;\n}\nreturn;\n}\n// compute the contracted simplex\nfinal RealPointValuePair contracted = evaluateNewSimplex(original, gamma, comparator);\nif (comparator.compare(cont",
+        "oid iterateSimplex(final Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException, IllegalArgumentExceptio",
+        "iterateSimplex(final Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException, IllegalArgumentException {\n",
+        "\nfinal RealPointValuePair contracted = evaluateNewSimplex(original, gamma, comparator);\nif (comparator.compare(contracted, best) < 0) {\n// accept the ",
+        "nal RealPointValuePair contracted = evaluateNewSimplex(original, gamma, comparator);\nif (comparator.compare(contracted, best) < 0) {\n// accept the con",
+        "RealPointValuePair contracted = evaluateNewSimplex(original, gamma, comparator);\nif (comparator.compare(contracted, best) < 0) {\n// accept the contrac",
+        "ValuePair contracted = evaluateNewSimplex(original, gamma, comparator);\nif (comparator.compare(contracted, best) < 0) {\n// accept the contracted simpl",
+        "Simplex(final Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, Optimiz",
+        "mplex(final Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, Optimizat",
+        "final Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationExc",
+        "nal Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationExcep",
+        "l Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationExcepti",
+        "Comparator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException",
+        "parator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException, I",
+        "arator<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException, Il",
+        "tor<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException, Illeg",
+        "or<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException, Illega",
+        "<RealPointValuePair> comparator)\nthrows FunctionEvaluationException, OptimizationException, IllegalA",
+        "expanded = evaluateNewSimplex(original, khi, comparator);\nif (comparator.compare(reflected, expanded",
+        "contracted = evaluateNewSimplex(original, gamma, comparator);\nif (comparator.compare(contracted, bes"
+    ]
+}

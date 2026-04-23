@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.9572649572649573,
+    "input": "private final static DateFormat _cloneFormat(DateFormat df, String format,\n            TimeZone tz, Locale loc, Boolean lenient)\n    {\n        if (!loc.equals(DEFAULT_LOCALE)) {\n            df = new SimpleDateFormat(format, loc);\n            df.setTimeZone((tz == null) ? DEFAULT_TIMEZONE : tz);\n        } else {\n            df = (DateFormat) df.clone();\n            if (tz != null) {\n                df.setTimeZone(tz);\n            }\n        }\n        if (lenient != null) {\n            df.setLenient(lenient.booleanValue());\n        }\n        return df;\n    }",
+    "query_result": [
+        "e final static DateFormat _cloneFormat(DateFormat df, String format,\nTimeZone tz, Locale loc, Boolean lenient)\n{\nif (!loc.equals(DEFAULT_LOCALE)) {\ndf = new SimpleDateFormat(format, loc);\ndf.setTimeZone((tz == null) ? DEFAULT_TIMEZONE : tz);\n} else {\ndf = (DateFormat) df.clone();\nif (tz != null) {\ndf.setTimeZone(tz);\n}\n}\nif (lenient != null) {\ndf.s",
+        "ic DateFormat _cloneFormat(DateFormat df, String format,\nTimeZone tz, Locale loc, Boolean lenient)\n{\nif (!loc.equals(DEFAULT_LOCALE)) {\ndf = new SimpleDateFormat(format, loc);\ndf.setTimeZone((tz == null) ? DEFAULT_TIMEZONE : tz);\n} else {\ndf = (DateFormat) df.clone();\nif (tz != null) {\ndf.setTimeZone(tz);\n}\n}\nif (lenient != null) {\ndf.setLenient(le",
+        "at _cloneFormat(DateFormat df, String format,\nTimeZone tz, Locale loc, Boolean lenient)\n{\nif (!loc.equals(DEFAULT_LOCALE)) {\ndf = new SimpleDateFormat(format, loc);\ndf.setTimeZone((tz == null) ? DEFAULT_TIMEZONE : tz);\n} else {\ndf = (DateFormat) df.clone();\nif (tz != null) {\ndf.setTimeZone(tz);\n}\n}\nif (lenient != null) {\ndf.setLenient(lenient.boole",
+        " _cloneFormat(DateFormat df, String format,\nTimeZone tz, Locale loc, Boolean lenient)\n{\nif (!loc.equals(DEFAULT_LOCALE)) {\ndf = new SimpleDateFormat(format, loc);\ndf.setTimeZone((tz == null) ? DEFAULT_TIMEZONE : tz);\n} else {\ndf = (DateFormat) df.clone();\nif (tz != null) {\ndf.setTimeZone(tz);\n}\n}\nif (lenient != null) {\ndf.setLenient(lenient.boolean",
+        "(DateFormat df, String format,\nTimeZone tz, Locale loc, Boolean lenient)\n{\nif (!loc.equals(DEFAULT_LOCALE)) {\ndf = new SimpleDateFormat(format, loc);\ndf.setTimeZone((tz == null) ? DEFAULT_TIMEZONE : tz);\n} else {\ndf = (DateFormat) df.clone();\nif (tz != null) {\ndf.setTimeZone(tz);\n}\n}\nif (lenient != null) {\ndf.setLenient(lenient.booleanValue());\n}\nr",
+        "ls(DEFAULT_LOCALE)) {\ndf = new SimpleDateFormat(format, loc);\ndf.setTimeZone((tz == null) ? DEFAULT_TIMEZONE : tz);\n} else {\ndf = (DateFormat) df.clon",
+        "ocale loc, Boolean lenient)\n{\nif (!loc.equals(DEFAULT_LOCALE)) {\ndf = new SimpleDateFormat(format, l",
+        "z != null) {\ndf.setTimeZone(tz);\n}\n}\nif (lenient != null) {\ndf.setLenient(lenient.booleanValue());\n}",
+        "tatic DateFormat _cloneFormat(DateFormat df, Strin",
+        "DateFormat _cloneFormat(DateFormat df, String form",
+        "eFormat _cloneFormat(DateFormat df, String format,",
+        ")) {\ndf = new SimpleDateFormat(format, loc);\ndf.se"
+    ]
+}

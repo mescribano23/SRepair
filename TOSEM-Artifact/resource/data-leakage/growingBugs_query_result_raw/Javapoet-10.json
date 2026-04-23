@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9267015706806283,
+    "input": "  public static String stringLiteral(String data) {\n    StringBuilder result = new StringBuilder();\n    result.append('\"');\n    for (int i = 0; i < data.length(); i++) {\n      char c = data.charAt(i);\n      switch (c) {\n        case '\"':\n          result.append(\"\\\\\\\"\");\n          break;\n        case '\\\\':\n          result.append(\"\\\\\\\\\");\n          break;\n        case '\\b':\n          result.append(\"\\\\b\");\n          break;\n        case '\\t':\n          result.append(\"\\\\t\");\n          break;\n        case '\\n':\n          result.append(\"\\\\n\");\n          break;\n        case '\\f':\n          result.append(\"\\\\f\");\n          break;\n        case '\\r':\n          result.append(\"\\\\r\");\n          break;\n        default:\n          if (Character.isISOControl(c)) {\n            result.append(String.format(\"\\\\u%04x\", (int) c));\n          } else {\n            result.append(c);\n          }\n      }\n    }\n    result.append('\"');\n    return result.toString();\n  }",
+    "query_result": [
+        "eral(String data) {\nStringBuilder result = new StringBuilder();\nresult.append('\"');\nfor (int i = 0; i < data.length(); i++) {\nchar c = data.charAt(i);\nswitch (c) {\ncase '\"':\nresult.append(\"\\\\\\\"\");\nbreak;\ncase '\\\\':\nresult.append(\"\\\\\\\\\");\nbreak;\ncase '\\b':\nresult.append(\"\\\\b\");\nbreak;\ncase '\\t':\nresult.append(\"\\\\t\");\nbreak;\ncase '\\n':\nresult.append(\"\\\\n\");\nbreak;\ncase '\\f':\nresult.append(\"\\\\f\");\nbreak;\ncase '\\r':\nresult.append(\"\\\\r\");\nbreak;\ndefault:\nif (Character.isISOControl(c)) {\nresult.append(String.format(\"\\\\u%04x\", (int) c));\n} else {\nresult.append(c);\n}\n}\n}\nresult.append('\"');\nreturn res",
+        "nt i = 0; i < data.length(); i++) {\nchar c = data.charAt(i);\nswitch (c) {\ncase '\"':\nresult.append(\"\\\\\\\"\");\nbreak;\ncase '\\\\':\nresult.append(\"\\\\\\\\\");\nbreak;\ncase '\\b':\nresult.append(\"\\\\b\");\nbreak;\ncase '\\t':\nresult.append(\"\\\\t\");\nbreak;\ncase '\\n':\nresult.append(\"\\\\n\");\nbreak;\ncase '\\f':\nresult.append(\"\\\\f\");\nbreak;\ncase '\\r':\nresult.append(\"\\\\r\");\nbreak;\ndefault:\nif (Character.isISOControl(c)) {\nresult.append(String.format(\"\\\\u%04x\", (int) c));\n} else {\nresult.append(c);\n}\n}\n}\nresult.append('\"');\n",
+        "\"':\nresult.append(\"\\\\\\\"\");\nbreak;\ncase '\\\\':\nresult.append(\"\\\\\\\\\");\nbreak;\ncase '\\b':\nresult.append(\"\\\\b\");\nbreak;\ncase '\\t':\nresult.append(\"\\\\t\");\nbreak;\ncase '\\n':\nresult.append(\"\\\\n\");\nbreak;\ncase '\\f':\nresult.append(\"\\\\f\");\nbreak;\ncase '\\r':\nresult.append(\"\\\\r\");\nbreak;\ndefault:\nif (Character.is",
+        "ppend(\"\\\\\\\"\");\nbreak;\ncase '\\\\':\nresult.append(\"\\\\\\\\\");\nbreak;\ncase '\\b':\nresult.append(\"\\\\b\");\nbreak;\ncase '\\t':\nresult.append(\"\\\\t\");\nbreak;\ncase '\\n':\nresult.append(\"\\\\n\");\nbreak;\ncase '\\f':\nresult.append(\"\\\\f\");\nbreak;\ncase '\\r':\nresult.append(\"\\\\r\");\nbreak;\ndefault:\nif (Character.isISOControl(c",
+        "teral(String data) {\nStringBuilder result = new StringBuilder();\nresult.append('\"');\nfor (int i = 0; i < data.length(); i++) {\nchar c = data.charAt(i);\nswitch (c) {\ncase '\"':\nresult.append(\"\\\\\\\"\");\nbreak;\ncase '\\\\':\nresult.append(\"\\\\\\\\\");\nbreak;\ncase",
+        "'\"':\nresult.append(\"\\\\\\\"\");\nbreak;\ncase '\\\\':\nresult.append(\"\\\\\\\\\");\nbreak;\ncase '\\b':\nresult.append(\"\\\\b\");\nbreak;\ncase '\\t':\nresult.append(\"\\\\t\");\nbreak;\ncase '\\n':\nresult.append(\"\\\\n\");\nbreak;\ncase '\\f':\nresult.append(\"\\\\f\");\nbreak;\ncase '\\r':\nres",
+        " StringBuilder();\nresult.append('\"');\nfor (int i = 0; i < data.length(); i++) {\nchar c = data.charAt(i);\nswitch (c) {\ncase '\"':\nresult.append(\"\\\\\\\"\");",
+        ");\nbreak;\ncase '\\t':\nresult.append(\"\\\\t\");\nbreak;\ncase '\\n':\nresult.append(\"\\\\n\");\nbreak;\ncase '\\f':\nresult.append(\"\\\\f\");\nbreak;\ncase '\\r':\nresult.ap",
+        "er result = new StringBuilder();\nresult.append('\"');\nfor (int i = 0; i < data.length(); i++) {\nchar ",
+        "result = new StringBuilder();\nresult.append('\"');\nfor (int i = 0; i < data.length(); i++) {\nchar c =",
+        "; i++) {\nchar c = data.charAt(i);\nswitch (c) {\ncase '\"':\nresult.append(\"\\\\\\\"\");\nbreak;\ncase '\\\\':\nre",
+        "(String data) {\nStringBuilder result = new StringB",
+        "tring data) {\nStringBuilder result = new StringBui",
+        "ng data) {\nStringBuilder result = new StringBuilde",
+        "g data) {\nStringBuilder result = new StringBuilder",
+        " data) {\nStringBuilder result = new StringBuilder(",
+        "data) {\nStringBuilder result = new StringBuilder()",
+        "ata) {\nStringBuilder result = new StringBuilder();",
+        "ta) {\nStringBuilder result = new StringBuilder();\n",
+        ") {\nStringBuilder result = new StringBuilder();\nre"
+    ]
+}

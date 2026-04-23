@@ -1,0 +1,36 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java
+index aa5f6a3..bf282c7 100644
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/ZipEntryInputStream.java
+@@ -54,21 +54,17 @@ class ZipEntryInputStream extends InputStream {
+     return readLen;
+   }
+ 
+-  public int readRawFully(byte[] b) throws  IOException {
+-
+-    int readLen = inputStream.read(b);
+-
+-
+-    if (readLen != b.length) {
+-      readLen = readUntilBufferIsFull(b, readLen);
+-
+-      if (readLen != b.length) {
+-        throw new IOException("Cannot read fully into byte buffer");
+-      }
++public int readRawFully(byte[] b) throws IOException {
++    int totalRead = 0;
++    while (totalRead < b.length) {
++        int bytesRead = inputStream.read(b, totalRead, b.length - totalRead);
++        if (bytesRead == -1) {
++            throw new IOException("Unexpected EOF reached when trying to read stream");
++        }
++        totalRead += bytesRead;
+     }
+-
+-    return readLen;
+-  }
++    return totalRead;
++}
+ 
+   private int readUntilBufferIsFull(byte[] b, int readLength) throws IOException {
+     int remainingLength = b.length - readLength;

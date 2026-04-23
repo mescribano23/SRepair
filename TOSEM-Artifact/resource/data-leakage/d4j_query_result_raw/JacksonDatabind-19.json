@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.26057529610829105,
+    "input": "private JavaType _mapType(Class<?> rawClass)\n{\n    // 28-May-2015, tatu: Properties are special, as per [databind#810]\n    if (rawClass == Properties.class) {\n        return MapType.construct(rawClass, CORE_TYPE_STRING, CORE_TYPE_STRING);\n    }\n    JavaType[] typeParams = findTypeParameters(rawClass, Map.class);\n    // ok to have no types (\"raw\")\n    if (typeParams == null) {\n        return MapType.construct(rawClass, _unknownType(), _unknownType());\n    }\n    // but exactly 2 types if any found\n    if (typeParams.length != 2) {\n        throw new IllegalArgumentException(\"Strange Map type \"+rawClass.getName()+\": can not determine type parameters\");\n    }\n    return MapType.construct(rawClass, typeParams[0], typeParams[1]);\n}",
+    "query_result": [
+        "ll) {\nreturn MapType.construct(rawClass, _unknownT",
+        "arams.length != 2) {\nthrow new IllegalArgumentExce",
+        "ams.length != 2) {\nthrow new IllegalArgumentExcept",
+        "ms.length != 2) {\nthrow new IllegalArgumentExcepti",
+        "s.length != 2) {\nthrow new IllegalArgumentExceptio",
+        ".length != 2) {\nthrow new IllegalArgumentException",
+        "length != 2) {\nthrow new IllegalArgumentException(",
+        "ength != 2) {\nthrow new IllegalArgumentException(\"",
+        "ngth != 2) {\nthrow new IllegalArgumentException(\"S",
+        "\nthrow new IllegalArgumentException(\"Strange Map t",
+        "ters\");\n}\nreturn MapType.construct(rawClass, typeP"
+    ]
+}

@@ -1,0 +1,19 @@
+diff --git a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonSerializationContext.java b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonSerializationContext.java
+index bf19344d..2785e870 100644
+--- a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonSerializationContext.java
++++ b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonSerializationContext.java
+@@ -31,10 +31,10 @@ public class JohnzonSerializationContext implements SerializationContext {
+         this.runtime = runtime;
+     }
+ 
+-    @Override
+-    public <T> void serialize(final String key, final T object, final JsonGenerator generator) {
+-        runtime.writeObject(object, generator);
+-    }
++public <T> void serialize(final String key, final T object, final JsonGenerator generator) {
++    generator.writeKey(key);
++    runtime.writeObject(object, generator);
++}
+ 
+     @Override
+     public <T> void serialize(final T object, final JsonGenerator generator) {

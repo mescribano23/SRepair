@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.9946332737030411,
+    "input": "    private short getAlteredFieldsBitMask() {\n        int bitMask = 0;\n        bitMask = id != null ? bitMask | ID_BIT_MASK : bitMask;\n        bitMask = startTimestamp != null ? bitMask | START_TIMESTAMP_BIT_MASK : bitMask;\n        bitMask = stopTimestamp != null ? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMask;\n        bitMask = lastAccessTime != null ? bitMask | LAST_ACCESS_TIME_BIT_MASK : bitMask;\n        bitMask = timeout != 0l ? bitMask | TIMEOUT_BIT_MASK : bitMask;\n        bitMask = expired ? bitMask | EXPIRED_BIT_MASK : bitMask;\n        bitMask = host != null ? bitMask | HOST_BIT_MASK : bitMask;\n        bitMask = !CollectionUtils.isEmpty(attributes) ? bitMask | ATTRIBUTES_BIT_MASK : bitMask;\n        return (short) bitMask;\n    }",
+    "query_result": [
+        "rivate short getAlteredFieldsBitMask() {\nint bitMask = 0;\nbitMask = id != null ? bitMask | ID_BIT_MASK : bitMask;\nbitMask = startTimestamp != null ? bitMask | START_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = stopTimestamp != null ? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = lastAccessTime != null ? bitMask | LAST_ACCESS_TIME_BIT_MASK : bitMask;\nbitMask = timeout != 0l ? bitMask | TIMEOUT_BIT_MASK : bitMask;\nbitMask = expired ? bitMask | EXPIRED_BIT_MASK : bitMask;\nbitMask = host != null ? bitMask | HOST_BIT_MASK : bitMask;\nbitMask = !CollectionUtils.isEmpty(attributes) ? bitMask | ATTRIBUTES_BIT_MASK : bitMask;\nreturn (short) bitMask",
+        " getAlteredFieldsBitMask() {\nint bitMask = 0;\nbitMask = id != null ? bitMask | ID_BIT_MASK : bitMask;\nbitMask = startTimestamp != null ? bitMask | START_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = stopTimestamp != null ? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = lastAccessTime != null ? bitMask | LAST_ACCESS_TIME_BIT_MASK : bitMask;\nbitMask = timeout != 0l ? bitMask | TIMEOUT_BIT_MASK : bitMask;\nbitMask = expired ? bitMask | EXPIRED_BIT_MASK : bitMask;\nbitMask = host != null ? bitMask | HOST_BIT_MASK : bitMask;\nbitMask = !CollectionUtils.isEmpty(attributes) ? bitMask | ATTRIBUTES_BIT_",
+        "\nint bitMask = 0;\nbitMask = id != null ? bitMask | ID_BIT_MASK : bitMask;\nbitMask = startTimestamp != null ? bitMask | START_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = stopTimestamp != null ? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = lastAccessTime != null ? bitMask | LAST_ACCESS_TIME_BIT_MASK : bitMask;\nbitMask = timeout != 0l ? bitMask | TIMEOUT_BIT_MASK : bitMask;\nbitMask = expired ? bitMask | EXPIRED_BIT_MASK : bitMask;\nbitMask = ho",
+        "teredFieldsBitMask() {\nint bitMask = 0;\nbitMask = id != null ? bitMask | ID_BIT_MASK : bitMask;\nbitMask = startTimestamp != null ? bitMask | START_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = stopTimestamp != null ? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMask;\nbitMask = lastAccessTime != null ? bitMask | LAST_ACCESS_TIME_BIT_MASK : bitMask;\nbitMask = ti",
+        ";\nbitMask = expired ? bitMask | EXPIRED_BIT_MASK : bitMask;\nbitMask = host != null ? bitMask | HOST_BIT_MASK : bitMask;\nbitMask = !CollectionUtils.isEmpty(attributes) ? bitMask | ATTRIBUTES_BIT_MASK :",
+        "te short getAlteredFieldsBitMask() {\nint bitMask =",
+        "opTimestamp != null ? bitMask | STOP_TIMESTAMP_BIT",
+        " null ? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMas",
+        "? bitMask | STOP_TIMESTAMP_BIT_MASK : bitMask;\nbit",
+        "null ? bitMask | LAST_ACCESS_TIME_BIT_MASK : bitMa",
+        "itMask | LAST_ACCESS_TIME_BIT_MASK : bitMask;\nbitM",
+        "sk | LAST_ACCESS_TIME_BIT_MASK : bitMask;\nbitMask ",
+        " null ? bitMask | HOST_BIT_MASK : bitMask;\nbitMask",
+        "s) ? bitMask | ATTRIBUTES_BIT_MASK : bitMask;\nretu",
+        " ? bitMask | ATTRIBUTES_BIT_MASK : bitMask;\nreturn"
+    ]
+}

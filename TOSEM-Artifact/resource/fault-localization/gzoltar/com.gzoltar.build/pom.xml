@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2020 GZoltar contributors.
+
+  This file is part of GZoltar.
+
+  GZoltar is free software: you can redistribute it and/or modify it under the terms of the GNU
+  Lesser General Public License as published by the Free Software Foundation, either version 3 of
+  the License, or (at your option) any later version.
+
+  GZoltar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+  General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License along with GZoltar. If
+  not, see <https://www.gnu.org/licenses/>.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.gzoltar</groupId>
+  <artifactId>com.gzoltar.build</artifactId>
+  <version>1.7.4-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>GZoltar</name>
+  <description>GZoltar - Java Library for Automatic Debugging</description>
+  <url>http://www.gzoltar.com</url>
+  <inceptionYear>2010</inceptionYear>
+  <organization>
+    <name>GZoltar</name>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>rui</id>
+      <name>Rui Abreu</name>
+      <email>rui@computer.org</email>
+      <timezone>Europe/London</timezone>
+      <roles>
+        <role>Project Lead</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>alex</id>
+      <name>Alexandre Perez</name>
+      <email>alexandrecperez@gmail.com</email>
+      <timezone>Europe/London</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jose</id>
+      <name>José Campos</name>
+      <email>zecapistolas@gmail.com</email>
+      <timezone>Europe/London</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>nuno</id>
+      <name>Nuno Cardoso</name>
+      <email>nunopcardoso@gmail.com</email>
+      <timezone>Europe/London</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Carlos Gouveia</name>
+    </contributor>
+  </contributors>
+
+  <prerequisites>
+    <maven>3.0</maven>
+  </prerequisites>
+
+  <modules>
+    <!-- Order it might be important if, e.g., module X depends on module Y -->
+    <module>../com.gzoltar.core</module>
+    <module>../com.gzoltar.fl</module>
+    <module>../com.gzoltar.report</module>
+    <module>../com.gzoltar.agent.rt</module>
+    <module>../com.gzoltar.agent</module>
+    <module>../com.gzoltar.maven</module>
+    <module>../com.gzoltar.ant</module>
+    <module>../com.gzoltar.cli</module>
+    <module>../com.gzoltar.doc</module>
+    <module>../com.gzoltar.test</module>
+    <module>../com.gzoltar</module>
+  </modules>
+
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License, Version 3.0</name>
+      <url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git://github.com/gzoltar/gzoltar.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:gzoltar/gzoltar.git</developerConnection>
+    <url>https://github.com/gzoltar/gzoltar</url>
+  </scm>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/gzoltar/gzoltar/issues</url>
+  </issueManagement>
+  <distributionManagement>
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <name>Nexus Release Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <maven.build.timestamp.format>yyyyMMddhhmm</maven.build.timestamp.format>
+    <build.timestamp>${maven.build.timestamp}</build.timestamp>
+    <dist.version>${project.version}.${build.timestamp}</dist.version>
+
+    <gzoltar.home.url>http://www.gzoltar.com</gzoltar.home.url>
+    <copyright.years>${project.inceptionYear}, 2017</copyright.years>
+
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+
+    <jvm.args></jvm.args>
+    <argLine>${jvm.args}</argLine>
+
+    <!-- Dependencies versions -->
+    <junit.version>4.12</junit.version>
+    <testng.version>6.11</testng.version>
+    <javassist.version>3.29.2-GA</javassist.version>
+    <jacoco.version>0.8.6</jacoco.version>
+    <commons-io.version>2.5</commons-io.version>
+    <commons-lang.version>3.7</commons-lang.version>
+    <ant.version>1.10.1</ant.version>
+    <ant.junit.version>1.10.1</ant.junit.version>
+    <args4j.version>2.33</args4j.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Project dependencies -->
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.fl</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.report</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.agent</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.agent</artifactId>
+        <version>${project.version}</version>
+        <classifier>runtime</classifier>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.agent.rt</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.maven</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.ant</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>com.gzoltar.cli</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.6.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>3.5</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>animal-sniffer-maven-plugin</artifactId>
+          <version>1.17</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.0.1</version>
+          <configuration>
+            <quiet>true</quiet>
+            <detectOfflineLinks>false</detectOfflineLinks>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.6</version>
+          <executions>
+            <execution>
+              <id>check-license-header</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <target>
+                  <fileset dir="${project.basedir}" includes="**/*.java,**/*.xml,**/*.js,**/*.html" excludes=".git/**,target/**,.idea/**,.style/**" id="missinglicense.fileset">
+                    <not>
+                      <and>
+                        <contains text="Copyright (C) 2020 GZoltar contributors."/>
+                        <contains text="This file is part of GZoltar."/>
+                        <contains text="GZoltar is free software: you can redistribute it and/or modify it under the terms of the GNU"/>
+                        <contains text="Lesser General Public License as published by the Free Software Foundation, either version 3 of"/>
+                        <contains text="the License, or (at your option) any later version."/>
+                        <contains text="GZoltar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even"/>
+                        <contains text="the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser"/>
+                        <contains text="General Public License for more details."/>
+                        <contains text="You should have received a copy of the GNU Lesser General Public License along with GZoltar. If"/>
+                        <contains text="not, see &lt;https://www.gnu.org/licenses/&gt;."/>
+                      </and>
+                    </not>
+                  </fileset>
+                  <pathconvert property="missing" refid="missinglicense.fileset"/>
+                  <fail message="Invalid license info in: ${missing}">
+                    <condition>
+                      <not>
+                        <equals arg1="${missing}" arg2=""/>
+                      </not>
+                    </condition>
+                  </fail>
+                </target>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.6</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M3</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.surefire</groupId>
+              <artifactId>surefire-junit47</artifactId>
+              <version>3.0.0-M3</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.8</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>sources</id>
+      <activation>
+        <file>
+          <exists>src/main/java</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Generates jar with sources -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Generates Javadoc -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <doclint>none</doclint>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is activated when a project is released. -->
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <!-- Checks compatibility with Java API -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>animal-sniffer-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>enforce-java-api-compatibility</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+                <configuration>
+                  <signature>
+                    <groupId>org.codehaus.mojo.signature</groupId>
+                    <artifactId>java17</artifactId>
+                    <version>1.0</version>
+                  </signature>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Signs artifacts -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <gpgArguments>
+                    <!-- This is necessary for gpg to not try to use the pinentry programs -->
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Deploy and release to the Central Repository -->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <extensions>true</extensions>
+            <configuration>
+               <serverId>sonatype-nexus-staging</serverId>
+               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+               <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is active only when used from Eclipse m2e and is used only to store settings. -->
+    <profile>
+      <id>m2e</id>
+      <activation>
+        <property>
+          <name>m2e.version</name>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+            <plugin>
+              <groupId>org.eclipse.m2e</groupId>
+              <artifactId>lifecycle-mapping</artifactId>
+              <version>1.0.0</version>
+              <configuration>
+                <lifecycleMappingMetadata>
+                  <pluginExecutions>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <versionRange>[0,)</versionRange>
+                        <goals>
+                          <goal>unpack</goal>
+                          <goal>copy</goal>
+                          <goal>copy-dependencies</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore></ignore>
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <versionRange>[0,)</versionRange>
+                        <goals>
+                          <goal>run</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore></ignore>
+                      </action>
+                    </pluginExecution>
+                  </pluginExecutions>
+                </lifecycleMappingMetadata>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

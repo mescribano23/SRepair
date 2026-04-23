@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9008403361344538,
+    "input": "    public TimeSeries createCopy(int start, int end)\n            throws CloneNotSupportedException {\n        if (start < 0) {\n            throw new IllegalArgumentException(\"Requires start >= 0.\");\n        }\n        if (end < start) {\n            throw new IllegalArgumentException(\"Requires start <= end.\");\n        }\n        TimeSeries copy = (TimeSeries) super.clone();\n        copy.minY = Double.NaN;\n        copy.maxY = Double.NaN;\n        copy.data = new java.util.ArrayList();\n        if (this.data.size() > 0) {\n            for (int index = start; index <= end; index++) {\n                TimeSeriesDataItem item\n                        = (TimeSeriesDataItem) this.data.get(index);\n                TimeSeriesDataItem clone = (TimeSeriesDataItem) item.clone();\n                try {\n                    copy.add(clone);\n                }\n                catch (SeriesException e) {\n                    e.printStackTrace();\n                }\n            }\n        }\n        return copy;\n    }",
+    "query_result": [
+        "edException {\nif (start < 0) {\nthrow new IllegalArgumentException(\"Requires start >= 0.\");\n}\nif (end < start) {\nthrow new IllegalArgumentException(\"Requires start <= end.\");\n}\nTimeSeries copy = (TimeS",
+        "index);\nTimeSeriesDataItem clone = (TimeSeriesDataItem) item.clone();\ntry {\ncopy.add(clone);\n}\ncatch (SeriesException e) {\ne.printStackTrace();\n}\n}\n}\n",
+        "}\nif (end < start) {\nthrow new IllegalArgumentException(\"Requires start <= end.\");\n}\nTimeSeries copy",
+        "t) {\nthrow new IllegalArgumentException(\"Requires start <= end.\");\n}\nTimeSeries copy = (TimeSeries) ",
+        "IllegalArgumentException(\"Requires start <= end.\");\n}\nTimeSeries copy = (TimeSeries) super.clone();\n",
+        "copy.maxY = Double.NaN;\ncopy.data = new java.util.ArrayList();\nif (this.data.size() > 0) {\nfor (int ",
+        ".maxY = Double.NaN;\ncopy.data = new java.util.ArrayList();\nif (this.data.size() > 0) {\nfor (int inde",
+        ";\ncopy.data = new java.util.ArrayList();\nif (this.data.size() > 0) {\nfor (int index = start; index <",
+        "y.data = new java.util.ArrayList();\nif (this.data.size() > 0) {\nfor (int index = start; index <= end",
+        "ata = new java.util.ArrayList();\nif (this.data.size() > 0) {\nfor (int index = start; index <= end; i",
+        " new java.util.ArrayList();\nif (this.data.size() > 0) {\nfor (int index = start; index <= end; index+",
+        " java.util.ArrayList();\nif (this.data.size() > 0) {\nfor (int index = start; index <= end; index++) {",
+        "rayList();\nif (this.data.size() > 0) {\nfor (int index = start; index <= end; index++) {\nTimeSeriesDa",
+        " start; index <= end; index++) {\nTimeSeriesDataItem item\n= (TimeSeriesDataItem) this.data.get(index)",
+        "(int start, int end)\nthrows CloneNotSupportedExcep",
+        " {\nif (start < 0) {\nthrow new IllegalArgumentExcep",
+        "{\nif (start < 0) {\nthrow new IllegalArgumentExcept",
+        "\nif (start < 0) {\nthrow new IllegalArgumentExcepti",
+        "f (start < 0) {\nthrow new IllegalArgumentException",
+        " (start < 0) {\nthrow new IllegalArgumentException("
+    ]
+}

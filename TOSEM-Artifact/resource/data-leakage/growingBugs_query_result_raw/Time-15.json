@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9737609329446064,
+    "input": "public static long safeMultiply(long val1, int val2) {\n        switch (val2) {\n            case -1:\n                if (val1 == Long.MIN_VALUE) {\n                    throw new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n                }\n                return -val1;\n            case 0:\n                return 0L;\n            case 1:\n                return val1;\n        }\n        long total = val1 * val2;\n        if (total / val2 != val1) {\n          throw new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n        }\n        return total;\n    }",
+    "query_result": [
+        "eMultiply(long val1, int val2) {\nswitch (val2) {\ncase -1:\nif (val1 == Long.MIN_VALUE) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n}\nreturn -val1;\ncase 0:\nreturn 0L;\ncase 1:\nreturn val1;\n}\nlong total = val1 * val2;\nif (total / val2 != val1) {\nthrow new ArithmeticException(\"Multiplication overflows a lo",
+        "int val2) {\nswitch (val2) {\ncase -1:\nif (val1 == Long.MIN_VALUE) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n}\nreturn -val1;\ncase 0:\nreturn 0L;\ncase 1:\nreturn val1;\n}\nlong total = val1 * val2;\nif (total / val2 != val1) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" ",
+        "nt val2) {\nswitch (val2) {\ncase -1:\nif (val1 == Long.MIN_VALUE) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n}\nreturn -val1;\ncase 0:\nreturn 0L;\ncase 1:\nreturn val1;\n}\nlong total = val1 * val2;\nif (total / val2 != val1) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" +",
+        "MIN_VALUE) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2",
+        "E) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n}\nret",
+        "val2;\nif (total / val2 != val1) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" ",
+        "1) {\nthrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n}\nret",
+        "hrow new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n}\nreturn to",
+        "row new ArithmeticException(\"Multiplication overflows a long: \" + val1 + \" * \" + val2);\n}\nreturn tot",
+        "c static long safeMultiply(long val1, int val2) {\n",
+        "val1 == Long.MIN_VALUE) {\nthrow new ArithmeticExce",
+        " == Long.MIN_VALUE) {\nthrow new ArithmeticExceptio",
+        "= Long.MIN_VALUE) {\nthrow new ArithmeticException(",
+        "VALUE) {\nthrow new ArithmeticException(\"Multiplica",
+        ") {\nthrow new ArithmeticException(\"Multiplication ",
+        " {\nthrow new ArithmeticException(\"Multiplication o",
+        "throw new ArithmeticException(\"Multiplication over",
+        "hrow new ArithmeticException(\"Multiplication overf",
+        "row new ArithmeticException(\"Multiplication overfl",
+        "ow new ArithmeticException(\"Multiplication overflo"
+    ]
+}

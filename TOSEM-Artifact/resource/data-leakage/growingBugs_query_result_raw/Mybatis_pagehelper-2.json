@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.9857954545454546,
+    "input": "    public Page(int[] rowBounds, boolean count) {\n        super(0);\n        if (rowBounds[0] == 0 && rowBounds[1] == Integer.MAX_VALUE) {\n            pageSizeZero = true;\n            this.pageSize = 0;\n        } else {\n            this.pageSize = rowBounds[1];\n            this.pageNum = rowBounds[1] != 0 ? (int) (Math.ceil(((double) rowBounds[0] + rowBounds[1]) / rowBounds[1])) : 0;\n        }\n        this.startRow = rowBounds[0];\n        this.count = count;\n        this.endRow = this.startRow + rowBounds[1];\n    }",
+    "query_result": [
+        "ic Page(int[] rowBounds, boolean count) {\nsuper(0);\nif (rowBounds[0] == 0 && rowBounds[1] == Integer.MAX_VALUE) {\npageSizeZero = true;\nthis.pageSize = 0;\n} else {\nthis.pageSize = rowBounds[1];\nthis.pageNum = rowBounds[1] != 0 ? (int) (Math.ceil(((double) rowBounds[0] + rowBounds[1]) / rowBounds[1])) : 0;\n}\nthis.startRow = rowBounds[0];\nthis.count = count;\nthis.endRow = this.startRow + rowBounds[1]",
+        "unt) {\nsuper(0);\nif (rowBounds[0] == 0 && rowBounds[1] == Integer.MAX_VALUE) {\npageSizeZero = true;\nthis.pageSize = 0;\n} else {\nthis.pageSize = rowBounds[1];\nthis.pageNum = rowBounds[1] != 0 ? (int) (Math.ceil(((double) rowBounds[0] + rowBounds[1]) / rowBounds[1])) : 0;\n}\nthis.startRow = rowBounds[0];\nthis.count = count;\nthis.endRow = this.startRow",
+        "\nsuper(0);\nif (rowBounds[0] == 0 && rowBounds[1] == Integer.MAX_VALUE) {\npageSizeZero = true;\nthis.pageSize = 0;\n} else {\nthis.pageSize = rowBounds[1];\nthis.pageNum = rowBounds[1] != 0 ? (int) (Math.ceil(((double) rowBounds[0] + rowBounds[1]) / rowBounds[1])) : 0;\n}\nthis.startRow = rowBounds[0];\nthis.count = count;\nthis.endRow = this.startRow + row",
+        " 0;\n}\nthis.startRow = rowBounds[0];\nthis.count = count;\nthis.endRow = this.startRow + rowBounds[1];\n",
+        "owBounds, boolean count) {\nsuper(0);\nif (rowBounds",
+        "eSize = 0;\n} else {\nthis.pageSize = rowBounds[1];\n",
+        "} else {\nthis.pageSize = rowBounds[1];\nthis.pageNu",
+        "[1] != 0 ? (int) (Math.ceil(((double) rowBounds[0]",
+        "] != 0 ? (int) (Math.ceil(((double) rowBounds[0] +",
+        "ds[0];\nthis.count = count;\nthis.endRow = this.star"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.0,
+    "input": "public static float max(final float a, final float b) {\n    return (a <= b) ? b : (Float.isNaN(a + b) ? Float.NaN : a);\n}",
+    "query_result": [
+        "blic double[] fit() {\nfinal double[] guess = (new ",
+        "c double[] fit() {\nfinal double[] guess = (new Par",
+        "it() {\nfinal double[] guess = (new ParameterGuesse",
+        "inal double[] guess = (new ParameterGuesser(getObs",
+        "nal double[] guess = (new ParameterGuesser(getObse",
+        "ble[] guess = (new ParameterGuesser(getObservation",
+        "ess = (new ParameterGuesser(getObservations())).gu",
+        "s = (new ParameterGuesser(getObservations())).gues",
+        "= (new ParameterGuesser(getObservations())).guess("
+    ]
+}

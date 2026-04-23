@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.797979797979798,
+    "input": "    @Override\n    public int read(byte[] buf, int off, int len) throws IOException {\n        int firstCount = 0;\n        int b = 0;\n        while ((len > 0) && (b >= 0)) {\n            b = readFirstBytes();\n            if (b >= 0) {\n                buf[off++] = (byte) (b & 0xFF);\n                len--;\n                firstCount++;\n            }\n        }\n        int secondCount = in.read(buf, off, len);\n        return (secondCount < 0) ? (firstCount > 0 ? firstCount : -1) : firstCount + secondCount;\n    }",
+    "query_result": [
+        " off, int len) throws IOException {\nint firstCount = 0;\nint b = 0;\nwhile ((len > 0) && (b >= 0)) {\nb = readFirstBytes();\nif (b >= 0) {\nbuf[off++] = (byte) (b & 0xFF);\nlen--;\nfirstCount++;\n}\n}\nint secondCount = in.read(buf, off, len);\nreturn (secondCo",
+        "@Override\npublic int read(byte[] buf, int off, int",
+        "Override\npublic int read(byte[] buf, int off, int ",
+        "verride\npublic int read(byte[] buf, int off, int l",
+        "erride\npublic int read(byte[] buf, int off, int le",
+        "rride\npublic int read(byte[] buf, int off, int len",
+        "ride\npublic int read(byte[] buf, int off, int len)",
+        "ide\npublic int read(byte[] buf, int off, int len) ",
+        "de\npublic int read(byte[] buf, int off, int len) t",
+        "e\npublic int read(byte[] buf, int off, int len) th",
+        "\npublic int read(byte[] buf, int off, int len) thr",
+        "public int read(byte[] buf, int off, int len) thro",
+        "ublic int read(byte[] buf, int off, int len) throw",
+        "blic int read(byte[] buf, int off, int len) throws",
+        "lic int read(byte[] buf, int off, int len) throws ",
+        "ic int read(byte[] buf, int off, int len) throws I",
+        "c int read(byte[] buf, int off, int len) throws IO",
+        " int read(byte[] buf, int off, int len) throws IOE",
+        "int read(byte[] buf, int off, int len) throws IOEx",
+        "nt read(byte[] buf, int off, int len) throws IOExc"
+    ]
+}

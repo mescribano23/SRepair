@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.983739837398374,
+    "input": "  public static byte [] toBytesBinary(String in) {\n    // this may be bigger than we need, but let's be safe.\n    byte [] b = new byte[in.length()];\n    int size = 0;\n    for (int i = 0; i < in.length(); ++i) {\n      char ch = in.charAt(i);\n      if (ch == '\\\\' && in.length() > i+1 && in.charAt(i+1) == 'x') {\n        // ok, take next 2 hex digits.\n        char hd1 = in.charAt(i+2);\n        char hd2 = in.charAt(i+3);\n\n        // they need to be A-F0-9:\n        if (!isHexDigit(hd1) ||\n            !isHexDigit(hd2)) {\n          // bogus escape code, ignore:\n          continue;\n        }\n        // turn hex ASCII digit -> number\n        byte d = (byte) ((toBinaryFromHex((byte)hd1) << 4) + toBinaryFromHex((byte)hd2));\n\n        b[size++] = d;\n        i += 3; // skip 3\n      } else {\n        b[size++] = (byte) ch;\n      }\n    }\n    // resize:\n    byte [] b2 = new byte[size];\n    System.arraycopy(b, 0, b2, 0, size);\n    return b2;\n  }",
+    "query_result": [
+        "tic byte [] toBytesBinary(String in) {\n// this may be bigger than we need, but let's be safe.\nbyte [] b = new byte[in.length()];\nint size = 0;\nfor (int i = 0; i < in.length(); ++i) {\nchar ch = in.charAt(i);\nif (ch == '\\\\' && in.length() > i+1 && in.charAt(i+1) == 'x') {\n// ok, take next 2 hex digits.\nchar hd1 = in.charAt(i+2);\nchar hd2 = in.charAt(i+3);\n// they need to be A-F0-9:\nif (!isHexDigit(hd1) ||\n!isHexDigit(hd2)) {\n// bogus escape code, ignore:\ncontinue;\n}\n// turn hex ASCII digit -> number\nbyte d = (byte) ((toBinaryFromHex((byte)hd1) << 4) + toBinaryFromHex((byte)hd2));\nb[size++] = d;\ni += 3; // skip 3\n} else {\nb[size++] = (byte) ch;\n}\n}\n// resize:\nbyte [] b2 = new byte[size];\nSystem",
+        "[] toBytesBinary(String in) {\n// this may be bigger than we need, but let's be safe.\nbyte [] b = new byte[in.length()];\nint size = 0;\nfor (int i = 0; i < in.length(); ++i) {\nchar ch = in.charAt(i);\nif (ch == '\\\\' && in.length() > i+1 && in.charAt(i+1) == 'x') {\n// ok, take next 2 hex digits.\nchar hd1 = in.charAt(i+2);\nchar hd2 = in.charAt(i+3);\n// they need to be A-F0-9:\nif (!isHexDigit(hd1) ||\n!isHexDigit(hd2)) {\n// bogus escape code, ignore:\ncontinue;\n}\n// turn hex ASCII digit -> number\nbyte d = (byte) ((toBinaryFromHex((byte)hd1) << 4) + toBinaryFromHex((byte)hd2));\nb[size++] = d;\ni += 3; // skip 3\n} else {\nb[size++] = (byte) ch;\n}\n}\n// resize:\nbyte [] b2 = new byte[size];\nSystem.arraycop",
+        ";\n// they need to be A-F0-9:\nif (!isHexDigit(hd1) ||\n!isHexDigit(hd2)) {\n// bogus escape code, ignore:\ncontinue;\n}\n// turn hex ASCII digit -> number\nb",
+        "\n// they need to be A-F0-9:\nif (!isHexDigit(hd1) ||\n!isHexDigit(hd2)) {\n// bogus escape code, ignore:\ncontinue;\n}\n// turn hex ASCII digit -> number\nby",
+        "te[in.length()];\nint size = 0;\nfor (int i = 0; i < in.length(); ++i) {\nchar ch = in.charAt(i);\nif (c",
+        "e[in.length()];\nint size = 0;\nfor (int i = 0; i < in.length(); ++i) {\nchar ch = in.charAt(i);\nif (ch",
+        "] toBytesBinary(String in) {\n// this may be bigger",
+        "toBytesBinary(String in) {\n// this may be bigger t",
+        " this may be bigger than we need, but let's be saf",
+        "1) == 'x') {\n// ok, take next 2 hex digits.\nchar h",
+        "BinaryFromHex((byte)hd1) << 4) + toBinaryFromHex((",
+        " d;\ni += 3; // skip 3\n} else {\nb[size++] = (byte) ",
+        "+= 3; // skip 3\n} else {\nb[size++] = (byte) ch;\n}\n",
+        "= 3; // skip 3\n} else {\nb[size++] = (byte) ch;\n}\n}",
+        "];\nSystem.arraycopy(b, 0, b2, 0, size);\nreturn b2;"
+    ]
+}

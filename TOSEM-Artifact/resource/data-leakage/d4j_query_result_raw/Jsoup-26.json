@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9517241379310345,
+    "input": "public Document clean(Document dirtyDocument) {\n    Validate.notNull(dirtyDocument);\n\n    Document clean = Document.createShell(dirtyDocument.baseUri());\n    if (dirtyDocument.body() != null) // frameset documents won't have a body. the clean doc will have empty body.\n        copySafeNodes(dirtyDocument.body(), clean.body());\n\n    return clean;\n}",
+    "query_result": [
+        "ocument dirtyDocument) {\nValidate.notNull(dirtyDocument);\nDocument clean = Document.createShell(dirtyDocument.baseUri());\nif (dirtyDocument.body() != null) // frameset documents won't have a body. the clean doc will have empty body.\ncopySafeNodes(dir",
+        "cument.body() != null) // frameset documents won't have a body. the clean doc will have empty body.\ncopySafeNodes(dirtyDocument.body(), clean.body());",
+        "nt.body() != null) // frameset documents won't have a body. the clean doc will have empty body.\ncopySafeNodes(dirtyDocument.body(), clean.body());\nret",
+        "ic Document clean(Document dirtyDocument) {\nValidate.notNull(dirtyDocument);\nDocument clean = Docume",
+        "ocument clean(Document dirtyDocument) {\nValidate.notNull(dirtyDocument);\nDocument clean = Document.c",
+        "t clean(Document dirtyDocument) {\nValidate.notNull(dirtyDocument);\nDocument clean = Document.createS",
+        "ent dirtyDocument) {\nValidate.notNull(dirtyDocument);\nDocument clean = Document.createShell(dirtyDoc",
+        "ment) {\nValidate.notNull(dirtyDocument);\nDocument clean = Document.createShell(dirtyDocument.baseUri",
+        ") {\nValidate.notNull(dirtyDocument);\nDocument clean = Document.createShell(dirtyDocument.baseUri());",
+        "notNull(dirtyDocument);\nDocument clean = Document.",
+        "l(dirtyDocument);\nDocument clean = Document.create",
+        "irtyDocument);\nDocument clean = Document.createShe",
+        "nt clean = Document.createShell(dirtyDocument.base",
+        " clean = Document.createShell(dirtyDocument.baseUr",
+        "lean = Document.createShell(dirtyDocument.baseUri(",
+        " = Document.createShell(dirtyDocument.baseUri());\n",
+        "t.createShell(dirtyDocument.baseUri());\nif (dirtyD",
+        "frameset documents won't have a body. the clean do",
+        "meset documents won't have a body. the clean doc w",
+        "eset documents won't have a body. the clean doc wi"
+    ]
+}

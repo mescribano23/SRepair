@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.2742857142857143,
+    "input": "    public RtOrganization(\n        final Request req,\n        final User user,\n        final int number\n    ) {\n        this.request = req.uri()\n            .path(\"/orgs\")\n            .path(Integer.toString(number))\n            .back();\n        this.owner = user;\n        this.num = number;\n    }",
+    "query_result": [
+        "path(Integer.toString(number))\n.back();\nthis.owner"
+    ]
+}

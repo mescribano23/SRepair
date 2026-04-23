@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8980044345898004,
+    "input": "public RealMatrix getCorrelationPValues() throws MathException {\n    TDistribution tDistribution = new TDistributionImpl(nObs - 2);\n    int nVars = correlationMatrix.getColumnDimension();\n    double[][] out = new double[nVars][nVars];\n    for (int i = 0; i < nVars; i++) {\n        for (int j = 0; j < nVars; j++) {\n            if (i == j) {\n                out[i][j] = 0d;\n            } else {\n                double r = correlationMatrix.getEntry(i, j);\n                double t = Math.abs(r * Math.sqrt((nObs - 2)/(1 - r * r)));\n                out[i][j] = 2 * tDistribution.cumulativeProbability(-t);\n            }\n        }\n    }\n    return new BlockRealMatrix(out);\n}",
+    "query_result": [
+        "elationPValues() throws MathException {\nTDistribution tDistribution = new TDistributionImpl(nObs - 2);\nint nVars = correlationMatrix.getColumnDimension();\ndouble[][] out = new double[nVars][nVars];\nfor (int i = 0; i < nVars; i++) {\nfor (int j = 0; j < nVars; j++) {\nif (i == j) {\nout[i][j] = 0d;\n} else {\ndouble r = correlationMatrix.getEntry(i, j);\n",
+        "tion = new TDistributionImpl(nObs - 2);\nint nVars = correlationMatrix.getColumnDimension();\ndouble[][] out = new double[nVars][nVars];\nfor (int i = 0; i < nVars; i++) {\nfor (int j = 0; j < nVars; j++)",
+        "lumnDimension();\ndouble[][] out = new double[nVars][nVars];\nfor (int i = 0; i < nVars; i++) {\nfor (int j = 0; j < nVars; j++) {\nif (i == j) {\nout[i][j] = 0d;\n} else {\ndouble r = correlationMatrix.getE",
+        "ars = correlationMatrix.getColumnDimension();\ndouble[][] out = new double[nVars][nVars];\nfor (int i = 0; i < nVars; i++) {\nfor (int j = 0; j < nVars; ",
+        "nDimension();\ndouble[][] out = new double[nVars][nVars];\nfor (int i = 0; i < nVars; i++) {\nfor (int ",
+        "nsion();\ndouble[][] out = new double[nVars][nVars];\nfor (int i = 0; i < nVars; i++) {\nfor (int j = 0",
+        "e {\ndouble r = correlationMatrix.getEntry(i, j);\ndouble t = Math.abs(r * Math.sqrt((nObs - 2)/(1 - r",
+        "\ndouble r = correlationMatrix.getEntry(i, j);\ndouble t = Math.abs(r * Math.sqrt((nObs - 2)/(1 - r * ",
+        "t((nObs - 2)/(1 - r * r)));\nout[i][j] = 2 * tDistribution.cumulativeProbability(-t);\n}\n}\n}\nreturn ne",
+        "(int i = 0; i < nVars; i++) {\nfor (int j = 0; j < ",
+        " r = correlationMatrix.getEntry(i, j);\ndouble t = ",
+        "r = correlationMatrix.getEntry(i, j);\ndouble t = M",
+        "correlationMatrix.getEntry(i, j);\ndouble t = Math.",
+        "rrelationMatrix.getEntry(i, j);\ndouble t = Math.ab",
+        "relationMatrix.getEntry(i, j);\ndouble t = Math.abs",
+        "ationMatrix.getEntry(i, j);\ndouble t = Math.abs(r ",
+        "(i, j);\ndouble t = Math.abs(r * Math.sqrt((nObs - ",
+        "out[i][j] = 2 * tDistribution.cumulativeProbabilit",
+        "t[i][j] = 2 * tDistribution.cumulativeProbability(",
+        "[j] = 2 * tDistribution.cumulativeProbability(-t);"
+    ]
+}

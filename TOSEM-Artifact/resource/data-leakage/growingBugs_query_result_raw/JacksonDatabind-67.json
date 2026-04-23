@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9398148148148148,
+    "input": "    @Override\n    public KeyDeserializer createKeyDeserializer(DeserializationContext ctxt,\n            JavaType type)\n        throws JsonMappingException\n    {\n        final DeserializationConfig config = ctxt.getConfig();\n        KeyDeserializer deser = null;\n        if (_factoryConfig.hasKeyDeserializers()) {\n            BeanDescription beanDesc = config.introspectClassAnnotations(type.getRawClass());\n            for (KeyDeserializers d  : _factoryConfig.keyDeserializers()) {\n                deser = d.findKeyDeserializer(type, config, beanDesc);\n                if (deser != null) {\n                    break;\n                }\n            }\n        }\n        // the only non-standard thing is this:\n        if (deser == null) {\n            if (type.isEnumType()) {\n                deser = _createEnumKeyDeserializer(ctxt, type);\n            } else {\n                deser = StdKeyDeserializers.findStringBasedKeyDeserializer(config, type);\n            }\n        }\n        // and then post-processing\n        if (deser != null) {\n            if (_factoryConfig.hasDeserializerModifiers()) {\n                for (BeanDeserializerModifier mod : _factoryConfig.deserializerModifiers()) {\n                    deser = mod.modifyKeyDeserializer(config, type, deser);\n                }\n            }\n        }\n        return deser;\n    }",
+    "query_result": [
+        "t.getConfig(); KeyDeserializer deser = null; if (_factoryConfig.hasKeyDeserializers()) { BeanDescription beanDesc = config.introspectClassAnnotations(type.getRawClass()); for (KeyDeserializers d : _factoryConfig.keyDeserializers()) { deser = d.findKeyDeserializer(type, config, beanDesc); if (deser !",
+        "lic KeyDeserializer createKeyDeserializer(DeserializationContext ctxt, JavaType type) throws JsonMappingException { final DeserializationConfig config = ctxt.getConfig(); KeyDeserializer deser = null;",
+        "the only non-standard thing is this: if (deser == null) { if (type.isEnumType()) { deser = _createEnumKeyDeserializer(ctxt, type); } else { deser = StdKeyDeserializers.findStringBasedKeyDeserializer(",
+        "ost-processing if (deser != null) { if (_factoryConfig.hasDeserializerModifiers()) { for (BeanDeserializerModifier mod : _factoryConfig.deserializerModifiers()) { deser = mod.modifyKeyDeserializer(con",
+        "ser != null) { if (_factoryConfig.hasDeserializerModifiers()) { for (BeanDeserializerModifier mod : _factoryConfig.deserializerModifiers()) { deser = mod.modifyKeyDeserializer(config, type, deser); }",
+        "r createKeyDeserializer(DeserializationContext ctxt, JavaType type) throws JsonMappingException { final DeserializationConfig config = ctxt.getConfig(",
+        "lassAnnotations(type.getRawClass()); for (KeyDeserializers d : _factoryConfig.keyDeserializers()) { deser = d.findKeyDeserializer(type, config, beanDe",
+        "ig.keyDeserializers()) { deser = d.findKeyDeserializer(type, config, beanDesc); if (deser != null) { break; } } } // the only non-standard thing is th",
+        "== null) { if (type.isEnumType()) { deser = _createEnumKeyDeserializer(ctxt, type); } else { deser = StdKeyDeserializers.findStringBasedKeyDeserialize",
+        "er != null) { if (_factoryConfig.hasDeserializerModifiers()) { for (BeanDeserializerModifier mod : _factoryConfig.deserializerModifiers()) { deser = m",
+        "_factoryConfig.hasDeserializerModifiers()) { for (BeanDeserializerModifier mod : _factoryConfig.deserializerModifiers()) { deser = mod.modifyKeyDeseri",
+        "actoryConfig.hasDeserializerModifiers()) { for (BeanDeserializerModifier mod : _factoryConfig.deserializerModifiers()) { deser = mod.modifyKeyDeserial",
+        "erModifiers()) { for (BeanDeserializerModifier mod : _factoryConfig.deserializerModifiers()) { deser = mod.modifyKeyDeserializer(config, type, deser);",
+        "KeyDeserializer createKeyDeserializer(DeserializationContext ctxt, JavaType type) throws JsonMappin",
+        "erializer createKeyDeserializer(DeserializationContext ctxt, JavaType type) throws JsonMappingExcept",
+        "ingException { final DeserializationConfig config = ctxt.getConfig(); KeyDeserializer deser = null;",
+        "nfig.hasKeyDeserializers()) { BeanDescription beanDesc = config.introspectClassAnnotations(type.getR",
+        "eyDeserializers()) { BeanDescription beanDesc = config.introspectClassAnnotations(type.getRawClass()",
+        "{ BeanDescription beanDesc = config.introspectClassAnnotations(type.getRawClass()); for (KeyDeseria",
+        "eanDescription beanDesc = config.introspectClassAnnotations(type.getRawClass()); for (KeyDeserialize"
+    ]
+}

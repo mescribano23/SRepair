@@ -1,0 +1,49 @@
+diff --git a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+index 3df8216d..502f1512 100644
+--- a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
++++ b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+@@ -552,27 +552,27 @@ class PrototypeObjectType extends ObjectType {
+     return this;
+   }
+ 
+-  @Override
+-  public void matchConstraint(JSType constraint) {
+-    // We only want to match constraints on anonymous types.
+-    if (hasReferenceName()) {
+-      return;
+-    }
++@Override
++public void matchConstraint(JSType constraint) {
++  // We only want to match constraints on anonymous types.
++  if (hasReferenceName()) {
++    return;
++  }
+ 
+-    // Handle the case where the constraint object is a record type.
+-    //
+-    // param constraint {{prop: (number|undefined)}}
+-    // function f(constraint) {}
+-    // f({});
+-    //
+-    // We want to modify the object literal to match the constraint, by
+-    // taking any each property on the record and trying to match
+-    // properties on this object.
+-    if (constraint.isRecordType()) {
+-      matchRecordTypeConstraint(constraint.toObjectType());
++  // Recursively match any constraints within union types.
++  if (constraint.isUnionType()) {
++    for (JSType alternate : constraint.toMaybeUnionType().getAlternates()) {
++      matchConstraint(alternate);
+     }
++    return;
+   }
+ 
++  // Handle the case where the constraint object is a record type.
++  if (constraint.isRecordType()) {
++    matchRecordTypeConstraint(constraint.toObjectType());
++  }
++}
++
+   public void matchRecordTypeConstraint(ObjectType constraintObj) {
+     for (String prop : constraintObj.getOwnPropertyNames()) {
+       JSType propType = constraintObj.getPropertyType(prop);

@@ -1,0 +1,50 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/type/ResolvedRecursiveType.java b/src/main/java/com/fasterxml/jackson/databind/type/ResolvedRecursiveType.java
+index 80720041a..0aba56c91 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/type/ResolvedRecursiveType.java
++++ b/src/main/java/com/fasterxml/jackson/databind/type/ResolvedRecursiveType.java
+@@ -107,27 +107,24 @@ public class ResolvedRecursiveType extends TypeBase
+         return sb.toString();
+     }
+ 
+-    @Override
+-    public boolean equals(Object o) {
+-        if (o == this) return true;
+-        if (o == null) return false;
+-            // 16-Jun-2017, tatu: as per [databind#1658], can not do recursive call since
+-            //    there is likely to be a cycle...
++@Override
++public boolean equals(Object o) {
++    if (o == this) return true;
++    if (o == null || o.getClass() != getClass()) return false;
++    
++    ResolvedRecursiveType other = (ResolvedRecursiveType) o;
+ 
+-            // but... true or false?
+-        if (_referencedType == null) {
+-            return false;
+-            
+-            /*
+-            // Do NOT ever match unresolved references
+-            if (_referencedType == null) {
+-                return false;
+-            }
+-            return (o.getClass() == getClass()
+-                    && _referencedType.equals(((ResolvedRecursiveType) o).getSelfReferencedType()));
+-                    */
+-        }
+-        return (o.getClass() == getClass()
+-                && _referencedType.equals(((ResolvedRecursiveType) o).getSelfReferencedType()));
++    // Check if both are unresolved
++    if (_referencedType == null && other._referencedType == null) {
++        return true;
+     }
++    
++    // Check if one is unresolved and the other is not
++    if (_referencedType == null || other._referencedType == null) {
++        return false;
++    }
++
++    // Use identity check for referenced types to avoid infinite recursion
++    return _referencedType == other.getSelfReferencedType();
++}
+ }

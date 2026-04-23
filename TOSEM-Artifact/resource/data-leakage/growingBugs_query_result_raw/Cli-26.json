@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.6297872340425532,
+    "input": "    public static Option create(String opt) throws IllegalArgumentException\n    {\n        Option option = null;\n        try {\n            // create the option\n            option = new Option(opt, description);\n\n            // set the option properties\n            option.setLongOpt(longopt);\n            option.setRequired(required);\n            option.setOptionalArg(optionalArg);\n            option.setArgs(numberOfArgs);\n            option.setType(type);\n            option.setValueSeparator(valuesep);\n            option.setArgName(argName);\n        } finally {\n            // reset the OptionBuilder properties\n            OptionBuilder.reset();\n        }\n\n        // return the Option instance\n        return option;\n    }",
+    "query_result": [
+        "ption\noption = new Option(opt, description);\n// set the option properties\noption.setLongOpt(longopt);\noption.setRequired(required);\noption.setOptionalArg(optionalArg);\noption.setArgs(numberOfArgs);\noption.setType(type);\noption.setValueSeparator(value",
+        "on\noption = new Option(opt, description);\n// set the option properties\noption.setLongOpt(longopt);\noption.setRequired(required);\noption.setOptionalArg(optionalArg);\noption.setArgs(numberOfArgs);\noption.setType(type);\noption.setValueSeparator(valuesep",
+        "option\noption = new Option(opt, description);\n// set the option properties\noption.setLongOpt(longopt);\noption.setRequired(required);\noption.setOptionalArg(optionalArg);\noption.setArgs(numberOfArgs);\no",
+        ");\n// set the option properties\noption.setLongOpt(longopt);\noption.setRequired(required);\noption.setOptionalArg(optionalArg);\noption.setArgs(numberOfArgs);\noption.setType(type);\noption.setValueSeparat",
+        "red(required);\noption.setOptionalArg(optionalArg);\noption.setArgs(numberOfArgs);\noption.setType(type);\noption.setValueSeparator(valuesep);\noption.setA",
+        "ired(required);\noption.setOptionalArg(optionalArg);\noption.setArgs(numberOfArgs);\noption.setType(typ",
+        "String opt) throws IllegalArgumentException\n{\nOpti",
+        "w Option(opt, description);\n// set the option prop",
+        "tion.setRequired(required);\noption.setOptionalArg("
+    ]
+}

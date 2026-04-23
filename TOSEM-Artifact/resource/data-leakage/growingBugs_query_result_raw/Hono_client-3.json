@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.2,
+    "input": "    private R getRequestResponseResult(final Message message) {\n        final Integer status = MessageHelper.getApplicationProperty(\n                message.getApplicationProperties(),\n                MessageHelper.APP_PROPERTY_STATUS,\n                Integer.class);\n        final String payload = MessageHelper.getPayload(message);\n        return getResult(status, payload);\n    }",
+    "query_result": [
+        "y(\nmessage.getApplicationProperties(),\nMessageHelp",
+        "ge.getApplicationProperties(),\nMessageHelper.APP_P"
+    ]
+}

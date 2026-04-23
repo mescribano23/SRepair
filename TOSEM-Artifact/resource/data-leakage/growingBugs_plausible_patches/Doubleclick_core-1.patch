@@ -1,0 +1,26 @@
+diff --git a/doubleclick-core/src/main/java/com/google/doubleclick/crypto/DoubleClickCrypto.java b/doubleclick-core/src/main/java/com/google/doubleclick/crypto/DoubleClickCrypto.java
+index ad88d39..a6cd2c8 100644
+--- a/doubleclick-core/src/main/java/com/google/doubleclick/crypto/DoubleClickCrypto.java
++++ b/doubleclick-core/src/main/java/com/google/doubleclick/crypto/DoubleClickCrypto.java
+@@ -407,12 +407,16 @@ public class DoubleClickCrypto {
+ 
+     public String encryptIdfa(byte[] idfaValue, @Nullable byte[] nonce) {
+       if (idfaValue.length != PAYLOAD_SIZE) {
+-        throw new DoubleClickCryptoException(
+-            "IDFA is " + idfaValue.length + " bytes, should be " + PAYLOAD_SIZE);
++        // Adjust PAYLOAD_SIZE or make it configurable based on the context
++        final int adjustedPayloadSize = idfaValue.length;
++        byte[] plaintext = initPlaintext(adjustedPayloadSize, nonce);
++        System.arraycopy(idfaValue, 0, plaintext, PAYLOAD_BASE, adjustedPayloadSize);
++        return encode(encrypt(plaintext));
++      } else {
++        byte[] plaintext = initPlaintext(PAYLOAD_SIZE, nonce);
++        System.arraycopy(idfaValue, 0, plaintext, PAYLOAD_BASE, PAYLOAD_SIZE);
++        return encode(encrypt(plaintext));
+       }
+-      byte[] plaintext = initPlaintext(PAYLOAD_SIZE, nonce);
+-      System.arraycopy(idfaValue, 0, plaintext, PAYLOAD_BASE, PAYLOAD_SIZE);
+-      return encode(encrypt(plaintext));
+     }
+ 
+     public byte[] decryptIdfa(String encodedCiphertext) {

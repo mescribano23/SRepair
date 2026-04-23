@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.7451612903225806,
+    "input": "private void normalise(Element element) {\n    List<Node> toMove = new ArrayList<Node>();\n    for (Node node: element.childNodes) {\n        if (node instanceof TextNode) {\n            TextNode tn = (TextNode) node;\n            if (!tn.isBlank())\n                toMove.add(tn);\n        }\n    }\n\n    for (Node node: toMove) {\n        element.removeChild(node);\n        body().prependChild(node);\n        body().prependChild(new TextNode(\" \", \"\"));\n    }\n}",
+    "query_result": [
+        "rayList<Node>();\nfor (Node node: element.childNodes) {\nif (node instanceof TextNode) {\nTextNode tn = (TextNode) node;\nif (!tn.isBlank())\ntoMove.add(tn",
+        "t) {\nList<Node> toMove = new ArrayList<Node>();\nfor (Node node: element.childNodes) {\nif (node insta",
+        "dNodes) {\nif (node instanceof TextNode) {\nTextNode tn = (TextNode) node;\nif (!tn.isBlank())\ntoMove.a",
+        "ormalise(Element element) {\nList<Node> toMove = ne",
+        "ayList<Node>();\nfor (Node node: element.childNodes",
+        " (node instanceof TextNode) {\nTextNode tn = (TextN",
+        "ode instanceof TextNode) {\nTextNode tn = (TextNode",
+        "de instanceof TextNode) {\nTextNode tn = (TextNode)",
+        "Child(node);\nbody().prependChild(new TextNode(\" \",",
+        "ode);\nbody().prependChild(new TextNode(\" \", \"\"));\n"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5694736842105264,
+    "input": "public long adjustOffset(long instant, boolean earlierOrLater) {\n    // a bit messy, but will work in all non-pathological cases\n    \n    // evaluate 3 hours before and after to work out if anything is happening\n    long instantBefore = instant - 3 * DateTimeConstants.MILLIS_PER_HOUR;\n    long instantAfter = instant + 3 * DateTimeConstants.MILLIS_PER_HOUR;\n    long offsetBefore = getOffset(instantBefore);\n    long offsetAfter = getOffset(instantAfter);\n    if (offsetBefore <= offsetAfter) {\n        return instant;  // not an overlap (less than is a gap, equal is normal case)\n    }\n    \n    // work out range of instants that have duplicate local times\n    long diff = offsetBefore - offsetAfter;\n    long transition = nextTransition(instantBefore);\n    long overlapStart = transition - diff;\n    long overlapEnd = transition + diff;\n    if (instant < overlapStart || instant >= overlapEnd) {\n      return instant;  // not an overlap\n    }\n    \n    // calculate result\n    long afterStart = instant - overlapStart;\n    if (afterStart >= diff) {\n      // currently in later offset\n      return earlierOrLater ? instant : instant - diff;\n    } else {\n      // currently in earlier offset\n      return earlierOrLater ? instant + diff : instant;\n    }\n}",
+    "query_result": [
+        "ter = getOffset(instantAfter);\nif (offsetBefore <= offsetAfter) {\nreturn instant; // not an overlap (less than is a gap, equal is normal case)\n}\n\n// work out range of instants that have duplicate loca",
+        "adjustOffset(long instant, boolean earlierOrLater) {\n// a bit messy, but will work in all non-pathological cases\n\n// evaluate 3 hours before and after",
+        "rStart >= diff) {\n// currently in later offset\nreturn earlierOrLater ? instant : instant - diff;\n} else {\n// currently in earlier offset\nreturn earlie",
+        "ant; // not an overlap (less than is a gap, equal is normal case)\n}\n\n// work out range of instants t",
+        "public long adjustOffset(long instant, boolean ear",
+        "lic long adjustOffset(long instant, boolean earlie",
+        "long adjustOffset(long instant, boolean earlierOrL",
+        "ng adjustOffset(long instant, boolean earlierOrLat",
+        "djustOffset(long instant, boolean earlierOrLater) ",
+        "t messy, but will work in all non-pathological cas",
+        "-pathological cases\n\n// evaluate 3 hours before an",
+        "/ evaluate 3 hours before and after to work out if",
+        "ours before and after to work out if anything is h",
+        "s before and after to work out if anything is happ",
+        "re = instant - 3 * DateTimeConstants.MILLIS_PER_HO",
+        "tAfter = instant + 3 * DateTimeConstants.MILLIS_PE",
+        " not an overlap (less than is a gap, equal is norm",
+        "t an overlap (less than is a gap, equal is normal ",
+        "// work out range of instants that have duplicate ",
+        "k out range of instants that have duplicate local "
+    ]
+}

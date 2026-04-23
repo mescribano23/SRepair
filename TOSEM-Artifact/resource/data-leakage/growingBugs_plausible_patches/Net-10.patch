@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+index 81f1c68c..f9dafaad 100644
+--- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+@@ -160,14 +160,17 @@ public class SubnetUtils {
+             );
+         }
+ 
+-        public String[] getAllAddresses() {
+-            int ct = getAddressCount();
+-            String[] addresses = new String[ct];
+-            for (int add = low(), j=0; add <= high(); ++add, ++j) {
+-                addresses[j] = format(toArray(add));
+-            }
+-            return addresses;
+-        }
++public String[] getAllAddresses() {
++    int ct = getAddressCount();
++    if (ct == 0) {
++        return new String[0];
++    }
++    String[] addresses = new String[ct];
++    for (int add = low(), j=0; add <= high(); ++add, ++j) {
++        addresses[j] = format(toArray(add));
++    }
++    return addresses;
++}
+ 
+         /**
+          * {@inheritDoc}

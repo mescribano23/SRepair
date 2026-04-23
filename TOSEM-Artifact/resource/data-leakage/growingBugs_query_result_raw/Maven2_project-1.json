@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.11854684512428298,
+    "input": "    public void loadSettingsProfiles( Settings settings )\n    {\n        if ( settings == null )\n        {\n            return;\n        }\n\n        List settingsProfiles = settings.getProfiles();\n\n        List settingsActiveProfileIds = settings.getActiveProfiles();\n\n        explicitlyActivate( settingsActiveProfileIds );\n\n        if ( settingsProfiles != null && !settingsProfiles.isEmpty() )\n        {\n            for ( Iterator it = settings.getProfiles().iterator(); it.hasNext(); )\n            {\n                org.apache.maven.settings.Profile rawProfile = (org.apache.maven.settings.Profile) it.next();\n\n                Profile profile = SettingsUtils.convertFromSettingsProfile( rawProfile );\n\n                addProfile( profile );\n            }\n        }\n    }",
+    "query_result": [
+        "file profile = SettingsUtils.convertFromSettingsPr",
+        "ile profile = SettingsUtils.convertFromSettingsPro",
+        "ettingsUtils.convertFromSettingsProfile( rawProfil"
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public final Object computeValue(EvalContext context) {\n        return compute(args[0].compute(context), args[1].compute(context))\n                ? Boolean.TRUE : Boolean.FALSE;\n    }",
+    "query_result": []
+}

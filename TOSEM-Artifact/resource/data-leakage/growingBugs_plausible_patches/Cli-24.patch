@@ -1,0 +1,19 @@
+diff --git a/src/java/org/apache/commons/cli/HelpFormatter.java b/src/java/org/apache/commons/cli/HelpFormatter.java
+index 9993a07..1b2c29a 100644
+--- a/src/java/org/apache/commons/cli/HelpFormatter.java
++++ b/src/java/org/apache/commons/cli/HelpFormatter.java
+@@ -819,11 +819,9 @@ public class HelpFormatter
+         }
+         sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
+ 
+-        if (nextLineTabStop >= width)
+-        {
+-            // stops infinite loop happening
+-            throw new IllegalStateException("Total width is less than the width of the argument and indent " + 
+-                                            "- no room for the description");
++        // Adjust tab stop to fit within available width if necessary
++        if (nextLineTabStop >= width) {
++            nextLineTabStop = Math.max(width - 1, 0);
+         }
+ 
+         // all following lines must be padded with nextLineTabStop space 

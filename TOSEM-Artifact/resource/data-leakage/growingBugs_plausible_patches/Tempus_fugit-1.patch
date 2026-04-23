@@ -1,0 +1,29 @@
+diff --git a/src/main/java/com/google/code/tempusfugit/temporal/Duration.java b/src/main/java/com/google/code/tempusfugit/temporal/Duration.java
+index d027eca..62c5835 100644
+--- a/src/main/java/com/google/code/tempusfugit/temporal/Duration.java
++++ b/src/main/java/com/google/code/tempusfugit/temporal/Duration.java
+@@ -114,6 +114,23 @@ public class Duration implements Comparable<Duration> {
+     }
+ 
+     public int compareTo(Duration other) {
+-        return this.value.compareTo(other.value);
++        long thisMillis = convertToMillis(this.value, this.unit);
++        long otherMillis = convertToMillis(other.value, other.unit);
++        return Long.compare(thisMillis, otherMillis);
++    }
++
++    private long convertToMillis(long value, TimeUnit unit) {
++        switch (unit) {
++            case DAYS:
++                return TimeUnit.DAYS.toMillis(value);
++            case HOURS:
++                return TimeUnit.HOURS.toMillis(value);
++            case MINUTES:
++                return TimeUnit.MINUTES.toMillis(value);
++            case SECONDS:
++                return TimeUnit.SECONDS.toMillis(value);
++            default: // Assuming the default is milliseconds
++                return value;
++        }
+     }
+ }

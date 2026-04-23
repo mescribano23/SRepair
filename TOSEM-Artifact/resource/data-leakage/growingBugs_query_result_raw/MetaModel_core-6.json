@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9832239241429613,
+    "input": "    private FilterItem findFilterItem(String expression) {\n        String upperExpression = expression.toUpperCase();\n\n        final QueryPartCollectionProcessor collectionProcessor = new QueryPartCollectionProcessor();\n        new QueryPartParser(collectionProcessor, expression, \" AND \", \" OR \").parse();\n\n        final List<String> tokens = collectionProcessor.getTokens();\n        final List<String> delims = collectionProcessor.getDelims();\n        if (tokens.size() == 1) {\n            expression = tokens.get(0);\n            upperExpression = expression.toUpperCase();\n        } else {\n            final LogicalOperator logicalOperator = LogicalOperator.valueOf(delims.get(1).trim());\n\n            final List<FilterItem> filterItems = new ArrayList<FilterItem>();\n            for (int i = 0; i < tokens.size(); i++) {\n                String token = tokens.get(i);\n                FilterItem filterItem = findFilterItem(token);\n                filterItems.add(filterItem);\n            }\n            return new FilterItem(logicalOperator, filterItems);\n        }\n\n        OperatorType operator = null;\n        String leftSide = null;\n        final String rightSide;\n        {\n            String rightSideCandidate = null;\n            final OperatorType[] operators = OperatorType.BUILT_IN_OPERATORS;\n            for (OperatorType operatorCandidate : operators) {\n                final String searchStr;\n                if (operatorCandidate.isSpaceDelimited()) {\n                    searchStr = ' ' + operatorCandidate.toSql() + ' ';\n                } else {\n                    searchStr = operatorCandidate.toSql();\n                }\n                final int operatorIndex = upperExpression.indexOf(searchStr);\n                if (operatorIndex > 0) {\n                    operator = operatorCandidate;\n                    leftSide = expression.substring(0, operatorIndex).trim();\n                    rightSideCandidate = expression.substring(operatorIndex + searchStr.length()).trim();\n      ",
+    "query_result": [
+        "dFilterItem(String expression) {\nString upperExpression = expression.toUpperCase();\nfinal QueryPartCollectionProcessor collectionProcessor = new QueryPartCollectionProcessor();\nnew QueryPartParser(collectionProcessor, expression, \" AND \", \" OR \").parse();\nfinal List<String> tokens = collectionProcessor.getTokens();\nfinal List<String> delims = collectionProcessor.getDelims();\nif (tokens.size() == 1) {\nexpression = tokens.get(0);\nupperExpression = expression.toUpperCase();\n} else {\nfinal LogicalOperator logicalOperator = LogicalOperator.valueOf(delims.get(1).trim());\nfinal List<FilterItem> filterItems = new ArrayList<FilterItem>();\nfor (int i = 0; i < tokens.size(); i++) {\nString token = tokens.get(i);\nFilterItem filterItem = findFilterItem(token);\nfilterItems.add(filterItem);\n}\nreturn new FilterItem(logicalOperator, filterItems);\n}\nOperatorType operator = null;\nString leftSide = null;\nfinal String rightSide;\n{\nString rightSideCandidate = null;\nfinal OperatorType[] operators = OperatorType.BUILT_IN_OPERATORS;\nfor (OperatorType operatorCandidate : operators) {\nfinal String searchStr;\nif (operatorCandidate.isSpaceDelimited()) {\nsearchStr = ' ' + operatorCandidate.toSql() + ' ';\n} else {\nsearchStr = operatorCandidate.toSql();\n}\nfinal int operatorIndex = upperExpression.indexOf(searchStr);\nif (operatorIndex > 0) {\noperator = operatorCandidate;\nleftSide = expression.substring(0, operatorIndex).trim();\nrightSideCandidate = expression.substring(operatorIndex + searchStr.length()).trim",
+        "FilterItem> filterItems = new ArrayList<FilterItem>();\nfor (int i = 0; i < tokens.size(); i++) {\nStr",
+        "rocessor collectionProcessor = new QueryPartCollec",
+        " LogicalOperator logicalOperator = LogicalOperator",
+        "LogicalOperator logicalOperator = LogicalOperator.",
+        "List<FilterItem> filterItems = new ArrayList<Filte",
+        "();\nfor (int i = 0; i < tokens.size(); i++) {\nStri",
+        ";\nfor (int i = 0; i < tokens.size(); i++) {\nString",
+        "\nfor (int i = 0; i < tokens.size(); i++) {\nString ",
+        "or (int i = 0; i < tokens.size(); i++) {\nString to",
+        " (int i = 0; i < tokens.size(); i++) {\nString toke",
+        "t i = 0; i < tokens.size(); i++) {\nString token = ",
+        " i = 0; i < tokens.size(); i++) {\nString token = t",
+        "i = 0; i < tokens.size(); i++) {\nString token = to",
+        " = 0; i < tokens.size(); i++) {\nString token = tok",
+        "= 0; i < tokens.size(); i++) {\nString token = toke",
+        "0; i < tokens.size(); i++) {\nString token = tokens",
+        "; i < tokens.size(); i++) {\nString token = tokens.",
+        " i < tokens.size(); i++) {\nString token = tokens.g",
+        "i < tokens.size(); i++) {\nString token = tokens.ge"
+    ]
+}

@@ -1,0 +1,48 @@
+diff --git a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+index 8b3545c..fb6c19b 100644
+--- a/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
++++ b/src/main/java/com/fasterxml/aalto/out/ByteXmlWriter.java
+@@ -1079,16 +1079,39 @@ public abstract class ByteXmlWriter
+                     break;
+                 }
+             } else { // beyond 2-byte encodables; 3-byte, surrogates?
+-                writeAsEntity(ch);
+-                continue main_loop;
++                // This is where the correction happens: we need to properly handle multi-byte characters.
++                if (ch < 0xD800 || ch > 0xDFFF) {
++                    if (_outputPtr + 1 >= _outputBufferLen) {
++                        flushBuffer();
++                    }
++                    _outputBuffer[_outputPtr++] = (byte)((ch >> 8) & 0xFF);
++                    _outputBuffer[_outputPtr++] = (byte)(ch & 0xFF);
++                } else {
++                    // Handling surrogate pairs
++                    if (offset >= len) {
++                        throw new XMLStreamException("Invalid surrogate pair at end of input");
++                    }
++                    int ch2 = cbuf[offset++];
++                    if (ch2 >= 0xDC00 && ch2 <= 0xDFFF) {
++                        int codePoint = 0x10000 + ((ch & 0x3FF) << 10) + (ch2 & 0x3FF);
++                        if (_outputPtr + 3 >= _outputBufferLen) {
++                            flushBuffer();
++                        }
++                        _outputBuffer[_outputPtr++] = (byte)(0xF0 | ((codePoint >> 18) & 0x7));
++                        _outputBuffer[_outputPtr++] = (byte)(0x80 | ((codePoint >> 12) & 0x3F));
++                        _outputBuffer[_outputPtr++] = (byte)(0x80 | ((codePoint >> 6) & 0x3F));
++                        _outputBuffer[_outputPtr++] = (byte)(0x80 | (codePoint & 0x3F));
++                    } else {
++                        throw new XMLStreamException("Invalid surrogate pair " + Integer.toHexString(ch) + " " + Integer.toHexString(ch2));
++                    }
++                }
+             }
+ 
+             if (_outputPtr >= _outputBufferLen) {
+                 flushBuffer();
+             }
+-            _outputBuffer[_outputPtr++] = (byte)ch;
+         }
+-    }    
++    }
+ 
+     /*
+     /**********************************************************************

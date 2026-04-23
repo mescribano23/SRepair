@@ -1,0 +1,36 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index 567ea66..9a6b647 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -138,23 +138,23 @@ public class QueueFile implements Closeable {
+         + (buffer[offset + 3] & 0xff);
+   }
+ 
+-  private void readHeader() throws IOException {
++private void readHeader() throws IOException {
+     raf.seek(0);
+     raf.readFully(buffer);
+     fileLength = readInt(buffer, 0);
+-    if (fileLength > raf.length()) {
+-      throw new IOException(
+-          "File is truncated. Expected length: " + fileLength + ", Actual length: " + raf.length());
+-    } else if (fileLength == 0) {
+-      throw new IOException(
+-          "File is corrupt; length stored in header is 0.");
++
++    if (fileLength <= 0 || fileLength > raf.length()) {
++      String reason = fileLength <= 0 ? "corrupt; length stored in header (" + fileLength + ") is invalid."
++                                      : "truncated. Expected length: " + fileLength + ", Actual length: " + raf.length();
++      throw new IOException("File is " + reason);
+     }
++
+     elementCount = readInt(buffer, 4);
+     int firstOffset = readInt(buffer, 8);
+     int lastOffset = readInt(buffer, 12);
+     first = readElement(firstOffset);
+     last = readElement(lastOffset);
+-  }
++}
+ 
+   /**
+    * Writes header atomically. The arguments contain the updated values. The class member fields

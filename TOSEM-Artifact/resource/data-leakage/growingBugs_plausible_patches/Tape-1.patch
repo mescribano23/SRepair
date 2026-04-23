@@ -1,0 +1,14 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index 66405e7..7eabbdd 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -496,6 +496,9 @@ public class QueueFile {
+       // assert elementCount > 1
+       int firstTotalLength = Element.HEADER_LENGTH + first.length;
+ 
++      // Write zeros to the data of the removed element to erase it
++      byte[] zeros = new byte[first.length];
++      ringWrite(first.position + Element.HEADER_LENGTH, zeros, 0, first.length);
+ 
+       int newFirstPosition = wrapPosition(first.position + firstTotalLength);
+       ringRead(newFirstPosition, buffer, 0, Element.HEADER_LENGTH);

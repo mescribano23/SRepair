@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5,
+    "input": "public void describeTo(Description description) {\n    description.appendText(\"same(\");\n    appendQuoting(description);\n    description.appendText(wanted == null ? \"null\" : wanted.toString());\n    appendQuoting(description);\n    description.appendText(\")\");\n}",
+    "query_result": [
+        "beTo(Description description) {\ndescription.appendText(\"same(\");\nappendQuoting(description);\ndescrip",
+        "public void describeTo(Description description) {\n",
+        "ublic void describeTo(Description description) {\nd",
+        "blic void describeTo(Description description) {\nde",
+        "lic void describeTo(Description description) {\ndes",
+        "ic void describeTo(Description description) {\ndesc",
+        "c void describeTo(Description description) {\ndescr",
+        " void describeTo(Description description) {\ndescri",
+        "void describeTo(Description description) {\ndescrip",
+        "oid describeTo(Description description) {\ndescript",
+        "id describeTo(Description description) {\ndescripti",
+        "d describeTo(Description description) {\ndescriptio",
+        " describeTo(Description description) {\ndescription",
+        "describeTo(Description description) {\ndescription.",
+        "escribeTo(Description description) {\ndescription.a",
+        "scribeTo(Description description) {\ndescription.ap",
+        "cribeTo(Description description) {\ndescription.app",
+        "ribeTo(Description description) {\ndescription.appe",
+        "ibeTo(Description description) {\ndescription.appen",
+        "eTo(Description description) {\ndescription.appendT"
+    ]
+}

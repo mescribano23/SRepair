@@ -1,0 +1,71 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkIssues.java b/src/main/java/com/jcabi/github/mock/MkIssues.java
+index c7f86da85..57114bd3b 100644
+--- a/src/main/java/com/jcabi/github/mock/MkIssues.java
++++ b/src/main/java/com/jcabi/github/mock/MkIssues.java
+@@ -104,36 +104,38 @@ final class MkIssues implements Issues {
+         return new MkIssue(this.storage, this.self, this.coords, number);
+     }
+ 
+-    @Override
+-    public Issue create(final String title, final String body)
+-        throws IOException {
+-        this.storage.lock();
+-        final int number;
+-        try {
+-            number = 1 + this.storage.xml().xpath(
+-                String.format("%s/issue/number", this.xpath())
+-            ).size();
+-            this.storage.apply(
+-                new Directives().xpath(this.xpath()).add("issue")
+-                    .add("number").set(Integer.toString(number)).up()
+-                    .add("state").set(Issue.OPEN_STATE).up()
+-                    .add("title").set(title).up()
+-                    .add("body").set(body).up()
+-                    .add("created_at").set(new Github.Time().toString()).up()
+-                    .add("updated_at").set(new Github.Time().toString()).up()
+-                    .add("url").set("http://localhost/1").up()
+-                    .add("html_url").set("http://localhost/2").up()
+-                    .add("user").add("login").set(this.self).up().up()
+-            );
+-        } finally {
+-            this.storage.unlock();
+-        }
+-        Logger.info(
+-            this, "issue #%d created in %s by %s: %[text]s",
+-            number, this.repo().coordinates(), this.self, title
++@Override
++public Issue create(final String title, final String body)
++    throws IOException {
++    this.storage.lock();
++    final int number;
++    try {
++        number = 1 + Integer.parseInt(
++            this.storage.xml().xpath(
++                String.format("count(%s/issue)", this.xpath())
++            ).get(0)
++        );
++        this.storage.apply(
++            new Directives().xpath(this.xpath()).add("issue")
++                .add("number").set(Integer.toString(number)).up()
++                .add("state").set(Issue.OPEN_STATE).up()
++                .add("title").set(title).up()
++                .add("body").set(body).up()
++                .add("created_at").set(new Github.Time().toString()).up()
++                .add("updated_at").set(new Github.Time().toString()).up()
++                .add("url").set("http://localhost/1").up()
++                .add("html_url").set("http://localhost/2").up()
++                .add("user").add("login").set(this.self).up().up()
+         );
+-        return this.get(number);
++    } finally {
++        this.storage.unlock();
+     }
++    Logger.info(
++        this, "issue #%d created in %s by %s: %[text]s",
++        number, this.repo().coordinates(), this.self, title
++    );
++    return this.get(number);
++}
+ 
+     @Override
+     public Iterable<Issue> iterate(final Map<String, String> params) {

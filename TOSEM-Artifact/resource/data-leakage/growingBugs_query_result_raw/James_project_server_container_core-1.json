@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public Serializable setAttribute(String key, Serializable object) {\n        Preconditions.checkNotNull(key, \"Key of an attribute should not be null\");\n        return (Serializable) attributes.put(key, object);\n    }",
+    "query_result": []
+}

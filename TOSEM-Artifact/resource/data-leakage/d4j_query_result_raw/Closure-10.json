@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.7622377622377622,
+    "input": "static boolean mayBeString(Node n, boolean recurse) {\n  if (recurse) {\n    return anyResultsMatch(n, MAY_BE_STRING_PREDICATE);\n  } else {\n    return mayBeStringHelper(n);\n  }\n}",
+    "query_result": [
+        "tatic boolean mayBeString(Node n, boolean recurse)",
+        "boolean mayBeString(Node n, boolean recurse) {\nif ",
+        "an mayBeString(Node n, boolean recurse) {\nif (recu",
+        "MAY_BE_STRING_PREDICATE);\n} else {\nreturn mayBeStr",
+        "NG_PREDICATE);\n} else {\nreturn mayBeStringHelper(n"
+    ]
+}

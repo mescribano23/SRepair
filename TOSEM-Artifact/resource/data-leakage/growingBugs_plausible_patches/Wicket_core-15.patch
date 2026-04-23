@@ -1,0 +1,39 @@
+diff --git a/wicket-core/src/main/java/org/apache/wicket/validation/validator/CreditCardValidator.java b/wicket-core/src/main/java/org/apache/wicket/validation/validator/CreditCardValidator.java
+index 28225c2394..0b21c6e219 100644
+--- a/wicket-core/src/main/java/org/apache/wicket/validation/validator/CreditCardValidator.java
++++ b/wicket-core/src/main/java/org/apache/wicket/validation/validator/CreditCardValidator.java
+@@ -317,20 +317,20 @@ public class CreditCardValidator implements IValidator<String>
+ 	 *            the credit card number as a string
+ 	 * @return The credit card id of the issuer
+ 	 */
+-	private CreditCard isChinaUnionPay(String creditCardNumber)
+-	{
+-		if ((creditCardNumber.length() >= 16 && creditCardNumber.length() <= 19) &&
+-			(creditCardNumber.startsWith("622")))
+-		{
+-			int firstDigits = Integer.parseInt(creditCardNumber.substring(0, 5));
+-			if (firstDigits >= 622126 && firstDigits <= 622925)
+-			{
+-				return CreditCard.CHINA_UNIONPAY;
+-			}
+-		}
+-
+-		return CreditCard.INVALID;
+-	}
++private CreditCard isChinaUnionPay(String creditCardNumber)
++{
++    if ((creditCardNumber.length() >= 16 && creditCardNumber.length() <= 19) &&
++        (creditCardNumber.startsWith("622")))
++    {
++        int firstDigits = Integer.parseInt(creditCardNumber.substring(0, 6));
++        if (firstDigits >= 622126 && firstDigits <= 622925)
++        {
++            return CreditCard.CHINA_UNIONPAY;
++        }
++    }
++
++    return CreditCard.INVALID;
++}
+ 
+ 	/**
+ 	 * Check if the credit card is a Diners Club Carte Blanche. A Diners Club Carte Blanche number

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.0,
+    "input": "    @Override\n    public LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOException\n    {\n    \tif (parser.hasToken(JsonToken.VALUE_STRING)) {\n            String string = parser.getText().trim();\n            if (string.length() == 0) {\n                return null;\n            }\n            // as per [datatype-jsr310#37], only check for optional (and, incorrect...) time marker 'T'\n            // if we are using default formatter\n            DateTimeFormatter format = _formatter;\n            if (format == DEFAULT_FORMATTER) {\n                // JavaScript by default includes time in JSON serialized Dates (UTC/ISO instant format).\n                if (string.length() > 10 && string.charAt(10) == 'T') {\n                   if (string.endsWith(\"Z\")) {\n                       return LocalDateTime.ofInstant(Instant.parse(string), ZoneOffset.UTC).toLocalDate();\n                   } else {\n                       return LocalDate.parse(string, DateTimeFormatter.ISO_LOCAL_DATE_TIME);\n                   }\n                }\n            }\n            return LocalDate.parse(string, format);\n    \t}\n    \tif (parser.isExpectedStartArrayToken()) {\n    \t\tif (parser.nextToken() == JsonToken.END_ARRAY) {\n    \t\t\treturn null;\n    \t\t}\n            int year = parser.getIntValue();\n\n            parser.nextToken();\n            int month = parser.getIntValue();\n\n            parser.nextToken();\n            int day = parser.getIntValue();\n\n            if (parser.nextToken() != JsonToken.END_ARRAY) {\n                throw context.wrongTokenException(parser, JsonToken.END_ARRAY, \"Expected array to end.\");\n            }\n            return LocalDate.of(year, month, day);\n        }\n\n        throw context.wrongTokenException(parser, JsonToken.START_ARRAY, \"Expected array or string.\");\n    }",
+    "query_result": [
+        "\ninputs = tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device)\noutputs = model.generate(inputs)\nprint(tokenizer.decode(outputs",
+        "ormers import AutoModelForCausalLM, AutoTokenizer\ndevice = \"cuda\" # for GPU usage or \"cpu\" for CPU u",
+        "vice)\ninputs = tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device)\noutputs ",
+        "= tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device)\noutputs = model.gener",
+        " tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device)\noutputs = model.genera",
+        "ode(\"def print_hello_world():\", return_tensors=\"pt\").to(device)\noutputs = model.generate(inputs)\npri",
+        "ello_world():\", return_tensors=\"pt\").to(device)\noutputs = model.generate(inputs)\nprint(tokenizer.dec",
+        "from transformers import AutoModelForCausalLM, Aut",
+        "rom transformers import AutoModelForCausalLM, Auto",
+        "om transformers import AutoModelForCausalLM, AutoT",
+        "m transformers import AutoModelForCausalLM, AutoTo",
+        " transformers import AutoModelForCausalLM, AutoTok",
+        "transformers import AutoModelForCausalLM, AutoToke",
+        "ransformers import AutoModelForCausalLM, AutoToken",
+        "ansformers import AutoModelForCausalLM, AutoTokeni",
+        "nsformers import AutoModelForCausalLM, AutoTokeniz",
+        "sformers import AutoModelForCausalLM, AutoTokenize",
+        "formers import AutoModelForCausalLM, AutoTokenizer",
+        "ers import AutoModelForCausalLM, AutoTokenizer\ndev",
+        "import AutoModelForCausalLM, AutoTokenizer\ndevice "
+    ]
+}

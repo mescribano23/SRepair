@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.29219143576826195,
+    "input": "    public Class getGenericType(Field field) {        \n        Type generic = field.getGenericType();\n        if (generic != null && generic instanceof ParameterizedType) {\n            Type actual = ((ParameterizedType) generic).getActualTypeArguments()[0];\n            if (actual instanceof Class) {\n                return (Class) actual;\n            } else if (actual instanceof ParameterizedType) {\n                //in case of nested generics we don't go deep\n                return (Class) ((ParameterizedType) actual).getRawType();\n            }\n        }\n        \n        return Object.class;\n    }",
+    "query_result": [
+        ".getActualTypeArguments()[0];\nif (actual instanceof Class) {\nreturn (Class) actual;\n} else if (actua",
+        " ((ParameterizedType) generic).getActualTypeArgume",
+        "rameterizedType) generic).getActualTypeArguments()",
+        "ameterizedType) generic).getActualTypeArguments()[",
+        "lTypeArguments()[0];\nif (actual instanceof Class) "
+    ]
+}

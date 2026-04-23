@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.9487951807228916,
+    "input": "private CreditCard isChinaUnionPay(String creditCardNumber)\n    {\n        if ((creditCardNumber.length() >= 16 && creditCardNumber.length() <= 19) &&\n            (creditCardNumber.startsWith(\"622\")))\n        {\n            int firstDigits = Integer.parseInt(creditCardNumber.substring(0, 6));\n            if (firstDigits >= 622126 && firstDigits <= 622925)\n            {\n                return CreditCard.CHINA_UNIONPAY;\n            }\n        }\n\n        return CreditCard.INVALID;\n    }",
+    "query_result": [
+        " isChinaUnionPay(String creditCardNumber)\n{\nif ((creditCardNumber.length() >= 16 && creditCardNumber.length() <= 19) &&\n(creditCardNumber.startsWith(\"622\")))\n{\nint firstDigits = Integer.parseInt(creditCardNumber.substring(0, 6));\nif (firstDigits >= 622126 && firstDigits <= 622925)\n{\nreturn CreditCard.CHINA_UNIONPAY;\n}\n}\nreturn CreditCard.INVALID;\n}",
+        "(creditCardNumber.length() >= 16 && creditCardNumb",
+        "umber.length() >= 16 && creditCardNumber.length() ",
+        "int firstDigits = Integer.parseInt(creditCardNumbe",
+        " firstDigits = Integer.parseInt(creditCardNumber.s"
+    ]
+}

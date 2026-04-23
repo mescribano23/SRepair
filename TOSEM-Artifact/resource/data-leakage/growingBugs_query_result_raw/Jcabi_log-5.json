@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.19776876267748478,
+    "input": "    private void process(final String fmt, final Object[] args) {\n        this.arguments = new CopyOnWriteArrayList<Object>();\n        final StringBuffer buf = new StringBuffer();\n        final Matcher matcher = PATTERN.matcher(fmt);\n        int pos = 0;\n        while (matcher.find()) {\n            final String group = matcher.group();\n            if (NO_ARG_SPECIFIERS.contains(group)) {\n                matcher.appendReplacement(\n                    buf,\n                    Matcher.quoteReplacement(group)\n                );\n            } else {\n                final String decor = matcher.group(2);\n                if (decor == null) {\n                    matcher.appendReplacement(\n                        buf,\n                        Matcher.quoteReplacement(group)\n                    );\n                    this.arguments.add(args[pos]);\n                } else {\n                    matcher.appendReplacement(\n                        buf,\n                        Matcher.quoteReplacement(\n                            group.replace(matcher.group(1), \"\")\n                        )\n                    );\n                    try {\n                        this.arguments.add(\n                            DecorsManager.decor(decor, args[pos])\n                        );\n                    } catch (final DecorException ex) {\n                        this.arguments.add(\n                            String.format(\"[%s]\", ex.getMessage())\n                        );\n                    }\n                }\n                pos += 1;\n            }\n        }\n        if (pos < args.length) {\n            throw new IllegalArgumentException(\n                String.format(\n                    // @checkstyle LineLength (1 line)\n                    \"There are %d parameter(s) but only %d format argument(s) were provided.\",\n                    args.length,\n                    pos\n                )\n            );\n        }\n        matcher.appendTail(buf);\n        this.format = buf.toString();\n    }",
+    "query_result": [
+        "args.length) {\nthrow new IllegalArgumentException(\nString.format(\n// @checkstyle LineLength (1 line)",
+        "();\nfinal StringBuffer buf = new StringBuffer();\nf",
+        ");\nfinal StringBuffer buf = new StringBuffer();\nfi",
+        ";\nfinal StringBuffer buf = new StringBuffer();\nfin",
+        "\nfinal StringBuffer buf = new StringBuffer();\nfina",
+        "final StringBuffer buf = new StringBuffer();\nfinal",
+        "inal StringBuffer buf = new StringBuffer();\nfinal ",
+        ";\nwhile (matcher.find()) {\nfinal String group = ma",
+        "while (matcher.find()) {\nfinal String group = matc",
+        "hile (matcher.find()) {\nfinal String group = match",
+        "e (matcher.find()) {\nfinal String group = matcher.",
+        " (matcher.find()) {\nfinal String group = matcher.g",
+        "(matcher.find()) {\nfinal String group = matcher.gr",
+        "cher.find()) {\nfinal String group = matcher.group(",
+        "er.find()) {\nfinal String group = matcher.group();",
+        "r.find()) {\nfinal String group = matcher.group();\n",
+        "ind()) {\nfinal String group = matcher.group();\nif ",
+        " args.length) {\nthrow new IllegalArgumentException",
+        "s.length) {\nthrow new IllegalArgumentException(\nSt",
+        ".length) {\nthrow new IllegalArgumentException(\nStr"
+    ]
+}

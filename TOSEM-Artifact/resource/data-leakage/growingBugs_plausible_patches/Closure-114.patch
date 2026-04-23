@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 0fc5ae8f..102fba8d 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -562,9 +562,9 @@ final class NameAnalyzer implements CompilerPass {
+       if (ns != null) {
+         if (parent.isFor() && !NodeUtil.isForIn(parent)) {
+           // Patch for assignments that appear in the init,
+-          // condition or iteration part of a FOR loop.  Without
++          // condition or iteration part of a FOR loop. Without
+           // this change, all 3 of those parts try to claim the for
+-          // loop as their dependency scope.  The last assignment in
++          // loop as their dependency scope. The last assignment in
+           // those three fields wins, which can result in incorrect
+           // reference edges between referenced and assigned variables.
+           //
+@@ -582,7 +582,17 @@ final class NameAnalyzer implements CompilerPass {
+           // caller expression, but it could be nested deeper in the caller and
+           // we would still get a bug.
+           // See testAssignWithCall2 for an example of this.
+-          recordDepScope(recordNode, ns);
++          if (parent.isCall()) {
++            Node callNode = parent.getFirstChild();
++            while (callNode.isGetProp() || callNode.isGetElem()) {
++              callNode = callNode.getFirstChild();
++            }
++            if (callNode.isName()) {
++              recordDepScope(callNode, ns);
++            }
++          } else {
++            recordDepScope(recordNode, ns);
++          }
+         }
+       }
+     }

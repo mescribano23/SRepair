@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.954248366013072,
+    "input": "public int read(byte[] buffer, int start, int length) throws IOException {\n    if (closed) {\n        throw new IOException(\"The stream is closed\");\n    }\n    if (inf.finished() || current == null) {\n        return -1;\n    }\n\n    // avoid int overflow, check null buffer\n    if (start <= buffer.length && length >= 0 && start >= 0\n        && buffer.length - start >= length) {\n        if (current.getMethod() == ZipArchiveOutputStream.STORED) {\n            int csize = (int) current.getSize();\n            if (readBytesOfEntry >= csize) {\n                return -1;\n            }\n            if (offsetInBuffer >= lengthOfLastRead) {\n                offsetInBuffer = 0;\n                if ((lengthOfLastRead = in.read(buf)) == -1) {\n                    return -1;\n                }\n                count(lengthOfLastRead);\n                bytesReadFromStream += lengthOfLastRead;\n            }\n            int toRead = length > lengthOfLastRead\n                ? lengthOfLastRead - offsetInBuffer\n                : length;\n            if ((csize - readBytesOfEntry) < toRead) {\n                toRead = csize - readBytesOfEntry;\n            }\n            System.arraycopy(buf, offsetInBuffer, buffer, start, toRead);\n            offsetInBuffer += toRead;\n            readBytesOfEntry += toRead;\n            crc.update(buffer, start, toRead);\n            return toRead;\n        }\n        if (inf.needsInput()) {\n            fill();\n            if (lengthOfLastRead > 0) {\n                bytesReadFromS",
+    "query_result": [
+        "t.getMethod() == ZipArchiveOutputStream.STORED) {\nint csize = (int) current.getSize();\nif (readBytesOfEntry >= csize) {\nreturn -1;\n}\nif (offsetInBuffer >= lengthOfLastRead) {\noffsetInBuffer = 0;\nif ((lengthOfLastRead = in.read(buf)) == -1) {\nreturn -1;\n}\ncount(lengthOfLastRead);\nbytesReadFromStream += lengthOfLastRead;\n}\nint toRead = length > lengthOfLastRead\n? lengthOfLastRead - offsetInBuffer\n: length;\nif ((csize - readBytesOfEntry) < toRead) {\ntoRead = csize - readBytesOfEntry;\n}\nSystem.arraycopy(buf, offsetInBuffer, buffer, start, toRead);\noffsetInBuffer += toRead;\nreadBytesOfEntry += toRead;\ncrc.update(buffer, start, toRead);\nreturn toRead;\n}\nif (inf.needsInput()) {\nfill();\nif (lengthOf",
+        "d(byte[] buffer, int start, int length) throws IOException {\nif (closed) {\nthrow new IOException(\"The stream is closed\");\n}\nif (inf.finished() || current == null) {\nreturn -1;\n}\n// avoid int overflow, check null buffer\nif (start <= buffer.length && length >= 0 && start >= 0\n&& buffer.length - start ",
+        "thOfLastRead);\nbytesReadFromStream += lengthOfLastRead;\n}\nint toRead = length > lengthOfLastRead\n? lengthOfLastRead - offsetInBuffer\n: length;\nif ((csize - readBytesOfEntry) < toRead) {\ntoRead = csize",
+        "(buf, offsetInBuffer, buffer, start, toRead);\noffsetInBuffer += toRead;\nreadBytesOfEntry += toRead;\ncrc.update(buffer, start, toRead);\nreturn toRead;\n}\nif (inf.needsInput()) {\nfill();\nif (lengthOfLast",
+        ") current.getSize();\nif (readBytesOfEntry >= csize) {\nreturn -1;\n}\nif (offsetInBuffer >= lengthOfLastRead) {\noffsetInBuffer = 0;\nif ((lengthOfLastRead",
+        " int read(byte[] buffer, int start, int length) throws IOException {\nif (closed) {\nthrow new IOExcep",
+        "read(byte[] buffer, int start, int length) throws IOException {\nif (closed) {\nthrow new IOException(",
+        "byte[] buffer, int start, int length) throws IOException {\nif (closed) {\nthrow new IOException(\"The ",
+        "buffer, int start, int length) throws IOException {\nif (closed) {\nthrow new IOException(\"The stream ",
+        ".finished() || current == null) {\nreturn -1;\n}\n// avoid int overflow, check null buffer\nif (start <=",
+        "ublic int read(byte[] buffer, int start, int lengt",
+        "(byte[] buffer, int start, int length) throws IOEx",
+        "ffer, int start, int length) throws IOException {\n",
+        "fer, int start, int length) throws IOException {\ni",
+        "start, int length) throws IOException {\nif (closed",
+        " length) throws IOException {\nif (closed) {\nthrow ",
+        "th) throws IOException {\nif (closed) {\nthrow new I",
+        ") throws IOException {\nif (closed) {\nthrow new IOE",
+        " throws IOException {\nif (closed) {\nthrow new IOEx",
+        "throws IOException {\nif (closed) {\nthrow new IOExc"
+    ]
+}

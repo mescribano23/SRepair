@@ -1,0 +1,73 @@
+diff --git a/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java b/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java
+index 405ea67..49b5abb 100644
+--- a/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java
++++ b/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java
+@@ -303,39 +303,37 @@ abstract class AbstractCompletableTask<T> extends PromiseAdapter<T> implements P
+         return nextStage;
+     }
+ 
+-    @Override
+-    public Promise<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executor executor) {
+-        AbstractCompletableTask<T> nextStage = internalCreateCompletionStage(executor);
+-        addCallbacks(
+-            nextStage, 
+-            result -> {
+-                try {
+-                    action.accept(result, null);
+-                    return result;
+-                } catch (Throwable e) {
+-                    // CompletableFuture wraps exception here
+-                    // Copying this behavior                    
+-                    return forwardException(e);
+-                }
+-            }, 
+-            // exceptions are handled in regular way
+-            failure -> {
+-                try {
+-                    action.accept(null, failure);
+-                    return forwardException(failure);
+-                } catch (Throwable e) {
+-                    // CompletableFuture does not override exception here
+-                    // unlike as in handle[Async](BiFunction)
+-                    // Preserve this behavior, but let us add at least 
+-                    // suppressed exception
++@Override
++public Promise<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executor executor) {
++    AbstractCompletableTask<T> nextStage = internalCreateCompletionStage(executor);
++    addCallbacks(
++        nextStage, 
++        result -> {
++            try {
++                action.accept(result, null);
++                return result;
++            } catch (Throwable e) {
++                // CompletableFuture wraps exception here
++                // Copying this behavior                    
++                return forwardException(e);
++            }
++        }, 
++        // exceptions are handled in regular way
++        failure -> {
++            try {
++                action.accept(null, failure);
++                return forwardException(failure);
++            } catch (Throwable e) {
++                if (e != failure) {
+                     failure.addSuppressed(e);
+-                    return forwardException(failure);
+                 }
+-            }, 
+-            executor
+-        );
+-        return nextStage;
+-    }
++                return forwardException(failure);
++            }
++        }, 
++        executor
++    );
++    return nextStage;
++}
+ 
+     @Override
+     public <U> Promise<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn, Executor executor) {

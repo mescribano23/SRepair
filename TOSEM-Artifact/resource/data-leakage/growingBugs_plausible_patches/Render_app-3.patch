@@ -1,0 +1,14 @@
+diff --git a/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java b/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java
+index ef7f6957..63ef18d6 100644
+--- a/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java
++++ b/render-app/src/main/java/org/janelia/alignment/mipmap/UrlMipmapSource.java
+@@ -102,6 +102,9 @@ public class UrlMipmapSource
+             int downSampleLevels = 0;
+ 
+             final Map.Entry<Integer, ImageAndMask> mipmapEntry = firstChannelSpec.getFloorMipmapEntry(mipmapLevel);
++            if (mipmapEntry.getKey() > mipmapLevel) {
++                throw new IllegalArgumentException("The highest resolution mipmap level available is lower than the requested level: " + mipmapLevel);
++            }
+             final ImageAndMask imageAndMask = mipmapEntry.getValue();
+ 
+             final int currentMipmapLevel = mipmapEntry.getKey();

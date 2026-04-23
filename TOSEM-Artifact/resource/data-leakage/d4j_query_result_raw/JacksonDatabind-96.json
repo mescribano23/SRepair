@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.6505706760316067,
+    "input": "protected void _addExplicitAnyCreator(DeserializationContext ctxt,\n        BeanDescription beanDesc, CreatorCollector creators,\n        CreatorCandidate candidate)\n    throws JsonMappingException\n{\n    // Looks like there's bit of magic regarding 1-parameter creators; others simpler:\n    if (1 != candidate.paramCount()) {\n        // Ok: for delegates, we want one and exactly one parameter without\n        // injection AND without name\n        int oneNotInjected = candidate.findOnlyParamWithoutInjection();\n        if (oneNotInjected >= 0) {\n            // getting close; but most not have name\n            if (candidate.paramName(oneNotInjected) == null) {\n                _addExplicitDelegatingCreator(ctxt, beanDesc, creators, candidate);\n                return;\n            }\n        }\n        _addExplicitPropertyCreator(ctxt, beanDesc, creators, candidate);\n        return;\n    }\n    AnnotatedParameter param = candidate.parameter(0);\n    JacksonInject.Value injectId = candidate.injection(0);\n    PropertyName paramName = candidate.explicitParamName(0);\n    BeanPropertyDefinition paramDef = candidate.propertyDef(0);\n\n    // If there's injection or explicit name, should be properties-based\n    boolean useProps = (paramName != null) || (injectId != null);\n    if (!useProps && (paramDef != null)) {\n        // One more thing: if implicit name matches property with a getter\n        // or field, we'll consider it property-based as well\n\n        // 25-May-2018, tatu: as per [databind#2051",
+    "query_result": [
+        "tInjected) == null) {\n_addExplicitDelegatingCreator(ctxt, beanDesc, creators, candidate);\nreturn;\n}\n}\n_addExplicitPropertyCreator(ctxt, beanDesc, creators, candidate);\nreturn;\n}\nAnnotatedParameter param = candidate.parameter(0);\nJacksonInject.Value injectId = candidate.injection(0);\nPropertyName paramName = candidate.explicitParamName(0);\nBeanPropertyDefinition paramDef = candidate.propertyDef(0);",
+        "ion or explicit name, should be properties-based\nboolean useProps = (paramName != null) || (injectId != null);\nif (!useProps && (paramDef != null)) {\n// One more thing: if implicit name matches property with a getter\n// or field, we'll consider it pr",
+        " implicit name matches property with a getter\n// or field, we'll consider it property-based as well\n",
+        "(DeserializationContext ctxt,\nBeanDescription bean",
+        "erializationContext ctxt,\nBeanDescription beanDesc",
+        "orCandidate candidate)\nthrows JsonMappingException",
+        " candidate.findOnlyParamWithoutInjection();\nif (on",
+        "andidate.findOnlyParamWithoutInjection();\nif (oneN",
+        "dExplicitDelegatingCreator(ctxt, beanDesc, creator",
+        "ExplicitPropertyCreator(ctxt, beanDesc, creators, ",
+        "r(ctxt, beanDesc, creators, candidate);\nreturn;\n}\n",
+        "pertyDefinition paramDef = candidate.propertyDef(0"
+    ]
+}

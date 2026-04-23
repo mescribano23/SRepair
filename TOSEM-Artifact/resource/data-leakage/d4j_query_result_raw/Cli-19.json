@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.47692307692307695,
+    "input": "private void processOptionToken(String token, boolean stopAtNonOption)\n{\n    if (options.hasOption(token))\n    {\n        currentOption = options.getOption(token);\n    }\n    else if (stopAtNonOption)\n    {\n        eatTheRest = true;\n    }\n\n    tokens.add(token);\n}",
+    "query_result": [
+        "sOptionToken(String token, boolean stopAtNonOption",
+        "options.hasOption(token))\n{\ncurrentOption = option"
+    ]
+}

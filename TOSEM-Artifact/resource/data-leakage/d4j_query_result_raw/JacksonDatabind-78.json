@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.780209324452902,
+    "input": "@Override\n    public JsonDeserializer<Object> createBeanDeserializer(DeserializationContext ctxt,\n            JavaType type, BeanDescription beanDesc)\n        throws JsonMappingException\n    {\n        final DeserializationConfig config = ctxt.getConfig();\n        // We may also have custom overrides:\n        JsonDeserializer<Object> custom = _findCustomBeanDeserializer(type, config, beanDesc);\n        if (custom != null) {\n            return custom;\n        }\n        /* One more thing to check: do we have an exception type\n         * (Throwable or its sub-classes)? If so, need slightly\n         * different handling.\n         */\n        if (type.isThrowable()) {\n            return buildThrowableDeserializer(ctxt, type, beanDesc);\n        }\n        /* Or, for abstract types, may have alternate means for resolution\n         * (defaulting, materialization)\n         */\n        // 29-Nov-2015, tatu: Also, filter out calls to primitive types, they are\n        //    not something we could materialize anything for\n        if (type.isAbstract() && !type.isPrimitive() && !type.isEnumType()) {\n            // Let's make it possible to materialize abstract types.\n            JavaType concreteType = materializeAbstractType(ctxt, type, beanDesc);\n            if (concreteType != null) {\n                /* important: introspect actual implementation (abstract class or\n                 * interface doesn't have constructors, for one)\n                 */\n                beanDesc = config.introspe",
+    "query_result": [
+        "-Nov-2015, tatu: Also, filter out calls to primitive types, they are\n// not something we could materialize anything for\nif (type.isAbstract() && !type.isPrimitive() && !type.isEnumType()) {\n// Let's make it possible to materialize abstract types.\nJavaType concreteType = materializeAbstractType(ctxt,",
+        "@Override\npublic JsonDeserializer<Object> createBeanDeserializer(DeserializationContext ctxt,\nJavaType type, BeanDescription beanDesc)\nthrows JsonMappingException\n{\nfinal DeserializationConfig config ",
+        "lizer<Object> createBeanDeserializer(DeserializationContext ctxt,\nJavaType type, BeanDescription beanDesc)\nthrows JsonMappingException\n{\nfinal Deseria",
+        "/* One more thing to check: do we have an exception type\n* (Throwable or its sub-classes)? If so, need slightly\n* different handling.\n*/\nif (type.isTh",
+        "esc);\nif (concreteType != null) {\n/* important: introspect actual implementation (abstract class or\n* interface doesn't have constructors, for one)\n*/",
+        " JsonDeserializer<Object> createBeanDeserializer(DeserializationContext ctxt,\nJavaType type, BeanDes",
+        "eserializer<Object> createBeanDeserializer(DeserializationContext ctxt,\nJavaType type, BeanDescripti",
+        "t ctxt,\nJavaType type, BeanDescription beanDesc)\nthrows JsonMappingException\n{\nfinal Deserialization",
+        "ype type, BeanDescription beanDesc)\nthrows JsonMappingException\n{\nfinal DeserializationConfig config",
+        "scription beanDesc)\nthrows JsonMappingException\n{\nfinal DeserializationConfig config = ctxt.getConfi",
+        "ription beanDesc)\nthrows JsonMappingException\n{\nfinal DeserializationConfig config = ctxt.getConfig(",
+        "serializer<Object> custom = _findCustomBeanDeserializer(type, config, beanDesc);\nif (custom != null)",
+        "t> custom = _findCustomBeanDeserializer(type, config, beanDesc);\nif (custom != null) {\nreturn custom",
+        "ride\npublic JsonDeserializer<Object> createBeanDes",
+        "ide\npublic JsonDeserializer<Object> createBeanDese",
+        "\npublic JsonDeserializer<Object> createBeanDeseria",
+        "lic JsonDeserializer<Object> createBeanDeserialize",
+        "c JsonDeserializer<Object> createBeanDeserializer(",
+        "onDeserializer<Object> createBeanDeserializer(Dese",
+        "Deserializer<Object> createBeanDeserializer(Deseri"
+    ]
+}

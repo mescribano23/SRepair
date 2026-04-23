@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.6104928457869634,
+    "input": "    public Resource fromProperties(Properties properties)\n    {\n        String name = properties.getProperty(ResourcePropertySet.RESOURCE_NAME);\n        String type = properties.getProperty(ResourcePropertySet.RESOURCE_TYPE);\n        Resource data = new Resource(name, type);\n\n        if (properties.containsKey(ResourcePropertySet.RESOURCE_CLASS))\n        {\n            String className = properties.getProperty(ResourcePropertySet.RESOURCE_CLASS);\n            data.setClassName(className);\n        }\n\n        String parametersAsASemicolonDelimitedString =\n            properties.getProperty(ResourcePropertySet.PARAMETERS);\n        data.setParameters(getParametersFromString(\n            PropertyUtils.escapeBackSlashesIfNotNull(parametersAsASemicolonDelimitedString)));\n        return data;\n    }",
+    "query_result": [
+        "erties(Properties properties)\n{\nString name = properties.getProperty(ResourcePropertySet.RESOURCE_NAME);\nString type = properties.getProperty(Resource",
+        "w Resource(name, type);\nif (properties.containsKey(ResourcePropertySet.RESOURCE_CLASS))\n{\nString className = properties.getProperty(ResourcePropertySe",
+        "SemicolonDelimitedString =\nproperties.getProperty(",
+        "olonDelimitedString =\nproperties.getProperty(Resou",
+        "ertyUtils.escapeBackSlashesIfNotNull(parametersAsA"
+    ]
+}

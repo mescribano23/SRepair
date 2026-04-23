@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.19230769230769232,
+    "input": "  private void handleBlockComment(Comment comment) {\n    Pattern p = Pattern.compile(\"(/|(\\n[ \\t]*))\\\\*[ \\t]*@[a-zA-Z]\");\n    if (p.matcher(comment.getValue()).find()) {\n      errorReporter.warning(\n          SUSPICIOUS_COMMENT_WARNING,\n          sourceName,\n          comment.getLineno(), \"\", 0);\n    }\n  }",
+    "query_result": [
+        "rivate void handleBlockComment(Comment comment) {\n"
+    ]
+}

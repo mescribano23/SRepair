@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.6970509383378016,
+    "input": "public void setSelected(Option option) throws AlreadySelectedException\n{\n    if (option == null)\n    {\n        // reset the option previously selected\n        selected = null;\n        return;\n    }\n    \n    // if no option has already been selected or the \n    // same option is being reselected then set the\n    // selected member variable\n    if (selected == null || selected.equals(option.getKey()))\n    {\n        selected = option.getKey();\n    }\n    else\n    {\n        throw new AlreadySelectedException(this, option);\n    }\n}",
+    "query_result": [
+        "reviously selected\nselected = null;\nreturn;\n}\n\n// if no option has already been selected or the \n// same option is being reselected then set the\n// selected member variable\nif (selected == null || sel",
+        "id setSelected(Option option) throws AlreadySelect",
+        "option previously selected\nselected = null;\nreturn",
+        "the \n// same option is being reselected then set t",
+        "\n// selected member variable\nif (selected == null ",
+        ".getKey();\n}\nelse\n{\nthrow new AlreadySelectedExcep"
+    ]
+}

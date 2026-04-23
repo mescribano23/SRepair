@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.2591549295774648,
+    "input": "    @Override\n    public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException\n    {\n        // 29-Jan-2016, tatu: Simple skipping for all other tokens, but FIELD_NAME bit\n        //    special unfortunately\n        if (p.hasToken(JsonToken.FIELD_NAME)) {\n            while (true) {\n                JsonToken t = p.nextToken();\n                if ((t == null) || (t == JsonToken.END_OBJECT)) {\n                    break;\n                }\n                p.skipChildren();\n            }\n        } else {\n            p.skipChildren();\n        }\n        return null;\n    }",
+    "query_result": [
+        "@Override public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {",
+        "Override public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException { /",
+        "erride public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException { //",
+        "verride public Object deserialize(JsonParser p, De",
+        "rride public Object deserialize(JsonParser p, Dese",
+        "ride public Object deserialize(JsonParser p, Deser",
+        "ide public Object deserialize(JsonParser p, Deseri",
+        "e public Object deserialize(JsonParser p, Deserial",
+        "public Object deserialize(JsonParser p, Deseriali",
+        "public Object deserialize(JsonParser p, Deserializ",
+        "ublic Object deserialize(JsonParser p, Deserializa",
+        "blic Object deserialize(JsonParser p, Deserializat",
+        "lic Object deserialize(JsonParser p, Deserializati",
+        "ic Object deserialize(JsonParser p, Deserializatio",
+        "c Object deserialize(JsonParser p, Deserialization",
+        "Object deserialize(JsonParser p, DeserializationC",
+        "Object deserialize(JsonParser p, DeserializationCo",
+        "bject deserialize(JsonParser p, DeserializationCon",
+        "ject deserialize(JsonParser p, DeserializationCont",
+        "ect deserialize(JsonParser p, DeserializationConte"
+    ]
+}

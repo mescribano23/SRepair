@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.4706649282920469,
+    "input": "    protected StringBuffer renderWrappedText(StringBuffer sb, int width, \n                                             int nextLineTabStop, String text)\n    {\n        int pos = findWrapPos(text, width, 0);\n\n        if (pos == -1)\n        {\n            sb.append(rtrim(text));\n\n            return sb;\n        }\n        sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);\n\n        // all following lines must be padded with nextLineTabStop space \n        // characters\n        final String padding = createPadding(nextLineTabStop);\n\n        if (nextLineTabStop >= width)\n        {\n            // stops infinite loop happening\n            throw new IllegalStateException(\"Total width is less than the width of the argument and indent \" + \n                                            \"- no room for the description\");\n        }\n\n        while (true)\n        {\n            text = padding + text.substring(pos).trim();\n            pos = findWrapPos(text, width, 0);\n\n            if (pos == -1)\n            {\n                sb.append(text);\n\n                return sb;\n            }\n            \n            if ( (text.length() > width) && (pos == nextLineTabStop - 1) ) \n            {\n                pos = width;\n            }\n\n            sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);\n        }\n    }",
+    "query_result": [
+        "uffer renderWrappedText(StringBuffer sb, int width",
+        "end(rtrim(text));\nreturn sb;\n}\nsb.append(rtrim(tex",
+        ");\nreturn sb;\n}\nsb.append(rtrim(text.substring(0, ",
+        ";\n// all following lines must be padded with nextL",
+        "l following lines must be padded with nextLineTabS",
+        "wing lines must be padded with nextLineTabStop spa",
+        "st be padded with nextLineTabStop space \n// charac",
+        "racters\nfinal String padding = createPadding(nextL",
+        "xt = padding + text.substring(pos).trim();\npos = f",
+        "dding + text.substring(pos).trim();\npos = findWrap",
+        "substring(pos).trim();\npos = findWrapPos(text, wid",
+        "trim();\npos = findWrapPos(text, width, 0);\nif (pos",
+        "os = width;\n}\nsb.append(rtrim(text.substring(0, po",
+        "xt.substring(0, pos))).append(defaultNewLine);\n}\n}"
+    ]
+}

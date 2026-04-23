@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9481481481481482,
+    "input": "        void read(Tokeniser t, CharacterReader r) {\n            char c = r.consume();\n            switch (c) {\n                case '>':\n                    t.tagPending.selfClosing = true;\n                    t.emitTagPending();\n                    t.transition(Data);\n                    break;\n                case eof:\n                    t.eofError(this);\n                    t.transition(Data);\n                    break;\n                default:\n                    t.error(this);\n                    r.unconsume();\n                    t.transition(BeforeAttributeName);\n            }\n        }",
+    "query_result": [
+        "er r) {\nchar c = r.consume();\nswitch (c) {\ncase '>':\nt.tagPending.selfClosing = true;\nt.emitTagPending();\nt.transition(Data);\nbreak;\ncase eof:\nt.eofError(this);\nt.transition(Data);\nbreak;\ndefault:\nt.error(this);\nr.unconsume();\nt.transition(BeforeAttr",
+        " {\nchar c = r.consume();\nswitch (c) {\ncase '>':\nt.tagPending.selfClosing = true;\nt.emitTagPending();\nt.transition(Data);\nbreak;\ncase eof:\nt.eofError(this);\nt.transition(Data);\nbreak;\ndefault:\nt.error(",
+        " c = r.consume();\nswitch (c) {\ncase '>':\nt.tagPending.selfClosing = true;\nt.emitTagPending();\nt.transition(Data);\nbreak;\ncase eof:\nt.eofError(this);\nt.transition(Data);\nbreak;\ndefault:\nt.error(this);\n",
+        "mitTagPending();\nt.transition(Data);\nbreak;\ncase eof:\nt.eofError(this);\nt.transition(Data);\nbreak;\ndefault:\nt.error(this);\nr.unconsume();\nt.transition",
+        "emitTagPending();\nt.transition(Data);\nbreak;\ncase eof:\nt.eofError(this);\nt.transition(Data);\nbreak;\n",
+        "reak;\ncase eof:\nt.eofError(this);\nt.transition(Data);\nbreak;\ndefault:\nt.error(this);\nr.unconsume();\n",
+        "\ncase eof:\nt.eofError(this);\nt.transition(Data);\nbreak;\ndefault:\nt.error(this);\nr.unconsume();\nt.tra",
+        "oid read(Tokeniser t, CharacterReader r) {\nchar c ",
+        "id read(Tokeniser t, CharacterReader r) {\nchar c =",
+        " read(Tokeniser t, CharacterReader r) {\nchar c = r",
+        "read(Tokeniser t, CharacterReader r) {\nchar c = r.",
+        "ead(Tokeniser t, CharacterReader r) {\nchar c = r.c",
+        "ad(Tokeniser t, CharacterReader r) {\nchar c = r.co",
+        "d(Tokeniser t, CharacterReader r) {\nchar c = r.con",
+        "(Tokeniser t, CharacterReader r) {\nchar c = r.cons",
+        "Tokeniser t, CharacterReader r) {\nchar c = r.consu",
+        "okeniser t, CharacterReader r) {\nchar c = r.consum",
+        "niser t, CharacterReader r) {\nchar c = r.consume()",
+        "iser t, CharacterReader r) {\nchar c = r.consume();",
+        "ser t, CharacterReader r) {\nchar c = r.consume();\n"
+    ]
+}

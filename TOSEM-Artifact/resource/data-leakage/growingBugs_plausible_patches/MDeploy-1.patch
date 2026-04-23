@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/maven/plugin/deploy/DeployFileMojo.java b/src/main/java/org/apache/maven/plugin/deploy/DeployFileMojo.java
+index 88a5b65..f66b32d 100644
+--- a/src/main/java/org/apache/maven/plugin/deploy/DeployFileMojo.java
++++ b/src/main/java/org/apache/maven/plugin/deploy/DeployFileMojo.java
+@@ -268,9 +268,13 @@ public class DeployFileMojo
+         {
+             this.artifactId = model.getArtifactId();
+         }
+-        if ( this.version == null && model.getVersion() != null )
++        if ( this.version == null )
+         {
+-            this.version = model.getVersion();
++            if ( model.getVersion() != null ) {
++                this.version = model.getVersion();
++            } else if (parent != null && parent.getVersion() != null) {
++                this.version = parent.getVersion();
++            }
+         }
+         if ( this.packaging == null && model.getPackaging() != null )
+         {

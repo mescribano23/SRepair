@@ -1,0 +1,57 @@
+diff --git a/src/main/java/com/jcabi/github/mock/MkPulls.java b/src/main/java/com/jcabi/github/mock/MkPulls.java
+index c6b4936b7..57724ef00 100644
+--- a/src/main/java/com/jcabi/github/mock/MkPulls.java
++++ b/src/main/java/com/jcabi/github/mock/MkPulls.java
+@@ -101,26 +101,33 @@ final class MkPulls implements Pulls {
+         return new MkPull(this.storage, this.self, this.coords, number);
+     }
+ 
+-    @Override
+-    public Pull create(final String title, final String head,
+-        final String base) throws IOException {
+-        this.storage.lock();
+-        final int number;
+-        try {
+-            number = 1 + this.storage.xml().xpath(
+-                String.format("%s/pull/number", this.xpath())
+-            ).size();
+-            this.storage.apply(
+-                new Directives().xpath(this.xpath()).add("pull")
+-                    .add("number").set(Integer.toString(number)).up()
+-                    .add("head").set(head).up()
+-                    .add("base").set(base).up()
+-            );
+-        } finally {
+-            this.storage.unlock();
+-        }
+-        return this.get(number);
++@Override
++public Pull create(final String title, final String head,
++    final String base) throws IOException {
++    this.storage.lock();
++    final int number;
++    try {
++        number = 1 + this.storage.xml().xpath(
++            String.format("%s/pull/number", this.xpath())
++        ).size();
++        this.storage.apply(
++            new Directives().xpath(this.xpath()).add("pull")
++                .add("number").set(Integer.toString(number)).up()
++                .add("head").set(head).up()
++                .add("base").set(base).up()
++        );
++        // Create corresponding issue
++        this.storage.apply(
++            new Directives().xpath("/github/repos/repo[@coords='jeff/test']")
++                .add("issues").add("issue")
++                .add("number").set(Integer.toString(number)).up()
++                .add("title").set(title).up()
++        );
++    } finally {
++        this.storage.unlock();
+     }
++    return this.get(number);
++}
+ 
+     @Override
+     public Iterable<Pull> iterate() {

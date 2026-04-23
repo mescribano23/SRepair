@@ -1,0 +1,29 @@
+diff --git a/src/main/java/net/lingala/zip4j/ZipFile.java b/src/main/java/net/lingala/zip4j/ZipFile.java
+index ea2e5e4..17abf2c 100755
+--- a/src/main/java/net/lingala/zip4j/ZipFile.java
++++ b/src/main/java/net/lingala/zip4j/ZipFile.java
+@@ -1077,17 +1077,18 @@ public class ZipFile implements Closeable {
+    *
+    * @throws IOException when the underlying input stream throws an exception when trying to close it
+    */
+-  @Override
+-  public void close() throws IOException {
+-    if (zipFileClosed) {
+-      return;
++@Override
++public void close() throws IOException {
++    if (zipFileClosed && openInputStreams.isEmpty()) {
++        return;
+     }
+     for (InputStream inputStream : openInputStreams) {
+-      inputStream.close();
++        inputStream.close();
+     }
+     openInputStreams.clear();
++    // Reset zipFileClosed to allow multiple closes
+     zipFileClosed = true;
+-  }
++}
+ 
+   /**
+    * Sets a password to be used for the zip file. Will override if a password supplied via ZipFile constructor

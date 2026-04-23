@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.935374149659864,
+    "input": "    public boolean equals(Object other) {\n        boolean ret;\n        \n        if (this == other) { \n            ret = true;\n        } else if (other == null) {\n            ret = false;\n        } else  {\n            try {\n                Complex rhs = (Complex)other;\n                if (rhs.isNaN()) {\n                    ret = this.isNaN();\n                } else {\n                    ret = (real == rhs.real) && (imaginary == rhs.imaginary); \n                }\n            } catch (ClassCastException ex) {\n                // ignore exception\n                ret = false;\n            }\n        }\n      \n        return ret;\n    }",
+    "query_result": [
+        "c boolean equals(Object other) {\nboolean ret;\n\nif (this == other) { \nret = true;\n} else if (other == null) {\nret = false;\n} else {\ntry {\nComplex rhs = (Complex)other;\nif (rhs.isNaN()) {\nret = this.isN",
+        "(other == null) {\nret = false;\n} else {\ntry {\nComplex rhs = (Complex)other;\nif (rhs.isNaN()) {\nret = this.isNaN();\n} else {\nret = (real == rhs.real) &",
+        "ic boolean equals(Object other) {\nboolean ret;\n\nif (this == other) { \nret = true;\n} else if (other =",
+        "bject other) {\nboolean ret;\n\nif (this == other) { \nret = true;\n} else if (other == null) {\nret = fal",
+        " = true;\n} else if (other == null) {\nret = false;\n",
+        "(real == rhs.real) && (imaginary == rhs.imaginary)",
+        "eal == rhs.real) && (imaginary == rhs.imaginary); ",
+        "catch (ClassCastException ex) {\n// ignore exceptio",
+        "lassCastException ex) {\n// ignore exception\nret = ",
+        "stException ex) {\n// ignore exception\nret = false;"
+    ]
+}

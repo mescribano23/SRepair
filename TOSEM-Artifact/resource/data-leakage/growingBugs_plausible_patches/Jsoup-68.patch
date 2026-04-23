@@ -1,0 +1,49 @@
+diff --git a/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java b/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java
+index 08444ef..d4d65b7 100644
+--- a/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java
++++ b/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java
+@@ -463,27 +463,23 @@ public class HtmlTreeBuilder extends TreeBuilder {
+         return inSpecificScope(specificScopeTarget, baseTypes, extraTypes);
+     }
+ 
+-    private boolean inSpecificScope(String[] targetNames, String[] baseTypes, String[] extraTypes) {
+-        // https://html.spec.whatwg.org/multipage/parsing.html#has-an-element-in-the-specific-scope
+-        int bottom = stack.size() -1;
+-        if (bottom > MaxScopeSearchDepth) {
+-            bottom = MaxScopeSearchDepth;
+-        }
+-        final int top = bottom > MaxScopeSearchDepth ? bottom - MaxScopeSearchDepth : 0;
+-        // don't walk too far up the tree
+-
+-        for (int pos = bottom; pos >= top; pos--) {
+-            final String elName = stack.get(pos).nodeName();
+-            if (inSorted(elName, targetNames))
+-                return true;
+-            if (inSorted(elName, baseTypes))
+-                return false;
+-            if (extraTypes != null && inSorted(elName, extraTypes))
+-                return false;
+-        }
+-        //Validate.fail("Should not be reachable"); // would end up false because hitting 'html' at root (basetypes)
+-        return false;
+-    }
++private boolean inSpecificScope(String[] targetNames, String[] baseTypes, String[] extraTypes) {
++    int size = stack.size();
++    int bottom = size - 1;
++    int searchDepth = Math.min(size, MaxScopeSearchDepth);
++    final int top = bottom - searchDepth + 1;
++
++    for (int pos = bottom; pos >= top; pos--) {
++        final String elName = stack.get(pos).nodeName();
++        if (inSorted(elName, targetNames))
++            return true;
++        if (inSorted(elName, baseTypes))
++            return false;
++        if (extraTypes != null && inSorted(elName, extraTypes))
++            return false;
++    }
++    return false;
++}
+ 
+     boolean inScope(String[] targetNames) {
+         return inSpecificScope(targetNames, TagsSearchInScope, null);

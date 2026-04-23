@@ -1,0 +1,15 @@
+diff --git a/gson/src/main/java/com/google/gson/stream/JsonReader.java b/gson/src/main/java/com/google/gson/stream/JsonReader.java
+index 877742bf..6dba5f4c 100644
+--- a/gson/src/main/java/com/google/gson/stream/JsonReader.java
++++ b/gson/src/main/java/com/google/gson/stream/JsonReader.java
+@@ -710,6 +710,10 @@ public class JsonReader implements Closeable {
+         }
+         if (last == NUMBER_CHAR_SIGN || last == NUMBER_CHAR_NONE) {
+           value = -(c - '0');
++          if (value == 0 && negative) {
++            value = 0; // Preserve negative zero
++            fitsInLong = false; // Ensure it's handled as a non-long number
++          }
+           last = NUMBER_CHAR_DIGIT;
+         } else if (last == NUMBER_CHAR_DIGIT) {
+           if (value == 0) {

@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.4036697247706422,
+    "input": "public int getLength() {\n    Object baseValue = getBaseValue();\n    return baseValue == null ? 1 : ValueUtils.getLength(baseValue);\n}",
+    "query_result": [
+        "Value == null ? 1 : ValueUtils.getLength(baseValue"
+    ]
+}

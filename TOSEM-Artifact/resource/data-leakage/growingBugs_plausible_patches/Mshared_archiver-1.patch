@@ -1,0 +1,432 @@
+diff --git a/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java b/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java
+index 93a626b6..f6d03057 100644
+--- a/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java
++++ b/maven-archiver/src/main/java/org/apache/maven/archiver/MavenArchiver.java
+@@ -196,246 +196,251 @@ public class MavenArchiver
+         }
+     }
+ 
+-    protected Manifest getManifest( MavenSession session, MavenProject project, ManifestConfiguration config,
+-                                    Map<String, String> entries )
+-        throws ManifestException, DependencyResolutionRequiredException
+-    {
+-        // TODO: Should we replace "map" with a copy? Note, that we modify it!
++protected Manifest getManifest( MavenSession session, MavenProject project, ManifestConfiguration config,
++                                Map<String, String> entries )
++    throws ManifestException, DependencyResolutionRequiredException
++{
++    // TODO: Should we replace "map" with a copy? Note, that we modify it!
+ 
+-        // Added basic entries
+-        Manifest m = new Manifest();
+-        addCreatedByEntry( session, m, entries );
++    // Added basic entries
++    Manifest m = new Manifest();
++    addCreatedByEntry( session, m, entries );
+ 
+-        addCustomEntries( m, entries, config );
++    addCustomEntries( m, entries, config );
+ 
+-        if ( config.isAddClasspath() )
+-        {
+-            StringBuilder classpath = new StringBuilder();
++    if ( config.isAddClasspath() )
++    {
++        StringBuilder classpath = new StringBuilder();
+ 
+-            List artifacts = project.getRuntimeClasspathElements();
+-            String classpathPrefix = config.getClasspathPrefix();
+-            String layoutType = config.getClasspathLayoutType();
+-            String layout = config.getCustomClasspathLayout();
++        List artifacts = project.getRuntimeClasspathElements();
++        String classpathPrefix = config.getClasspathPrefix();
++        String layoutType = config.getClasspathLayoutType();
++        String layout = config.getCustomClasspathLayout();
+ 
+-            Interpolator interpolator = new StringSearchInterpolator();
++        Interpolator interpolator = new StringSearchInterpolator();
+ 
+-            for ( Iterator iter = artifacts.iterator(); iter.hasNext(); )
++        for ( Iterator iter = artifacts.iterator(); iter.hasNext(); )
++        {
++            File f = new File( (String) iter.next() );
++            if ( f.getAbsoluteFile().isFile() )
+             {
+-                File f = new File( (String) iter.next() );
+-                if ( f.getAbsoluteFile().isFile() )
++                Artifact artifact = findArtifactWithFile( project.getArtifacts(), f );
++
++                if ( classpath.length() > 0 )
+                 {
+-                    Artifact artifact = findArtifactWithFile( project.getArtifacts(), f );
++                    classpath.append( " " );
++                }
++                classpath.append( classpathPrefix );
+ 
+-                    if ( classpath.length() > 0 )
++                // NOTE: If the artifact or layout type (from config) is null, give up and use the file name by itself.
++                if ( artifact == null || layoutType == null )
++                {
++                    classpath.append( f.getName() );
++                }
++                else
++                {
++                    List valueSources = new ArrayList();
++                    valueSources.add(
++                        new PrefixedObjectValueSource( ARTIFACT_EXPRESSION_PREFIXES, artifact, true ) );
++                    valueSources.add( new PrefixedObjectValueSource( ARTIFACT_EXPRESSION_PREFIXES, artifact == null
++                        ? null
++                        : artifact.getArtifactHandler(), true ) );
++
++                    Properties extraExpressions = new Properties();
++                    if ( artifact != null )
+                     {
+-                        classpath.append( " " );
++                        // FIXME: This query method SHOULD NOT affect the internal
++                        // state of the artifact version, but it does.
++                        if ( !artifact.isSnapshot() )
++                        {
++                            extraExpressions.setProperty( "baseVersion", artifact.getVersion() );
++                        }
++
++                        extraExpressions.setProperty( "groupIdPath", artifact.getGroupId().replace( '.', '/' ) );
++                        if ( StringUtils.isNotEmpty( artifact.getClassifier() ) )
++                        {
++                            extraExpressions.setProperty( "dashClassifier", "-" + artifact.getClassifier() );
++                            extraExpressions.setProperty( "dashClassifier?", "-" + artifact.getClassifier() );
++                        }
++                        else
++                        {
++                            extraExpressions.setProperty( "dashClassifier", "" );
++                            extraExpressions.setProperty( "dashClassifier?", "" );
++                        }
+                     }
+-                    classpath.append( classpathPrefix );
++                    valueSources.add(
++                        new PrefixedPropertiesValueSource( ARTIFACT_EXPRESSION_PREFIXES, extraExpressions, true ) );
+ 
+-                    // NOTE: If the artifact or layout type (from config) is null, give up and use the file name by itself.
+-                    if ( artifact == null || layoutType == null )
++                    for ( Iterator it = valueSources.iterator(); it.hasNext(); )
+                     {
+-                        classpath.append( f.getName() );
++                        ValueSource vs = (ValueSource) it.next();
++                        interpolator.addValueSource( vs );
+                     }
+-                    else
++
++                    RecursionInterceptor recursionInterceptor =
++                        new PrefixAwareRecursionInterceptor( ARTIFACT_EXPRESSION_PREFIXES );
++
++                    try
+                     {
+-                        List valueSources = new ArrayList();
+-                        valueSources.add(
+-                            new PrefixedObjectValueSource( ARTIFACT_EXPRESSION_PREFIXES, artifact, true ) );
+-                        valueSources.add( new PrefixedObjectValueSource( ARTIFACT_EXPRESSION_PREFIXES, artifact == null
+-                            ? null
+-                            : artifact.getArtifactHandler(), true ) );
+-
+-                        Properties extraExpressions = new Properties();
+-                        if ( artifact != null )
++                        if ( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_SIMPLE.equals( layoutType ) )
+                         {
+-                            // FIXME: This query method SHOULD NOT affect the internal
+-                            // state of the artifact version, but it does.
+-                            if ( !artifact.isSnapshot() )
++                            if ( config.isUseUniqueVersions() )
+                             {
+-                                extraExpressions.setProperty( "baseVersion", artifact.getVersion() );
+-                            }
+-
+-                            extraExpressions.setProperty( "groupIdPath", artifact.getGroupId().replace( '.', '/' ) );
+-                            if ( StringUtils.isNotEmpty( artifact.getClassifier() ) )
+-                            {
+-                                extraExpressions.setProperty( "dashClassifier", "-" + artifact.getClassifier() );
+-                                extraExpressions.setProperty( "dashClassifier?", "-" + artifact.getClassifier() );
++                                classpath.append( interpolator.interpolate( SIMPLE_LAYOUT, recursionInterceptor ) );
+                             }
+                             else
+                             {
+-                                extraExpressions.setProperty( "dashClassifier", "" );
+-                                extraExpressions.setProperty( "dashClassifier?", "" );
++                                classpath.append(
++                                    interpolator.interpolate( SIMPLE_LAYOUT_NONUNIQUE, recursionInterceptor ) );
+                             }
+                         }
+-                        valueSources.add(
+-                            new PrefixedPropertiesValueSource( ARTIFACT_EXPRESSION_PREFIXES, extraExpressions, true ) );
+-
+-                        for ( Iterator it = valueSources.iterator(); it.hasNext(); )
+-                        {
+-                            ValueSource vs = (ValueSource) it.next();
+-                            interpolator.addValueSource( vs );
+-                        }
+-
+-                        RecursionInterceptor recursionInterceptor =
+-                            new PrefixAwareRecursionInterceptor( ARTIFACT_EXPRESSION_PREFIXES );
+-
+-                        try
++                        else if ( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_REPOSITORY.equals( layoutType ) )
+                         {
+-                            if ( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_SIMPLE.equals( layoutType ) )
+-                            {
+-                                if ( config.isUseUniqueVersions() )
+-                                {
+-                                    classpath.append( interpolator.interpolate( SIMPLE_LAYOUT, recursionInterceptor ) );
+-                                }
+-                                else
+-                                {
+-                                    classpath.append(
+-                                        interpolator.interpolate( SIMPLE_LAYOUT_NONUNIQUE, recursionInterceptor ) );
+-                                }
+-                            }
+-                            else if ( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_REPOSITORY.equals( layoutType ) )
++                            // we use layout /$groupId[0]/../${groupId[n]/$artifactId/$version/{fileName}
++                            // here we must find the Artifact in the project Artifacts to generate the maven layout
++                            if ( config.isUseUniqueVersions() )
+                             {
+-                                // we use layout /$groupId[0]/../${groupId[n]/$artifactId/$version/{fileName}
+-                                // here we must find the Artifact in the project Artifacts to generate the maven layout
+-                                if ( config.isUseUniqueVersions() )
+-                                {
+-                                    classpath.append(
+-                                        interpolator.interpolate( REPOSITORY_LAYOUT, recursionInterceptor ) );
+-                                }
+-                                else
+-                                {
+-                                    classpath.append(
+-                                        interpolator.interpolate( REPOSITORY_LAYOUT_NONUNIQUE, recursionInterceptor ) );
+-                                }
+-                            }
+-                            else if ( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_CUSTOM.equals( layoutType ) )
+-                            {
+-                                if ( layout == null )
+-                                {
+-                                    throw new ManifestException( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_CUSTOM
+-                                                                     + " layout type was declared, but custom layout expression was not specified. Check your <archive><manifest><customLayout/> element." );
+-                                }
+-
+-                                classpath.append( interpolator.interpolate( layout, recursionInterceptor ) );
++                                classpath.append(
++                                    interpolator.interpolate( REPOSITORY_LAYOUT, recursionInterceptor ) );
+                             }
+                             else
+                             {
+-                                throw new ManifestException( "Unknown classpath layout type: '" + layoutType
+-                                                                 + "'. Check your <archive><manifest><layoutType/> element." );
++                                classpath.append(
++                                    interpolator.interpolate( REPOSITORY_LAYOUT_NONUNIQUE, recursionInterceptor ) );
+                             }
+                         }
+-                        catch ( InterpolationException e )
++                        else if ( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_CUSTOM.equals( layoutType ) )
+                         {
+-                            ManifestException error = new ManifestException(
+-                                "Error interpolating artifact path for classpath entry: " + e.getMessage() );
++                            if ( layout == null )
++                            {
++                                throw new ManifestException( ManifestConfiguration.CLASSPATH_LAYOUT_TYPE_CUSTOM
++                                                             + " layout type was declared, but custom layout expression was not specified. Check your <archive><manifest><customLayout/> element." );
++                            }
+ 
+-                            error.initCause( e );
+-                            throw error;
++                            classpath.append( interpolator.interpolate( layout, recursionInterceptor ) );
+                         }
+-                        finally
++                        else
+                         {
+-                            for ( Iterator it = valueSources.iterator(); it.hasNext(); )
+-                            {
+-                                ValueSource vs = (ValueSource) it.next();
+-                                interpolator.removeValuesSource( vs );
+-                            }
++                            throw new ManifestException( "Unknown classpath layout type: '" + layoutType
++                                                         + "'. Check your <archive><manifest><layoutType/> element." );
+                         }
+                     }
+-                }
+-            }
++                    catch ( InterpolationException e )
++                    {
++                        ManifestException error = new ManifestException(
++                            "Error interpolating artifact path for classpath entry: " + e.getMessage() );
+ 
+-            if ( classpath.length() > 0 )
+-            {
+-                // Class-Path is special and should be added to manifest even if
+-                // it is specified in the manifestEntries section
+-                addManifestAttribute( m, "Class-Path", classpath.toString() );
++                        error.initCause( e );
++                        throw error;
++                    }
++                    finally
++                    {
++                        for ( Iterator it = valueSources.iterator(); it.hasNext(); )
++                        {
++                            ValueSource vs = (ValueSource) it.next();
++                            interpolator.removeValuesSource( vs );
++                        }
++                    }
++                }
+             }
+         }
+ 
+-        if ( config.isAddDefaultSpecificationEntries() )
++        if ( classpath.length() > 0 )
+         {
+-            addManifestAttribute( m, entries, "Specification-Title", project.getName() );
+-            addManifestAttribute( m, entries, "Specification-Version", project.getVersion() );
+-
+-            if ( project.getOrganization() != null )
+-            {
+-                addManifestAttribute( m, entries, "Specification-Vendor", project.getOrganization().getName() );
+-            }
++            // Class-Path is special and should be added to manifest even if
++            // it is specified in the manifestEntries section
++            addManifestAttribute( m, "Class-Path", classpath.toString() );
+         }
++    }
+ 
+-        if ( config.isAddDefaultImplementationEntries() )
+-        {
+-            addManifestAttribute( m, entries, "Implementation-Title", project.getName() );
+-            addManifestAttribute( m, entries, "Implementation-Version", project.getVersion() );
+-            // MJAR-5
+-            addManifestAttribute( m, entries, "Implementation-Vendor-Id", project.getGroupId() );
++    if ( config.isAddDefaultSpecificationEntries() )
++    {
++        addManifestAttribute( m, entries, "Specification-Title", project.getName() );
++        addManifestAttribute( m, entries, "Specification-Version", project.getVersion() );
+ 
+-            if ( project.getOrganization() != null )
+-            {
+-                addManifestAttribute( m, entries, "Implementation-Vendor", project.getOrganization().getName() );
+-            }
++        if ( project.getOrganization() != null )
++        {
++            addManifestAttribute( m, entries, "Specification-Vendor", project.getOrganization().getName() );
+         }
++    }
++
++    if ( config.isAddDefaultImplementationEntries() )
++    {
++        addManifestAttribute( m, entries, "Implementation-Title", project.getName() );
++        addManifestAttribute( m, entries, "Implementation-Version", project.getVersion() );
++        // MJAR-5
++        addManifestAttribute( m, entries, "Implementation-Vendor-Id", project.getGroupId() );
+ 
+-        String mainClass = config.getMainClass();
+-        if ( mainClass != null && !"".equals( mainClass ) )
++        if ( project.getOrganization() != null )
+         {
+-            addManifestAttribute( m, entries, "Main-Class", mainClass );
++            addManifestAttribute( m, entries, "Implementation-Vendor", project.getOrganization().getName() );
+         }
++    }
+ 
+-        // Added extensions
+-        if ( config.isAddExtensions() )
+-        {
+-            // TODO: this is only for applets - should we distinguish them as a packaging?
+-            StringBuffer extensionsList = new StringBuffer();
+-            Set artifacts = project.getArtifacts();
++    String mainClass = config.getMainClass();
++    if ( mainClass != null && !"".equals( mainClass ) )
++    {
++        addManifestAttribute( m, entries, "Main-Class", mainClass );
++    }
+ 
+-            for ( Iterator iter = artifacts.iterator(); iter.hasNext(); )
++    // Added extensions
++    if ( config.isAddExtensions() )
++    {
++        // TODO: this is only for applets - should we distinguish them as a packaging?
++        StringBuffer extensionsList = new StringBuffer();
++        Set artifacts = project.getArtifacts();
++
++        for ( Iterator iter = artifacts.iterator(); iter.hasNext(); )
++        {
++            Artifact artifact = (Artifact) iter.next();
++            if ( !Artifact.SCOPE_TEST.equals( artifact.getScope() ) )
+             {
+-                Artifact artifact = (Artifact) iter.next();
+-                if ( !Artifact.SCOPE_TEST.equals( artifact.getScope() ) )
++                if ( "jar".equals( artifact.getType() ) )
+                 {
+-                    if ( "jar".equals( artifact.getType() ) )
++                    if ( extensionsList.length() > 0 )
+                     {
+-                        if ( extensionsList.length() > 0 )
+-                        {
+-                            extensionsList.append( " " );
+-                        }
+-                        extensionsList.append( artifact.getArtifactId() );
++                        extensionsList.append( " " );
+                     }
++                    extensionsList.append( artifact.getArtifactId() );
+                 }
+             }
++        }
+ 
+-            if ( extensionsList.length() > 0 )
+-            {
+-                addManifestAttribute( m, entries, "Extension-List", extensionsList.toString() );
+-            }
++        if ( extensionsList.length() > 0 )
++        {
++            addManifestAttribute( m, entries, "Extension-List", extensionsList.toString() );
++        }
+ 
+-            for ( Iterator iter = artifacts.iterator(); iter.hasNext(); )
++        for ( Iterator iter = artifacts.iterator(); iter.hasNext(); )
++        {
++            // TODO: the correct solution here would be to have an extension type, and to read
++            // the real extension values either from the artifact's manifest or some part of the POM
++            Artifact artifact = (Artifact) iter.next();
++            if ( "jar".equals( artifact.getType() ) )
+             {
+-                // TODO: the correct solution here would be to have an extension type, and to read
+-                // the real extension values either from the artifact's manifest or some part of the POM
+-                Artifact artifact = (Artifact) iter.next();
+-                if ( "jar".equals( artifact.getType() ) )
+-                {
+-                    String ename = artifact.getArtifactId() + "-Extension-Name";
+-                    addManifestAttribute( m, entries, ename, artifact.getArtifactId() );
+-                    String iname = artifact.getArtifactId() + "-Implementation-Version";
+-                    addManifestAttribute( m, entries, iname, artifact.getVersion() );
++                String ename = sanitizeName(artifact.getArtifactId() + "-Extension-Name");
++                addManifestAttribute( m, entries, ename, artifact.getArtifactId() );
++                String iname = sanitizeName(artifact.getArtifactId() + "-Implementation-Version");
++                addManifestAttribute( m, entries, iname, artifact.getVersion() );
+ 
+-                    if ( artifact.getRepository() != null )
+-                    {
+-                        iname = artifact.getArtifactId() + "-Implementation-URL";
+-                        String url = artifact.getRepository().getUrl() + "/" + artifact.toString();
+-                        addManifestAttribute( m, entries, iname, url );
+-                    }
++                if ( artifact.getRepository() != null )
++                {
++                    iname = sanitizeName(artifact.getArtifactId() + "-Implementation-URL");
++                    String url = artifact.getRepository().getUrl() + "/" + artifact.toString();
++                    addManifestAttribute( m, entries, iname, url );
+                 }
+             }
+         }
+-
+-        return m;
+     }
+ 
++    return m;
++}
++
++// Sanitize Attribute Names
++String sanitizeName(String name) {
++    return name.replace(".", "_"); // Replace dots with underscores or another valid character
++}
++
+     private void addCustomEntries( Manifest m, Map<String, String> entries, ManifestConfiguration config )
+         throws ManifestException
+     {

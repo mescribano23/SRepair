@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4782608695652174,
+    "input": "    public AuthenticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationException {\n        if (getStopAfterFirstSuccess() && aggregate != null && !isEmpty(aggregate.getPrincipals())) {\n            throw new ShortCircuitIterationException();\n        }\n        return aggregate;\n    }",
+    "query_result": [
+        "public AuthenticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo a",
+        " AuthenticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggrega",
+        "uthenticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate",
+        "henticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) ",
+        "enticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) t",
+        "nticationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) th",
+        "icationInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) thro",
+        "onInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws Au",
+        "nInfo beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws Aut",
+        "Info beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws Auth",
+        " beforeAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws Authenti",
+        "oreAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws Authenticati",
+        "Attempt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationE",
+        "empt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationExce",
+        "mpt(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationExcep",
+        "t(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationExcepti",
+        "(Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationExceptio",
+        "Realm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationException",
+        "ealm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationException ",
+        "alm realm, AuthenticationToken token, AuthenticationInfo aggregate) throws AuthenticationException {"
+    ]
+}

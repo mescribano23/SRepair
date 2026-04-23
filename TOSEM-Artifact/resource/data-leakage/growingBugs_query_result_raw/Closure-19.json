@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.4635416666666667,
+    "input": "  protected void declareNameInScope(FlowScope scope, Node node, JSType type) {\n    switch (node.getType()) {\n      case Token.NAME:\n        scope.inferSlotType(node.getString(), type);\n        break;\n\n      case Token.GETPROP:\n        String qualifiedName = node.getQualifiedName();\n        Preconditions.checkNotNull(qualifiedName);\n\n        JSType origType = node.getJSType();\n        origType = origType == null ? getNativeType(UNKNOWN_TYPE) : origType;\n        scope.inferQualifiedSlot(node, qualifiedName, origType, type);\n        break;\n\n      case Token.THIS:\n        // \"this\" references aren't currently modeled in the CFG.\n        break;\n\n      default:\n        throw new IllegalArgumentException(\"Node cannot be refined. \\n\" +\n            node.toStringTree());\n    }\n  }",
+    "query_result": [
+        "declareNameInScope(FlowScope scope, Node node, JST",
+        "origType = node.getJSType();\norigType = origType =",
+        "Slot(node, qualifiedName, origType, type);\nbreak;\n",
+        "THIS:\n// \"this\" references aren't currently modele",
+        "\nbreak;\ndefault:\nthrow new IllegalArgumentExceptio",
+        "break;\ndefault:\nthrow new IllegalArgumentException",
+        "reak;\ndefault:\nthrow new IllegalArgumentException(",
+        "eak;\ndefault:\nthrow new IllegalArgumentException(\"",
+        "ak;\ndefault:\nthrow new IllegalArgumentException(\"N",
+        "k;\ndefault:\nthrow new IllegalArgumentException(\"No",
+        ";\ndefault:\nthrow new IllegalArgumentException(\"Nod",
+        "\nthrow new IllegalArgumentException(\"Node cannot b",
+        "throw new IllegalArgumentException(\"Node cannot be",
+        "hrow new IllegalArgumentException(\"Node cannot be ",
+        "ow new IllegalArgumentException(\"Node cannot be re",
+        "on(\"Node cannot be refined. \\n\" +\nnode.toStringTre"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.1329225352112676,
+    "input": "  @SuppressWarnings(\"unchecked\")\n  public <T> T copy(final T orig, final T copy) {\n    if (copy != null && orig.getClass() != copy.getClass()) {\n      throw new IllegalArgumentException(orig.getClass() + \" != \"\n          + copy.getClass());\n    }\n    final Class<?> clazz = orig.getClass();\n    final Serializer<Object> serializer;\n    final Deserializer<Object> deserializer;\n    String errorMsg = \"No applicable class implementing Serialization in conf \"\n                      + \"at io.serializations: \" + clazz;\n    try {\n      serializer = (Serializer<Object>) serializationFactory\n          .getSerializer(clazz);\n      deserializer = (Deserializer<Object>) serializationFactory\n          .getDeserializer(clazz);\n    // hadoop 1.x will throw\n    } catch (NullPointerException e) {\n      throw new IllegalStateException(errorMsg, e);\n    }\n    // hadoop 2.x will return a null\n    Preconditions.checkState(serializer != null, errorMsg);\n    Preconditions.checkState(deserializer != null, errorMsg);\n    try {\n      final DataOutputBuffer outputBuffer = new DataOutputBuffer();\n      serializer.open(outputBuffer);\n      serializer.serialize(orig);\n      final DataInputBuffer inputBuffer = new DataInputBuffer();\n      inputBuffer.reset(outputBuffer.getData(), outputBuffer.getLength());\n      deserializer.open(inputBuffer);\n      return (T) deserializer.deserialize(copy);\n    } catch (final IOException e) {\n      throw new RuntimeException(e);\n    }\n  }",
+    "query_result": [
+        ".getClass()) {\nthrow new IllegalArgumentException(",
+        "ionFactory\n.getSerializer(clazz);\ndeserializer = (",
+        "\n} catch (NullPointerException e) {\nthrow new Ille",
+        "} catch (NullPointerException e) {\nthrow new Illeg",
+        " catch (NullPointerException e) {\nthrow new Illega",
+        "catch (NullPointerException e) {\nthrow new Illegal",
+        "atch (NullPointerException e) {\nthrow new IllegalS",
+        "tch (NullPointerException e) {\nthrow new IllegalSt",
+        "ch (NullPointerException e) {\nthrow new IllegalSta",
+        "h (NullPointerException e) {\nthrow new IllegalStat",
+        " (NullPointerException e) {\nthrow new IllegalState",
+        "(NullPointerException e) {\nthrow new IllegalStateE",
+        "NullPointerException e) {\nthrow new IllegalStateEx",
+        "ullPointerException e) {\nthrow new IllegalStateExc",
+        "llPointerException e) {\nthrow new IllegalStateExce",
+        "lPointerException e) {\nthrow new IllegalStateExcep",
+        "PointerException e) {\nthrow new IllegalStateExcept",
+        "ointerException e) {\nthrow new IllegalStateExcepti",
+        "interException e) {\nthrow new IllegalStateExceptio",
+        "nterException e) {\nthrow new IllegalStateException"
+    ]
+}

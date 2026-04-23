@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    private void introspectTypeForExceptions(Class<?> iType) {\n        for (Method m : iType.getDeclaredMethods()) {\n            addExceptions(m);\n        }\n        for (Method m : iType.getMethods()) {\n            addExceptions(m);\n        }\n    }",
+    "query_result": []
+}

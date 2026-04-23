@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.7974816369359916,
+    "input": "  public String compressType(String type) {\n    Matcher trailer = TYPE_TRAILER.matcher(type);\n    if (trailer.matches()) {\n      type = trailer.group(1);\n    }\n\n    StringBuilder sb = new StringBuilder();\n    if (this.packagePrefix == null) {\n      throw new IllegalStateException();\n    }\n\n    Matcher m = TYPE_PATTERN.matcher(type);\n    int pos = 0;\n    while (true) {\n      boolean found = m.find(pos);\n\n      // Copy non-matching characters like \"<\".\n      int typeStart = found ? m.start() : type.length();\n      sb.append(type, pos, typeStart);\n\n      if (!found) {\n        break;\n      }\n\n      // Copy a single class name, shortening it if possible.\n      String name = m.group(0);\n      String imported = importedTypes.get(name);\n      if (imported != null) {\n        sb.append(imported);\n      } else if (isClassInPackage(name, packagePrefix)) {\n        String compressed = name.substring(packagePrefix.length());\n        if (isAmbiguous(compressed)) {\n          sb.append(name);\n        } else {\n          sb.append(compressed);\n        }\n      } else if (isClassInPackage(name, \"java.lang.\")) {\n        sb.append(name.substring(\"java.lang.\".length()));\n      } else {\n        sb.append(name);\n      }\n      pos = m.end();\n    }\n\n    if (trailer.matches()) {\n      sb.append(trailer.group(2));\n    }\n    return sb.toString();\n  }",
+    "query_result": [
+        " sb = new StringBuilder();\nif (this.packagePrefix == null) {\nthrow new IllegalStateException();\n}\nMatcher m = TYPE_PATTERN.matcher(type);\nint pos = 0;\nwhile (true) {\nboolean found = m.find(pos);\n// Copy non-matching characters like \"<\".\nint typeStart = found ? m.start() : type.length();\nsb.append(type, pos, typeStart);\nif (!found) {\nbreak;\n}\n// Copy a single class name, shortening it if possible.\nString name = m.group(0);\nString imported = importedTypes.get(name);\nif (imported != null) {\nsb.append(imported);\n} else if (isClassInPackage(name, packagePrefix)) {\nString compressed = name.substring(packagePrefix.length());\nif (isAmbiguous(compressed)) {\nsb.append(name);\n} else {\nsb.append(compressed);\n}\n} else if (isClassInPackage(name, \"java.lang.\")) {\nsb.append(name.substring(\"java.lang.\".length()));\n} else {\nsb.append(name);\n}\npos = m.end()",
+        "tart = found ? m.start() : type.length();\nsb.append(type, pos, typeStart);\nif (!found) {\nbreak;\n}\n// Copy a single class name, shortening it if possible.\nString name = m.group(0);\nString imported = importedTypes.get(name);\nif (imported != null) {\nsb.append(imported);\n} else if (isClassInPackage(name",
+        ")) {\nString compressed = name.substring(packagePrefix.length());\nif (isAmbiguous(compressed)) {\nsb.append(name);\n} else {\nsb.append(compressed);\n}\n} e",
+        " null) {\nthrow new IllegalStateException();\n}\nMatcher m = TYPE_PATTERN.matcher(type);\nint pos = 0;\nw",
+        "art() : type.length();\nsb.append(type, pos, typeStart);\nif (!found) {\nbreak;\n}\n// Copy a single clas",
+        "(1);\n}\nStringBuilder sb = new StringBuilder();\nif ",
+        ";\n}\nStringBuilder sb = new StringBuilder();\nif (th",
+        "\n}\nStringBuilder sb = new StringBuilder();\nif (thi",
+        "}\nStringBuilder sb = new StringBuilder();\nif (this",
+        "\nStringBuilder sb = new StringBuilder();\nif (this.",
+        "StringBuilder sb = new StringBuilder();\nif (this.p",
+        "tringBuilder sb = new StringBuilder();\nif (this.pa",
+        "Prefix == null) {\nthrow new IllegalStateException(",
+        "x == null) {\nthrow new IllegalStateException();\n}\n",
+        "an found = m.find(pos);\n// Copy non-matching chara",
+        "found ? m.start() : type.length();\nsb.append(type,",
+        "ypes.get(name);\nif (imported != null) {\nsb.append(",
+        "end(name.substring(\"java.lang.\".length()));\n} else",
+        "(name.substring(\"java.lang.\".length()));\n} else {\n"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.7753882915173238,
+    "input": "public void reparseCentralDirectoryData(boolean hasUncompressedSize,\n                                        boolean hasCompressedSize,\n                                        boolean hasRelativeHeaderOffset,\n                                        boolean hasDiskStart)\n    throws ZipException {\n    if (rawCentralDirectoryData != null) {\n        int expectedLength = (hasUncompressedSize ? DWORD : 0)\n            + (hasCompressedSize ? DWORD : 0)\n            + (hasRelativeHeaderOffset ? DWORD : 0)\n            + (hasDiskStart ? WORD : 0);\n        if (rawCentralDirectoryData.length < expectedLength) {\n            throw new ZipException(\"central directory zip64 extended\"\n                                   + \" information extra field's length\"\n                                   + \" doesn't match central directory\"\n                                   + \" data.  Expected length \"\n                                   + expectedLength + \" but is \"\n                                   + rawCentralDirectoryData.length);\n        }\n        int offset = 0;\n        if (hasUncompressedSize) {\n            size = new ZipEightByteInteger(rawCentralDirectoryData, offset);\n            offset += DWORD;\n        }\n        if (hasCompressedSize) {\n            compressedSize = new ZipEightByteInteger(rawCentralDirectoryData,\n                                                     offset);\n            offset += DWORD;\n        }\n        if (hasRelativeHeaderOffset) {\n            relativeHeaderOffset =\n          ",
+    "query_result": [
+        "xtended\"\n+ \" information extra field's length\"\n+ \" doesn't match central directory\"\n+ \" data. Expected length \"\n+ expectedLength + \" but is \"\n+ rawCentralDirectoryData.length);\n}\nint offset = 0;\nif (hasUncompressedSize) {\nsize = new ZipEightByteInteger(rawCentralDirectoryData, offset);\noffset += DWORD;\n}\nif (hasCompressedSize) {\ncompressedSize = new ZipEightByteInteger(rawCentralDirectoryData,\noffset);\noffset += DWORD;\n}\nif (hasRelativeHeaderOffs",
+        "Length = (hasUncompressedSize ? DWORD : 0)\n+ (hasCompressedSize ? DWORD : 0)\n+ (hasRelativeHeaderOffset ? DWORD : 0)\n+ (hasDiskStart ? WORD : 0);\nif (rawCentralDirectoryData.length < expectedLength) {",
+        "oolean hasDiskStart)\nthrows ZipException {\nif (raw",
+        "alDirectoryData.length < expectedLength) {\nthrow n",
+        ") {\nthrow new ZipException(\"central directory zip6",
+        "ectoryData.length);\n}\nint offset = 0;\nif (hasUncom",
+        "length);\n}\nint offset = 0;\nif (hasUncompressedSize"
+    ]
+}

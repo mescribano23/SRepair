@@ -1,0 +1,33 @@
+diff --git a/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java b/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
+index a1b623aaf..5a1a2d014 100644
+--- a/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
++++ b/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
+@@ -449,14 +449,21 @@ public class CtTypeReferenceImpl<T> extends CtReferenceImpl implements
+ 				for (CtMethod<?> m : ((CtType<?>) t).getMethods()) {
+ 					l.add(m.getReference());
+ 				}
+-			}
+-			if (t instanceof CtClass) {
+-				for (CtConstructor<T> c : ((CtClass<T>) t).getConstructors()) {
+-					l.add(c.getReference());
++				
++				if (t instanceof CtClass) {
++					for (CtConstructor<T> c : ((CtClass<T>) t).getConstructors()) {
++						l.add(c.getReference());
++					}
++					CtTypeReference<?> st = ((CtClass<?>) t).getSuperclass();
++					if (st != null) {
++						l.addAll(st.getAllExecutables());
++					}
+ 				}
+-				CtTypeReference<?> st = ((CtClass<?>) t).getSuperclass();
+-				if (st != null) {
+-					l.addAll(st.getAllExecutables());
++				
++				if (t instanceof CtInterface) {
++					for (CtTypeReference<?> superInterface : ((CtInterface<?>) t).getSuperInterfaces()) {
++						l.addAll(superInterface.getAllExecutables());
++					}
+ 				}
+ 			}
+ 		}

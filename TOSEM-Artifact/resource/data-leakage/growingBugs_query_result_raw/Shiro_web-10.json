@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.8969298245614035,
+    "input": "    private Class<? extends WebEnvironment> webEnvironmentClassFromServletContext(ServletContext servletContext) {\n\n        Class<? extends WebEnvironment> webEnvironmentClass = null;\n        String className = servletContext.getInitParameter(ENVIRONMENT_CLASS_PARAM);\n        if (className != null) {\n            try {\n                webEnvironmentClass = ClassUtils.forName(className);\n            } catch (UnknownClassException ex) {\n                throw new ConfigurationException(\n                        \"Failed to load custom WebEnvironment class [\" + className + \"]\", ex);\n            }\n        }\n        return webEnvironmentClass;\n    }",
+    "query_result": [
+        "etContext.getInitParameter(ENVIRONMENT_CLASS_PARAM);\nif (className != null) {\ntry {\nwebEnvironmentClass = ClassUtils.forName(className);\n} catch (UnknownClassException ex) {\nthrow new ConfigurationException(\n\"Failed to load custom WebEnvironment class [\" + className + \"]\", ex);\n}\n}\nreturn webEnviron",
+        "ironmentClassFromServletContext(ServletContext servletContext) {\nClass<? extends WebEnvironment> web",
+        "forName(className);\n} catch (UnknownClassException ex) {\nthrow new ConfigurationException(\n\"Failed t",
+        "romServletContext(ServletContext servletContext) {",
+        "omServletContext(ServletContext servletContext) {\n",
+        "ass<? extends WebEnvironment> webEnvironmentClass ",
+        "sException ex) {\nthrow new ConfigurationException(",
+        "xception ex) {\nthrow new ConfigurationException(\n\"",
+        "on ex) {\nthrow new ConfigurationException(\n\"Failed",
+        ") {\nthrow new ConfigurationException(\n\"Failed to l",
+        "throw new ConfigurationException(\n\"Failed to load "
+    ]
+}

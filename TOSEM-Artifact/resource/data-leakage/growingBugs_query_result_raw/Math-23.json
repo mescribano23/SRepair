@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.398716119828816,
+    "input": "    @Override\n    protected PointVectorValuePair doOptimize() {\n        final int nR = getTarget().length; // Number of observed data.\n        final double[] currentPoint = getStart();\n        final int nC = currentPoint.length; // Number of parameters.\n\n        // arrays shared with the other private methods\n        final int solvedCols  = FastMath.min(nR, nC);\n        lmDir = new double[nC];\n        lmPar = 0;\n\n        // local point\n        double   delta   = 0;\n        double   xNorm   = 0;\n        double[] diag    = new double[nC];\n        double[] oldX    = new double[nC];\n        double[] oldRes  = new double[nR];\n        double[] oldObj  = new double[nR];\n        double[] qtf     = new double[nR];\n        double[] work1   = new double[nC];\n        double[] work2   = new double[nC];\n        double[] work3   = new double[nC];\n\n        final RealMatrix weightMatrixSqrt = getWeightSquareRoot();\n\n        // Evaluate the function at the starting point and calculate its norm.\n        double[] currentObjective = computeObjectiveValue(currentPoint);\n        double[] currentResiduals = computeResiduals(currentObjective);\n        PointVectorValuePair current = new PointVectorValuePair(currentPoint, currentObjective);\n        double currentCost = computeCost(currentResiduals);\n\n        // Outer loop.\n        boolean firstIteration = true;\n        final ConvergenceChecker<PointVectorValuePair> checker = getConvergenceChecker();\n        while (true) {\n            incrementIterationCount();\n\n            final PointVectorValuePair previous = current;\n\n            // QR decomposition of the jacobian matrix\n            final InternalData internalData = qrDecomposition(computeWeightedJacobian(currentPoint),\n                                                              solvedCols);\n            final double[][] weightedJacobian = internalData.weightedJacobian;\n            final int[] permutation = internalData.permutation;\n            final double[] diagR = internalData.diagR;\n ",
+    "query_result": [
+        " = 0;\ndouble[] diag = new double[nC];\ndouble[] oldX = new double[nC];\ndouble[] oldRes = new double[nR];\ndouble[] oldObj = new double[nR];\ndouble[] qtf = new double[nR];\ndouble[] work1 = new double[nC];\ndouble[] work2 = new double[nC];\ndouble[] work3 ",
+        "ive = computeObjectiveValue(currentPoint);\ndouble[] currentResiduals = computeResiduals(currentObjec",
+        "tedJacobian = internalData.weightedJacobian;\nfinal int[] permutation = internalData.permutation;\nfin",
+        "rotected PointVectorValuePair doOptimize() {\nfinal",
+        " of parameters.\n// arrays shared with the other pr",
+        "valuate the function at the starting point and cal",
+        "aluate the function at the starting point and calc",
+        "uate the function at the starting point and calcul",
+        "ate the function at the starting point and calcula",
+        "te the function at the starting point and calculat",
+        "the function at the starting point and calculate i",
+        " function at the starting point and calculate its ",
+        "unction at the starting point and calculate its no",
+        "tion at the starting point and calculate its norm.",
+        "le[] currentObjective = computeObjectiveValue(curr",
+        "[] currentObjective = computeObjectiveValue(curren",
+        "rrentObjective = computeObjectiveValue(currentPoin",
+        "iveValue(currentPoint);\ndouble[] currentResiduals ",
+        "[] currentResiduals = computeResiduals(currentObje",
+        "urrentResiduals = computeResiduals(currentObjectiv"
+    ]
+}

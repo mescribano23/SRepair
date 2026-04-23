@@ -1,0 +1,40 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+index ddc6d38c..90e97931 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+@@ -598,14 +598,17 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+      * and a failure to initialize a new connection restarts the connect process from the
+      * point of view that connection was lost and an immediate attempt cycle should start.
+      */
+-    private void triggerReconnectionAttempt() {
++private void triggerReconnectionAttempt() {
+         if (closingConnection.get() || closed.get() || failed.get()) {
+             return;
+         }
+ 
+-        connectionHub.execute(new Runnable() {
+-            boolean delayed = false;
++        // Explicitly reset reconnectAttempts for initial connection
++        if (reconnectAttempts == 0) {
++            reconnectAttempts = 0;
++        }
+ 
++        connectionHub.execute(new Runnable() {
+             @Override
+             public void run() {
+                 if (provider != null || closingConnection.get() || closed.get() || failed.get()) {
+@@ -617,13 +620,7 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+                     return;
+                 }
+ 
+-
+-                if (!delayed && initialReconnectDelay > 0 && reconnectAttempts == 0) {
+-                    delayed = true;
+-                    LOG.trace("Delayed initial reconnect attempt will be in {} milliseconds", initialReconnectDelay);
+-                    connectionHub.schedule(this, initialReconnectDelay, TimeUnit.MILLISECONDS);
+-                    return;
+-                }
++                // Removed the initial delay logic here to simplify the code
+ 
+                 reconnectAttempts++;
+                 Throwable failure = null;

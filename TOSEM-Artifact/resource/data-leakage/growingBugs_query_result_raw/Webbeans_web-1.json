@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9329173166926678,
+    "input": "protected void destroyApplicationContext(Object endObject)\n    {\n        //Destroy context\n        if(applicationContext != null && !applicationContext.isDestroyed())\n        {\n            webBeansContext.getBeanManagerImpl().fireContextLifecyleEvent(\n                endObject != null ? endObject : new Object(),\n                BeforeDestroyedLiteral.INSTANCE_APPLICATION_SCOPED);\n\n            applicationContext.destroy();\n            // this is needed to get rid of ApplicationScoped beans which are cached inside the proxies...\n            webBeansContext.getBeanManagerImpl().clearCacheProxies();\n\n            Object payload = endObject instanceof ServletContext ? endObject : new Object();\n            webBeansContext.getBeanManagerImpl().fireContextLifecyleEvent(\n                payload, DestroyedLiteral.INSTANCE_APPLICATION_SCOPED);\n        }\n    }",
+    "query_result": [
+        "troyApplicationContext(Object endObject)\n{\n//Destroy context\nif(applicationContext != null && !applicationContext.isDestroyed())\n{\nwebBeansContext.getBeanManagerImpl().fireContextLifecyleEvent(\nendObject != null ? endObject : new Object(),\nBeforeDestroyedLiteral.INSTANCE_APPLICATION_SCOPED);\napplicationContext.destroy();\n// this is needed to get rid of ApplicationScoped beans which are cached inside the proxies...\nwebBeansContext.getBeanManagerImpl().clearCacheProxies();\nObject payload = endObject instanceof ServletContext ? endObject : new Object();\nwebBeansContext.getBeanManagerImpl().fireContextLifecyleEvent(\npayload, DestroyedLiteral.INST",
+        "w Object(),\nBeforeDestroyedLiteral.INSTANCE_APPLICATION_SCOPED);\napplicationContext.destroy();\n// this is needed to get rid of ApplicationScoped beans",
+        "onContext != null && !applicationContext.isDestroy",
+        ")\n{\nwebBeansContext.getBeanManagerImpl().fireConte",
+        "{\nwebBeansContext.getBeanManagerImpl().fireContext",
+        "\nwebBeansContext.getBeanManagerImpl().fireContextL",
+        "webBeansContext.getBeanManagerImpl().fireContextLi",
+        "bBeansContext.getBeanManagerImpl().fireContextLife",
+        "nsContext.getBeanManagerImpl().fireContextLifecyle",
+        "Context.getBeanManagerImpl().fireContextLifecyleEv",
+        "ontext.getBeanManagerImpl().fireContextLifecyleEve",
+        " is needed to get rid of ApplicationScoped beans w",
+        "eded to get rid of ApplicationScoped beans which a",
+        ": new Object();\nwebBeansContext.getBeanManagerImpl",
+        "\nwebBeansContext.getBeanManagerImpl().fireContextL",
+        "webBeansContext.getBeanManagerImpl().fireContextLi",
+        "bBeansContext.getBeanManagerImpl().fireContextLife",
+        "nsContext.getBeanManagerImpl().fireContextLifecyle",
+        "Context.getBeanManagerImpl().fireContextLifecyleEv",
+        "ontext.getBeanManagerImpl().fireContextLifecyleEve"
+    ]
+}

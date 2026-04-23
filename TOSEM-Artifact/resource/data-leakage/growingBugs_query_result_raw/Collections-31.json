@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.6196319018404908,
+    "input": "    @Override\n    public void add(final int index, final E object) {\n        // adds element if it is not contained already\n        if (set.contains(object) == false) {\n            set.add(object);\n            super.add(index, object);\n        }\n    }",
+    "query_result": [
+        "ride\npublic void add(final int index, final E object) {\n// adds element if it is not contained alrea",
+        "@Override\npublic void add(final int index, final E",
+        "Override\npublic void add(final int index, final E ",
+        "{\n// adds element if it is not contained already\ni",
+        "ement if it is not contained already\nif (set.conta"
+    ]
+}

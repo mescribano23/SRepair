@@ -1,0 +1,46 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Renderer.java b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+index ac2e722..d8fda92 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Renderer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+@@ -81,24 +81,25 @@ public class Renderer {
+         return "<tr>\n" + content + "</tr>\n";
+     }
+ 
+-    public String tablecell(String content, TableCellFlags flags){
+-        String cellType;
+-        if(flags.isHeader()){
+-            cellType = "th";
+-        } else {
+-            cellType = "td";
+-        }
++public String tablecell(String content, TableCellFlags flags) {
++    String cellType;
++    if (flags.isHeader()) {
++        cellType = "th";
++    } else {
++        cellType = "td";
++    }
+ 
+-        if(content.length() == 0){
+-            content = "&nbsp;";
+-        }
+-        String align = flags.getAlign();
+-        if(align != null){
+-            return "<" + cellType + " style=\"text-align: " + align + "\">" + content + "</" + cellType + ">\n";
+-        } else {
+-            return "<" + cellType + ">" + content + "</" + cellType + ">\n";
+-        }
++    String align = flags.getAlign();
++    // Only add &nbsp; if align is specified and content is empty
++    if (content.length() == 0 && align != null) {
++        content = "&nbsp;";
+     }
++    if (align != null) {
++        return "<" + cellType + " style=\"text-align: " + align + "\">" + content + "</" + cellType + ">\n";
++    } else {
++        return "<" + cellType + ">" + content + "</" + cellType + ">\n";
++    }
++}
+ 
+     public String strong(String text){
+         return "<strong>" + text + "</strong>";

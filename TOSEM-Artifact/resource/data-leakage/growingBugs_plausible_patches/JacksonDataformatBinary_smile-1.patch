@@ -1,0 +1,16 @@
+diff --git a/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java b/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java
+index 6c977f25..4c4423ec 100644
+--- a/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java
++++ b/smile/src/main/java/com/fasterxml/jackson/dataformat/smile/SmileFactory.java
+@@ -325,9 +325,9 @@ public class SmileFactory extends JsonFactory
+     public SmileParser createParser(byte[] data, int offset, int len) throws IOException {
+         IOContext ctxt = _createContext(data, true);
+         if (_inputDecorator != null) {
+-            InputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);
++            InputStream in = _inputDecorator.decorate(ctxt, data, offset, len);
+             if (in != null) {
+-                return _createParser(_decorate(in, ctxt), ctxt);
++                return _createParser(in, ctxt);
+             }
+         }
+         return _createParser(data, offset, len, ctxt);

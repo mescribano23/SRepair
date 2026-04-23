@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/jboss/modules/maven/MavenSettings.java b/src/main/java/org/jboss/modules/maven/MavenSettings.java
+index 9273f388..b90868ba 100644
+--- a/src/main/java/org/jboss/modules/maven/MavenSettings.java
++++ b/src/main/java/org/jboss/modules/maven/MavenSettings.java
+@@ -144,6 +144,7 @@ final class MavenSettings {
+ 
+     }
+ 
++
+     static void parseSettings(final XmlPullParser reader, MavenSettings mavenSettings) throws XmlPullParserException, IOException {
+         int eventType;
+         while ((eventType = reader.nextTag()) != END_DOCUMENT) {
+@@ -157,7 +158,13 @@ final class MavenSettings {
+                         case "localRepository": {
+                             String localRepository = reader.nextText();
+                             if (localRepository != null && !localRepository.trim().isEmpty()) {
+-                                mavenSettings.setLocalRepository(Paths.get(interpolateVariables(localRepository)));
++                                // Check if the system property is set and use it if available
++                                String overriddenLocalRepo = System.getProperty("maven.repo.local");
++                                if (overriddenLocalRepo != null && !overriddenLocalRepo.trim().isEmpty()) {
++                                    mavenSettings.setLocalRepository(Paths.get(overriddenLocalRepo));
++                                } else {
++                                    mavenSettings.setLocalRepository(Paths.get(interpolateVariables(localRepository)));
++                                }
+                             }
+                             break;
+                         }
+@@ -222,6 +229,7 @@ final class MavenSettings {
+         throw endOfDocument(reader);
+     }
+ 
++
+     static void parseProxy(final XmlPullParser reader, MavenSettings mavenSettings) throws XmlPullParserException, IOException {
+         int eventType;
+         Proxy proxy = new Proxy();

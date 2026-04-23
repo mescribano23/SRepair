@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5699006875477464,
+    "input": "  @SuppressWarnings(\"fallthrough\")\n  private ExtractionInfo extractMultilineTextualBlock(JsDocToken token,\n                                                      WhitespaceOption option) {\n\n    if (token == JsDocToken.EOC || token == JsDocToken.EOL ||\n        token == JsDocToken.EOF) {\n      return new ExtractionInfo(\"\", token);\n    }\n\n    stream.update();\n    int startLineno = stream.getLineno();\n    int startCharno = stream.getCharno() + 1;\n\n    // Read the content from the first line.\n    String line = stream.getRemainingJSDocLine();\n    if (option != WhitespaceOption.PRESERVE) {\n      line = line.trim();\n    }\n\n    StringBuilder builder = new StringBuilder();\n    builder.append(line);\n\n    state = State.SEARCHING_ANNOTATION;\n    token = next();\n\n    boolean ignoreStar = false;\n\n    // Track the start of the line to count whitespace that\n    // the tokenizer skipped. Because this case is rare, it's easier\n    // to do this here than in the tokenizer.\n    int lineStartChar = -1;\n\n    do {\n      switch (token) {\n        case STAR:\n          if (ignoreStar) {\n            // Mark the position after the star as the new start of the line.\n            lineStartChar = stream.getCharno() + 1;\n          } else {\n            // The star is part of the comment.\n            if (builder.length() > 0) {\n              builder.append(' ');\n            }\n\n            builder.append('*');\n          }\n\n          token = next();\n          continue;\n\n        case EOL:\n          if (option != WhitespaceOption.SINGLE_LINE) {\n            builder.append(\"\\n\");\n          }\n\n          ignoreStar = true;\n          lineStartChar = 0;\n          token = next();\n          continue;\n\n        default:\n          ignoreStar = false;\n          state = State.SEARCHING_ANNOTATION;\n\n          boolean isEOC = token == JsDocToken.EOC;\n          if (!isEOC) {\n            if (lineStartChar != -1 && option == WhitespaceOption.PRESERVE) {\n              int numSpaces = stream.getCharno() - lineStartChar;\n      ",
+    "query_result": [
+        "an ignoreStar = false;\n// Track the start of the line to count whitespace that\n// the tokenizer skipped. Because this case is rare, it's easier\n// to do this here than in the tokenizer.\nint lineStartChar = -1;\ndo {\nswitch (token) {\ncase STAR:\nif (ignoreStar) {\n// Mark the position after the star as the new start of the line.\nlineStartChar = stream.",
+        "rue;\nlineStartChar = 0;\ntoken = next();\ncontinue;\ndefault:\nignoreStar = false;\nstate = State.SEARCHING_ANNOTATION;\nboolean isEOC = token == JsDocToken",
+        " count whitespace that\n// the tokenizer skipped. Because this case is rare, it's easier\n// to do thi",
+        "ineStartChar != -1 && option == WhitespaceOption.PRESERVE) {\nint numSpaces = stream.getCharno() - li",
+        "nInfo extractMultilineTextualBlock(JsDocToken toke",
+        "en == JsDocToken.EOC || token == JsDocToken.EOL ||",
+        "== JsDocToken.EOF) {\nreturn new ExtractionInfo(\"\",",
+        "();\nif (option != WhitespaceOption.PRESERVE) {\nlin",
+        "ERVE) {\nline = line.trim();\n}\nStringBuilder builde",
+        "();\n}\nStringBuilder builder = new StringBuilder();",
+        ");\n}\nStringBuilder builder = new StringBuilder();\n",
+        ";\n}\nStringBuilder builder = new StringBuilder();\nb",
+        "\n}\nStringBuilder builder = new StringBuilder();\nbu",
+        "}\nStringBuilder builder = new StringBuilder();\nbui",
+        "\nStringBuilder builder = new StringBuilder();\nbuil",
+        "StringBuilder builder = new StringBuilder();\nbuild",
+        "tringBuilder builder = new StringBuilder();\nbuilde",
+        "ringBuilder builder = new StringBuilder();\nbuilder",
+        "ingBuilder builder = new StringBuilder();\nbuilder.",
+        "ngBuilder builder = new StringBuilder();\nbuilder.a"
+    ]
+}

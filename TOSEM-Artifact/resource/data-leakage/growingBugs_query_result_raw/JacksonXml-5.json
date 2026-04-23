@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.7456896551724138,
+    "input": "    protected XmlSerializerProvider(XmlSerializerProvider src) {\n        super(src);\n        // 21-May-2018, tatu: As per [dataformat-xml#282], should NOT really copy\n        //    root name lookup as that may link back to diff version, configuration\n        _rootNameLookup = new XmlRootNameLookup();\n    }",
+    "query_result": [
+        "rovider(XmlSerializerProvider src) {\nsuper(src);\n// 21-May-2018, tatu: As per [dataformat-xml#282], should NOT really copy\n// root name lookup as that may link back to diff version, configuration\n_roo"
+    ]
+}

@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math/stat/correlation/PearsonsCorrelation.java b/src/main/java/org/apache/commons/math/stat/correlation/PearsonsCorrelation.java
+index 83b4c4130..ec15f3983 100644
+--- a/src/main/java/org/apache/commons/math/stat/correlation/PearsonsCorrelation.java
++++ b/src/main/java/org/apache/commons/math/stat/correlation/PearsonsCorrelation.java
+@@ -157,6 +157,7 @@ public class PearsonsCorrelation {
+      * @return matrix of p-values
+      * @throws MathException if an error occurs estimating probabilities
+      */
++
+     public RealMatrix getCorrelationPValues() throws MathException {
+         TDistribution tDistribution = new TDistributionImpl(nObs - 2);
+         int nVars = correlationMatrix.getColumnDimension();
+@@ -167,8 +168,13 @@ public class PearsonsCorrelation {
+                     out[i][j] = 0d;
+                 } else {
+                     double r = correlationMatrix.getEntry(i, j);
+-                    double t = Math.abs(r * Math.sqrt((nObs - 2)/(1 - r * r)));
+-                    out[i][j] = 2 * (1 - tDistribution.cumulativeProbability(t));
++                    if (Math.abs(r) > 0.999) {
++                        // To avoid numerical instability, set p-value to a very small value
++                        out[i][j] = 1e-10;
++                    } else {
++                        double t = Math.abs(r * Math.sqrt((nObs - 2)/(1 - r * r)));
++                        out[i][j] = 2 * (1 - tDistribution.cumulativeProbability(t));
++                    }
+                 }
+             }
+         }

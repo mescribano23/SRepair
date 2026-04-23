@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
+index 88cf183f..52b96691 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
+@@ -509,7 +509,7 @@ public class ZipArchiveEntry extends java.util.zip.ZipEntry
+      * @param name the name to use
+      */
+     protected void setName(String name) {
+-        this.name = name;
++        this.name = name.replace('\\', '/');
+     }
+ 
+     /**

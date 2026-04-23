@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.16337386018237082,
+    "input": "@SuppressWarnings(UNCHECKED_STR)\n    private <T> T manufacturePojoInternal(Class<T> pojoClass,\n            Map<Class<?>, Integer> pojos, Type... genericTypeArgs)\n                    throws InstantiationException, IllegalAccessException,\n                    InvocationTargetException, ClassNotFoundException {\n\n        T retValue = null;\n\n        if (pojoClass.isPrimitive()) {\n            // For JDK POJOs we can't retrieve attribute name\n            List<Annotation> annotations = new ArrayList<Annotation>();\n            String noName = null;\n            return (T) resolvePrimitiveValue(pojoClass, annotations,\n                    new AttributeMetadata(noName, pojoClass, annotations));\n        }\n\n        if (pojoClass.isInterface()\n                || Modifier.isAbstract(pojoClass.getModifiers())) {\n            Class<T> specificClass = (Class<T>) strategy\n                    .getSpecificClass(pojoClass);\n            if (!specificClass.equals(pojoClass)) {\n                return this.manufacturePojoInternal(specificClass, pojos,\n                        genericTypeArgs);\n            } else {\n                if (Modifier.isAbstract(pojoClass.getModifiers())) {\n                    return (T) createNewInstanceForClassWithoutConstructors(\n                            pojoClass, pojos, pojoClass, genericTypeArgs);\n                } else {\n                    LOG.warn(\"Cannot instantiate an interface {}.\"\n                            + \" Returning null.\", pojoClass);\n                }\n            }\n        }\n\n        ClassInfo classInfo = PodamUtils.getClassInfo(pojoClass,\n                excludeAnnotations);\n\n        // If a public no-arg constructor can be found we use it,\n        // otherwise we try to find a non-public one and we use that. If the\n        // class does not have a no-arg constructor we search for a suitable\n        // constructor.\n\n        try {\n\n            Constructor<?>[] constructors = pojoClass.getConstructors();\n\n            if (constructors == null || cons",
+    "query_result": [
+        "... genericTypeArgs)\nthrows InstantiationException, IllegalAccessException,\nInvocationTargetExceptio",
+        "icTypeArgs)\nthrows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassN",
+        "Args)\nthrows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoun",
+        "rgs)\nthrows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFound",
+        "gs)\nthrows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundE",
+        "s)\nthrows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundEx",
+        "\nthrows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundExce",
+        "throws InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundExcep",
+        "hrows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundExcept",
+        "rows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundExcepti",
+        "ows InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundExceptio",
+        "ws InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundException",
+        "s InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundException ",
+        " InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundException {",
+        "InstantiationException, IllegalAccessException,\nInvocationTargetException, ClassNotFoundException {\n",
+        "(pojoClass);\nif (!specificClass.equals(pojoClass)) {\nreturn this.manufacturePojoInternal(specificCla",
+        ")\nthrows InstantiationException, IllegalAccessExce",
+        "nstantiationException, IllegalAccessException,\nInv",
+        "stantiationException, IllegalAccessException,\nInvo",
+        "tantiationException, IllegalAccessException,\nInvoc"
+    ]
+}

@@ -1,0 +1,29 @@
+diff --git a/src/main/java/com/jcabi/github/RtCollaborators.java b/src/main/java/com/jcabi/github/RtCollaborators.java
+index 6ea0764fb..319dd90c6 100644
+--- a/src/main/java/com/jcabi/github/RtCollaborators.java
++++ b/src/main/java/com/jcabi/github/RtCollaborators.java
+@@ -108,11 +108,20 @@ final class RtCollaborators implements Collaborators {
+             ).status() == HttpURLConnection.HTTP_NO_CONTENT;
+     }
+ 
+-    @Override
+-    public void add(
+-        @NotNull(message = "User is never null") final String user)
+-    {throw new UnsupportedOperationException();
++@Override
++public void add(
++    @NotNull(message = "User is never null") final String user)
++{
++    try {
++        this.request.method(Request.PUT)
++            .uri().path("/collaborators").path(user).back()
++            .fetch()
++            .as(RestResponse.class)
++            .assertStatus(HttpURLConnection.HTTP_NO_CONTENT);
++    } catch (IOException e) {
++        throw new IllegalStateException(String.format("Failed to add collaborator: %s", user), e);
+     }
++}
+ 
+     @Override
+     public void remove(

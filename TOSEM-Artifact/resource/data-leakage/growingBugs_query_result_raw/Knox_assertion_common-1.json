@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.1552,
+    "input": "  public static String urlEncode( Map<String, String[]> map, String encoding ) {\n    StringBuilder sb = new StringBuilder();\n    for( Map.Entry<String,String[]> entry : map.entrySet() ) {\n      String name = entry.getKey();\n      if( name != null && name.length() > 0 ) {\n        String[] values = entry.getValue();\n        if( values == null || values.length == 0 ) {\n          sb.append( entry.getKey() );\n        } else {\n          for( int i = 0; i < values.length; i++ ) {\n            String value = values[ i ];\n              if( sb.length() > 0 ) {\n                sb.append( \"&\" );\n              }\n              try {\n                sb.append( urlEncode( name, encoding ) );\n                if( value != null ) {\n                  sb.append(\"=\");\n                  sb.append(urlEncode(value, encoding));\n                }\n              } catch( IllegalArgumentException e ) {\n                log.skippingUnencodableParameter( name, value, encoding, e );\n              }\n          }\n        }\n      }\n    }\n    return sb.toString();\n  }",
+    "query_result": [
+        " ) {\nStringBuilder sb = new StringBuilder();\nfor( ",
+        "StringBuilder sb = new StringBuilder();\nfor( Map.E",
+        "tringBuilder sb = new StringBuilder();\nfor( Map.En",
+        "Builder sb = new StringBuilder();\nfor( Map.Entry<S",
+        "ilder sb = new StringBuilder();\nfor( Map.Entry<Str",
+        ": map.entrySet() ) {\nString name = entry.getKey();"
+    ]
+}

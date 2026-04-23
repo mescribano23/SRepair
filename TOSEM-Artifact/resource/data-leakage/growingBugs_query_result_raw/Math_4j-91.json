@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.8888888888888888,
+    "input": "    public int compareTo(Fraction object) {\n        long nOd = ((long) numerator) * object.denominator;\n        long dOn = ((long) denominator) * object.numerator;\n        return (nOd < dOn) ? -1 : ((nOd > dOn) ? +1 : 0);\n    }",
+    "query_result": [
+        "long nOd = ((long) numerator) * object.denominator;\nlong dOn = ((long) denominator) * object.numerator;\nreturn (nOd < dOn) ? -1 : ((nOd > dOn) ? +1 : ",
+        "To(Fraction object) {\nlong nOd = ((long) numerator) * object.denominator;\nlong dOn = ((long) denomin",
+        ";\nreturn (nOd < dOn) ? -1 : ((nOd > dOn) ? +1 : 0)"
+    ]
+}

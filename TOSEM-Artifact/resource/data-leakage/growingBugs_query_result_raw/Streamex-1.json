@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public Spliterator<U> tail() {\n        if(!init())\n            return Spliterators.emptySpliterator();\n        return target;\n    }",
+    "query_result": []
+}

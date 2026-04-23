@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.8703703703703703,
+    "input": "public ZipShort getCentralDirectoryLength() {\n        return ZERO;\n    }",
+    "query_result": [
+        "ublic ZipShort getCentralDirectoryLength() { retur",
+        "blic ZipShort getCentralDirectoryLength() { return",
+        "lic ZipShort getCentralDirectoryLength() { return"
+    ]
+}

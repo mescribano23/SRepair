@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.16294642857142858,
+    "input": "    @Override\n    public int read(byte[] buf, int offset, int numToRead) throws IOException {\n    \tint totalRead = 0;\n\n        if (hasHitEOF || entryOffset >= entrySize) {\n            return -1;\n        }\n\n        if (currEntry == null) {\n            throw new IllegalStateException(\"No current tar entry\");\n        }\n\n        numToRead = Math.min(numToRead, available());\n        \n        totalRead = is.read(buf, offset, numToRead);\n        \n        if (totalRead == -1) {\n            if (numToRead > 0) {\n                throw new IOException(\"Truncated TAR archive\");\n            }\n            hasHitEOF = true;\n        } else {\n            count(totalRead);\n            entryOffset += totalRead;\n        }\n\n        return totalRead;\n    }",
+    "query_result": [
+        "@Override\npublic int read(byte[] buf, int offset, ",
+        "Override\npublic int read(byte[] buf, int offset, i",
+        "erride\npublic int read(byte[] buf, int offset, int",
+        "rride\npublic int read(byte[] buf, int offset, int ",
+        "ic int read(byte[] buf, int offset, int numToRead)",
+        " read(byte[] buf, int offset, int numToRead) throw",
+        "ad(byte[] buf, int offset, int numToRead) throws I",
+        "(byte[] buf, int offset, int numToRead) throws IOE",
+        " buf, int offset, int numToRead) throws IOExceptio",
+        "buf, int offset, int numToRead) throws IOException"
+    ]
+}

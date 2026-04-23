@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.2808641975308642,
+    "input": "private void _verifySharing()\n{\n    if (_hashShared) {\n        _hashArea = Arrays.copyOf(_hashArea, _hashArea.length);\n        _names = Arrays.copyOf(_names, _names.length);\n        _hashShared = false;\n        // 09-Sep-2015, tatu: As per [jackson-core#216], also need to ensure\n        //    we rehash as needed, as need-rehash flag is not copied from parent\n        _verifyNeedForRehash();\n    }\n    if (_needRehash) {\n        rehash();\n    }\n}",
+    "query_result": [
+        "{\n_hashArea = Arrays.copyOf(_hashArea, _hashArea.l",
+        "= Arrays.copyOf(_hashArea, _hashArea.length);\n_nam",
+        "length);\n_names = Arrays.copyOf(_names, _names.len"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.8531914893617021,
+    "input": "private static boolean looksLikeUtf8(byte[] input) {\n    int i = 0;\n    // BOM:\n    if (input.length >= 3 && (input[0] & 0xFF) == 0xEF\n        && (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\n        i = 3;\n    }\n\n    int end;\n    for (int j = input.length; i < j; ++i) {\n        int o = input[i];\n        if ((o & 0x80) == 0) {\n            continue; // ASCII\n        }\n\n        // UTF-8 leading:\n        if ((o & 0xE0) == 0xC0) {\n            end = i + 1;\n        } else if ((o & 0xF0) == 0xE0) {\n            end = i + 2;\n        } else if ((o & 0xF8) == 0xF0) {\n            end = i + 3;\n        } else {\n            return false;\n        }\n\n        if (end >= input.length)\n            return false;\n\n        while (i < end) {\n            i++;\n            o = input[i];\n            if ((o & 0xC0) != 0x80) {\n                return false;\n            }\n        }\n    }\n    return true;\n}",
+    "query_result": [
+        "boolean looksLikeUtf8(byte[] input) {\nint i = 0;\n// BOM:\nif (input.length >= 3 && (input[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = input.length; i < j; ++i) {\nint o = input[i];\nif ((o & 0x80) == 0) {\ncontinue; // ASCII\n}\n// UTF-8 leading:\nif ((o & 0xE0) == 0xC0) {\nend = i + 1;\n} else if ((o & 0xF0) == 0xE0) {\nend = i + 2;\n} else if ((o & 0xF8) == 0xF0) {\nend = i + 3;\n} else {\nret",
+        "f8(byte[] input) {\nint i = 0;\n// BOM:\nif (input.length >= 3 && (input[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = input.length; i < j; ++i) {\nint o = input[i];\nif ((o & 0x80) == 0) {\ncontinue; // ASCII\n}\n// UTF-8 leading:\nif ((o & 0xE0) == 0xC0) {\nend = i + 1;\n} else if ((o & 0xF0) == 0xE0) {\nend = i + 2;\n} else if ((o & 0xF8) == 0x",
+        "\nif (input.length >= 3 && (input[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = input.l",
+        " (input.length >= 3 && (input[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = input.leng",
+        ">= 3 && (input[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = input.length; i < j; ++i)",
+        "&& (input[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = input.length; i < j; ++i) {\nin",
+        "ength >= 3 && (input[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\n",
+        "put[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;",
+        "ut[0] & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\n",
+        " & 0xFF) == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (",
+        " == 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = ",
+        " 0xEF\n&& (input[1] & 0xFF) == 0xBB & (input[2] & 0xFF) == 0xBF) {\ni = 3;\n}\nint end;\nfor (int j = inp",
+        ") {\ni = 3;\n}\nint end;\nfor (int j = input.length; i",
+        "(i < end) {\ni++;\no = input[i];\nif ((o & 0xC0) != 0",
+        "if ((o & 0xC0) != 0x80) {\nreturn false;\n}\n}\n}\nretu"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.5931899641577061,
+    "input": "protected boolean isValidDomain(String domain) {\n        // see if domain is an IP address in brackets\n        Matcher ipDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);\n\n        if (ipDomainMatcher.matches()) {\n            InetAddressValidator inetAddressValidator =\n                    InetAddressValidator.getInstance();\n            return inetAddressValidator.isValid(ipDomainMatcher.group(1));\n        }\n        // Domain is symbolic name\n        DomainValidator domainValidator =\n                DomainValidator.getInstance(allowLocal);\n        if (allowTld) {\n            return domainValidator.isValid(domain) || (!domain.startsWith(\".\") && domainValidator.isValidTld(domain));\n        } else {\n            return domainValidator.isValid(domain);\n        }\n    }",
+    "query_result": [
+        "lidDomain(String domain) {\n// see if domain is an IP address in brackets\nMatcher ipDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);\nif (ipDomainMatcher.matches()) {\nInetAddressValidator inetAddressValidator =\nInetAddressValidator.getInstance();\nreturn inetAddressValidator.isValid(ipDomainMatcher.g",
+        "omain(String domain) {\n// see if domain is an IP address in brackets\nMatcher ipDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);\nif (ipDomainMatcher.matches()) {\nInetAddressValidator inetAddressValidator =\nInetAddressValidator.getInstance();\nreturn inetAddressValidator.isValid(ipDomainMatcher.group",
+        "TERN.matcher(domain);\nif (ipDomainMatcher.matches()) {\nInetAddressValidator inetAddressValidator =\nInetAddressValidator.getInstance();\nreturn inetAddr",
+        "is an IP address in brackets\nMatcher ipDomainMatch",
+        "ress in brackets\nMatcher ipDomainMatcher = IP_DOMA",
+        "pDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain)",
+        "DomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);",
+        "N.matcher(domain);\nif (ipDomainMatcher.matches()) ",
+        "tAddressValidator inetAddressValidator =\nInetAddre",
+        "ddressValidator =\nInetAddressValidator.getInstance",
+        "dressValidator.isValid(ipDomainMatcher.group(1));\n",
+        "lidator domainValidator =\nDomainValidator.getInsta"
+    ]
+}

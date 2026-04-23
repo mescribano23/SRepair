@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.7327188940092166,
+    "input": "static String stripLeadingAndTrailingQuotes(String str)\n{\n    int length = str.length();\n    if (length > 1 && str.startsWith(\"\\\"\") && str.endsWith(\"\\\"\") && str.substring(1, length - 1).indexOf('\"') == -1)\n    {\n        str = str.substring(1, length - 1);\n    }\n    \n    return str;\n}",
+    "query_result": [
+        "str.length();\nif (length > 1 && str.startsWith(\"\\\"\") && str.endsWith(\"\\\"\") && str.substring(1, lengt",
+        ");\nif (length > 1 && str.startsWith(\"\\\"\") && str.endsWith(\"\\\"\") && str.substring(1, length - 1).inde",
+        "atic String stripLeadingAndTrailingQuotes(String s",
+        "ic String stripLeadingAndTrailingQuotes(String str",
+        " String stripLeadingAndTrailingQuotes(String str)\n",
+        "tring str)\n{\nint length = str.length();\nif (length",
+        ".length();\nif (length > 1 && str.startsWith(\"\\\"\") ",
+        "\nif (length > 1 && str.startsWith(\"\\\"\") && str.end",
+        "th > 1 && str.startsWith(\"\\\"\") && str.endsWith(\"\\\"",
+        "1 && str.startsWith(\"\\\"\") && str.endsWith(\"\\\"\") &&",
+        "str.startsWith(\"\\\"\") && str.endsWith(\"\\\"\") && str."
+    ]
+}

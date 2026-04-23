@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.5199335548172758,
+    "input": "    int readEscape() throws IOException {\n        // the escape char has just been read (normally a backslash)\n        final int c = in.read();\n        switch (c) {\n        case 'r':\n            return CR;\n        case 'n':\n            return LF;\n        case 't':\n            return TAB;\n        case 'b':\n            return BACKSPACE;\n        case 'f':\n            return FF;\n        case CR:\n        case LF:\n        case FF: // TODO is this correct?\n        case TAB: // TODO is this correct? Do tabs need to be escaped?\n        case BACKSPACE: // TODO is this correct?\n            return c;\n        case END_OF_STREAM:\n            throw new IOException(\"EOF whilst processing escape sequence\");\n        default:\n            // Now check for meta-characters\n            if (isDelimiter(c) || isEscape(c) || isQuoteChar(c) || isCommentStart(c)) {\n                return c;\n            }\n            // indicate unexpected char - available from in.getLastChar()\n            return END_OF_STREAM;\n        }\n    }",
+    "query_result": [
+        ";\ncase 'n':\nreturn LF;\ncase 't':\nreturn TAB;\ncase 'b':\nreturn BACKSPACE;\ncase 'f':\nreturn FF;\ncase CR:\ncase LF:\ncase FF: // TODO is this correct?\ncase TAB: // TODO is this correct? Do tabs need to be escaped?\ncase BACKSPACE: // TODO is this correct?\n",
+        "hrow new IOException(\"EOF whilst processing escape",
+        "on(\"EOF whilst processing escape sequence\");\ndefau",
+        "\n// indicate unexpected char - available from in.g",
+        "cate unexpected char - available from in.getLastCh"
+    ]
+}

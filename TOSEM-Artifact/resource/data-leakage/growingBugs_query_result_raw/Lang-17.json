@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5849731663685152,
+    "input": "    public final void translate(CharSequence input, Writer out) throws IOException {\n        if (out == null) {\n            throw new IllegalArgumentException(\"The Writer must not be null\");\n        }\n        if (input == null) {\n            return;\n        }\n        int pos = 0;\n        int len = input.length();\n        while (pos < len) {\n            int consumed = translate(input, pos, out);\n            if (consumed == 0) {\n                char[] c = Character.toChars(Character.codePointAt(input, pos));\n                out.write(c);\n                pos+= c.length;\n                continue;\n            }\n//          // contract with translators is that they have to understand codepoints \n//          // and they just took care of a surrogate pair\n            for (int pt = 0; pt < consumed; pt++) {\n                pos += Character.charCount(Character.codePointAt(input, pos));\n            }\n        }\n    }",
+    "query_result": [
+        "ntract with translators is that they have to understand codepoints \n// // and they just took care of a surrogate pair\nfor (int pt = 0; pt < consumed; pt++) {\npos += Character.charCount(Character.codeP",
+        "ranslate(CharSequence input, Writer out) throws IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\");\n}\n",
+        "rSequence input, Writer out) throws IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\");\n}\nif (input ==",
+        " with translators is that they have to understand codepoints \n// // and they just took care of a surrogate pair\nfor (int pt = 0; pt < consumed; pt++) ",
+        "d they just took care of a surrogate pair\nfor (int pt = 0; pt < consumed; pt++) {\npos += Character.charCount(Character.codePointAt(input, pos));\n}\n}\n}",
+        "arSequence input, Writer out) throws IOException {\nif (out == null) {\nthrow new IllegalArgumentExcep",
+        " out) throws IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must no",
+        " throws IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be ",
+        "throws IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be n",
+        "hrows IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be nu",
+        "rows IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be nul",
+        "ows IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null",
+        "ws IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\"",
+        "s IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\")",
+        "IOException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\");\n",
+        "OException {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\");\n}",
+        "xception {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\");\n}\ni",
+        "ception {\nif (out == null) {\nthrow new IllegalArgumentException(\"The Writer must not be null\");\n}\nif",
+        "h translators is that they have to understand codepoints \n// // and they just took care of a surroga",
+        "lators is that they have to understand codepoints \n// // and they just took care of a surrogate pair"
+    ]
+}

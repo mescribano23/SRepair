@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9001085776330076,
+    "input": "  public String getToken() {\n    String token;\n\n    if (this.tokenData == null || !this.tokenData.isTokenValid()) {\n      setTokenData(synchronizedRequestToken());\n    } else if (this.tokenData.needsRefresh()) {\n\n      // Kick off background task to refresh token.\n      Thread updateTokenCall = new Thread(new Runnable() {\n        @Override\n        public void run() {\n          setTokenData(requestToken());\n        }\n      });\n      updateTokenCall.start();\n    }\n\n    // Make sure we have a non-null tokenData object.\n    // This should not occur, but just in case it does... :)\n    if (this.tokenData == null) {\n      throw new RuntimeException(ERRORMSG_REQ_FAILED + \" illegal state: token object not available\");\n    }\n\n    // Check to see if an exception occurred during our last interaction with the token server.\n    if (this.tokenData.getException() != null) {\n        Throwable t = tokenData.getException();\n        if (t instanceof RuntimeException) {\n          throw (RuntimeException) t;\n        } else {\n          throw new RuntimeException(ERRORMSG_REQ_FAILED, tokenData.getException());\n        }\n      }\n\n    // Return the access token from our stored tokenData object.\n    token = tokenData.getAccessToken();\n\n    return token;\n  }",
+    "query_result": [
+        " getToken() {\nString token;\nif (this.tokenData == null || !this.tokenData.isTokenValid()) {\nsetTokenData(synchronizedRequestToken());\n} else if (this.tokenData.needsRefresh()) {\n// Kick off background task to refresh token.\nThread updateTokenCall = new Thread(new Runnable() {\n@Override\npublic void run() {\nsetTokenData(requestToken());\n}\n});\nupdateTokenCall.start();\n}\n// Make sure we have a non-null tokenData object.\n// This should not occur, but just in case it does... :)\nif (this.tokenData == null) {\nthrow new RuntimeException(ERRORMSG_REQ_FAILED + \" illegal state: token object not available\");\n}\n// Check to see if an exception occurred duri",
+        " (this.tokenData.getException() != null) {\nThrowable t = tokenData.getException();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeException(ERRORMSG_REQ_FAILED, tokenData.getException());\n}\n}\n// Return the access token from our stored tokenData object.\ntok",
+        ".getException();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new",
+        "getException();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new ",
+        "Exception();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new Run",
+        "eption();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new Runtim",
+        "ption();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new Runtime",
+        "ion();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeEx",
+        "on();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeExc",
+        "();\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeExcep",
+        ");\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeExcept",
+        ";\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeExcepti",
+        "\nif (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeExceptio",
+        "if (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeException",
+        "f (t instanceof RuntimeException) {\nthrow (RuntimeException) t;\n} else {\nthrow new RuntimeException(",
+        "ring getToken() {\nString token;\nif (this.tokenData",
+        ") {\nString token;\nif (this.tokenData == null || !t",
+        "all = new Thread(new Runnable() {\n@Override\npublic",
+        "l = new Thread(new Runnable() {\n@Override\npublic v",
+        " = new Thread(new Runnable() {\n@Override\npublic vo"
+    ]
+}

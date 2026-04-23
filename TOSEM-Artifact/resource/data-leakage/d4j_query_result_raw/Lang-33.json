@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9632352941176471,
+    "input": "public static Class<?>[] toClass(Object[] array) {\n    if (array == null) {\n        return null;\n    } else if (array.length == 0) {\n        return ArrayUtils.EMPTY_CLASS_ARRAY;\n    }\n    Class<?>[] classes = new Class[array.length];\n    for (int i = 0; i < array.length; i++) {\n        classes[i] = array[i] == null ? null : array[i].getClass();\n    }\n    return classes;\n}",
+    "query_result": [
+        "static Class<?>[] toClass(Object[] array) {\nif (array == null) {\nreturn null;\n} else if (array.length == 0) {\nreturn ArrayUtils.EMPTY_CLASS_ARRAY;\n}\nClass<?>[] classes = new Class[array.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].getClass();\n}\nre",
+        "toClass(Object[] array) {\nif (array == null) {\nreturn null;\n} else if (array.length == 0) {\nreturn ArrayUtils.EMPTY_CLASS_ARRAY;\n}\nClass<?>[] classes = new Class[array.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? ",
+        "(array == null) {\nreturn null;\n} else if (array.length == 0) {\nreturn ArrayUtils.EMPTY_CLASS_ARRAY;\n}\nClass<?>[] classes = new Class[array.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].getClass();\n}",
+        "c static Class<?>[] toClass(Object[] array) {\nif (array == null) {\nreturn null;\n} else if (array.length == 0) {\nreturn ArrayUtils.EMPTY_CLASS_ARRAY;\n}",
+        "ass<?>[] classes = new Class[array.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].getClass();\n}\nret",
+        "?>[] classes = new Class[array.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].getClass();\n}\nreturn ",
+        " classes = new Class[array.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].getClass();\n}\nreturn clas",
+        "t[] array) {\nif (array == null) {\nreturn null;\n} else if (array.length == 0) {\nreturn ArrayUtils.EMP",
+        "if (array == null) {\nreturn null;\n} else if (array.length == 0) {\nreturn ArrayUtils.EMPTY_CLASS_ARRA",
+        "lass[array.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : ",
+        "ray.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i",
+        "y.length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].",
+        "length];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].ge",
+        "ength];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].get",
+        "ngth];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].getC",
+        "h];\nfor (int i = 0; i < array.length; i++) {\nclasses[i] = array[i] == null ? null : array[i].getClas",
+        "(Object[] array) {\nif (array == null) {\nreturn nul",
+        "Object[] array) {\nif (array == null) {\nreturn null",
+        "bject[] array) {\nif (array == null) {\nreturn null;",
+        "ject[] array) {\nif (array == null) {\nreturn null;\n"
+    ]
+}

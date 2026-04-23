@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.21869639794168097,
+    "input": "protected SettableBeanProperty constructSettableProperty(DeserializationContext ctxt,\n        BeanDescription beanDesc, BeanPropertyDefinition propDef,\n        JavaType propType0)\n    throws JsonMappingException\n{\n    // need to ensure method is callable (for non-public)\n    AnnotatedMember mutator = propDef.getNonConstructorMutator();\n\n    if (ctxt.canOverrideAccessModifiers()) {\n        // [databind#877]: explicitly prevent forced access to `cause` of `Throwable`;\n        // never needed and attempts may cause problems on some platforms.\n        // !!! NOTE: should be handled better for 2.8 and later\n        if ((mutator instanceof AnnotatedField)\n                && \"cause\".equals(mutator.getName())) {\n            ;\n        } else {\n            mutator.fixAccess(ctxt.isEnabled(MapperFeature.OVERRIDE_PUBLIC_ACCESS_MODIFIERS));\n        }\n    }\n    // note: this works since we know there's exactly one argument for methods\n    BeanProperty.Std property = new BeanProperty.Std(propDef.getFullName(),\n            propType0, propDef.getWrapperName(),\n            beanDesc.getClassAnnotations(), mutator, propDef.getMetadata());\n    JavaType type = resolveType(ctxt, beanDesc, propType0, mutator);\n    // did type change?\n    if (type != propType0) {\n        property = property.withType(type);\n    }\n\n    // First: does the Method specify the deserializer to use? If so, let's use it.\n    JsonDeserializer<Object> propDeser = findDeserializerFromAnnotation(ctxt, mutator);\n    type = modifyT",
+    "query_result": [
+        "onstructSettableProperty(DeserializationContext ctxt,\nBeanDescription beanDesc, BeanPropertyDefinition propDef,\nJavaType propType0)\nthrows JsonMappingException\n{\n// need to ensure method is callable (for non-public)\nAnnotatedMember mutator = propDef.",
+        "nstructSettableProperty(DeserializationContext ctxt,\nBeanDescription beanDesc, BeanPropertyDefinition propDef,\nJavaType propType0)\nthrows JsonMappingException\n{\n// need to ensure method is callable (for non-public)\nAnnotatedMember mutator = propDef.g",
+        "ted SettableBeanProperty constructSettableProperty(DeserializationContext ctxt,\nBeanDescription bean",
+        "bleBeanProperty constructSettableProperty(DeserializationContext ctxt,\nBeanDescription beanDesc, Bea",
+        "leBeanProperty constructSettableProperty(DeserializationContext ctxt,\nBeanDescription beanDesc, Bean",
+        "tected SettableBeanProperty constructSettablePrope",
+        "d SettableBeanProperty constructSettableProperty(D",
+        " SettableBeanProperty constructSettableProperty(De",
+        "tableBeanProperty constructSettableProperty(Deseri",
+        "ableBeanProperty constructSettableProperty(Deseria",
+        "anProperty constructSettableProperty(Deserializati",
+        "nProperty constructSettableProperty(Deserializatio",
+        "Property constructSettableProperty(Deserialization",
+        "roperty constructSettableProperty(DeserializationC",
+        "erty constructSettableProperty(DeserializationCont",
+        "rty constructSettableProperty(DeserializationConte",
+        "erializationContext ctxt,\nBeanDescription beanDesc",
+        "ntext ctxt,\nBeanDescription beanDesc, BeanProperty",
+        "anDescription beanDesc, BeanPropertyDefinition pro",
+        "MappingException\n{\n// need to ensure method is cal"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.948016415868673,
+    "input": "    public HttpSession getSession(boolean create) {\n\n        HttpSession httpSession;\n\n        if (isHttpSessions()) {\n            httpSession = super.getSession(false);\n            if (httpSession == null && create) {\n                //Shiro 1.2: assert that creation is enabled (SHIRO-266):\n                if (WebUtils._isSessionCreationEnabled(this)) {\n                    httpSession = super.getSession(create);\n                } else {\n                    throw newNoSessionCreationException();\n                }\n            }\n        } else {\n            boolean existing = getSubject().getSession(false) != null;\n            \n            if (this.session == null || !existing) {\n                Session shiroSession = getSubject().getSession(create);\n                if (shiroSession != null) {\n                    this.session = new ShiroHttpSession(shiroSession, this, this.servletContext);\n                    if (!existing) {\n                        setAttribute(REFERENCED_SESSION_IS_NEW, Boolean.TRUE);\n                    }\n                } else if (this.session != null) {\n                    this.session = null;\n                }\n            }\n            httpSession = this.session;\n        }\n\n        return httpSession;\n    }",
+    "query_result": [
+        "an create) {\nHttpSession httpSession;\nif (isHttpSessions()) {\nhttpSession = super.getSession(false);\nif (httpSession == null && create) {\n//Shiro 1.2: assert that creation is enabled (SHIRO-266):\nif (WebUtils._isSessionCreationEnabled(this)) {\nhttpSession = super.getSession(create);\n} else {\nthrow newNoSessionCreationException();\n}\n}\n} else {\nboolean existing = getSubject().getSession(false) != null;\n\nif (this.session == null || !existing) {\nSession shiroSession = getSubject().getSession(create);\nif (shiroSession != null) {\nthis.session = new ShiroHttpSession(shiroSession, this, this.servletContext);\nif (!existing) {\nsetAttribute(REFERENCED_SESSION_IS_NEW, Boolean.TRUE);\n}\n} else if (this.session != null) {\nthis.session = null;\n}\n}\nhttpSess",
+        "ublic HttpSession getSession(boolean create) {\nHtt",
+        "lic HttpSession getSession(boolean create) {\nHttpS",
+        "ic HttpSession getSession(boolean create) {\nHttpSe",
+        "HttpSession getSession(boolean create) {\nHttpSessi",
+        "ttpSession getSession(boolean create) {\nHttpSessio",
+        "tpSession getSession(boolean create) {\nHttpSession",
+        "pSession getSession(boolean create) {\nHttpSession ",
+        "Session getSession(boolean create) {\nHttpSession h"
+    ]
+}

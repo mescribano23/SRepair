@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.22875816993464052,
+    "input": "    @Override\n    public Object deserializeFromObject(JsonParser p, DeserializationContext ctxt) throws IOException\n    {\n        // 30-Sep-2010, tatu: Need to allow use of @JsonCreator, so:\n        if (_propertyBasedCreator != null) { // proper @JsonCreator\n            return _deserializeUsingPropertyBased(p, ctxt);\n        }\n        if (_delegateDeserializer != null) {\n            return _valueInstantiator.createUsingDelegate(ctxt,\n                    _delegateDeserializer.deserialize(p, ctxt));\n        }\n        if (_beanType.isAbstract()) { // for good measure, check this too\n            return ctxt.handleMissingInstantiator(handledType(), getValueInstantiator(), p,\n                    \"abstract type (need to add/enable type information?)\");\n        }\n        boolean hasStringCreator = _valueInstantiator.canCreateFromString();\n        boolean hasDefaultCtor = _valueInstantiator.canCreateUsingDefault();\n        // and finally, verify we do have single-String arg constructor (if no @JsonCreator)\n        if (!hasStringCreator && !hasDefaultCtor) {\n            return ctxt.handleMissingInstantiator(handledType(), getValueInstantiator(), p,\n                    \"Throwable needs a default contructor, a single-String-arg constructor; or explicit @JsonCreator\");\n        }\n        \n        Object throwable = null;\n        Object[] pending = null;\n        int pendingIx = 0;\n\n        for (; p.getCurrentToken() != JsonToken.END_OBJECT; p.nextToken()) {\n            String propName = p.getCurrentName();\n            SettableBeanProperty prop = _beanProperties.find(propName);\n            p.nextToken(); // to point to field value\n\n            if (prop != null) { // normal case\n                if (throwable != null) {\n                    prop.deserializeAndSet(p, ctxt, throwable);\n                    continue;\n                }\n                // nope; need to defer\n                if (pending == null) {\n                    int len = _beanProperties.size();\n                    pend",
+    "query_result": [
+        "verride\npublic Object deserializeFromObject(JsonParser p, DeserializationContext ctxt) throws IOExce",
+        "public Object deserializeFromObject(JsonParser p, DeserializationContext ctxt) throws IOException\n{\n",
+        " null) {\nreturn _valueInstantiator.createUsingDelegate(ctxt,\n_delegateDeserializer.deserialize(p, ct",
+        "_OBJECT; p.nextToken()) {\nString propName = p.getCurrentName();\nSettableBeanProperty prop = _beanPro",
+        "extToken()) {\nString propName = p.getCurrentName();\nSettableBeanProperty prop = _beanProperties.find",
+        ") {\nString propName = p.getCurrentName();\nSettableBeanProperty prop = _beanProperties.find(propName)",
+        "ropName = p.getCurrentName();\nSettableBeanProperty prop = _beanProperties.find(propName);\np.nextToke",
+        "Object deserializeFromObject(JsonParser p, Deseria",
+        "bject deserializeFromObject(JsonParser p, Deserial",
+        "ject deserializeFromObject(JsonParser p, Deseriali",
+        "ect deserializeFromObject(JsonParser p, Deserializ",
+        "ct deserializeFromObject(JsonParser p, Deserializa",
+        "t deserializeFromObject(JsonParser p, Deserializat",
+        "eserializeFromObject(JsonParser p, Deserialization",
+        "izeFromObject(JsonParser p, DeserializationContext",
+        "romObject(JsonParser p, DeserializationContext ctx",
+        "omObject(JsonParser p, DeserializationContext ctxt",
+        "Object(JsonParser p, DeserializationContext ctxt) ",
+        "ject(JsonParser p, DeserializationContext ctxt) th",
+        "ect(JsonParser p, DeserializationContext ctxt) thr"
+    ]
+}

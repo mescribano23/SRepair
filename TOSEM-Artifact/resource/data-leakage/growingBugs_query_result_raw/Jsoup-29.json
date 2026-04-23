@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.8883720930232558,
+    "input": "    public String title() {\n        // title is a preserve whitespace tag (for document output), but normalised here\n        Element titleEl = getElementsByTag(\"title\").first();\n        return titleEl != null ? StringUtil.normaliseWhitespace(titleEl.text()).trim() : \"\";\n    }",
+    "query_result": [
+        " {\n// title is a preserve whitespace tag (for document output), but normalised here\nElement titleEl = getElementsByTag(\"title\").first();\nreturn titleEl != null ? StringUtil.normaliseWhitespace(titleEl",
+        "\n// title is a preserve whitespace tag (for document output), but normalised here\nElement titleEl = getElementsByTag(\"title\").first();\nreturn titleEl ",
+        "ace tag (for document output), but normalised here\nElement titleEl = getElementsByTag(\"title\").first",
+        "a preserve whitespace tag (for document output), b",
+        "reserve whitespace tag (for document output), but ",
+        "tespace tag (for document output), but normalised ",
+        "lement titleEl = getElementsByTag(\"title\").first()",
+        "itleEl = getElementsByTag(\"title\").first();\nreturn",
+        "\").first();\nreturn titleEl != null ? StringUtil.no",
+        "tringUtil.normaliseWhitespace(titleEl.text()).trim",
+        "ingUtil.normaliseWhitespace(titleEl.text()).trim()"
+    ]
+}

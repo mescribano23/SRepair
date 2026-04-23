@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.15449101796407186,
+    "input": "    @Override\n    public Issue create(final String title, final String body)\n        throws IOException {\n        this.storage.lock();\n        final int number;\n        try {\n            number = 1 + this.storage.xml().xpath(\n                String.format(\"%s/issue/number/text()\", this.xpath())\n            ).size();\n            this.storage.apply(\n                new Directives().xpath(this.xpath()).add(\"issue\")\n                    .add(\"number\").set(Integer.toString(number)).up()\n                    .add(\"state\").set(Issue.OPEN_STATE).up()\n                    .add(\"title\").set(title).up()\n                    .add(\"body\").set(body).up()\n                    .add(\"created_at\").set(new Github.Time().toString()).up()\n                    .add(\"updated_at\").set(new Github.Time().toString()).up()\n                    .add(\"url\").set(\"http://localhost/1\").up()\n                    .add(\"html_url\").set(\"http://localhost/2\").up()\n                    .add(\"user\").add(\"login\").set(this.self).up().up()\n            );\n        } finally {\n            this.storage.unlock();\n        }\n        Logger.info(\n            this, \"issue #%d created in %s by %s: %[text]s\",\n            number, this.repo().coordinates(), this.self, title\n        );\n        return this.get(number);\n    }",
+    "query_result": [
+        "ows IOException {\nthis.storage.lock();\nfinal int n",
+        "lock();\nfinal int number;\ntry {\nnumber = 1 + this.",
+        "();\nthis.storage.apply(\nnew Directives().xpath(thi",
+        "this.storage.apply(\nnew Directives().xpath(this.xp",
+        "is.storage.apply(\nnew Directives().xpath(this.xpat",
+        ".storage.apply(\nnew Directives().xpath(this.xpath(",
+        "torage.apply(\nnew Directives().xpath(this.xpath())",
+        "ge.apply(\nnew Directives().xpath(this.xpath()).add"
+    ]
+}

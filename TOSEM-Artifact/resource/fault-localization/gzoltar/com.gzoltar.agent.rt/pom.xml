@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2020 GZoltar contributors.
+
+  This file is part of GZoltar.
+
+  GZoltar is free software: you can redistribute it and/or modify it under the terms of the GNU
+  Lesser General Public License as published by the Free Software Foundation, either version 3 of
+  the License, or (at your option) any later version.
+
+  GZoltar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+  General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License along with GZoltar. If
+  not, see <https://www.gnu.org/licenses/>.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.gzoltar</groupId>
+    <artifactId>com.gzoltar.build</artifactId>
+    <version>1.7.4-SNAPSHOT</version>
+    <relativePath>../com.gzoltar.build</relativePath>
+  </parent>
+
+  <artifactId>com.gzoltar.agent.rt</artifactId>
+
+  <name>GZoltar :: Agent RT</name>
+  <description>GZoltar Agent RT</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>com.gzoltar.core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>all</shadedClassifierName>
+              <minimizeJar>false</minimizeJar>
+              <relocations>
+                <relocation>
+                  <pattern>com.gzoltar.agent.rt</pattern>
+                  <shadedPattern>com.gzoltar.internal.agent.rt</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.gzoltar.core</pattern>
+                  <shadedPattern>com.gzoltar.internal.core</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>javassist</pattern>
+                  <shadedPattern>com.gzoltar.internal.javassist</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.jacoco</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.jacoco</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.objectweb.asm</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.objectweb.asm</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.apache.commons.lang3</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.apache.commons.lang3</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.apache.commons.io</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.apache.commons.io</shadedPattern>
+                </relocation>
+              </relocations>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Premain-Class>com.gzoltar.internal.agent.rt.PreMain</Premain-Class>
+                    <!--Can-Redefine-Classes>true</Can-Redefine-Classes>
+                    <Can-Retransform-Classes>true</Can-Retransform-Classes-->
+                    <Automatic-Module-Name>${project.artifactId}</Automatic-Module-Name>
+                    <Implementation-Title>${project.description}</Implementation-Title>
+                    <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                    <Implementation-Version>${dist.version}</Implementation-Version>
+                  </manifestEntries>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "@Override\n    public void unmount(String path)\n    {\n        final Url url = Url.parse(path);\n        final Request request = createRequest(url);\n\n        for (IRequestMapper mapper : this)\n        {\n            if (mapper instanceof ICompoundRequestMapper)\n            {\n                ICompoundRequestMapper inner = (ICompoundRequestMapper) mapper;\n                inner.unmount(path);\n            }\n            else if (mapper.mapRequest(request) != null)\n            {\n                remove(mapper);\n            }\n        }\n    }",
+    "query_result": []
+}

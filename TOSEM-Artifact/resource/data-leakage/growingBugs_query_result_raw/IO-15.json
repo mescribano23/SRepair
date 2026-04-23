@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9870689655172413,
+    "input": "    private static String doGetFullPath(String filename, boolean includeSeparator) {\n        if (filename == null) {\n            return null;\n        }\n        int prefix = getPrefixLength(filename);\n        if (prefix < 0) {\n            return null;\n        }\n        if (prefix >= filename.length()) {\n            if (includeSeparator) {\n                return getPrefix(filename);  // add end slash if necessary\n            } else {\n                return filename;\n            }\n        }\n        int index = indexOfLastSeparator(filename);\n        if (index < 0) {\n            return filename.substring(0, prefix);\n        }\n        int end = index + (includeSeparator ?  1 : 0);\n        if (end == 0) {\n            end++;\n        }\n        return filename.substring(0, end);\n    }",
+    "query_result": [
+        "GetFullPath(String filename, boolean includeSeparator) {\nif (filename == null) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nif (prefix >= filename.length()) {\nif (includeSeparator) {\nreturn getPrefix(filen",
+        "lean includeSeparator) {\nif (filename == null) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nif (prefix >= filename.length()) {\nif (includeSeparator) {\nretu",
+        "ull) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nif (prefix >= filename.length()) {\nif (includeSeparator) {\nreturn getPrefix(filename); // add end slash i",
+        "cessary\n} else {\nreturn filename;\n}\n}\nint index = indexOfLastSeparator(filename);\nif (index < 0) {\nreturn filename.substring(0, prefix);\n}\nint end = index + (includeSeparator ? 1 : 0);\nif (end == 0) {",
+        "t index = indexOfLastSeparator(filename);\nif (index < 0) {\nreturn filename.substring(0, prefix);\n}\nint end = index + (includeSeparator ? 1 : 0);\nif (end == 0) {\nend++;\n}\nreturn filename.substring(0, e",
+        "fix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nif (prefix >= filename.length()) {\nif (includeSeparator) {\nreturn getPrefix(filename",
+        "refix < 0) {\nreturn null;\n}\nif (prefix >= filename.length()) {\nif (includeSeparator) {\nreturn getPrefix(filename); // add end slash if necessary\n} els",
+        "ndexOfLastSeparator(filename);\nif (index < 0) {\nreturn filename.substring(0, prefix);\n}\nint end = index + (includeSeparator ? 1 : 0);\nif (end == 0) {\n",
+        "LastSeparator(filename);\nif (index < 0) {\nreturn filename.substring(0, prefix);\n}\nint end = index + (includeSeparator ? 1 : 0);\nif (end == 0) {\nend++;",
+        "(filename == null) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn",
+        " == null) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\n",
+        "rivate static String doGetFullPath(String filename",
+        "ename, boolean includeSeparator) {\nif (filename ==",
+        "oolean includeSeparator) {\nif (filename == null) {",
+        "eparator) {\nif (filename == null) {\nreturn null;\n}",
+        "nt prefix = getPrefixLength(filename);\nif (prefix ",
+        " prefix = getPrefixLength(filename);\nif (prefix < ",
+        "efix = getPrefixLength(filename);\nif (prefix < 0) ",
+        "ix = getPrefixLength(filename);\nif (prefix < 0) {\n",
+        " = getPrefixLength(filename);\nif (prefix < 0) {\nre"
+    ]
+}

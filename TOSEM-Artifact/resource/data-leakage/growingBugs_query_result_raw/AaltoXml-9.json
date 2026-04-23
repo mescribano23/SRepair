@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7671673819742489,
+    "input": "    private final int handleHexEntityInAttribute(boolean starting)\n        throws XMLStreamException\n    {\n        byte b = _inputBuffer[_inputPtr++]; // we know one is available\n        if (starting) {\n            int ch = (int) b;\n            if (ch < INT_0 || ch > INT_9) { // invalid entity\n                throwUnexpectedChar(decodeCharForError(b), \" expected a hex digit (0-9a-fA-F) for character entity\");\n            }\n            _pendingInput = PENDING_STATE_ATTR_VALUE_HEX_DIGIT;\n            _entityValue = ch - INT_0;\n            if (_inputPtr >= _inputEnd) {\n                return 0;\n            }\n            b = _inputBuffer[_inputPtr++];\n        }\n        while (b != BYTE_SEMICOLON) {\n            int ch = (int) b;\n            if (ch <= INT_9 && ch >= INT_0) {\n                ch -= INT_0;\n            } else if (ch <= INT_F && ch >= INT_A) {\n                ch = 10 + (ch - INT_A);\n            } else  if (ch <= INT_f && ch >= INT_a) {\n                ch = 10 + (ch - INT_a);\n            } else {\n                throwUnexpectedChar(decodeCharForError(b), \" expected a hex digit (0-9a-fA-F) for character entity\");\n            }\n            int value = (_entityValue << 4) + ch;\n            _entityValue = value;\n            if (value > MAX_UNICODE_CHAR) { // Overflow?\n                reportEntityOverflow();\n            }\n            if (_inputPtr >= _inputEnd) {\n                return 0;\n            }\n            b = _inputBuffer[_inputPtr++];\n        }\n        verifyXmlChar(_entityValue);\n        _pendingInput = 0;\n        return _entityValue;\n    }",
+    "query_result": [
+        "b != BYTE_SEMICOLON) {\nint ch = (int) b;\nif (ch <= INT_9 && ch >= INT_0) {\nch -= INT_0;\n} else if (ch <= INT_F && ch >= INT_A) {\nch = 10 + (ch - INT_A);\n} else if (ch <= INT_f && ch >= INT_a) {\nch = 10 + (ch - INT_a);\n} else {\nthrowUnexpectedChar(decodeCharForError(b), \" expected a hex digit (0-9a-fA-F) for character entity\");\n}\nint value = (_entityValue << 4) + ch;\n_entityValue = value;\nif (value > MAX_UNICODE_CHAR) { // Overflow?\nreportEntityOverflow();\n}\nif (_inputPtr >= _inputEnd) {\nreturn 0",
+        "b;\nif (ch <= INT_9 && ch >= INT_0) {\nch -= INT_0;\n} else if (ch <= INT_F && ch >= INT_A) {\nch = 10 + (ch - INT_A);\n} else if (ch <= INT_f && ch >= INT_a) {\nch = 10 + (ch - INT_a);\n} else {\nthrowUnexpectedChar(decodeCharForError(b), \" expected a hex d",
+        "_9 && ch >= INT_0) {\nch -= INT_0;\n} else if (ch <= INT_F && ch >= INT_A) {\nch = 10 + (ch - INT_A);\n} else if (ch <= INT_f && ch >= INT_a) {\nch = 10 + (ch - INT_a);\n} else {\nthrowUnexpectedChar(decodeCharForError(b), \" expected a hex digit (0-9a-fA-F)",
+        " && ch >= INT_0) {\nch -= INT_0;\n} else if (ch <= INT_F && ch >= INT_A) {\nch = 10 + (ch - INT_A);\n} else if (ch <= INT_f && ch >= INT_a) {\nch = 10 + (ch - INT_a);\n} else {\nthrowUnexpectedChar(decodeCharForError(b), \" expected a hex digit (0-9a-fA-F) f",
+        "ctedChar(decodeCharForError(b), \" expected a hex digit (0-9a-fA-F) for character entity\");\n}\n_pendingInput = PENDING_STATE_ATTR_VALUE_HEX_DIGIT;\n_enti",
+        "tarting) {\nint ch = (int) b;\nif (ch < INT_0 || ch > INT_9) { // invalid entity\nthrowUnexpectedChar(d",
+        "rForError(b), \" expected a hex digit (0-9a-fA-F) for character entity\");\n}\n_pendingInput = PENDING_S",
+        " MAX_UNICODE_CHAR) { // Overflow?\nreportEntityOverflow();\n}\nif (_inputPtr >= _inputEnd) {\nreturn 0;\n",
+        "bute(boolean starting)\nthrows XMLStreamException\n{",
+        "w one is available\nif (starting) {\nint ch = (int) ",
+        "y\nthrowUnexpectedChar(decodeCharForError(b), \" exp",
+        "\nthrowUnexpectedChar(decodeCharForError(b), \" expe",
+        "owUnexpectedChar(decodeCharForError(b), \" expected",
+        "odeCharForError(b), \" expected a hex digit (0-9a-f",
+        "harForError(b), \" expected a hex digit (0-9a-fA-F)",
+        "_0;\nif (_inputPtr >= _inputEnd) {\nreturn 0;\n}\nb = ",
+        "\nthrowUnexpectedChar(decodeCharForError(b), \" expe",
+        "owUnexpectedChar(decodeCharForError(b), \" expected",
+        ";\nif (value > MAX_UNICODE_CHAR) { // Overflow?\nrep",
+        "> MAX_UNICODE_CHAR) { // Overflow?\nreportEntityOve"
+    ]
+}

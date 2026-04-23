@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.558974358974359,
+    "input": "  @CheckForNull\n  private FileData loadCurrentFileData(final Map<InputFile, FileData> files, String line) {\n    String filePath = line.substring(SF.length());\n    FileData fileData = null;\n    // some tools (like Istanbul, Karma) provide relative paths, so let's consider them relative to project directory\n    InputFile inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(filePath));\n    \n    // Try to accommodate Angular projects that, when the angular template loader's used\n    // by checking for a ! in the filepath if the path isn't found - have a bash at seeking\n    // everything after the ! as a second fallback pass\n    if (inputFile == null && filePath.contains(\"!\") && (filePath.indexOf(\"!\") + 1) < filePath.length()) {\n        String amendedPath = filePath.substring(filePath.indexOf(\"!\") + 1);\n        inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(amendedPath));\n    }\n    \n    if (inputFile != null) {\n      fileData = files.get(inputFile);\n      if (fileData == null) {\n        fileData = new FileData(inputFile);\n        files.put(inputFile, fileData);\n      }\n    } else {\n      unresolvedPaths.add(filePath);\n    }\n    return fileData;\n  }",
+    "query_result": [
+        "String filePath = line.substring(SF.length());\nFileData fileData = null;\n// some tools (like Istanbul, Karma) provide relative paths, so let's consider them relative to project directory\nInputFile inputFile = context.fileSystem().inputFile(context.fi",
+        "putFile != null) {\nfileData = files.get(inputFile);\nif (fileData == null) {\nfileData = new FileData(inputFile);\nfiles.put(inputFile, fileData);\n}\n} else {\nunresolvedPaths.add(filePath);\n}\nreturn fileD",
+        "eData(final Map<InputFile, FileData> files, String",
+        "InputFile inputFile = context.fileSystem().inputFi",
+        "utFile inputFile = context.fileSystem().inputFile(",
+        "tFile inputFile = context.fileSystem().inputFile(c",
+        "nputFile = context.fileSystem().inputFile(context.",
+        "ile = context.fileSystem().inputFile(context.fileS",
+        "= context.fileSystem().inputFile(context.fileSyste",
+        "ntext.fileSystem().inputFile(context.fileSystem().",
+        "xt.fileSystem().inputFile(context.fileSystem().pre",
+        "t.fileSystem().inputFile(context.fileSystem().pred",
+        "eSystem().inputFile(context.fileSystem().predicate",
+        "tem().inputFile(context.fileSystem().predicates().",
+        "m().inputFile(context.fileSystem().predicates().ha",
+        "nputFile = context.fileSystem().inputFile(context.",
+        "utFile = context.fileSystem().inputFile(context.fi",
+        "ile = context.fileSystem().inputFile(context.fileS",
+        "= context.fileSystem().inputFile(context.fileSyste",
+        "ntext.fileSystem().inputFile(context.fileSystem()."
+    ]
+}

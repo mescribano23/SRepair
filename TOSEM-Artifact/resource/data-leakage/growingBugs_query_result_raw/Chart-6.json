@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.21839080459770116,
+    "input": "    public boolean equals(Object obj) {\n\n        if (obj == this) {\n            return true;\n        }\n        if (!(obj instanceof ShapeList)) {\n            return false;\n        }\n        ShapeList that = (ShapeList) obj;\n        int listSize = size();\n        for (int i = 0; i < listSize; i++) {\n           if (!ShapeUtilities.equal((Shape) get(i), (Shape) that.get(i))) {\n               return false;\n           }\n        }\n        return true;\n\n    }",
+    "query_result": [
+        "public boolean equals(Object obj) {\nif (obj == thi",
+        "ublic boolean equals(Object obj) {\nif (obj == this",
+        "blic boolean equals(Object obj) {\nif (obj == this)",
+        "lic boolean equals(Object obj) {\nif (obj == this) ",
+        "ic boolean equals(Object obj) {\nif (obj == this) {",
+        "c boolean equals(Object obj) {\nif (obj == this) {\n",
+        " boolean equals(Object obj) {\nif (obj == this) {\nr",
+        "boolean equals(Object obj) {\nif (obj == this) {\nre",
+        "oolean equals(Object obj) {\nif (obj == this) {\nret",
+        "olean equals(Object obj) {\nif (obj == this) {\nretu",
+        "lean equals(Object obj) {\nif (obj == this) {\nretur",
+        "ean equals(Object obj) {\nif (obj == this) {\nreturn",
+        "an equals(Object obj) {\nif (obj == this) {\nreturn ",
+        "n equals(Object obj) {\nif (obj == this) {\nreturn t",
+        " equals(Object obj) {\nif (obj == this) {\nreturn tr",
+        "equals(Object obj) {\nif (obj == this) {\nreturn tru",
+        "quals(Object obj) {\nif (obj == this) {\nreturn true",
+        "uals(Object obj) {\nif (obj == this) {\nreturn true;",
+        "als(Object obj) {\nif (obj == this) {\nreturn true;\n",
+        "ls(Object obj) {\nif (obj == this) {\nreturn true;\n}"
+    ]
+}

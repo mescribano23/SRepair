@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.44329896907216493,
+    "input": "    public Week(Date time, TimeZone zone) {\n        // defer argument checking...\n        this(time, zone, Locale.getDefault());\n    }",
+    "query_result": [
+        "me, TimeZone zone) {\n// defer argument checking..."
+    ]
+}

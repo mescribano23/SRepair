@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.9806714140386572,
+    "input": "private int handleG(String value, \n                    DoubleMetaphoneResult result, \n                    int index, \n                    boolean slavoGermanic) {\n    if (charAt(value, index + 1) == 'H') {\n        index = handleGH(value, result, index);\n    } else if (charAt(value, index + 1) == 'N') {\n        if (index == 1 && isVowel(charAt(value, 0)) && !slavoGermanic) {\n            result.append(\"KN\", \"N\");\n        } else if (!contains(value, index + 2, 2, \"EY\") && \n                   charAt(value, index + 1) != 'Y' && !slavoGermanic) {\n            result.append(\"N\", \"KN\");\n        } else {\n            result.append(\"KN\");\n        }\n        index = index + 2;\n    } else if (contains(value, index + 1, 2, \"LI\") && !slavoGermanic) {\n        result.append(\"KL\", \"L\");\n        index += 2;\n    } else if (index == 0 && (charAt(value, index + 1) == 'Y' || contains(value, index + 1, 2, ES_EP_EB_EL_EY_IB_IL_IN_IE_EI_ER))) {\n        //-- -ges-, -gep-, -gel-, -gie- at beginning --//\n        result.append('K', 'J');\n        index += 2;\n    } else if ((contains(value, index + 1, 2, \"ER\") || \n                charAt(value, index + 1) == 'Y') &&\n               !contains(value, 0, 6, \"DANGER\", \"RANGER\", \"MANGER\") &&\n               !contains(value, index - 1, 1, \"E\", \"I\") && \n               !contains(value, index - 1, 3, \"RGY\", \"OGY\")) {\n        //-- -ger-, -gy- --//\n        result.append('K', 'J');\n        index += 2;\n    } else if (contains(value, index + 1, 1, \"E\", \"I\", \"Y\") || \n         ",
+    "query_result": [
+        "andleG(String value, \nDoubleMetaphoneResult result, \nint index, \nboolean slavoGermanic) {\nif (charAt(value, index + 1) == 'H') {\nindex = handleGH(value, result, index);\n} else if (charAt(value, index + 1) == 'N') {\nif (index == 1 && isVowel(charAt(value, 0)) && !slavoGermanic) {\nresult.append(\"KN\", \"N\");\n} else if (!contains(value, index + 2, 2, \"EY\") && \ncharAt(value, index + 1) != 'Y' && !slavoGermanic) {\nresult.append(\"N\", \"KN\");\n} else {\nresult.append(\"KN\");\n}\nindex = index + 2;\n} else if (contains(value, index + 1, 2, \"LI\") && !slavoGermanic) {\nresult.append(\"KL\", \"L\");\nindex += 2;\n} else if (index == 0 && (charAt(value, index + 1) == 'Y' || contains(value, index + 1, 2, ES_EP_EB_EL_EY_IB_IL_IN_IE_EI_ER))) {\n//-- -ges-, -gep-, -gel-, -gie- at beginning --//\nresult.append('K', 'J');\nindex += 2;\n} else if ((contains(value, index + 1, 2, \"ER\") || \ncharAt(value, index + 1) == 'Y') &&\n!contains(value, 0, 6, \"DANGER\", \"RANGER\", \"MANGER\") &&\n!contains(value, index - 1, 1, \"E\", \"I\") && \n!contains(value, index - 1, 3, \"RGY\", \"OGY\")) {\n//-- -ger-, -gy- --//\nresult.append('K', 'J');\nindex += 2;\n} else if (contains(value, index + 1, 1, \"E\"",
+        "value, index + 1) == 'H') {\nindex = handleGH(value, result, index);\n} else if (charAt(value, index + 1) == 'N') {\nif (index == 1 && isVowel(charAt(value, 0)) && !slavoGermanic) {\nresult.append(\"KN\", \"N\");\n} else if (!contains(value, index + 2, 2, \"EY",
+        "manic) {\nresult.append(\"N\", \"KN\");\n} else {\nresult.append(\"KN\");\n}\nindex = index + 2;\n} else if (contains(value, index + 1, 2, \"LI\") && !slavoGermanic) {\nresult.append(\"KL\", \"L\");\nindex += 2;\n} else i",
+        "_IL_IN_IE_EI_ER))) {\n//-- -ges-, -gep-, -gel-, -gie- at beginning --//\nresult.append('K', 'J');\nindex += 2;\n} else if ((contains(value, index + 1, 2, ",
+        "ains(value, index - 1, 3, \"RGY\", \"OGY\")) {\n//-- -ger-, -gy- --//\nresult.append('K', 'J');\nindex += 2;\n} else if (contains(value, index + 1, 1, \"E\", \"I",
+        " (charAt(value, index + 1) == 'Y' || contains(value, index + 1, 2, ES_EP_EB_EL_EY_IB_IL_IN_IE_EI_ER)",
+        "oubleMetaphoneResult result, \nint index, \nboolean ",
+        "x, \nboolean slavoGermanic) {\nif (charAt(value, ind",
+        "boolean slavoGermanic) {\nif (charAt(value, index +",
+        "oolean slavoGermanic) {\nif (charAt(value, index + ",
+        " 1 && isVowel(charAt(value, 0)) && !slavoGermanic)",
+        "ntains(value, index + 1, 2, ES_EP_EB_EL_EY_IB_IL_I",
+        "(value, index + 1, 2, ES_EP_EB_EL_EY_IB_IL_IN_IE_E",
+        ", index + 1, 2, ES_EP_EB_EL_EY_IB_IL_IN_IE_EI_ER))",
+        "/-- -ges-, -gep-, -gel-, -gie- at beginning --//\nr",
+        "es-, -gep-, -gel-, -gie- at beginning --//\nresult.",
+        "At(value, index + 1) == 'Y') &&\n!contains(value, 0",
+        "ains(value, 0, 6, \"DANGER\", \"RANGER\", \"MANGER\") &&"
+    ]
+}

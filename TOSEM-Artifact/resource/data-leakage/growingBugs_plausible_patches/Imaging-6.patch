@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+index b77dfa33..9a4df330 100644
+--- a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
++++ b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+@@ -316,7 +316,6 @@ public class PnmImageParser extends ImageParser {
+         }
+     }
+ 
+-    @Override
+     public void writeImage(final BufferedImage src, final OutputStream os, Map<String, Object> params)
+             throws ImageWriteException, IOException {
+         PnmWriter writer = null;
+@@ -329,6 +328,8 @@ public class PnmImageParser extends ImageParser {
+                 if (useRawbitsParam.equals(PARAM_VALUE_PNM_RAWBITS_NO)) {
+                     useRawbits = false;
+                 }
++                // Remove the rawbits key after use
++                params.remove(PARAM_KEY_PNM_RAWBITS);
+             }
+ 
+             final Object subtype = params.get(PARAM_KEY_FORMAT);
+@@ -365,15 +366,13 @@ public class PnmImageParser extends ImageParser {
+             params.remove(PARAM_KEY_FORMAT);
+         }
+ 
+-        // clear rawbits key.
+-        
+         if (!params.isEmpty()) {
+             final Object firstKey = params.keySet().iterator().next();
+             throw new ImageWriteException("Unknown parameter: " + firstKey);
+         }
+ 
+         writer.writeImage(src, os, params);
+-    }
++    } 
+ 
+     /**
+      * Extracts embedded XML metadata as XML string.

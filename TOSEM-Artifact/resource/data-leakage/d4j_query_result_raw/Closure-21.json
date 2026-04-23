@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6191709844559585,
+    "input": "public void visit(NodeTraversal t, Node n, Node parent) {\n  // VOID nodes appear when there are extra semicolons at the BLOCK level.\n  // I've been unable to think of any cases where this indicates a bug,\n  // and apparently some people like keeping these semicolons around,\n  // so we'll allow it.\n  if (n.isEmpty() ||\n      n.isComma()) {\n    return;\n  }\n\n  if (parent == null) {\n    return;\n  }\n\n  // Do not try to remove a block or an expr result. We already handle\n  // these cases when we visit the child, and the peephole passes will\n  // fix up the tree in more clever ways when these are removed.\n  if (n.isExprResult() || n.isBlock()) {\n    return;\n  }\n\n  // This no-op statement was there so that JSDoc information could\n  // be attached to the name. This check should not complain about it.\n  if (n.isQualifiedName() && n.getJSDocInfo() != null) {\n    return;\n  }\n\n  boolean isResultUsed = NodeUtil.isExpressionResultUsed(n);\n  boolean isSimpleOp = NodeUtil.isSimpleOperatorType(n.getType());\n  if (!isResultUsed &&\n      (isSimpleOp || !NodeUtil.mayHaveSideEffects(n, t.getCompiler()))) {\n    String msg = \"This code lacks side-effects. Is there a bug?\";\n    if (n.isString()) {\n      msg = \"Is there a missing '+' on the previous line?\";\n    } else if (isSimpleOp) {\n      msg = \"The result of the '\" + Token.name(n.getType()).toLowerCase() +\n          \"' operator is not being used.\";\n    }\n\n    t.getCompiler().report(\n        t.makeError(n, level, USELESS_CODE_ERROR, msg));\n    // T",
+    "query_result": [
+        "ode parent) {\n// VOID nodes appear when there are extra semicolons at the BLOCK level.\n// I've been unable to think of any cases where this indicates a bug,\n// and apparently some people like keeping these semicolons around,\n// so we'll allow it.\nif ",
+        "\nboolean isResultUsed = NodeUtil.isExpressionResultUsed(n);\nboolean isSimpleOp = NodeUtil.isSimpleOperatorType(n.getType());\nif (!isResultUsed &&\n(isSimpleOp || !NodeUtil.mayHaveSideEffects(n, t.getCompiler()))) {\nString msg = \"This code lacks side-e",
+        "NodeUtil.isExpressionResultUsed(n);\nboolean isSimpleOp = NodeUtil.isSimpleOperatorType(n.getType());\nif (!isResultUsed &&\n(isSimpleOp || !NodeUtil.mayHaveSideEffects(n, t.getCompiler()))) {\nString msg = \"This code lacks side-effects. Is there a bug?\"",
+        "// Do not try to remove a block or an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in more clever ways when these are removed.",
+        "olean isResultUsed = NodeUtil.isExpressionResultUsed(n);\nboolean isSimpleOp = NodeUtil.isSimpleOperatorType(n.getType());\nif (!isResultUsed &&\n(isSimpleOp || !NodeUtil.mayHaveSideEffects(n, t.getCompi",
+        "ot try to remove a block or an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree ",
+        "try to remove a block or an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in ",
+        "ry to remove a block or an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in m",
+        "lock or an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in more clever ways ",
+        " or an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in more clever ways when",
+        " an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in more clever ways when th",
+        "an expr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in more clever ways when the",
+        "pr result. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in more clever ways when these ar",
+        "sult. We already handle\n// these cases when we visit the child, and the peephole passes will\n// fix up the tree in more clever ways when these are rem",
+        "d = NodeUtil.isExpressionResultUsed(n);\nboolean isSimpleOp = NodeUtil.isSimpleOperatorType(n.getType());\nif (!isResultUsed &&\n(isSimpleOp || !NodeUtil",
+        "eUtil.isExpressionResultUsed(n);\nboolean isSimpleOp = NodeUtil.isSimpleOperatorType(n.getType());\nif (!isResultUsed &&\n(isSimpleOp || !NodeUtil.mayHav",
+        " This no-op statement was there so that JSDoc information could\n// be attached to the name. This che",
+        "is no-op statement was there so that JSDoc information could\n// be attached to the name. This check ",
+        "there so that JSDoc information could\n// be attached to the name. This check should not complain abo",
+        "re so that JSDoc information could\n// be attached to the name. This check should not complain about "
+    ]
+}

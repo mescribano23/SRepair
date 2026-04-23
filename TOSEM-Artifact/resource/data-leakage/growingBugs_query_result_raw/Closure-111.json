@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.4107142857142857,
+    "input": "        @Override\n        protected JSType caseTopType(JSType topType) {\n          return topType.isAllType() ?\n              getNativeType(ARRAY_TYPE) : topType;\n        }",
+    "query_result": [
+        "Override\nprotected JSType caseTopType(JSType topTy"
+    ]
+}

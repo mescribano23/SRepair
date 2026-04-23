@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public final T like(Column column) {\n        _column.setColumnSize(column.getColumnSize());\n        _column.setNativeType(column.getNativeType());\n        _column.setType(column.getType());\n        _column.setNullable(column.isNullable());\n        _column.setPrimaryKey(column.isPrimaryKey());\n        return getReturnObject();\n    }",
+    "query_result": []
+}

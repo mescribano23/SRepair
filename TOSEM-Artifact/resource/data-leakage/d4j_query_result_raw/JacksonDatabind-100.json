@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.18244803695150116,
+    "input": "public byte[] getBinaryValue(Base64Variant b64variant)\n    throws IOException, JsonParseException\n{\n    // Multiple possibilities...\n    JsonNode n = currentNode();\n    if (n != null) {\n        // [databind#2096]: although `binaryValue()` works for real binary node\n        // and embedded \"POJO\" node, coercion from TextNode may require variant, so:\n        if (n instanceof TextNode) {\n            return ((TextNode) n).getBinaryValue(b64variant);\n        }\n        return n.binaryValue();\n    }\n    // otherwise return null to mark we have no binary content\n    return null;\n}",
+    "query_result": [
+        "te[] getBinaryValue(Base64Variant b64variant)\nthro",
+        "etBinaryValue(Base64Variant b64variant)\nthrows IOE",
+        "aryValue(Base64Variant b64variant)\nthrows IOExcept",
+        "4Variant b64variant)\nthrows IOException, JsonParse",
+        "b64variant)\nthrows IOException, JsonParseException"
+    ]
+}

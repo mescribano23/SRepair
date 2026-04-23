@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9228998849252014,
+    "input": "    public double chiSquare(double[] expected, long[] observed)\n        throws IllegalArgumentException {\n        if ((expected.length < 2) || (expected.length != observed.length)) {\n            throw new IllegalArgumentException(\n                    \"observed, expected array lengths incorrect\");\n        }\n        if (!isPositive(expected) || !isNonNegative(observed)) {\n            throw new IllegalArgumentException(\n                \"observed counts must be non-negative and expected counts must be postive\");\n        }\n        double sumExpected = 0d;\n        double sumObserved = 0d;\n        for (int i = 0; i < observed.length; i++) {\n            sumExpected += expected[i];\n            sumObserved += observed[i];\n        }\n        double ratio = 1.0d;\n        boolean rescale = false;\n        if (Math.abs(sumExpected - sumObserved) > 10E-6) {\n            ratio = sumObserved / sumExpected;\n            rescale = true;\n        }\n        double sumSq = 0.0d;\n        double dev = 0.0d;\n        for (int i = 0; i < observed.length; i++) {\n            if (rescale) {\n                dev = ((double) observed[i] - ratio * expected[i]);\n                sumSq += dev * dev / (ratio * expected[i]);\n            } else {\n                dev = ((double) observed[i] - expected[i]);\n                sumSq += dev * dev / expected[i];\n            }\n        }\n        return sumSq;\n    }",
+    "query_result": [
+        "s must be non-negative and expected counts must be postive\");\n}\ndouble sumExpected = 0d;\ndouble sumObserved = 0d;\nfor (int i = 0; i < observed.length; i++) {\nsumExpected += expected[i];\nsumObserved += observed[i];\n}\ndouble ratio = 1.0d;\nboolean rescale = false;\nif (Math.abs(sumExpected - sumObserved) > 10E-6) {\nratio = sumObserved / sumExpected;\nrescale = true;\n}\ndouble sumSq = 0.0d;\ndouble dev = 0.0d;\nfor (int i = 0; i < observed.length; i++) {\nif (rescale) {\ndev = ((double) observed[i] - ratio * expected[i]);\nsumSq += dev * dev / (ratio * expected[i]);\n} else {\ndev = ((double) observed[i] - expected[i]);\nsumSq += dev * dev / expected[i];\n}\n",
+        "le sumObserved = 0d;\nfor (int i = 0; i < observed.length; i++) {\nsumExpected += expected[i];\nsumObserved += observed[i];\n}\ndouble ratio = 1.0d;\nboolean rescale = false;\nif (Math.abs(sumExpected - sumObserved) > 10E-6) {\nratio = sumObserved / sumExpec",
+        "0d;\ndouble sumObserved = 0d;\nfor (int i = 0; i < observed.length; i++) {\nsumExpected += expected[i];\nsumObserved += observed[i];\n}\ndouble ratio = 1.0d",
+        ";\nfor (int i = 0; i < observed.length; i++) {\nsumExpected += expected[i];\nsumObserved += observed[i];\n}\ndouble ratio = 1.0d;\nboolean rescale = false;\n",
+        "((expected.length < 2) || (expected.length != observed.length)) {\nthrow new IllegalArgumentException",
+        "length != observed.length)) {\nthrow new IllegalArgumentException(\n\"observed, expected array lengths ",
+        "ved, expected array lengths incorrect\");\n}\nif (!isPositive(expected) || !isNonNegative(observed)) {\n",
+        " = false;\nif (Math.abs(sumExpected - sumObserved) > 10E-6) {\nratio = sumObserved / sumExpected;\nresc",
+        "ected - sumObserved) > 10E-6) {\nratio = sumObserved / sumExpected;\nrescale = true;\n}\ndouble sumSq = ",
+        "c double chiSquare(double[] expected, long[] obser",
+        "ble[] expected, long[] observed)\nthrows IllegalArg",
+        "expected, long[] observed)\nthrows IllegalArgumentE",
+        "ted.length < 2) || (expected.length != observed.le",
+        "erved counts must be non-negative and expected cou",
+        "e sumObserved = 0d;\nfor (int i = 0; i < observed.l",
+        "nt i = 0; i < observed.length; i++) {\nsumExpected ",
+        "d.length; i++) {\nsumExpected += expected[i];\nsumOb",
+        " {\nsumExpected += expected[i];\nsumObserved += obse",
+        "xpected[i];\nsumObserved += observed[i];\n}\ndouble r",
+        "];\n}\ndouble ratio = 1.0d;\nboolean rescale = false;"
+    ]
+}

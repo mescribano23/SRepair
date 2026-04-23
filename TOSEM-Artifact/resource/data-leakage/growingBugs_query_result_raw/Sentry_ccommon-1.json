@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5604113110539846,
+    "input": "  @Override\n  public boolean equals(Object obj) {\n    if (this == obj) {\n      return true;\n    }\n    if (obj == null) {\n      return false;\n    }\n    if (getClass() != obj.getClass()) {\n      return false;\n    }\n    KeyValue other = (KeyValue) obj;\n    if (key == null) {\n      if (other.key != null) {\n        return false;\n      }\n    } else if (!key.equalsIgnoreCase(other.key)) {\n      return false;\n    }\n    if (value == null) {\n      if (other.value != null) {\n        return false;\n      }\n    } else if (!value.equalsIgnoreCase(other.value)) {\n      return false;\n    }\n    return true;\n  }",
+    "query_result": [
+        " boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn false;\n}\nKeyValue other = (KeyValue) obj;\nif (key == null) {\nif (other.key != null) {\nreturn false;\n}\n} else",
+        "oolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn false;\n}\nKeyValue other = (KeyValue) obj;\nif (key == null) {\nif (other.key != null) {\nreturn false;\n}\n} else i",
+        "@Override\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {",
+        "Override\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\n",
+        "verride\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nr",
+        "erride\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nre",
+        "rride\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nret",
+        "ride\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nretu",
+        "ide\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nretur",
+        "de\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn",
+        "e\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn ",
+        "\npublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn f",
+        "public boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn fa",
+        "ublic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn fal",
+        "blic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn fals",
+        "lic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn false",
+        "ic boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn false;",
+        "c boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn false;\n",
+        "boolean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn false;\n}\n",
+        "olean equals(Object obj) {\nif (this == obj) {\nreturn true;\n}\nif (obj == null) {\nreturn false;\n}\nif (getClass() != obj.getClass()) {\nreturn false;\n}\nKe"
+    ]
+}

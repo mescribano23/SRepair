@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.2822966507177033,
+    "input": "@Override\n    public synchronized void parse(Reader reader, String baseURI)\n            throws IOException, RDFParseException, RDFHandlerException {\n        clear();\n\n        try {\n            if (reader == null) {\n                throw new IllegalArgumentException(\"Reader must not be 'null'\");\n            }\n            if (baseURI == null) {\n                throw new IllegalArgumentException(\"base URI must not be 'null'\");\n            }\n\n            if (rdfHandler != null) {\n                rdfHandler.startRDF();\n            }\n\n            // Start counting lines at 1:\n            lineNumber = 1;\n\n            // Allow at most 8 characters to be pushed back:\n            this.reader = new PushbackReader(reader, 10);\n\n            // Store normalized base URI\n            setBaseURI(baseURI);\n\n            reportLocation();\n\n            int c = skipWSC();\n\n            while (c != -1) {\n                parseStatement();\n                c = skipWSC();\n            }\n        } finally {\n            clear();\n        }\n\n        if (rdfHandler != null) {\n            rdfHandler.endRDF();\n        }\n    }",
+    "query_result": [
+        "ride\npublic synchronized void parse(Reader reader, String baseURI)\nthrows IOException, RDFParseException, RDFHandlerException {\nclear();\ntry {\nif (reader == null) {\nthrow new IllegalArgumentException(",
+        "blic synchronized void parse(Reader reader, String baseURI)\nthrows IOException, RDFParseException, R",
+        "synchronized void parse(Reader reader, String baseURI)\nthrows IOException, RDFParseException, RDFHan",
+        "ader, String baseURI)\nthrows IOException, RDFParse",
+        "ing baseURI)\nthrows IOException, RDFParseException",
+        ")\nthrows IOException, RDFParseException, RDFHandle",
+        "\nthrows IOException, RDFParseException, RDFHandler",
+        "throws IOException, RDFParseException, RDFHandlerE",
+        "hrows IOException, RDFParseException, RDFHandlerEx",
+        "rows IOException, RDFParseException, RDFHandlerExc",
+        "ows IOException, RDFParseException, RDFHandlerExce",
+        "ws IOException, RDFParseException, RDFHandlerExcep",
+        "s IOException, RDFParseException, RDFHandlerExcept",
+        " IOException, RDFParseException, RDFHandlerExcepti",
+        "IOException, RDFParseException, RDFHandlerExceptio",
+        "OException, RDFParseException, RDFHandlerException",
+        "Exception, RDFParseException, RDFHandlerException ",
+        "xception, RDFParseException, RDFHandlerException {",
+        "ception, RDFParseException, RDFHandlerException {\n",
+        " {\nif (reader == null) {\nthrow new IllegalArgument"
+    ]
+}

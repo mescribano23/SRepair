@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4184566428003182,
+    "input": "    @Override\n    @NotNull(message = \"org is never NULL\")\n    public Organization get(\n        @NotNull(message = \"login is never NULl\") final String login\n    ) {\n        try {\n            this.storage.apply(\n                new Directives().xpath(\n                    String.format(\"/github/orgs[not(org[login='%s'])]\", login)\n                ).add(\"org\").add(\"login\").set(login)\n            );\n        } catch (final IOException ex) {\n            throw new IllegalStateException(ex);\n        }\n        // @checkstyle AnonInnerLength (50 lines)\n        return new Organization() {\n            @Override\n            public Github github() {\n                return new MkGithub(MkOrganizations.this.storage, login);\n            }\n            @Override\n            public String login() {\n                return login;\n            }\n            @Override\n            public JsonObject json() {\n                return Json.createObjectBuilder()\n                    .add(\"login\", login)\n                    .add(\"id\", Integer.toString(RAND.nextInt()))\n                    .add(\"name\", \"github\")\n                    .add(\"company\", \"GitHub\")\n                    .add(\"blog\", \"https://github.com/blog\")\n                    .add(\"location\", \"San Francisco\")\n                    .add(\"email\", \"octocat@github.com\")\n                    .add(\"public_repos\", MkOrganizations.RAND.nextInt())\n                    .add(\"public_gists\", MkOrganizations.RAND.nextInt())\n                    .add(\"total_private_repos\", MkOrganizations.RAND.nextInt())\n                    .add(\"owned_private_repos\", MkOrganizations.RAND.nextInt())\n                    .add(\"followers\", MkOrganizations.RAND.nextInt())\n                    .add(\"following\", MkOrganizations.RAND.nextInt())\n                    .add(\"url\", \"https://github.com/orgs/cat\")\n                    .add(\"repos_url\", \"https://github.com/orgs/cat/repos\")\n                    .add(\"events_url\", \"https://github.com/orgs/cat/events\")\n                    .add(\"html_",
+    "query_result": [
+        "eger.toString(RAND.nextInt()))\n.add(\"name\", \"github\")\n.add(\"company\", \"GitHub\")\n.add(\"blog\", \"https://github.com/blog\")\n.add(\"location\", \"San Francisc",
+        "xtInt())\n.add(\"url\", \"https://github.com/orgs/cat\")\n.add(\"repos_url\", \"https://github.com/orgs/cat/repos\")\n.add(\"events_url\", \"https://github.com/orgs",
+        "ption ex) {\nthrow new IllegalStateException(ex);\n}\n// @checkstyle AnonInnerLength (50 lines)\nreturn ",
+        "tion ex) {\nthrow new IllegalStateException(ex);\n}\n// @checkstyle AnonInnerLength (50 lines)\nreturn n",
+        "lic String login() {\nreturn login;\n}\n@Override\npublic JsonObject json() {\nreturn Json.createObjectBu",
+        "{\nthis.storage.apply(\nnew Directives().xpath(\nStri",
+        ");\n} catch (final IOException ex) {\nthrow new Ille",
+        ";\n} catch (final IOException ex) {\nthrow new Illeg",
+        "\n} catch (final IOException ex) {\nthrow new Illega",
+        "} catch (final IOException ex) {\nthrow new Illegal",
+        " catch (final IOException ex) {\nthrow new IllegalS",
+        "catch (final IOException ex) {\nthrow new IllegalSt",
+        "atch (final IOException ex) {\nthrow new IllegalSta",
+        "tch (final IOException ex) {\nthrow new IllegalStat",
+        "ch (final IOException ex) {\nthrow new IllegalState",
+        "h (final IOException ex) {\nthrow new IllegalStateE",
+        " (final IOException ex) {\nthrow new IllegalStateEx",
+        "(final IOException ex) {\nthrow new IllegalStateExc",
+        "final IOException ex) {\nthrow new IllegalStateExce",
+        "inal IOException ex) {\nthrow new IllegalStateExcep"
+    ]
+}

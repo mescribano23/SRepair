@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.28732394366197184,
+    "input": "    @Override\n    public void receiveResponseEntity( final ClassicHttpResponse response) throws HttpException, IOException {\n        Args.notNull(response, \"HTTP response\");\n        final SocketHolder socketHolder = ensureOpen();\n        final long len = this.incomingContentStrategy.determineLength(response);\n        response.setEntity(createIncomingEntity(response, this.inBuffer, socketHolder.getInputStream(), len));\n    }",
+    "query_result": [
+        "inal ClassicHttpResponse response) throws HttpException, IOException {\nArgs.notNull(response, \"HTTP ",
+        "lassicHttpResponse response) throws HttpException, IOException {\nArgs.notNull(response, \"HTTP respon",
+        "HttpResponse response) throws HttpException, IOException {\nArgs.notNull(response, \"HTTP response\");\n",
+        "ClassicHttpResponse response) throws HttpException",
+        "ttpResponse response) throws HttpException, IOExce",
+        "tpResponse response) throws HttpException, IOExcep",
+        "pResponse response) throws HttpException, IOExcept",
+        "Response response) throws HttpException, IOExcepti",
+        "esponse response) throws HttpException, IOExceptio",
+        "sponse response) throws HttpException, IOException",
+        "ponse response) throws HttpException, IOException ",
+        "onse response) throws HttpException, IOException {",
+        "nse response) throws HttpException, IOException {\n",
+        "ponse) throws HttpException, IOException {\nArgs.no",
+        "se) throws HttpException, IOException {\nArgs.notNu",
+        ") throws HttpException, IOException {\nArgs.notNull",
+        " throws HttpException, IOException {\nArgs.notNull(",
+        "hrows HttpException, IOException {\nArgs.notNull(re",
+        "ows HttpException, IOException {\nArgs.notNull(resp",
+        "ttpException, IOException {\nArgs.notNull(response,"
+    ]
+}

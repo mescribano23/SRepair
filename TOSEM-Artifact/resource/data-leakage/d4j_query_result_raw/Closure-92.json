@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.46075085324232085,
+    "input": "void replace() {\n  if (firstNode == null) {\n    // Don't touch the base case ('goog').\n    replacementNode = candidateDefinition;\n    return;\n  }\n\n  // Handle the case where there is a duplicate definition for an explicitly\n  // provided symbol.\n  if (candidateDefinition != null && explicitNode != null) {\n    explicitNode.detachFromParent();\n    compiler.reportCodeChange();\n\n    // Does this need a VAR keyword?\n    replacementNode = candidateDefinition;\n    if (NodeUtil.isExpressionNode(candidateDefinition)) {\n      candidateDefinition.putBooleanProp(Node.IS_NAMESPACE, true);\n      Node assignNode = candidateDefinition.getFirstChild();\n      Node nameNode = assignNode.getFirstChild();\n      if (nameNode.getType() == Token.NAME) {\n        // Need to convert this assign to a var declaration.\n        Node valueNode = nameNode.getNext();\n        assignNode.removeChild(nameNode);\n        assignNode.removeChild(valueNode);\n        nameNode.addChildToFront(valueNode);\n        Node varNode = new Node(Token.VAR, nameNode);\n        varNode.copyInformationFrom(candidateDefinition);\n        candidateDefinition.getParent().replaceChild(\n            candidateDefinition, varNode);\n        nameNode.setJSDocInfo(assignNode.getJSDocInfo());\n        compiler.reportCodeChange();\n        replacementNode = varNode;\n      }\n    }\n  } else {\n    // Handle the case where there's not a duplicate definition.\n    replacementNode = createDeclarationNode();\n    if (firstModule == minimumModule) {\n      fi",
+    "query_result": [
+        "getFirstChild();\nNode nameNode = assignNode.getFirstChild();\nif (nameNode.getType() == Token.NAME) {\n// Need to convert this assign to a var declaration.\nNode valueNode = nameNode.getNext();\nassignNode.removeChild(nameNode);\nassignNode.removeChild(valueNode);\nnameNode.addChildToFront(valueNode);\nNod",
+        " {\n// Don't touch the base case ('goog').\nreplacementNode = candidateDefinition;\nreturn;\n}\n// Handle the case where there is a duplicate definition fo",
+        ".detachFromParent();\ncompiler.reportCodeChange();\n",
+        "this need a VAR keyword?\nreplacementNode = candida",
+        "didateDefinition.putBooleanProp(Node.IS_NAMESPACE,"
+    ]
+}

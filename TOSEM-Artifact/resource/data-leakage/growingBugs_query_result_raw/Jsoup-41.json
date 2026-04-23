@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8737373737373737,
+    "input": "    @Override\n    public boolean equals(Object o) {\n        if (this == o) return true;\n        if (o == null || getClass() != o.getClass()) return false;\n        if (!super.equals(o)) return false;\n\n        Element element = (Element) o;\n\n        return tag.equals(element.tag);\n    }",
+    "query_result": [
+        "@Override\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\nElement element = (Element) o;\nre",
+        "Override\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\nElement element = (Element) o;\nret",
+        "verride\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\nElement element = (Element) o;\nretu",
+        "erride\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\nElement element = (Element) o;\nretur",
+        "ride\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\nElement element = (Element) o;\nreturn ",
+        "rride\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) r",
+        "ide\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) ret",
+        "de\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) retu",
+        "e\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) retur",
+        "\npublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return",
+        "public boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return ",
+        "ublic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return f",
+        "blic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return fa",
+        "lic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return fal",
+        "ic boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return fals",
+        "c boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false",
+        " boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;",
+        "boolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\n",
+        "oolean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\nE",
+        "olean equals(Object o) {\nif (this == o) return true;\nif (o == null || getClass() != o.getClass()) return false;\nif (!super.equals(o)) return false;\nEl"
+    ]
+}

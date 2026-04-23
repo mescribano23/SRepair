@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.5921052631578947,
+    "input": "  JimfsPath resolve(Name name) {\n    return resolve(pathService.createFileName(name));\n  }",
+    "query_result": [
+        "fsPath resolve(Name name) {\nreturn resolve(pathSer"
+    ]
+}

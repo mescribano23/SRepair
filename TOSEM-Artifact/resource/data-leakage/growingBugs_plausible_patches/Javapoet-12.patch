@@ -1,0 +1,35 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 5ebc71d..8d304b0 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -441,22 +441,23 @@ public class JavaWriter implements Closeable {
+   }
+ 
+   /** Emits some Javadoc comments with line separated by {@code \n}. */
+-  public JavaWriter emitJavadoc(String javadoc, Object... params) throws IOException {
++public JavaWriter emitJavadoc(String javadoc, Object... params) throws IOException {
+     String formatted = String.format(javadoc, params);
+ 
+     indent();
+     out.write("/**\n");
+     for (String line : formatted.split("\n")) {
+-      indent();
+-      {out.write(" * ");
+-        out.write(line);
+-      }
+-      out.write("\n");
++        indent();
++        out.write(" *");
++        if (!line.isEmpty()) {
++            out.write(" " + line);
++        }
++        out.write("\n");
+     }
+     indent();
+     out.write(" */\n");
+     return this;
+-  }
++}
+ 
+   /** Emits a single line comment. */
+   public JavaWriter emitSingleLineComment(String comment, Object... args) throws IOException {

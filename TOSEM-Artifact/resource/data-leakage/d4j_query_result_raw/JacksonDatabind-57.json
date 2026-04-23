@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.7244582043343654,
+    "input": "public <T> MappingIterator<T> readValues(byte[] src, int offset, int length)\n    throws IOException, JsonProcessingException\n{\n    if (_dataFormatReaders != null) {\n        return _detectBindAndReadValues(_dataFormatReaders.findFormat(src, offset, length), false);\n    }\n    return _bindAndReadValues(_considerFilter(_parserFactory.createParser(src, offset, length),\n            true));\n}",
+    "query_result": [
+        "T> readValues(byte[] src, int offset, int length)\nthrows IOException, JsonProcessingException\n{\nif (_dataFormatReaders != null) {\nreturn _detectBindAn",
+        " MappingIterator<T> readValues(byte[] src, int off",
+        "terator<T> readValues(byte[] src, int offset, int ",
+        "byte[] src, int offset, int length)\nthrows IOExcep",
+        "e[] src, int offset, int length)\nthrows IOExceptio",
+        "[] src, int offset, int length)\nthrows IOException",
+        ")\nthrows IOException, JsonProcessingException\n{\nif",
+        "\nthrows IOException, JsonProcessingException\n{\nif ",
+        "rows IOException, JsonProcessingException\n{\nif (_d",
+        "nProcessingException\n{\nif (_dataFormatReaders != n",
+        "ProcessingException\n{\nif (_dataFormatReaders != nu",
+        "aFormatReaders != null) {\nreturn _detectBindAndRea",
+        "n _detectBindAndReadValues(_dataFormatReaders.find",
+        "), false);\n}\nreturn _bindAndReadValues(_considerFi",
+        " false);\n}\nreturn _bindAndReadValues(_considerFilt",
+        "alse);\n}\nreturn _bindAndReadValues(_considerFilter"
+    ]
+}

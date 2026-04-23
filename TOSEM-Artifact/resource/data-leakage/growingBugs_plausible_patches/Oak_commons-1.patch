@@ -1,0 +1,47 @@
+diff --git a/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java b/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java
+index 6e68cb07ba..5b0cfd7685 100644
+--- a/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java
++++ b/oak-commons/src/main/java/org/apache/jackrabbit/oak/commons/PathUtils.java
+@@ -182,24 +182,28 @@ public final class PathUtils {
+      * @param path the path
+      * @return the number of elements
+      */
+-    public static int getDepth(String path) {
+-        assert isValid(path);
++public static int getDepth(String path) {
++    assert isValid(path);
+ 
+-        int count = 1, i = 0;
+-        if (isAbsolutePath(path)) {
+-            if (denotesRootPath(path)) {
+-                return 0;
+-            }
+-            i++;
++    if (path.isEmpty()) {
++        return 0;
++    }
++
++    int count = 1, i = 0;
++    if (isAbsolutePath(path)) {
++        if (denotesRootPath(path)) {
++            return 0;
+         }
+-        while (true) {
+-            i = path.indexOf('/', i) + 1;
+-            if (i == 0) {
+-                return count;
+-            }
+-            count++;
++        i++;
++    }
++    while (true) {
++        i = path.indexOf('/', i) + 1;
++        if (i == 0) {
++            return count;
+         }
++        count++;
+     }
++}
+ 
+     /**
+      * Returns an {@code Iterable} for the path elements. The root path ("/") and the

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.25477707006369427,
+    "input": "private Properties findClientProperties(final Hashtable<?, ?> env) throws ConfigurationException {\n        final Properties properties = new Properties();\n\n        // First load the props file if it exists\n        findAndPopulateClientProperties(properties);\n\n        // Now override with naming env entries\n        for (Map.Entry<?, ?> entry : env.entrySet()) {\n            if (entry.getKey() instanceof String && entry.getValue() instanceof String) {\n                properties.setProperty((String) entry.getKey(), (String) entry.getValue());\n            }\n            if (entry.getKey() instanceof String &&\n                    (entry.getValue() instanceof Integer || entry.getValue() instanceof Long)) {\n                properties.setProperty((String) entry.getKey(), String.valueOf(entry.getValue()));\n            }\n        }\n\n        return properties;\n    }",
+    "query_result": [
+        "env entries\nfor (Map.Entry<?, ?> entry : env.entrySet()) {\nif (entry.getKey() instanceof String && e",
+        ") throws ConfigurationException {\nfinal Properties",
+        " throws ConfigurationException {\nfinal Properties ",
+        "throws ConfigurationException {\nfinal Properties p",
+        "rows ConfigurationException {\nfinal Properties pro",
+        "ows ConfigurationException {\nfinal Properties prop",
+        "nException {\nfinal Properties properties = new Pro",
+        "Exception {\nfinal Properties properties = new Prop",
+        "xception {\nfinal Properties properties = new Prope",
+        "ception {\nfinal Properties properties = new Proper",
+        "eption {\nfinal Properties properties = new Propert",
+        "ption {\nfinal Properties properties = new Properti",
+        "tion {\nfinal Properties properties = new Propertie",
+        "ion {\nfinal Properties properties = new Properties",
+        "on {\nfinal Properties properties = new Properties(",
+        "n {\nfinal Properties properties = new Properties()",
+        " {\nfinal Properties properties = new Properties();",
+        "{\nfinal Properties properties = new Properties();\n",
+        "\nfinal Properties properties = new Properties();\n/",
+        "final Properties properties = new Properties();\n//"
+    ]
+}

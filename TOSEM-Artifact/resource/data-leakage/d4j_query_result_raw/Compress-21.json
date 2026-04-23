@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.7961538461538461,
+    "input": "private void writeBits(final DataOutput header, final BitSet bits, final int length) throws IOException {\n    int cache = 0;\n    int shift = 7;\n    for (int i = 0; i < length; i++) {\n        cache |= ((bits.get(i) ? 1 : 0) << shift);\n        if (--shift < 0) {\n            header.write(cache);\n            shift = 7;\n            cache = 0;\n        }\n    }\n    if (shift != 7) {\n        header.write(cache);\n    }\n}",
+    "query_result": [
+        "id writeBits(final DataOutput header, final BitSet bits, final int length) throws IOException {\nint cache = 0;\nint shift = 7;\nfor (int i = 0; i < leng",
+        ";\nif (--shift < 0) {\nheader.write(cache);\nshift = 7;\ncache = 0;\n}\n}\nif (shift != 7) {\nheader.write(c",
+        "inal DataOutput header, final BitSet bits, final i",
+        "= 0;\nint shift = 7;\nfor (int i = 0; i < length; i+"
+    ]
+}

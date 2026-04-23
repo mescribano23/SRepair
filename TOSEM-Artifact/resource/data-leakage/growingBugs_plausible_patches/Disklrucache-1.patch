@@ -1,0 +1,34 @@
+diff --git a/src/main/java/com/jakewharton/DiskLruCache.java b/src/main/java/com/jakewharton/DiskLruCache.java
+index 6e6367f..23d22b9 100644
+--- a/src/main/java/com/jakewharton/DiskLruCache.java
++++ b/src/main/java/com/jakewharton/DiskLruCache.java
+@@ -788,17 +788,19 @@ public final class DiskLruCache implements Closeable {
+          * {@link #commit} is called. The returned output stream does not throw
+          * IOExceptions.
+          */
+-        public OutputStream newOutputStream(int index) throws IOException {
+-            synchronized (DiskLruCache.this) {
+-                if (entry.currentEditor != this) {
+-                    throw new IllegalStateException();
+-                }
+-                //Try twice to get the file. If we get a FNF make a quick effort
+-                //to recreate the directory in which the cache should exist.
+-                //See: https://github.com/JakeWharton/DiskLruCache/issues/2
+-                return new FaultHidingOutputStream(new FileOutputStream(entry.getDirtyFile(index)));
+-            }
++public OutputStream newOutputStream(int index) throws IOException {
++    synchronized (DiskLruCache.this) {
++        if (entry.currentEditor != this) {
++            throw new IllegalStateException();
++        }
++        File dirtyFile = entry.getDirtyFile(index);
++        File parentDir = dirtyFile.getParentFile();
++        if (!parentDir.exists()) {
++            parentDir.mkdirs();  // Create directories if they do not exist
+         }
++        return new FaultHidingOutputStream(new FileOutputStream(dirtyFile));
++    }
++}
+ 
+         /**
+          * Sets the value at {@code index} to {@code value}.

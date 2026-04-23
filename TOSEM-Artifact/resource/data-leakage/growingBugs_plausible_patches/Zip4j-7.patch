@@ -1,0 +1,78 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index edcf8e1..ff83423 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -59,41 +59,47 @@ public class HeaderReader {
+   private RawIO rawIO = new RawIO();
+   private byte[] intBuff = new byte[4];
+ 
+-  public ZipModel readAllHeaders(RandomAccessFile zip4jRaf, Charset charset) throws IOException {
+ 
+-    if (zip4jRaf.length() < ENDHDR) {
+-      throw new ZipException("Zip file size less than minimum expected zip file size. " +
+-          "Probably not a zip file or a corrupted zip file");
+-    }
++public ZipModel readAllHeaders(RandomAccessFile zip4jRaf, Charset charset) throws IOException {
+ 
+-    zipModel = new ZipModel();
++  if (zip4jRaf.length() < ENDHDR) {
++    throw new ZipException("Zip file size less than minimum expected zip file size. " +
++        "Probably not a zip file or a corrupted zip file");
++  }
+ 
+-    try {
+-      zipModel.setEndOfCentralDirectoryRecord(readEndOfCentralDirectoryRecord(zip4jRaf, rawIO, charset));
+-    } catch (ZipException e){
+-      throw e;
+-    } catch (IOException e) {
+-      throw new ZipException("Zip headers not found. Probably not a zip file or a corrupted zip file", e);
+-    }
++  zipModel = new ZipModel();
+ 
++  // Additional check for empty ZIP file
++  if (zip4jRaf.length() == ENDHDR) {
++    // It's an empty zip file, we can safely return the empty zipModel
++    return zipModel;
++  }
+ 
+-    // If file is Zip64 format, Zip64 headers have to be read before reading central directory
+-    zipModel.setZip64EndOfCentralDirectoryLocator(readZip64EndOfCentralDirectoryLocator(zip4jRaf, rawIO));
++  try {
++    zipModel.setEndOfCentralDirectoryRecord(readEndOfCentralDirectoryRecord(zip4jRaf, rawIO, charset));
++  } catch (ZipException e){
++    throw e;
++  } catch (IOException e) {
++    throw new ZipException("Zip headers not found. Probably not a zip file or a corrupted zip file", e);
++  }
+ 
+-    if (zipModel.isZip64Format()) {
+-      zipModel.setZip64EndOfCentralDirectoryRecord(readZip64EndCentralDirRec(zip4jRaf, rawIO));
+-      if (zipModel.getZip64EndOfCentralDirectoryRecord() != null
+-          && zipModel.getZip64EndOfCentralDirectoryRecord().getNumberOfThisDisk() > 0) {
+-        zipModel.setSplitArchive(true);
+-      } else {
+-        zipModel.setSplitArchive(false);
+-      }
++  // If file is Zip64 format, Zip64 headers have to be read before reading central directory
++  zipModel.setZip64EndOfCentralDirectoryLocator(readZip64EndOfCentralDirectoryLocator(zip4jRaf, rawIO));
++
++  if (zipModel.isZip64Format()) {
++    zipModel.setZip64EndOfCentralDirectoryRecord(readZip64EndCentralDirRec(zip4jRaf, rawIO));
++    if (zipModel.getZip64EndOfCentralDirectoryRecord() != null
++        && zipModel.getZip64EndOfCentralDirectoryRecord().getNumberOfThisDisk() > 0) {
++      zipModel.setSplitArchive(true);
++    } else {
++      zipModel.setSplitArchive(false);
+     }
++  }
+ 
+-    zipModel.setCentralDirectory(readCentralDirectory(zip4jRaf, rawIO, charset));
++  zipModel.setCentralDirectory(readCentralDirectory(zip4jRaf, rawIO, charset));
+ 
+-    return zipModel;
+-  }
++  return zipModel;
++}
+ 
+   private EndOfCentralDirectoryRecord readEndOfCentralDirectoryRecord(RandomAccessFile zip4jRaf, RawIO rawIO, Charset charset)
+       throws IOException {

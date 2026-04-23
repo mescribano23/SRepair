@@ -1,0 +1,49 @@
+diff --git a/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java b/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java
+index 84ecf30f..e229aa25 100644
+--- a/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java
++++ b/src/main/java/org/apache/bcel/verifier/structurals/InstConstraintVisitor.java
+@@ -394,7 +394,7 @@ public class InstConstraintVisitor extends EmptyVisitor{
+     /**
+      * Assures the generic preconditions of a ReturnInstruction instance.
+      */
+-    @Override
++@Override
+     public void visitReturnInstruction(ReturnInstruction o){
+         Type method_type = mg.getType();
+         if (method_type == Type.BOOLEAN ||
+@@ -405,29 +405,14 @@ public class InstConstraintVisitor extends EmptyVisitor{
+             }
+ 
+         if (o instanceof RETURN){
+-            if (method_type != Type.VOID){
++            if (method_type == Type.VOID) {
++                if (!stack().isEmpty()) {
++                    constraintViolated(o, "Void method incorrectly returns a value.");
++                }
++            } else {
+                 constraintViolated(o, "RETURN instruction in non-void method.");
+             }
+-            else{
+-                return;
+-            }
+-        }
+-        if (o instanceof ARETURN){
+-            if (stack().peek() == Type.NULL){
+-                return;
+-            }
+-            if (! (stack().peek() instanceof ReferenceType)){
+-                constraintViolated(o, "Reference type expected on top of stack, but is: '"+stack().peek()+"'.");
+-            }
+-            referenceTypeIsInitialized(o, (ReferenceType) (stack().peek()));
+-            //ReferenceType objectref = (ReferenceType) (stack().peek());
+-            // TODO: This can only be checked if using Staerk-et-al's "set of object types" instead of a
+-            // "wider cast object type" created during verification.
+-            //if (! (objectref.isAssignmentCompatibleWith(mg.getType())) ){
+-            //    constraintViolated(o, "Type on stack top which should be returned is a '"+stack().peek()+"' which is not assignment compatible with the return type of this method, '"+mg.getType()+"'.");
+-            //}
+-        }
+-        else{
++        } else {
+             if (! ( method_type.equals( stack().peek() ))){
+                 constraintViolated(o, "Current method has return type of '"+mg.getType()+"' expecting a '"+method_type+"' on top of the stack. But stack top is a '"+stack().peek()+"'.");
+             }

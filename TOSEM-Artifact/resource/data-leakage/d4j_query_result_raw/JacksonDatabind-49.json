@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.16165413533834586,
+    "input": "public Object generateId(Object forPojo) {\n    // 04-Jun-2016, tatu: As per [databind#1255], need to consider possibility of\n    //    id being generated for \"alwaysAsId\", but not being written as POJO; regardless,\n    //    need to use existing id if there is one:\n    if (id == null) {\n        id = generator.generateId(forPojo);\n    }\n    return id;\n}",
+    "query_result": [
+        " (id == null) {\nid = generator.generateId(forPojo)"
+    ]
+}

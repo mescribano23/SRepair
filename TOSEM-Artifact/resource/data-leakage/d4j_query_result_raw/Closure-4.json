@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.3398184176394293,
+    "input": "JSType resolveInternal(ErrorReporter t, StaticScope<JSType> enclosing) {\n  // TODO(user): Investigate whether it is really necessary to keep two\n  // different mechanisms for resolving named types, and if so, which order\n  // makes more sense. Now, resolution via registry is first in order to\n  // avoid triggering the warnings built into the resolution via properties.\n  boolean resolved = resolveViaRegistry(t, enclosing);\n  if (detectInheritanceCycle()) {\n    handleTypeCycle(t);\n  }\n\n  if (resolved) {\n    super.resolveInternal(t, enclosing);\n    finishPropertyContinuations();\n    return registry.isLastGeneration() ?\n        getReferencedType() : this;\n  }\n\n  resolveViaProperties(t, enclosing);\n  if (detectInheritanceCycle()) {\n    handleTypeCycle(t);\n  }\n\n  super.resolveInternal(t, enclosing);\n  if (isResolved()) {\n    finishPropertyContinuations();\n  }\n  return registry.isLastGeneration() ?\n      getReferencedType() : this;\n}",
+    "query_result": [
+        " makes more sense. Now, resolution via registry is first in order to\n// avoid triggering the warnings built into the resolution via properties.\nboolea",
+        "ion via registry is first in order to\n// avoid triggering the warnings built into the resolution via properties.\nboolean resolved = resolveViaRegistry",
+        " registry is first in order to\n// avoid triggering the warnings built into the resolution via properties.\nboolean resolved = resolveViaRegistry(t, enc",
+        "SType resolveInternal(ErrorReporter t, StaticScope",
+        "ype resolveInternal(ErrorReporter t, StaticScope<J",
+        "esolveInternal(ErrorReporter t, StaticScope<JSType",
+        "ternal(ErrorReporter t, StaticScope<JSType> enclos",
+        "isms for resolving named types, and if so, which o",
+        "the warnings built into the resolution via propert"
+    ]
+}

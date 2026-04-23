@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.07982062780269059,
+    "input": "private void updateScopeForTypeChange(\n    FlowScope scope, Node left, JSType leftType, JSType resultType) {\n  Preconditions.checkNotNull(resultType);\n  switch (left.getType()) {\n    case Token.NAME:\n      String varName = left.getString();\n      Var var = syntacticScope.getVar(varName);\n      JSType varType = var == null ? null : var.getType();\n      boolean isVarDeclaration = left.hasChildren()\n          && varType != null && !var.isTypeInferred();\n\n      // When looking at VAR initializers for declared VARs, we tend\n      // to use the declared type over the type it's being\n      // initialized to in the global scope.\n      //\n      // For example,\n      // /** @param {number} */ var f = goog.abstractMethod;\n      // it's obvious that the programmer wants you to use\n      // the declared function signature, not the inferred signature.\n      //\n      // Or,\n      // /** @type {Object.<string>} */ var x = {};\n      // the one-time anonymous object on the right side\n      // is as narrow as it can possibly be, but we need to make\n      // sure we back-infer the <string> element constraint on\n      // the left hand side, so we use the left hand side.\n\n      boolean isVarTypeBetter = isVarDeclaration &&\n          // Makes it easier to check for NPEs.\n          !resultType.isNullType() && !resultType.isVoidType();\n\n      // TODO(nicksantos): This might be a better check once we have\n      // back-inference of object/array constraints.  It will probably\n      // introduce more ty",
+    "query_result": [
+        "e leftType, JSType resultType) {\nPreconditions.che",
+        "se Token.NAME:\nString varName = left.getString();\n"
+    ]
+}

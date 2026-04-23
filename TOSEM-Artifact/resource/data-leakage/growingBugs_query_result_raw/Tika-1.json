@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "public MimeType getMimeType(String name) {\n        MimeType type = patterns.matches(name.toLowerCase());\n        if (type != null)\n            return type;\n        // if it's null here, then return the default type\n        return forName(DEFAULT);\n    }",
+    "query_result": []
+}

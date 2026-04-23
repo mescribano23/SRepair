@@ -1,0 +1,51 @@
+diff --git a/uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend/src/main/java/org/uberfire/ext/editor/commons/backend/version/VersionServiceImpl.java b/uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend/src/main/java/org/uberfire/ext/editor/commons/backend/version/VersionServiceImpl.java
+index 2da187418..0bc63e4ed 100644
+--- a/uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend/src/main/java/org/uberfire/ext/editor/commons/backend/version/VersionServiceImpl.java
++++ b/uberfire-extensions/uberfire-commons-editor/uberfire-commons-editor-backend/src/main/java/org/uberfire/ext/editor/commons/backend/version/VersionServiceImpl.java
+@@ -66,24 +66,27 @@ public class VersionServiceImpl
+         return convert(ioService.get(URI.create(uri)));
+     }
+ 
+-    @Override
+-    public Path restore(final Path _path,
+-                        final String comment) {
+-        try {
+-
+-            final org.uberfire.java.nio.file.Path path = convert(_path);
+-            final org.uberfire.java.nio.file.Path target = path.getFileSystem().getPath(path.toString());
+-
+-            return convert(ioService.copy(path,
+-                                          target,
+-                                          REPLACE_EXISTING,
+-                                          new CommentedOption(
+-                                                  sessionInfo != null ? sessionInfo.getId() : "--",
+-                                                  sessionInfo != null ? sessionInfo.getIdentity().getIdentifier() : "system",
+-                                                  null,
+-                                                  comment)));
+-        } catch (Exception e) {
+-            throw new RuntimeException(e);
+-        }
++@Override
++public Path restore(final Path _path,
++                    final String comment) {
++    try {
++        final org.uberfire.java.nio.file.Path path = convert(_path);
++        final org.uberfire.java.nio.file.Path target = path.getFileSystem().getPath(path.toString());
++
++        ioService.startBatch(path.getFileSystem());
++
++        return convert(ioService.copy(path,
++                                      target,
++                                      REPLACE_EXISTING,
++                                      new CommentedOption(
++                                              sessionInfo != null ? sessionInfo.getId() : "--",
++                                              sessionInfo != null ? sessionInfo.getIdentity().getIdentifier() : "system",
++                                              null,
++                                              comment)));
++    } catch (Exception e) {
++        throw new RuntimeException(e);
++    } finally {
++        ioService.endBatch();
+     }
+ }
++}

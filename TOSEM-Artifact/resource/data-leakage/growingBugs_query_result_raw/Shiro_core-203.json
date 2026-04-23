@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8785714285714286,
+    "input": "    public PrincipalCollection getRememberedPrincipals(Map subjectContext) {\n        PrincipalCollection principals = null;\n        try {\n            byte[] bytes = getRememberedSerializedIdentity(subjectContext);\n            //SHIRO-138 - only call convertBytesToPrincipals if bytes exist:\n            if ( bytes != null && bytes.length > 0 ) {\n                principals = convertBytesToPrincipals(bytes, subjectContext);\n            }\n        } catch (RuntimeException re) {\n            principals = onRememberedPrincipalFailure(re, subjectContext);\n        }\n\n        return principals;\n    }",
+    "query_result": [
+        "bjectContext) {\nPrincipalCollection principals = null;\ntry {\nbyte[] bytes = getRememberedSerializedIdentity(subjectContext);\n//SHIRO-138 - only call c",
+        "rincipalCollection principals = null;\ntry {\nbyte[] bytes = getRememberedSerializedIdentity(subjectContext);\n//SHIRO-138 - only call convertBytesToPrin",
+        "tion principals = null;\ntry {\nbyte[] bytes = getRememberedSerializedIdentity(subjectContext);\n//SHIRO-138 - only call convertBytesToPrincipals if byte",
+        "rincipals = null;\ntry {\nbyte[] bytes = getRememberedSerializedIdentity(subjectContext);\n//SHIRO-138 - only call convertBytesToPrincipals if bytes exis",
+        "principals = convertBytesToPrincipals(bytes, subjectContext);\n}\n} catch (RuntimeException re) {\nprincipals = onRememberedPrincipalFailure(re, subjectC",
+        "pals = convertBytesToPrincipals(bytes, subjectContext);\n}\n} catch (RuntimeException re) {\nprincipals = onRememberedPrincipalFailure(re, subjectContext",
+        "onvertBytesToPrincipals(bytes, subjectContext);\n}\n} catch (RuntimeException re) {\nprincipals = onRememberedPrincipalFailure(re, subjectContext);\n}\nret",
+        "tBytesToPrincipals(bytes, subjectContext);\n}\n} catch (RuntimeException re) {\nprincipals = onRememberedPrincipalFailure(re, subjectContext);\n}\nreturn p",
+        " = null;\ntry {\nbyte[] bytes = getRememberedSerializedIdentity(subjectContext);\n//SHIRO-138 - only ca",
+        "es = getRememberedSerializedIdentity(subjectContext);\n//SHIRO-138 - only call convertBytesToPrincipa",
+        "mberedSerializedIdentity(subjectContext);\n//SHIRO-138 - only call convertBytesToPrincipals if bytes ",
+        "als(bytes, subjectContext);\n}\n} catch (RuntimeException re) {\nprincipals = onRememberedPrincipalFail",
+        "s(bytes, subjectContext);\n}\n} catch (RuntimeException re) {\nprincipals = onRememberedPrincipalFailur",
+        "ublic PrincipalCollection getRememberedPrincipals(",
+        "jectContext) {\nPrincipalCollection principals = nu",
+        "{\nPrincipalCollection principals = null;\ntry {\nbyt",
+        "PrincipalCollection principals = null;\ntry {\nbyte[",
+        "= convertBytesToPrincipals(bytes, subjectContext);",
+        "vertBytesToPrincipals(bytes, subjectContext);\n}\n} ",
+        "tes, subjectContext);\n}\n} catch (RuntimeException "
+    ]
+}

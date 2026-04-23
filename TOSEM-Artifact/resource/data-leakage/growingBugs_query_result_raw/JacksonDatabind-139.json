@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7452830188679245,
+    "input": "    public Object deserializeFromEmbedded(JsonParser p, DeserializationContext ctxt)\n        throws IOException\n    {\n        // First things first: id Object Id is used, most likely that's it; specifically,\n        // true for UUIDs when written as binary (with Smile, other binary formats)\n        if (_objectIdReader != null) {\n            return deserializeFromObjectId(p, ctxt);\n        }\n        // 26-Jul-2017, tatu: as per [databind#1711] need to support delegating case too\n        JsonDeserializer<Object> delegateDeser = _delegateDeserializer();\n        if (delegateDeser != null) {\n            if (!_valueInstantiator.canCreateFromString()) {\n                Object bean = _valueInstantiator.createUsingDelegate(ctxt,\n                        delegateDeser.deserialize(p, ctxt));\n                if (_injectables != null) {\n                    injectValues(ctxt, bean);\n                }\n                return bean;\n            }\n        }\n        // TODO: maybe add support for ValueInstantiator, embedded?\n\n        // 26-Jul-2017, tatu: related to [databind#1711], let's actually verify assignment\n        //    compatibility before returning. Bound to catch misconfigured cases and produce\n        //    more meaningful exceptions.\n        Object value = p.getEmbeddedObject();\n        if (value != null) {\n            if (!_beanType.isTypeOrSuperTypeOf(value.getClass())) {\n                // allow this to be handled...\n                value = ctxt.handleWeirdNativeValue(_beanType, value, p);\n            }\n        }\n        return value;\n    }",
+    "query_result": [
+        "erializeFromEmbedded(JsonParser p, DeserializationContext ctxt)\nthrows IOException\n{\n// First things first: id Object Id is used, most likely that's it; specifically,\n// true for UUIDs when written as binary (with Smile, other binary formats)\nif (_objectIdReader != null) {\nreturn deserializeFromObjectId(p, ctxt);\n}\n// 26-Jul-2017, tatu: as per [databind#1711] need to support delegating case too\nJsonDeserializer<Object> delegateDeser = _delegateDeserializer();\nif (delegateDeser != null) {\nif (!_valueInstantiator.canCreateFromString()) {\nObject bean = _valueInstantiator.createUsingDelegate(ctxt,\ndelegateDeser.deserialize(p, ctxt));\nif (_injectables != null) {\ninjectValues(ctxt, bean);\n}\nreturn bean;\n}\n}\n// TODO: maybe add support for ValueIns",
+        ": related to [databind#1711], let's actually verify assignment\n// compatibility before returning. Bound to catch misconfigured cases and produce\n// mo",
+        " != null) {\nif (!_valueInstantiator.canCreateFromString()) {\nObject bean = _valueInstantiator.create",
+        "xt,\ndelegateDeser.deserialize(p, ctxt));\nif (_injectables != null) {\ninjectValues(ctxt, bean);\n}\nret",
+        "serializeFromEmbedded(JsonParser p, Deserializatio",
+        "ed(JsonParser p, DeserializationContext ctxt)\nthro",
+        "(JsonParser p, DeserializationContext ctxt)\nthrows",
+        "JsonParser p, DeserializationContext ctxt)\nthrows ",
+        "sonParser p, DeserializationContext ctxt)\nthrows I",
+        "onParser p, DeserializationContext ctxt)\nthrows IO",
+        "nParser p, DeserializationContext ctxt)\nthrows IOE",
+        "Parser p, DeserializationContext ctxt)\nthrows IOEx",
+        "arser p, DeserializationContext ctxt)\nthrows IOExc",
+        "rser p, DeserializationContext ctxt)\nthrows IOExce",
+        "ser p, DeserializationContext ctxt)\nthrows IOExcep",
+        "er p, DeserializationContext ctxt)\nthrows IOExcept",
+        "r p, DeserializationContext ctxt)\nthrows IOExcepti",
+        " p, DeserializationContext ctxt)\nthrows IOExceptio",
+        "p, DeserializationContext ctxt)\nthrows IOException",
+        ", DeserializationContext ctxt)\nthrows IOException\n"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6940298507462687,
+    "input": "@SuppressWarnings(\"unchecked\")\n    @Override\n    public <T extends TreeNode> T readTree(JsonParser p) throws IOException {\n        return (T) _bindAsTreeOrNull(p);\n    }",
+    "query_result": [
+        "ppressWarnings(\"unchecked\") @Override public <T extends TreeNode> T readTree(JsonParser p) throws IO",
+        "@SuppressWarnings(\"unchecked\") @Override public <T",
+        "SuppressWarnings(\"unchecked\") @Override public <T",
+        "uppressWarnings(\"unchecked\") @Override public <T e",
+        "pressWarnings(\"unchecked\") @Override public <T ext",
+        "ressWarnings(\"unchecked\") @Override public <T exte",
+        "essWarnings(\"unchecked\") @Override public <T exten",
+        "ssWarnings(\"unchecked\") @Override public <T extend",
+        "sWarnings(\"unchecked\") @Override public <T extends",
+        "Warnings(\"unchecked\") @Override public <T extends",
+        "rnings(\"unchecked\") @Override public <T extends Tr",
+        "nings(\"unchecked\") @Override public <T extends Tre",
+        "ings(\"unchecked\") @Override public <T extends Tree",
+        "Override public <T extends TreeNode> T readTree(Js",
+        "de public <T extends TreeNode> T readTree(JsonPars",
+        "public <T extends TreeNode> T readTree(JsonParser",
+        "public <T extends TreeNode> T readTree(JsonParser",
+        "ublic <T extends TreeNode> T readTree(JsonParser p",
+        "ic <T extends TreeNode> T readTree(JsonParser p) t",
+        "<T extends TreeNode> T readTree(JsonParser p) thr"
+    ]
+}

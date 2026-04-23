@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.415748031496063,
+    "input": "    public String constantToString( Constant c ) throws ClassFormatException {\n        String str;\n        int i;\n        final byte tag = c.getTag();\n        switch (tag) {\n            case Const.CONSTANT_Class:\n                i = ((ConstantClass) c).getNameIndex();\n                c = getConstant(i, Const.CONSTANT_Utf8);\n                str = Utility.compactClassName(((ConstantUtf8) c).getBytes(), false);\n                break;\n            case Const.CONSTANT_String:\n                i = ((ConstantString) c).getStringIndex();\n                c = getConstant(i, Const.CONSTANT_Utf8);\n                str = \"\\\"\" + escape(((ConstantUtf8) c).getBytes()) + \"\\\"\";\n                break;\n            case Const.CONSTANT_Utf8:\n                str = ((ConstantUtf8) c).getBytes();\n                break;\n            case Const.CONSTANT_Double:\n                str = String.valueOf(((ConstantDouble) c).getBytes());\n                break;\n            case Const.CONSTANT_Float:\n                str = String.valueOf(((ConstantFloat) c).getBytes());\n                break;\n            case Const.CONSTANT_Long:\n                str = String.valueOf(((ConstantLong) c).getBytes());\n                break;\n            case Const.CONSTANT_Integer:\n                str = String.valueOf(((ConstantInteger) c).getBytes());\n                break;\n            case Const.CONSTANT_NameAndType:\n                str = constantToString(((ConstantNameAndType) c).getNameIndex(),\n                        Const.CONSTANT_Utf8)\n                        + \" \" + constantToString(((ConstantNameAndType) c).getSignatureIndex(),\n                        Const.CONSTANT_Utf8);\n                break;\n            case Const.CONSTANT_InterfaceMethodref:\n            case Const.CONSTANT_Methodref:\n            case Const.CONSTANT_Fieldref:\n                str = constantToString(((ConstantCP) c).getClassIndex(), Const.CONSTANT_Class)\n                        + \".\" + constantToString(((ConstantCP) c).getNameAndTypeIndex(),\n        ",
+    "query_result": [
+        "h (tag) {\ncase Const.CONSTANT_Class:\ni = ((Constan",
+        "CONSTANT_Class:\ni = ((ConstantClass) c).getNameInd",
+        "antClass) c).getNameIndex();\nc = getConstant(i, Co",
+        "r = Utility.compactClassName(((ConstantUtf8) c).ge",
+        "ility.compactClassName(((ConstantUtf8) c).getBytes",
+        ".compactClassName(((ConstantUtf8) c).getBytes(), f",
+        "Name(((ConstantUtf8) c).getBytes(), false);\nbreak;",
+        ".CONSTANT_String:\ni = ((ConstantString) c).getStri",
+        "STANT_String:\ni = ((ConstantString) c).getStringIn",
+        "ing) c).getStringIndex();\nc = getConstant(i, Const",
+        "tr = \"\\\"\" + escape(((ConstantUtf8) c).getBytes()) ",
+        ".CONSTANT_Utf8:\nstr = ((ConstantUtf8) c).getBytes(",
+        "(ConstantDouble) c).getBytes());\nbreak;\ncase Const",
+        "tring.valueOf(((ConstantFloat) c).getBytes());\nbre",
+        "ing.valueOf(((ConstantFloat) c).getBytes());\nbreak",
+        "valueOf(((ConstantFloat) c).getBytes());\nbreak;\nca",
+        "lueOf(((ConstantFloat) c).getBytes());\nbreak;\ncase",
+        "String.valueOf(((ConstantLong) c).getBytes());\nbre",
+        "pe:\nstr = constantToString(((ConstantNameAndType) ",
+        "onstantToString(((ConstantNameAndType) c).getNameI"
+    ]
+}

@@ -1,0 +1,51 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 639318df..2c8965b0 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -303,6 +303,7 @@ class GlobalNamespace
+       return true;
+     }
+ 
++
+     public void collect(JSModule module, Scope scope, Node n) {
+       Node parent = n.getParent();
+ 
+@@ -315,7 +316,6 @@ class GlobalNamespace
+         case Token.GETTER_DEF:
+         case Token.SETTER_DEF:
+         case Token.STRING_KEY:
+-          // This may be a key in an object literal declaration.
+           name = null;
+           if (parent != null && parent.isObjectLit()) {
+             name = getNameForObjLitKey(n);
+@@ -339,7 +339,6 @@ class GlobalNamespace
+           }
+           break;
+         case Token.NAME:
+-          // This may be a variable get or set.
+           if (parent != null) {
+             switch (parent.getType()) {
+               case Token.VAR:
+@@ -379,7 +378,6 @@ class GlobalNamespace
+           name = n.getString();
+           break;
+         case Token.GETPROP:
+-          // This may be a namespaced name get or set.
+           if (parent != null) {
+             switch (parent.getType()) {
+               case Token.ASSIGN:
+@@ -413,7 +411,13 @@ class GlobalNamespace
+           return;
+       }
+ 
+-      // We are only interested in global names.
++      if (parent != null && parent.isCatch()) {
++        // Handle catch block variables.
++        isSet = true;
++        name = parent.getFirstChild().getString();
++        type = Name.Type.OTHER;
++      }
++
+       if (!isGlobalNameReference(name, scope)) {
+         return;
+       }

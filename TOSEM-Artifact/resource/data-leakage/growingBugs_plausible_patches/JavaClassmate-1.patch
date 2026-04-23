@@ -1,0 +1,47 @@
+diff --git a/src/main/java/com/fasterxml/classmate/TypeResolver.java b/src/main/java/com/fasterxml/classmate/TypeResolver.java
+index f8ef6c9..20b9c45 100644
+--- a/src/main/java/com/fasterxml/classmate/TypeResolver.java
++++ b/src/main/java/com/fasterxml/classmate/TypeResolver.java
+@@ -397,25 +397,26 @@ public class TypeResolver implements Serializable
+         return params[0];
+     }
+ 
+-    private ResolvedType _constructType(ClassStack context, Class<?> rawType, TypeBindings typeBindings)
+-    {
+-        // Ok: no easy shortcut, let's figure out type of type...
+-        if (rawType.isArray()) {
+-            ResolvedType elementType = _fromAny(context, rawType.getComponentType(), typeBindings);
+-            return new ResolvedArrayType(rawType, typeBindings, elementType);
+-        }
+-        // For other types super interfaces are needed...
+-        if (rawType.isInterface()) {
+-            return new ResolvedInterfaceType(rawType, typeBindings,
+-                    _resolveSuperInterfaces(context, rawType, typeBindings));
+-            
+-        }
+-        // for issue 33: if the type has no type parameters,
+-        // don't include typeBindings in the ResolvedType
+-        return new ResolvedObjectType(rawType, typeBindings,
++private ResolvedType _constructType(ClassStack context, Class<?> rawType, TypeBindings typeBindings)
++{
++    if (rawType.isArray()) {
++        ResolvedType elementType = _fromAny(context, rawType.getComponentType(), typeBindings);
++        return new ResolvedArrayType(rawType, typeBindings, elementType);
++    }
++    if (rawType.isInterface()) {
++        return new ResolvedInterfaceType(rawType, typeBindings,
++                _resolveSuperInterfaces(context, rawType, typeBindings));
++    }
++    // Check if rawType has type parameters before including typeBindings
++    if (rawType.getTypeParameters().length == 0) {
++        return new ResolvedObjectType(rawType, null,
+                 _resolveSuperClass(context, rawType, typeBindings),
+                 _resolveSuperInterfaces(context, rawType, typeBindings));
+     }
++    return new ResolvedObjectType(rawType, typeBindings,
++            _resolveSuperClass(context, rawType, typeBindings),
++            _resolveSuperInterfaces(context, rawType, typeBindings));
++}
+ 
+     private ResolvedType[] _resolveSuperInterfaces(ClassStack context, Class<?> rawType, TypeBindings typeBindings)
+     {

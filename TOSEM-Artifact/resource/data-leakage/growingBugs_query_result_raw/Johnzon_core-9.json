@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.9545454545454546,
+    "input": "    @Override\n    public JsonGenerator writeEnd() {\n        final GeneratorState last = state.pop();\n        if (last == null || !last.endable || last == GeneratorState.ROOT_VALUE) {\n            throw new JsonGenerationException(\"Can't end current context: \" + last);\n        }\n        depth--;\n        if (last != GeneratorState.START_ARRAY) {\n            writeEol();\n        }\n        writeIndent();\n        if (last == GeneratorState.IN_ARRAY || last == GeneratorState.START_ARRAY) {\n            justWrite(END_ARRAY_CHAR);\n        } else if (last != GeneratorState.ROOT_VALUE) {\n            justWrite(END_OBJECT_CHAR);\n        }\n        alignState();\n        return this;\n    }",
+    "query_result": [
+        "rride\npublic JsonGenerator writeEnd() {\nfinal GeneratorState last = state.pop();\nif (last == null || !last.endable || last == GeneratorState.ROOT_VALUE) {\nthrow new JsonGenerationException(\"Can't end current context: \" + last);\n}\ndepth--;\nif (last != GeneratorState.START_ARRAY) {\nwriteEol();\n}\nwriteIndent();\nif (last == GeneratorState.IN_ARRAY || last == GeneratorState.START_ARRAY) {\njustWrite(END_ARRAY_CHAR);\n} else if (last != GeneratorState.ROOT_VALUE) {\njustWrite(END_OBJECT_CHAR);\n}\nalignSta"
+    ]
+}

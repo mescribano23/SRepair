@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9391304347826087,
+    "input": "protected boolean isValidPath(String path) {\n        if (path == null) {\n            return false;\n        }\n\n        if (!PATH_PATTERN.matcher(path).matches()) {\n            return false;\n        }\n\n        try {\n            URI uri = new URI(null,null,path,null);\n            String norm = uri.normalize().getPath();\n            if (norm.startsWith(\"/../\") // Trying to go via the parent dir \n             || norm.equals(\"/..\")) {   // Trying to go to the parent dir\n                return false;\n            }\n        } catch (URISyntaxException e) {\n            return false;\n        }\n        \n        int slash2Count = countToken(\"//\", path);\n        if (isOff(ALLOW_2_SLASHES) && (slash2Count > 0)) {\n            return false;\n        }\n\n        return true;\n    }",
+    "query_result": [
+        "boolean isValidPath(String path) {\nif (path == null) {\nreturn false;\n}\nif (!PATH_PATTERN.matcher(path).matches()) {\nreturn false;\n}\ntry {\nURI uri = new URI(null,null,path,null);\nString norm = uri.normalize().getPath();\nif (norm.startsWith(\"/../\") // Trying to go via the parent dir \n|| norm.equals(\"/..\")) { // Trying to go to the parent dir\nreturn false;\n}\n} catch (URISyntaxException e) {\nreturn false;\n}\n\nint slash2Count = countToken(\"//\", path);\nif (isOff(ALLOW_2_SLASHES) && (slash2Count > 0)) {",
+        " isValidPath(String path) {\nif (path == null) {\nreturn false;\n}\nif (!PATH_PATTERN.matcher(path).matches()) {\nreturn false;\n}\ntry {\nURI uri = new URI(null,null,path,null);\nString norm = uri.normalize().getPath();\nif (norm.startsWith(\"/../\") // Trying to go via the parent dir \n|| norm.equals(\"/..\")) { // Trying to go to the parent dir\nreturn false;\n}\n} catch (URISyntaxException e) {\nreturn false;\n}\n\nint slash2Count = countToken(\"//\", path);\nif (isOff(ALLOW_2_SLASHES) && (slash2Count > 0)) {\nreturn",
+        "\nURI uri = new URI(null,null,path,null);\nString norm = uri.normalize().getPath();\nif (norm.startsWith(\"/../\") // Trying to go via the parent dir \n|| norm.equals(\"/..\")) { // Trying to go to the parent",
+        "sValidPath(String path) {\nif (path == null) {\nreturn false;\n}\nif (!PATH_PATTERN.matcher(path).matches()) {\nreturn false;\n}\ntry {\nURI uri = new URI(nul",
+        "the parent dir\nreturn false;\n}\n} catch (URISyntaxException e) {\nreturn false;\n}\n\nint slash2Count = countToken(\"//\", path);\nif (isOff(ALLOW_2_SLASHES) ",
+        "alidPath(String path) {\nif (path == null) {\nreturn",
+        "tring path) {\nif (path == null) {\nreturn false;\n}\n",
+        "ng path) {\nif (path == null) {\nreturn false;\n}\nif ",
+        "g path) {\nif (path == null) {\nreturn false;\n}\nif (",
+        "\nif (path == null) {\nreturn false;\n}\nif (!PATH_PAT",
+        "null) {\nreturn false;\n}\nif (!PATH_PATTERN.matcher(",
+        "lse;\n}\nif (!PATH_PATTERN.matcher(path).matches()) ",
+        ").getPath();\nif (norm.startsWith(\"/../\") // Trying",
+        "to go to the parent dir\nreturn false;\n}\n} catch (U",
+        "\nreturn false;\n}\n} catch (URISyntaxException e) {\n",
+        "turn false;\n}\n} catch (URISyntaxException e) {\nret",
+        " false;\n}\n} catch (URISyntaxException e) {\nreturn ",
+        "false;\n}\n} catch (URISyntaxException e) {\nreturn f",
+        "e;\n}\n} catch (URISyntaxException e) {\nreturn false",
+        ";\n}\n} catch (URISyntaxException e) {\nreturn false;"
+    ]
+}

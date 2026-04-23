@@ -1,0 +1,29 @@
+diff --git a/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java b/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java
+index 99ead709..ef591795 100644
+--- a/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java
++++ b/core/src/main/java/dagger/internal/plugins/reflect/ReflectivePlugin.java
+@@ -46,14 +46,17 @@ public final class ReflectivePlugin implements Plugin {
+     return ReflectiveAtInjectBinding.create(c, mustBeInjectable);
+   }
+ 
+-  @SuppressWarnings("unchecked") // Runtime checks validate that the result type matches 'T'.
+-  @Override public <T> ModuleAdapter<T> getModuleAdapter(Class<? extends T> moduleClass, T module) {
+-    Module annotation = moduleClass.getAnnotation(Module.class);
+-    if (annotation == null) {
+-      throw new IllegalArgumentException("No @Module on " + moduleClass.getName());
+-    }
+-    return (ModuleAdapter<T>) new ReflectiveModuleAdapter(moduleClass, annotation);
++@Override 
++public <T> ModuleAdapter<T> getModuleAdapter(Class<? extends T> moduleClass, T module) {
++  Module annotation = moduleClass.getAnnotation(Module.class);
++  if (annotation == null) {
++    throw new IllegalArgumentException("No @Module on " + moduleClass.getName());
++  }
++  if (moduleClass.getSuperclass() != Object.class) {
++    throw new IllegalArgumentException("Modules must not extend from other classes: " + moduleClass.getName());
+   }
++  return (ModuleAdapter<T>) new ReflectiveModuleAdapter(moduleClass, annotation);
++}
+ 
+   @Override public StaticInjection getStaticInjection(Class<?> injectedClass) {
+     List<Field> fields = new ArrayList<Field>();

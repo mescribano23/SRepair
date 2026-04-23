@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.2594594594594595,
+    "input": "    @Override\n    protected Stream<ValidationResult.ValidationError> onNumber(final JsonNumber number) {\n        final double val = number.doubleValue();\n        if (isValid(val)) {\n            return Stream.empty();\n        }\n        return toError(val);\n    }",
+    "query_result": [
+        "rride\nprotected Stream<ValidationResult.Validation"
+    ]
+}

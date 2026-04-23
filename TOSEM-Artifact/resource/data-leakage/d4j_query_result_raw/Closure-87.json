@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9471153846153846,
+    "input": "private boolean isFoldableExpressBlock(Node n) {\n  if (n.getType() == Token.BLOCK) {\n    if (n.hasOneChild()) {\n      Node maybeExpr = n.getFirstChild();\n      if (maybeExpr.getType() == Token.EXPR_RESULT) {\n        // IE has a bug where event handlers behave differently when\n        // their return value is used vs. when their return value is in\n        // an EXPR_RESULT. It's pretty freaking weird. See:\n        // http://code.google.com/p/closure-compiler/issues/detail?id=291\n        // We try to detect this case, and not fold EXPR_RESULTs\n        // into other expressions.\n        if (maybeExpr.getFirstChild().getType() == Token.CALL) {\n          Node calledFn = maybeExpr.getFirstChild().getFirstChild();\n\n          // We only have to worry about methods with an implicit 'this'\n          // param, or this doesn't happen.\n          if (calledFn.getType() == Token.GETELEM) {\n            return false;\n          } else if (calledFn.getType() == Token.GETPROP &&\n                     calledFn.getLastChild().getString().startsWith(\"on\")) {\n            return false;\n          }\n        }\n\n        return true;\n      }\n      return false;\n    }\n  }\n\n  return false;\n}",
+    "query_result": [
+        "de n) {\nif (n.getType() == Token.BLOCK) {\nif (n.hasOneChild()) {\nNode maybeExpr = n.getFirstChild();\nif (maybeExpr.getType() == Token.EXPR_RESULT) {\n// IE has a bug where event handlers behave differently when\n// their return value is used vs. when their return value is in\n// an EXPR_RESULT. It's pretty freaking weird. See:\n// http://code.google.com/p/closure-compiler/issues/detail?id=291\n// We try to detect this case, and not fold EXPR_RESULTs\n// into other expressions.\nif (maybeExpr.getFirstChild().getType() == Token.CALL) {\nNode calledFn = maybeExpr.getFirstChild().getFirstChild();\n// We only have to worry about methods with an implicit 'this'\n// param, or this doesn't happen.\nif (calledFn.getType() == Token.GETELEM) {\nreturn false;\n} else if (calledFn.getType() == Token.GETPROP &&\ncalledFn.getLastChild().getString().startsWith(\"on\")) {\nreturn false;\n}\n}\nreturn true;\n}\nreturn false;\n}",
+        " behave differently when\n// their return value is used vs. when their return value is in\n// an EXPR_RESULT. It's pretty freaking weird. See:\n// http://code.google.com/p/closure-compiler/issues/detail?",
+        "sBlock(Node n) {\nif (n.getType() == Token.BLOCK) {",
+        ") {\nif (n.getType() == Token.BLOCK) {\nif (n.hasOne",
+        "http://code.google.com/p/closure-compiler/issues/d",
+        "ttp://code.google.com/p/closure-compiler/issues/de",
+        "p://code.google.com/p/closure-compiler/issues/deta",
+        "://code.google.com/p/closure-compiler/issues/detai",
+        "//code.google.com/p/closure-compiler/issues/detail",
+        "code.google.com/p/closure-compiler/issues/detail?i",
+        "ode.google.com/p/closure-compiler/issues/detail?id",
+        "de.google.com/p/closure-compiler/issues/detail?id=",
+        " We try to detect this case, and not fold EXPR_RES",
+        "have to worry about methods with an implicit 'this",
+        "startsWith(\"on\")) {\nreturn false;\n}\n}\nreturn true;",
+        "\")) {\nreturn false;\n}\n}\nreturn true;\n}\nreturn fals",
+        ")) {\nreturn false;\n}\n}\nreturn true;\n}\nreturn false",
+        ") {\nreturn false;\n}\n}\nreturn true;\n}\nreturn false;",
+        " {\nreturn false;\n}\n}\nreturn true;\n}\nreturn false;\n",
+        "\nreturn false;\n}\n}\nreturn true;\n}\nreturn false;\n}\n"
+    ]
+}

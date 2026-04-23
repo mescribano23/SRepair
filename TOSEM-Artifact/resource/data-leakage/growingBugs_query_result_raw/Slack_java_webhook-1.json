@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.5462184873949579,
+    "input": "    public Slack icon(String imageOrIcon) {\n        if (imageOrIcon != null && !imageOrIcon.isEmpty()) {\n            if (!imageOrIcon.startsWith(\":\")) {\n                imageOrIcon = \":\" + imageOrIcon;\n            }\n            if (!imageOrIcon.endsWith(\":\")) {\n                imageOrIcon = imageOrIcon + \":\";\n            }\n        }\n\n        this.icon = imageOrIcon;\n        return this;\n    }",
+    "query_result": [
+        "OrIcon.startsWith(\":\")) {\nimageOrIcon = \":\" + imageOrIcon;\n}\nif (!imageOrIcon.endsWith(\":\")) {\nimageOrIcon = imageOrIcon + \":\";\n}\n}\nthis.icon = imageO"
+    ]
+}

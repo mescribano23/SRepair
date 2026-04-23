@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.36502177068214803,
+    "input": "    public <T> T createMock(MockCreationSettings<T> settings, MockHandler handler) {\n        if (settings.getSerializableMode() == SerializableMode.ACROSS_CLASSLOADERS) {\n            throw new MockitoException(\"Serialization across classloaders not yet supported with ByteBuddyMockMaker\");\n        }\n        Class<? extends T> mockedProxyType = cachingMockBytecodeGenerator.get(\n                settings.getTypeToMock(),\n                settings.getExtraInterfaces()\n        );\n        Instantiator instantiator = new InstantiatorProvider().getInstantiator(settings);\n        T mockInstance = null;\n        try {\n            mockInstance = instantiator.newInstance(mockedProxyType);\n            MockMethodInterceptor.MockAccess mockAccess = (MockMethodInterceptor.MockAccess) mockInstance;\n            mockAccess.setMockitoInterceptor(new MockMethodInterceptor(asInternalMockHandler(handler), settings));\n\n            return ensureMockIsAssignableToMockedType(settings, mockInstance);\n        } catch (ClassCastException cce) {\n            throw new MockitoException(join(\n                    \"ClassCastException occurred while creating the mockito mock :\",\n                    \"  class to mock : \" + describeClass(mockedProxyType),\n                    \"  created class : \" + describeClass(settings.getTypeToMock()),\n                    \"  proxy instance class : \" + describeClass(mockInstance),\n                    \"  instance creation by : \" + instantiator.getClass().getSimpleName(),\n                    \"\",\n                    \"You might experience classloading issues, please ask the mockito mailing-list.\",\n                    \"\"\n            ),cce);\n        } catch (org.mockito.internal.creation.instance.InstantiationException e) {\n            throw new MockitoException(\"Unable to create mock instance of type '\" + mockedProxyType.getSuperclass().getSimpleName() + \"'\", e);\n        }\n    }",
+    "query_result": [
+        "ockInstance;\nmockAccess.setMockitoInterceptor(new MockMethodInterceptor(asInternalMockHandler(handler), settings));\nreturn ensureMockIsAssignableToMoc",
+        "nce);\n} catch (ClassCastException cce) {\nthrow new MockitoException(join(\n\"ClassCastException occurr",
+        "nstance creation by : \" + instantiator.getClass().getSimpleName(),\n\"\",\n\"You might experience classlo",
+        ".creation.instance.InstantiationException e) {\nthrow new MockitoException(\"Unable to create mock ins",
+        "nce.InstantiationException e) {\nthrow new MockitoException(\"Unable to create mock instance of type '",
+        "public <T> T createMock(MockCreationSettings<T> se",
+        "lic <T> T createMock(MockCreationSettings<T> setti",
+        "T> T createMock(MockCreationSettings<T> settings, ",
+        "> T createMock(MockCreationSettings<T> settings, M",
+        "T createMock(MockCreationSettings<T> settings, Moc",
+        " createMock(MockCreationSettings<T> settings, Mock",
+        "eateMock(MockCreationSettings<T> settings, MockHan",
+        "eMock(MockCreationSettings<T> settings, MockHandle",
+        "ock(MockCreationSettings<T> settings, MockHandler ",
+        "k(MockCreationSettings<T> settings, MockHandler ha",
+        "MockCreationSettings<T> settings, MockHandler hand",
+        "ckCreationSettings<T> settings, MockHandler handle",
+        "CreationSettings<T> settings, MockHandler handler)",
+        "reationSettings<T> settings, MockHandler handler) ",
+        "nSettings<T> settings, MockHandler handler) {\nif ("
+    ]
+}

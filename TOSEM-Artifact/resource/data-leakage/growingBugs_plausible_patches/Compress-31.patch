@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
+index 40e7871f..6f5d477a 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
+@@ -130,18 +130,17 @@ public class TarUtils {
+             trailer = buffer[end - 1];
+         }
+ 
+-        for ( ;start < end; start++) {
++        for (; start < end; start++) {
+             final byte currentByte = buffer[start];
+-            if (currentByte == 0) {
+-                break;
++            // Check for embedded NUL or space within the octal digits sequence
++            if (currentByte == 0 || currentByte == ' ') {
++                throw new IllegalArgumentException("Embedded NUL or space detected");
+             }
+-            // CheckStyle:MagicNumber OFF
+-            if (currentByte < '0' || currentByte > '7'){
++            if (currentByte < '0' || currentByte > '7') {
+                 throw new IllegalArgumentException(
+                         exceptionMessage(buffer, offset, length, start, currentByte));
+             }
+             result = (result << 3) + (currentByte - '0'); // convert from ASCII
+-            // CheckStyle:MagicNumber ON
+         }
+ 
+         return result;

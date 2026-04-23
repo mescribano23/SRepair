@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.09563409563409564,
+    "input": "public static int compareClassName(Object o1, Object o2) {\n        // Get class names.\n        String n1 = o1.getClass().getName();\n        String n2 = o2.getClass().getName();\n\n        // Judge if they are Tika's class by name.\n        boolean tika1 = n1.startsWith(\"org.apache.tika.\");\n        boolean tika2 = n2.startsWith(\"org.apache.tika.\");\n\n        // If both classes are Tika's class or both are not Tika's class, compare by name String.\n        if (tika1 == tika2) {\n            return n1.compareTo(n2);\n        }\n\n        // Otherwise one of these two class is Tika's class. Then the non-Tika's class comes before Tika's class.\n        return tika1 ? 1 : -1;\n    }",
+    "query_result": [
+        "etClass().getName();\nString n2 = o2.getClass().get"
+    ]
+}

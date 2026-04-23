@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.41310975609756095,
+    "input": "    public String getPerspectiveName(String perspectiveId) {\n        // Look for preset names first\n        if (perspectiveNameMap.containsKey(perspectiveId)) {\n            return perspectiveNameMap.get(perspectiveId);\n        }\n        // For user created perspectives, the perspective id. is always the name set by its author\n        SyncBeanDef<Activity> beanDef = activityBeansCache.getActivity(perspectiveId);\n        if (beanDef != null) {\n            Activity activity = beanDef.getInstance();\n            if (activity != null && !(activity instanceof AbstractWorkbenchPerspectiveActivity)) {\n                return perspectiveId;\n            }\n        }\n        // By default, to avoid displaying FQCN, the name is the string after the last dot\n        int lastDot = perspectiveId.lastIndexOf(\".\");\n        return lastDot != -1 ? perspectiveId.substring(lastDot + 1) : perspectiveId;\n    }",
+    "query_result": [
+        "t = perspectiveId.lastIndexOf(\".\");\nreturn lastDot != -1 ? perspectiveId.substring(lastDot + 1) : pe",
+        "public String getPerspectiveName(String perspectiv",
+        "c String getPerspectiveName(String perspectiveId) ",
+        "tiveNameMap.containsKey(perspectiveId)) {\nreturn p",
+        "rspectiveId)) {\nreturn perspectiveNameMap.get(pers",
+        "iveId)) {\nreturn perspectiveNameMap.get(perspectiv",
+        ")) {\nreturn perspectiveNameMap.get(perspectiveId);",
+        "nstanceof AbstractWorkbenchPerspectiveActivity)) {",
+        "eturn lastDot != -1 ? perspectiveId.substring(last"
+    ]
+}

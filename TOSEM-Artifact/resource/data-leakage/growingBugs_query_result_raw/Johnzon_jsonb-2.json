@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public <T> void serialize(final String key, final T object, final JsonGenerator generator) {\n        runtime.writeObject(key, object, generator);\n    }",
+    "query_result": []
+}

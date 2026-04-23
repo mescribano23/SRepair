@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9958677685950413,
+    "input": "    public static double round(double x, int scale, int roundingMethod) {\n        try {\n            return (new BigDecimal\n                   (Double.toString(x))\n                   .setScale(scale, roundingMethod))\n                   .doubleValue();\n        } catch (NumberFormatException ex) {\n            if (Double.isInfinite(x)) {\n                return x;\n            } else {\n                return Double.NaN;\n            }\n        }\n    }",
+    "query_result": [
+        "ublic static double round(double x, int scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn x;\n} else",
+        "blic static double round(double x, int scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn x;\n} else ",
+        "(double x, int scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn x;\n} else {\nreturn Double.NaN;\n}\n}",
+        "ouble x, int scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn x;\n} else {\nreturn Double.NaN;\n}\n}\n}",
+        " x, int scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) ",
+        "scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn",
+        "nt scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFor",
+        "oString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn x;\n} else {\nretu",
+        "ound(double x, int scale, int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.s",
+        " int roundingMethod) {\ntry {\nreturn (new BigDecimal\n(Double.toString(x))\n.setScale(scale, roundingMe",
+        "toString(x))\n.setScale(scale, roundingMethod))\n.doubleValue();\n} catch (NumberFormatException ex) {\n",
+        "\n.doubleValue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn x;\n} else {",
+        "alue();\n} catch (NumberFormatException ex) {\nif (Double.isInfinite(x)) {\nreturn x;\n} else {\nreturn D",
+        "lic static double round(double x, int scale, int r",
+        "static double round(double x, int scale, int round",
+        "tatic double round(double x, int scale, int roundi",
+        "e x, int scale, int roundingMethod) {\ntry {\nreturn",
+        "int scale, int roundingMethod) {\ntry {\nreturn (new",
+        "cale, int roundingMethod) {\ntry {\nreturn (new BigD",
+        "undingMethod) {\ntry {\nreturn (new BigDecimal\n(Doub"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.890335846470185,
+    "input": "    @SuppressWarnings(\"deprecation\")\n    protected BeanPropertyWriter buildWriter(SerializerProvider prov,\n            BeanPropertyDefinition propDef, JavaType declaredType, JsonSerializer<?> ser,\n            TypeSerializer typeSer, TypeSerializer contentTypeSer,\n            AnnotatedMember am, boolean defaultUseStaticTyping)\n        throws JsonMappingException\n    {\n        // do we have annotation that forces type to use (to declared type or its super type)?\n        JavaType serializationType = findSerializationType(am, defaultUseStaticTyping, declaredType);\n\n        // Container types can have separate type serializers for content (value / element) type\n        if (contentTypeSer != null) {\n            /* 04-Feb-2010, tatu: Let's force static typing for collection, if there is\n             *    type information for contents. Should work well (for JAXB case); can be\n             *    revisited if this causes problems.\n             */\n            if (serializationType == null) {\n//                serializationType = TypeFactory.type(am.getGenericType(), _beanDesc.getType());\n                serializationType = declaredType;\n            }\n            JavaType ct = serializationType.getContentType();\n            // Not exactly sure why, but this used to occur; better check explicitly:\n            if (ct == null) {\n                throw new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property '\"\n                        +propDef.getName()+\"' (of type \"+_beanDesc.getType()+\"); serialization type \"+serializationType+\" has no content\");\n            }\n            serializationType = serializationType.withContentTypeHandler(contentTypeSer);\n            ct = serializationType.getContentType();\n        }\n        \n        Object valueToSuppress = null;\n        boolean suppressNulls = false;\n\n        JsonInclude.Value inclV = _defaultInclusion.withOverrides(propDef.findInclusion());\n        JsonInclude.Include inclusion = inclV.getValueInclusion();\n  ",
+    "query_result": [
+        "have annotation that forces type to use (to declared type or its super type)? JavaType serializationType = findSerializationType(am, defaultUseStaticTyping, declaredType); // Container types can have separate type serializers for content (value / element) type if (contentTypeSer != null) { /* 04-Feb-2010, tatu: Let's force static typing for collection, if there is * type information for contents. Should work well (for JAXB case); can be * revisited if this causes problems. */ if (serializationType == null) { // serializationType = TypeFactory.type(am.getGenericType(), _beanDesc.getType()); serializationType = declaredType; } JavaType ct = se",
+        "{ throw new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property '\" +propDef.getName()+\"' (of type \"+_beanDesc.getType()+\"); serialization type \"+serializationType+\" has no content\"); } serializationType = serializationType.withContentTypeHandler(contentTypeSer); ct = serializationType.getContentType(); } Object valueToSuppress = null; boolean suppressNulls = false; Js",
+        "/ if (serializationType == null) { // serializationType = TypeFactory.type(am.getGenericType(), _beanDesc.getType()); serializationType = declaredType; } JavaType ct = serializationType.getContentType(); // Not exactly sure why, but this used to occur; better check explicitly: if (ct == null) { throw new IllegalStateException(\"Problem trying to cre",
+        "e to use (to declared type or its super type)? JavaType serializationType = findSerializationType(am, defaultUseStaticTyping, declaredType); // Container types can have separate type serializers for content (value / element) type if (contentTypeSer !",
+        "eToSuppress = null; boolean suppressNulls = false; JsonInclude.Value inclV = _defaultInclusion.withOverrides(propDef.findInclusion()); JsonInclude.Inc",
+        "aredType, JsonSerializer<?> ser, TypeSerializer typeSer, TypeSerializer contentTypeSer, AnnotatedMem",
+        "= null) { throw new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property",
+        "null) { throw new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property '",
+        "s no content\"); } serializationType = serializationType.withContentTypeHandler(contentTypeSer); ct =",
+        "ype = serializationType.withContentTypeHandler(contentTypeSer); ct = serializationType.getContentTyp",
+        "tected BeanPropertyWriter buildWriter(SerializerPr",
+        "ropertyDefinition propDef, JavaType declaredType,",
+        "tionType(am, defaultUseStaticTyping, declaredType)",
+        "mation for contents. Should work well (for JAXB ca",
+        "if (ct == null) { throw new IllegalStateException",
+        "== null) { throw new IllegalStateException(\"Proble",
+        "throw new IllegalStateException(\"Problem trying t",
+        "egalStateException(\"Problem trying to create BeanP",
+        "lStateException(\"Problem trying to create BeanProp",
+        "roblem trying to create BeanPropertyWriter for pro"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5770750988142292,
+    "input": "    private void resolveLocalFileHeaderData(Map<ZipArchiveEntry, NameAndComment>\n                                            entriesWithoutUTF8Flag)\n        throws IOException {\n        // changing the name of a ZipArchiveEntry is going to change\n        // the hashcode - see COMPRESS-164\n        // Map needs to be reconstructed in order to keep central\n        // directory order\n        Map<ZipArchiveEntry, OffsetEntry> origMap =\n            new LinkedHashMap<ZipArchiveEntry, OffsetEntry>(entries);\n        entries.clear();\n        for (ZipArchiveEntry ze : origMap.keySet()) {\n            OffsetEntry offsetEntry = origMap.get(ze);\n            long offset = offsetEntry.headerOffset;\n            archive.seek(offset + LFH_OFFSET_FOR_FILENAME_LENGTH);\n            byte[] b = new byte[SHORT];\n            archive.readFully(b);\n            int fileNameLen = ZipShort.getValue(b);\n            archive.readFully(b);\n            int extraFieldLen = ZipShort.getValue(b);\n            int lenToSkip = fileNameLen;\n            while (lenToSkip > 0) {\n                int skipped = archive.skipBytes(lenToSkip);\n                if (skipped <= 0) {\n                    throw new RuntimeException(\"failed to skip file name in\"\n                                               + \" local file header\");\n                }\n                lenToSkip -= skipped;\n            }\n            byte[] localExtraData = new byte[extraFieldLen];\n            archive.readFully(localExtraData);\n            ze.setExtra(localExtraData);\n            offsetEntry.dataOffset = offset + LFH_OFFSET_FOR_FILENAME_LENGTH\n                + SHORT + SHORT + fileNameLen + extraFieldLen;\n\n            if (entriesWithoutUTF8Flag.containsKey(ze)) {\n                String orig = ze.getName();\n                NameAndComment nc = entriesWithoutUTF8Flag.get(ze);\n                ZipUtil.setNameAndCommentFromExtraFields(ze, nc.name,\n                                                         nc.comment);\n                if (!orig.equals(ze.",
+    "query_result": [
+        "ry.headerOffset;\narchive.seek(offset + LFH_OFFSET_FOR_FILENAME_LENGTH);\nbyte[] b = new byte[SHORT];\narchive.readFully(b);\nint fileNameLen = ZipShort.getValue(b);\narchive.readFully(b);\nint extraFieldLen = ZipShort.getValue(b);\nint lenToSkip = fileNameLen;\nwhile (lenToSkip > 0) {\nint skipped = archive.skipBytes(lenToSkip);\nif (skipped <= 0) {\nthrow new RuntimeException(\"failed to skip file name in\"\n+ \" local file header\");\n}\nlenToSkip -= skipped;\n}",
+        "(ze);\nlong offset = offsetEntry.headerOffset;\narchive.seek(offset + LFH_OFFSET_FOR_FILENAME_LENGTH);\nbyte[] b = new byte[SHORT];\narchive.readFully(b);\nint fileNameLen = ZipShort.getValue(b);\narchive.readFully(b);\nint extraFieldLen = ZipShort.getValue(b);\nint lenToSkip = fileNameLen;\nwhile (lenToSkip > 0) {\nint skipped = archive.skipBytes(lenToSkip)",
+        "xception(\"failed to skip file name in\"\n+ \" local file header\");\n}\nlenToSkip -= skipped;\n}\nbyte[] localExtraData = new byte[extraFieldLen];\narchive.readFully(localExtraData);\nze.setExtra(localExtraData",
+        "\narchive.readFully(localExtraData);\nze.setExtra(localExtraData);\noffsetEntry.dataOffset = offset + LFH_OFFSET_FOR_FILENAME_LENGTH\n+ SHORT + SHORT + fileNameLen + extraFieldLen;\nif (entriesWithoutUTF8F",
+        " offset + LFH_OFFSET_FOR_FILENAME_LENGTH\n+ SHORT + SHORT + fileNameLen + extraFieldLen;\nif (entriesWithoutUTF8Flag.containsKey(ze)) {\nString orig = ze",
+        "\nint extraFieldLen = ZipShort.getValue(b);\nint lenToSkip = fileNameLen;\nwhile (lenToSkip > 0) {\nint ",
+        "ate void resolveLocalFileHeaderData(Map<ZipArchive",
+        "rchive.readFully(b);\nint fileNameLen = ZipShort.ge",
+        ");\nint lenToSkip = fileNameLen;\nwhile (lenToSkip >",
+        "kipBytes(lenToSkip);\nif (skipped <= 0) {\nthrow new",
+        "kipped <= 0) {\nthrow new RuntimeException(\"failed ",
+        "throw new RuntimeException(\"failed to skip file na",
+        "ToSkip -= skipped;\n}\nbyte[] localExtraData = new b",
+        "kip -= skipped;\n}\nbyte[] localExtraData = new byte",
+        "adFully(localExtraData);\nze.setExtra(localExtraDat",
+        "ExtraData);\nze.setExtra(localExtraData);\noffsetEnt",
+        "aData);\nze.setExtra(localExtraData);\noffsetEntry.d",
+        "Data);\nze.setExtra(localExtraData);\noffsetEntry.da",
+        "SET_FOR_FILENAME_LENGTH\n+ SHORT + SHORT + fileName",
+        "en + extraFieldLen;\nif (entriesWithoutUTF8Flag.con"
+    ]
+}

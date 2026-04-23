@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9721980886185926,
+    "input": "    private void updateBounds(TimePeriod period, int index) {\n        \n        long start = period.getStart().getTime();\n        long end = period.getEnd().getTime();\n        long middle = start + ((end - start) / 2);\n\n        if (this.minStartIndex >= 0) {\n            long minStart = getDataItem(this.minStartIndex).getPeriod()\n                .getStart().getTime();\n            if (start < minStart) {\n                this.minStartIndex = index;           \n            }\n        }\n        else {\n            this.minStartIndex = index;\n        }\n        \n        if (this.maxStartIndex >= 0) {\n            long maxStart = getDataItem(this.maxStartIndex).getPeriod()\n                .getStart().getTime();\n            if (start > maxStart) {\n                this.maxStartIndex = index;           \n            }\n        }\n        else {\n            this.maxStartIndex = index;\n        }\n        \n        if (this.minMiddleIndex >= 0) {\n            long s = getDataItem(this.minMiddleIndex).getPeriod().getStart()\n                .getTime();\n            long e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()\n                .getTime();\n            long minMiddle = s + (e - s) / 2;\n            if (middle < minMiddle) {\n                this.minMiddleIndex = index;           \n            }\n        }\n        else {\n            this.minMiddleIndex = index;\n        }\n        \n        if (this.maxMiddleIndex >= 0) {\n            long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()\n                .getTime();\n            long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()\n                .getTime();\n            long maxMiddle = s + (e - s) / 2;\n            if (middle > maxMiddle) {\n                this.maxMiddleIndex = index;           \n            }\n        }\n        else {\n            this.maxMiddleIndex = index;\n        }\n        \n        if (this.minEndIndex >= 0) {\n            long minEnd = getDataItem(this.minEndIndex).getPeriod().getEnd()\n               ",
+    "query_result": [
+        "index) {\n\nlong start = period.getStart().getTime();\nlong end = period.getEnd().getTime();\nlong middle = start + ((end - start) / 2);\nif (this.minStartIndex >= 0) {\nlong minStart = getDataItem(this.minStartIndex).getPeriod()\n.getStart().getTime();\nif (start < minStart) {\nthis.minStartIndex = index; \n}\n}\nelse {\nthis.minStartIndex = index;\n}\n\nif (this.maxStartIndex >= 0) {\nlong maxStart = getDataItem(this.maxStartIndex).getPeriod()\n.getStart().getTime();\nif (start > maxStart) {\nthis.maxStartIndex = index; \n}\n}\nelse {\nthis.maxStartIndex = index;\n}\n\nif (this.minMiddleIndex >= 0) {\nlong s = getDataItem(this.minMiddleIndex).getPeriod().getStart()\n.getTime();\nlong e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()\n.getTime();\nlong minMiddle = s + (e - s) / 2;\nif (middle < minMiddle) {\nthis.minMiddleIndex = index; \n}\n}\nelse {\nthis.minMiddleIndex = index;\n}\n\nif (this.maxMiddleIndex >= 0) {\nlong s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()\n.getTime();\nlong e = getDataItem(th",
+        ";\nlong maxMiddle = s + (e - s) / 2;\nif (middle > maxMiddle) {\nthis.maxMiddleIndex = index; \n}\n}\nelse {\nthis.maxMiddleIndex = index;\n}\n\nif (this.minEndIndex >= 0) {\nlong minEnd = getDataItem(this.minEn",
+        "long s = getDataItem(this.minMiddleIndex).getPeriod().getStart()\n.getTime();\nlong e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()\n.getTime()",
+        "tPeriod().getStart()\n.getTime();\nlong e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()\n.get",
+        ".getTime();\nlong e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()\n.getTime();\nlong maxMiddl",
+        "g e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()\n.getTime();\nlong maxMiddle = s + (e - s)",
+        "e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()\n.getTime();\nlong maxMiddle = s + (e - s) /",
+        "MiddleIndex).getPeriod().getEnd()\n.getTime();\nlong maxMiddle = s + (e - s) / 2;\nif (middle > maxMidd",
+        "Index).getPeriod().getEnd()\n.getTime();\nlong maxMiddle = s + (e - s) / 2;\nif (middle > maxMiddle) {\n",
+        "tTime();\nlong maxMiddle = s + (e - s) / 2;\nif (middle > maxMiddle) {\nthis.maxMiddleIndex = index; \n}",
+        "ate void updateBounds(TimePeriod period, int index",
+        " = period.getStart().getTime();\nlong end = period.",
+        "minStart = getDataItem(this.minStartIndex).getPeri",
+        "ng maxStart = getDataItem(this.maxStartIndex).getP",
+        "g maxStart = getDataItem(this.maxStartIndex).getPe",
+        "StartIndex).getPeriod()\n.getStart().getTime();\nif ",
+        " = getDataItem(this.minMiddleIndex).getPeriod().ge",
+        " getDataItem(this.minMiddleIndex).getPeriod().getS",
+        "etDataItem(this.minMiddleIndex).getPeriod().getSta",
+        "tDataItem(this.minMiddleIndex).getPeriod().getStar"
+    ]
+}

@@ -1,0 +1,68 @@
+diff --git a/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java b/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java
+index 1b4b51f18..a16fba8f2 100644
+--- a/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java
++++ b/src/main/java/spoon/support/compiler/jdt/ReferenceBuilder.java
+@@ -518,38 +518,45 @@ public class ReferenceBuilder {
+ 	 */
+ 	<T> CtTypeReference<T> getTypeReference(TypeReference ref) {
+ 		CtTypeReference<T> res = null;
+-		CtTypeReference inner = null;
+-		final String[] namesParameterized = CharOperation.charArrayToStringArray(ref.getParameterizedTypeName());
++		CtTypeReference<T> inner = null;
++		String[] namesParameterized = CharOperation.charArrayToStringArray(ref.getParameterizedTypeName());
+ 		String nameParameterized = CharOperation.toString(ref.getParameterizedTypeName());
+ 		String typeName = CharOperation.toString(ref.getTypeName());
+-
+ 		int index = namesParameterized.length - 1;
+-		for (; index >= 0; index--) {
+-			// Start at the end to get the class name first.
+-			CtTypeReference main = getTypeReference(namesParameterized[index]);
+-			if (main == null) {
+-				break;
+-			}
+-			if (res == null) {
+-				res = (CtTypeReference<T>) main;
+-			} else {
+-				inner.setDeclaringType((CtTypeReference<?>) main);
+-			}
++
++		// Start at the end to get the class name first.
++		CtTypeReference<T> main = getTypeReference(namesParameterized[index]);
++		if (main != null) {
++			res = main;
+ 			inner = main;
++			for (index--; index >= 0; index--) {
++				CtTypeReference<T> nextInner = getTypeReference(namesParameterized[index]);
++				if (nextInner != null) {
++					inner.setDeclaringType(nextInner);
++					inner = nextInner;
++				} else {
++					break;
++				}
++			}
+ 		}
++
+ 		if (res == null) {
+-			return this.jdtTreeBuilder.getFactory().Type().createReference(CharOperation.toString(ref.getParameterizedTypeName()));
++			return this.jdtTreeBuilder.getFactory().Type().createReference(nameParameterized);
+ 		}
+ 
++		// Ensure inner type has a package, if missing.
+ 		if (inner.getPackage() == null) {
+ 			PackageFactory packageFactory = this.jdtTreeBuilder.getFactory().Package();
+ 			CtPackageReference packageReference = index >= 0 ? packageFactory.getOrCreate(concatSubArray(namesParameterized, index)).getReference() : packageFactory.topLevel();
+ 			inner.setPackage(packageReference);
+ 		}
+-		if (!res.toString().replace(", ?", ",?").endsWith(CharOperation.toString(ref.getParameterizedTypeName()))) {
+-			// verify that we did not match a class that have the same name in a different package
+-			return this.jdtTreeBuilder.getFactory().Type().createReference(CharOperation.toString(ref.getParameterizedTypeName()));
++
++		// Validate type name match considering generics.
++		String resStr = res.toString().replace(", ?", ",?").replace(" ", "");
++		if (!resStr.endsWith(nameParameterized.replace(" ", ""))) {
++			return this.jdtTreeBuilder.getFactory().Type().createReference(nameParameterized);
+ 		}
++
+ 		return res;
+ 	}
+ 

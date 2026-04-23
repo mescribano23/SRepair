@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5626666666666666,
+    "input": "  @Override\n  public void process(Node externs, Node root) {\n    NodeTraversal.traverse(compiler, root, this);\n    removeDuplicateDeclarations(root);\n    if (MAKE_LOCAL_NAMES_UNIQUE) {\n      MakeDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();\n      NodeTraversal t = new NodeTraversal(compiler, renamer);\n      t.traverseRoots(externs, root);\n    }\n    new PropogateConstantAnnotations(compiler, assertOnChange)\n        .process(externs, root);\n  }",
+    "query_result": [
+        "Override\npublic void process(Node externs, Node root) {\nNodeTraversal.traverse(compiler, root, this)",
+        "(MAKE_LOCAL_NAMES_UNIQUE) {\nMakeDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();\nNodeTra",
+        "eDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();\nNodeTraversal t = new NodeTraversal(co",
+        "@Override\npublic void process(Node externs, Node r",
+        "verride\npublic void process(Node externs, Node roo",
+        "erride\npublic void process(Node externs, Node root",
+        "rride\npublic void process(Node externs, Node root)",
+        "ride\npublic void process(Node externs, Node root) ",
+        "ide\npublic void process(Node externs, Node root) {",
+        "de\npublic void process(Node externs, Node root) {\n",
+        "e\npublic void process(Node externs, Node root) {\nN",
+        "ublic void process(Node externs, Node root) {\nNode",
+        "blic void process(Node externs, Node root) {\nNodeT",
+        "lic void process(Node externs, Node root) {\nNodeTr",
+        "ic void process(Node externs, Node root) {\nNodeTra",
+        "c void process(Node externs, Node root) {\nNodeTrav",
+        " void process(Node externs, Node root) {\nNodeTrave",
+        "void process(Node externs, Node root) {\nNodeTraver",
+        "oid process(Node externs, Node root) {\nNodeTravers",
+        "rocess(Node externs, Node root) {\nNodeTraversal.tr"
+    ]
+}

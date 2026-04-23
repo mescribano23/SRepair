@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.25098039215686274,
+    "input": "@Override\n    public Collection<RioSetting<?>> getSupportedSettings() {\n        final Collection<RioSetting<?>> result = new HashSet<>(super.getSupportedSettings());\n        result.add(BasicWriterSettings.PRETTY_PRINT);\n        result.add(BasicWriterSettings.BASE_DIRECTIVE);\n        result.add(JSONLDSettings.COMPACT_ARRAYS);\n        result.add(JSONLDSettings.HIERARCHICAL_VIEW);\n        result.add(JSONLDSettings.JSONLD_MODE);\n        result.add(JSONLDSettings.PRODUCE_GENERALIZED_RDF);\n        result.add(JSONLDSettings.USE_RDF_TYPE);\n        result.add(JSONLDSettings.USE_NATIVE_TYPES);\n\n        return result;\n    }",
+    "query_result": [
+        "@Override\npublic Collection<RioSetting<?>> getSupp",
+        "erride\npublic Collection<RioSetting<?>> getSupport",
+        "rride\npublic Collection<RioSetting<?>> getSupporte",
+        "\npublic Collection<RioSetting<?>> getSupportedSett",
+        "ic Collection<RioSetting<?>> getSupportedSettings(",
+        "c Collection<RioSetting<?>> getSupportedSettings()",
+        "n<RioSetting<?>> getSupportedSettings() {\nfinal Co",
+        ">> result = new HashSet<>(super.getSupportedSettin",
+        "ew HashSet<>(super.getSupportedSettings());\nresult"
+    ]
+}

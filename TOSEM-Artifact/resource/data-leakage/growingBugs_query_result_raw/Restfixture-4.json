@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.41254752851711024,
+    "input": "public static String makeToggleCollapseable(String message, String content) {\n        Random random = new Random();\n        String id = Integer.toString(content.hashCode())\n                + Long.toString(random.nextLong());\n        StringBuffer sb = new StringBuffer();\n        sb.append(\"<div class='collapsible closed'>\");\n        sb.append(\"<ul><li><a href='#' class='expandall'>Expand</a></li><li><a href='#' class='collapseall'>Collapse</a></li></ul>\");\n        sb.append(\"<p class='title'>\").append(message).append(\"</p>\");\n        sb.append(\"<div>\").append(content).append(\"</div>\");\n        sb.append(\"</div>\");\n        return sb.toString();\n    }",
+    "query_result": [
+        "<ul><li><a href='#' class='expandall'>Expand</a></li><li><a href='#' class='collapseall'>Collapse</a",
+        "ul><li><a href='#' class='expandall'>Expand</a></li><li><a href='#' class='collapseall'>Collapse</a>",
+        "><a href='#' class='expandall'>Expand</a></li><li><a href='#' class='collapseall'>Collapse</a></li><",
+        "a href='#' class='expandall'>Expand</a></li><li><a href='#' class='collapseall'>Collapse</a></li></u",
+        " href='#' class='expandall'>Expand</a></li><li><a href='#' class='collapseall'>Collapse</a></li></ul",
+        "tring content) {\nRandom random = new Random();\nStr",
+        ") {\nRandom random = new Random();\nString id = Inte",
+        " {\nRandom random = new Random();\nString id = Integ",
+        "andom random = new Random();\nString id = Integer.t",
+        "ng());\nStringBuffer sb = new StringBuffer();\nsb.ap",
+        "());\nStringBuffer sb = new StringBuffer();\nsb.appe",
+        "));\nStringBuffer sb = new StringBuffer();\nsb.appen",
+        ");\nStringBuffer sb = new StringBuffer();\nsb.append",
+        ";\nStringBuffer sb = new StringBuffer();\nsb.append(",
+        "\nStringBuffer sb = new StringBuffer();\nsb.append(\"",
+        "StringBuffer sb = new StringBuffer();\nsb.append(\"<",
+        "tringBuffer sb = new StringBuffer();\nsb.append(\"<d",
+        "ringBuffer sb = new StringBuffer();\nsb.append(\"<di",
+        "ingBuffer sb = new StringBuffer();\nsb.append(\"<div",
+        "ngBuffer sb = new StringBuffer();\nsb.append(\"<div "
+    ]
+}

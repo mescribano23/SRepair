@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9630996309963099,
+    "input": "public JsonWriter value(double value) throws IOException {\n  writeDeferredName();\n  if (!lenient && (Double.isNaN(value) || Double.isInfinite(value))) {\n    throw new IllegalArgumentException(\"Numeric values must be finite, but was \" + value);\n  }\n  beforeValue();\n  out.append(Double.toString(value));\n  return this;\n}",
+    "query_result": [
+        "double value) throws IOException {\nwriteDeferredName();\nif (!lenient && (Double.isNaN(value) || Double.isInfinite(value))) {\nthrow new IllegalArgumentException(\"Numeric values must be finite, but was \" + value);\n}\nbeforeValue();\nout.append(Double.toS",
+        " (Double.isNaN(value) || Double.isInfinite(value))) {\nthrow new IllegalArgumentException(\"Numeric values must be finite, but was \" + value);\n}\nbeforeValue();\nout.append(Double.toString(value));\nreturn",
+        "\nif (!lenient && (Double.isNaN(value) || Double.isInfinite(value))) {\nthrow new IllegalArgumentException(\"Numeric values must be finite, but was \" + v",
+        "Double.isNaN(value) || Double.isInfinite(value))) {\nthrow new IllegalArgumentException(\"Numeric valu",
+        ") || Double.isInfinite(value))) {\nthrow new IllegalArgumentException(\"Numeric values must be finite,",
+        "ouble.isInfinite(value))) {\nthrow new IllegalArgumentException(\"Numeric values must be finite, but w",
+        "sInfinite(value))) {\nthrow new IllegalArgumentException(\"Numeric values must be finite, but was \" + ",
+        "))) {\nthrow new IllegalArgumentException(\"Numeric values must be finite, but was \" + value);\n}\nbefor",
+        "\nthrow new IllegalArgumentException(\"Numeric values must be finite, but was \" + value);\n}\nbeforeValu",
+        "ic JsonWriter value(double value) throws IOExcepti",
+        "c JsonWriter value(double value) throws IOExceptio",
+        "JsonWriter value(double value) throws IOException ",
+        "sonWriter value(double value) throws IOException {",
+        "Writer value(double value) throws IOException {\nwr",
+        "alue(double value) throws IOException {\nwriteDefer",
+        " value) throws IOException {\nwriteDeferredName();\n",
+        "finite(value))) {\nthrow new IllegalArgumentExcepti",
+        ")) {\nthrow new IllegalArgumentException(\"Numeric v",
+        " {\nthrow new IllegalArgumentException(\"Numeric val",
+        "throw new IllegalArgumentException(\"Numeric values"
+    ]
+}

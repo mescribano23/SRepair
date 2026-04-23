@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8058375634517766,
+    "input": "    protected void _serializeDynamicContents(Iterator<?> value, JsonGenerator g,\n            SerializerProvider provider) throws IOException\n    {\n        final TypeSerializer typeSer = _valueTypeSerializer;\n        PropertySerializerMap serializers = _dynamicSerializers;\n        do {\n            Object elem = value.next();\n            if (elem == null) {\n                provider.defaultSerializeNull(g);\n                continue;\n            }\n            Class<?> cc = elem.getClass();\n            JsonSerializer<Object> serializer = serializers.serializerFor(cc);\n            if (serializer == null) {\n                if (_elementType.hasGenericTypes()) {\n                    serializer = _findAndAddDynamic(serializers,\n                            provider.constructSpecializedType(_elementType, cc), provider);\n                } else {\n                    serializer = _findAndAddDynamic(serializers, cc, provider);\n                }\n                serializers = _dynamicSerializers;\n            }\n            if (typeSer == null) {\n                serializer.serialize(elem, g, provider);\n            } else {\n                serializer.serializeWithType(elem, g, provider, typeSer);\n            }\n        } while (value.hasNext());\n    }",
+    "query_result": [
+        "\nClass<?> cc = elem.getClass();\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (serializer == null) {\nif (_elementType.hasGenericTypes()) {\nserializer = _findAndAddDynamic(serializers,\nprovider.constructSpecializedType(_elementType, cc), provider);\n} else {\nserializer = _findAndAddDynamic(serializers, cc, provider);\n}\nseriali",
+        "?> cc = elem.getClass();\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (serializer == null) {\nif (_elementType.hasGenericTypes()) {\nserializer = _findAndAddDynamic(serializers,\nprovider.constructSpecializedType(_elementType, cc), provider);\n} else {\nserializer = _findAndAddDy",
+        ");\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (serializer == null) {\nif (_elementType.hasGenericTypes()) {\nserializer = _findAndAddDynamic(serializers,\nprovider.constructSpe",
+        "cTypes()) {\nserializer = _findAndAddDynamic(serializers,\nprovider.constructSpecializedType(_elementType, cc), provider);\n} else {\nserializer = _findAndAddDynamic(serializers, cc, provider);\n}\nserializ",
+        "es()) {\nserializer = _findAndAddDynamic(serializers,\nprovider.constructSpecializedType(_elementType, cc), provider);\n} else {\nserializer = _findAndAddDynamic(serializers, cc, provider);\n}\nserializers ",
+        "serializer = _findAndAddDynamic(serializers,\nprovider.constructSpecializedType(_elementType, cc), provider);\n} else {\nserializer = _findAndAddDynamic(serializers, cc, provider);\n}\nserializers = _dynam",
+        "lizer<Object> serializer = serializers.serializerFor(cc);\nif (serializer == null) {\nif (_elementType.hasGenericTypes()) {\nserializer = _findAndAddDyna",
+        " {\nserializer = _findAndAddDynamic(serializers, cc, provider);\n}\nserializers = _dynamicSerializers;\n}\nif (typeSer == null) {\nserializer.serialize(elem",
+        "inal TypeSerializer typeSer = _valueTypeSerializer;\nPropertySerializerMap serializers = _dynamicSeri",
+        "s<?> cc = elem.getClass();\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (se",
+        " elem.getClass();\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (serializer ",
+        "getClass();\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (serializer == nul",
+        "ass();\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (serializer == null) {\n",
+        "();\nJsonSerializer<Object> serializer = serializers.serializerFor(cc);\nif (serializer == null) {\nif ",
+        "e(_elementType, cc), provider);\n} else {\nserializer = _findAndAddDynamic(serializers, cc, provider);",
+        "entType, cc), provider);\n} else {\nserializer = _findAndAddDynamic(serializers, cc, provider);\n}\nseri",
+        "== null) {\nserializer.serialize(elem, g, provider);\n} else {\nserializer.serializeWithType(elem, g, p",
+        "ializer.serialize(elem, g, provider);\n} else {\nserializer.serializeWithType(elem, g, provider, typeS",
+        "rializeDynamicContents(Iterator<?> value, JsonGene",
+        "sonGenerator g,\nSerializerProvider provider) throw"
+    ]
+}

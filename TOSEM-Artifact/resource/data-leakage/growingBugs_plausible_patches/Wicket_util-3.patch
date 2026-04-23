@@ -1,0 +1,58 @@
+diff --git a/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java b/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java
+index 29ff8704a0..402bf3aec7 100644
+--- a/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java
++++ b/wicket-util/src/main/java/org/apache/wicket/util/collections/IntHashMap.java
+@@ -1141,31 +1141,35 @@ public class IntHashMap<V> implements Cloneable, Serializable
+ 	 * @throws IOException
+ 	 * @throws ClassNotFoundException
+ 	 */
+-	@SuppressWarnings("unchecked")
+-	private void readObject(final java.io.ObjectInputStream s) throws IOException,
++@SuppressWarnings("unchecked")
++private void readObject(final java.io.ObjectInputStream s) throws IOException,
+ 		ClassNotFoundException
+-	{
++{
+ 
+-		// Read in the threshold, loadfactor, and any hidden stuff
+-		s.defaultReadObject();
++	// Read in the threshold, loadfactor, and any hidden stuff
++	s.defaultReadObject();
+ 
+-		// Read in number of buckets and allocate the bucket array;
+-		int numBuckets = s.readInt();
+-		table = new Entry[numBuckets];
++	// Read in number of buckets and allocate the bucket array;
++	int numBuckets = s.readInt();
++	table = new Entry[numBuckets];
+ 
+-		init(); // Give subclass a chance to do its thing.
++	init(); // Give subclass a chance to do its thing.
++	// Ensure modCount is initialized
++	if (modCount == null) {
++		modCount = new AtomicInteger(0);
++	}
+ 
+-		// Read in size (number of Mappings)
+-		int size = s.readInt();
++	// Read in size (number of Mappings)
++	int size = s.readInt();
+ 
+-		// Read the keys and values, and put the mappings in the HashMap
+-		for (int i = 0; i < size; i++)
+-		{
+-			int key = s.readInt();
+-			V value = (V)s.readObject();
+-			putForCreate(key, value);
+-		}
++	// Read the keys and values, and put the mappings in the HashMap
++	for (int i = 0; i < size; i++)
++	{
++		int key = s.readInt();
++		V value = (V)s.readObject();
++		putForCreate(key, value);
+ 	}
++}
+ 
+ 	// These methods are used when serializing HashSets
+ 	int capacity()

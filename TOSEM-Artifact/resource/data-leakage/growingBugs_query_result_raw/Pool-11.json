@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.645937813440321,
+    "input": "    @Override\n    public void returnObject(T obj) {\n        PooledObject<T> p = allObjects.get(obj);\n\n        if (!isAbandonedConfig()) {\n            if (p == null) {\n                throw new IllegalStateException(\n                        \"Returned object not currently part of this pool\");\n            }\n        } else {\n            if (p == null) {\n                return;  // Object was abandoned and removed\n            } else {\n                // Make sure object is not being reclaimed\n                synchronized(p) {\n                    final PooledObjectState state = p.getState();\n                    if (state != PooledObjectState.ALLOCATED) {\n                        return;\n                    } else {\n                        p.markReturning(); // Keep from being marked abandoned\n                    }\n                }\n            }\n        }\n\n        long activeTime = p.getActiveTimeMillis();\n\n        if (getTestOnReturn()) {\n            if (!factory.validateObject(p)) {\n                try {\n                    destroy(p);\n                } catch (Exception e) {\n                    swallowException(e);\n                }\n                try {\n                    ensureIdle(1, false);\n                } catch (Exception e) {\n                    swallowException(e);\n                }\n                updateStatsReturn(activeTime);\n                return;\n            }\n        }\n\n        try {\n            factory.passivateObject(p);\n        } catch (Exception e1) {\n            swallowException(e1);\n            try {\n                destroy(p);\n            } catch (Exception e) {\n                swallowException(e);\n            }\n            try {\n                ensureIdle(1, false);\n            } catch (Exception e) {\n                swallowException(e);\n            }\n            updateStatsReturn(activeTime);\n            return;\n        }\n\n        if (!p.deallocate()) {\n            throw new IllegalStateException(\n                    \"Object has already been ret",
+    "query_result": [
+        "if (getTestOnReturn()) { if (!factory.validateObject(p)) { try { destroy(p); } catch (Exception e) { swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); } updateStatsReturn(activeTime); return; } } try { factory.passivateObject(p); } catch (Exception e1) { swallowException(e1); try { destroy(p); } catch (Exception e) { swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); } updateStatsReturn(activeTime); return; } if (!p.deallocate()) { throw new IllegalState",
+        "} try { factory.passivateObject(p); } catch (Exception e1) { swallowException(e1); try { destroy(p); } catch (Exception e) { swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); } updateStatsReturn(activeTime); return; } if (!p.deallocate()) { throw new Il",
+        ".validateObject(p)) { try { destroy(p); } catch (Exception e) { swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); } updateStatsReturn(activeTime); return;",
+        "; } catch (Exception e) { swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); } updateStatsReturn(activeTi",
+        "(Exception e) { swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); } updateStatsReturn(activeTime); retur",
+        "xception e) { swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); } updateStatsReturn(activeTime); return;",
+        "eption e) { swallowException(e); } updateStatsReturn(activeTime); return; } if (!p.deallocate()) { throw new IllegalStateException( \"Object has alread",
+        "if (p == null) { throw new IllegalStateException( \"Returned object not currently part of this pool\"",
+        "{ swallowException(e); } try { ensureIdle(1, false); } catch (Exception e) { swallowException(e); }",
+        "} updateStatsReturn(activeTime); return; } if (!p.deallocate()) { throw new IllegalStateException( \"",
+        "sReturn(activeTime); return; } if (!p.deallocate()) { throw new IllegalStateException( \"Object has a",
+        "blic void returnObject(T obj) { PooledObject<T> p",
+        "returnObject(T obj) { PooledObject<T> p = allObjec",
+        ") { if (p == null) { throw new IllegalStateExcepti",
+        "{ if (p == null) { throw new IllegalStateException",
+        "ll) { throw new IllegalStateException( \"Returned o",
+        "hrow new IllegalStateException( \"Returned object n",
+        "w new IllegalStateException( \"Returned object not",
+        "ew IllegalStateException( \"Returned object not cur",
+        "StateException( \"Returned object not currently par"
+    ]
+}

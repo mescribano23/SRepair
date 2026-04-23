@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "public boolean remove(V value) {\n        return target.remove(value) != null;\n    }",
+    "query_result": []
+}

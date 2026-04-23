@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.6464435146443515,
+    "input": "private byte[] getSalt(LocalFileHeader localFileHeader) throws IOException {\n    if (localFileHeader.getAesExtraDataRecord() == null) {\n      throw new IOException(\"invalid aes extra data record\");\n    }\n\n    AESExtraDataRecord aesExtraDataRecord = localFileHeader.getAesExtraDataRecord();\n\n    if (aesExtraDataRecord.getAesKeyStrength() == null) {\n      throw new IOException(\"Invalid aes key strength in aes extra data record\");\n    }\n\n    byte[] saltBytes = new byte[aesExtraDataRecord.getAesKeyStrength().getSaltLength()];\n    readRaw(saltBytes);\n    return saltBytes;\n  }",
+    "query_result": [
+        "Header localFileHeader) throws IOException {\nif (localFileHeader.getAesExtraDataRecord() == null) {\nthrow new IOException(\"invalid aes extra data record\");\n}\nAESExtraDataRecord aesExtraDataRecord = lo",
+        "[] getSalt(LocalFileHeader localFileHeader) throws IOException {\nif (localFileHeader.getAesExtraData",
+        "Bytes = new byte[aesExtraDataRecord.getAesKeyStrength().getSaltLength()];\nreadRaw(saltBytes);\nreturn",
+        "(LocalFileHeader localFileHeader) throws IOExcepti",
+        "leHeader) throws IOException {\nif (localFileHeader",
+        "\nthrow new IOException(\"invalid aes extra data rec",
+        "aDataRecord aesExtraDataRecord = localFileHeader.g",
+        "DataRecord aesExtraDataRecord = localFileHeader.ge"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6237373737373737,
+    "input": "private static StringBuilder escapeRegex(StringBuilder regex, String value, boolean unquote) {\n    for(int i= 0; i<value.length(); ++i) {\n        char c= value.charAt(i);\n        switch(c) {\n        case '\\'':\n            if(unquote) {\n                if(++i==value.length()) {\n                    return regex;\n                }\n                c= value.charAt(i);\n            }\n            break;\n        case '?':\n        case '[':\n        case ']':\n        case '(':\n        case ')':\n        case '{':\n        case '}':\n        case '\\\\':\n        case '|':\n        case '*':\n        case '+':\n        case '^':\n        case '$':\n        case '.':\n            regex.append('\\\\');\n        }\n        regex.append(c);\n    }\n    return regex;\n}",
+    "query_result": [
+        " {\ncase '\\'':\nif(unquote) {\nif(++i==value.length()) {\nreturn regex;\n}\nc= value.charAt(i);\n}\nbreak;\nc",
+        "uilder escapeRegex(StringBuilder regex, String val",
+        "gex(StringBuilder regex, String value, boolean unq",
+        "(StringBuilder regex, String value, boolean unquot",
+        "for(int i= 0; i<value.length(); ++i) {\nchar c= val",
+        " i= 0; i<value.length(); ++i) {\nchar c= value.char",
+        "if(++i==value.length()) {\nreturn regex;\n}\nc= value",
+        "':\ncase '[':\ncase ']':\ncase '(':\ncase ')':\ncase '{",
+        ":\ncase '[':\ncase ']':\ncase '(':\ncase ')':\ncase '{'",
+        "\ncase '[':\ncase ']':\ncase '(':\ncase ')':\ncase '{':",
+        "case '[':\ncase ']':\ncase '(':\ncase ')':\ncase '{':\n",
+        "ase '[':\ncase ']':\ncase '(':\ncase ')':\ncase '{':\nc",
+        "e '[':\ncase ']':\ncase '(':\ncase ')':\ncase '{':\ncas",
+        " '[':\ncase ']':\ncase '(':\ncase ')':\ncase '{':\ncase",
+        "'[':\ncase ']':\ncase '(':\ncase ')':\ncase '{':\ncase ",
+        "[':\ncase ']':\ncase '(':\ncase ')':\ncase '{':\ncase '",
+        "':\ncase ']':\ncase '(':\ncase ')':\ncase '{':\ncase '}",
+        "\ncase ']':\ncase '(':\ncase ')':\ncase '{':\ncase '}':",
+        "case ']':\ncase '(':\ncase ')':\ncase '{':\ncase '}':\n",
+        "ase ']':\ncase '(':\ncase ')':\ncase '{':\ncase '}':\nc"
+    ]
+}

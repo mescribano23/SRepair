@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.11658031088082901,
+    "input": "    @Override\n    @NotNull(message = \"Iterable of orgs is never NULL\")\n    public Iterable<Organization> iterate(\n        @NotNull(message = \"login is never NULL\") final String login\n    ) {\n        return new MkIterable<Organization>(\n            this.storage,\n            String.format(\"%s/org/login\", this.xpath()),\n            new MkIterable.Mapping<Organization>() {\n                @Override\n                public Organization map(final XML xml) {\n                    return MkOrganizations.this.get(\n                        xml.xpath(\"login/text()\").get(0)\n                    );\n                }\n            }\n        );\n    }",
+    "query_result": [
+        "rganization>() {\n@Override\npublic Organization map"
+    ]
+}

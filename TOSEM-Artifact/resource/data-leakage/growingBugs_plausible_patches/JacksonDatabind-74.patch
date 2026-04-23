@@ -1,0 +1,16 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsPropertyTypeDeserializer.java b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsPropertyTypeDeserializer.java
+index d1d096a75..f25e94c31 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsPropertyTypeDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsPropertyTypeDeserializer.java
+@@ -150,6 +150,11 @@ public class AsPropertyTypeDeserializer extends AsArrayTypeDeserializer
+         if (result != null) {
+             return result;
+         }
++        // Add check for empty string and return null if `ACCEPT_EMPTY_STRING_AS_NULL_OBJECT` is enabled
++        if (p.getCurrentToken() == JsonToken.VALUE_STRING && p.getText().isEmpty() &&
++                ctxt.isEnabled(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)) {
++            return null;
++        }
+         // or, something for which "as-property" won't work, changed into "wrapper-array" type:
+         if (p.getCurrentToken() == JsonToken.START_ARRAY) {
+             return super.deserializeTypedFromAny(p, ctxt);

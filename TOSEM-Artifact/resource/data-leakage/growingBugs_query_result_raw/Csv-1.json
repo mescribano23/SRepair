@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.3212121212121212,
+    "input": "    @Override\n    public int read() throws IOException {\n        int current = super.read();\n        if (current == '\\r' || (current == '\\n' && lastChar != '\\r')) {\n            lineCounter++;\n        }\n        lastChar = current;\n        return lastChar;\n    }",
+    "query_result": [
+        "@Override\npublic int read() throws IOException {\ni",
+        "Override\npublic int read() throws IOException {\nin",
+        "verride\npublic int read() throws IOException {\nint",
+        "erride\npublic int read() throws IOException {\nint ",
+        "rride\npublic int read() throws IOException {\nint c",
+        "blic int read() throws IOException {\nint current ="
+    ]
+}

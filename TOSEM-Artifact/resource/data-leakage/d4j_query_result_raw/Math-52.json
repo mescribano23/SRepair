@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.25523349436392917,
+    "input": "public Rotation(Vector3D u1, Vector3D u2, Vector3D v1, Vector3D v2) {\n\n// norms computation\ndouble u1u1 = u1.getNormSq();\ndouble u2u2 = u2.getNormSq();\ndouble v1v1 = v1.getNormSq();\ndouble v2v2 = v2.getNormSq();\nif ((u1u1 == 0) || (u2u2 == 0) || (v1v1 == 0) || (v2v2 == 0)) {\n  throw MathRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DEFINING_VECTOR);\n}\n\n// normalize v1 in order to have (v1'|v1') = (u1|u1)\nv1 = new Vector3D(FastMath.sqrt(u1u1 / v1v1), v1);\n\n// adjust v2 in order to have (u1|u2) = (v1'|v2') and (v2'|v2') = (u2|u2)\ndouble u1u2   = u1.dotProduct(u2);\ndouble v1v2   = v1.dotProduct(v2);\ndouble coeffU = u1u2 / u1u1;\ndouble coeffV = v1v2 / u1u1;\ndouble beta   = FastMath.sqrt((u2u2 - u1u2 * coeffU) / (v2v2 - v1v2 * coeffV));\ndouble alpha  = coeffU - beta * coeffV;\nv2 = new Vector3D(alpha, v1, beta, v2);\n\n// preliminary computation\nVector3D uRef  = u1;\nVector3D vRef  = v1;\nVector3D v1Su1 = v1.subtract(u1);\nVector3D v2Su2 = v2.subtract(u2);\nVector3D k     = v1Su1.crossProduct(v2Su2);\nVector3D u3    = u1.crossProduct(u2);\ndouble c       = k.dotProduct(u3);\nfinal double inPlaneThreshold = 0.001;\nif (c <= inPlaneThreshold * k.getNorm() * u3.getNorm()) {\n  // the (q1, q2, q3) vector is close to the (u1, u2) plane\n  // we try other vectors\n  Vector3D v3 = Vector3D.crossProduct(v1, v2);\n  Vector3D v3Su3 = v3.subtract(u3);\n  k = v1Su1.crossProduct(v3Su3);\n  Vector3D u2Prime = u1.crossProduct(u3);\n  c = k.dotProduct(u2Prime);\n\n  if (c <=",
+    "query_result": [
+        "(u1u1 == 0) || (u2u2 == 0) || (v1v1 == 0) || (v2v2 == 0)) {\nthrow MathRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_R",
+        "ble coeffU = u1u2 / u1u1;\ndouble coeffV = v1v2 / u1u1;\ndouble beta = FastMath.sqrt((u2u2 - u1u2 * coeffU) / (v2v2 - v1v2 * coeffV));\ndouble alpha = co",
+        ")) {\nthrow MathRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATI",
+        "throw MathRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DE",
+        "row MathRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DEFI",
+        "ow MathRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DEFIN",
+        "athRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DEFINING_",
+        "thRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DEFINING_V",
+        "hRuntimeException.createIllegalArgumentException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DEFINING_VE",
+        "ic Rotation(Vector3D u1, Vector3D u2, Vector3D v1,",
+        ") {\nthrow MathRuntimeException.createIllegalArgume",
+        " {\nthrow MathRuntimeException.createIllegalArgumen",
+        "{\nthrow MathRuntimeException.createIllegalArgument",
+        "\nthrow MathRuntimeException.createIllegalArgumentE",
+        "hrow MathRuntimeException.createIllegalArgumentExc",
+        "w MathRuntimeException.createIllegalArgumentExcept",
+        " MathRuntimeException.createIllegalArgumentExcepti",
+        "MathRuntimeException.createIllegalArgumentExceptio",
+        "RuntimeException.createIllegalArgumentException(Lo",
+        "untimeException.createIllegalArgumentException(Loc"
+    ]
+}

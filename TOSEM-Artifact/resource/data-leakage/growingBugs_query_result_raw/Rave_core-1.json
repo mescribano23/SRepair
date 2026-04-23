@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.23608017817371937,
+    "input": "    @Override\n    public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permissionString) {\n        if (targetDomainObject == null) {\n            return false;\n        }\n        // find the appropriate ModelPermissionEvaluator from the map based on\n        // the targetDomainObject's class and invoke the hasPermission function        \n        return getEvaluator(targetDomainObject.getClass().getName()).hasPermission(authentication, targetDomainObject,\n                getPermission(targetDomainObject, (String) permissionString));\n    }",
+    "query_result": [
+        "@Override\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Obj",
+        "Override\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Obje",
+        "verride\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Objec",
+        "erride\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object",
+        "rride\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object ",
+        "ride\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object p",
+        "ide\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object pe",
+        "de\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object per",
+        "e\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object perm",
+        "\npublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permi",
+        "public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permis",
+        "ublic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permiss",
+        "blic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permissi",
+        "lic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permissio",
+        "ic boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission",
+        "c boolean hasPermission(Authentication authenticat",
+        " boolean hasPermission(Authentication authenticati",
+        "boolean hasPermission(Authentication authenticatio",
+        "oolean hasPermission(Authentication authentication",
+        "olean hasPermission(Authentication authentication,"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.704119850187266,
+    "input": "    protected boolean validPublicIdChar(int c) {\n        return\n            c == 0xA ||                     //<LF>\n            c == 0xD ||                     //<CR>\n            c == 0x20 ||                    //<SPACE>\n            (c >= '0' && c <= '9') ||       //[0-9]\n            (c >= '@' && c <= 'Z') ||       //@[A-Z]\n            (c >= 'a' && c <= 'z') ||\n            c == '!' ||\n            (c >= 0x23 && c <= 0x25) ||     //#$%\n            (c >= 0x27 && c <= 0x2F) ||     //'()*+,-./\n            (c >= ':' && c <= ';') ||\n            c == '=' ||\n            c == '?' ||\n            c == '_';\n    }",
+    "query_result": [
+        "a' && c <= 'z') ||\nc == '!' ||\n(c >= 0x23 && c <= 0x25) || //#$%\n(c >= 0x27 && c <= 0x2F) || //'()*+,-./\n(c >= ':' && c <= ';') ||\nc == '=' ||\nc == '?",
+        "cted boolean validPublicIdChar(int c) {\nreturn\nc == 0xA || //<LF>\nc == 0xD || //<CR>\nc == 0x20 || //"
+    ]
+}

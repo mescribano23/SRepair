@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9274193548387096,
+    "input": "    @Override public int read(byte[] buffer, int offset, int length) throws IOException {\n      nonNull(buffer, \"buffer\");\n      if ((offset | length) < 0 || length > buffer.length - offset) {\n        throw new ArrayIndexOutOfBoundsException();\n      }\n      if (remaining > 0) {\n        if (length > remaining) length = remaining;\n        ringRead(position, buffer, offset, length);\n        position = wrapPosition(position + length);\n        remaining -= length;\n        return length;\n      } else {\n        return -1;\n      }\n    }",
+    "query_result": [
+        "ad(byte[] buffer, int offset, int length) throws IOException {\nnonNull(buffer, \"buffer\");\nif ((offset | length) < 0 || length > buffer.length - offset) {\nthrow new ArrayIndexOutOfBoundsException();\n}\n",
+        "gth > remaining) length = remaining;\nringRead(position, buffer, offset, length);\nposition = wrapPosition(position + length);\nremaining -= length;\nretu",
+        "ength = remaining;\nringRead(position, buffer, offset, length);\nposition = wrapPosition(position + length);\nremaining -= length;\nreturn length;\n} else ",
+        "l(buffer, \"buffer\");\nif ((offset | length) < 0 || length > buffer.length - offset) {\nthrow new Array",
+        " ((offset | length) < 0 || length > buffer.length - offset) {\nthrow new ArrayIndexOutOfBoundsExcepti",
+        "ngth) < 0 || length > buffer.length - offset) {\nthrow new ArrayIndexOutOfBoundsException();\n}\nif (re",
+        ") < 0 || length > buffer.length - offset) {\nthrow new ArrayIndexOutOfBoundsException();\n}\nif (remain",
+        "g) length = remaining;\nringRead(position, buffer, offset, length);\nposition = wrapPosition(position ",
+        "verride public int read(byte[] buffer, int offset,",
+        "erride public int read(byte[] buffer, int offset, ",
+        "ride public int read(byte[] buffer, int offset, in",
+        "ide public int read(byte[] buffer, int offset, int",
+        "de public int read(byte[] buffer, int offset, int ",
+        " public int read(byte[] buffer, int offset, int le",
+        "public int read(byte[] buffer, int offset, int len",
+        "ublic int read(byte[] buffer, int offset, int leng",
+        "blic int read(byte[] buffer, int offset, int lengt",
+        "lic int read(byte[] buffer, int offset, int length",
+        "ic int read(byte[] buffer, int offset, int length)",
+        "c int read(byte[] buffer, int offset, int length) "
+    ]
+}

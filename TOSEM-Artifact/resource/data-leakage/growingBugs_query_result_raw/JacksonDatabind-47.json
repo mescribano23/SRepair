@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.24879614767255218,
+    "input": "    public JavaType refineSerializationType(final MapperConfig<?> config,\n            final Annotated a, final JavaType baseType) throws JsonMappingException\n    {\n        JavaType type = baseType;\n        final TypeFactory tf = config.getTypeFactory();\n        \n        // 10-Oct-2015, tatu: For 2.7, we'll need to delegate back to\n        //    now-deprecated secondary methods; this because while\n        //    direct sub-class not yet retrofitted may only override\n        //    those methods. With 2.8 or later we may consider removal\n        //    of these methods\n\n        \n        // Ok: start by refining the main type itself; common to all types\n        Class<?> serClass = findSerializationType(a);\n        if (serClass != null) {\n            if (type.hasRawClass(serClass)) {\n                // 30-Nov-2015, tatu: As per [databind#1023], need to allow forcing of\n                //    static typing this way\n                type = type.withStaticTyping();\n            } else {\n                Class<?> currRaw = type.getRawClass();\n                try {\n                    // 11-Oct-2015, tatu: For deser, we call `TypeFactory.constructSpecializedType()`,\n                    //   may be needed here too in future?\n                    if (serClass.isAssignableFrom(currRaw)) { // common case\n                        type = tf.constructGeneralizedType(type, serClass);\n                    } else if (currRaw.isAssignableFrom(serClass)) { // specialization, ok as well\n                        type = tf.constructSpecializedType(type, serClass);\n                    } else {\n                        throw new JsonMappingException(null,\n                                String.format(\"Can not refine serialization type %s into %s; types not related\",\n                                        type, serClass.getName()));\n                    }\n                } catch (IllegalArgumentException iae) {\n                    throw new JsonMappingException(null,\n                            String.fo",
+    "query_result": [
+        "zationType(final MapperConfig<?> config, final Annotated a, final JavaType baseType) throws JsonMapp",
+        "inal MapperConfig<?> config, final Annotated a, final JavaType baseType) throws JsonMappingException",
+        "Type(final MapperConfig<?> config, final Annotated",
+        "ype = type.withStaticTyping(); } else { Class<?> c",
+        "eralizedType(type, serClass); } else if (currRaw.i",
+        "ring.format(\"Can not refine serialization type %s",
+        "e())); } } catch (IllegalArgumentException iae) {",
+        "); } } catch (IllegalArgumentException iae) { thro",
+        "; } } catch (IllegalArgumentException iae) { throw",
+        "} } catch (IllegalArgumentException iae) { throw",
+        "} catch (IllegalArgumentException iae) { throw ne",
+        "} catch (IllegalArgumentException iae) { throw new",
+        "catch (IllegalArgumentException iae) { throw new",
+        "ch (IllegalArgumentException iae) { throw new Json",
+        "(IllegalArgumentException iae) { throw new JsonMa",
+        "(IllegalArgumentException iae) { throw new JsonMap",
+        "IllegalArgumentException iae) { throw new JsonMapp",
+        "lArgumentException iae) { throw new JsonMappingExc",
+        "mentException iae) { throw new JsonMappingExceptio",
+        "ception iae) { throw new JsonMappingException(null"
+    ]
+}

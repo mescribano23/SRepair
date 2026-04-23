@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    boolean remove(String id, ServiceReference<Validator<?>> serviceReference) {\n        // only actually remove if the service reference is equal\n        if (id == null) {\n            // find by service reference\n        }\n        ValidatorMetadata entry = validatorMap.get(id);\n        if (entry == null) {\n            LOG.warn(\"Could not remove validator with id '{}' from map, because it is not there!\", id);\n            return false;\n        } else {\n            // only actually remove if the service reference is equal\n            if (entry.serviceReference.equals(serviceReference)) {\n                validatorMap.remove(id);\n                return true;\n            } else {\n                LOG.warn(\"Could not remove validator with id '{}' from map because it is only contained with a different service reference!\", id);\n                return false;\n            }\n        }\n    }",
+    "query_result": []
+}

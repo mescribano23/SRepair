@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.6744186046511628,
+    "input": "@JsonIgnore // work-around for [databind#815]\n    public JsonNode setAll(Map<String,? extends JsonNode> properties)\n    {\n        for (Map.Entry<String,? extends JsonNode> en : properties.entrySet()) {\n            JsonNode n = en.getValue();\n            if (n == null) {\n                n = nullNode();\n            }\n            _children.put(en.getKey(), n);\n        }\n        return this;\n    }",
+    "query_result": [
+        "setAll(Map<String,? extends JsonNode> properties)\n{\nfor (Map.Entry<String,? extends JsonNode> en : properties.entrySet()) {\nJsonNode n = en.getValue();\nif (n == null) {\nn = nullNode();\n}\n_children.put"
+    ]
+}

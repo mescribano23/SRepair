@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.5375722543352601,
+    "input": "        @Override\n        public int compareTo(final Label label) {\n            return new CompareToBuilder()\n                .append(this.repo().coordinates(), label.repo().coordinates())\n                .append(this.obj, label.name())\n                .build();\n        }",
+    "query_result": [
+        "el label) {\nreturn new CompareToBuilder()\n.append(this.repo().coordinates(), label.repo().coordinate"
+    ]
+}

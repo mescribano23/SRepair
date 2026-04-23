@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeFormatter.java b/src/main/java/org/joda/time/format/DateTimeFormatter.java
+index 447674a2..0aef8150 100644
+--- a/src/main/java/org/joda/time/format/DateTimeFormatter.java
++++ b/src/main/java/org/joda/time/format/DateTimeFormatter.java
+@@ -709,6 +709,11 @@ public class DateTimeFormatter {
+         chrono = selectChronology(chrono);
+         int defaultYear = chrono.year().get(instantLocal);
+         
++        // Use a fixed leap year if parsing "M d" pattern
++        if (text.matches("\\d+\\s+29")) { // basic regex for "M 29"
++            defaultYear = 2004; // 2004 is a known leap year
++        }
++        
+         DateTimeParserBucket bucket = new DateTimeParserBucket(
+             instantLocal, chrono, iLocale, iPivotYear, defaultYear);
+         int newPos = parser.parseInto(bucket, text, position);

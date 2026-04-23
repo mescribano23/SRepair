@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.8142857142857143,
+    "input": "public StringBuffer format(Calendar calendar, StringBuffer buf) {\n    if (mTimeZoneForced) {\n        calendar.getTime(); /// LANG-538\n        calendar = (Calendar) calendar.clone();\n        calendar.setTimeZone(mTimeZone);\n    }\n    return applyRules(calendar, buf);\n}",
+    "query_result": [
+        "ar = (Calendar) calendar.clone();\ncalendar.setTimeZone(mTimeZone);\n}\nreturn applyRules(calendar, buf",
+        "lic StringBuffer format(Calendar calendar, StringB",
+        "ic StringBuffer format(Calendar calendar, StringBu",
+        "c StringBuffer format(Calendar calendar, StringBuf",
+        " calendar, StringBuffer buf) {\nif (mTimeZoneForced",
+        "alendar = (Calendar) calendar.clone();\ncalendar.se",
+        "endar = (Calendar) calendar.clone();\ncalendar.setT",
+        " = (Calendar) calendar.clone();\ncalendar.setTimeZo",
+        "(Calendar) calendar.clone();\ncalendar.setTimeZone(",
+        "ar.setTimeZone(mTimeZone);\n}\nreturn applyRules(cal"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.352059925093633,
+    "input": "protected Object _deserializeFromEmptyString() throws IOException {\n    // As per [databind#398], URI requires special handling\n    if (_kind == STD_URI) {\n        return URI.create(\"\");\n    }\n    // As per [databind#1123], Locale too\n    if (_kind == STD_LOCALE) {\n        return Locale.ROOT;\n    }\n    return super._deserializeFromEmptyString();\n}",
+    "query_result": [
+        "t _deserializeFromEmptyString() throws IOException",
+        ".ROOT;\n}\nreturn super._deserializeFromEmptyString("
+    ]
+}

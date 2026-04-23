@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.44120032441200324,
+    "input": "    public static boolean testNode(Node node, NodeTest test) {\n        if (test == null) {\n            return true;\n        }\n        if (test instanceof NodeNameTest) {\n            if (node.getNodeType() != Node.ELEMENT_NODE) {\n                return false;\n            }\n\n            NodeNameTest nodeNameTest = (NodeNameTest) test;\n            QName testName = nodeNameTest.getNodeName();\n            String namespaceURI = nodeNameTest.getNamespaceURI();\n            boolean wildcard = nodeNameTest.isWildcard();\n            String testPrefix = testName.getPrefix();\n            if (wildcard && testPrefix == null) {\n                return true;\n            }\n            if (wildcard\n                || testName.getName()\n                        .equals(DOMNodePointer.getLocalName(node))) {\n                String nodeNS = DOMNodePointer.getNamespaceURI(node);\n                return equalStrings(namespaceURI, nodeNS) || nodeNS == null\n                        && equalStrings(testPrefix, getPrefix(node));\n            }\n            return false;\n        }\n        if (test instanceof NodeTypeTest) {\n            int nodeType = node.getNodeType();\n            switch (((NodeTypeTest) test).getNodeType()) {\n                case Compiler.NODE_TYPE_NODE :\n                    return nodeType == Node.ELEMENT_NODE\n                            || nodeType == Node.DOCUMENT_NODE;\n                case Compiler.NODE_TYPE_TEXT :\n                    return nodeType == Node.CDATA_SECTION_NODE\n                        || nodeType == Node.TEXT_NODE;\n                case Compiler.NODE_TYPE_COMMENT :\n                    return nodeType == Node.COMMENT_NODE;\n                case Compiler.NODE_TYPE_PI :\n                    return nodeType == Node.PROCESSING_INSTRUCTION_NODE;\n            }\n            return false;\n        }\n        if (test instanceof ProcessingInstructionTest) {\n            if (node.getNodeType() == Node.PROCESSING_INSTRUCTION_NODE) {\n                String testPI = ((ProcessingInstr",
+    "query_result": [
+        "t) test;\nQName testName = nodeNameTest.getNodeName();\nString namespaceURI = nodeNameTest.getNamespaceURI();\nboolean wildcard = nodeNameTest.isWildcard();\nString testPrefix = testName.getPrefix();\nif (wildcard && testPrefix == null) {\nreturn true;\n}\ni",
+        "tring namespaceURI = nodeNameTest.getNamespaceURI();\nboolean wildcard = nodeNameTest.isWildcard();\nString testPrefix = testName.getPrefix();\nif (wildcard && testPrefix == null) {\nreturn true;\n}\nif (wi",
+        "aceURI(node);\nreturn equalStrings(namespaceURI, nodeNS) || nodeNS == null\n&& equalStrings(testPrefix, getPrefix(node));\n}\nreturn false;\n}\nif (test ins",
+        "tNodeType() != Node.ELEMENT_NODE) {\nreturn false;\n}\nNodeNameTest nodeNameTest = (NodeNameTest) test;",
+        "amespaceURI = nodeNameTest.getNamespaceURI();\nboolean wildcard = nodeNameTest.isWildcard();\nString t",
+        "Name.getPrefix();\nif (wildcard && testPrefix == null) {\nreturn true;\n}\nif (wildcard\n|| testName.getN",
+        " NodeTest test) {\nif (test == null) {\nreturn true;",
+        "NodeTest test) {\nif (test == null) {\nreturn true;\n",
+        "est test) {\nif (test == null) {\nreturn true;\n}\nif ",
+        "= null) {\nreturn true;\n}\nif (test instanceof NodeN",
+        "\nreturn true;\n}\nif (test instanceof NodeNameTest) ",
+        ") {\nif (node.getNodeType() != Node.ELEMENT_NODE) {",
+        " {\nif (node.getNodeType() != Node.ELEMENT_NODE) {\n",
+        "\nif (node.getNodeType() != Node.ELEMENT_NODE) {\nre",
+        "if (node.getNodeType() != Node.ELEMENT_NODE) {\nret",
+        "f (node.getNodeType() != Node.ELEMENT_NODE) {\nretu",
+        " (node.getNodeType() != Node.ELEMENT_NODE) {\nretur",
+        "node.getNodeType() != Node.ELEMENT_NODE) {\nreturn ",
+        "de.getNodeType() != Node.ELEMENT_NODE) {\nreturn fa",
+        "getNodeType() != Node.ELEMENT_NODE) {\nreturn false"
+    ]
+}

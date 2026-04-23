@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.364572605561277,
+    "input": "protected void extractFile(ZipInputStream zipInputStream, FileHeader fileHeader, String outputPath,\n                             String newFileName, ProgressMonitor progressMonitor) throws IOException {\n\n    if (!outputPath.endsWith(FILE_SEPARATOR)) {\n      outputPath += FILE_SEPARATOR;\n    }\n\n    File outputFile = determineOutputFile(fileHeader, outputPath, newFileName);\n    progressMonitor.setFileName(outputFile.getAbsolutePath());\n\n    // make sure no file is extracted outside of the target directory (a.k.a zip slip)\n    String outputCanonicalPath = (new File(outputPath).getCanonicalPath()) + File.separator;\n    if (!outputFile.getCanonicalPath().startsWith(outputCanonicalPath)) {\n      throw new ZipException(\"illegal file name that breaks out of the target directory: \"\n          + fileHeader.getFileName());\n    }\n\n    verifyNextEntry(zipInputStream, fileHeader);\n\n    if (fileHeader.isDirectory()) {\n      if (!outputFile.exists()) {\n        if (!outputFile.mkdirs()) {\n          throw new ZipException(\"Could not create directory: \" + outputFile);\n        }\n      }\n    } else {\n      checkOutputDirectoryStructure(outputFile);\n      unzipFile(zipInputStream, fileHeader, outputFile, progressMonitor);\n    }\n  }",
+    "query_result": [
+        "w new ZipException(\"illegal file name that breaks out of the target directory: \"\n+ fileHeader.getFileName());\n}\nverifyNextEntry(zipInputStream, fileHe",
+        "protected void extractFile(ZipInputStream zipInput",
+        "oid extractFile(ZipInputStream zipInputStream, Fil",
+        "e, ProgressMonitor progressMonitor) throws IOExcep",
+        "ProgressMonitor progressMonitor) throws IOExceptio",
+        "ogressMonitor progressMonitor) throws IOException ",
+        "gressMonitor progressMonitor) throws IOException {",
+        "ressMonitor progressMonitor) throws IOException {\n",
+        "ake sure no file is extracted outside of the targe",
+        ".isDirectory()) {\nif (!outputFile.exists()) {\nif (",
+        "rectory()) {\nif (!outputFile.exists()) {\nif (!outp",
+        "ry()) {\nif (!outputFile.exists()) {\nif (!outputFil",
+        ")) {\nif (!outputFile.exists()) {\nif (!outputFile.m",
+        " {\nif (!outputFile.exists()) {\nif (!outputFile.mkd",
+        "\nif (!outputFile.exists()) {\nif (!outputFile.mkdir",
+        "(!outputFile.exists()) {\nif (!outputFile.mkdirs())",
+        "putFile.exists()) {\nif (!outputFile.mkdirs()) {\nth",
+        "utFile.exists()) {\nif (!outputFile.mkdirs()) {\nthr",
+        "le.exists()) {\nif (!outputFile.mkdirs()) {\nthrow n"
+    ]
+}

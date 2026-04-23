@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.5262135922330097,
+    "input": "    @Override\n    public Gist create(final Iterable<String> files) throws IOException {\n        this.storage.lock();\n        final String number;\n        try {\n            number = Integer.toString(\n                1 + this.storage.xml().xpath(\n                    String.format(\"%s/gist/id/text()\", this.xpath())\n                ).size()\n            );\n            final Directives dirs = new Directives().xpath(this.xpath())\n                .add(\"gist\")\n                .add(\"id\").set(number).up()\n                .add(\"files\");\n            for (final String file : files) {\n                dirs.add(\"file\")\n                    .add(\"filename\").set(file).up()\n                    .add(\"raw_content\").up().up();\n            }\n            this.storage.apply(dirs);\n        } finally {\n            this.storage.unlock();\n        }\n        return this.get(number);\n    }",
+    "query_result": [
+        "al String number;\ntry {\nnumber = Integer.toString(\n1 + this.storage.xml().xpath(\nString.format(\"%s/gist/id/text()\", this.xpath())\n).size()\n);\nfinal Directives dirs = new Directives().xpath(this.xpath())\n.add(\"gist\")\n.add(\"id\").set(number).up()\n.add(\"",
+        "ly(dirs);\n} finally {\nthis.storage.unlock();\n}\nret"
+    ]
+}

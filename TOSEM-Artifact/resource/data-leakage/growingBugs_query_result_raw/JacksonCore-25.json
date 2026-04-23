@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.670814479638009,
+    "input": "    private String _handleOddName2(int startPtr, int hash, int[] codes) throws IOException\n    {\n        _textBuffer.resetWithShared(_inputBuffer, startPtr, (_inputPtr - startPtr));\n        char[] outBuf = _textBuffer.getCurrentSegment();\n        int outPtr = _textBuffer.getCurrentSegmentSize();\n        final int maxCode = codes.length;\n\n        while (true) {\n            if (_inputPtr >= _inputEnd) {\n                if (!_loadMore()) { // acceptable for now (will error out later)\n                    break;\n                }\n            }\n            char c = _inputBuffer[_inputPtr];\n            int i = (int) c;\n            if (i < maxCode) {\n                if (codes[i] != 0) {\n                    break;\n                }\n            } else if (!Character.isJavaIdentifierPart(c)) {\n                break;\n            }\n            ++_inputPtr;\n            hash = (hash * CharsToNameCanonicalizer.HASH_MULT) + i;\n            // Ok, let's add char to output:\n            outBuf[outPtr++] = c;\n\n            // Need more room?\n            if (outPtr >= outBuf.length) {\n                outBuf = _textBuffer.finishCurrentSegment();\n                outPtr = 0;\n            }\n        }\n        _textBuffer.setCurrentLength(outPtr);\n        {\n            TextBuffer tb = _textBuffer;\n            char[] buf = tb.getTextBuffer();\n            int start = tb.getTextOffset();\n            int len = tb.size();\n\n            return _symbols.findSymbol(buf, start, len, hash);\n        }\n    }",
+    "query_result": [
+        "= _textBuffer; char[] buf = tb.getTextBuffer(); int start = tb.getTextOffset(); int len = tb.size(); return _symbols.findSymbol(buf, start, len, hash",
+        "utBuffer, startPtr, (_inputPtr - startPtr)); char[] outBuf = _textBuffer.getCurrentSegment(); int ou",
+        "Need more room? if (outPtr >= outBuf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr",
+        "textBuffer; char[] buf = tb.getTextBuffer(); int start = tb.getTextOffset(); int len = tb.size(); re",
+        "extBuffer; char[] buf = tb.getTextBuffer(); int start = tb.getTextOffset(); int len = tb.size(); ret",
+        "xtBuffer; char[] buf = tb.getTextBuffer(); int start = tb.getTextOffset(); int len = tb.size(); retu",
+        "har[] buf = tb.getTextBuffer(); int start = tb.getTextOffset(); int len = tb.size(); return _symbols",
+        "tring _handleOddName2(int startPtr, int hash, int[",
+        "dName2(int startPtr, int hash, int[] codes) throws",
+        "startPtr, int hash, int[] codes) throws IOExceptio",
+        "eption { _textBuffer.resetWithShared(_inputBuffer,",
+        "ption { _textBuffer.resetWithShared(_inputBuffer,",
+        "xtBuffer.getCurrentSegment(); int outPtr = _textBu",
+        "urrentSegment(); int outPtr = _textBuffer.getCurre",
+        "); int outPtr = _textBuffer.getCurrentSegmentSize(",
+        "for now (will error out later) break; } } char c =",
+        "!= 0) { break; } } else if (!Character.isJavaIdent",
+        "= 0) { break; } } else if (!Character.isJavaIdenti",
+        "if (!Character.isJavaIdentifierPart(c)) { break; }",
+        "/ Ok, let's add char to output: outBuf[outPtr++] ="
+    ]
+}

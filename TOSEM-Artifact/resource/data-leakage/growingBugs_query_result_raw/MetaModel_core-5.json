@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.8349514563106796,
+    "input": "    public Query setMaxRows(Integer maxRows) {\n        if (maxRows != null) {\n            final int maxRowsValue = maxRows.intValue();\n            if (maxRowsValue < 0) {\n                throw new IllegalArgumentException(\"Max rows cannot be negative\");\n            }\n        }\n        _maxRows = maxRows;\n        return this;\n    }",
+    "query_result": [
+        "ic Query setMaxRows(Integer maxRows) {\nif (maxRows != null) {\nfinal int maxRowsValue = maxRows.intValue();\nif (maxRowsValue < 0) {\nthrow new IllegalArgumentException(\"Max rows cannot be negative\");\n}\n",
+        "sValue < 0) {\nthrow new IllegalArgumentException(\""
+    ]
+}

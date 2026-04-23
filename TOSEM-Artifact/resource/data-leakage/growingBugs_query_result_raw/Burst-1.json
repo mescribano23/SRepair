@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9580152671755725,
+    "input": "  public static Constructor<?> findConstructor(Class<?> cls) {\n    checkNotNull(cls, \"cls\");\n\n    Constructor<?>[] constructors = cls.getConstructors();\n    if (constructors.length == 1) {\n      return constructors[0];\n    }\n    throw new IllegalStateException(cls.getName() + \" requires a single public constructor.\");\n  }",
+    "query_result": [
+        "ndConstructor(Class<?> cls) {\ncheckNotNull(cls, \"cls\");\nConstructor<?>[] constructors = cls.getConstructors();\nif (constructors.length == 1) {\nreturn constructors[0];\n}\nthrow new IllegalStateException(cls.getName() + \" requires a single public constr",
+        "ublic static Constructor<?> findConstructor(Class<",
+        "blic static Constructor<?> findConstructor(Class<?",
+        "lic static Constructor<?> findConstructor(Class<?>",
+        "ic static Constructor<?> findConstructor(Class<?> ",
+        " static Constructor<?> findConstructor(Class<?> cl",
+        ";\nConstructor<?>[] constructors = cls.getConstruct",
+        "onstructor<?>[] constructors = cls.getConstructors",
+        "nstructor<?>[] constructors = cls.getConstructors(",
+        "structor<?>[] constructors = cls.getConstructors()",
+        "tructor<?>[] constructors = cls.getConstructors();",
+        "ructor<?>[] constructors = cls.getConstructors();\n",
+        "[] constructors = cls.getConstructors();\nif (const",
+        " constructors = cls.getConstructors();\nif (constru",
+        "constructors = cls.getConstructors();\nif (construc",
+        "nstructors = cls.getConstructors();\nif (constructo",
+        "uctors = cls.getConstructors();\nif (constructors.l",
+        "tors = cls.getConstructors();\nif (constructors.len",
+        "ors = cls.getConstructors();\nif (constructors.leng",
+        "onstructors();\nif (constructors.length == 1) {\nret"
+    ]
+}

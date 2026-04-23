@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public long number() {\n        return Long.valueOf(this.data.xpath(\"//id/text()\").get(0));\n    }",
+    "query_result": []
+}

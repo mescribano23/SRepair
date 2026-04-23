@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.8746081504702194,
+    "input": "private RealMatrix squareRoot(RealMatrix m) {\n    if (m instanceof DiagonalMatrix) {\n        final int dim = m.getRowDimension();\n        final RealMatrix sqrtM = new DiagonalMatrix(dim);\n        for (int i = 0; i < dim; i++) {\n           sqrtM.setEntry(i, i, FastMath.sqrt(m.getEntry(i, i)));\n        }\n        return sqrtM;\n    } else {\n        final EigenDecomposition dec = new EigenDecomposition(m);\n        return dec.getSquareRoot();\n    }\n}",
+    "query_result": [
+        " m) {\nif (m instanceof DiagonalMatrix) {\nfinal int dim = m.getRowDimension();\nfinal RealMatrix sqrtM = new DiagonalMatrix(dim);\nfor (int i = 0; i < di",
+        "Matrix(dim);\nfor (int i = 0; i < dim; i++) {\nsqrtM.setEntry(i, i, FastMath.sqrt(m.getEntry(i, i)));\n",
+        "sqrt(m.getEntry(i, i)));\n}\nreturn sqrtM;\n} else {\nfinal EigenDecomposition dec = new EigenDecomposit",
+        "ntry(i, i)));\n}\nreturn sqrtM;\n} else {\nfinal EigenDecomposition dec = new EigenDecomposition(m);\nret",
+        "final RealMatrix sqrtM = new DiagonalMatrix(dim);\n",
+        "M.setEntry(i, i, FastMath.sqrt(m.getEntry(i, i)));",
+        " EigenDecomposition dec = new EigenDecomposition(m",
+        "EigenDecomposition dec = new EigenDecomposition(m)",
+        "igenDecomposition(m);\nreturn dec.getSquareRoot();\n"
+    ]
+}

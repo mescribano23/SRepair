@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.20359281437125748,
+    "input": "    @Override\n    public int translate(final CharSequence input, final int index, final Writer out) throws IOException {\n        if(input.charAt(index) == '\\\\' && index < (input.length() - 1) && Character.isDigit(input.charAt(index + 1)) ) {\n            final int start = index + 1;\n\n            int end = index + 2;\n            while ( end < input.length() && Character.isDigit(input.charAt(end)) ) {\n                end++;\n                if ( Integer.parseInt(input.subSequence(start, end).toString(), 10) > OCTAL_MAX) {\n                    end--; // rollback\n                    break;\n                }\n            }\n\n            out.write( Integer.parseInt(input.subSequence(start, end).toString(), 8) );\n            return 1 + end - start;\n        }\n        return 0;\n    }",
+    "query_result": [
+        "Override\npublic int translate(final CharSequence input, final int index, final Writer out) throws IO",
+        "verride\npublic int translate(final CharSequence input, final int index, final Writer out) throws IOE",
+        "erride\npublic int translate(final CharSequence input, final int index, final Writer out) throws IOEx",
+        "rride\npublic int translate(final CharSequence input, final int index, final Writer out) throws IOExc",
+        "de\npublic int translate(final CharSequence input, final int index, final Writer out) throws IOExcept",
+        "e\npublic int translate(final CharSequence input, final int index, final Writer out) throws IOExcepti",
+        "public int translate(final CharSequence input, final int index, final Writer out) throws IOException",
+        "blic int translate(final CharSequence input, final int index, final Writer out) throws IOException {",
+        "lic int translate(final CharSequence input, final int index, final Writer out) throws IOException {\n",
+        "ic int translate(final CharSequence input, final int index, final Writer out) throws IOException {\ni",
+        "c int translate(final CharSequence input, final int index, final Writer out) throws IOException {\nif",
+        "nt translate(final CharSequence input, final int index, final Writer out) throws IOException {\nif(in",
+        " int translate(final CharSequence input, final int",
+        "int translate(final CharSequence input, final int ",
+        "translate(final CharSequence input, final int inde",
+        "ranslate(final CharSequence input, final int index",
+        "anslate(final CharSequence input, final int index,",
+        "late(final CharSequence input, final int index, fi",
+        "ate(final CharSequence input, final int index, fin",
+        "te(final CharSequence input, final int index, fina"
+    ]
+}

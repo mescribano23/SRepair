@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.6853932584269663,
+    "input": "  public JavaWriter emitAnnotation(String annotation, Map<String, ?> attributes)\n      throws IOException {\n    indent();\n    out.write(\"@\");\n    emitType(annotation);\n    switch (attributes.size()) {\n      case 0:\n        break;\n      case 1:\n        Entry<String, ?> onlyEntry = attributes.entrySet().iterator().next();\n        if (\"value\".equals(onlyEntry.getKey())) {\n          out.write(\"(\");\n          emitAnnotationValue(onlyEntry.getValue());\n          out.write(\")\");\n          break;\n        }\n      default:\n        out.write(\"(\");\n        pushScope(Scope.ANNOTATION_ATTRIBUTE);\n        boolean firstAttribute = true;\n        for (Map.Entry<String, ?> entry : attributes.entrySet()) {\n          if (firstAttribute) {\n            firstAttribute = false;\n            out.write(\"\\n\");\n          } else {\n            out.write(\",\\n\");\n          }\n          indent();\n          out.write(entry.getKey());\n          out.write(\" = \");\n          Object value = entry.getValue();\n          emitAnnotationValue(value);\n        }\n        popScope(Scope.ANNOTATION_ATTRIBUTE);\n        out.write(\"\\n\");\n        indent();\n        out.write(\")\");\n        break;\n    }\n    out.write(\"\\n\");\n    return this;\n  }",
+    "query_result": [
+        "\"(\");\npushScope(Scope.ANNOTATION_ATTRIBUTE);\nboolean firstAttribute = true;\nfor (Map.Entry<String, ?> entry : attributes.entrySet()) {\nif (firstAttribute) {\nfirstAttribute = false;\nout.write(\"\\n\");\n} else {\nout.write(\",\\n\");\n}\nindent();\nout.write(entry.getKey());\nout.write(\" = \");\nObject value = entry.getValue();\nemitAnnotationValue(value);\n}\npopScope(Scope.ANNOTATION_ATTRIBUTE);\nout.write(\"\\n\");\n",
+        "ion(String annotation, Map<String, ?> attributes)\nthrows IOException {\nindent();\nout.write(\"@\");\nemi",
+        "ze()) {\ncase 0:\nbreak;\ncase 1:\nEntry<String, ?> onlyEntry = attributes.entrySet().iterator().next();",
+        "out.write(\" = \");\nObject value = entry.getValue();\nemitAnnotationValue(value);\n}\npopScope(Scope.ANNO",
+        ")\nthrows IOException {\nindent();\nout.write(\"@\");\ne",
+        "OException {\nindent();\nout.write(\"@\");\nemitType(an",
+        ";\nfor (Map.Entry<String, ?> entry : attributes.ent",
+        "\nfor (Map.Entry<String, ?> entry : attributes.entr",
+        "n\");\n} else {\nout.write(\",\\n\");\n}\nindent();\nout.wr",
+        "value = entry.getValue();\nemitAnnotationValue(valu"
+    ]
+}

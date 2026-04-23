@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5610021786492375,
+    "input": "public String toString() {\n        int code = getCode();\n        String notNullMessage = getMessage();\n        if (notNullMessage == null) {\n            notNullMessage = \"\";\n        }\n\n        StringBuffer sb = new StringBuffer();\n\n        // remove any carriage returns\n        notNullMessage = notNullMessage.replace(\"\\r\", \"\");\n        \n        // remove trailing line feeds\n        if(notNullMessage.endsWith(\"\\n\")) {\n            notNullMessage = notNullMessage.substring(0, notNullMessage.length() - 1);\n        }\n        \n        String[] lines = notNullMessage.split(\"\\n\");\n\n        // no newline\n        if (lines.length == 1) {\n            sb.append(code);\n            sb.append(\" \");\n            sb.append(notNullMessage);\n            sb.append(CRLF);\n        } else {\n\n            sb.append(code);\n            sb.append(\"-\");\n\n            for (int i = 0; i < lines.length; i++) {\n                String line = lines[i];\n\n                if (i + 1 == lines.length) {\n                    sb.append(code);\n                    sb.append(\" \");\n                }\n\n                // \"If an intermediary line begins with a 3-digit number, the Server\n                // must pad the front  to avoid confusion.\n                if(i > 0 \n                        && i + 1 < lines.length \n                        && line.length() > 2 \n                        && isDigit(line.charAt(0))\n                        && isDigit(line.charAt(1))\n                        && isDigit(line.charAt(2))\n                    ) {\n                    sb.append(\"  \");\n                }\n                sb.append(line);\n                sb.append(CRLF);\n            }\n\n        }\n\n        return sb.toString();\n    }",
+    "query_result": [
+        "age.split(\"\\n\");\n// no newline\nif (lines.length == 1) {\nsb.append(code);\nsb.append(\" \");\nsb.append(notNullMessage);\nsb.append(CRLF);\n} else {\nsb.append(code);\nsb.append(\"-\");\nfor (int i = 0; i < lines.length; i++) {\nString line = lines[i];\nif (i + 1 == lines.length) {\nsb.append(code);\nsb.append(\" \");\n}\n// \"If an intermediary line begins with a 3-digit number, the Server\n// must pad the front to av",
+        "e = getCode();\nString notNullMessage = getMessage();\nif (notNullMessage == null) {\nnotNullMessage = ",
+        "emove any carriage returns\nnotNullMessage = notNul",
+        "llMessage = notNullMessage.substring(0, notNullMes",
+        ".append(code);\nsb.append(\" \");\nsb.append(notNullMe",
+        "\");\nfor (int i = 0; i < lines.length; i++) {\nStrin",
+        ");\nfor (int i = 0; i < lines.length; i++) {\nString",
+        ";\nfor (int i = 0; i < lines.length; i++) {\nString ",
+        "\nfor (int i = 0; i < lines.length; i++) {\nString l",
+        "for (int i = 0; i < lines.length; i++) {\nString li",
+        "or (int i = 0; i < lines.length; i++) {\nString lin",
+        "r (int i = 0; i < lines.length; i++) {\nString line",
+        " (int i = 0; i < lines.length; i++) {\nString line ",
+        "(int i = 0; i < lines.length; i++) {\nString line =",
+        "int i = 0; i < lines.length; i++) {\nString line = ",
+        "nt i = 0; i < lines.length; i++) {\nString line = l",
+        "t i = 0; i < lines.length; i++) {\nString line = li",
+        " i = 0; i < lines.length; i++) {\nString line = lin",
+        "i = 0; i < lines.length; i++) {\nString line = line",
+        " = 0; i < lines.length; i++) {\nString line = lines"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.9119390347163421,
+    "input": "public ZipModel readAllHeaders(RandomAccessFile zip4jRaf, Charset charset) throws IOException {\n\n    if (zip4jRaf.length() < ENDHDR) {\n      throw new ZipException(\"Zip file size less than minimum expected zip file size. \" +\n          \"Probably not a zip file or a corrupted zip file\");\n    }\n\n    zipModel = new ZipModel();\n\n    try {\n      zipModel.setEndOfCentralDirectoryRecord(readEndOfCentralDirectoryRecord(zip4jRaf, rawIO, charset));\n    } catch (ZipException e){\n      throw e;\n    } catch (IOException e) {\n      throw new ZipException(\"Zip headers not found. Probably not a zip file or a corrupted zip file\", e);\n    }\n\n    if (zipModel.getEndOfCentralDirectoryRecord().getTotalNumberOfEntriesInCentralDirectory() == 0) {\n      return zipModel;\n    }\n\n    // If file is Zip64 format, Zip64 headers have to be read before reading central directory\n    zipModel.setZip64EndOfCentralDirectoryLocator(readZip64EndOfCentralDirectoryLocator(zip4jRaf, rawIO));\n\n    if (zipModel.isZip64Format()) {\n      zipModel.setZip64EndOfCentralDirectoryRecord(readZip64EndCentralDirRec(zip4jRaf, rawIO));\n      if (zipModel.getZip64EndOfCentralDirectoryRecord() != null\n          && zipModel.getZip64EndOfCentralDirectoryRecord().getNumberOfThisDisk() > 0) {\n        zipModel.setSplitArchive(true);\n      } else {\n        zipModel.setSplitArchive(false);\n      }\n    }\n\n    zipModel.setCentralDirectory(readCentralDirectory(zip4jRaf, rawIO, charset));\n\n    return zipModel;\n  }",
+    "query_result": [
+        "RandomAccessFile zip4jRaf, Charset charset) throws IOException {\nif (zip4jRaf.length() < ENDHDR) {\nthrow new ZipException(\"Zip file size less than minimum expected zip file size. \" +\n\"Probably not a zip file or a corrupted zip file\");\n}\nzipModel = new ZipModel();\ntry {\nzipModel.setEndOfCentralDirectoryRecord(readEndOfCentralDirectoryRecord(zip4jRaf, rawIO, charset));\n} catch (ZipException e){\nthrow e;\n} catch (IOException e) {\nthrow new ZipException(\"Zip headers not found. Probably not a zip file or a corrupted zip file\", e);\n}\nif (zipModel.getEndOfCentralDirectoryRecord().getTotalNumberOfEntriesInCentralDirectory() == 0) {\nreturn zipModel;\n}\n// If file is Zip64 format, Zip64 headers have to be read before reading central directory\nzipModel.setZip64EndOfCentralDirectoryLocator(readZip64End",
+        ")) {\nzipModel.setZip64EndOfCentralDirectoryRecord(readZip64EndCentralDirRec(zip4jRaf, rawIO));\nif (zipModel.getZip64EndOfCentralDirectoryRecord() != null\n&& zipModel.getZip64EndOfCentralDirectoryRecord().getNumberOfThisDisk() > 0) {\nzipModel.setSplitArchive(true);\n} else {\nzipModel.setSplitArchive(false);\n}\n}\nzipModel.setCentralDirectory(readCentralDirectory(zip4jRaf, rawIO, charset));\nreturn zipM",
+        " {\nthrow new ZipException(\"Zip headers not found. Probably not a zip file or a corrupted zip file\", ",
+        "ed zip file size. \" +\n\"Probably not a zip file or ",
+        "Exception e){\nthrow e;\n} catch (IOException e) {\nt",
+        "n e){\nthrow e;\n} catch (IOException e) {\nthrow new",
+        "\n} catch (IOException e) {\nthrow new ZipException(",
+        "ipException(\"Zip headers not found. Probably not a",
+        "etEndOfCentralDirectoryRecord().getTotalNumberOfEn",
+        "fCentralDirectoryRecord().getTotalNumberOfEntriesI",
+        "ralDirectoryRecord().getTotalNumberOfEntriesInCent",
+        "irectoryRecord().getTotalNumberOfEntriesInCentralD",
+        "ndOfCentralDirectoryRecord(readZip64EndCentralDirR",
+        "4EndOfCentralDirectoryRecord() != null\n&& zipModel",
+        "EndOfCentralDirectoryRecord().getNumberOfThisDisk("
+    ]
+}

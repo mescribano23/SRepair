@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.766497461928934,
+    "input": "public JsonToken nextToken() throws IOException\n    {\n        //Check for _allowMultipleMatches - false and atleast there is one token - which is _currToken\n        // check for no buffered context _exposedContext - null\n        //If all the conditions matches then check for scalar / non-scalar property\n        if(!_allowMultipleMatches && _currToken != null && _exposedContext == null){\n            //if not scalar and ended successfully, then return null\n            if((_currToken.isStructEnd()  && _headContext.isStartHandled()) ){\n                return (_currToken = null);\n            }\n            //else if scalar, and scalar not present in obj/array and !includePath and INCLUDE_ALL matched once\n            // then return null \n            else if(_currToken.isScalarValue() && !_headContext.isStartHandled() && !_includePath \n                    && _itemFilter == TokenFilter.INCLUDE_ALL) {\n                return (_currToken = null);\n            }\n        }\n        // Anything buffered?\n        TokenFilterContext ctxt = _exposedContext;\n\n        if (ctxt != null) {\n            while (true) {\n                JsonToken t = ctxt.nextTokenToRead();\n                if (t != null) {\n                    _currToken = t;\n                    return t;\n                }\n                // all done with buffered stuff?\n                if (ctxt == _headContext) {\n                    _exposedContext = null;\n                    if (ctxt.inArray()) {\n                        t = delegate.getCurrentToken();\n// Is this guaranteed to work without further checks?\n//                        if (t != JsonToken.START_ARRAY) {\n                        _currToken = t;\n                        return t;\n                    }\n\n                    // Almost! Most likely still have the current token;\n                    // with the sole exception of \n                    /*\n                    t = delegate.getCurrentToken();\n                    if (t != JsonToken.FIELD_NAME) {\n                     ",
+    "query_result": [
+        "turn (_currToken = null);\n}\n}\n// Anything buffered?\nTokenFilterContext ctxt = _exposedContext;\nif (ctxt != null) {\nwhile (true) {\nJsonToken t = ctxt.nextTokenToRead();\nif (t != null) {\n_currToken = t;\nreturn t;\n}\n// all done with buffered stuff?\nif (ctxt == _headContext) {\n_exposedContext = null;\nif (ctxt.inArray()) {\nt = delegate.getCurrentToken();\n// Is this guaranteed to work without further checks?\n// if (t != JsonToken.START_ARRAY) {\n_currToken = t;\nreturn t;\n}\n// Almost! Most likely still have the current token;\n// with the sole exception of \n/*\nt = delegate.getCurrentToken();\nif (t != J",
+        "}\n// Anything buffered?\nTokenFilterContext ctxt = _exposedContext;\nif (ctxt != null) {\nwhile (true) {\nJsonToken t = ctxt.nextTokenToRead();\nif (t != null) {\n_currToken = t;\nreturn t;\n}\n// all done with buffered stuff?\nif (ctxt == _headContext) {\n_exposedContext = null;\nif (ctxt.inArray()) {\nt = delegate.getCurrentToken();\n// Is this guaranteed to work without further checks?\n// if (t != JsonToken.",
+        "// Is this guaranteed to work without further checks?\n// if (t != JsonToken.START_ARRAY) {\n_currToken = t;\nreturn t;\n}\n// Almost! Most likely still have the current token;\n// with the sole exception of \n/*\nt = delegate.getCurrentToken();\nif (t != Jso",
+        "east there is one token - which is _currToken\n// check for no buffered context _exposedContext - nul",
+        "public JsonToken nextToken() throws IOException\n{\n",
+        "heck for _allowMultipleMatches - false and atleast",
+        "ich is _currToken\n// check for no buffered context",
+        "ck for no buffered context _exposedContext - null\n",
+        "atches then check for scalar / non-scalar property",
+        "pleMatches && _currToken != null && _exposedContex",
+        "tches && _currToken != null && _exposedContext == ",
+        "currToken.isStructEnd() && _headContext.isStartHan",
+        "ot present in obj/array and !includePath and INCLU",
+        "if(_currToken.isScalarValue() && !_headContext.isS",
+        "rToken.isScalarValue() && !_headContext.isStartHan",
+        "JsonToken t = ctxt.nextTokenToRead();\nif (t != nul",
+        "sonToken t = ctxt.nextTokenToRead();\nif (t != null",
+        "turn t;\n}\n// all done with buffered stuff?\nif (ctx",
+        " _headContext) {\n_exposedContext = null;\nif (ctxt.",
+        "s this guaranteed to work without further checks?\n"
+    ]
+}

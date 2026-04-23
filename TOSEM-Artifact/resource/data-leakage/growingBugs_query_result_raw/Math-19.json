@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.8664383561643836,
+    "input": "    private SubHyperplane<S> fitToCell(final SubHyperplane<S> sub) {\n        SubHyperplane<S> s = sub;\n        for (BSPTree<S> tree = this; tree.parent != null; tree = tree.parent) {\n            if (tree == tree.parent.plus) {\n                s = s.split(tree.parent.cut.getHyperplane()).getPlus();\n            } else {\n                s = s.split(tree.parent.cut.getHyperplane()).getMinus();\n            }\n        }\n        return s;\n    }",
+    "query_result": [
+        ".parent) {\nif (tree == tree.parent.plus) {\ns = s.split(tree.parent.cut.getHyperplane()).getPlus();\n} else {\ns = s.split(tree.parent.cut.getHyperplane(",
+        "rplane<S> fitToCell(final SubHyperplane<S> sub) {\nSubHyperplane<S> s = sub;\nfor (BSPTree<S> tree = t",
+        "ne<S> fitToCell(final SubHyperplane<S> sub) {\nSubH",
+        " (BSPTree<S> tree = this; tree.parent != null; tre",
+        "ree = this; tree.parent != null; tree = tree.paren",
+        "parent.plus) {\ns = s.split(tree.parent.cut.getHype",
+        "s = s.split(tree.parent.cut.getHyperplane()).getPl",
+        "s.split(tree.parent.cut.getHyperplane()).getPlus()"
+    ]
+}

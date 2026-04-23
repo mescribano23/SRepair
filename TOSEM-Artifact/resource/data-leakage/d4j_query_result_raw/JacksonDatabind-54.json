@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8918918918918919,
+    "input": "protected BeanPropertyWriter buildWriter(SerializerProvider prov,\n        BeanPropertyDefinition propDef, JavaType declaredType, JsonSerializer<?> ser,\n        TypeSerializer typeSer, TypeSerializer contentTypeSer,\n        AnnotatedMember am, boolean defaultUseStaticTyping)\n    throws JsonMappingException\n{\n    // do we have annotation that forces type to use (to declared type or its super type)?\n    JavaType serializationType = findSerializationType(am, defaultUseStaticTyping, declaredType);\n\n    // Container types can have separate type serializers for content (value / element) type\n    if (contentTypeSer != null) {\n        /* 04-Feb-2010, tatu: Let's force static typing for collection, if there is\n         *    type information for contents. Should work well (for JAXB case); can be\n         *    revisited if this causes problems.\n         */\n        if (serializationType == null) {\n              serializationType = TypeFactory.type(am.getGenericType(), _beanDesc.getType());\n            serializationType = declaredType;\n        }\n        JavaType ct = serializationType.getContentType();\n        // Not exactly sure why, but this used to occur; better check explicitly:\n        if (ct == null) {\n            throw new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property '\"\n                    +propDef.getName()+\"' (of type \"+_beanDesc.getType()+\"); serialization type \"+serializationType+\" has no content\");\n        }\n        serializationType = seriali",
+    "query_result": [
+        " have annotation that forces type to use (to declared type or its super type)?\nJavaType serializationType = findSerializationType(am, defaultUseStaticTyping, declaredType);\n// Container types can have separate type serializers for content (value / element) type\nif (contentTypeSer != null) {\n/* 04-Feb-2010, tatu: Let's force static typing for collection, if there is\n* type information for contents. Should work well (for JAXB case); can be\n* revisited if this causes problems.\n*/\nif (serializationT",
+        "nType = TypeFactory.type(am.getGenericType(), _beanDesc.getType());\nserializationType = declaredType;\n}\nJavaType ct = serializationType.getContentType();\n// Not exactly sure why, but this used to occur; better check explicitly:\nif (ct == null) {\nthrow new IllegalStateException(\"Problem trying to cre",
+        "e to use (to declared type or its super type)?\nJavaType serializationType = findSerializationType(am, defaultUseStaticTyping, declaredType);\n// Container types can have separate type serializers for content (value / element) type\nif (contentTypeSer !",
+        " {\nthrow new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property '\"\n+propDef.getName()+\"' (of type \"+_beanDesc.getType()+\"); serialization type \"+serializationType+\" has no",
+        "aredType, JsonSerializer<?> ser,\nTypeSerializer typeSer, TypeSerializer contentTypeSer,\nAnnotatedMem",
+        "type(am.getGenericType(), _beanDesc.getType());\nserializationType = declaredType;\n}\nJavaType ct = se",
+        "= null) {\nthrow new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property ",
+        " null) {\nthrow new IllegalStateException(\"Problem trying to create BeanPropertyWriter for property '",
+        "tected BeanPropertyWriter buildWriter(SerializerPr",
+        "ropertyDefinition propDef, JavaType declaredType, ",
+        "tionType(am, defaultUseStaticTyping, declaredType)",
+        "mation for contents. Should work well (for JAXB ca",
+        " (serializationType == null) {\nserializationType =",
+        "(serializationType == null) {\nserializationType = ",
+        "\nif (ct == null) {\nthrow new IllegalStateException",
+        "== null) {\nthrow new IllegalStateException(\"Proble",
+        "\nthrow new IllegalStateException(\"Problem trying t",
+        "egalStateException(\"Problem trying to create BeanP",
+        "lStateException(\"Problem trying to create BeanProp",
+        "roblem trying to create BeanPropertyWriter for pro"
+    ]
+}

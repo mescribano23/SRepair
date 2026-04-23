@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8441558441558441,
+    "input": "public int getOffsetFromLocal(long instantLocal) {\n    // get the offset at instantLocal (first estimate)\n    final int offsetLocal = getOffset(instantLocal);\n    // adjust instantLocal using the estimate and recalc the offset\n    final long instantAdjusted = instantLocal - offsetLocal;\n    final int offsetAdjusted = getOffset(instantAdjusted);\n    // if the offsets differ, we must be near a DST boundary\n    if (offsetLocal != offsetAdjusted) {\n        // we need to ensure that time is always after the DST gap\n        // this happens naturally for positive offsets, but not for negative\n        if ((offsetLocal - offsetAdjusted) < 0) {\n            // if we just return offsetAdjusted then the time is pushed\n            // back before the transition, whereas it should be\n            // on or after the transition\n            long nextLocal = nextTransition(instantAdjusted);\n            long nextAdjusted = nextTransition(instantLocal - offsetAdjusted);\n            if (nextLocal != nextAdjusted) {\n                return offsetLocal;\n            }\n        }\n    } else if (offsetLocal > 0) {\n        long prev = previousTransition(instantAdjusted);\n        if (prev < instantAdjusted) {\n            int offsetPrev = getOffset(prev);\n            int diff = offsetPrev - offsetLocal;\n            if (instantAdjusted - prev <= diff) {\n                return offsetPrev;\n            }\n        }\n    }\n    return offsetAdjusted;\n}",
+    "query_result": [
+        "etOffset(instantAdjusted);\n// if the offsets differ, we must be near a DST boundary\nif (offsetLocal != offsetAdjusted) {\n// we need to ensure that time is always after the DST gap\n// this happens naturally for positive offsets, but not for negative\nif ((offsetLocal - offsetAdjusted) < 0) {\n// if we just return offsetAdjusted then the time is pushed\n// back before the transition, whereas it should ",
+        "fsets differ, we must be near a DST boundary\nif (offsetLocal != offsetAdjusted) {\n// we need to ensure that time is always after the DST gap\n// this happens naturally for positive offsets, but not for negative\nif ((offsetLocal - offsetAdjusted) < 0) {\n// if we just return offsetAdjusted then the time is pushed\n// back before the transition, whereas",
+        ", we must be near a DST boundary\nif (offsetLocal != offsetAdjusted) {\n// we need to ensure that time is always after the DST gap\n// this happens naturally for positive offsets, but not for negative\nif ((offsetLocal - offsetAdjusted) < 0) {\n// if we just return offsetAdjusted then the time is pushed\n// back before the transition, whereas it should b",
+        "prev < instantAdjusted) {\nint offsetPrev = getOffset(prev);\nint diff = offsetPrev - offsetLocal;\nif (instantAdjusted - prev <= diff) {\nreturn offsetPr",
+        "fsetLocal = getOffset(instantLocal);\n// adjust instantLocal using the estimate and recalc the offset",
+        "fer, we must be near a DST boundary\nif (offsetLocal != offsetAdjusted) {\n// we need to ensure that t",
+        "time is always after the DST gap\n// this happens naturally for positive offsets, but not for negativ",
+        "f we just return offsetAdjusted then the time is pushed\n// back before the transition, whereas it sh",
+        " then the time is pushed\n// back before the transition, whereas it should be\n// on or after the tran",
+        "justed = nextTransition(instantLocal - offsetAdjusted);\nif (nextLocal != nextAdjusted) {\nreturn offs",
+        "- offsetAdjusted);\nif (nextLocal != nextAdjusted) {\nreturn offsetLocal;\n}\n}\n} else if (offsetLocal >",
+        " if (offsetLocal > 0) {\nlong prev = previousTransition(instantAdjusted);\nif (prev < instantAdjusted)",
+        "tLocal > 0) {\nlong prev = previousTransition(instantAdjusted);\nif (prev < instantAdjusted) {\nint off",
+        " {\nlong prev = previousTransition(instantAdjusted);\nif (prev < instantAdjusted) {\nint offsetPrev = g",
+        "= previousTransition(instantAdjusted);\nif (prev < instantAdjusted) {\nint offsetPrev = getOffset(prev",
+        "- offsetLocal;\nif (instantAdjusted - prev <= diff) {\nreturn offsetPrev;\n}\n}\n}\nreturn offsetAdjusted;",
+        "getOffsetFromLocal(long instantLocal) {\n// get the",
+        "antLocal) {\n// get the offset at instantLocal (fir",
+        "ocal) {\n// get the offset at instantLocal (first e",
+        "// get the offset at instantLocal (first estimate)"
+    ]
+}

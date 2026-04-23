@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.6598513011152416,
+    "input": "    @Override\n    public void formatTo(final Formatter formatter, final int flags,\n        final int width, final int precision) {\n        if (this.size == null) {\n            formatter.format(\"NULL\");\n        } else {\n            final StringBuilder format = new StringBuilder().append('%');\n            if ((flags & FormattableFlags.LEFT_JUSTIFY) == FormattableFlags\n                .LEFT_JUSTIFY) {\n                format.append('-');\n            }\n            if (width > 0) {\n                format.append(Integer.toString(width));\n            }\n            if ((flags & FormattableFlags.UPPERCASE) == FormattableFlags\n                .UPPERCASE) {\n                format.append('S');\n            } else {\n                format.append('s');\n            }\n            formatter.format(\n                format.toString(), this.formatSizeWithSuffix(precision)\n            );\n        }\n    }",
+    "query_result": [
+        "LEFT_JUSTIFY) == FormattableFlags\n.LEFT_JUSTIFY) {\nformat.append('-');\n}\nif (width > 0) {\nformat.app",
+        "ASE) == FormattableFlags\n.UPPERCASE) {\nformat.append('S');\n} else {\nformat.append('s');\n}\nformatter.",
+        "verride\npublic void formatTo(final Formatter forma",
+        "ride\npublic void formatTo(final Formatter formatte",
+        "blic void formatTo(final Formatter formatter, fina",
+        "id formatTo(final Formatter formatter, final int f",
+        "atTo(final Formatter formatter, final int flags,\nf",
+        "ormatter formatter, final int flags,\nfinal int wid",
+        "formatter, final int flags,\nfinal int width, final",
+        " {\nfinal StringBuilder format = new StringBuilder(",
+        " ((flags & FormattableFlags.LEFT_JUSTIFY) == Forma",
+        "flags & FormattableFlags.LEFT_JUSTIFY) == Formatta",
+        "lags & FormattableFlags.LEFT_JUSTIFY) == Formattab",
+        " & FormattableFlags.LEFT_JUSTIFY) == FormattableFl",
+        "ags & FormattableFlags.UPPERCASE) == FormattableFl",
+        "gs & FormattableFlags.UPPERCASE) == FormattableFla"
+    ]
+}

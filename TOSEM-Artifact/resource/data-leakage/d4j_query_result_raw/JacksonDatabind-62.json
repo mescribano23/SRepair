@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6410934744268078,
+    "input": "public CollectionDeserializer createContextual(DeserializationContext ctxt,\n        BeanProperty property) throws JsonMappingException\n{\n    // May need to resolve types for delegate-based creators:\n    JsonDeserializer<Object> delegateDeser = null;\n    if (_valueInstantiator != null) {\n        if (_valueInstantiator.canCreateUsingDelegate()) {\n            JavaType delegateType = _valueInstantiator.getDelegateType(ctxt.getConfig());\n            if (delegateType == null) {\n                throw new IllegalArgumentException(\"Invalid delegate-creator definition for \"+_collectionType\n                        +\": value instantiator (\"+_valueInstantiator.getClass().getName()\n                        +\") returned true for 'canCreateUsingDelegate()', but null for 'getDelegateType()'\");\n            }\n            delegateDeser = findDeserializer(ctxt, delegateType, property);\n        } else if (_valueInstantiator.canCreateUsingArrayDelegate()) {\n            JavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig());\n            if (delegateType == null) {\n                throw new IllegalArgumentException(\"Invalid array-delegate-creator definition for \"+_collectionType\n                        +\": value instantiator (\"+_valueInstantiator.getClass().getName()\n                        +\") returned true for 'canCreateUsingArrayDelegate()', but null for 'getArrayDelegateType()'\");\n            }\n            delegateDeser = findDeserializer(ctxt, delegateType, property);\n ",
+    "query_result": [
+        "lectionDeserializer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\n// May need to resolve types for delegate-based creators:\nJsonDeserializer<Object> delegateDeser = null;\nif (_valueInstantiator != null) {\nif (_valueInstantiator.canCreateUsingDelegate()) {\nJavaType delegateType = _valueInstantiator.getDelegateType(ctxt.getConfig());\nif (delegateType == null) {\nthrow new IllegalArgumentException(",
+        "serializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\n// May need to resolve types for delegate-based creators:\nJsonDeserializer<Object> delegateDeser = null;\nif (_valueInstantiator != null) {\nif (_valueInstantiator.canCreateUsingDelegate()) {\nJavaType delegateType = _valueInstantiator.getDelegateType(ctxt.getConfig());\nif",
+        ".canCreateUsingDelegate()) {\nJavaType delegateType = _valueInstantiator.getDelegateType(ctxt.getConfig());\nif (delegateType == null) {\nthrow new IllegalArgumentException(\"Invalid delegate-creator defi",
+        "eDeser = findDeserializer(ctxt, delegateType, property);\n} else if (_valueInstantiator.canCreateUsingArrayDelegate()) {\nJavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig()",
+        "ndDeserializer(ctxt, delegateType, property);\n} else if (_valueInstantiator.canCreateUsingArrayDelegate()) {\nJavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig());\nif (dele",
+        "} else if (_valueInstantiator.canCreateUsingArrayDelegate()) {\nJavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig());\nif (delegateType == null) {\nthrow new IllegalArgumentE",
+        "stantiator.canCreateUsingArrayDelegate()) {\nJavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig());\nif (delegateType == null) {\nthrow new IllegalArgumentException(\"Invalid a",
+        "()) {\nJavaType delegateType = _valueInstantiator.getArrayDelegateType(ctxt.getConfig());\nif (delegateType == null) {\nthrow new IllegalArgumentException(\"Invalid array-delegate-creator definition for \"",
+        "rializer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\n// May need to resolve types for delegate-",
+        "xt ctxt,\nBeanProperty property) throws JsonMappingException\n{\n// May need to resolve types for delegate-based creators:\nJsonDeserializer<Object> deleg",
+        "\nif (_valueInstantiator != null) {\nif (_valueInstantiator.canCreateUsingDelegate()) {\nJavaType delegateType = _valueInstantiator.getDelegateType(ctxt.",
+        "()) {\nJavaType delegateType = _valueInstantiator.getDelegateType(ctxt.getConfig());\nif (delegateType == null) {\nthrow new IllegalArgumentException(\"In",
+        "ionDeserializer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMapp",
+        "onDeserializer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappi",
+        "eserializer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingE",
+        "erializer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingExc",
+        "ializer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingExcep",
+        "lizer createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingExcepti",
+        "eateContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\n// ",
+        "tor.getDelegateType(ctxt.getConfig());\nif (delegateType == null) {\nthrow new IllegalArgumentExceptio"
+    ]
+}

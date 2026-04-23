@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.5430183356840621,
+    "input": "public PropertyName findNameForSerialization(Annotated a)\n{\n    String name = null;\n\n    JsonGetter jg = _findAnnotation(a, JsonGetter.class);\n    if (jg != null) {\n        name = jg.value();\n    } else {\n        JsonProperty pann = _findAnnotation(a, JsonProperty.class);\n        if (pann != null) {\n            name = pann.value();\n            /* 22-Apr-2014, tatu: Should figure out a better way to do this, but\n             *   it's actually bit tricky to do it more efficiently (meta-annotations\n             *   add more lookups; AnnotationMap costs etc)\n             */\n        } else if (_hasAnnotation(a, JsonSerialize.class)\n                || _hasAnnotation(a, JsonView.class)\n                || _hasAnnotation(a, JsonRawValue.class)\n                || _hasAnnotation(a, JsonUnwrapped.class)\n                || _hasAnnotation(a, JsonBackReference.class)\n                || _hasAnnotation(a, JsonManagedReference.class)) {\n            name = \"\";\n        } else {\n            return null;\n        }\n    }\n    return PropertyName.construct(name);\n}",
+    "query_result": [
+        "ure out a better way to do this, but\n* it's actually bit tricky to do it more efficiently (meta-annotations\n* add more lookups; AnnotationMap costs et",
+        "if (_hasAnnotation(a, JsonSerialize.class)\n|| _hasAnnotation(a, JsonView.class)\n|| _hasAnnotation(a,",
+        "public PropertyName findNameForSerialization(Annot",
+        "ublic PropertyName findNameForSerialization(Annota",
+        "blic PropertyName findNameForSerialization(Annotat",
+        "lic PropertyName findNameForSerialization(Annotate",
+        "ic PropertyName findNameForSerialization(Annotated",
+        "c PropertyName findNameForSerialization(Annotated ",
+        " PropertyName findNameForSerialization(Annotated a",
+        "sonProperty pann = _findAnnotation(a, JsonProperty",
+        " _findAnnotation(a, JsonProperty.class);\nif (pann ",
+        "ation(a, JsonProperty.class);\nif (pann != null) {\n",
+        "\n|| _hasAnnotation(a, JsonView.class)\n|| _hasAnnot",
+        " _hasAnnotation(a, JsonBackReference.class)\n|| _ha"
+    ]
+}

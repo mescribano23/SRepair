@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.3836734693877551,
+    "input": "    @Override\n    public boolean equals(final Object obj) {\n        if (JsonLongImpl.class.isInstance(obj)) {\n            return JsonLongImpl.class.cast(obj).value == value;\n        }\n        return JsonNumber.class.isInstance(obj) && JsonNumber.class.cast(obj).bigDecimalValue().equals(bigDecimalValue());\n    }",
+    "query_result": [
+        "@Override\npublic boolean equals(final Object obj) ",
+        "Override\npublic boolean equals(final Object obj) {",
+        "verride\npublic boolean equals(final Object obj) {\n",
+        "erride\npublic boolean equals(final Object obj) {\ni",
+        "rride\npublic boolean equals(final Object obj) {\nif",
+        "ride\npublic boolean equals(final Object obj) {\nif ",
+        "ide\npublic boolean equals(final Object obj) {\nif (",
+        "== value;\n}\nreturn JsonNumber.class.isInstance(obj"
+    ]
+}

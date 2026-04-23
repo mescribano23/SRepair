@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9779874213836478,
+    "input": "  public static List<Method> getterMethodsOf(Class<?> clazz) {\n    Method[] methods = clazz.getMethods();\n    List<Method> getters = new ArrayList<Method>();\n    for (int i = 0; i < methods.length; i++) {\n      Method method = methods[i];\n      if (isNotDefinedInObjectClass(method) && (isStandardGetter(method) || isBooleanGetter(method))) {\n        getters.add(method);\n      }\n    }\n    return getters;\n  }",
+    "query_result": [
+        "tatic List<Method> getterMethodsOf(Class<?> clazz) {\nMethod[] methods = clazz.getMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMethod method = methods[i];\nif (isNotDefinedInObjectClass(method) && (isStandardGetter(method) || isBooleanGetter(method))) {\ngetters.add(method);\n}\n}\nreturn getters;\n",
+        "ss<?> clazz) {\nMethod[] methods = clazz.getMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMetho",
+        "s<?> clazz) {\nMethod[] methods = clazz.getMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMethod",
+        "<?> clazz) {\nMethod[] methods = clazz.getMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMethod ",
+        "zz) {\nMethod[] methods = clazz.getMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMethod method ",
+        ".getMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i",
+        "getMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i+",
+        "etMethods();\nList<Method> getters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++",
+        "tters = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMethod method = methods[",
+        "s = new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMethod method = methods[i];\n",
+        "new ArrayList<Method>();\nfor (int i = 0; i < methods.length; i++) {\nMethod method = methods[i];\nif (",
+        "static List<Method> getterMethodsOf(Class<?> clazz",
+        "(Class<?> clazz) {\nMethod[] methods = clazz.getMet",
+        "Class<?> clazz) {\nMethod[] methods = clazz.getMeth",
+        "ass<?> clazz) {\nMethod[] methods = clazz.getMethod",
+        "?> clazz) {\nMethod[] methods = clazz.getMethods();",
+        "> clazz) {\nMethod[] methods = clazz.getMethods();\n",
+        "\nMethod[] methods = clazz.getMethods();\nList<Metho",
+        "Method[] methods = clazz.getMethods();\nList<Method",
+        "ethod[] methods = clazz.getMethods();\nList<Method>"
+    ]
+}

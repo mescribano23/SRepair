@@ -1,0 +1,27 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index aaac581..94bb831 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -385,6 +385,7 @@ public class QueueFile {
+       if (channel.transferTo(HEADER_LENGTH, count, channel) != count) {
+         throw new AssertionError("Copied insufficient number of bytes!");
+       }
++      zeroOutBuffer(endOfLastElement);
+     }
+ 
+     // Commit the expansion.
+@@ -399,6 +400,14 @@ public class QueueFile {
+     fileLength = newLength;
+   }
+ 
++  private void zeroOutBuffer(int endOfLastElement) throws IOException {
++    RandomAccessFile raf = this.raf;
++    raf.seek(0);
++    for (int i = 0; i < endOfLastElement; i++) {
++      raf.writeByte(0);
++    }
++  }
++
+   /** Sets the length of the file. */
+   private void setLength(int newLength) throws IOException {
+     // Set new file length (considered metadata) and sync it to storage.

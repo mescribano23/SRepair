@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.10955710955710955,
+    "input": "    public void fileStarted( AuditEvent event )\n    {\n        for ( File sourceDirectory : sourceDirectories )\n        {\n            String sourceDirectoryPath = sourceDirectory.getPath();\n            String fileName = StringUtils.replace( event.getFileName(), \"\\\\\", \"/\" );\n            if ( fileName.startsWith( sourceDirectoryPath + \"/\" ) )\n            {\n                currentFile = StringUtils.substring( fileName, sourceDirectoryPath.length() + 1 );\n\n                events = getResults().getFileViolations( currentFile );\n            }\n        }\n\n        if ( events == null )\n        {\n            events = new ArrayList<AuditEvent>();\n        }\n    }",
+    "query_result": [
+        "tring sourceDirectoryPath = sourceDirectory.getPat"
+    ]
+}

@@ -1,0 +1,54 @@
+diff --git a/src/main/java/org/jsoup/helper/StringUtil.java b/src/main/java/org/jsoup/helper/StringUtil.java
+index 439a7d6..5bdfcf4 100644
+--- a/src/main/java/org/jsoup/helper/StringUtil.java
++++ b/src/main/java/org/jsoup/helper/StringUtil.java
+@@ -148,27 +148,30 @@ public final class StringUtil {
+      * @param string string to normalize whitespace within
+      * @param stripLeading set to true if you wish to remove any leading whitespace
+      */
+-    public static void appendNormalisedWhitespace(StringBuilder accum, String string, boolean stripLeading) {
+-        boolean lastWasWhite = false;
+-        boolean reachedNonWhite = false;
+-
+-        int len = string.length();
+-        int c;
+-        for (int i = 0; i < len; i+= Character.charCount(c)) {
+-            c = string.codePointAt(i);
+-            if (isActuallyWhitespace(c)) {
+-                if ((stripLeading && !reachedNonWhite) || lastWasWhite)
+-                    continue;
+-                accum.append(' ');
+-                lastWasWhite = true;
+-            }
+-            else {
+-                accum.appendCodePoint(c);
+-                lastWasWhite = false;
+-                reachedNonWhite = true;
+-            }
++public static void appendNormalisedWhitespace(StringBuilder accum, String string, boolean stripLeading) {
++    // Preprocess the string to remove invisible characters
++    String processedString = string.replaceAll("[\\u200B\\u200C\\u200D\\u00AD]", "");
++    
++    boolean lastWasWhite = false;
++    boolean reachedNonWhite = false;
++
++    int len = processedString.length();
++    int c;
++    for (int i = 0; i < len; i+= Character.charCount(c)) {
++        c = processedString.codePointAt(i);
++        if (isActuallyWhitespace(c)) {
++            if ((stripLeading && !reachedNonWhite) || lastWasWhite)
++                continue;
++            accum.append(' ');
++            lastWasWhite = true;
++        }
++        else {
++            accum.appendCodePoint(c);
++            lastWasWhite = false;
++            reachedNonWhite = true;
+         }
+     }
++}
+ 
+     public static boolean in(final String needle, final String... haystack) {
+         final int len = haystack.length;

@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.13777372262773724,
+    "input": "    private JsonValue read(final JsonParser parser) {\n        final JsonParser.Event next = /*RewindableJsonParser.class.isInstance(parser) ?\n                RewindableJsonParser.class.cast(parser).getLast() : */ parser.next();\n        switch (next) {\n            case START_OBJECT: {\n                final JsonObjectBuilder objectBuilder = builderFactory.createObjectBuilder();\n                parseObject(null, parser, objectBuilder);\n                return objectBuilder.build();\n            }\n            case END_OBJECT:\n                return JsonValue.EMPTY_JSON_OBJECT;\n            case END_ARRAY:\n                return JsonValue.EMPTY_JSON_ARRAY;\n            case START_ARRAY:\n                final JsonArrayBuilder arrayBuilder = builderFactory.createArrayBuilder();\n                parseArray(parser, arrayBuilder);\n                return arrayBuilder.build();\n            case KEY_NAME: { // object\n                final JsonObjectBuilder objectBuilder = builderFactory.createObjectBuilder();\n                parseObject(parser.getString(), parser, objectBuilder);\n                return objectBuilder.build();\n            }\n            case VALUE_STRING:\n                return jsonp.createValue(parser.getString());\n            case VALUE_FALSE:\n                return JsonValue.FALSE;\n            case VALUE_TRUE:\n                return JsonValue.TRUE;\n            case VALUE_NULL:\n                return JsonValue.NULL;\n            case VALUE_NUMBER:\n                return jsonp.createValue(parser.getBigDecimal());\n            default:\n                throw new JsonParsingException(\"Unknown structure: \" + next, parser.getLocation());\n        }\n    }",
+    "query_result": [
+        "SE:\nreturn JsonValue.FALSE;\ncase VALUE_TRUE:\nreturn JsonValue.TRUE;\ncase VALUE_NULL:\nreturn JsonValu",
+        "onValue.FALSE;\ncase VALUE_TRUE:\nreturn JsonValue.TRUE;\ncase VALUE_NULL:\nreturn JsonValue.NULL;\ncase ",
+        "nValue.FALSE;\ncase VALUE_TRUE:\nreturn JsonValue.TRUE;\ncase VALUE_NULL:\nreturn JsonValue.NULL;\ncase V",
+        "n JsonValue.FALSE;\ncase VALUE_TRUE:\nreturn JsonVal",
+        "\ncase VALUE_TRUE:\nreturn JsonValue.TRUE;\ncase VALU",
+        "case VALUE_TRUE:\nreturn JsonValue.TRUE;\ncase VALUE",
+        "return JsonValue.TRUE;\ncase VALUE_NULL:\nreturn Jso",
+        "\ncase VALUE_NULL:\nreturn JsonValue.NULL;\ncase VALU",
+        "ault:\nthrow new JsonParsingException(\"Unknown stru"
+    ]
+}

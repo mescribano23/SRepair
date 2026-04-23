@@ -1,0 +1,36 @@
+diff --git a/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java b/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java
+index 7b78ad326..26490b212 100644
+--- a/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java
++++ b/src/main/java/spoon/support/reflect/code/CtVariableAccessImpl.java
+@@ -32,18 +32,19 @@ public abstract class CtVariableAccessImpl<T> extends CtExpressionImpl<T> implem
+ 	@MetamodelPropertyField(role = CtRole.VARIABLE)
+ 	CtVariableReference<T> variable;
+ 
+-	@Override
+-	public CtVariableReference<T> getVariable() {
+-		if (variable != null) {
+-			return (CtVariableReference<T>) variable;
+-		}
+-		if (getFactory() != null) {
+-			CtVariableReference<Object> ref = getFactory().Core().createLocalVariableReference();
+-			ref.setParent(this);
+-			return (CtVariableReference<T>) ref;
+-		}
+-		return null;
+-	}
++@Override
++public CtVariableReference<T> getVariable() {
++    if (variable != null) {
++        return (CtVariableReference<T>) variable;
++    }
++    if (getFactory() != null) {
++        CtVariableReference<Object> ref = getFactory().Core().createLocalVariableReference();
++        ref.setParent(this);
++        ref.setType(getFactory().Type().createReference("spoon.test.reference.testclasses.Parent")); // Set a default type
++        return (CtVariableReference<T>) ref;
++    }
++    return null;
++}
+ 
+ 	@Override
+ 	public <C extends CtVariableAccess<T>> C setVariable(CtVariableReference<T> variable) {

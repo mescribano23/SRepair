@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDateFormat.java b/src/main/java/org/apache/commons/lang3/time/FastDateFormat.java
+index e0433239..5cf1ca34 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDateFormat.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDateFormat.java
+@@ -460,7 +460,7 @@ public class FastDateFormat extends Format {
+      * @return a {@code List} of Rule objects
+      * @throws IllegalArgumentException if pattern is invalid
+      */
+-    protected List<Rule> parsePattern() {
++protected List<Rule> parsePattern() {
+         DateFormatSymbols symbols = new DateFormatSymbols(mLocale);
+         List<Rule> rules = new ArrayList<Rule>();
+ 
+@@ -492,10 +492,10 @@ public class FastDateFormat extends Format {
+                 rule = new TextField(Calendar.ERA, ERAs);
+                 break;
+             case 'y': // year (number)
+-                if (tokenLen >= 4) {
+-                    rule = selectNumberRule(Calendar.YEAR, tokenLen);
+-                } else {
++                if (tokenLen == 2) {
+                     rule = TwoDigitYearField.INSTANCE;
++                } else {
++                    rule = selectNumberRule(Calendar.YEAR, tokenLen);
+                 }
+                 break;
+             case 'M': // month in year (text and number)

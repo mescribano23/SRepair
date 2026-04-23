@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.8958333333333334,
+    "input": "    public UTF8StreamJsonParser(IOContext ctxt, int features, InputStream in,\n            ObjectCodec codec, BytesToNameCanonicalizer sym,\n            byte[] inputBuffer, int start, int end,\n            boolean bufferRecyclable)\n    {\n        super(ctxt, features);\n        _inputStream = in;\n        _objectCodec = codec;\n        _symbols = sym;\n        _inputBuffer = inputBuffer;\n        _inputPtr = start;\n        _inputEnd = end;\n        _currInputRowStart = start;\n        // If we have offset, need to omit that from byte offset, so:\n        _currInputProcessed = -start;\n        _bufferRecyclable = bufferRecyclable;\n    }",
+    "query_result": [
+        " start, int end,\nboolean bufferRecyclable)\n{\nsuper(ctxt, features);\n_inputStream = in;\n_objectCodec = codec;\n_symbols = sym;\n_inputBuffer = inputBuffer;\n_inputPtr = start;\n_inputEnd = end;\n_currInputRowStart = start;\n// If we have offset, need to omit that from byte offset, so:\n_currInputProcessed =",
+        "ctCodec = codec;\n_symbols = sym;\n_inputBuffer = inputBuffer;\n_inputPtr = start;\n_inputEnd = end;\n_currInputRowStart = start;\n// If we have offset, need to omit that from byte offset, so:\n_currInputProcessed = -start;\n_bufferRecyclable = bufferRecycla",
+        "utStream = in;\n_objectCodec = codec;\n_symbols = sym;\n_inputBuffer = inputBuffer;\n_inputPtr = start;\n",
+        "tStream = in;\n_objectCodec = codec;\n_symbols = sym;\n_inputBuffer = inputBuffer;\n_inputPtr = start;\n_",
+        "public UTF8StreamJsonParser(IOContext ctxt, int fe",
+        "TF8StreamJsonParser(IOContext ctxt, int features, ",
+        "JsonParser(IOContext ctxt, int features, InputStre",
+        "nParser(IOContext ctxt, int features, InputStream ",
+        "int features, InputStream in,\nObjectCodec codec, B",
+        "ffer, int start, int end,\nboolean bufferRecyclable",
+        "nt start, int end,\nboolean bufferRecyclable)\n{\nsup",
+        "t start, int end,\nboolean bufferRecyclable)\n{\nsupe",
+        "boolean bufferRecyclable)\n{\nsuper(ctxt, features);",
+        "er = inputBuffer;\n_inputPtr = start;\n_inputEnd = e",
+        " = inputBuffer;\n_inputPtr = start;\n_inputEnd = end",
+        "nputProcessed = -start;\n_bufferRecyclable = buffer"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9676409185803758,
+    "input": "public Partial with(DateTimeFieldType fieldType, int value) {\n    if (fieldType == null) {\n        throw new IllegalArgumentException(\"The field type must not be null\");\n    }\n    int index = indexOf(fieldType);\n    if (index == -1) {\n        DateTimeFieldType[] newTypes = new DateTimeFieldType[iTypes.length + 1];\n        int[] newValues = new int[newTypes.length];\n        \n        // find correct insertion point to keep largest-smallest order\n        int i = 0;\n        DurationField unitField = fieldType.getDurationType().getField(iChronology);\n        if (unitField.isSupported()) {\n            for (; i < iTypes.length; i++) {\n                DateTimeFieldType loopType = iTypes[i];\n                DurationField loopUnitField = loopType.getDurationType().getField(iChronology);\n                if (loopUnitField.isSupported()) {\n                    int compare = unitField.compareTo(loopUnitField);\n                    if (compare > 0) {\n                        break;\n                    } else if (compare == 0) {\n                        DurationField rangeField = fieldType.getRangeDurationType().getField(iChronology);\n                        DurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\n                        if (rangeField.compareTo(loopRangeField) > 0) {\n                            break;\n                        }\n                    }\n                }\n            }\n        }\n        System.arraycopy(iTypes, 0, newTypes, 0, i);\n       ",
+    "query_result": [
+        " (index == -1) {\nDateTimeFieldType[] newTypes = new DateTimeFieldType[iTypes.length + 1];\nint[] newValues = new int[newTypes.length];\n\n// find correct insertion point to keep largest-smallest order\nint i = 0;\nDurationField unitField = fieldType.getDurationType().getField(iChronology);\nif (unitField.isSupported()) {\nfor (; i < iTypes.length; i++) {\nDateTimeFieldType loopType = iTypes[i];\nDurationField loopUnitField = loopType.getDurationType().getField(iChronology);\nif (loopUnitField.isSupported()) {\nint compare = unitField.compareTo(loopUnitField);\nif (compare > 0) {\nbreak;\n} else if (compare == 0) {\nDurationField rangeField = fieldType.getRangeDurationType().getField(iChronology);\nDurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\nif (rangeField.compareTo(loopRangeField) > 0) {\nbreak;\n}\n}\n}\n}\n}\nSystem.a",
+        "h(DateTimeFieldType fieldType, int value) {\nif (fieldType == null) {\nthrow new IllegalArgumentException(\"The field type must not be null\");\n}\nint index = indexOf(fieldType);\nif (index == -1) {\nDateTimeFieldType[] newTypes = new DateTimeFieldType[iTypes.length + 1];\nint[] newValues = new int[newTypes.length];\n\n// find correct insertion point to keep largest-smallest order\nint i = 0;\nDurationField unitField = fieldType.getDurationType().getField(iChronology);\nif (unitField.isSupported()) {\nfor (; i < iTypes.length; i++) {\nDateTimeFieldType loopType = iTypes[i];\nDurationField loopUnitField = loopType.getDurationType().getField(iChronology);\nif (loopUnitField.isSupported()) {\nint compare = unitField.compareTo(loopUnitField);\nif (compare > 0) {\n",
+        "DurationField rangeField = fieldType.getRangeDurationType().getField(iChronology);\nDurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\nif (rangeField.compareTo(loopRangeField) > 0) {\nbreak;\n}\n}\n}\n}\n}\nSystem.arraycopy",
+        "Field rangeField = fieldType.getRangeDurationType().getField(iChronology);\nDurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\nif (rangeField.compareTo(loopRangeField",
+        "ld rangeField = fieldType.getRangeDurationType().getField(iChronology);\nDurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\nif (rangeField.compareTo(loopRangeField) >",
+        " rangeField = fieldType.getRangeDurationType().getField(iChronology);\nDurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\nif (rangeField.compareTo(loopRangeField) > 0",
+        "eld = fieldType.getRangeDurationType().getField(iChronology);\nDurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\nif",
+        "artial with(DateTimeFieldType fieldType, int value) {\nif (fieldType == null) {\nthrow new IllegalArgu",
+        "(DateTimeFieldType fieldType, int value) {\nif (fieldType == null) {\nthrow new IllegalArgumentExcepti",
+        "geDurationType().getField(iChronology);\nDurationField loopRangeField = loopType.getRangeDurationType",
+        " {\nif (fieldType == null) {\nthrow new IllegalArgum",
+        "{\nif (fieldType == null) {\nthrow new IllegalArgume",
+        "\nif (fieldType == null) {\nthrow new IllegalArgumen",
+        "if (fieldType == null) {\nthrow new IllegalArgument",
+        "f (fieldType == null) {\nthrow new IllegalArgumentE",
+        "(fieldType == null) {\nthrow new IllegalArgumentExc",
+        "fieldType == null) {\nthrow new IllegalArgumentExce",
+        "dType == null) {\nthrow new IllegalArgumentExceptio",
+        "Type == null) {\nthrow new IllegalArgumentException",
+        "ype == null) {\nthrow new IllegalArgumentException("
+    ]
+}

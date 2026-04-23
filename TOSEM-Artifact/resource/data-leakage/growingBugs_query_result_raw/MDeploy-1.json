@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.4696132596685083,
+    "input": "private void processModel( Model model )\n    {\n        Parent parent = model.getParent();\n\n        if ( this.groupId == null )\n        {\n            if ( parent != null && parent.getGroupId() != null )\n            {\n                this.groupId = parent.getGroupId();\n            }\n            if ( model.getGroupId() != null )\n            {\n                this.groupId = model.getGroupId();\n            }\n        }\n        if ( this.artifactId == null && model.getArtifactId() != null )\n        {\n            this.artifactId = model.getArtifactId();\n        }\n        if ( this.version == null )\n        {\n            this.version = model.getVersion();\n            if ( this.version == null && parent != null )\n            {\n                this.version = parent.getVersion();\n            }\n        }\n        if ( this.packaging == null && model.getPackaging() != null )\n        {\n            this.packaging = model.getPackaging();\n        }\n    }",
+    "query_result": [
+        "etArtifactId();\n}\nif ( this.version == null )\n{\nthis.version = model.getVersion();\nif ( this.version == null && parent != null )\n{\nthis.version = pare",
+        ")\n{\nParent parent = model.getParent();\nif ( this.g",
+        "artifactId == null && model.getArtifactId() != nul",
+        "s.packaging == null && model.getPackaging() != nul"
+    ]
+}

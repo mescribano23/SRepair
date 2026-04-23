@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4393414211438475,
+    "input": "    public boolean evaluateStep(final StepInterpolator interpolator)\n        throws DerivativeException, EventException, ConvergenceException {\n\n        try {\n\n            forward = interpolator.isForward();\n            final double t1 = interpolator.getCurrentTime();\n            final int    n  = Math.max(1, (int) Math.ceil(Math.abs(t1 - t0) / maxCheckInterval));\n            final double h  = (t1 - t0) / n;\n\n            double ta = t0;\n            double ga = g0;\n            double tb = t0 + (interpolator.isForward() ? convergence : -convergence);\n            for (int i = 0; i < n; ++i) {\n\n                // evaluate handler value at the end of the substep\n                tb += h;\n                interpolator.setInterpolatedTime(tb);\n                final double gb = handler.g(tb, interpolator.getInterpolatedState());\n\n                // check events occurrence\n                if (g0Positive ^ (gb >= 0)) {\n                    // there is a sign change: an event is expected during this step\n\n                    if (ga * gb > 0) {\n                        // this is a corner case:\n                        // - there was an event near ta,\n                        // - there is another event between ta and tb\n                        // - when ta was computed, convergence was reached on the \"wrong side\" of the interval\n                        // this implies that the real sign of ga is the same as gb, so we need to slightly\n                        // shift ta to make sure ga and gb get opposite signs and the solver won't complain\n                        // about bracketing\n                        final double epsilon = (forward ? 0.25 : -0.25) * convergence;\n                        for (int k = 0; (k < 4) && (ga * gb > 0); ++k) {\n                            ta += epsilon;\n                            interpolator.setInterpolatedTime(ta);\n                            ga = handler.g(ta, interpolator.getInterpolatedState());\n                        }\n                        if ",
+    "query_result": [
+        " this implies that the real sign of ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver ",
+        "this implies that the real sign of ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver w",
+        "is implies that the real sign of ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver won",
+        "mplies that the real sign of ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver won't c",
+        "plies that the real sign of ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver won't co",
+        "hat the real sign of ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver won't complain\n",
+        "he real sign of ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver won't complain\n// ab",
+        " ga is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and the solver won't complain\n// about bracketing\n",
+        "teStep(final StepInterpolator interpolator)\nthrows DerivativeException, EventException, ConvergenceE",
+        "uble ta = t0;\ndouble ga = g0;\ndouble tb = t0 + (interpolator.isForward() ? convergence : -convergenc",
+        "ents occurrence\nif (g0Positive ^ (gb >= 0)) {\n// there is a sign change: an event is expected during",
+        "ga * gb > 0) {\n// this is a corner case:\n// - there was an event near ta,\n// - there is another even",
+        " gb > 0) {\n// this is a corner case:\n// - there was an event near ta,\n// - there is another event be",
+        " 0) {\n// this is a corner case:\n// - there was an event near ta,\n// - there is another event between",
+        "his is a corner case:\n// - there was an event near ta,\n// - there is another event between ta and tb",
+        "is is a corner case:\n// - there was an event near ta,\n// - there is another event between ta and tb\n",
+        "is the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and ",
+        "s the same as gb, so we need to slightly\n// shift ta to make sure ga and gb get opposite signs and t",
+        "boolean evaluateStep(final StepInterpolator interp",
+        "epInterpolator interpolator)\nthrows DerivativeExce"
+    ]
+}

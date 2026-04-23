@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7978142076502732,
+    "input": "private Map<String, Integer> initializeHeader() throws IOException {\n        Map<String, Integer> hdrMap = null;\n        final String[] formatHeader = this.format.getHeader();\n        if (formatHeader != null) {\n            hdrMap = new LinkedHashMap<String, Integer>();\n\n            String[] header = null;\n            if (formatHeader.length == 0) {\n                // read the header from the first line of the file\n                final CSVRecord nextRecord = this.nextRecord();\n                if (nextRecord != null) {\n                    header = nextRecord.values();\n                }\n            } else {\n                if (this.format.getSkipHeaderRecord()) {\n                    this.nextRecord();\n                }\n                header = formatHeader;\n            }\n\n            // build the name to index mappings\n            if (header != null) {\n                for (int i = 0; i < header.length; i++) {\n                    if (hdrMap.containsKey(header[i])) {\n                        throw new IllegalStateException(\"The header contains duplicate names: \" + Arrays.toString(header));\n                    }\n                    hdrMap.put(header[i], Integer.valueOf(i));\n                }\n            }\n        }\n        return hdrMap;\n    }",
+    "query_result": [
+        "vate Map<String, Integer> initializeHeader() throws IOException { Map<String, Integer> hdrMap = null; final String[] formatHeader = this.format.getHeader(); if (formatHeader != null) { hdrMap = new LinkedHashMap<String, Integer>(); String[] header = null; if (formatHeader.length == 0) { // read the header from the first line of the file final CSVRe",
+        "formatHeader.length == 0) { // read the header from the first line of the file final CSVRecord nextRecord = this.nextRecord(); if (nextRecord != null)",
+        ".format.getSkipHeaderRecord()) { this.nextRecord(); } header = formatHeader; } // build the name to index mappings if (header != null) { for (int i =",
+        "== 0) { // read the header from the first line of the file final CSVRecord nextRecord = this.nextRe",
+        "ead the header from the first line of the file final CSVRecord nextRecord = this.nextRecord(); if (n",
+        "final String[] formatHeader = this.format.getHeade",
+        "atHeader = this.format.getHeader(); if (formatHead",
+        "= new LinkedHashMap<String, Integer>(); String[]",
+        "xtRecord = this.nextRecord(); if (nextRecord != nu",
+        "extRecord.values(); } } else { if (this.format.get",
+        "ues(); } } else { if (this.format.getSkipHeaderRec",
+        "tHeader; } // build the name to index mappings if",
+        "if (header != null) { for (int i = 0; i < header.",
+        "f (header != null) { for (int i = 0; i < header.le",
+        "eader != null) { for (int i = 0; i < header.length",
+        "!= null) { for (int i = 0; i < header.length; i++",
+        "null) { for (int i = 0; i < header.length; i++) {",
+        "null) { for (int i = 0; i < header.length; i++) {",
+        ") { for (int i = 0; i < header.length; i++) { if (",
+        ") { throw new IllegalStateException(\"The header co"
+    ]
+}

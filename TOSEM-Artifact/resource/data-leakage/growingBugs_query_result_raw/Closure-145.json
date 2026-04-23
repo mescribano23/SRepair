@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "  private boolean isOneExactlyFunctionOrDo(Node n) {\n    if (n.getType() == Token.LABEL) {\n      Node labeledStatement = n.getLastChild();\n      if (labeledStatement.getType() != Token.BLOCK) {\n        return isOneExactlyFunctionOrDo(labeledStatement);\n      } else {\n        // For labels with block children, we need to ensure that a\n        // labeled FUNCTION or DO isn't generated when extraneous BLOCKs \n        // are skipped. \n        if (getNonEmptyChildCount(n, 2) == 1) { \n          return isOneExactlyFunctionOrDo(getFirstNonEmptyChild(n));\n        } else {\n          // Either a empty statement or an block with more than one child,\n          // way it isn't a FUNCTION or DO.\n          return false;\n        }\n      }\n    } else {\n      return (n.getType() == Token.FUNCTION || n.getType() == Token.DO);\n    }\n  }",
+    "query_result": []
+}

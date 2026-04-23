@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.851063829787234,
+    "input": "    @Override\n    public long getIdleTimeMillis() {\n        final long elapsed = System.currentTimeMillis() - lastReturnTime;\n     // elapsed may be negative if:\n     // - another thread updates lastReturnTime during the calculation window\n     // - System.currentTimeMillis() is not monotonic (e.g. system time is set back)\n     return elapsed >= 0 ? elapsed : 0;\n    }",
+    "query_result": [
+        "illis() { final long elapsed = System.currentTimeMillis() - lastReturnTime; // elapsed may be negative if: // - another thread updates lastReturnTime during the calculation window // - System.currentTimeMillis() is not monotonic (e.g. system time is",
+        "long elapsed = System.currentTimeMillis() - lastReturnTime; // elapsed may be negative if: // - another thread updates lastReturnTime during the calculation window // - System.currentTimeMillis() is not monotonic (e.g. system time is set back) retur",
+        "sed may be negative if: // - another thread updates lastReturnTime during the calculation window //",
+        "{ final long elapsed = System.currentTimeMillis()",
+        "{ final long elapsed = System.currentTimeMillis()",
+        "final long elapsed = System.currentTimeMillis() -",
+        "final long elapsed = System.currentTimeMillis() -",
+        ".g. system time is set back) return elapsed >= 0 ?"
+    ]
+}

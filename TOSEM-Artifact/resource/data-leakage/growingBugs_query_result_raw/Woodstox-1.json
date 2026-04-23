@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.7389558232931727,
+    "input": "@Override\n    public String getElementText()\n        throws XMLStreamException\n    {\n        if (mCurrToken != START_ELEMENT) {\n            throwParseError(ErrorConsts.ERR_STATE_NOT_STELEM, null, null);\n        }\n        /* Ok, now: with START_ELEMENT we know that it's not partially\n         * processed; that we are in-tree (not prolog or epilog).\n         * The only possible complication would be:\n         */\n        if (mStEmptyElem) {\n            /* And if so, we'll then get 'virtual' close tag; things\n             * are simple as location info was set when dealing with\n             * empty start element; and likewise, validation (if any)\n             * has been taken care of\n             */\n            mStEmptyElem = false;\n            mCurrToken = END_ELEMENT;\n            return \"\";\n        }\n\n        // First need to find a textual event\n        while (true) {\n            int type = next();\n            if (type == END_ELEMENT) {\n                return \"\";\n            }\n            if (type == COMMENT || type == PROCESSING_INSTRUCTION) {\n                continue;\n            }\n            if (((1 << type) & MASK_GET_ELEMENT_TEXT) == 0) {\n                throw _constructUnexpectedInTyped(type);\n            }\n            break;\n        }\n\n        if (mTokenState < TOKEN_FULL_COALESCED) {\n            readCoalescedText(mCurrToken, false);\n        }\n\n        /* Ok: then a quick check; if it looks like we are directly\n         * followed by the end tag, we need not construct String\n         * quite yet.\n         */\n        if ((mInputPtr + 1) < mInputEnd &&\n            mInputBuffer[mInputPtr] == '<' && mInputBuffer[mInputPtr+1] == '/') {\n            // Note: next() has validated text, no need for more validation\n            mInputPtr += 2;\n            mCurrToken = END_ELEMENT;\n            // must first get text, as call to readEndElem may break it:\n            String result = mTextBuffer.contentsAsString();\n            // Can by-pass next(), nextFromTree(), in this c",
+    "query_result": [
+        "ART_ELEMENT we know that it's not partially\n* processed; that we are in-tree (not prolog or epilog).\n* The only possible complication would be:\n*/\nif (mStEmptyElem) {\n/* And if so, we'll then get 'virtual' close tag; things\n* are simple as location info was set when dealing with\n* empty start element; and likewise, validation (if any)\n* has been taken care of\n*/\nmStEmptyElem = false;\nmCurrToken = ",
+        " false);\n}\n/* Ok: then a quick check; if it looks like we are directly\n* followed by the end tag, we need not construct String\n* quite yet.\n*/\nif ((mInputPtr + 1) < mInputEnd &&\nmInputBuffer[mInputPtr] == '<' && mInputBuffer[mInputPtr+1] == '/') {\n// Note: next() has validated text, no need for more validation\nmInputPtr += 2;\nmCurrToken = END_ELEME",
+        "textual event\nwhile (true) {\nint type = next();\nif (type == END_ELEMENT) {\nreturn \"\";\n}\nif (type == COMMENT || type == PROCESSING_INSTRUCTION) {\ncontinue;\n}\nif (((1 << type) & MASK_GET_ELEMENT_TEXT) =",
+        "\nif (type == COMMENT || type == PROCESSING_INSTRUCTION) {\ncontinue;\n}\nif (((1 << type) & MASK_GET_EL",
+        "= COMMENT || type == PROCESSING_INSTRUCTION) {\ncontinue;\n}\nif (((1 << type) & MASK_GET_ELEMENT_TEXT)",
+        "|| type == PROCESSING_INSTRUCTION) {\ncontinue;\n}\nif (((1 << type) & MASK_GET_ELEMENT_TEXT) == 0) {\nt",
+        "public String getElementText()\nthrows XMLStreamExc",
+        "eamException\n{\nif (mCurrToken != START_ELEMENT) {\n",
+        "rrToken != START_ELEMENT) {\nthrowParseError(ErrorC",
+        "START_ELEMENT) {\nthrowParseError(ErrorConsts.ERR_S",
+        "First need to find a textual event\nwhile (true) {\n",
+        "e (true) {\nint type = next();\nif (type == END_ELEM",
+        ";\n}\nif (type == COMMENT || type == PROCESSING_INST",
+        "f (type == COMMENT || type == PROCESSING_INSTRUCTI",
+        "type == COMMENT || type == PROCESSING_INSTRUCTION)",
+        "MENT || type == PROCESSING_INSTRUCTION) {\ncontinue",
+        "pe == PROCESSING_INSTRUCTION) {\ncontinue;\n}\nif (((",
+        "== PROCESSING_INSTRUCTION) {\ncontinue;\n}\nif (((1 <",
+        "CESSING_INSTRUCTION) {\ncontinue;\n}\nif (((1 << type"
+    ]
+}

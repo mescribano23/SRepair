@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "  public static String[] splitPath(String path) {\n    path = path.replaceAll(\"(^/+)|(/+$)\", \"\");\n    return path.split(\"/+\");\n  }",
+    "query_result": []
+}

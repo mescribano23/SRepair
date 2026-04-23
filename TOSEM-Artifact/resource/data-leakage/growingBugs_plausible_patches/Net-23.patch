@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/net/util/SubnetUtils.java b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+index 0a6e190f..61a30cef 100644
+--- a/src/main/java/org/apache/commons/net/util/SubnetUtils.java
++++ b/src/main/java/org/apache/commons/net/util/SubnetUtils.java
+@@ -360,15 +360,12 @@ public class SubnetUtils {
+      * NBITS-#trailing zeroes for this case)
+      */
+     private String toCidrNotation(String addr, String mask) {
+-
+-        /*
+-         * Check the subnet mask
+-         *
+-         * An IPv4 subnet mask must consist of a set of contiguous 1-bits followed by a block of 0-bits.
+-         * If the mask follows the format, the numbers of subtracting one from the lowest one bit of the mask,
+-         * see Hacker's Delight section 2.1, equals to the bitwise complement of the mask.
+-         */
+-
+-        return addr + "/" + pop(toInteger(mask));
++        int maskInt = toInteger(mask);
++        // Check if the mask is a valid contiguous 1 followed by 0 block
++        int inverted = ~maskInt;
++        if ((inverted & (inverted + 1)) != 0) { // Check if the inverted mask has contiguous 0s
++            throw new IllegalArgumentException("Invalid subnet mask: " + mask);
++        }
++        return addr + "/" + pop(maskInt);
+     }
+ }

@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.735632183908046,
+    "input": "  private FlowScope traverseNew(Node n, FlowScope scope) {\n    scope = traverseChildren(n, scope);\n\n    Node constructor = n.getFirstChild();\n    JSType constructorType = constructor.getJSType();\n    JSType type = null;\n    if (constructorType != null) {\n      constructorType = constructorType.restrictByNotNullOrUndefined();\n      if (constructorType.isUnknownType()) {\n        type = getNativeType(UNKNOWN_TYPE);\n      } else {\n        FunctionType ct = constructorType.toMaybeFunctionType();\n        if (ct == null && constructorType instanceof FunctionType) {\n          // If constructorType is a NoObjectType, then toMaybeFunctionType will\n          // return null. But NoObjectType implements the FunctionType\n          // interface, precisely because it can validly construct objects.\n          ct = (FunctionType) constructorType;\n        }\n        if (ct != null && ct.isConstructor()) {\n          type = ct.getInstanceType();\n          backwardsInferenceFromCallSite(n, ct);\n        }\n      }\n    }\n    n.setJSType(type);\n    return scope;\n  }",
+    "query_result": [
+        "New(Node n, FlowScope scope) {\nscope = traverseChildren(n, scope);\nNode constructor = n.getFirstChild();\nJSType constructorType = constructor.getJSType();\nJSType type = null;\nif (constructorType != null) {\nconstructorType = constructorType.restrictByNotNullOrUndefined();\nif (constructorType.isUnknownType()) {\ntype = getNativeType(UNKNOWN_TYPE);\n} else {\nFunctionType ct = constructorType.toMaybeFunctionType();\nif (ct == null && constructorType ins",
+        "cause it can validly construct objects.\nct = (FunctionType) constructorType;\n}\nif (ct != null && ct.isConstructor()) {\ntype = ct.getInstanceType();\nbackwardsInferenceFromCallSite(n, ct);\n}\n}\n}\nn.setJS",
+        "(Node n, FlowScope scope) {\nscope = traverseChildr",
+        "tructorType = constructor.getJSType();\nJSType type",
+        " && ct.isConstructor()) {\ntype = ct.getInstanceTyp"
+    ]
+}

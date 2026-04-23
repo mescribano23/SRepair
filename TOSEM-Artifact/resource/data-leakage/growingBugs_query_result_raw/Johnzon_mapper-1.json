@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8689922480620155,
+    "input": "    private Object toObject(final JsonValue jsonValue, final Type type) throws Exception {\n        if (jsonValue == null || jsonValue == JsonValue.NULL) {\n            return null;\n        }\n\n        if (type == Boolean.class || type == boolean.class) {\n            if (jsonValue == JsonValue.TRUE) {\n                return true;\n            }\n            if (jsonValue == JsonValue.FALSE) {\n                return false;\n            }\n            throw new MapperException(\"Unable to parse \" + jsonValue + \" to boolean\");\n        }\n\n        if (Object.class == type) { // handling specific types here to keep exception in standard handling\n            if (jsonValue == JsonValue.TRUE) {\n                return true;\n            }\n            if (jsonValue == JsonValue.FALSE) {\n                return false;\n            }\n            if (JsonNumber.class.isInstance(jsonValue)) {\n                final JsonNumber jsonNumber = JsonNumber.class.cast(jsonValue);\n                if(jsonNumber.isIntegral()) {\n                    return jsonNumber.intValue();\n                }\n                return jsonNumber.doubleValue();\n            }\n        }\n\n        if (type == Character.class || type == char.class) {\n            return convertTo(Class.class.cast(type), (JsonString.class.cast(jsonValue).getString()));\n        }\n\n        if (JsonObject.class.isInstance(jsonValue)) {\n            return buildObject(type, JsonObject.class.cast(jsonValue));\n        } else if (JsonArray.class.isInstance(jsonValue)) {\n            return buildArray(type, JsonArray.class.cast(jsonValue));\n        } else if (JsonNumber.class.isInstance(jsonValue)) {\n\n            final JsonNumber number = JsonNumber.class.cast(jsonValue);\n\n            if (type == Integer.class || type == int.class) {\n                return number.intValue();\n            }\n\n            if (type == Long.class || type == long.class) {\n                return number.longValue();\n            }\n\n            if (type == Short.class || type == sho",
+    "query_result": [
+        "}\nif (Object.class == type) { // handling specific types here to keep exception in standard handling\nif (jsonValue == JsonValue.TRUE) {\nreturn true;\n}\nif (jsonValue == JsonValue.FALSE) {\nreturn false;\n}\nif (JsonNumber.class.isInstance(jsonValue)) {\nfinal JsonNumber jsonNumber = JsonNumber.class.cast(jsonValue);\nif(jsonNumber.isIntegral()) {\nreturn jsonNumber.intValue();\n}\nreturn jsonNumber.doubleValue();\n}\n}\nif (type == Character.class || type == char.class) {\nreturn convertTo(Class.class.cast(type), (JsonString.class.cast(jsonValue).getString()));\n}\nif (JsonObject.class.isInstance(jsonValue))",
+        " (JsonObject.class.isInstance(jsonValue)) {\nreturn buildObject(type, JsonObject.class.cast(jsonValue));\n} else if (JsonArray.class.isInstance(jsonValue)) {\nreturn buildArray(type, JsonArray.class.cast(jsonValue));\n} else if (JsonNumber.class.isInstan",
+        "pe == Boolean.class || type == boolean.class) {\nif (jsonValue == JsonValue.TRUE) {\nreturn true;\n}\nif (jsonValue == JsonValue.FALSE) {\nreturn false;\n}\nthrow new MapperException(\"Unable to parse \" + jso",
+        "ber = JsonNumber.class.cast(jsonValue);\nif (type == Integer.class || type == int.class) {\nreturn number.intValue();\n}\nif (type == Long.class || type == long.class) {\nreturn number.longValue();\n}\nif (t",
+        "(type == Boolean.class || type == boolean.class) {\nif (jsonValue == JsonValue.TRUE) {\nreturn true;\n}\nif (jsonValue == JsonValue.FALSE) {\nreturn false;",
+        " (jsonValue == JsonValue.TRUE) {\nreturn true;\n}\nif (jsonValue == JsonValue.FALSE) {\nreturn false;\n}\n",
+        "ct toObject(final JsonValue jsonValue, final Type ",
+        ";\n}\nif (type == Boolean.class || type == boolean.c",
+        "\nif (type == Boolean.class || type == boolean.clas",
+        "if (type == Boolean.class || type == boolean.class",
+        "f (type == Boolean.class || type == boolean.class)",
+        " (type == Boolean.class || type == boolean.class) ",
+        "type == Boolean.class || type == boolean.class) {\n",
+        "\n}\nif (type == Character.class || type == char.cla",
+        "\nif (type == Character.class || type == char.class",
+        "if (type == Character.class || type == char.class)",
+        "f (type == Character.class || type == char.class) ",
+        "(type == Character.class || type == char.class) {\n",
+        " == Character.class || type == char.class) {\nretur",
+        "st(type), (JsonString.class.cast(jsonValue).getStr"
+    ]
+}

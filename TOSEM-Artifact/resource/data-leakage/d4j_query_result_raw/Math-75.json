@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "public double getPct(Object v) {\n    return getPct((Comparable<?>) v);\n}",
+    "query_result": []
+}

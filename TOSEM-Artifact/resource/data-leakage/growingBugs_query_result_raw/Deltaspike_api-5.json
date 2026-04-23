@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.9378151260504202,
+    "input": "        private T splitAndConvertListValue(String valueStr)\n        {\n            List list = new ArrayList();\n            StringBuilder currentValue = new StringBuilder();\n            int length = valueStr != null ? valueStr.length() : 0;\n            for (int i = 0; i < length; i++)\n            {\n                char c = valueStr.charAt(i);\n                if (c == '\\\\')\n                {\n                    if (i < length - 1)\n                    {\n                        char nextC = valueStr.charAt(i + 1);\n                        currentValue.append(nextC);\n                        i++;\n                    }\n                }\n                else if (c == ',')\n                {\n                    String trimedVal = currentValue.toString().trim();\n                    if (trimedVal.length() > 0)\n                    {\n                        list.add(convert(trimedVal));\n                    }\n\n                    currentValue.setLength(0);\n                }\n                else\n                {\n                    currentValue.append(c);\n                }\n            }\n\n            String trimedVal = currentValue.toString().trim();\n            if (trimedVal.length() > 0)\n            {\n                list.add(convert(trimedVal));\n            }\n\n            return (T) list;\n        }",
+    "query_result": [
+        "litAndConvertListValue(String valueStr)\n{\nList list = new ArrayList();\nStringBuilder currentValue = new StringBuilder();\nint length = valueStr != null ? valueStr.length() : 0;\nfor (int i = 0; i < length; i++)\n{\nchar c = valueStr.charAt(i);\nif (c == '\\\\')\n{\nif (i < length - 1)\n{\nchar nextC = valueStr.charAt(i + 1);\ncurrentValue.append(nextC);\ni++;\n}\n}\nelse if (c == ',')\n{\nString trimedVal = currentValue.toString().trim();\nif (trimedVal.length() > 0)\n{\nlist.add(convert(trimedVal));\n}\ncurrentValue.setLength(0);\n}\nelse\n{\ncurrentValue.append(c);\n}\n}\nString trimedVal = currentValue.toString().trim();\nif (trimedVal.length() > 0)\n{\nlist.add(convert(t",
+        "\nString trimedVal = currentValue.toString().trim();\nif (trimedVal.length() > 0)\n{\nlist.add(convert(t",
+        ";\nStringBuilder currentValue = new StringBuilder()",
+        "\nStringBuilder currentValue = new StringBuilder();",
+        "StringBuilder currentValue = new StringBuilder();\n",
+        "String trimedVal = currentValue.toString().trim();",
+        "= currentValue.toString().trim();\nif (trimedVal.le",
+        "String trimedVal = currentValue.toString().trim();",
+        "= currentValue.toString().trim();\nif (trimedVal.le",
+        "Value.toString().trim();\nif (trimedVal.length() > "
+    ]
+}

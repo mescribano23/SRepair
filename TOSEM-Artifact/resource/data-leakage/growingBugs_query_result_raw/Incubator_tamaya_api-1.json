@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.724025974025974,
+    "input": "    private static ServiceContext loadDefaultServiceProvider() {\n        ServiceContext highestServiceContext = null;\n        try {\n            int highestOrdinal = 0;\n            for (ServiceContext serviceContext : ServiceLoader.load(ServiceContext.class)) {\n                if (highestServiceContext == null\n                        || serviceContext.ordinal() > highestOrdinal) {\n                    highestServiceContext = serviceContext;\n                    highestOrdinal = serviceContext.ordinal();\n                }\n            }\n        } catch (Exception e) {\n            throw new ConfigException(\"ServiceContext not loadable\", e);\n        }\n        if (highestServiceContext==null){\n            throw new ConfigException(\"No ServiceContext found\");\n        }\n        LOG.info(\"Using Service Context of type: \" + highestServiceContext.getClass().getName());\n        return highestServiceContext;\n    }",
+    "query_result": [
+        "estServiceContext == null\n|| serviceContext.ordinal() > highestOrdinal) {\nhighestServiceContext = serviceContext;\nhighestOrdinal = serviceContext.ordinal();\n}\n}\n} catch (Exception e) {\nthrow new ConfigException(\"ServiceContext not loadable\", e);\n}\nif (highestServiceContext==null){\nthrow new ConfigEx",
+        "ceContext = null;\ntry {\nint highestOrdinal = 0;\nfor (ServiceContext serviceContext : ServiceLoader.l",
+        "ce Context of type: \" + highestServiceContext.getClass().getName());\nreturn highestServiceContext;\n}",
+        ");\n}\n}\n} catch (Exception e) {\nthrow new ConfigExc",
+        "\n}\n} catch (Exception e) {\nthrow new ConfigExcepti",
+        "}\n} catch (Exception e) {\nthrow new ConfigExceptio",
+        "\n} catch (Exception e) {\nthrow new ConfigException",
+        "} catch (Exception e) {\nthrow new ConfigException(",
+        " catch (Exception e) {\nthrow new ConfigException(\""
+    ]
+}

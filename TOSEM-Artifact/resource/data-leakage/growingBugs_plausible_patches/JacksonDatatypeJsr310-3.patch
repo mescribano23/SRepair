@@ -1,0 +1,23 @@
+diff --git a/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java b/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java
+index c2fa014..dfd46d7 100644
+--- a/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/datatype/jsr310/deser/LocalDateDeserializer.java
+@@ -52,7 +52,6 @@ public class LocalDateDeserializer extends JSR310DateTimeDeserializerBase<LocalD
+         return new LocalDateDeserializer(dtf);
+     }
+     
+-    @Override
+     public LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOException
+     {
+     	if (parser.hasToken(JsonToken.VALUE_STRING)) {
+@@ -66,7 +65,9 @@ public class LocalDateDeserializer extends JSR310DateTimeDeserializerBase<LocalD
+             if (format == DEFAULT_FORMATTER) {
+                 // JavaScript by default includes time in JSON serialized Dates (UTC/ISO instant format).
+ 	            if (string.contains("T")) {
+-	                return LocalDate.parse(string, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
++                    // Remove the 'Z' before parsing to handle UTC correctly
++                    String adjustedString = string.replace("Z", "");
++                    return LocalDate.parse(adjustedString, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+ 	            }
+             }
+             return LocalDate.parse(string, format);

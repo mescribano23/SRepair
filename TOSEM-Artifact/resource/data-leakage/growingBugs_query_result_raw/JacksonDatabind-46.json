@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.978021978021978,
+    "input": "    @Override\n    public StringBuilder getGenericSignature(StringBuilder sb)\n    {\n        _classSignature(_class, sb, false);\n        sb.append('<');\n        sb = _referencedType.getGenericSignature(sb);\n        sb.append(\">;\");\n        return sb;\n    }",
+    "query_result": [
+        "ublic StringBuilder getGenericSignature(StringBuilder sb) { _classSignature(_class, sb, false); sb.append('<'); sb = _referencedType.getGenericSignatu",
+        "lder getGenericSignature(StringBuilder sb) { _classSignature(_class, sb, false); sb.append('<'); sb = _referencedType.getGenericSignature(sb); sb.appe",
+        "erride public StringBuilder getGenericSignature(StringBuilder sb) { _classSignature(_class, sb, fals",
+        "public StringBuilder getGenericSignature(StringBui",
+        "blic StringBuilder getGenericSignature(StringBuild",
+        "lic StringBuilder getGenericSignature(StringBuilde",
+        "ic StringBuilder getGenericSignature(StringBuilder",
+        "StringBuilder getGenericSignature(StringBuilder s",
+        "tringBuilder getGenericSignature(StringBuilder sb)",
+        "Builder getGenericSignature(StringBuilder sb) { _c",
+        "ilder getGenericSignature(StringBuilder sb) { _cla",
+        "tGenericSignature(StringBuilder sb) { _classSignat",
+        "icSignature(StringBuilder sb) { _classSignature(_c",
+        "ncedType.getGenericSignature(sb); sb.append(\">;\");",
+        "etGenericSignature(sb); sb.append(\">;\"); return sb",
+        "tGenericSignature(sb); sb.append(\">;\"); return sb;"
+    ]
+}

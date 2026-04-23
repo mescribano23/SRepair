@@ -1,0 +1,21 @@
+diff --git a/src/main/java/com/fasterxml/jackson/core/util/DefaultPrettyPrinter.java b/src/main/java/com/fasterxml/jackson/core/util/DefaultPrettyPrinter.java
+index 6515e2fa..1e0211d4 100644
+--- a/src/main/java/com/fasterxml/jackson/core/util/DefaultPrettyPrinter.java
++++ b/src/main/java/com/fasterxml/jackson/core/util/DefaultPrettyPrinter.java
+@@ -250,10 +250,13 @@ public class DefaultPrettyPrinter
+     /**********************************************************
+      */
+ 
+-    @Override
+-    public DefaultPrettyPrinter createInstance() {
+-        return new DefaultPrettyPrinter(this);
++@Override
++public DefaultPrettyPrinter createInstance() {
++    if (this.getClass() != DefaultPrettyPrinter.class) {
++        throw new IllegalStateException(this.getClass().getName() + " does not override createInstance");
+     }
++    return new DefaultPrettyPrinter(this);
++}
+ 
+     /*
+     /**********************************************************

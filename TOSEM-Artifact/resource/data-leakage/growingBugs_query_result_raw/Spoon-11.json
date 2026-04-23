@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.15086887835703003,
+    "input": "@SuppressWarnings(\"unchecked\")\n    private <E extends Enum<E>> Object convertValue(Object value) {\n        if (value instanceof CtFieldReference) {\n            Class<?> c = null;\n            try {\n                c = ((CtFieldReference<?>) value).getDeclaringType()\n                        .getActualClass();\n            } catch (Exception e) {\n                return ((CtLiteral<?>) ((CtFieldReference<?>) value)\n                        .getDeclaration().getDefaultExpression()\n                        .partiallyEvaluate()).getValue();\n            }\n\n            if (((CtFieldReference<?>) value).getSimpleName().equals(\"class\")) {\n                return c;\n            }\n            CtField<?> field = ((CtFieldReference<?>) value).getDeclaration();\n            if (Enum.class.isAssignableFrom(c)) {\n                // Value references a Enum field\n                return Enum.valueOf((Class<E>) c,\n                        ((CtFieldReference<?>) value).getSimpleName());\n            }\n            // Value is a static final\n            if (field != null) {\n                return convertValue(field.getDefaultExpression());\n            } else {\n                try {\n                    return ((Field) ((CtFieldReference<?>) value)\n                            .getActualField()).get(null);\n                } catch (Exception e) {\n                    Launcher.logger.error(e.getMessage(), e);\n                }\n                return null;\n            }\n        } else if (value instanceof CtFieldAccess) {\n            // Get variable\n            return convertValue(((CtFieldAccess<?>) value).getVariable());\n        }\n        else if (value instanceof CtNewArray)\n        {\n            CtNewArray<?> arrayExpression = (CtNewArray<?>) value;\n\n            Class<?> componentType = arrayExpression.getType().getActualClass().getComponentType();\n            List<CtExpression<?>> elements = arrayExpression.getElements();\n\n            Object array = Array.newInstance(componentType, elements.size());",
+    "query_result": [
+        "@SuppressWarnings(\"unchecked\")\nprivate <E extends ",
+        "SuppressWarnings(\"unchecked\")\nprivate <E extends E",
+        "uppressWarnings(\"unchecked\")\nprivate <E extends En",
+        "ppressWarnings(\"unchecked\")\nprivate <E extends Enu",
+        "Warnings(\"unchecked\")\nprivate <E extends Enum<E>> ",
+        " convertValue(Object value) {\nif (value instanceof",
+        ".logger.error(e.getMessage(), e);\n}\nreturn null;\n}",
+        "logger.error(e.getMessage(), e);\n}\nreturn null;\n}\n",
+        "ogger.error(e.getMessage(), e);\n}\nreturn null;\n}\n}",
+        "();\nObject array = Array.newInstance(componentType",
+        ");\nObject array = Array.newInstance(componentType,",
+        ";\nObject array = Array.newInstance(componentType, "
+    ]
+}

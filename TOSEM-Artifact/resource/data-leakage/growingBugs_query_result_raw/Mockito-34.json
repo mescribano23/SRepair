@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.47715736040609136,
+    "input": "    public void captureArgumentsFrom(Invocation i) {\n        int k = 0;\n        for (Matcher m : matchers) {\n            if (m instanceof CapturesArguments && i.getArguments().length > k) {\n                ((CapturesArguments) m).captureFrom(i.getArguments()[k]);\n            }\n            k++;\n        }\n    }",
+    "query_result": [
+        "of CapturesArguments && i.getArguments().length > ",
+        "pturesArguments) m).captureFrom(i.getArguments()[k"
+    ]
+}

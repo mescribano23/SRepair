@@ -1,0 +1,41 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index 42b65aa..f1aaaa4 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -592,20 +592,22 @@ public final class QueueFile implements Closeable, Iterable<byte[]> {
+   }
+ 
+   /** Clears this queue. Truncates the file to the initial size. */
+-  public synchronized void clear() throws IOException {
+-    // Commit the header.
+-    writeHeader(INITIAL_LENGTH, 0, 0, 0);
+-
+-    // Zero out data.
+-    raf.seek(HEADER_LENGTH);
+-    raf.write(ZEROES, 0, INITIAL_LENGTH - HEADER_LENGTH);
+-
+-    elementCount = 0;
+-    first = Element.NULL;
+-    last = Element.NULL;
+-    if (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);
+-    fileLength = INITIAL_LENGTH;
+-  }
++public synchronized void clear() throws IOException {
++  // Commit the header.
++  writeHeader(INITIAL_LENGTH, 0, 0, 0);
++
++  // Zero out data.
++  raf.seek(HEADER_LENGTH);
++  raf.write(ZEROES, 0, INITIAL_LENGTH - HEADER_LENGTH);
++
++  elementCount = 0;
++  first = Element.NULL;
++  last = Element.NULL;
++  if (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);
++  fileLength = INITIAL_LENGTH;
++  
++  modCount++; // Increment modification count.
++}
+ 
+   /** Closes the underlying file. */
+   @Override public synchronized void close() throws IOException {

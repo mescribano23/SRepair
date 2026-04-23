@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8333333333333334,
+    "input": "    private void calculate(String mask) {\n        Matcher matcher = cidrPattern.matcher(mask);\n\n        if (matcher.matches()) {\n            address = matchAddress(matcher);\n\n            /* Create a binary netmask from the number of bits specification /x */\n            int cidrPart = rangeCheck(Integer.parseInt(matcher.group(5)), 0, NBITS);\n            if (cidrPart == 0 && address != 0) {\n                throw new IllegalArgumentException(\"Cannot have /0 cidr with non-zero address\");\n            }\n            for (int j = 0; j < cidrPart; ++j) {\n                netmask |= (1 << 31 - j);\n            }\n\n            /* Calculate base network address */\n            network = (address & netmask);\n\n            /* Calculate broadcast address */\n            broadcast = network | ~(netmask);\n        } else {\n            throw new IllegalArgumentException(\"Could not parse [\" + mask + \"]\");\n        }\n    }",
+    "query_result": [
+        "sk) {\nMatcher matcher = cidrPattern.matcher(mask);\nif (matcher.matches()) {\naddress = matchAddress(matcher);\n/* Create a binary netmask from the number of bits specification /x */\nint cidrPart = rangeCheck(Integer.parseInt(matcher.group(5)), 0, NBITS",
+        " matcher = cidrPattern.matcher(mask);\nif (matcher.matches()) {\naddress = matchAddress(matcher);\n/* Create a binary netmask from the number of bits specification /x */\nint cidrPart = rangeCheck(Integer",
+        " (1 << 31 - j);\n}\n/* Calculate base network address */\nnetwork = (address & netmask);\n/* Calculate broadcast address */\nbroadcast = network | ~(netmask);\n} else {\nthrow new IllegalArgumentException(\"C",
+        "\n}\n/* Calculate base network address */\nnetwork = (address & netmask);\n/* Calculate broadcast address */\nbroadcast = network | ~(netmask);\n} else {\nthrow new IllegalArgumentException(\"Could not parse ",
+        "netmask |= (1 << 31 - j);\n}\n/* Calculate base network address */\nnetwork = (address & netmask);\n/* Calculate broadcast address */\nbroadcast = network ",
+        "atcher.matches()) {\naddress = matchAddress(matcher",
+        "te a binary netmask from the number of bits specif",
+        "binary netmask from the number of bits specificati",
+        "Part = rangeCheck(Integer.parseInt(matcher.group(5",
+        "rt = rangeCheck(Integer.parseInt(matcher.group(5))",
+        "t = rangeCheck(Integer.parseInt(matcher.group(5)),",
+        "ddress != 0) {\nthrow new IllegalArgumentException(",
+        "= 0) {\nthrow new IllegalArgumentException(\"Cannot ",
+        " 0) {\nthrow new IllegalArgumentException(\"Cannot h",
+        "0) {\nthrow new IllegalArgumentException(\"Cannot ha",
+        ") {\nthrow new IllegalArgumentException(\"Cannot hav",
+        " {\nthrow new IllegalArgumentException(\"Cannot have",
+        "{\nthrow new IllegalArgumentException(\"Cannot have ",
+        "nt j = 0; j < cidrPart; ++j) {\nnetmask |= (1 << 31",
+        ");\n} else {\nthrow new IllegalArgumentException(\"Co"
+    ]
+}

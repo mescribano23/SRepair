@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.15182186234817813,
+    "input": "    private SimpleTableDef createTableDef() {\n        final Map<String,ColumnType> columns = new TreeMap<String, ColumnType>();\n\n        final Method[] methods = _class.getMethods();\n        for (final Method method : methods) {\n            final String methodName = method.getName();\n            if (methodName.startsWith(\"get\") && !\"getClass\".equals(methodName)) {\n                if (method.getParameterTypes().length == 0) {\n                    final Class<?> returnType = method.getReturnType();\n                    if (returnType != null) {\n                        final String columnName = Character.toLowerCase(methodName.charAt(3)) + methodName.substring(4);\n\n                        _fieldTypes.put(columnName, returnType);\n                        final ColumnType columnType = ColumnTypeImpl.convertColumnType(returnType);\n                        columns.put(columnName, columnType);\n                    }\n                }\n            }\n        }\n\n        final int size = columns.size();\n        final String[] columnNames= new String[size];\n        final ColumnType[] columnTypes = new ColumnType[size];\n        \n        final Set<Entry<String, ColumnType>> entrySet = columns.entrySet();\n        int i= 0;\n        for (Entry<String, ColumnType> entry : entrySet) {\n            columnNames[i] = entry.getKey();\n            columnTypes[i] = entry.getValue();\n            i++;\n        }\n\n        return new SimpleTableDef(_tableName, columnNames,\n                columnTypes);\n    }",
+    "query_result": [
+        "ods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif (methodName.startsWith(\"get\") && !\"getClass\".equals(method",
+        "lass.getMethods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();",
+        "s.getMethods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif",
+        ".getMethods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif ",
+        "getMethods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif (",
+        "tMethods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif (me",
+        "Methods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif (met",
+        "ethods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif (meth",
+        "thods();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif (metho",
+        "ds();\nfor (final Method method : methods) {\nfinal String methodName = method.getName();\nif (methodNa",
+        "for (final Method method : methods) {\nfinal String methodName = method.getName();\nif (methodName.sta",
+        "or (final Method method : methods) {\nfinal String methodName = method.getName();\nif (methodName.star",
+        " (final Method method : methods) {\nfinal String methodName = method.getName();\nif (methodName.starts",
+        "inal Method method : methods) {\nfinal String methodName = method.getName();\nif (methodName.startsWit",
+        "ethod method : methods) {\nfinal String methodName = method.getName();\nif (methodName.startsWith(\"get",
+        "hod method : methods) {\nfinal String methodName = method.getName();\nif (methodName.startsWith(\"get\")",
+        " method : methods) {\nfinal String methodName = method.getName();\nif (methodName.startsWith(\"get\") &&",
+        "thods) {\nfinal String methodName = method.getName();\nif (methodName.startsWith(\"get\") && !\"getClass\"",
+        "l String methodName = method.getName();\nif (methodName.startsWith(\"get\") && !\"getClass\".equals(metho",
+        "ing methodName = method.getName();\nif (methodName.startsWith(\"get\") && !\"getClass\".equals(methodName"
+    ]
+}

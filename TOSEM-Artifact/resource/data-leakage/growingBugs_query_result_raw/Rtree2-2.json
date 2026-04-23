@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.12195121951219512,
+    "input": "    @Override\n    public boolean intersects(Rectangle r) {\n        GeometryFactory gf = new GeometryFactory();\n        GeometricShapeFactory f = new GeometricShapeFactory(gf);\n        f.setBase(new Coordinate(r.x1(), r.y1()));\n        f.setWidth(r.x2() - r.x1());\n        f.setHeight(r.y2() - r.y1());\n        Polygon rect = f.createRectangle();\n        LineSegment line = new LineSegment(x1, y1, x2, y2);\n        return RectangleIntersects.intersects(rect, line.toGeometry(gf));\n    }",
+    "query_result": [
+        "{\nGeometryFactory gf = new GeometryFactory();\nGeom",
+        "\nGeometryFactory gf = new GeometryFactory();\nGeome"
+    ]
+}

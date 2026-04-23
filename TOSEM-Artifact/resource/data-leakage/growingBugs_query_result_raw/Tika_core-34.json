@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5722120658135283,
+    "input": "private static CompositeParser parserFromDomElement(\n            Element element, MimeTypes mimeTypes, ServiceLoader loader)\n            throws TikaException, IOException {\n        List<Parser> parsers = new ArrayList<Parser>();\n        \n        // Should be only zero or one <parsers> tag\n        NodeList nodes = element.getElementsByTagName(\"parsers\");\n        if (nodes.getLength() > 1) {\n            throw new TikaException(\"Properties may not contain multiple Parsers entries\");\n        }\n        else if (nodes.getLength() == 1) {\n            // Find only the direct child parser objects\n            Node parsersE = nodes.item(0);\n            nodes = parsersE.getChildNodes();\n            for (int i = 0; i < nodes.getLength(); i++) {\n                Node node = nodes.item(i);\n                if (node instanceof Element) {\n                    Element nodeE = (Element)node;\n                    if (\"parser\".equals(nodeE.getTagName())) {\n                        parsers.add(parserFromParserDomElement(nodeE, mimeTypes, loader));\n                    }\n                }\n            }\n        }\n        \n        if (parsers.isEmpty()) {\n            // No parsers defined, create a DefaultParser\n            return getDefaultParser(mimeTypes, loader);\n        } else if (parsers.size() == 1 && parsers.get(0) instanceof CompositeParser) {\n            // Single Composite defined, use that\n            return (CompositeParser)parsers.get(0);\n        } else {\n            // Wrap the defined parsers up in a Composite\n            MediaTypeRegistry registry = mimeTypes.getMediaTypeRegistry();\n            return new CompositeParser(registry, parsers);\n        }\n    }",
+    "query_result": [
+        "\n// No parsers defined, create a DefaultParser\nreturn getDefaultParser(mimeTypes, loader);\n} else if (parsers.size() == 1 && parsers.get(0) instanceof CompositeParser) {\n// Single Composite defined, use that\nreturn (CompositeParser)parsers.get(0);\n} else {\n// Wrap the defined parsers up in a Composite\nMediaTypeRegistry registry = mimeTypes.getMediaTypeRegistry();\nreturn new CompositeParser(registr",
+        "rserFromDomElement(\nElement element, MimeTypes mimeTypes, ServiceLoader loader)\nthrows TikaException, IOException {\nList<Parser> parsers = new ArrayLi",
+        ".getChildNodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof Element) {\nElement nodeE = (Element)nod",
+        "iceLoader loader)\nthrows TikaException, IOException {\nList<Parser> parsers = new ArrayList<Parser>()",
+        "getChildNodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node i",
+        "tChildNodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node ins",
+        "ChildNodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node inst",
+        "ildNodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instan",
+        "ldNodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanc",
+        "dNodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instance",
+        "Nodes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceo",
+        "odes();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof",
+        "des();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof ",
+        "es();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof E",
+        "s();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof El",
+        "();\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof Ele",
+        ");\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof Elem",
+        ";\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof Eleme",
+        "\nfor (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof Elemen",
+        "or (int i = 0; i < nodes.getLength(); i++) {\nNode node = nodes.item(i);\nif (node instanceof Element)"
+    ]
+}

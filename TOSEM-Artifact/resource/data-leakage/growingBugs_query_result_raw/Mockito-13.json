@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.636981645139361,
+    "input": "    public Object handle(Invocation invocation) throws Throwable {\n        if (invocationContainerImpl.hasAnswersForStubbing()) {\n            // stubbing voids with stubVoid() or doAnswer() style\n            InvocationMatcher invocationMatcher = matchersBinder.bindMatchers(mockingProgress\n                            .getArgumentMatcherStorage(), invocation);\n            invocationContainerImpl.setMethodForStubbing(invocationMatcher);\n            return null;\n        }\n        VerificationMode verificationMode = mockingProgress.pullVerificationMode();\n\n        InvocationMatcher invocationMatcher = matchersBinder.bindMatchers(mockingProgress.getArgumentMatcherStorage(),\n                        invocation);\n\n        mockingProgress.validateState();\n\n        //if verificationMode is not null then someone is doing verify()        \n        if (verificationMode != null) {\n            //We need to check if verification was started on the correct mock \n            // - see VerifyingWithAnExtraCallToADifferentMockTest (bug 138)\n            if (((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock()) {                \n                VerificationDataImpl data = new VerificationDataImpl(invocationContainerImpl, invocationMatcher);            \n                verificationMode.verify(data);\n                return null;\n            } else {\n                // this means there is an invocation on a different mock. Re-adding verification mode \n                // - see VerifyingWithAnExtraCallToADifferentMockTest (bug 138)\n                mockingProgress.verificationStarted(verificationMode);\n            }\n        }\n        \n        invocationContainerImpl.setInvocationForPotentialStubbing(invocationMatcher);\n        OngoingStubbingImpl<T> ongoingStubbing = new OngoingStubbingImpl<T>(invocationContainerImpl);\n        mockingProgress.reportOngoingStubbing(ongoingStubbing);\n\n        StubbedInvocationMatcher stubbedInvocation = invocationContainerImpl.findAnswer",
+    "query_result": [
+        "ForStubbing(invocationMatcher);\nreturn null;\n}\nVerificationMode verificationMode = mockingProgress.pullVerificationMode();\nInvocationMatcher invocationMatcher = matchersBinder.bindMatchers(mockingProgress.getArgumentMatcherStorage(),\ninvocation);\nmoc",
+        "vocation invocation) throws Throwable {\nif (invocationContainerImpl.hasAnswersForStubbing()) {\n// stubbing voids with stubVoid() or doAnswer() style\nInvocationMatcher invocationMatcher = matchersBinde",
+        "cation invocation) throws Throwable {\nif (invocationContainerImpl.hasAnswersForStubbing()) {\n// stubbing voids with stubVoid() or doAnswer() style\nInvocationMatcher invocationMatcher = matchersBinder.",
+        "\ninvocationContainerImpl.setInvocationForPotentialStubbing(invocationMatcher);\nOngoingStubbingImpl<T> ongoingStubbing = new OngoingStubbingImpl<T>(invocationContainerImpl);\nmockingProgress.reportOngoi",
+        "stubbing voids with stubVoid() or doAnswer() style\nInvocationMatcher invocationMatcher = matchersBinder.bindMatchers(mockingProgress\n.getArgumentMatch",
+        "MethodForStubbing(invocationMatcher);\nreturn null;\n}\nVerificationMode verificationMode = mockingProgress.pullVerificationMode();\nInvocationMatcher inv",
+        "// - see VerifyingWithAnExtraCallToADifferentMockTest (bug 138)\nif (((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock()) ",
+        "tInvocationForPotentialStubbing(invocationMatcher);\nOngoingStubbingImpl<T> ongoingStubbing = new OngoingStubbingImpl<T>(invocationContainerImpl);\nmock",
+        "ject handle(Invocation invocation) throws Throwable {\nif (invocationContainerImpl.hasAnswersForStubb",
+        "ContainerImpl.setMethodForStubbing(invocationMatcher);\nreturn null;\n}\nVerificationMode verificationM",
+        " see VerifyingWithAnExtraCallToADifferentMockTest (bug 138)\nif (((MockAwareVerificationMode) verific",
+        "WithAnExtraCallToADifferentMockTest (bug 138)\nif (((MockAwareVerificationMode) verificationMode).get",
+        "nExtraCallToADifferentMockTest (bug 138)\nif (((MockAwareVerificationMode) verificationMode).getMock(",
+        "ockTest (bug 138)\nif (((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock",
+        "ckTest (bug 138)\nif (((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock(",
+        "rificationMode.verify(data);\nreturn null;\n} else {\n// this means there is an invocation on a differe",
+        "ificationMode.verify(data);\nreturn null;\n} else {\n// this means there is an invocation on a differen",
+        "ficationMode.verify(data);\nreturn null;\n} else {\n// this means there is an invocation on a different",
+        "Mode.verify(data);\nreturn null;\n} else {\n// this means there is an invocation on a different mock. R",
+        "data);\nreturn null;\n} else {\n// this means there is an invocation on a different mock. Re-adding ver"
+    ]
+}

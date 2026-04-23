@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.14124293785310735,
+    "input": "    @Override\n    public JsonSerializer<?> createContextual(SerializerProvider serializers,\n            BeanProperty property) throws JsonMappingException\n    {\n        if (property != null) {\n            JsonFormat.Value format = serializers.getAnnotationIntrospector().findFormat((Annotated)property.getMember());\n            if (format != null) {\n\n            \t// Simple case first: serialize as numeric timestamp?\n                JsonFormat.Shape shape = format.getShape();\n                if (shape.isNumeric()) {\n                    return withFormat(Boolean.TRUE, null);\n                }\n\n                if ((shape == JsonFormat.Shape.STRING) || format.hasPattern()\n                                || format.hasLocale() || format.hasTimeZone()) {\n                    TimeZone tz = format.getTimeZone();\n                    final String pattern = format.hasPattern()\n                                    ? format.getPattern()\n                                    : StdDateFormat.DATE_FORMAT_STR_ISO8601;\n                    final Locale loc = format.hasLocale()\n                                    ? format.getLocale()\n                                    : serializers.getLocale();\n                    SimpleDateFormat df = new SimpleDateFormat(pattern, loc);\n                    if (tz == null) {\n                        tz = serializers.getTimeZone();\n                    }\n                    df.setTimeZone(tz);\n                    return withFormat(Boolean.FALSE, df);\n                }\n            }\n        }\n        return this;\n    }",
+    "query_result": [
+        "verride public JsonSerializer<?> createContextual(SerializerProvider serializers, BeanProperty prope",
+        "e public JsonSerializer<?> createContextual(SerializerProvider serializers, BeanProperty property) t",
+        "Serializer<?> createContextual(SerializerProvider serializers, BeanProperty property) throws JsonMap",
+        "ializer<?> createContextual(SerializerProvider serializers, BeanProperty property) throws JsonMappin",
+        "lizer<?> createContextual(SerializerProvider serializers, BeanProperty property) throws JsonMappingE",
+        "?> createContextual(SerializerProvider serializers, BeanProperty property) throws JsonMappingExcepti",
+        "> createContextual(SerializerProvider serializers, BeanProperty property) throws JsonMappingExceptio",
+        "@Override public JsonSerializer<?> createContextua",
+        "Override public JsonSerializer<?> createContextual",
+        "erride public JsonSerializer<?> createContextual(S",
+        "rride public JsonSerializer<?> createContextual(Se",
+        "ride public JsonSerializer<?> createContextual(Ser",
+        "de public JsonSerializer<?> createContextual(Seria",
+        "public JsonSerializer<?> createContextual(Serializ",
+        "ublic JsonSerializer<?> createContextual(Serialize",
+        "blic JsonSerializer<?> createContextual(Serializer",
+        "lic JsonSerializer<?> createContextual(SerializerP",
+        "ic JsonSerializer<?> createContextual(SerializerPr",
+        "c JsonSerializer<?> createContextual(SerializerPro",
+        "JsonSerializer<?> createContextual(SerializerProv"
+    ]
+}

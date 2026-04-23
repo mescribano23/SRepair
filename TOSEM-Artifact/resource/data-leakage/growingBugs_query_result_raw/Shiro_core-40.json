@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.7664233576642335,
+    "input": "    public void setRealms(Collection<Realm> realms) {\n        this.realms = realms;\n        applyPermissionResolverToRealms();\n        applyRolePermissionResolverToRealms();\n    }",
+    "query_result": [
+        "public void setRealms(Collection<Realm> realms) {\n",
+        " void setRealms(Collection<Realm> realms) {\nthis.r",
+        " setRealms(Collection<Realm> realms) {\nthis.realms",
+        "onResolverToRealms();\napplyRolePermissionResolverT"
+    ]
+}

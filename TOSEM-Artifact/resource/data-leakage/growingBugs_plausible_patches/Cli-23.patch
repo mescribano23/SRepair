@@ -1,0 +1,72 @@
+diff --git a/src/java/org/apache/commons/cli/HelpFormatter.java b/src/java/org/apache/commons/cli/HelpFormatter.java
+index 9fa8ebf..2c90964 100644
+--- a/src/java/org/apache/commons/cli/HelpFormatter.java
++++ b/src/java/org/apache/commons/cli/HelpFormatter.java
+@@ -802,43 +802,38 @@ public class HelpFormatter
+      *
+      * @return the StringBuffer with the rendered Options contents.
+      */
+-    protected StringBuffer renderWrappedText(StringBuffer sb, int width, 
+-                                             int nextLineTabStop, String text)
++protected StringBuffer renderWrappedText(StringBuffer sb, int width, 
++                                         int nextLineTabStop, String text)
++{
++    int pos = findWrapPos(text, width, 0);
++
++    if (pos == -1)
++    {
++        sb.append(rtrim(text));
++        return sb;
++    }
++    sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
++
++    final String padding = createPadding(nextLineTabStop);
++
++    while (true)
+     {
+-        int pos = findWrapPos(text, width, 0);
++        int lastPos = pos;
++        text = padding + text.substring(pos).trim();
++        pos = findWrapPos(text, width, 0);
+ 
+         if (pos == -1)
+         {
+-            sb.append(rtrim(text));
+-
++            sb.append(text);
+             return sb;
++        } else if (pos == lastPos) {
++            // Force progress by breaking down the word
++            pos = Math.min(lastPos + width, text.length());
+         }
+-        sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
+-
+-        // all following lines must be padded with nextLineTabStop space 
+-        // characters
+-        final String padding = createPadding(nextLineTabStop);
+ 
+-        while (true)
+-        {
+-            int lastPos = pos;
+-            text = padding + text.substring(pos).trim();
+-            pos = findWrapPos(text, width, 0);
+-
+-            if (pos == -1)
+-            {
+-                sb.append(text);
+-
+-                return sb;
+-            } else
+-            if (pos == lastPos)
+-            {
+-                throw new RuntimeException("Text too long for line - throwing exception to avoid infinite loop [CLI-162]: " + text);
+-            }
+-
+-            sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
+-        }
++        sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
+     }
++}
+ 
+     /**
+      * Finds the next text wrap position after <code>startPos</code> for the

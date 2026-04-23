@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.610803324099723,
+    "input": "    public Map<String, List<TsLintIssue>> parse(List<String> toParse) {\n        GsonBuilder builder = new GsonBuilder();\n        Gson gson = builder.create();\n        \n        List<TsLintIssue> allIssues = new ArrayList<TsLintIssue>();\n        \n        for (String batch : toParse) {\n            TsLintIssue[] batchIssues = gson.fromJson(getFixedUpOutput(batch), TsLintIssue[].class);\n            \n            if (batchIssues == null) {\n                continue;\n            }\n            \n            for (TsLintIssue batchIssue : batchIssues) {\n                allIssues.add(batchIssue);\n            }\n        }\n\n        // Remap by filename\n        Map<String, List<TsLintIssue>> toReturn = new HashMap<String, List<TsLintIssue>>();\n        for (TsLintIssue issue : allIssues) {\n            List<TsLintIssue> issuesByFile = toReturn.get(issue.getName());\n            if (issuesByFile == null) {\n                issuesByFile = new ArrayList<TsLintIssue>();\n                toReturn.put(issue.getName(), issuesByFile);\n            }\n            \n            issuesByFile.add(issue);\n        }\n\n        return toReturn;\n    }",
+    "query_result": [
+        "ng batch : toParse) {\nTsLintIssue[] batchIssues = gson.fromJson(getFixedUpOutput(batch), TsLintIssue[].class);\n\nif (batchIssues == null) {\ncontinue;\n}\n\nfor (TsLintIssue batchIssue : batchIssues) {\nallIssues.add(batchIssue);\n}\n}\n// Remap by filename\nMap<String, List<TsLintIssue>> toReturn = new HashM",
+        "String> toParse) {\nGsonBuilder builder = new GsonBuilder();\nGson gson = builder.create();\n\nList<TsLi",
+        "<TsLintIssue> issuesByFile = toReturn.get(issue.getName());\nif (issuesByFile == null) {\nissuesByFile",
+        "se) {\nGsonBuilder builder = new GsonBuilder();\nGso",
+        "e) {\nGsonBuilder builder = new GsonBuilder();\nGson",
+        ") {\nGsonBuilder builder = new GsonBuilder();\nGson ",
+        " {\nGsonBuilder builder = new GsonBuilder();\nGson g",
+        "{\nGsonBuilder builder = new GsonBuilder();\nGson gs",
+        "\nGsonBuilder builder = new GsonBuilder();\nGson gso",
+        "GsonBuilder builder = new GsonBuilder();\nGson gson",
+        "sonBuilder builder = new GsonBuilder();\nGson gson ",
+        "onBuilder builder = new GsonBuilder();\nGson gson =",
+        "nBuilder builder = new GsonBuilder();\nGson gson = ",
+        "Builder builder = new GsonBuilder();\nGson gson = b",
+        "uilder builder = new GsonBuilder();\nGson gson = bu",
+        "ilder builder = new GsonBuilder();\nGson gson = bui",
+        "lder builder = new GsonBuilder();\nGson gson = buil",
+        "der builder = new GsonBuilder();\nGson gson = build",
+        "er builder = new GsonBuilder();\nGson gson = builde",
+        "r builder = new GsonBuilder();\nGson gson = builder"
+    ]
+}

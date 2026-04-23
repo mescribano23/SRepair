@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/compress/utils/ArchiveUtils.java b/src/main/java/org/apache/commons/compress/utils/ArchiveUtils.java
+index 0a755ce3..954e45e4 100644
+--- a/src/main/java/org/apache/commons/compress/utils/ArchiveUtils.java
++++ b/src/main/java/org/apache/commons/compress/utils/ArchiveUtils.java
+@@ -269,22 +269,22 @@ public class ArchiveUtils {
+      * @return a sanitized version of the argument
+      * @since Compress 1.12
+      */
+-    public static String sanitize(String s) {
+-        final char[] chars = s.toCharArray();
+-        final int len = chars.length;
+-        final StringBuilder sb = new StringBuilder();
+-        for (int i = 0; i < len; i++) {
+-            final char c = chars[i];
+-            if (!Character.isISOControl(c)) {
+-                Character.UnicodeBlock block = Character.UnicodeBlock.of(c);
+-                if (block != null && block != Character.UnicodeBlock.SPECIALS) {
+-                    sb.append(c);
+-                    continue;
+-                }
++public static String sanitize(String s) {
++    final char[] chars = s.toCharArray();
++    final int len = chars.length;
++    final StringBuilder sb = new StringBuilder();
++    for (int i = 0; i < len && sb.length() < 252; i++) {
++        final char c = chars[i];
++        if (!Character.isISOControl(c)) {
++            Character.UnicodeBlock block = Character.UnicodeBlock.of(c);
++            if (block != null && block != Character.UnicodeBlock.SPECIALS) {
++                sb.append(c);
++                continue;
+             }
+-            sb.append('?');
+         }
+-        return sb.toString();
++        sb.append('?');
+     }
++    return sb.length() >= 252 ? sb.substring(0, 252) + "..." : sb.toString();
++}
+ 
+ }

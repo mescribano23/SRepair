@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.887459807073955,
+    "input": "  public JavaWriter emitAnnotation(String annotation, Map<String, ?> attributes)\n      throws IOException {\n    indent();\n    out.write(\"@\");\n    emitType(annotation);\n    switch (attributes.size()) {\n      case 0:\n        break;\n      case 1:\n        Entry<String, ?> onlyEntry = attributes.entrySet().iterator().next();\n        out.write(\"(\");\n        if (!\"value\".equals(onlyEntry.getKey())) {\n          out.write(onlyEntry.getKey());\n          out.write(\" = \");\n        }\n        emitAnnotationValue(onlyEntry.getValue());\n        out.write(\")\");\n        break;\n      default:\n        boolean split = attributes.size() > MAX_SINGLE_LINE_ATTRIBUTES\n            || containsArray(attributes.values());\n        out.write(\"(\");\n        pushScope(Scope.ANNOTATION_ATTRIBUTE);\n        String separator = split ? \"\\n\" : \"\";\n        for (Map.Entry<String, ?> entry : attributes.entrySet()) {\n          out.write(separator);\n          separator = split ? \",\\n\" : \", \";\n          if (split) {\n            indent();\n          }\n          out.write(entry.getKey());\n          out.write(\" = \");\n          Object value = entry.getValue();\n          emitAnnotationValue(value);\n        }\n        popScope(Scope.ANNOTATION_ATTRIBUTE);\n        if (split) {\n          out.write(\"\\n\");\n          indent();\n        }\n        out.write(\")\");\n        break;\n    }\n    out.write(\"\\n\");\n    return this;\n  }",
+    "query_result": [
+        "ze()) {\ncase 0:\nbreak;\ncase 1:\nEntry<String, ?> onlyEntry = attributes.entrySet().iterator().next();\nout.write(\"(\");\nif (!\"value\".equals(onlyEntry.getKey())) {\nout.write(onlyEntry.getKey());\nout.write(\" = \");\n}\nemitAnnotationValue(onlyEntry.getValue());\nout.write(\")\");\nbreak;\ndefault:\nboolean split = attributes.size() > MAX_SINGLE_LINE_ATTRIBUTES\n|| containsArray(attributes.values());\nout.write(\"(",
+        "g separator = split ? \"\\n\" : \"\";\nfor (Map.Entry<String, ?> entry : attributes.entrySet()) {\nout.write(separator);\nseparator = split ? \",\\n\" : \", \";\nif (split) {\nindent();\n}\nout.write(entry.getKey());\nout.write(\" = \");\nObject value = entry.getValue();\nemitAnnotationValue(value);\n}\npopScope(Scope.ANNOTATION_ATTRIBUTE);\nif (split) {\nout.write(\"\\n\");\nindent();\n}\nout.write(\")\");\nbreak;\n}\nout.write(\"\\n\"",
+        "xt();\nout.write(\"(\");\nif (!\"value\".equals(onlyEntry.getKey())) {\nout.write(onlyEntry.getKey());\nout.write(\" = \");\n}\nemitAnnotationValue(onlyEntry.getV",
+        ";\nfor (Map.Entry<String, ?> entry : attributes.entrySet()) {\nout.write(separator);\nseparator = split ? \",\\n\" : \", \";\nif (split) {\nindent();\n}\nout.writ",
+        "value = entry.getValue();\nemitAnnotationValue(value);\n}\npopScope(Scope.ANNOTATION_ATTRIBUTE);\nif (split) {\nout.write(\"\\n\");\nindent();\n}\nout.write(\")\")",
+        "ion(String annotation, Map<String, ?> attributes)\nthrows IOException {\nindent();\nout.write(\"@\");\nemi",
+        "ry.getKey());\nout.write(\" = \");\nObject value = entry.getValue();\nemitAnnotationValue(value);\n}\npopSc",
+        ")\nthrows IOException {\nindent();\nout.write(\"@\");\ne",
+        "OException {\nindent();\nout.write(\"@\");\nemitType(an",
+        "rator().next();\nout.write(\"(\");\nif (!\"value\".equal",
+        "IBUTE);\nString separator = split ? \"\\n\" : \"\";\nfor ",
+        "\nfor (Map.Entry<String, ?> entry : attributes.entr"
+    ]
+}

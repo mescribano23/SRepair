@@ -1,0 +1,30 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index d502692..4b92d8c 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -155,19 +155,22 @@ public class QueueFile {
+   }
+ 
+   /** Reads the header. */
+-  private void readHeader() throws IOException {
++private void readHeader() throws IOException {
+     raf.seek(0);
+     raf.readFully(buffer);
+     fileLength = readInt(buffer, 0);
++    if (fileLength == 0) {
++        throw new IOException("File is corrupt; length stored in header is 0.");
++    }
+     if (fileLength > raf.length()) {
+-      throw new IOException("File is truncated. Expected length: " + fileLength + ", Actual length: " + raf.length());
++        throw new IOException("File is truncated. Expected length: " + fileLength + ", Actual length: " + raf.length());
+     }
+     elementCount = readInt(buffer, 4);
+     int firstOffset = readInt(buffer, 8);
+     int lastOffset = readInt(buffer, 12);
+     first = readElement(firstOffset);
+     last = readElement(lastOffset);
+-  }
++}
+ 
+   /**
+    * Writes header atomically. The arguments contain the updated values. The

@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.8834355828220859,
+    "input": "    public String format(Date date) {\n        Calendar c = new GregorianCalendar(mTimeZone, mLocale);\n        c.setTime(date);\n        return applyRules(c, new StringBuffer(mMaxLengthEstimate)).toString();\n    }",
+    "query_result": [
+        "lendar c = new GregorianCalendar(mTimeZone, mLocale);\nc.setTime(date);\nreturn applyRules(c, new Stri",
+        "c = new GregorianCalendar(mTimeZone, mLocale);\nc.setTime(date);\nreturn applyRules(c, new StringBuffe",
+        "ndar(mTimeZone, mLocale);\nc.setTime(date);\nreturn applyRules(c, new StringBuffer(mMaxLengthEstimate)",
+        "r(mTimeZone, mLocale);\nc.setTime(date);\nreturn applyRules(c, new StringBuffer(mMaxLengthEstimate)).t",
+        "TimeZone, mLocale);\nc.setTime(date);\nreturn applyRules(c, new StringBuffer(mMaxLengthEstimate)).toSt",
+        "g format(Date date) {\nCalendar c = new GregorianCa",
+        "e date) {\nCalendar c = new GregorianCalendar(mTime",
+        "mLocale);\nc.setTime(date);\nreturn applyRules(c, ne"
+    ]
+}

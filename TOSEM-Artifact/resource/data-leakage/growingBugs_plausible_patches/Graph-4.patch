@@ -1,0 +1,127 @@
+diff --git a/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java b/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java
+index e8bdb50..6738813 100644
+--- a/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java
++++ b/src/main/java/org/apache/commons/graph/visit/DefaultVisitAlgorithmsSelector.java
+@@ -99,74 +99,78 @@ final class DefaultVisitAlgorithmsSelector<V extends Vertex, E extends Edge, G e
+      * @param enqueue defines the collection behavior used to traverse the graph: true is a Queue, false is a Stack
+      * @return the result of {@link GraphVisitHandler#onCompleted()}
+      */
+-    private <O> O applyingSearch( GraphVisitHandler<V, E, G, O> handler, boolean enqueue )
+-    {
+-        handler = checkNotNull( handler, "Graph visitor handler can not be null." );
++private <O> O applyingSearch( GraphVisitHandler<V, E, G, O> handler, boolean enqueue )
++{
++    handler = checkNotNull( handler, "Graph visitor handler can not be null." );
+ 
+-        handler.discoverGraph( graph );
++    handler.discoverGraph( graph );
+ 
+-        final LinkedList<VertexPair<V>> vertexList = new LinkedList<VertexPair<V>>();
++    final LinkedList<VertexPair<V>> vertexList = new LinkedList<VertexPair<V>>();
+ 
+-        vertexList.addLast( new VertexPair<V>( source, source ) );
++    vertexList.addLast( new VertexPair<V>( source, source ) );
+ 
+-        final Set<V> visitedVertices = new HashSet<V>();
+-        visitedVertices.add( source );
++    final Set<V> visitedVertices = new HashSet<V>();
++    visitedVertices.add( source );
+ 
+-        boolean visitingGraph = true;
++    boolean visitingGraph = true;
+ 
+-        while ( visitingGraph && !vertexList.isEmpty() )
+-        {
+-            // if dequeue, remove the first element, otherwise the last
+-            final VertexPair<V> pair = enqueue ? vertexList.removeFirst() : vertexList.removeLast();
+-            final V v = pair.getHead();
+-            final V prevHead = pair.getTail();
+-            final E e = prevHead.equals( v ) ? null : graph.getEdge( prevHead, v );
++    while ( visitingGraph && !vertexList.isEmpty() )
++    {
++        // if dequeue, remove the first element, otherwise the last
++        final VertexPair<V> pair = enqueue ? vertexList.removeFirst() : vertexList.removeLast();
++        final V v = pair.getHead();
++        final V prevHead = pair.getTail();
++        final E e = prevHead.equals( v ) ? null : graph.getEdge( prevHead, v );
+ 
+-            boolean skipVertex = false;
++        boolean skipVertex = false;
+ 
+-            if ( e != null )
++        if ( e != null )
++        {
++            if ( !visitedVertices.contains( v ) )
+             {
+                 if ( !handler.discoverEdge( prevHead, e, v ) )
+                 {
+                     skipVertex = true;
+                 }
+-
+-                if ( handler.finishEdge( prevHead, e, v ) )
+-                {
+-                    skipVertex = true;
+-                    visitingGraph = false;
+-                }
+             }
+ 
+-            if ( !skipVertex )
++            if ( handler.finishEdge( prevHead, e, v ) )
+             {
+-                visitedVertices.add( v );                
++                skipVertex = true;
++                visitingGraph = false;
+             }
+-            if ( !skipVertex && handler.discoverVertex( v ) )
+-            {
+-                Iterator<V> connected = ( graph instanceof DirectedGraph ) ?
+-                        ( (DirectedGraph<V, E>) graph ).getOutbound( v ).iterator() :
+-                            graph.getConnectedVertices( v ).iterator();
++        }
++
++        if ( !skipVertex && !visitedVertices.contains( v ) )
++        {
++            visitedVertices.add( v );
++        }
++
++        if ( !skipVertex && handler.discoverVertex( v ) )
++        {
++            Iterator<V> connected = ( graph instanceof DirectedGraph ) ?
++                    ( (DirectedGraph<V, E>) graph ).getOutbound( v ).iterator() :
++                        graph.getConnectedVertices( v ).iterator();
+ 
+-                while ( connected.hasNext() )
++            while ( connected.hasNext() )
++            {
++                V w = connected.next();
++                if ( !visitedVertices.contains( w ) )
+                 {
+-                    V w = connected.next();
+-                    if ( !visitedVertices.contains( w ) )
+-                    {
+-                        vertexList.addLast( new VertexPair<V>( w, v ) );
+-                    }
++                    vertexList.addLast( new VertexPair<V>( w, v ) );
+                 }
+             }
++        }
+ 
+-            if ( !skipVertex && handler.finishVertex( v ) )
+-            {
+-                visitingGraph = false;
+-            }
++        if ( !skipVertex && handler.finishVertex( v ) )
++        {
++            visitingGraph = false;
+         }
++    }
+ 
+-        handler.finishGraph( graph );
++    handler.finishGraph( graph );
+ 
+-        return handler.onCompleted();
+-    }
++    return handler.onCompleted();
++}
+ 
+ }

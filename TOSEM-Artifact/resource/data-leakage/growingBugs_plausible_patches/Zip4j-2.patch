@@ -1,0 +1,84 @@
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AbstractAddFileToZipTask.java b/src/main/java/net/lingala/zip4j/tasks/AbstractAddFileToZipTask.java
+index bace0a1..a3fcfdf 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AbstractAddFileToZipTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AbstractAddFileToZipTask.java
+@@ -145,43 +145,51 @@ public abstract class AbstractAddFileToZipTask<T> extends AsyncZipTask<T> {
+     headerWriter.updateLocalFileHeader(fileHeader, getZipModel(), splitOutputStream);
+   }
+ 
+-  private ZipParameters cloneAndAdjustZipParameters(ZipParameters zipParameters, File fileToAdd,
+-                                                    ProgressMonitor progressMonitor) throws IOException {
+-    ZipParameters clonedZipParameters = new ZipParameters(zipParameters);
+-    clonedZipParameters.setLastModifiedFileTime(javaToDosTime((fileToAdd.lastModified())));
++private ZipParameters cloneAndAdjustZipParameters(ZipParameters zipParameters, File fileToAdd,
++                                                  ProgressMonitor progressMonitor) throws IOException {
++  ZipParameters clonedZipParameters = new ZipParameters(zipParameters);
++  clonedZipParameters.setLastModifiedFileTime(javaToDosTime((fileToAdd.lastModified())));
++  
++  // Set default file name only if not provided in zipParameters
++  if (clonedZipParameters.getFileNameInZip() == null) {
+     clonedZipParameters.setFileNameInZip(fileToAdd.getName());
++  }
+ 
+-    if (fileToAdd.isDirectory()) {
+-      clonedZipParameters.setEntrySize(0);
+-    } else {
+-      clonedZipParameters.setEntrySize(fileToAdd.length());
+-    }
+-
+-    clonedZipParameters.setWriteExtendedLocalFileHeader(false);
+-    clonedZipParameters.setLastModifiedFileTime(fileToAdd.lastModified());
++  if (fileToAdd.isDirectory()) {
++    clonedZipParameters.setEntrySize(0);
++  } else {
++    clonedZipParameters.setEntrySize(fileToAdd.length());
++  }
+ 
+-      String relativeFileName = getRelativeFileName(fileToAdd.getAbsolutePath(), zipParameters.getDefaultFolderPath());
+-      clonedZipParameters.setFileNameInZip(relativeFileName);
++  clonedZipParameters.setWriteExtendedLocalFileHeader(false);
++  clonedZipParameters.setLastModifiedFileTime(fileToAdd.lastModified());
+ 
+-    if (fileToAdd.isDirectory()) {
+-      clonedZipParameters.setCompressionMethod(CompressionMethod.STORE);
+-      clonedZipParameters.setEncryptionMethod(EncryptionMethod.NONE);
+-      clonedZipParameters.setEncryptFiles(false);
+-    } else {
+-      if (clonedZipParameters.isEncryptFiles() && clonedZipParameters.getEncryptionMethod() == ZIP_STANDARD) {
+-        progressMonitor.setCurrentTask(CALCULATE_CRC);
+-        clonedZipParameters.setEntryCRC(computeFileCrc(fileToAdd, progressMonitor));
+-        progressMonitor.setCurrentTask(ADD_ENTRY);
+-      }
++  // Adjust file name if a default folder path is set and not overridden
++  if (zipParameters.getDefaultFolderPath() != null && 
++      (clonedZipParameters.getFileNameInZip() == null || clonedZipParameters.getFileNameInZip().equals(fileToAdd.getName()))) {
++    String relativeFileName = getRelativeFileName(fileToAdd.getAbsolutePath(), zipParameters.getDefaultFolderPath());
++    clonedZipParameters.setFileNameInZip(relativeFileName);
++  }
+ 
+-      if (fileToAdd.length() == 0) {
+-        clonedZipParameters.setCompressionMethod(CompressionMethod.STORE);
+-      }
++  if (fileToAdd.isDirectory()) {
++    clonedZipParameters.setCompressionMethod(CompressionMethod.STORE);
++    clonedZipParameters.setEncryptionMethod(EncryptionMethod.NONE);
++    clonedZipParameters.setEncryptFiles(false);
++  } else {
++    if (clonedZipParameters.isEncryptFiles() && clonedZipParameters.getEncryptionMethod() == ZIP_STANDARD) {
++      progressMonitor.setCurrentTask(CALCULATE_CRC);
++      clonedZipParameters.setEntryCRC(computeFileCrc(fileToAdd, progressMonitor));
++      progressMonitor.setCurrentTask(ADD_ENTRY);
+     }
+ 
+-    return clonedZipParameters;
++    if (fileToAdd.length() == 0) {
++      clonedZipParameters.setCompressionMethod(CompressionMethod.STORE);
++    }
+   }
+ 
++  return clonedZipParameters;
++}
++
+   private void removeFilesIfExists(List<File> files, ZipParameters zipParameters, ProgressMonitor progressMonitor)
+       throws ZipException {
+     if (!zipModel.getZipFile().exists()) {

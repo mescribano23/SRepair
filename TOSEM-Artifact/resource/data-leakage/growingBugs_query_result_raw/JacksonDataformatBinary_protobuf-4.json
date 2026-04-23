@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.879489225857941,
+    "input": "    @Override\n    public JsonToken nextToken() throws IOException\n    {\n        _numTypesValid = NR_UNKNOWN;\n        // For longer tokens (text, binary), we'll only read when requested\n        if (_tokenIncomplete) {\n            _tokenIncomplete = false;\n            _skipBytes(_decodedLength);\n        }\n        _tokenInputTotal = _currInputProcessed + _inputPtr;\n        // also: clear any data retained so far\n        _binaryValue = null;\n\n        switch (_state) {\n        case STATE_INITIAL:\n            if (_schema == null) {\n                _reportError(\"No Schema has been assigned: can not decode content\");\n            }\n            _currentMessage = _schema.getRootType();\n            _currentField = _currentMessage.firstField();\n            _state = STATE_ROOT_KEY;\n            _parsingContext.setMessageType(_currentMessage);            \n            return (_currToken = JsonToken.START_OBJECT);\n\n        case STATE_ROOT_KEY:\n            // end-of-input?\n            if (_inputPtr >= _inputEnd) {\n                if (!loadMore()) {\n                    close();\n                    return (_currToken = JsonToken.END_OBJECT);\n                }\n            }\n            return _handleRootKey(_decodeVInt());\n        case STATE_ROOT_VALUE:\n            {\n                JsonToken t = _readNextValue(_currentField.type, STATE_ROOT_KEY);\n                _currToken = t;\n                return t;\n            }\n        case STATE_NESTED_KEY:\n            if (_checkEnd()) {\n                return (_currToken = JsonToken.END_OBJECT);\n            }\n            return _handleNestedKey(_decodeVInt());\n\n        case STATE_ARRAY_START:\n            _parsingContext = _parsingContext.createChildArrayContext(_currentField);            \n            _state = STATE_ARRAY_VALUE_FIRST;\n            return (_currToken = JsonToken.START_ARRAY);\n\n        case STATE_ARRAY_START_PACKED:\n\n            int len = _decodeLength();\n            int newEnd = _inputPtr + len;\n\n            // First: validate that",
+    "query_result": [
+        "sonToken.START_OBJECT);\ncase STATE_ROOT_KEY:\n// end-of-input?\nif (_inputPtr >= _inputEnd) {\nif (!loadMore()) {\nclose();\nreturn (_currToken = JsonToken.END_OBJECT);\n}\n}\nreturn _handleRootKey(_decodeVInt());\ncase STATE_ROOT_VALUE:\n{\nJsonToken t = _readNextValue(_currentField.type, STATE_ROOT_KEY);\n_currToken = t;\nreturn t;\n}\ncase STATE_NESTED_KEY:\nif (_checkEnd()) {\nreturn (_currToken = JsonToken.END_OBJECT);\n}\nreturn _handleNestedKey(_decodeVInt());\ncase STATE_ARRAY_START:\n_parsingContext = _parsingContext.createChildArrayContext(_currentField);",
+        "n() throws IOException\n{\n_numTypesValid = NR_UNKNOWN;\n// For longer tokens (text, binary), we'll only read when requested\nif (_tokenIncomplete) {\n_tokenIncomplete = false;\n_skipBytes(_decodedLength);\n}\n_tokenInputTotal = _currInputProcessed + _inputPtr;\n// also: clear any data retained so far\n_binaryValue = null;\nswitch (_state) {\ncase STATE_INITIAL:\nif (_schema == null) {\n_reportError(\"No Schema ",
+        "AY_VALUE_FIRST;\nreturn (_currToken = JsonToken.START_ARRAY);\ncase STATE_ARRAY_START_PACKED:\nint len = _decodeLength();\nint newEnd = _inputPtr + len;\n/",
+        " throws IOException\n{\n_numTypesValid = NR_UNKNOWN;\n// For longer tokens (text, binary), we'll only r",
+        "e) {\n_tokenIncomplete = false;\n_skipBytes(_decodedLength);\n}\n_tokenInputTotal = _currInputProcessed ",
+        "enInputTotal = _currInputProcessed + _inputPtr;\n// also: clear any data retained so far\n_binaryValue",
+        "Type();\n_currentField = _currentMessage.firstField();\n_state = STATE_ROOT_KEY;\n_parsingContext.setMe",
+        "@Override\npublic JsonToken nextToken() throws IOEx",
+        "Override\npublic JsonToken nextToken() throws IOExc",
+        "verride\npublic JsonToken nextToken() throws IOExce",
+        "erride\npublic JsonToken nextToken() throws IOExcep",
+        "rride\npublic JsonToken nextToken() throws IOExcept",
+        "ride\npublic JsonToken nextToken() throws IOExcepti",
+        "ide\npublic JsonToken nextToken() throws IOExceptio",
+        "de\npublic JsonToken nextToken() throws IOException",
+        "\npublic JsonToken nextToken() throws IOException\n{",
+        "public JsonToken nextToken() throws IOException\n{\n",
+        "lid = NR_UNKNOWN;\n// For longer tokens (text, bina",
+        "\nif (_tokenIncomplete) {\n_tokenIncomplete = false;",
+        "cessed + _inputPtr;\n// also: clear any data retain"
+    ]
+}

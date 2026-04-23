@@ -1,0 +1,24 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+index 561edbb2..3f20f744 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+@@ -96,7 +96,7 @@ public class Mapper {
+         this.hiddenConstructorSupported = hiddenConstructorSupported;
+     }
+ 
+-    private static JsonGenerator writePrimitives(final JsonGenerator generator, final Object value) {
++private static JsonGenerator writePrimitives(final JsonGenerator generator, final Object value) {
+         if (value == null) {
+             return null; // fake a write
+         }
+@@ -106,8 +106,8 @@ public class Mapper {
+             return generator.write(value.toString());
+         } else if (type == long.class || type == Long.class) {
+             return generator.write(Long.class.cast(value).longValue());
+-        } else if (isInt(type)) {
+-            return generator.write(Integer.class.cast(value).intValue());
++        } else if (isInt(type) || type == byte.class || type == Byte.class) {
++            return generator.write(Number.class.cast(value).intValue());
+         } else if (isFloat(type)) {
+             final double doubleValue = Number.class.cast(value).doubleValue();
+             if (Double.isNaN(doubleValue)) {

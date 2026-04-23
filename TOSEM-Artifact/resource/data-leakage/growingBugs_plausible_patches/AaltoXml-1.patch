@@ -1,0 +1,43 @@
+diff --git a/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java b/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java
+index 47b6294..8d2a67b 100644
+--- a/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java
++++ b/src/main/java/com/fasterxml/aalto/async/AsyncByteScanner.java
+@@ -628,21 +628,23 @@ public abstract class AsyncByteScanner
+      *
+      * @see "http://www.w3.org/TR/xml/#NT-PubidLiteral"
+      */
+-    protected boolean validPublicIdChar(int c) {
+-        return
+-            c == 0xA ||                     //<LF>
+-            c == 0xD ||                     //<CR>
+-            c == 0x20 ||                    //<SPACE>
+-            (c >= '@' && c <= 'Z') ||       //@[A-Z]
+-            (c >= 'a' && c <= 'z') ||
+-            c == '!' ||
+-            (c >= 0x23 && c <= 0x25) ||     //#$%
+-            (c >= 0x27 && c <= 0x2F) ||     //'()*+,-./
+-            (c >= ':' && c <= ';') ||
+-            c == '=' ||
+-            c == '?' ||
+-            c == '_';
+-    }
++protected boolean validPublicIdChar(int c) {
++    return
++        c == 0xA ||                     //<LF>
++        c == 0xD ||                     //<CR>
++        c == 0x20 ||                    //<SPACE>
++        (c >= '0' && c <= '9') ||       // Digits [0-9]
++        c == '-' ||                     // Hyphen
++        (c >= '@' && c <= 'Z') ||       //@[A-Z]
++        (c >= 'a' && c <= 'z') ||
++        c == '!' ||
++        (c >= 0x23 && c <= 0x25) ||     //#$%
++        (c >= 0x27 && c <= 0x2F) ||     //'()*+,-./
++        (c >= ':' && c <= ';') ||
++        c == '=' ||
++        c == '?' ||
++        c == '_';
++}
+ 
+     /*
+     /**********************************************************************

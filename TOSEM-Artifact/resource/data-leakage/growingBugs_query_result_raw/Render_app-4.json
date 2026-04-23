@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public void applyInPlace(final double[] location) {\n        location[dimension] += a * Math.exp(-b * location[dimension]) + c;\n    }",
+    "query_result": []
+}

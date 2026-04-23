@@ -1,0 +1,80 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 29e559d4..e23dc0e7 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -347,36 +347,50 @@ public final class GJChronology extends AssembledChronology {
+         return instant;
+     }
+ 
+-    public long getDateTimeMillis(int year, int monthOfYear, int dayOfMonth,
+-                                  int hourOfDay, int minuteOfHour,
+-                                  int secondOfMinute, int millisOfSecond)
+-        throws IllegalArgumentException
+-    {
+-        Chronology base;
+-        if ((base = getBase()) != null) {
+-            return base.getDateTimeMillis
+-                (year, monthOfYear, dayOfMonth,
+-                 hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);
+-        }
++public long getDateTimeMillis(int year, int monthOfYear, int dayOfMonth,
++                              int hourOfDay, int minuteOfHour,
++                              int secondOfMinute, int millisOfSecond)
++    throws IllegalArgumentException
++{
++    Chronology base;
++    if ((base = getBase()) != null) {
++        return base.getDateTimeMillis
++            (year, monthOfYear, dayOfMonth,
++             hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);
++    }
+ 
+-        // Assume date is Gregorian.
+-        long instant;
+-            instant = iGregorianChronology.getDateTimeMillis
+-                (year, monthOfYear, dayOfMonth,
+-                 hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);
+-        if (instant < iCutoverMillis) {
+-            // Maybe it's Julian.
+-            instant = iJulianChronology.getDateTimeMillis
+-                (year, monthOfYear, dayOfMonth,
+-                 hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);
+-            if (instant >= iCutoverMillis) {
+-                // Okay, it's in the illegal cutover gap.
+-                throw new IllegalArgumentException("Specified date does not exist");
+-            }
++    // Check if the year is a leap year in Julian but not in Gregorian calendar.
++    boolean isJulianLeapYear = (year % 4 == 0);
++    boolean isGregorianLeapYear = (year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0));
++
++    if (monthOfYear == 2 && dayOfMonth == 29 && isJulianLeapYear && !isGregorianLeapYear) {
++        long instant = iJulianChronology.getDateTimeMillis
++            (year, monthOfYear, dayOfMonth,
++             hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);
++        if (instant >= iCutoverMillis) {
++            throw new IllegalArgumentException("Specified date does not exist");
+         }
+         return instant;
+     }
+ 
++    // Assume date is Gregorian.
++    long instant;
++    instant = iGregorianChronology.getDateTimeMillis
++        (year, monthOfYear, dayOfMonth,
++         hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);
++    if (instant < iCutoverMillis) {
++        // Maybe it's Julian.
++        instant = iJulianChronology.getDateTimeMillis
++            (year, monthOfYear, dayOfMonth,
++             hourOfDay, minuteOfHour, secondOfMinute, millisOfSecond);
++        if (instant >= iCutoverMillis) {
++            // Okay, it's in the illegal cutover gap.
++            throw new IllegalArgumentException("Specified date does not exist");
++        }
++    }
++    return instant;
++}
++
+     /**
+      * Gets the cutover instant between Gregorian and Julian chronologies.
+      * @return the cutover instant

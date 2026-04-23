@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.2739463601532567,
+    "input": "private boolean shouldEntryBeRemoved(FileHeader fileHeaderToBeChecked, List<String> fileNamesToBeRemoved) {\n    for (String fileNameToBeRemoved : fileNamesToBeRemoved) {\n      // If any of the files to be removed is a directory, check if the fileHeaderToBeChecked is a sub-file or\n      // a sub-directory of that directory\n      if (fileNameToBeRemoved.endsWith(InternalZipConstants.ZIP_FILE_SEPARATOR) &&\n          fileHeaderToBeChecked.getFileName().startsWith(fileNameToBeRemoved)) {\n        return true;\n      } else if (fileHeaderToBeChecked.getFileName().equals(fileNameToBeRemoved)) {\n        return true;\n      }\n    }\n\n    return false;\n  }",
+    "query_result": [
+        "ryBeRemoved(FileHeader fileHeaderToBeChecked, List<String> fileNamesToBeRemoved) {\nfor (String fileN",
+        "eaderToBeChecked.getFileName().startsWith(fileName"
+    ]
+}

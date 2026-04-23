@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6189697465249386,
+    "input": "    protected Manifest getManifest( MavenSession session, MavenProject project, ManifestConfiguration config,\n                                    Map<String, String> entries )\n        throws ManifestException, DependencyResolutionRequiredException\n    {\n        // TODO: Should we replace \"map\" with a copy? Note, that we modify it!\n\n        // Added basic entries\n        Manifest m = new Manifest();\n        addCreatedByEntry( session, m, entries );\n\n        addCustomEntries( m, entries, config );\n\n        if ( config.isAddClasspath() )\n        {\n            StringBuilder classpath = new StringBuilder();\n\n            List artifacts = project.getRuntimeClasspathElements();\n            String classpathPrefix = config.getClasspathPrefix();\n            String layoutType = config.getClasspathLayoutType();\n            String layout = config.getCustomClasspathLayout();\n\n            Interpolator interpolator = new StringSearchInterpolator();\n\n            for ( Iterator iter = artifacts.iterator(); iter.hasNext(); )\n            {\n                File f = new File( (String) iter.next() );\n                if ( f.getAbsoluteFile().isFile() )\n                {\n                    Artifact artifact = findArtifactWithFile( project.getArtifacts(), f );\n\n                    if ( classpath.length() > 0 )\n                    {\n                        classpath.append( \" \" );\n                    }\n                    classpath.append( classpathPrefix );\n\n                    // NOTE: If the artifact or layout type (from config) is null, give up and use the file name by itself.\n                    if ( artifact == null || layoutType == null )\n                    {\n                        classpath.append( f.getName() );\n                    }\n                    else\n                    {\n                        List valueSources = new ArrayList();\n                        valueSources.add(\n                            new PrefixedObjectValueSource( ARTIFACT_EXPRESSION_PREFIXES, artifact, tru",
+    "query_result": [
+        " = project.getRuntimeClasspathElements();\nString classpathPrefix = config.getClasspathPrefix();\nString layoutType = config.getClasspathLayoutType();\nString layout = config.getCustomClasspathLayout();\nInterpolator interpolator = new StringSearchInterp",
+        "oluteFile().isFile() )\n{\nArtifact artifact = findArtifactWithFile( project.getArtifacts(), f );\nif ( classpath.length() > 0 )\n{\nclasspath.append( \" \" );\n}\nclasspath.append( classpathPrefix );\n// NOTE: If the artifact or layout type (from config) is n",
+        "avenSession session, MavenProject project, ManifestConfiguration config,\nMap<String, String> entries )\nthrows ManifestException, DependencyResolutionRequiredException\n{\n// TODO: Should we replace \"map",
+        "RuntimeClasspathElements();\nString classpathPrefix = config.getClasspathPrefix();\nString layoutType = config.getClasspathLayoutType();\nString layout = config.getCustomClasspathLayout();\nInterpolator i",
+        "s();\nString classpathPrefix = config.getClasspathPrefix();\nString layoutType = config.getClasspathLayoutType();\nString layout = config.getCustomClasspathLayout();\nInterpolator interpolator = new Strin",
+        "ig.getClasspathLayoutType();\nString layout = config.getCustomClasspathLayout();\nInterpolator interpo",
+        "or interpolator = new StringSearchInterpolator();\nfor ( Iterator iter = artifacts.iterator(); iter.h",
+        " getManifest( MavenSession session, MavenProject p",
+        "ession, MavenProject project, ManifestConfiguratio",
+        "ssion, MavenProject project, ManifestConfiguration",
+        "throws ManifestException, DependencyResolutionRequ",
+        "s ManifestException, DependencyResolutionRequiredE",
+        "ManifestException, DependencyResolutionRequiredExc",
+        "festException, DependencyResolutionRequiredExcepti",
+        " Should we replace \"map\" with a copy? Note, that w",
+        " ( config.isAddClasspath() )\n{\nStringBuilder class",
+        "nterpolator interpolator = new StringSearchInterpo",
+        "terpolator interpolator = new StringSearchInterpol",
+        "erpolator interpolator = new StringSearchInterpola",
+        "rpolator interpolator = new StringSearchInterpolat"
+    ]
+}

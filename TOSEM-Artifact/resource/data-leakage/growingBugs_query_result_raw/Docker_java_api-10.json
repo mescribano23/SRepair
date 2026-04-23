@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.9164420485175202,
+    "input": "    @Override\n    public Iterator<Volume> iterator() {\n        final FilteredUriBuilder uri = new FilteredUriBuilder(\n            new UncheckedUriBuilder(super.baseUri().toString()), this.filters\n        );\n        return new ResourcesIterator<>(\n            super.client(),\n            new HttpGet(\n                uri.build()\n            ),\n            volume -> new RtVolume(\n                volume,\n                super.client(),\n                URI.create(\n                    String.format(\"%s/%s\",\n                        super.baseUri().toString(),\n                        volume.getString(\"Name\")\n                    )\n                ),\n                super.docker()\n            )\n        );\n    }",
+    "query_result": [
+        "ic Iterator<Volume> iterator() {\nfinal FilteredUriBuilder uri = new FilteredUriBuilder(\nnew UncheckedUriBuilder(super.baseUri().toString()), this.filters\n);\nreturn new ResourcesIterator<>(\nsuper.client(),\nnew HttpGet(\nuri.build()\n),\nvolume -> new RtVolume(\nvolume,\nsuper.client(),\nURI.create(\nString.format(\"%s/%s\",\nsuper.baseUri().toString(),\nvolume",
+        "Override\npublic Iterator<Volume> iterator() {\nfinal FilteredUriBuilder uri = new FilteredUriBuilder(\nnew UncheckedUriBuilder(super.baseUri().toString(",
+        "iterator() {\nfinal FilteredUriBuilder uri = new FilteredUriBuilder(\nnew UncheckedUriBuilder(super.baseUri().toString()), this.filters\n);\nreturn new Re",
+        "terator() {\nfinal FilteredUriBuilder uri = new FilteredUriBuilder(\nnew UncheckedUriBuilder(super.bas",
+        "tor<>(\nsuper.client(),\nnew HttpGet(\nuri.build()\n),\nvolume -> new RtVolume(\nvolume,\nsuper.client(),\nU",
+        "lume,\nsuper.client(),\nURI.create(\nString.format(\"%s/%s\",\nsuper.baseUri().toString(),\nvolume.getStrin",
+        "al FilteredUriBuilder uri = new FilteredUriBuilder",
+        " = new FilteredUriBuilder(\nnew UncheckedUriBuilder",
+        "ilder(\nnew UncheckedUriBuilder(super.baseUri().toS",
+        "iBuilder(super.baseUri().toString()), this.filters",
+        "Builder(super.baseUri().toString()), this.filters\n",
+        "turn new ResourcesIterator<>(\nsuper.client(),\nnew ",
+        "new HttpGet(\nuri.build()\n),\nvolume -> new RtVolume"
+    ]
+}

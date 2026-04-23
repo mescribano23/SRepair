@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.39285714285714285,
+    "input": "        public double[] repairAndDecode(final double[] x) {\n            return boundaries != null && isRepairMode ?\n                decode(repair(x)) :\n                decode(x);\n        }",
+    "query_result": [
+        "blic double[] repairAndDecode(final double[] x) {\n"
+    ]
+}

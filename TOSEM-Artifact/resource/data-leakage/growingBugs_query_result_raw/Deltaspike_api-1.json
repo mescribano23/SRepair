@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.19853479853479852,
+    "input": "    AnnotatedTypeImpl(Class<X> clazz,\n                      AnnotationStore typeAnnotations,\n                      Map<Field, AnnotationStore> fieldAnnotations,\n                      Map<Method, AnnotationStore> methodAnnotations,\n                      Map<Method, Map<Integer, AnnotationStore>> methodParameterAnnotations,\n                      Map<Constructor<?>, AnnotationStore> constructorAnnotations,\n                      Map<Constructor<?>, Map<Integer, AnnotationStore>> constructorParameterAnnotations,\n                      Map<Field, Type> fieldTypes,\n                      Map<Method, Map<Integer, Type>> methodParameterTypes,\n                      Map<Constructor<?>, Map<Integer, Type>> constructorParameterTypes)\n    {\n        super(clazz, typeAnnotations, null, null);\n        javaClass = clazz;\n        constructors = new HashSet<AnnotatedConstructor<X>>();\n        Set<Constructor<?>> cset = new HashSet<Constructor<?>>();\n        Set<Method> mset = new HashSet<Method>();\n        Set<Field> fset = new HashSet<Field>();\n        for (Constructor<?> c : clazz.getConstructors())\n        {\n            AnnotatedConstructor<X> nc = new AnnotatedConstructorImpl<X>(\n                    this, c, constructorAnnotations.get(c), constructorParameterAnnotations.get(c),\n                    constructorParameterTypes.get(c));\n            constructors.add(nc);\n            cset.add(c);\n        }\n        for (Map.Entry<Constructor<?>, AnnotationStore> c : constructorAnnotations.entrySet())\n        {\n            if (!cset.contains(c.getKey()))\n            {\n                AnnotatedConstructor<X> nc = new AnnotatedConstructorImpl<X>(\n                        this, c.getKey(), c.getValue(), constructorParameterAnnotations.get(c.getKey()),\n                        constructorParameterTypes.get(c.getKey()));\n                constructors.add(nc);\n            }\n        }\n        methods = new HashSet<AnnotatedMethod<? super X>>();\n        for (Method m : clazz.getMethods())\n        {\n    ",
+    "query_result": [
+        "\nMap<Constructor<?>, AnnotationStore> constructorA",
+        "Constructor<?>, AnnotationStore> constructorAnnota",
+        "ap<Constructor<?>, Map<Integer, AnnotationStore>> ",
+        "<Integer, AnnotationStore>> constructorParameterAn",
+        "ap<Constructor<?>, Map<Integer, Type>> constructor",
+        "<Constructor<?>, Map<Integer, Type>> constructorPa",
+        "or<?>, Map<Integer, Type>> constructorParameterTyp",
+        "\nfor (Constructor<?> c : clazz.getConstructors())\n",
+        "s, c.getKey(), c.getValue(), constructorParameterA"
+    ]
+}

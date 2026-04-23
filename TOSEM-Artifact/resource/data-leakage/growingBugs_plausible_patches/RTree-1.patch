@@ -1,0 +1,27 @@
+diff --git a/src/main/java/com/github/davidmoten/rtree/geometry/Geometries.java b/src/main/java/com/github/davidmoten/rtree/geometry/Geometries.java
+index e110c5e..26baa8e 100644
+--- a/src/main/java/com/github/davidmoten/rtree/geometry/Geometries.java
++++ b/src/main/java/com/github/davidmoten/rtree/geometry/Geometries.java
+@@ -34,13 +34,13 @@ public final class Geometries {
+         return point(normalizeLongitude(lon), lat);
+     }
+ 
+-    @VisibleForTesting
+-    static double normalizeLongitude(double d) {
+-            double sign = Math.signum(d);
+-            double x = Math.abs(d) / 360;
+-            double x2 = (x - Math.floor(x)) * 360;
+-            if (x2 >= 180)
+-                x2 -= 360;
+-            return x2 * sign;
+-    }
++static double normalizeLongitude(double d) {
++    if (d == -180) return -180;  // Special case to handle -180 correctly
++    double sign = Math.signum(d);
++    double x = Math.abs(d) / 360;
++    double x2 = (x - Math.floor(x)) * 360;
++    if (x2 >= 180)
++        x2 -= 360;
++    return x2 * sign;
++}
+ }

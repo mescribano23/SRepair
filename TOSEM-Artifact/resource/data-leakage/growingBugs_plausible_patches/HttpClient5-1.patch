@@ -1,0 +1,53 @@
+diff --git a/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java b/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
+index c60692d24..14d566396 100644
+--- a/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
++++ b/httpclient5/src/main/java/org/apache/hc/client5/http/ssl/DefaultHostnameVerifier.java
+@@ -276,29 +276,29 @@ static HostNameType determineHostFormat(final String host) {
+         return HostNameType.DNS;
+     }
+ 
+-    static List<SubjectName> getSubjectAltNames(final X509Certificate cert) {
+-        try {
+-            final Collection<List<?>> entries = cert.getSubjectAlternativeNames();
+-            if (entries == null) {
+-                return Collections.emptyList();
+-            }
+-            final List<SubjectName> result = new ArrayList<>();
+-            for (final List<?> entry : entries) {
+-                final Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : null;
+-                if (type != null) {
+-                        final Object o = entry.get(1);
+-                        if (o instanceof String) {
+-                            result.add(new SubjectName((String) o, type));
+-                        } else if (o instanceof byte[]) {
+-                            // TODO ASN.1 DER encoded form
+-                    }
++static List<SubjectName> getSubjectAltNames(final X509Certificate cert) {
++    try {
++        final Collection<List<?>> entries = cert.getSubjectAlternativeNames();
++        if (entries == null) {
++            return Collections.emptyList();
++        }
++        final List<SubjectName> result = new ArrayList<>();
++        for (final List<?> entry : entries) {
++            final Integer type = entry.size() >= 2 ? (Integer) entry.get(0) : null;
++            if (type != null && (type == 2 || type == 7)) { // Filter for DNS (2) and IP (7) types
++                final Object o = entry.get(1);
++                if (o instanceof String) {
++                    result.add(new SubjectName((String) o, type));
++                } else if (o instanceof byte[]) {
++                    // TODO ASN.1 DER encoded form
+                 }
+             }
+-            return result;
+-        } catch (final CertificateParsingException ignore) {
+-            return Collections.emptyList();
+         }
++        return result;
++    } catch (final CertificateParsingException ignore) {
++        return Collections.emptyList();
+     }
++}
+ 
+     /*
+      * Normalize IPv6 or DNS name.

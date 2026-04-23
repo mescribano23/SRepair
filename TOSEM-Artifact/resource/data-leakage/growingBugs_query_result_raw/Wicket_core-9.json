@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.35051546391752575,
+    "input": "protected IRequestHandler processListener(PageComponentInfo pageComponentInfo,\n        Class<? extends IRequestablePage> pageClass, PageParameters pageParameters)\n    {\n        PageInfo pageInfo = pageComponentInfo.getPageInfo();\n        ComponentInfo componentInfo = pageComponentInfo.getComponentInfo();\n        Integer renderCount = null;\n        RequestListenerInterface listenerInterface = null;\n\n        if (componentInfo != null)\n        {\n            renderCount = componentInfo.getRenderCount();\n            listenerInterface = requestListenerInterfaceFromString(componentInfo.getListenerInterface());\n        }\n\n        if (listenerInterface != null)\n        {\n            if (pageInfo.getPageId() != null)\n            {\n                // WICKET-4594 - ignore the parsed parameters for stateful pages\n                pageParameters = null;\n            }\n\n            PageAndComponentProvider provider = new PageAndComponentProvider(pageInfo.getPageId(),\n                pageClass, pageParameters, renderCount, componentInfo.getComponentPath());\n\n            provider.setPageSource(getContext());\n\n            return new ListenerInterfaceRequestHandler(provider, listenerInterface,\n                componentInfo.getBehaviorId());\n        }\n        else\n        {\n            if (logger.isWarnEnabled())\n            {\n                if (componentInfo != null)\n                {\n                    logger.warn(\"Unknown listener interface '{}'\",\n                        componentInfo.getListenerInterface());\n                }\n                else\n                {\n                    logger.warn(\"Cannot extract the listener interface for PageComponentInfo: '{}'\" +\n                        pageComponentInfo);\n                }\n            }\n            return null;\n        }\n    }",
+    "query_result": [
+        "mponentPath());\nprovider.setPageSource(getContext());\nreturn new ListenerInterfaceRequestHandler(pro",
+        "nfo,\nClass<? extends IRequestablePage> pageClass, ",
+        "s<? extends IRequestablePage> pageClass, PageParam",
+        "extends IRequestablePage> pageClass, PageParameter",
+        "ends IRequestablePage> pageClass, PageParameters p",
+        "ds IRequestablePage> pageClass, PageParameters pag",
+        "uestablePage> pageClass, PageParameters pageParame",
+        "componentInfo = pageComponentInfo.getComponentInfo",
+        "= requestListenerInterfaceFromString(componentInfo",
+        "requestListenerInterfaceFromString(componentInfo.g",
+        "ndComponentProvider provider = new PageAndComponen",
+        "omponentProvider provider = new PageAndComponentPr",
+        "ponentProvider provider = new PageAndComponentProv",
+        "ntProvider provider = new PageAndComponentProvider",
+        "new PageAndComponentProvider(pageInfo.getPageId(),",
+        "unt, componentInfo.getComponentPath());\nprovider.s",
+        "ot extract the listener interface for PageComponen"
+    ]
+}

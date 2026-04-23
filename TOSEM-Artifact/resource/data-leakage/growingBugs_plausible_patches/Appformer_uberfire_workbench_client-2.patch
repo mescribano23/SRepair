@@ -1,0 +1,19 @@
+diff --git a/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/workbench/WorkbenchLayoutInfoImpl.java b/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/workbench/WorkbenchLayoutInfoImpl.java
+index b05358251..557f41469 100644
+--- a/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/workbench/WorkbenchLayoutInfoImpl.java
++++ b/uberfire-workbench/uberfire-workbench-client/src/main/java/org/uberfire/client/workbench/WorkbenchLayoutInfoImpl.java
+@@ -25,8 +25,11 @@ public class WorkbenchLayoutInfoImpl implements WorkbenchLayoutInfo {
+     @Inject
+     private WorkbenchLayoutImpl workbenchLayout;
+ 
+-    @Override
+-    public int getHeaderHeight() {
+-            return workbenchLayout.getHeaderPanel().getBoundingClientRect().getHeight().intValue();
++@Override
++public int getHeaderHeight() {
++    if (workbenchLayout == null || workbenchLayout.getHeaderPanel() == null) {
++        return 0;
+     }
++    return workbenchLayout.getHeaderPanel().getBoundingClientRect().getHeight().intValue();
++}
+ }

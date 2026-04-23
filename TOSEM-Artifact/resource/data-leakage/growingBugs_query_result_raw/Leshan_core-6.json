@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.8923426838514026,
+    "input": "    @SuppressWarnings(\"unchecked\")\n    private static <T extends LwM2mNode> T parseTlv(Tlv[] tlvs, LwM2mPath path, LwM2mModel model, Class<T> nodeClass)\n            throws CodecException {\n        LOG.trace(\"Parsing TLV content for path {}: {}\", path, tlvs);\n\n        // Object\n        if (nodeClass == LwM2mObject.class) {\n            Map<Integer, LwM2mObjectInstance> instances = new HashMap<>(tlvs.length);\n\n            // is it an array of TLV resources?\n            if (tlvs.length > 0 && //\n                    (tlvs[0].getType() == TlvType.MULTIPLE_RESOURCE || tlvs[0].getType() == TlvType.RESOURCE_VALUE)) {\n\n                ObjectModel oModel = model.getObjectModel(path.getObjectId());\n                if (oModel == null) {\n                    LOG.warn(\"No model for object {}. The tlv is decoded assuming this is a single instance object\",\n                            path.getObjectId());\n                    instances.put(0, parseObjectInstanceTlv(tlvs, path.getObjectId(), 0, model));\n                } else if (!oModel.multiple) {\n                    instances.put(0, parseObjectInstanceTlv(tlvs, path.getObjectId(), 0, model));\n                } else {\n                    throw new CodecException(\"Object instance TLV is mandatory for multiple instances object [path:%s]\",\n                            path);\n                }\n\n            } else {\n                for (Tlv tlv : tlvs) {\n                    if (tlv.getType() != TlvType.OBJECT_INSTANCE)\n                        throw new CodecException(\"Expected TLV of type OBJECT_INSTANCE but was %s  [path:%s]\",\n                                tlv.getType().name(), path);\n\n                    LwM2mObjectInstance objectInstance = parseObjectInstanceTlv(tlv.getChildren(), path.getObjectId(),\n                            tlv.getIdentifier(), model);\n                    LwM2mObjectInstance previousObjectInstance = instances.put(objectInstance.getId(), objectInstance);\n                    if (previousObjectInstance != null) {\n    ",
+    "query_result": [
+        "tlvs, LwM2mPath path, LwM2mModel model, Class<T> nodeClass)\nthrows CodecException {\nLOG.trace(\"Parsing TLV content for path {}: {}\", path, tlvs);\n// Object\nif (nodeClass == LwM2mObject.class) {\nMap<Integer, LwM2mObjectInstance> instances = new HashMap<>(tlvs.length);\n// is it an array of TLV resources?\nif (tlvs.length > 0 && //\n(tlvs[0].getType() == TlvType.MULTIPLE_RESOURCE || tlvs[0].getType() == TlvType.RESOURCE_VALUE)) {\nObjectModel oModel = model.getObjectModel(path.getObjectId());\nif (oModel == null) {\nLOG.warn(\"No model for object {}. The tlv is decoded assuming this is a single instance object\",\npath.getObjectId());\ninstances.put(0, parseObjectInstanceTlv(tlvs, path.getObjectId(), 0, model));\n} else if (!oModel.multiple) {\ninstances.put(0, parseObjectInstanceTlv(tlvs, path.getObjec",
+        " else {\nfor (Tlv tlv : tlvs) {\nif (tlv.getType() != TlvType.OBJECT_INSTANCE)\nthrow new CodecException(\"Expected TLV of type OBJECT_INSTANCE but was %s [path:%s]\",\ntlv.getType().name(), path);\nLwM2mObjectInstance objectInstance = parseObjectInstanceTlv(tlv.getChildren(), path.getObjectId(),\ntlv.getIdentifier(), model);\nLwM2mObjectInstance previousObjectInstance = instances.put(objectInstance.getId(), objectInstance);\nif (previousObjectInstance != ",
+        "@SuppressWarnings(\"unchecked\")\nprivate static <T e",
+        "SuppressWarnings(\"unchecked\")\nprivate static <T ex",
+        "uppressWarnings(\"unchecked\")\nprivate static <T ext",
+        "ppressWarnings(\"unchecked\")\nprivate static <T exte",
+        "pressWarnings(\"unchecked\")\nprivate static <T exten",
+        "ressWarnings(\"unchecked\")\nprivate static <T extend",
+        "essWarnings(\"unchecked\")\nprivate static <T extends",
+        "ssWarnings(\"unchecked\")\nprivate static <T extends ",
+        "wM2mModel model, Class<T> nodeClass)\nthrows CodecE",
+        "model, Class<T> nodeClass)\nthrows CodecException {",
+        "ion {\nLOG.trace(\"Parsing TLV content for path {}: ",
+        "ObjectModel oModel = model.getObjectModel(path.get",
+        ".put(0, parseObjectInstanceTlv(tlvs, path.getObjec",
+        "arseObjectInstanceTlv(tlvs, path.getObjectId(), 0,"
+    ]
+}

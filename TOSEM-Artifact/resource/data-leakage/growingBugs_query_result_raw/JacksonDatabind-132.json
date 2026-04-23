@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.44562737642585554,
+    "input": "    protected void _addDeserializerFactoryMethods\n        (DeserializationContext ctxt, BeanDescription beanDesc, VisibilityChecker<?> vchecker,\n         AnnotationIntrospector intr, CreatorCollector creators,\n         Map<AnnotatedWithParams,BeanPropertyDefinition[]> creatorParams)\n        throws JsonMappingException\n    {\n        final DeserializationConfig config = ctxt.getConfig();\n        for (AnnotatedMethod factory : beanDesc.getFactoryMethods()) {\n            final boolean isCreator = intr.hasCreatorAnnotation(factory);\n            final int argCount = factory.getParameterCount();\n            // zero-arg methods must be annotated; if so, are \"default creators\" [JACKSON-850]\n            if (argCount == 0) {\n                if (isCreator) {\n                    creators.setDefaultCreator(factory);\n                }\n                continue;\n            }\n\n            final BeanPropertyDefinition[] propDefs = creatorParams.get(factory);\n            // some single-arg factory methods (String, number) are auto-detected\n            if (argCount == 1) {\n                BeanPropertyDefinition argDef = (propDefs == null) ? null : propDefs[0];\n                boolean useProps = _checkIfCreatorPropertyBased(intr, factory, argDef);\n                if (!useProps) { // not property based but delegating\n                    /*boolean added=*/ _handleSingleArgumentFactory(config, beanDesc, vchecker, intr, creators,\n                            factory, isCreator);\n                    // 23-Sep-2016, tatu: [databind#1383]: Need to also sever link to avoid possible\n                    //    later problems with \"unresolved\" constructor property\n                    if (argDef != null) {\n                        ((POJOPropertyBuilder) argDef).removeConstructors();\n                    }\n                    continue;\n                }\n                // fall through if there's name\n            } else {\n                // more than 2 args, must have @JsonCreator\n                if (!is",
+    "query_result": [
+        "tConfig();\nfor (AnnotatedMethod factory : beanDesc.getFactoryMethods()) {\nfinal boolean isCreator = intr.hasCreatorAnnotation(factory);\nfinal int argC",
+        "== 1) {\nBeanPropertyDefinition argDef = (propDefs == null) ? null : propDefs[0];\nboolean useProps = _checkIfCreatorPropertyBased(intr, factory, argDef",
+        "Description beanDesc, VisibilityChecker<?> vchecker,\nAnnotationIntrospector intr, CreatorCollector c",
+        "escription beanDesc, VisibilityChecker<?> vchecker,\nAnnotationIntrospector intr, CreatorCollector cr",
+        "ropertyDefinition[]> creatorParams)\nthrows JsonMappingException\n{\nfinal DeserializationConfig config",
+        "hrows JsonMappingException\n{\nfinal DeserializationConfig config = ctxt.getConfig();\nfor (AnnotatedMe",
+        "inal DeserializationConfig config = ctxt.getConfig();\nfor (AnnotatedMethod factory : beanDesc.getFac",
+        "f (isCreator) {\ncreators.setDefaultCreator(factory);\n}\ncontinue;\n}\nfinal BeanPropertyDefinition[] pr",
+        " 1) {\nBeanPropertyDefinition argDef = (propDefs == null) ? null : propDefs[0];\nboolean useProps = _c",
+        "(DeserializationContext ctxt, BeanDescription bean",
+        "DeserializationContext ctxt, BeanDescription beanD",
+        "eserializationContext ctxt, BeanDescription beanDe",
+        "serializationContext ctxt, BeanDescription beanDes",
+        "erializationContext ctxt, BeanDescription beanDesc",
+        "lizationContext ctxt, BeanDescription beanDesc, Vi",
+        "izationContext ctxt, BeanDescription beanDesc, Vis",
+        "zationContext ctxt, BeanDescription beanDesc, Visi",
+        "tionContext ctxt, BeanDescription beanDesc, Visibi",
+        "onContext ctxt, BeanDescription beanDesc, Visibili",
+        "ext ctxt, BeanDescription beanDesc, VisibilityChec"
+    ]
+}

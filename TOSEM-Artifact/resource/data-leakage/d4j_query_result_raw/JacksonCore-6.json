@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.8995901639344263,
+    "input": "private final static int _parseIndex(String str) {\n    final int len = str.length();\n    // [core#133]: beware of super long indexes; assume we never\n    // have arrays over 2 billion entries so ints are fine.\n    if (len == 0 || len > 10) {\n        return -1;\n    }\n    // [core#176]: no leading zeroes allowed\n    char c = str.charAt(0);\n    if (c <= '0') {\n        return (len == 1 && c == '0') ? 0 : -1;\n    }\n    if (c > '9') {\n        return -1;\n    }\n    for (int i = 1; i < len; ++i) {\n        c = str.charAt(i);\n        if (c > '9' || c < '0') {\n            return -1;\n        }\n    }\n    if (len == 10) {\n        long l = NumberInput.parseLong(str);\n        if (l > Integer.MAX_VALUE) {\n            return -1;\n        }\n    }\n    return NumberInput.parseInt(str);\n}",
+    "query_result": [
+        "ic int _parseIndex(String str) {\nfinal int len = str.length();\n// [core#133]: beware of super long indexes; assume we never\n// have arrays over 2 billion entries so ints are fine.\nif (len == 0 || len > 10) {\nreturn -1;\n}\n// [core#176]: no leading zeroes allowed\nchar c = str.charAt(0);\nif (c <= '0') {\nreturn (len == 1 && c == '0') ? 0 : -1;\n}\nif (c > '9') {\nreturn -1;\n}\nfor (int i = 1; i < len; ++i) {\nc = str.charAt(i);\nif (c > '9' || c < '0') {\nreturn -1;\n}\n}\nif (len == 10) {\nlong l = NumberInput.parseLong(str);\nif (l > Integer.MAX_VALUE) {\nret",
+        "eIndex(String str) {\nfinal int len = str.length();\n// [core#133]: beware of super long indexes; assume we never\n// have arrays over 2 billion entries so ints are fine.\nif (len == 0 || len > 10) {\nreturn -1;\n}\n// [core#176]: no leading zeroes allowed\nchar c = str.charAt(0);\nif (c <= '0') {\nreturn (len == 1 && c == '0') ? 0 : -1;\n}\nif (c > '9') {\nreturn -1;\n}\nfor (int i = 1; i < len; ++i) {\nc = str.charAt(i);\nif (c > '9' || c < '0') {\nreturn -1;\n}\n}\nif (len == 10) {\nlong l = NumberInput.parseLong(str);\nif (l > Integer.MAX_VALUE) {\nreturn -1;\n}\n}\n",
+        "are of super long indexes; assume we never\n// have arrays over 2 billion entries so ints are fine.\ni",
+        "\nfor (int i = 1; i < len; ++i) {\nc = str.charAt(i)",
+        "if (c > '9' || c < '0') {\nreturn -1;\n}\n}\nif (len ="
+    ]
+}

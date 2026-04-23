@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.9318885448916409,
+    "input": "    public void verify(VerificationData data) {\n        AssertionError error = null;\n\n        timer.start();\n        while (timer.isCounting()) {\n            try {\n                delegate.verify(data);\n\n                if (returnOnSuccess) {\n                    return;\n                } else {\n                    error = null;\n                }\n            } catch (MockitoAssertionError e) {\n                error = handleVerifyException(e);\n            }\n            catch (AssertionError e) {\n                error = handleVerifyException(e);\n            }\n        }\n\n        if (error != null) {\n            throw error;\n        }\n    }",
+    "query_result": [
+        "VerificationData data) {\nAssertionError error = null;\ntimer.start();\nwhile (timer.isCounting()) {\ntry {\ndelegate.verify(data);\nif (returnOnSuccess) {\nreturn;\n} else {\nerror = null;\n}\n} catch (MockitoAssertionError e) {\nerror = handleVerifyException(e);\n}\ncatch (AssertionError e) {\nerror = handleVerifyException(e);\n}\n}\nif (error != null) {\nthrow err",
+        "ssertionError e) {\nerror = handleVerifyException(e"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.6387096774193548,
+    "input": "  private boolean isSafeReplacement(Node node, Node replacement) {\n    // No checks are needed for simple names.\n    if (node.isName()) {\n      return true;\n    }\n    Preconditions.checkArgument(node.isGetProp());\n\n    while (node.isGetProp()) {\n      node = node.getFirstChild();\n    }\n    if (node.isName()\n        && isNameAssignedTo(node.getString(), replacement)) {\n      return false;\n    }\n\n    return true;\n  }",
+    "query_result": [
+        "afeReplacement(Node node, Node replacement) {\n// No checks are needed for simple names.\nif (node.isN",
+        "op());\nwhile (node.isGetProp()) {\nnode = node.getF",
+        "if (node.isName()\n&& isNameAssignedTo(node.getStri",
+        "ame()\n&& isNameAssignedTo(node.getString(), replac",
+        "ameAssignedTo(node.getString(), replacement)) {\nre"
+    ]
+}

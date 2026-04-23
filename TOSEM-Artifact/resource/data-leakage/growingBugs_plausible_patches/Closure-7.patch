@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
+index 0afabc8a..d9d4f40b 100644
+--- a/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
+@@ -606,16 +606,15 @@ public abstract class ChainableReverseAbstractInterpreter
+       return matchesExpectation("number") ? getNativeType(NUMBER_TYPE) : null;
+     }
+ 
+-    @Override
+-    public JSType caseObjectType(ObjectType type) {
+-      if (value.equals("function")) {
+-        JSType ctorType = getNativeType(U2U_CONSTRUCTOR_TYPE);
+-        return resultEqualsValue && ctorType.isSubtype(type) ? ctorType : null;
+-          // Objects are restricted to "Function", subtypes are left
+-          // Only filter out subtypes of "function"
+-      }
+-      return matchesExpectation("object") ? type : null;
+-    }
++@Override
++public JSType caseObjectType(ObjectType type) {
++  if (value.equals("function")) {
++    JSType ctorType = getNativeType(U2U_CONSTRUCTOR_TYPE);
++    // Explicitly include "Object" in the result type if not already covered
++    return resultEqualsValue && ctorType.isSubtype(type) ? ctorType : (matchesExpectation("object") ? type : null);
++  }
++  return matchesExpectation("object") ? type : null;
++}
+ 
+     @Override
+     public JSType caseStringType() {

@@ -1,0 +1,37 @@
+diff --git a/src/main/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtils.java b/src/main/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtils.java
+index 1c63c5a..f38423f 100644
+--- a/src/main/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtils.java
++++ b/src/main/java/com/alibaba/spring/util/AnnotatedBeanDefinitionRegistryUtils.java
+@@ -90,24 +90,23 @@ public abstract class AnnotatedBeanDefinitionRegistryUtils {
+             return;
+         }
+ 
+-
+         // Remove all annotated-classes that have been registered
+-        Iterator<Class<?>> iterator = new ArrayList<Class<?>>(asList(annotatedClasses)).iterator();
+-
+-        while (iterator.hasNext()) {
+-            Class<?> annotatedClass = iterator.next();
+-            if (isPresentBean(registry, annotatedClass)) {
+-                iterator.remove();
++        List<Class<?>> unregisteredClasses = new ArrayList<>();
++        for (Class<?> annotatedClass : annotatedClasses) {
++            if (!isPresentBean(registry, annotatedClass)) {
++                unregisteredClasses.add(annotatedClass);
+             }
+         }
+ 
+         AnnotatedBeanDefinitionReader reader = new AnnotatedBeanDefinitionReader(registry);
+ 
+         if (logger.isDebugEnabled()) {
+-            logger.debug(registry.getClass().getSimpleName() + " will register annotated classes : " + asList(annotatedClasses) + " .");
++            logger.debug(registry.getClass().getSimpleName() + " will register annotated classes : " + unregisteredClasses + " .");
+         }
+ 
+-        reader.register(annotatedClasses);
++        if (!unregisteredClasses.isEmpty()) {
++            reader.register(unregisteredClasses.toArray(new Class<?>[0]));
++        }
+ 
+     }
+ 

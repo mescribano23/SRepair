@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5764119601328903,
+    "input": "        @SuppressWarnings(\"resource\")\n        @Override\n        public final Object deserializeKey(String key, DeserializationContext ctxt)\n            throws IOException\n        {\n            if (key == null) { // is this even legal call?\n                return null;\n            }\n            TokenBuffer tb = new TokenBuffer(ctxt.getParser(), ctxt);\n            tb.writeString(key);\n            try {\n                // Ugh... should not have to give parser which may or may not be correct one...\n                JsonParser p = tb.asParser();\n                p.nextToken();\n                Object result = _delegate.deserialize(p, ctxt);\n                if (result != null) {\n                    return result;\n                }\n                return ctxt.handleWeirdKey(_keyClass, key, \"not a valid representation\");\n            } catch (Exception re) {\n                return ctxt.handleWeirdKey(_keyClass, key, \"not a valid representation: %s\", re.getMessage());\n            }\n        }",
+    "query_result": [
+        "legate.deserialize(p, ctxt); if (result != null) { return result; } return ctxt.handleWeirdKey(_keyClass, key, \"not a valid representation\"); } catch (Exception re) { return ctxt.handleWeirdKey(_keyClass, key, \"not a valid representation: %s\", re.get",
+        "uppressWarnings(\"resource\") @Override public final Object deserializeKey(String key, Deserialization",
+        "@Override public final Object deserializeKey(String key, DeserializationContext ctxt) throws IOExce",
+        "ublic final Object deserializeKey(String key, DeserializationContext ctxt) throws IOException { if (",
+        "SuppressWarnings(\"resource\") @Override public fina",
+        "inal Object deserializeKey(String key, Deserializa",
+        "nal Object deserializeKey(String key, Deserializat",
+        "Object deserializeKey(String key, DeserializationC",
+        "bject deserializeKey(String key, DeserializationCo",
+        "ject deserializeKey(String key, DeserializationCon",
+        "ct deserializeKey(String key, DeserializationConte",
+        "t deserializeKey(String key, DeserializationContex",
+        "deserializeKey(String key, DeserializationContext",
+        "deserializeKey(String key, DeserializationContext",
+        "eserializeKey(String key, DeserializationContext c",
+        "serializeKey(String key, DeserializationContext ct",
+        "erializeKey(String key, DeserializationContext ctx",
+        "rializeKey(String key, DeserializationContext ctxt",
+        "ializeKey(String key, DeserializationContext ctxt)",
+        "zeKey(String key, DeserializationContext ctxt) thr"
+    ]
+}

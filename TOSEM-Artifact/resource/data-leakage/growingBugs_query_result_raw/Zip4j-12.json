@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.5588235294117647,
+    "input": "private void verifyNextEntry(ZipInputStream zipInputStream, FileHeader fileHeader) throws IOException {\n    if (BitUtils.isBitSet(fileHeader.getGeneralPurposeFlag()[0], 6)) {\n      throw new ZipException(\"Entry with name \" + fileHeader.getFileName() + \" is encrypted with Strong Encryption. \" +\n          \"Zip4j does not support Strong Encryption, as this is patented.\");\n    }\n\n    LocalFileHeader localFileHeader = zipInputStream.getNextEntry(fileHeader);\n\n    if (localFileHeader == null) {\n      throw new ZipException(\"Could not read corresponding local file header for file header: \"\n          + fileHeader.getFileName());\n    }\n\n    if (!fileHeader.getFileName().equals(localFileHeader.getFileName())) {\n      throw new ZipException(\"File header and local file header mismatch\");\n    }\n  }",
+    "query_result": [
+        "eHeader localFileHeader = zipInputStream.getNextEntry(fileHeader);\nif (localFileHeader == null) {\nthrow new ZipException(\"Could not read corresponding local file header for file header: \"\n+ fileHeader.getFileName());\n}\nif (!fileHeader.getFileName().equals(localFileHeader.getFileName())) {\nthrow new ZipException(\"File header and local file header mi",
+        " verifyNextEntry(ZipInputStream zipInputStream, Fi"
+    ]
+}

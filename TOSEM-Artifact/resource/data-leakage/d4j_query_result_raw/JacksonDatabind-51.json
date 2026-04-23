@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7968901846452867,
+    "input": "protected final JsonDeserializer<Object> _findDeserializer(DeserializationContext ctxt,\n        String typeId) throws IOException\n{\n    JsonDeserializer<Object> deser = _deserializers.get(typeId);\n    if (deser == null) {\n        /* As per [Databind#305], need to provide contextual info. But for\n         * backwards compatibility, let's start by only supporting this\n         * for base class, not via interface. Later on we can add this\n         * to the interface, assuming deprecation at base class helps.\n         */\n        JavaType type = _idResolver.typeFromId(ctxt, typeId);\n        if (type == null) {\n            // As per [JACKSON-614], use the default impl if no type id available:\n            deser = _findDefaultImplDeserializer(ctxt);\n            if (deser == null) {\n                // 10-May-2016, tatu: We may get some help...\n                JavaType actual = _handleUnknownTypeId(ctxt, typeId, _idResolver, _baseType);\n                if (actual == null) { // what should this be taken to mean?\n                    // TODO: try to figure out something better\n                    return null;\n                }\n                // ... would this actually work?\n                deser = ctxt.findContextualValueDeserializer(actual, _property);\n            }\n        } else {\n            /* 16-Dec-2010, tatu: Since nominal type we get here has no (generic) type parameters,\n             *   we actually now need to explicitly narrow from base type (which may have parameterization)\n",
+    "query_result": [
+        "serializer<Object> _findDeserializer(DeserializationContext ctxt,\nString typeId) throws IOException\n{\nJsonDeserializer<Object> deser = _deserializers.get(typeId);\nif (deser == null) {\n/* As per [Databind#305], need to provide contextual info. But for\n* backwards compatibility, let's start by only supporting this\n* for base class, not via interface. Later on we can add this\n* to the interface, assuming deprecation at base class helps.\n*/\nJavaType type = _idResolver.typeFromId(ctxt, typeId);\nif (type == null) {\n// As per [JACKSON-614], use the default impl if no type id available:\ndeser = _findDefaultImplDeserializer(ctxt);\nif (deser == null) {",
+        "#305], need to provide contextual info. But for\n* backwards compatibility, let's start by only supporting this\n* for base class, not via interface. Later on we can add this\n* to the interface, assuming deprecation at base class helps.\n*/\nJavaType type = _idResolver.typeFromId(ctxt, typeId);\nif (type",
+        "l info. But for\n* backwards compatibility, let's start by only supporting this\n* for base class, not via interface. Later on we can add this\n* to the interface, assuming deprecation at base class helps.\n*/\nJavaType type = _idResolver.typeFromId(ctxt,",
+        "t.findContextualValueDeserializer(actual, _property);\n}\n} else {\n/* 16-Dec-2010, tatu: Since nominal type we get here has no (generic) type parameters,\n* we actually now need to explicitly narrow from",
+        "ializer<Object> _findDeserializer(DeserializationContext ctxt,\nString typeId) throws IOException\n{\nJsonDeserializer<Object> deser = _deserializers.get",
+        "mpl if no type id available:\ndeser = _findDefaultImplDeserializer(ctxt);\nif (deser == null) {\n// 10-May-2016, tatu: We may get some help...\nJavaType a",
+        "available:\ndeser = _findDefaultImplDeserializer(ctxt);\nif (deser == null) {\n// 10-May-2016, tatu: We may get some help...\nJavaType actual = _handleUnk",
+        " 16-Dec-2010, tatu: Since nominal type we get here has no (generic) type parameters,\n* we actually now need to explicitly narrow from base type (which",
+        "16-Dec-2010, tatu: Since nominal type we get here has no (generic) type parameters,\n* we actually now need to explicitly narrow from base type (which ",
+        "ws IOException\n{\nJsonDeserializer<Object> deser = _deserializers.get(typeId);\nif (deser == null) {\n/",
+        "d final JsonDeserializer<Object> _findDeserializer",
+        "final JsonDeserializer<Object> _findDeserializer(D",
+        "sonDeserializer<Object> _findDeserializer(Deserial",
+        "Deserializer<Object> _findDeserializer(Deserializa",
+        "izer<Object> _findDeserializer(DeserializationCont",
+        "<Object> _findDeserializer(DeserializationContext ",
+        "deser = _findDefaultImplDeserializer(ctxt);\nif (de",
+        "eser = _findDefaultImplDeserializer(ctxt);\nif (des",
+        "er = _findDefaultImplDeserializer(ctxt);\nif (deser",
+        " _findDefaultImplDeserializer(ctxt);\nif (deser == "
+    ]
+}

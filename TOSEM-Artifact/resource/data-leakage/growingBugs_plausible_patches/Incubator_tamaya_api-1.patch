@@ -1,0 +1,55 @@
+diff --git a/code/api/src/main/java/org/apache/tamaya/spi/ServiceContextManager.java b/code/api/src/main/java/org/apache/tamaya/spi/ServiceContextManager.java
+index f58c27ad..7f493573 100644
+--- a/code/api/src/main/java/org/apache/tamaya/spi/ServiceContextManager.java
++++ b/code/api/src/main/java/org/apache/tamaya/spi/ServiceContextManager.java
+@@ -52,28 +52,32 @@ public final class ServiceContextManager {
+      *
+      * @return {@link ServiceContext} to be used for loading the services.
+      */
+-    private static ServiceContext loadDefaultServiceProvider() {
+-        ServiceContext highestServiceContext = null;
+-        try {
+-            int highestOrdinal = 0;
+-            for (ServiceContext serviceContext : ServiceLoader.load(ServiceContext.class)) {
+-                if(highestServiceContext==null){
+-                    highestServiceContext = serviceContext;
+-                }else if (serviceContext.ordinal() > highestOrdinal) {
+-                    highestServiceContext = serviceContext;
+-                    highestOrdinal = serviceContext.ordinal();
+-                }
++private static ServiceContext loadDefaultServiceProvider() {
++    ServiceContext highestServiceContext = null;
++    int highestOrdinal = Integer.MIN_VALUE; // Initialize with the minimum integer value
++
++    try {
++        for (ServiceContext serviceContext : ServiceLoader.load(ServiceContext.class)) {
++            if (highestServiceContext == null) {
++                highestServiceContext = serviceContext;
++                highestOrdinal = serviceContext.ordinal(); // Initialize with the ordinal of the first context
++            } else if (serviceContext.ordinal() > highestOrdinal) {
++                highestServiceContext = serviceContext;
++                highestOrdinal = serviceContext.ordinal();
+             }
+-        } catch (Exception e) {
+-            throw new ConfigException("ServiceContext not loadable", e);
+         }
+-        if (highestServiceContext==null){
+-            throw new ConfigException("No ServiceContext found");
+-        }
+-        LOG.info("Using Service Context of type: " + highestServiceContext.getClass().getName());
+-        return highestServiceContext;
++    } catch (Exception e) {
++        throw new ConfigException("ServiceContext not loadable", e);
+     }
+ 
++    if (highestServiceContext == null) {
++        throw new ConfigException("No ServiceContext found");
++    }
++
++    LOG.info("Using Service Context of type: " + highestServiceContext.getClass().getName());
++    return highestServiceContext;
++}
++
+     /**
+      * Replace the current {@link ServiceContext} in use.
+      *

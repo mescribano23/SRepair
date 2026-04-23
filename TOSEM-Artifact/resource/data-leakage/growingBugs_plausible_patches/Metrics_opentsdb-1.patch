@@ -1,0 +1,65 @@
+diff --git a/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java b/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
+index 481da39..3b5430c 100644
+--- a/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
++++ b/src/main/java/com/github/sps/metrics/OpenTsdbReporter.java
+@@ -203,36 +203,40 @@ public class OpenTsdbReporter extends ScheduledReporter {
+         this.tags = tags;
+     }
+ 
+-    @Override
+-    public void report(SortedMap<String, Gauge> gauges, SortedMap<String, Counter> counters, SortedMap<String, Histogram> histograms, SortedMap<String, Meter> meters, SortedMap<String, Timer> timers) {
++@Override
++public void report(SortedMap<String, Gauge> gauges, SortedMap<String, Counter> counters, SortedMap<String, Histogram> histograms, SortedMap<String, Meter> meters, SortedMap<String, Timer> timers) {
+ 
+-        final long timestamp = clock.getTime() / 1000;
++    final long timestamp = clock.getTime() / 1000;
+ 
+-        final Set<OpenTsdbMetric> metrics = new HashSet<OpenTsdbMetric>();
++    final Set<OpenTsdbMetric> metrics = new HashSet<OpenTsdbMetric>();
+ 
+-        for (Map.Entry<String, Gauge> g : gauges.entrySet()) {
+-            metrics.add(buildGauge(g.getKey(), g.getValue(), timestamp));
+-        }
+-
+-        for (Map.Entry<String, Counter> entry : counters.entrySet()) {
+-            metrics.add(buildCounter(entry.getKey(), entry.getValue(), timestamp));
++    for (Map.Entry<String, Gauge> g : gauges.entrySet()) {
++        Object gaugeValue = g.getValue().getValue();
++        if (gaugeValue instanceof Collection && ((Collection) gaugeValue).isEmpty()) {
++            continue; // Skip adding the metric if the gauge value is an empty collection
+         }
++        metrics.add(buildGauge(g.getKey(), g.getValue(), timestamp));
++    }
+ 
+-        for (Map.Entry<String, Histogram> entry : histograms.entrySet()) {
+-            metrics.addAll(buildHistograms(entry.getKey(), entry.getValue(), timestamp));
+-        }
++    for (Map.Entry<String, Counter> entry : counters.entrySet()) {
++        metrics.add(buildCounter(entry.getKey(), entry.getValue(), timestamp));
++    }
+ 
+-        for (Map.Entry<String, Meter> entry : meters.entrySet()) {
+-            metrics.addAll(buildMeters(entry.getKey(), entry.getValue(), timestamp));
+-        }
++    for (Map.Entry<String, Histogram> entry : histograms.entrySet()) {
++        metrics.addAll(buildHistograms(entry.getKey(), entry.getValue(), timestamp));
++    }
+ 
+-        for (Map.Entry<String, Timer> entry : timers.entrySet()) {
+-            metrics.addAll(buildTimers(entry.getKey(), entry.getValue(), timestamp));
+-        }
++    for (Map.Entry<String, Meter> entry : meters.entrySet()) {
++        metrics.addAll(buildMeters(entry.getKey(), entry.getValue(), timestamp));
++    }
+ 
+-        opentsdb.send(metrics);
++    for (Map.Entry<String, Timer> entry : timers.entrySet()) {
++        metrics.addAll(buildTimers(entry.getKey(), entry.getValue(), timestamp));
+     }
+ 
++    opentsdb.send(metrics);
++}
++
+     private Set<OpenTsdbMetric> buildTimers(String name, Timer timer, long timestamp) {
+         final MetricsCollector collector = MetricsCollector.createNew(prefix(name), tags, timestamp);
+         final Snapshot snapshot = timer.getSnapshot();

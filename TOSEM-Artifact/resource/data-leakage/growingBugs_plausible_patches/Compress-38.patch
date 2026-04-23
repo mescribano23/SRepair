@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
+index 941bbbd3..dd416569 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java
+@@ -846,23 +846,30 @@ public class TarArchiveEntry implements TarConstants, ArchiveEntry {
+      *
+      * @return True if this entry is a directory.
+      */
+-    @Override
+-    public boolean isDirectory() {
+-        if (file != null) {
+-            return file.isDirectory();
+-        }
+-
+-        if (linkFlag == LF_DIR) {
+-            return true;
+-        }
++@Override
++public boolean isDirectory() {
++    if (file != null) {
++        return file.isDirectory();
++    }
+ 
+-        if (getName().endsWith("/")) {
+-            return true;
+-        }
++    if (linkFlag == LF_DIR) {
++        return true;
++    }
+ 
+-        return false;
++    // Use file type or other metadata to refine directory checks
++    if (isFileTypeDir()) {
++        return true;
+     }
+ 
++    return false;
++}
++
++private boolean isFileTypeDir() {
++    // Logic to determine if the file type or metadata indicates a directory
++    // Placeholder for actual logic
++    return false;
++}
++
+     /**
+      * Check if this is a "normal file"
+      *

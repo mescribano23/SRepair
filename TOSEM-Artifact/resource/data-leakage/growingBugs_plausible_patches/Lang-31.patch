@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index a90b0673..43203a41 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -1437,24 +1437,23 @@ public class StringUtils {
+      * <code>false</code> if no match or null input
+      * @since 2.4
+      */
+-	public static boolean containsAny(CharSequence cs, char[] searchChars) {
+-		if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
+-			return false;
+-		}
+-		int csLength = cs.length();
+-		int searchLength = searchChars.length;
+-		for (int i = 0; i < csLength; i++) {
+-			char ch = cs.charAt(i);
+-			for (int j = 0; j < searchLength; j++) {
+-				if (searchChars[j] == ch) {
+-						// ch is a supplementary character
+-						// ch is in the Basic Multilingual Plane
+-						return true;
+-				}
+-			}
+-		}
+-		return false;
+-	}
++public static boolean containsAny(CharSequence cs, char[] searchChars) {
++    if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
++        return false;
++    }
++    
++    int searchLength = searchChars.length;
++    for (int i = 0; i < cs.length(); ) {
++        int cp = Character.codePointAt(cs, i); // Get the code point at the current position
++        for (int j = 0; j < searchLength; j++) {
++            if (searchChars[j] == cp || (Character.isSupplementaryCodePoint(cp) && j < searchLength - 1 && Character.toChars(cp)[0] == searchChars[j] && Character.toChars(cp)[1] == searchChars[j + 1])) {
++                return true;
++            }
++        }
++        i += Character.charCount(cp); // Move to the next character or surrogate pair
++    }
++    return false;
++}
+ 
+     /**
+      * <p>

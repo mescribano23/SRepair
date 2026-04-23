@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.5724137931034483,
+    "input": "    protected void setName(String name) {\n        if (name != null && getPlatform() == PLATFORM_FAT\n            && name.indexOf(\"/\") == -1) {\n            name = name.replace('\\\\', '/');\n        }\n        this.name = name;\n    }",
+    "query_result": [
+        "ted void setName(String name) {\nif (name != null &",
+        "\nname = name.replace('\\\\', '/');\n}\nthis.name = nam"
+    ]
+}

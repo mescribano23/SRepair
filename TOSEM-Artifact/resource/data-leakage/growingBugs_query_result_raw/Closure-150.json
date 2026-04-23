@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.2548076923076923,
+    "input": "    @Override public void visit(NodeTraversal t, Node n, Node parent) {\n      if (n == scope.getRootNode()) return;\n\n      if (n.getType() == Token.LP && parent == scope.getRootNode()) {\n        handleFunctionInputs(parent);\n        return;\n      }\n\n      super.visit(t, n, parent);\n    }",
+    "query_result": [
+        " public void visit(NodeTraversal t, Node n, Node p",
+        "public void visit(NodeTraversal t, Node n, Node pa",
+        "ublic void visit(NodeTraversal t, Node n, Node par",
+        "blic void visit(NodeTraversal t, Node n, Node pare",
+        "lic void visit(NodeTraversal t, Node n, Node paren",
+        "ic void visit(NodeTraversal t, Node n, Node parent",
+        "c void visit(NodeTraversal t, Node n, Node parent)",
+        " void visit(NodeTraversal t, Node n, Node parent) ",
+        "void visit(NodeTraversal t, Node n, Node parent) {",
+        "oid visit(NodeTraversal t, Node n, Node parent) {\n",
+        "id visit(NodeTraversal t, Node n, Node parent) {\ni",
+        "d visit(NodeTraversal t, Node n, Node parent) {\nif",
+        " visit(NodeTraversal t, Node n, Node parent) {\nif ",
+        "visit(NodeTraversal t, Node n, Node parent) {\nif (",
+        "isit(NodeTraversal t, Node n, Node parent) {\nif (n"
+    ]
+}

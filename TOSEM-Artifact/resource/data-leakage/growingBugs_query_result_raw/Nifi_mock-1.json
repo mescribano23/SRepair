@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.2542372881355932,
+    "input": "    @Override\n    public String decrypt(final String encrypted) {\n        if (encrypted.startsWith(\"enc{\") && encrypted.endsWith(\"}\")) {\n            return encrypted.substring(4, encrypted.length() - 1);\n        }\n        return encrypted;\n    }",
+    "query_result": [
+        "verride\npublic String decrypt(final String encrypt"
+    ]
+}

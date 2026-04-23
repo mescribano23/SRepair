@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/jsoup/nodes/Document.java b/src/main/java/org/jsoup/nodes/Document.java
+index c5814af..2b58e70 100644
+--- a/src/main/java/org/jsoup/nodes/Document.java
++++ b/src/main/java/org/jsoup/nodes/Document.java
+@@ -64,9 +64,10 @@ public class Document extends Element {
+      @return Trimmed title, or empty string if none set.
+      */
+     public String title() {
+-        // title is a preserve whitespace tag (for document output), but normalised here
+         Element titleEl = getElementsByTag("title").first();
+-        return titleEl != null ? titleEl.text().trim() : "";
++        if (titleEl == null) return "";
++        String text = titleEl.text().trim();
++        return text.replaceAll("\\s+", " ");
+     }
+ 
+     /**

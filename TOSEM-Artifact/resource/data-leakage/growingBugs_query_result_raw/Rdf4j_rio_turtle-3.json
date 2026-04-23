@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "private void getUsedNamespaces(Set<Statement> stmts, Set<String> used) {\n        for (Statement st : stmts) {\n            if (st.getSubject() instanceof IRI) {\n                IRI uri = (IRI) st.getSubject();\n                used.add(uri.getNamespace());\n            }\n            used.add(st.getPredicate().getNamespace());\n            if (st.getObject() instanceof IRI) {\n                IRI uri = (IRI) st.getObject();\n                used.add(uri.getNamespace());\n            } else if (st.getObject() instanceof Literal) {\n                Literal lit = (Literal) st.getObject();\n                if (lit.getDatatype() != null) {\n                    used.add(lit.getDatatype().getNamespace());\n                }\n            }\n        }\n    }",
+    "query_result": []
+}

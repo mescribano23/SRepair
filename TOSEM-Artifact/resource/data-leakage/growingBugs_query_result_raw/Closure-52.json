@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.7109826589595376,
+    "input": "  static boolean isSimpleNumber(String s) {\n    int len = s.length();\n    for (int index = 0; index < len; index++) {\n      char c = s.charAt(index);\n      if (c < '0' || c > '9') {\n        return false;\n      }\n    }\n    return len > 0 && s.charAt(0) != '0';\n  }",
+    "query_result": [
+        "er(String s) {\nint len = s.length();\nfor (int index = 0; index < len; index++) {\nchar c = s.charAt(i",
+        "{\nint len = s.length();\nfor (int index = 0; index ",
+        "en = s.length();\nfor (int index = 0; index < len; ",
+        "= s.length();\nfor (int index = 0; index < len; ind",
+        "s.length();\nfor (int index = 0; index < len; index",
+        ".length();\nfor (int index = 0; index < len; index+",
+        "length();\nfor (int index = 0; index < len; index++",
+        "ength();\nfor (int index = 0; index < len; index++)",
+        "gth();\nfor (int index = 0; index < len; index++) {",
+        "th();\nfor (int index = 0; index < len; index++) {\n",
+        "n; index++) {\nchar c = s.charAt(index);\nif (c < '0",
+        " = s.charAt(index);\nif (c < '0' || c > '9') {\nretu",
+        "dex);\nif (c < '0' || c > '9') {\nreturn false;\n}\n}\n",
+        ");\nif (c < '0' || c > '9') {\nreturn false;\n}\n}\nret",
+        ";\nif (c < '0' || c > '9') {\nreturn false;\n}\n}\nretu",
+        "\nif (c < '0' || c > '9') {\nreturn false;\n}\n}\nretur",
+        "if (c < '0' || c > '9') {\nreturn false;\n}\n}\nreturn",
+        "f (c < '0' || c > '9') {\nreturn false;\n}\n}\nreturn "
+    ]
+}

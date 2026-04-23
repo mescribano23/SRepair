@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.1040582726326743,
+    "input": "public void collect(JSModule module, Scope scope, Node n) {\n  Node parent = n.getParent();\n\n  String name;\n  boolean isSet = false;\n  Name.Type type = Name.Type.OTHER;\n  boolean isPropAssign = false;\n\n  switch (n.getType()) {\n    case Token.GETTER_DEF:\n    case Token.SETTER_DEF:\n    case Token.STRING_KEY:\n      // This may be a key in an object literal declaration.\n      name = null;\n      if (parent != null && parent.isObjectLit()) {\n        name = getNameForObjLitKey(n);\n      }\n      if (name == null) {\n        return;\n      }\n      isSet = true;\n      switch (n.getType()) {\n        case Token.STRING_KEY:\n          type = getValueType(n.getFirstChild());\n          break;\n        case Token.GETTER_DEF:\n          type = Name.Type.GET;\n          break;\n        case Token.SETTER_DEF:\n          type = Name.Type.SET;\n          break;\n        default:\n          throw new IllegalStateException(\"unexpected:\" + n);\n      }\n      break;\n    case Token.NAME:\n      // This may be a variable get or set.\n      if (parent != null) {\n        switch (parent.getType()) {\n          case Token.VAR:\n            isSet = true;\n            Node rvalue = n.getFirstChild();\n            type = rvalue == null ? Name.Type.OTHER : getValueType(rvalue);\n            break;\n          case Token.ASSIGN:\n            if (parent.getFirstChild() == n) {\n              isSet = true;\n              type = getValueType(n.getNext());\n            }\n            break;\n          case Token.GETPROP:\n            return;\n ",
+    "query_result": [
+        "oid collect(JSModule module, Scope scope, Node n) ",
+        "T;\nbreak;\ndefault:\nthrow new IllegalStateException",
+        ";\nbreak;\ndefault:\nthrow new IllegalStateException(",
+        "\nbreak;\ndefault:\nthrow new IllegalStateException(\"",
+        "break;\ndefault:\nthrow new IllegalStateException(\"u",
+        "reak;\ndefault:\nthrow new IllegalStateException(\"un",
+        "eak;\ndefault:\nthrow new IllegalStateException(\"une",
+        "ak;\ndefault:\nthrow new IllegalStateException(\"unex",
+        "k;\ndefault:\nthrow new IllegalStateException(\"unexp",
+        ";\ndefault:\nthrow new IllegalStateException(\"unexpe",
+        "\ndefault:\nthrow new IllegalStateException(\"unexpec",
+        "default:\nthrow new IllegalStateException(\"unexpect",
+        "efault:\nthrow new IllegalStateException(\"unexpecte",
+        "fault:\nthrow new IllegalStateException(\"unexpected"
+    ]
+}

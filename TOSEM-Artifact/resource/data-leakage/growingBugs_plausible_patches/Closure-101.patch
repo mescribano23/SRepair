@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index bdf55921..2e8e7207 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -432,6 +432,8 @@ public class CommandLineRunner extends
+     }
+     if (flags.process_closure_primitives) {
+       options.closurePass = true;
++    } else {
++      options.closurePass = false;
+     }
+ 
+     initOptionsFromFlags(options);

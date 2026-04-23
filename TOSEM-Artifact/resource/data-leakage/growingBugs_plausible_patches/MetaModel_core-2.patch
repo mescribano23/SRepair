@@ -1,0 +1,45 @@
+diff --git a/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java b/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java
+index 993bd895..35193c07 100644
+--- a/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java
++++ b/core/src/main/java/org/apache/metamodel/util/LegacyDeserializationObjectInputStream.java
+@@ -232,23 +232,25 @@ public class LegacyDeserializationObjectInputStream extends ObjectInputStream {
+         super(in);
+     }
+ 
+-    @Override
+-    protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
+-        final String className = desc.getName();
+-        if (className.startsWith("org.apache.metamodel") || className.startsWith("[Lorg.apache.metamodel")) {
+-            final String newClassName;
+-            if (OLD_CLASS_NAME_COLUMN_TYPE.equals(className)) {
+-                // since ColumnType was changed from enum to interface, there's
+-                // some special treatment here.
+-                newClassName = LegacyColumnType.class.getName();
+-            } else {
+-                newClassName = className.replace("org.eobjects", "org.apache");
+-            }
+-            return Class.forName(newClassName);
+-        }
+-        return super.resolveClass(desc);
++@Override
++protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
++    final String className = desc.getName();
++    final boolean isArray = className.startsWith("[L");
++    final String baseClassName = isArray ? className.substring(2, className.length() - 1) : className;
++    final String newBaseClassName;
++
++    if (baseClassName.startsWith("org.eobjects")) {
++        newBaseClassName = baseClassName.replaceFirst("org\\.eobjects", "org.apache");
++    } else if (OLD_CLASS_NAME_COLUMN_TYPE.equals(baseClassName)) {
++        newBaseClassName = LegacyColumnType.class.getName();
++    } else {
++        newBaseClassName = baseClassName;
+     }
+ 
++    final String newClassName = isArray ? "[L" + newBaseClassName + ";" : newBaseClassName;
++    return Class.forName(newClassName);
++}
++
+     @Override
+     protected ObjectStreamClass readClassDescriptor() throws IOException, ClassNotFoundException {
+         final ObjectStreamClass objectStreamClass = super.readClassDescriptor();

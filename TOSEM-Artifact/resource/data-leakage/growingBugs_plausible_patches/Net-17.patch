@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/net/io/Util.java b/src/main/java/org/apache/commons/net/io/Util.java
+index fbb5f2c6..45ffae94 100644
+--- a/src/main/java/org/apache/commons/net/io/Util.java
++++ b/src/main/java/org/apache/commons/net/io/Util.java
+@@ -267,29 +267,13 @@ public final class Util
+     {
+         int chars;
+         long total = 0;
+-        char[] buffer = new char[bufferSize >= 0 ? bufferSize : DEFAULT_COPY_BUFFER_SIZE];
++        int effectiveBufferSize = bufferSize > 0 ? bufferSize : DEFAULT_COPY_BUFFER_SIZE;
++        char[] buffer = new char[effectiveBufferSize];
+ 
+         try
+         {
+             while ((chars = source.read(buffer)) != -1)
+             {
+-                // Technically, some read(char[]) methods may return 0 and we cannot
+-                // accept that as an indication of EOF.
+-                if (chars == 0)
+-                {
+-                    chars = source.read();
+-                    if (chars < 0) {
+-                        break;
+-                    }
+-                    dest.write(chars);
+-                    dest.flush();
+-                    ++total;
+-                    if (listener != null) {
+-                        listener.bytesTransferred(total, chars, streamSize);
+-                    }
+-                    continue;
+-                }
+-
+                 dest.write(buffer, 0, chars);
+                 dest.flush();
+                 total += chars;

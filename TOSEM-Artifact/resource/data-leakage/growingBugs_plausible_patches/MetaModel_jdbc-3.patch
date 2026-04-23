@@ -1,0 +1,29 @@
+diff --git a/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java b/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
+index 4c7e588c..01731d25 100644
+--- a/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
++++ b/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
+@@ -85,7 +85,6 @@ public class SQLServerQueryRewriter extends OffsetFetchQueryRewriter {
+         return super.rewriteColumnType(columnType, columnSize);
+     }
+ 
+-    @Override
+     public String rewriteFilterItem(FilterItem item) {
+         if (item.isCompoundFilter()) {
+             return super.rewriteFilterItem(item);
+@@ -114,7 +113,7 @@ public class SQLServerQueryRewriter extends OffsetFetchQueryRewriter {
+ 
+                 final Date date = (Date) operand;
+ 
+-                final DateFormat format = DateUtils.createDateFormat("yyyyMMdd HH:mm:ss");
++                final DateFormat format = DateUtils.createDateFormat("yyyyMMdd HH:mm:ss.SSS");
+                 final String dateTimeValue = "CAST('" + format.format(date) + "' AS DATETIME)";
+ 
+                 sb.append(dateTimeValue);
+@@ -122,5 +121,5 @@ public class SQLServerQueryRewriter extends OffsetFetchQueryRewriter {
+             }
+         }
+         return super.rewriteFilterItem(item);
+-    }
++    }  
+ }
+\ No newline at end of file

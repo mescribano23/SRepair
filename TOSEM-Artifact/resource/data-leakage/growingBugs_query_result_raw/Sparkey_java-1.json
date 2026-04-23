@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.25728155339805825,
+    "input": "  private static File setEnding(File file, String ending) {\n    String fileName = file.getName();\n    if (fileName.endsWith(ending)) {\n      return file;\n    }\n    if (fileName.endsWith(\".spi\") || fileName.endsWith(\".spl\")) {\n      return new File(file.getParentFile(), changeEnding(fileName, ending));\n    }\n    if (fileName.endsWith(\".\")) {\n      return new File(file.getParentFile(), fileName.substring(0, fileName.length() - 1) + ending);\n    }\n    return new File(file.getParentFile(), fileName + ending);\n  }",
+    "query_result": [
+        ") {\nString fileName = file.getName();\nif (fileName",
+        " {\nString fileName = file.getName();\nif (fileName.",
+        "{\nString fileName = file.getName();\nif (fileName.e",
+        "\nString fileName = file.getName();\nif (fileName.en",
+        "String fileName = file.getName();\nif (fileName.end",
+        "tring fileName = file.getName();\nif (fileName.ends",
+        "ring fileName = file.getName();\nif (fileName.endsW",
+        "ing fileName = file.getName();\nif (fileName.endsWi",
+        "ng fileName = file.getName();\nif (fileName.endsWit",
+        "g fileName = file.getName();\nif (fileName.endsWith",
+        " fileName = file.getName();\nif (fileName.endsWith(",
+        "fileName = file.getName();\nif (fileName.endsWith(e",
+        "ew File(file.getParentFile(), fileName.substring(0",
+        " File(file.getParentFile(), fileName.substring(0, ",
+        "le(file.getParentFile(), fileName.substring(0, fil"
+    ]
+}

@@ -1,0 +1,56 @@
+diff --git a/src/main/java/org/joda/time/DateTimeZone.java b/src/main/java/org/joda/time/DateTimeZone.java
+index 7d1719bc..e5676d0f 100644
+--- a/src/main/java/org/joda/time/DateTimeZone.java
++++ b/src/main/java/org/joda/time/DateTimeZone.java
+@@ -269,30 +269,29 @@ public abstract class DateTimeZone implements Serializable {
+      * @throws IllegalArgumentException if any value is out of range, the minutes are negative
+      *  when the hours are positive, or the resulting offset exceeds +/- 23:59:59.000
+      */
+-    public static DateTimeZone forOffsetHoursMinutes(int hoursOffset, int minutesOffset) throws IllegalArgumentException {
+-        if (hoursOffset == 0 && minutesOffset == 0) {
+-            return DateTimeZone.UTC;
+-        }
+-        if (hoursOffset < -23 || hoursOffset > 23) {
+-            throw new IllegalArgumentException("Hours out of range: " + hoursOffset);
+-        }
+-        if (minutesOffset < 0 || minutesOffset > 59) {
+-            throw new IllegalArgumentException("Minutes out of range: " + minutesOffset);
+-        }
+-        int offset = 0;
+-        try {
+-            int hoursInMinutes = hoursOffset * 60;
+-            if (hoursInMinutes < 0) {
+-                minutesOffset = hoursInMinutes - minutesOffset;
+-            } else {
+-                minutesOffset = hoursInMinutes + minutesOffset;
+-            }
+-            offset = FieldUtils.safeMultiply(minutesOffset, DateTimeConstants.MILLIS_PER_MINUTE);
+-        } catch (ArithmeticException ex) {
+-            throw new IllegalArgumentException("Offset is too large");
++public static DateTimeZone forOffsetHoursMinutes(int hoursOffset, int minutesOffset) throws IllegalArgumentException {
++    if (hoursOffset == 0 && minutesOffset == 0) {
++        return DateTimeZone.UTC;
++    }
++    if (hoursOffset < -23 || hoursOffset > 23) {
++        throw new IllegalArgumentException("Hours out of range: " + hoursOffset);
++    }
++    if (minutesOffset < -59 || minutesOffset > 59 || (hoursOffset > 0 && minutesOffset < 0)) {
++        throw new IllegalArgumentException("Minutes out of range: " + minutesOffset);
++    }
++    int offset = 0;
++    try {
++        int hoursInMinutes = hoursOffset * 60;
++        int totalMinutes = hoursInMinutes + Math.abs(minutesOffset);
++        if (hoursOffset < 0 || minutesOffset < 0) {
++            totalMinutes = hoursInMinutes - Math.abs(minutesOffset);
+         }
+-        return forOffsetMillis(offset);
++        offset = FieldUtils.safeMultiply(totalMinutes, DateTimeConstants.MILLIS_PER_MINUTE);
++    } catch (ArithmeticException ex) {
++        throw new IllegalArgumentException("Offset is too large");
+     }
++    return forOffsetMillis(offset);
++}
+ 
+     /**
+      * Gets a time zone instance for the specified offset to UTC in milliseconds.

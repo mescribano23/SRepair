@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.21031746031746032,
+    "input": "    protected final JsonNode _fromFloat(JsonParser p, DeserializationContext ctxt,\n            final JsonNodeFactory nodeFactory) throws IOException\n    {\n        JsonParser.NumberType nt = p.getNumberType();\n        if (nt == JsonParser.NumberType.BIG_DECIMAL) {\n            return nodeFactory.numberNode(p.getDecimalValue());\n        }\n        if (ctxt.isEnabled(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS)) {\n            // 20-May-2016, tatu: As per [databind#1028], need to be careful\n            //   (note: JDK 1.8 would have `Double.isFinite()`)\n            // 21-Aug-2016, tatu: Not optimal, really, because this may result in\n            //   value getting parsed twice. But has to do for now, to resolve\n            //  [databind#1315]\n            double d = p.getDoubleValue();\n            if (Double.isInfinite(d) || Double.isNaN(d)) {\n                return nodeFactory.numberNode(d);\n            }\n            return nodeFactory.numberNode(p.getDecimalValue());\n        }\n        return nodeFactory.numberNode(p.getDoubleValue());\n    }",
+    "query_result": [
+        "serializationContext ctxt,\nfinal JsonNodeFactory n",
+        ".NumberType nt = p.getNumberType();\nif (nt == Json",
+        ";\n}\nif (ctxt.isEnabled(DeserializationFeature.USE_",
+        "\nif (ctxt.isEnabled(DeserializationFeature.USE_BIG",
+        "if (ctxt.isEnabled(DeserializationFeature.USE_BIG_",
+        " (ctxt.isEnabled(DeserializationFeature.USE_BIG_DE",
+        "(ctxt.isEnabled(DeserializationFeature.USE_BIG_DEC",
+        "txt.isEnabled(DeserializationFeature.USE_BIG_DECIM",
+        ".isEnabled(DeserializationFeature.USE_BIG_DECIMAL_",
+        "isEnabled(DeserializationFeature.USE_BIG_DECIMAL_F",
+        "sEnabled(DeserializationFeature.USE_BIG_DECIMAL_FO",
+        "Enabled(DeserializationFeature.USE_BIG_DECIMAL_FOR",
+        "nabled(DeserializationFeature.USE_BIG_DECIMAL_FOR_",
+        "abled(DeserializationFeature.USE_BIG_DECIMAL_FOR_F",
+        "bled(DeserializationFeature.USE_BIG_DECIMAL_FOR_FL",
+        "led(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLO",
+        "ed(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOA",
+        "d(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOAT",
+        "(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS",
+        "DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS)"
+    ]
+}

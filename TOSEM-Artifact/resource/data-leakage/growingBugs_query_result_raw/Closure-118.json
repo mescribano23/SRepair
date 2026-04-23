@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.09145427286356822,
+    "input": "    private void handleObjectLit(NodeTraversal t, Node n) {\n      for (Node child = n.getFirstChild();\n          child != null;\n          child = child.getNext()) {\n        // Maybe STRING, GET, SET\n        if (child.isQuotedString()) {\n          continue;\n        }\n\n        // We should never see a mix of numbers and strings.\n        String name = child.getString();\n        T type = typeSystem.getType(getScope(), n, name);\n\n        Property prop = getProperty(name);\n        if (!prop.scheduleRenaming(child,\n                                   processProperty(t, prop, type, null))) {\n          // TODO(user): It doesn't look like the user can do much in this\n          // case right now.\n          if (propertiesToErrorFor.containsKey(name)) {\n            compiler.report(JSError.make(\n                t.getSourceName(), child, propertiesToErrorFor.get(name),\n                Warnings.INVALIDATION, name,\n                (type == null ? \"null\" : type.toString()), n.toString(), \"\"));\n          }\n        }\n      }\n    }",
+    "query_result": [
+        "for (Node child = n.getFirstChild();\nchild != null",
+        "or (Node child = n.getFirstChild();\nchild != null;",
+        "(Node child = n.getFirstChild();\nchild != null;\nch",
+        "Node child = n.getFirstChild();\nchild != null;\nchi",
+        "e child = n.getFirstChild();\nchild != null;\nchild ",
+        " child = n.getFirstChild();\nchild != null;\nchild =",
+        "child = n.getFirstChild();\nchild != null;\nchild = ",
+        "hild = n.getFirstChild();\nchild != null;\nchild = c",
+        "ld = n.getFirstChild();\nchild != null;\nchild = chi",
+        "d = n.getFirstChild();\nchild != null;\nchild = chil",
+        "= n.getFirstChild();\nchild != null;\nchild = child.",
+        " n.getFirstChild();\nchild != null;\nchild = child.g",
+        "n.getFirstChild();\nchild != null;\nchild = child.ge",
+        ".getFirstChild();\nchild != null;\nchild = child.get",
+        "getFirstChild();\nchild != null;\nchild = child.getN",
+        "etFirstChild();\nchild != null;\nchild = child.getNe"
+    ]
+}

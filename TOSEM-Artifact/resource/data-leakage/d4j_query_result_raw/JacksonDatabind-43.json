@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.06958762886597938,
+    "input": "@Override\n    public Object deserializeSetAndReturn(JsonParser p,\n    \t\tDeserializationContext ctxt, Object instance) throws IOException\n    {\n        /* 02-Apr-2015, tatu: Actually, as per [databind#742], let it be;\n         *  missing or null id is needed for some cases, such as cases where id\n         *  will be generated externally, at a later point, and is not available\n         *  quite yet. Typical use case is with DB inserts.\n         */\n        // note: no null checks (unlike usually); deserializer should fail if one found\n        if (p.hasToken(JsonToken.VALUE_NULL)) {\n            return null;\n        }\n        Object id = _valueDeserializer.deserialize(p, ctxt);\n        ReadableObjectId roid = ctxt.findObjectId(id, _objectIdReader.generator, _objectIdReader.resolver);\n        roid.bindItem(instance);\n        // also: may need to set a property value as well\n        SettableBeanProperty idProp = _objectIdReader.idProperty;\n        if (idProp != null) {\n            return idProp.setAndReturn(instance, id);\n        }\n        return instance;\n    }",
+    "query_result": [
+        "verride public Object deserializeSetAndReturn(Json",
+        "rride public Object deserializeSetAndReturn(JsonPa",
+        "ride public Object deserializeSetAndReturn(JsonPar",
+        "public Object deserializeSetAndReturn(JsonParser",
+        "public Object deserializeSetAndReturn(JsonParser p"
+    ]
+}

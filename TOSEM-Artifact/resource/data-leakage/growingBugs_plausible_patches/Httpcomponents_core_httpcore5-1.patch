@@ -1,0 +1,19 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java
+index 87a381fb0..972ad4e61 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/io/DefaultBHttpClientConnection.java
+@@ -201,13 +201,10 @@ public ClassicHttpResponse receiveResponseHeader() throws HttpException, IOExcep
+     }
+ 
+     @Override
+-    public void receiveResponseEntity( final ClassicHttpResponse response) throws HttpException, IOException {
++    public void receiveResponseEntity(final ClassicHttpResponse response) throws HttpException, IOException {
+         Args.notNull(response, "HTTP response");
+         final SocketHolder socketHolder = ensureOpen();
+         final long len = this.incomingContentStrategy.determineLength(response);
+-        if (len == ContentLengthStrategy.UNDEFINED) {
+-            return;
+-        }
+         response.setEntity(createIncomingEntity(response, this.inBuffer, socketHolder.getInputStream(), len));
+     }
+ }

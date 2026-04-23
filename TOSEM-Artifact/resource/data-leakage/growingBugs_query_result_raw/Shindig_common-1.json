@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8306748466257668,
+    "input": "  @SuppressWarnings(\"unchecked\")\n  public static void append(Appendable buf, Object value) throws IOException {\n    if (value == null) {\n      buf.append(\"null\");\n    } else if (value instanceof Number ||\n               value instanceof Boolean) {\n      // Primitives\n      buf.append(value.toString());\n    } else if (value instanceof CharSequence ||\n               value instanceof DateTime ||\n               value instanceof Date ||\n               value.getClass().isEnum()) {\n      // String-like Primitives\n      appendString(buf, value.toString());\n    } else if (value instanceof JSONObject) {\n      appendJsonObject(buf, (JSONObject) value);\n    } else if (value instanceof JSONArray) {\n      appendJsonArray(buf, (JSONArray) value);\n    } else if (value instanceof Map) {\n      appendMap(buf, (Map<String, Object>) value);\n    } else if (value instanceof Collection) {\n      appendCollection(buf, (Collection<Object>) value);\n    } else if (value.getClass().isArray()) {\n      appendArray(buf, (Object[]) value);\n    } else {\n      // Try getter conversion\n      appendPojo(buf, value);\n    }\n  }",
+    "query_result": [
+        " else if (value instanceof JSONObject) {\nappendJsonObject(buf, (JSONObject) value);\n} else if (value instanceof JSONArray) {\nappendJsonArray(buf, (JSONArray) value);\n} else if (value instanceof Map) {\nappendMap(buf, (Map<String, Object>) value);\n} el",
+        " (value instanceof Collection) {\nappendCollection(buf, (Collection<Object>) value);\n} else if (value.getClass().isArray()) {\nappendArray(buf, (Object[]) value);\n} else {\n// Try getter conversion\nappen",
+        "ceof Number ||\nvalue instanceof Boolean) {\n// Primitives\nbuf.append(value.toString());\n} else if (value instanceof CharSequence ||\nvalue instanceof Da",
+        "@SuppressWarnings(\"unchecked\")\npublic static void append(Appendable buf, Object value) throws IOExce",
+        "SuppressWarnings(\"unchecked\")\npublic static void a",
+        "uppressWarnings(\"unchecked\")\npublic static void ap",
+        "ppressWarnings(\"unchecked\")\npublic static void app",
+        "pressWarnings(\"unchecked\")\npublic static void appe",
+        ", Object value) throws IOException {\nif (value == ",
+        " Object value) throws IOException {\nif (value == n",
+        "Object value) throws IOException {\nif (value == nu",
+        "ject value) throws IOException {\nif (value == null",
+        "ect value) throws IOException {\nif (value == null)",
+        "ct value) throws IOException {\nif (value == null) ",
+        "t value) throws IOException {\nif (value == null) {",
+        " value) throws IOException {\nif (value == null) {\n",
+        "{\nif (value == null) {\nbuf.append(\"null\");\n} else ",
+        "if (value == null) {\nbuf.append(\"null\");\n} else if",
+        "else if (value instanceof Number ||\nvalue instance",
+        "ppend(value.toString());\n} else if (value instance"
+    ]
+}

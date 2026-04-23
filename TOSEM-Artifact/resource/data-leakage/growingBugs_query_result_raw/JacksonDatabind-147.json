@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6221959858323495,
+    "input": "    @Override\n    public final VisibilityChecker<?> getDefaultVisibilityChecker()\n    {\n        VisibilityChecker<?> vchecker = _configOverrides.getDefaultVisibility();\n        // then global overrides (disabling)\n        // 05-Mar-2018, tatu: As per [databind#1947], need to see if any disabled\n        if ((_mapperFeatures & AUTO_DETECT_MASK) != AUTO_DETECT_MASK) {\n            if (!isEnabled(MapperFeature.AUTO_DETECT_FIELDS)) {\n                vchecker = vchecker.withFieldVisibility(Visibility.NONE);\n            }\n            if (!isEnabled(MapperFeature.AUTO_DETECT_GETTERS)) {\n                vchecker = vchecker.withGetterVisibility(Visibility.NONE);\n            }\n            if (!isEnabled(MapperFeature.AUTO_DETECT_IS_GETTERS)) {\n                vchecker = vchecker.withIsGetterVisibility(Visibility.NONE);\n            }\n            if (!isEnabled(MapperFeature.AUTO_DETECT_SETTERS)) {\n                vchecker = vchecker.withSetterVisibility(Visibility.NONE);\n            }\n            if (!isEnabled(MapperFeature.AUTO_DETECT_CREATORS)) {\n                vchecker = vchecker.withCreatorVisibility(Visibility.NONE);\n            }\n        }\n        return vchecker;\n    }",
+    "query_result": [
+        "Feature.AUTO_DETECT_SETTERS)) {\nvchecker = vchecker.withSetterVisibility(Visibility.NONE);\n}\nif (!isEnabled(MapperFeature.AUTO_DETECT_CREATORS)) {\nvchecker = vchecker.withCreatorVisibility(Visibility.",
+        "ETTERS)) {\nvchecker = vchecker.withSetterVisibility(Visibility.NONE);\n}\nif (!isEnabled(MapperFeature",
+        "\npublic final VisibilityChecker<?> getDefaultVisib",
+        "l VisibilityChecker<?> getDefaultVisibilityChecker",
+        " VisibilityChecker<?> getDefaultVisibilityChecker(",
+        "VisibilityChecker<?> getDefaultVisibilityChecker()",
+        "getDefaultVisibilityChecker()\n{\nVisibilityChecker<",
+        "tVisibilityChecker()\n{\nVisibilityChecker<?> vcheck",
+        "e.AUTO_DETECT_FIELDS)) {\nvchecker = vchecker.withF",
+        "UTO_DETECT_FIELDS)) {\nvchecker = vchecker.withFiel",
+        "TECT_FIELDS)) {\nvchecker = vchecker.withFieldVisib",
+        "y(Visibility.NONE);\n}\nif (!isEnabled(MapperFeature",
+        "isibility.NONE);\n}\nif (!isEnabled(MapperFeature.AU",
+        "lity.NONE);\n}\nif (!isEnabled(MapperFeature.AUTO_DE",
+        "ty.NONE);\n}\nif (!isEnabled(MapperFeature.AUTO_DETE",
+        ".NONE);\n}\nif (!isEnabled(MapperFeature.AUTO_DETECT",
+        "NONE);\n}\nif (!isEnabled(MapperFeature.AUTO_DETECT_",
+        "\nif (!isEnabled(MapperFeature.AUTO_DETECT_GETTERS)",
+        " (!isEnabled(MapperFeature.AUTO_DETECT_GETTERS)) {",
+        "hecker.withGetterVisibility(Visibility.NONE);\n}\nif"
+    ]
+}

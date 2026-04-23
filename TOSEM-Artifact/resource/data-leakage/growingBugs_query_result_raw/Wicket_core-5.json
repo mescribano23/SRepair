@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.3780487804878049,
+    "input": "final Url mapHandler(IRequestHandler handler, Request request)\n    {\n        Url url = delegate.mapHandler(handler);\n\n        Scheme desired = getDesiredSchemeFor(handler);\n        Scheme current = getSchemeOf(request);\n        if (!desired.isCompatibleWith(current))\n        {\n            // the generated url does not have the correct scheme, set it (which in turn will cause\n            // the url to be rendered in its full representation)\n            url.setProtocol(desired.urlName());\n            url.setPort(desired.getPort(config));\n        }\n        return url;\n    }",
+    "query_result": [
+        "eme desired = getDesiredSchemeFor(handler);\nScheme current = getSchemeOf(request);\nif (!desired.isCo",
+        " getDesiredSchemeFor(handler);\nScheme current = getSchemeOf(request);\nif (!desired.isCompatibleWith(",
+        "edSchemeFor(handler);\nScheme current = getSchemeOf(request);\nif (!desired.isCompatibleWith(current))",
+        "the url to be rendered in its full representation)"
+    ]
+}

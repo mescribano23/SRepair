@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.909952606635071,
+    "input": "        public String[] getAllAddresses() {\n            int ct = getAddressCount();\n            String[] addresses = new String[ct];\n            if (ct == 0) {\n                return addresses;\n            }\n            for (int add = low(), j=0; add <= high(); ++add, ++j) {\n                addresses[j] = format(toArray(add));\n            }\n            return addresses;\n        }",
+    "query_result": [
+        "ddresses() {\nint ct = getAddressCount();\nString[] addresses = new String[ct];\nif (ct == 0) {\nreturn addresses;\n}\nfor (int add = low(), j=0; add <= high(); ++add, ++j) {\naddresses[j] = format(toArray(a",
+        "int ct = getAddressCount();\nString[] addresses = new String[ct];\nif (ct == 0) {\nreturn addresses;\n}\nfor (int add = low(), j=0; add <= high(); ++add, ++j) {\naddresses[j] = format(toArray(add));\n}\nretur",
+        "tring[] getAllAddresses() {\nint ct = getAddressCount();\nString[] addresses = new String[ct];\nif (ct ",
+        "\nString[] addresses = new String[ct];\nif (ct == 0)"
+    ]
+}

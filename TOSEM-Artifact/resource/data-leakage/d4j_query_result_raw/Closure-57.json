@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.5477855477855478,
+    "input": "private static String extractClassNameIfGoog(Node node, Node parent,\n    String functionName){\n  String className = null;\n  if (NodeUtil.isExprCall(parent)) {\n    Node callee = node.getFirstChild();\n    if (callee != null && callee.getType() == Token.GETPROP) {\n      String qualifiedName = callee.getQualifiedName();\n      if (functionName.equals(qualifiedName)) {\n        Node target = callee.getNext();\n        if (target != null && target.getType() == Token.STRING) {\n          className = target.getString();\n        }\n      }\n    }\n  }\n  return className;\n}",
+    "query_result": [
+        "ng extractClassNameIfGoog(Node node, Node parent,\nString functionName){\nString className = null;\nif (NodeUtil.isExprCall(parent)) {\nNode callee = node",
+        "callee.getQualifiedName();\nif (functionName.equals(qualifiedName)) {\nNode target = callee.getNext();",
+        "me)) {\nNode target = callee.getNext();\nif (target "
+    ]
+}

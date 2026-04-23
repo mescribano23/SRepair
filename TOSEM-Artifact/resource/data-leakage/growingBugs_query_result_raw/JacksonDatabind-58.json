@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4038861901457321,
+    "input": "    protected SettableBeanProperty constructSettableProperty(DeserializationContext ctxt,\n            BeanDescription beanDesc, BeanPropertyDefinition propDef,\n            JavaType propType0)\n        throws JsonMappingException\n    {\n        // need to ensure method is callable (for non-public)\n        AnnotatedMember mutator = propDef.getNonConstructorMutator();\n\n        if (ctxt.canOverrideAccessModifiers()) {\n            // [databind#877]: explicitly prevent forced access to `cause` of `Throwable`;\n            // never needed and attempts may cause problems on some platforms.\n            // !!! NOTE: should be handled better for 2.8 and later\n            if ((mutator instanceof AnnotatedField)\n                    && \"cause\".equals(mutator.getName())) {\n                ;\n            } else {\n                mutator.fixAccess(ctxt.isEnabled(MapperFeature.OVERRIDE_PUBLIC_ACCESS_MODIFIERS));\n            }\n        }\n        // note: this works since we know there's exactly one argument for methods\n        BeanProperty.Std property = new BeanProperty.Std(propDef.getFullName(),\n                propType0, propDef.getWrapperName(),\n                beanDesc.getClassAnnotations(), mutator, propDef.getMetadata());\n        JavaType type = resolveType(ctxt, beanDesc, propType0, mutator);\n        // did type change?\n        if (type != propType0) {\n            property = property.withType(type);\n        }\n\n        // First: does the Method specify the deserializer to use? If so, let's use it.\n        JsonDeserializer<Object> propDeser = findDeserializerFromAnnotation(ctxt, mutator);\n        type = modifyTypeByAnnotation(ctxt, mutator, type);\n        TypeDeserializer typeDeser = type.getTypeHandler();\n        SettableBeanProperty prop;\n        if (mutator instanceof AnnotatedMethod) {\n            prop = new MethodProperty(propDef, type, typeDeser,\n                    beanDesc.getClassAnnotations(), (AnnotatedMethod) mutator);\n        } else {\n            prop = new FieldProperty",
+    "query_result": [
+        "onstructSettableProperty(DeserializationContext ctxt, BeanDescription beanDesc, BeanPropertyDefinition propDef, JavaType propType0) throws JsonMappingException { // need to ensure method is callable (for non-public) AnnotatedMember mutator = propDef.",
+        "nstructSettableProperty(DeserializationContext ctxt, BeanDescription beanDesc, BeanPropertyDefinition propDef, JavaType propType0) throws JsonMappingException { // need to ensure method is callable (for non-public) AnnotatedMember mutator = propDef.g",
+        "ializerFromAnnotation(ctxt, mutator); type = modifyTypeByAnnotation(ctxt, mutator, type); TypeDeserializer typeDeser = type.getTypeHandler(); SettableBeanProperty prop; if (mutator instanceof Annotate",
+        "r = type.getTypeHandler(); SettableBeanProperty prop; if (mutator instanceof AnnotatedMethod) { prop = new MethodProperty(propDef, type, typeDeser, beanDesc.getClassAnnotations(), (AnnotatedMethod) mu",
+        "eserializer<Object> propDeser = findDeserializerFromAnnotation(ctxt, mutator); type = modifyTypeByAnnotation(ctxt, mutator, type); TypeDeserializer ty",
+        "ted SettableBeanProperty constructSettableProperty(DeserializationContext ctxt, BeanDescription bean",
+        "bleBeanProperty constructSettableProperty(DeserializationContext ctxt, BeanDescription beanDesc, Bea",
+        "leBeanProperty constructSettableProperty(DeserializationContext ctxt, BeanDescription beanDesc, Bean",
+        "); SettableBeanProperty prop; if (mutator instanceof AnnotatedMethod) { prop = new MethodProperty(pr",
+        "tected SettableBeanProperty constructSettablePrope",
+        "d SettableBeanProperty constructSettableProperty(D",
+        "SettableBeanProperty constructSettableProperty(De",
+        "tableBeanProperty constructSettableProperty(Deseri",
+        "ableBeanProperty constructSettableProperty(Deseria",
+        "anProperty constructSettableProperty(Deserializati",
+        "nProperty constructSettableProperty(Deserializatio",
+        "Property constructSettableProperty(Deserialization",
+        "roperty constructSettableProperty(DeserializationC",
+        "erty constructSettableProperty(DeserializationCont",
+        "rty constructSettableProperty(DeserializationConte"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.14893617021276595,
+    "input": "        @Override\n        public JsonObject json() throws IOException {\n            final int limit = new SmartJson(this.origin).number(\"limit\");\n            final int remaining = this.max - (\n                limit - new SmartJson(this.origin).number(\"remaining\")\n                );\n            return Json.createObjectBuilder()\n                .add(\"limit\", limit)\n                .add(\"remaining\", remaining)\n                .add(\"reset\", new SmartJson(this.origin).number(\"reset\"))\n                .build();\n        }",
+    "query_result": [
+        "@Override\npublic JsonObject json() throws IOExcept",
+        "Override\npublic JsonObject json() throws IOExcepti",
+        "verride\npublic JsonObject json() throws IOExceptio",
+        "erride\npublic JsonObject json() throws IOException",
+        "rride\npublic JsonObject json() throws IOException ",
+        "ride\npublic JsonObject json() throws IOException {",
+        "ide\npublic JsonObject json() throws IOException {\n"
+    ]
+}

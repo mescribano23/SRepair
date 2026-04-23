@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public void addEdge( V head, E e, V tail )\n    {\n        if ( head == null )\n        {\n            throw new GraphException( \"Null head Vertex not admitted\" );\n        }\n        if ( e == null )\n        {\n            throw new GraphException( \"Impossible to add a null Edge in the Graph\" );\n        }\n        if ( tail == null )\n        {\n            throw new GraphException( \"Null tail Vertex not admitted\" );\n        }\n\n        if ( !getAdjacencyList().containsKey( head ) )\n        {\n            throw new GraphException( \"Head Vertex '%s' not present in the Graph\", head );\n        }\n        if ( !getAdjacencyList().containsKey( tail ) )\n        {\n            throw new GraphException( \"Tail Vertex '%s' not present in the Graph\", tail );\n        }\n        \n        if ( getEdge( head, tail ) != null )\n        {\n            throw new GraphException( \"Edge %s is already present in the Graph\", e );\n        }\n\n        getAllEdges().add( e );\n\n        internalAddEdge( head, e, tail );\n\n        decorateAddEdge( head, e, tail );\n    }",
+    "query_result": []
+}

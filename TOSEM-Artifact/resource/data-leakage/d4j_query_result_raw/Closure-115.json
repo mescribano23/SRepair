@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.627059843885516,
+    "input": "private CanInlineResult canInlineReferenceDirectly(\n    Node callNode, Node fnNode) {\n  if (!isDirectCallNodeReplacementPossible(fnNode)) {\n    return CanInlineResult.NO;\n  }\n\n  Node block = fnNode.getLastChild();\n\n  // CALL NODE: [ NAME, ARG1, ARG2, ... ]\n  Node cArg = callNode.getFirstChild().getNext();\n\n  // Functions called via 'call' and 'apply' have a this-object as\n  // the first parameter, but this is not part of the called function's\n  // parameter list.\n  if (!callNode.getFirstChild().isName()) {\n    if (NodeUtil.isFunctionObjectCall(callNode)) {\n      // TODO(johnlenz): Support replace this with a value.\n      if (cArg == null || !cArg.isThis()) {\n        return CanInlineResult.NO;\n      }\n      cArg = cArg.getNext();\n    } else {\n      // \".apply\" call should be filtered before this.\n      Preconditions.checkState(!NodeUtil.isFunctionObjectApply(callNode));\n    }\n  }\n\n  // FUNCTION NODE -> LP NODE: [ ARG1, ARG2, ... ]\n  Node fnParam = NodeUtil.getFunctionParameters(fnNode).getFirstChild();\n  while (cArg != null || fnParam != null) {\n    // For each named parameter check if a mutable argument use more than one.\n    if (fnParam != null) {\n      if (cArg != null) {\n        // Check for arguments that are evaluated more than once.\n        // Note: Unlike block inlining, there it is not possible that a\n        // parameter reference will be in a loop.\n        if (NodeUtil.mayEffectMutableState(cArg, compiler)\n            && NodeUtil.getNameReferenceCount(\n             ",
+    "query_result": [
+        "d 'apply' have a this-object as\n// the first parameter, but this is not part of the called function's\n// parameter list.\nif (!callNode.getFirstChild().isName()) {\nif (NodeUtil.isFunctionObjectCall(callNode)) {\n// TODO(johnlenz): Support replace this with a value.\nif (cArg == null || !cArg.isThis()) {\nreturn CanInlineResult.NO;\n}\ncArg = cArg.getNext();\n} else {\n// \".apply\" call should be filtered b",
+        "\n// Check for arguments that are evaluated more than once.\n// Note: Unlike block inlining, there it is not possible that a\n// parameter reference will",
+        "// For each named parameter check if a mutable argument use more than one.\nif (fnParam != null) {\nif",
+        "h named parameter check if a mutable argument use more than one.\nif (fnParam != null) {\nif (cArg != ",
+        "med parameter check if a mutable argument use more than one.\nif (fnParam != null) {\nif (cArg != null",
+        " Check for arguments that are evaluated more than once.\n// Note: Unlike block inlining, there it is ",
+        "or arguments that are evaluated more than once.\n// Note: Unlike block inlining, there it is not poss",
+        "s that are evaluated more than once.\n// Note: Unlike block inlining, there it is not possible that a",
+        "aluated more than once.\n// Note: Unlike block inlining, there it is not possible that a\n// parameter",
+        "ed more than once.\n// Note: Unlike block inlining, there it is not possible that a\n// parameter refe",
+        "placementPossible(fnNode)) {\nreturn CanInlineResul",
+        "LL NODE: [ NAME, ARG1, ARG2, ... ]\nNode cArg = cal",
+        "NAME, ARG1, ARG2, ... ]\nNode cArg = callNode.getFi",
+        "E, ARG1, ARG2, ... ]\nNode cArg = callNode.getFirst",
+        "RG2, ... ]\nNode cArg = callNode.getFirstChild().ge",
+        "... ]\nNode cArg = callNode.getFirstChild().getNext",
+        "deUtil.getFunctionParameters(fnNode).getFirstChild",
+        "meter check if a mutable argument use more than on",
+        "k if a mutable argument use more than one.\nif (fnP",
+        "e argument use more than one.\nif (fnParam != null)"
+    ]
+}

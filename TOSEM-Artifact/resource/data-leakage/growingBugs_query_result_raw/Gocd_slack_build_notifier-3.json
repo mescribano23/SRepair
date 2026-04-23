@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.541795665634675,
+    "input": "    protected Rules load(Config config) {\n        Config envThenSystem = ConfigFactory.systemEnvironment().withFallback(ConfigFactory.systemProperties());\n        Config configWithFallback = config.withFallback(ConfigFactory.load(getClass().getClassLoader())).resolveWith(envThenSystem);\n        return Rules.fromConfig(configWithFallback.getConfig(\"gocd.slack\"));\n    }",
+    "query_result": [
+        "load(Config config) {\nConfig envThenSystem = ConfigFactory.systemEnvironment().withFallback(ConfigFa",
+        " = ConfigFactory.systemEnvironment().withFallback(",
+        "= ConfigFactory.systemEnvironment().withFallback(C",
+        "ConfigFactory.systemEnvironment().withFallback(Con",
+        ").withFallback(ConfigFactory.systemProperties());\n",
+        "onfig configWithFallback = config.withFallback(Con",
+        "nfigWithFallback = config.withFallback(ConfigFacto"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7021943573667712,
+    "input": "    @Override\n    public JsonObject json() throws IOException {\n        final JsonObject obj = new JsonNode(\n            this.storage.xml().nodes(this.xpath()).get(0)\n        ).json();\n        final JsonObjectBuilder json = Json.createObjectBuilder();\n        for (final Map.Entry<String, JsonValue> val: obj.entrySet()) {\n            json.add(val.getKey(), val.getValue());\n        }\n        final JsonArrayBuilder array = Json.createArrayBuilder();\n        for (final Label label : this.labels().iterate()) {\n            array.add(\n                Json.createObjectBuilder().add(\"name\", label.name()).build()\n            );\n        }\n        return json\n            .add(\"labels\", array)\n            .add(\n                \"user\",\n                Json.createObjectBuilder().add(\"login\", this.self).build()\n            )\n            .add(\n                \"pull_request\",\n                Json.createObjectBuilder().addNull(\"html_url\").build()\n            )\n            .build();\n    }",
+    "query_result": [
+        "final JsonObjectBuilder json = Json.createObjectBuilder();\nfor (final Map.Entry<String, JsonValue> val: obj.entrySet()) {\njson.add(val.getKey(), val.getValue());\n}\nfinal JsonArrayBuilder array = Json.createArrayBuilder();\nfor (final Label label : this.labels().iterate()) {\narray.add(\nJson.createObjectBuilder().add(\"name\", label.name()).build()\n);\n}",
+        ".json();\nfinal JsonObjectBuilder json = Json.createObjectBuilder();\nfor (final Map.Entry<String, Jso",
+        "@Override\npublic JsonObject json() throws IOExcept",
+        "Override\npublic JsonObject json() throws IOExcepti",
+        "verride\npublic JsonObject json() throws IOExceptio",
+        "erride\npublic JsonObject json() throws IOException",
+        "rride\npublic JsonObject json() throws IOException ",
+        "ride\npublic JsonObject json() throws IOException {",
+        "ide\npublic JsonObject json() throws IOException {\n",
+        "lic JsonObject json() throws IOException {\nfinal J",
+        "() throws IOException {\nfinal JsonObject obj = new",
+        " throws IOException {\nfinal JsonObject obj = new J",
+        "Node(\nthis.storage.xml().nodes(this.xpath()).get(0",
+        ");\nfinal JsonObjectBuilder json = Json.createObjec",
+        "inal JsonObjectBuilder json = Json.createObjectBui",
+        "nal JsonObjectBuilder json = Json.createObjectBuil",
+        "al JsonObjectBuilder json = Json.createObjectBuild",
+        " JsonObjectBuilder json = Json.createObjectBuilder",
+        "JsonObjectBuilder json = Json.createObjectBuilder(",
+        "sonObjectBuilder json = Json.createObjectBuilder()"
+    ]
+}

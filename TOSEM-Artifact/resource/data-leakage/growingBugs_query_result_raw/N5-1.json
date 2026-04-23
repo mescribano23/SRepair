@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7714285714285715,
+    "input": "@Override\n    public HashMap<String, JsonElement> getAttributes(final String pathName) throws IOException {\n\n        final Path path = Paths.get(basePath, pathName, jsonFile);\n        if (exists(pathName) && !Files.exists(path))\n            return new HashMap<>();\n\n        final LockedFileChannel lockedFileChannel = new LockedFileChannel(path);\n        final Type mapType = new TypeToken<HashMap<String, JsonElement>>(){}.getType();\n        HashMap<String, JsonElement> map = gson.fromJson(Channels.newReader(lockedFileChannel.channel, \"UTF-8\"), mapType);\n        if (map == null)\n            map = new HashMap<>();\n        lockedFileChannel.close();\n        return map;\n    }",
+    "query_result": [
+        "nal LockedFileChannel lockedFileChannel = new LockedFileChannel(path);\nfinal Type mapType = new TypeToken<HashMap<String, JsonElement>>(){}.getType();\nHashMap<String, JsonElement> map = gson.fromJson(Channels.newReader(lockedFileChannel.channel, \"UTF-8\"), mapType);\nif (map == null)\nmap = new HashMap",
+        "kedFileChannel lockedFileChannel = new LockedFileChannel(path);\nfinal Type mapType = new TypeToken<HashMap<String, JsonElement>>(){}.getType();\nHashMap<String, JsonElement> map = gson.fromJson(Channels.newReader(lockedFileChannel.channel, \"UTF-8\"), mapType);\nif (map == null)\nmap = new HashMap<>();\nl",
+        "ileChannel = new LockedFileChannel(path);\nfinal Type mapType = new TypeToken<HashMap<String, JsonElement>>(){}.getType();\nHashMap<String, JsonElement> map = gson.fromJson(Channels.newReader(lockedFile",
+        "ide\npublic HashMap<String, JsonElement> getAttributes(final String pathName) throws IOException {\nfi",
+        "ublic HashMap<String, JsonElement> getAttributes(final String pathName) throws IOException {\nfinal P",
+        "blic HashMap<String, JsonElement> getAttributes(final String pathName) throws IOException {\nfinal Pa",
+        "hMap<String, JsonElement> getAttributes(final String pathName) throws IOException {\nfinal Path path ",
+        "ap<String, JsonElement> getAttributes(final String pathName) throws IOException {\nfinal Path path = ",
+        "p<String, JsonElement> getAttributes(final String pathName) throws IOException {\nfinal Path path = P",
+        "g, JsonElement> getAttributes(final String pathName) throws IOException {\nfinal Path path = Paths.ge",
+        "JsonElement> getAttributes(final String pathName) throws IOException {\nfinal Path path = Paths.get(b",
+        "ent> getAttributes(final String pathName) throws IOException {\nfinal Path path = Paths.get(basePath,",
+        "etAttributes(final String pathName) throws IOException {\nfinal Path path = Paths.get(basePath, pathN",
+        "de\npublic HashMap<String, JsonElement> getAttribut",
+        "<String, JsonElement> getAttributes(final String p",
+        "ring, JsonElement> getAttributes(final String path",
+        "Element> getAttributes(final String pathName) thro",
+        "getAttributes(final String pathName) throws IOExce",
+        "Attributes(final String pathName) throws IOExcepti",
+        "tributes(final String pathName) throws IOException"
+    ]
+}

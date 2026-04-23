@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.913953488372093,
+    "input": "int nextIndexOf(CharSequence seq) {\n    // doesn't handle scanning for surrogates\n    char startChar = seq.charAt(0);\n    for (int offset = pos; offset < length; offset++) {\n        // scan to first instance of startchar:\n        if (startChar != input[offset])\n            while(++offset < length && startChar != input[offset]);\n        int i = offset + 1;\n        int last = i + seq.length()-1;\n        if (offset < length && last <= length) {\n            for (int j = 1; i < last && seq.charAt(j) == input[i]; i++, j++);\n            if (i == last) // found full sequence\n                return offset - pos;\n        }\n    }\n    return -1;\n}",
+    "query_result": [
+        "ence seq) {\n// doesn't handle scanning for surrogates\nchar startChar = seq.charAt(0);\nfor (int offset = pos; offset < length; offset++) {\n// scan to first instance of startchar:\nif (startChar != input[offset])\nwhile(++offset < length && startChar != ",
+        ") {\n// doesn't handle scanning for surrogates\nchar startChar = seq.charAt(0);\nfor (int offset = pos; offset < length; offset++) {\n// scan to first instance of startchar:\nif (startChar != input[offset])\nwhile(++offset < length && startChar != input[of",
+        "et = pos; offset < length; offset++) {\n// scan to first instance of startchar:\nif (startChar != input[offset])\nwhile(++offset < length && startChar !=",
+        "ance of startchar:\nif (startChar != input[offset])\nwhile(++offset < length && startChar != input[off",
+        "t = i + seq.length()-1;\nif (offset < length && last <= length) {\nfor (int j = 1; i < last && seq.cha",
+        " i + seq.length()-1;\nif (offset < length && last <= length) {\nfor (int j = 1; i < last && seq.charAt",
+        "an to first instance of startchar:\nif (startChar !",
+        "\nint i = offset + 1;\nint last = i + seq.length()-1",
+        "gth()-1;\nif (offset < length && last <= length) {\n",
+        "= input[i]; i++, j++);\nif (i == last) // found ful",
+        "i == last) // found full sequence\nreturn offset - ",
+        "ound full sequence\nreturn offset - pos;\n}\n}\nreturn"
+    ]
+}

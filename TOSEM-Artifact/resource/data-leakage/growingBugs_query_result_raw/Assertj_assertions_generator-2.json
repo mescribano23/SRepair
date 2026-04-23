@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.7394495412844037,
+    "input": "  protected String readablePropertyName() {\n    // sort by bigger length so that when cannotPlay is given, prefix found is \"cannot\" instead of \"can\"\n    List<String> prefixesSortedByBiggerLength = BY_BIGGER_LENGTH_ORDERING.immutableSortedCopy(PREDICATE_PREFIXES_FOR_JAVADOC.keySet());\n\n    for (String predicatePrefix : prefixesSortedByBiggerLength) {\n      if (originalMember.startsWith(predicatePrefix)) {\n        // get rid of prefix\n        String propertyName = removeStart(originalMember, predicatePrefix);\n        // make it human readable\n        return camelCaseToWords(propertyName);\n      }\n    }\n    // should not arrive here ! return for best effort.\n    return name;\n  }",
+    "query_result": [
+        "ing readablePropertyName() {\n// sort by bigger length so that when cannotPlay is given, prefix found is \"cannot\" instead of \"can\"\nList<String> prefixesSortedByBiggerLength = BY_BIGGER_LENGTH_ORDERING.immutableSortedCopy(PREDICATE_PREFIXES_FOR_JAVADOC.keySet());\nfor (String predicatePrefix : prefixes",
+        "readable\nreturn camelCaseToWords(propertyName);\n}\n}\n// should not arrive here ! return for best effo",
+        "efix\nString propertyName = removeStart(originalMem"
+    ]
+}

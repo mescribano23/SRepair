@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.7358490566037735,
+    "input": "        @Override\n        public T getValue()\n        {\n            long now = -1;\n            if (cacheTimeMs > 0)\n            {\n                now = System.currentTimeMillis();\n                if (now <= reloadAfter)\n                {\n                    return lastValue;\n                }\n            }\n\n            String valueStr = resolveStringValue();\n            T value = convert(valueStr);\n\n            value = fallbackToDefaultIfEmpty(keyResolved, value, defaultValue);\n\n            if (logChanges && (value != null && !value.equals(lastValue) || (value == null && lastValue != null)) )\n            {\n                LOG.log(Level.INFO, \"New value {0} for key {1}.\",\n                    new Object[]{filterConfigValueForLog(keyOriginal, valueStr), keyOriginal});\n            }\n\n            lastValue = value;\n\n            if (cacheTimeMs > 0)\n            {\n                reloadAfter = now + cacheTimeMs;\n            }\n\n            return value;\n        }",
+    "query_result": [
+        "lue.equals(lastValue) || (value == null && lastValue != null)) )\n{\nLOG.log(Level.INFO, \"New value {0} for key {1}.\",\nnew Object[]{filterConfigValueForLog(keyOriginal, valueStr), keyOriginal});\n}\nlastValue = value;\nif (cacheTimeMs > 0)\n{\nreloadAfter =",
+        "ue()\n{\nlong now = -1;\nif (cacheTimeMs > 0)\n{\nnow = System.currentTimeMillis();\nif (now <= reloadAfter)\n{\nreturn lastValue;\n}\n}\nString valueStr = resol",
+        "allbackToDefaultIfEmpty(keyResolved, value, defaul"
+    ]
+}

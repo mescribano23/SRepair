@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.4296482412060301,
+    "input": "    public static long skip(InputStream input, long numToSkip) throws IOException {\n        long available = numToSkip;\n        while (numToSkip > 0) {\n            long skipped = input.skip(numToSkip);\n            if (skipped == 0) {\n                break;\n            }\n            numToSkip -= skipped;\n        }\n            \n        if (numToSkip > 0) {\n            byte[] skipBuf = new byte[SKIP_BUF_SIZE];\n            while (numToSkip > 0) {\n                int read = readFully(input, skipBuf, 0,\n                                     (int) Math.min(numToSkip, SKIP_BUF_SIZE));\n                if (read < 1) {\n                    break;\n                }\n                numToSkip -= read;\n            }\n        }\n        return available - numToSkip;\n    }",
+    "query_result": [
+        "am input, long numToSkip) throws IOException {\nlong available = numToSkip;\nwhile (numToSkip > 0) {\nlong skipped = input.skip(numToSkip);\nif (skipped =",
+        "e (numToSkip > 0) {\nlong skipped = input.skip(numToSkip);\nif (skipped == 0) {\nbreak;\n}\nnumToSkip -= ",
+        "tic long skip(InputStream input, long numToSkip) t"
+    ]
+}

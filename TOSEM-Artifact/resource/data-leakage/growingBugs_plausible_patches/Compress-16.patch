@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/ArchiveStreamFactory.java b/src/main/java/org/apache/commons/compress/archivers/ArchiveStreamFactory.java
+index 37dfbe03..2895060f 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/ArchiveStreamFactory.java
++++ b/src/main/java/org/apache/commons/compress/archivers/ArchiveStreamFactory.java
+@@ -194,7 +194,7 @@ public class ArchiveStreamFactory {
+      * @throws ArchiveException if the archiver name is not known
+      * @throws IllegalArgumentException if the stream is null or does not support mark
+      */
+-    public ArchiveInputStream createArchiveInputStream(final InputStream in)
++public ArchiveInputStream createArchiveInputStream(final InputStream in)
+             throws ArchiveException {
+         if (in == null) {
+             throw new IllegalArgumentException("Stream must not be null.");
+@@ -209,6 +209,10 @@ public class ArchiveStreamFactory {
+         try {
+             int signatureLength = in.read(signature);
+             in.reset();
++            if (isAiff(signature, signatureLength)) {
++                throw new ArchiveException("No Archiver found for the stream signature");
++            }
++
+             if (ZipArchiveInputStream.matches(signature, signatureLength)) {
+                 return new ZipArchiveInputStream(in);
+             } else if (JarArchiveInputStream.matches(signature, signatureLength)) {
+@@ -242,7 +246,7 @@ public class ArchiveStreamFactory {
+                     TarArchiveInputStream tais = new TarArchiveInputStream(new ByteArrayInputStream(tarheader));
+                     // COMPRESS-191 - verify the header checksum
+                     tais.getNextEntry();
+-                        return new TarArchiveInputStream(in);
++                    return new TarArchiveInputStream(in);
+                 } catch (Exception e) { // NOPMD
+                     // can generate IllegalArgumentException as well
+                     // as IOException
+@@ -256,4 +260,13 @@ public class ArchiveStreamFactory {
+ 
+         throw new ArchiveException("No Archiver found for the stream signature");
+     }
++
++    private boolean isAiff(byte[] signature, int length) {
++        // AIFF files start with "FORM" (0x46 0x4F 0x52 0x4D)
++        return length >= 4 &&
++               signature[0] == 0x46 &&
++               signature[1] == 0x4F &&
++               signature[2] == 0x52 &&
++               signature[3] == 0x4D;
++    }
+ }

@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.2876376988984088,
+    "input": "public void captureArgumentsFrom(Invocation invocation) {\n        if (invocation.getMethod().isVarArgs()) {\n            int indexOfVararg = invocation.getRawArguments().length - 1;\n            for (int position = 0; position < indexOfVararg; position++) {\n                Matcher m = matchers.get(position);\n                if (m instanceof CapturesArguments) {\n                    ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));\n                }\n            }\n            for (Matcher m : uniqueMatcherSet(indexOfVararg)) {\n                if (m instanceof CapturesArguments) {\n                    Object rawArgument = invocation.getRawArguments()[indexOfVararg];\n                    for (int i = 0; i < Array.getLength(rawArgument); i++) {\n                        ((CapturesArguments) m).captureFrom(Array.get(rawArgument, i));\n                    }\n                }\n            }\n        } else {\n            for (int position = 0; position < matchers.size(); position++) {\n                Matcher m = matchers.get(position);\n                if (m instanceof CapturesArguments) {\n                    ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));\n                }\n            }\n        }\n    }",
+    "query_result": [
+        "((CapturesArguments) m).captureFrom(invocation.ge",
+        "Object rawArgument = invocation.getRawArguments()",
+        "((CapturesArguments) m).captureFrom(Array.get(rawA",
+        "rs.size(); position++) { Matcher m = matchers.get(",
+        "((CapturesArguments) m).captureFrom(invocation.ge"
+    ]
+}

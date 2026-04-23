@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.24615384615384617,
+    "input": "    private OpenTsdbMetric buildGauge(String name, Gauge gauge, long timestamp) {\n        return OpenTsdbMetric.named(prefix(name, \"value\"))\n                .withValue(gauge.getValue())\n                .withTimestamp(timestamp)\n                .withTags(tags)\n                .build();\n    }",
+    "query_result": [
+        "\n.withValue(gauge.getValue())\n.withTimestamp(times"
+    ]
+}

@@ -1,0 +1,53 @@
+diff --git a/src/main/java/org/jsoup/parser/TokeniserState.java b/src/main/java/org/jsoup/parser/TokeniserState.java
+index 3a2ac1f..5c66ade 100644
+--- a/src/main/java/org/jsoup/parser/TokeniserState.java
++++ b/src/main/java/org/jsoup/parser/TokeniserState.java
+@@ -866,23 +866,32 @@ enum TokeniserState {
+         }
+     },
+     SelfClosingStartTag {
+-        void read(Tokeniser t, CharacterReader r) {
+-            char c = r.consume();
+-            switch (c) {
+-                case '>':
+-                    t.tagPending.selfClosing = true;
+-                    t.emitTagPending();
+-                    t.transition(Data);
+-                    break;
+-                case eof:
+-                    t.eofError(this);
+-                    t.transition(Data);
+-                    break;
+-                default:
+-                    t.error(this);
+-                    t.transition(BeforeAttributeName);
++void read(Tokeniser t, CharacterReader r) {
++    char c = r.consume();
++    switch (c) {
++        case '>':
++            t.tagPending.selfClosing = true;
++            t.emitTagPending();
++            t.transition(Data);
++            break;
++        case eof:
++            t.eofError(this);
++            t.transition(Data);
++            break;
++        default:
++            if (c == '/') {
++                // Ignore the slash and continue reading the next character
++                c = r.consume();
+             }
+-        }
++            if (Character.isLetter(c)) {
++                t.tagPending.appendAttributeName(Character.toString(c));
++                t.transition(AttributeName);
++            } else {
++                t.error(this);
++                t.transition(BeforeAttributeName);
++            }
++    }
++}
+     },
+     BogusComment {
+         void read(Tokeniser t, CharacterReader r) {

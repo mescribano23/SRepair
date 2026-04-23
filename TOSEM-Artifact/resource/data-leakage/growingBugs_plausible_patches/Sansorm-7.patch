@@ -1,0 +1,18 @@
+diff --git a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+index a46fc87..65c8aeb 100644
+--- a/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
++++ b/src/main/java/com/zaxxer/sansorm/internal/Introspected.java
+@@ -498,9 +498,10 @@ public final class Introspected
+          }
+          else {
+             Id idAnnotation = field.getAnnotation(Id.class);
+-               // @Id without @Column annotation, so preserve case of property name.
+-               // CLARIFY Dead code? Never reached in tests.
+-               fcInfo.columnName = field.getName().toLowerCase();
++            if (idAnnotation != null) {
++                // Preserve case of property name if annotated with @Id and no @Column or @JoinColumn
++                fcInfo.columnName = field.getName();
++            }
+          }
+       }
+ 

@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.9899425287356322,
+    "input": "    private static String encodeQ(String prefix, String text, Usage usage,\n            int usedCharacters, Charset charset, byte[] bytes) {\n        int encodedLength = qEncodedLength(bytes, usage);\n\n        int totalLength = prefix.length() + encodedLength\n                + ENC_WORD_SUFFIX.length();\n        if (totalLength <= ENCODED_WORD_MAX_LENGTH - usedCharacters) {\n            return prefix + encodeQ(bytes, usage) + ENC_WORD_SUFFIX;\n        } else {\n            int splitOffset = text.offsetByCodePoints(text.length() / 2, -1);\n            String part1 = text.substring(0, splitOffset);\n            byte[] bytes1 = encode(part1, charset);\n            String word1 = encodeQ(prefix, part1, usage, usedCharacters,\n                    charset, bytes1);\n\n            String part2 = text.substring(splitOffset);\n            byte[] bytes2 = encode(part2, charset);\n            String word2 = encodeQ(prefix, part2, usage, 0, charset, bytes2);\n\n            return word1 + \" \" + word2;\n        }\n    }",
+    "query_result": [
+        "e static String encodeQ(String prefix, String text, Usage usage,\nint usedCharacters, Charset charset, byte[] bytes) {\nint encodedLength = qEncodedLength(bytes, usage);\nint totalLength = prefix.length() + encodedLength\n+ ENC_WORD_SUFFIX.length();\nif (totalLength <= ENCODED_WORD_MAX_LENGTH - usedCharacters) {\nreturn prefix + encodeQ(bytes, usage) + ENC_WORD_SUFFIX;\n} else {\nint splitOffset = text.offsetByCodePoints(text.length() / 2, -1);\nString part1 = text.substring(0, splitOffset);\nbyte[] bytes1 = encode(part1, charset);\nString word1 = encodeQ(prefix, part1, usage, usedCharacters,\ncharset, bytes1);\nString part2 = text.substring(splitOffset);\nbyte[] bytes2 = encode(part2, charset);\nString word2 = encodeQ(prefix, part2, usage, 0, charset, by",
+        "else {\nint splitOffset = text.offsetByCodePoints(text.length() / 2, -1);\nString part1 = text.substring(0, splitOffset);\nbyte[] bytes1 = encode(part1, ",
+        "Length\n+ ENC_WORD_SUFFIX.length();\nif (totalLength <= ENCODED_WORD_MAX_LENGTH - usedCharacters) {\nre",
+        "ring text, Usage usage,\nint usedCharacters, Charse",
+        "rset charset, byte[] bytes) {\nint encodedLength = ",
+        "ngth() + encodedLength\n+ ENC_WORD_SUFFIX.length();",
+        " encodedLength\n+ ENC_WORD_SUFFIX.length();\nif (tot",
+        "t.substring(splitOffset);\nbyte[] bytes2 = encode(p",
+        "bytes2 = encode(part2, charset);\nString word2 = en",
+        ", charset, bytes2);\nreturn word1 + \" \" + word2;\n}\n"
+    ]
+}

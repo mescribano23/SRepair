@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.32098765432098764,
+    "input": "public final boolean isEmptyType() {\n  return isNoType() || isNoObjectType() || isNoResolvedType() ||\n      (registry.getNativeFunctionType(\n           JSTypeNative.LEAST_FUNCTION_TYPE) == this);\n}",
+    "query_result": [
+        "eturn isNoType() || isNoObjectType() || isNoResolv",
+        "sNoType() || isNoObjectType() || isNoResolvedType("
+    ]
+}

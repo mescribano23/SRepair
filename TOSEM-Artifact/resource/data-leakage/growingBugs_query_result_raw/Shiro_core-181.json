@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8315789473684211,
+    "input": "    private Collection<Permission> resolvePermissions(Collection<String> stringPerms) {\n        Collection<Permission> perms = Collections.emptySet();\n        PermissionResolver resolver = getPermissionResolver();\n        if (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\n            perms = new LinkedHashSet<Permission>(stringPerms.size());\n            for (String strPermission : stringPerms) {\n                if (StringUtils.clean(strPermission) != null) {\n                    Permission permission = resolver.resolvePermission(strPermission);\n                    perms.add(permission);\n                }\n            }\n        }\n        return perms;\n    }",
+    "query_result": [
+        "e Collection<Permission> resolvePermissions(Collection<String> stringPerms) {\nCollection<Permission> perms = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nperms = new LinkedHashSet<Permission>(stringPerms.size());\nfor (String strPermission : stringPerm",
+        "Collection<Permission> resolvePermissions(Collection<String> stringPerms) {\nCollection<Permission> perms = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nperms = new LinkedHashSet<Permission>(stringPerms.size());\nfor (String strPermission : stringPerms)",
+        "olvePermissions(Collection<String> stringPerms) {\nCollection<Permission> perms = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nperms = new LinkedHashSet<Permission>(stringPerms.size());\nfor (String strP",
+        "rmissions(Collection<String> stringPerms) {\nCollection<Permission> perms = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nperms = new LinkedHashSet<Permission>(stringPerms.size());\nfor (String strPermiss",
+        "ssions(Collection<String> stringPerms) {\nCollection<Permission> perms = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nperms = new LinkedHashSet<Permission>(stringPerms.size());\nfor (String strPermission",
+        "lvePermissions(Collection<String> stringPerms) {\nCollection<Permission> perms = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nperms = new LinkedHashSet<",
+        "ollection<String> stringPerms) {\nCollection<Permission> perms = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPe",
+        "olver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nperms = new LinkedHashSet<Permission>(stringPerms.size());\nfor (String strPermission : stringPerms) {\n",
+        " = Collections.emptySet();\nPermissionResolver resolver = getPermissionResolver();\nif (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {\nper",
+        "ion> resolvePermissions(Collection<String> stringPerms) {\nCollection<Permission> perms = Collections",
+        "llection<Permission> perms = Collections.emptySet(",
+        "mission> perms = Collections.emptySet();\nPermissio",
+        "ssionResolver();\nif (resolver != null && !Collecti",
+        "sionResolver();\nif (resolver != null && !Collectio",
+        "null && !CollectionUtils.isEmpty(stringPerms)) {\np",
+        "perms = new LinkedHashSet<Permission>(stringPerms.",
+        ">(stringPerms.size());\nfor (String strPermission :",
+        "{\nPermission permission = resolver.resolvePermissi",
+        "Permission permission = resolver.resolvePermission",
+        " resolver.resolvePermission(strPermission);\nperms."
+    ]
+}

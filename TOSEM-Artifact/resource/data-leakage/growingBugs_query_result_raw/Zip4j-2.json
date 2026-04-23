@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.2600145666423889,
+    "input": "private ZipParameters cloneAndAdjustZipParameters(ZipParameters zipParameters, File fileToAdd,\n                                                    ProgressMonitor progressMonitor) throws IOException {\n    ZipParameters clonedZipParameters = new ZipParameters(zipParameters);\n    clonedZipParameters.setLastModifiedFileTime(javaToDosTime((fileToAdd.lastModified())));\n\n    if (fileToAdd.isDirectory()) {\n      clonedZipParameters.setEntrySize(0);\n    } else {\n      clonedZipParameters.setEntrySize(fileToAdd.length());\n    }\n\n    clonedZipParameters.setWriteExtendedLocalFileHeader(false);\n    clonedZipParameters.setLastModifiedFileTime(fileToAdd.lastModified());\n\n    if (!Zip4jUtil.isStringNotNullAndNotEmpty(zipParameters.getFileNameInZip())) {\n      String relativeFileName = getRelativeFileName(fileToAdd.getAbsolutePath(), zipParameters.getDefaultFolderPath());\n      clonedZipParameters.setFileNameInZip(relativeFileName);\n    }\n\n    if (fileToAdd.isDirectory()) {\n      clonedZipParameters.setCompressionMethod(CompressionMethod.STORE);\n      clonedZipParameters.setEncryptionMethod(EncryptionMethod.NONE);\n      clonedZipParameters.setEncryptFiles(false);\n    } else {\n      if (clonedZipParameters.isEncryptFiles() && clonedZipParameters.getEncryptionMethod() == ZIP_STANDARD) {\n        progressMonitor.setCurrentTask(CALCULATE_CRC);\n        clonedZipParameters.setEntryCRC(computeFileCrc(fileToAdd, progressMonitor));\n        progressMonitor.setCurrentTask(ADD_ENTRY);\n      }\n\n      if (fileToAdd.length() == 0) {\n        clonedZipParameters.setCompressionMethod(CompressionMethod.STORE);\n      }\n    }\n\n    return clonedZipParameters;\n  }",
+    "query_result": [
+        "rows IOException {\nZipParameters clonedZipParameters = new ZipParameters(zipParameters);\nclonedZipPa",
+        "ProgressMonitor progressMonitor) throws IOExceptio",
+        "ogressMonitor progressMonitor) throws IOException ",
+        "gressMonitor progressMonitor) throws IOException {",
+        "ressMonitor progressMonitor) throws IOException {\n",
+        "setLastModifiedFileTime(fileToAdd.lastModified());",
+        ";\nif (!Zip4jUtil.isStringNotNullAndNotEmpty(zipPar",
+        "Util.isStringNotNullAndNotEmpty(zipParameters.getF",
+        "l.isStringNotNullAndNotEmpty(zipParameters.getFile",
+        "onedZipParameters.setCompressionMethod(Compression",
+        "ipParameters.setCompressionMethod(CompressionMetho",
+        "pParameters.setCompressionMethod(CompressionMethod",
+        "arameters.setCompressionMethod(CompressionMethod.S",
+        "ameters.setCompressionMethod(CompressionMethod.STO",
+        "onedZipParameters.setCompressionMethod(Compression",
+        "ipParameters.setCompressionMethod(CompressionMetho",
+        "pParameters.setCompressionMethod(CompressionMethod",
+        "arameters.setCompressionMethod(CompressionMethod.S",
+        "ameters.setCompressionMethod(CompressionMethod.STO"
+    ]
+}

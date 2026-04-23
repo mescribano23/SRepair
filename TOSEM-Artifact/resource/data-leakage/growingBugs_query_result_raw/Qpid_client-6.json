@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6297169811320755,
+    "input": "    @Override\n    public final JmsInboundMessageDispatch dequeue(long timeout) throws InterruptedException {\n        synchronized (lock) {\n            // Wait until the consumer is ready to deliver messages.\n            while (timeout != 0 && !closed && isEmpty() && running) {\n                if (timeout == -1) {\n                    lock.wait();\n                } else {\n                    long start = System.currentTimeMillis();\n                    lock.wait(timeout);\n                    timeout = Math.max(timeout + start - System.currentTimeMillis(), 0);\n                }\n            }\n\n            if (closed || !running || isEmpty()) {\n                return null;\n            }\n\n            return removeFirst();\n        }\n    }",
+    "query_result": [
+        "nboundMessageDispatch dequeue(long timeout) throws InterruptedException {\nsynchronized (lock) {\n// Wait until the consumer is ready to deliver message",
+        ") {\nif (timeout == -1) {\nlock.wait();\n} else {\nlong start = System.currentTimeMillis();\nlock.wait(timeout);\ntimeout = Math.max(timeout + start - Syste",
+        "e(long timeout) throws InterruptedException {\nsync",
+        "(long timeout) throws InterruptedException {\nsynch",
+        "long timeout) throws InterruptedException {\nsynchr",
+        "ng timeout) throws InterruptedException {\nsynchron",
+        " timeout) throws InterruptedException {\nsynchroniz",
+        "timeout) throws InterruptedException {\nsynchronize",
+        "imeout) throws InterruptedException {\nsynchronized",
+        "meout) throws InterruptedException {\nsynchronized ",
+        "eout) throws InterruptedException {\nsynchronized (",
+        "out) throws InterruptedException {\nsynchronized (l",
+        "t) throws InterruptedException {\nsynchronized (loc",
+        ") throws InterruptedException {\nsynchronized (lock",
+        " throws InterruptedException {\nsynchronized (lock)",
+        "throws InterruptedException {\nsynchronized (lock) ",
+        "hrows InterruptedException {\nsynchronized (lock) {",
+        "rows InterruptedException {\nsynchronized (lock) {\n",
+        "ws InterruptedException {\nsynchronized (lock) {\n//",
+        " the consumer is ready to deliver messages.\nwhile "
+    ]
+}

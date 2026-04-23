@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.9265822784810127,
+    "input": "        public void run() {\n            boolean removeFromAllWrappersAfterCompletion = true;\n            thread = Thread.currentThread();\n            try {\n                for (;;) {\n                    lock.lock();\n                    try {\n                        submittedCount--;\n                        runningCount++;\n                    } finally {\n                        lock.unlock();\n                    }\n                    try {\n                        command.run();\n                    } catch (Throwable t) {\n                        try {\n                            handler.uncaughtException(Thread.currentThread(), t);\n                        } catch (Throwable ignored) {\n                        }\n                    }\n                    lock.lock();\n                    runningCount--;\n                    try {\n                        command = queue.pollFirst();\n                    } catch (Throwable t) {\n                        lock.unlock();\n                        throw t;\n                    }\n                    if (runningCount + submittedCount < maxCount && command != null) {\n                        // execute next\n                        submittedCount++;\n                        lock.unlock();\n                    } else if (command == null && runningCount == 0 && submittedCount == 0 && state != ST_RUNNING) {\n                        // we're the last task\n                        state = ST_STOPPED;\n                        try {\n                            shutDownCondition.signalAll();\n                        } finally {\n                            lock.unlock();\n                        }\n                        runTermination();\n                        return;\n                    } else {\n                        lock.unlock();\n                        return;\n                    }\n                    try {\n                        delegate.execute(this);\n                        removeFromAllWrappersAfterCompletion = false;\n                        ",
+    "query_result": [
+        "romAllWrappersAfterCompletion = true;\nthread = Thread.currentThread();\ntry {\nfor (;;) {\nlock.lock();\ntry {\nsubmittedCount--;\nrunningCount++;\n} finally {\nlock.unlock();\n}\ntry {\ncommand.run();\n} catch (Throwable t) {\ntry {\nhandler.uncaughtException(Thread.currentThread(), t);\n} catch (Throwable ignored) {\n}\n}\nlock.lock();\nrunningCount--;\ntry {\ncommand = queue.pollFirst();\n} catch (Throwable t) {\nlock.unlock();\nthrow t;\n}\nif (runningCount + submittedCount < maxCount && command != null) {\n// execute next\nsubmittedCount++;\nlock.unlock();\n} else if (command == null && runningCount == 0 && submittedCount == 0 && state != ST_RUNNING) {\n// we're the last task\nstate = ST_STOPPED;\ntry {\nshutDownCondition.signalAll();\n} finally {\nlock.unlock();\n}\nrunTermination();\nreturn;\n} else {\nlock.unlock();\nreturn;\n}\ntry {\ndelegate.execute(this);\nremoveFromAllWr",
+        ".run();\n} catch (Throwable t) {\ntry {\nhandler.uncaughtException(Thread.currentThread(), t);\n} catch ",
+        "ate = ST_STOPPED;\ntry {\nshutDownCondition.signalAll();\n} finally {\nlock.unlock();\n}\nrunTermination()",
+        "try {\nhandler.uncaughtException(Thread.currentThre",
+        "handler.uncaughtException(Thread.currentThread(), ",
+        "andler.uncaughtException(Thread.currentThread(), t",
+        "ndler.uncaughtException(Thread.currentThread(), t)",
+        "dler.uncaughtException(Thread.currentThread(), t);",
+        "ler.uncaughtException(Thread.currentThread(), t);\n",
+        "uncaughtException(Thread.currentThread(), t);\n} ca",
+        "ownCondition.signalAll();\n} finally {\nlock.unlock(",
+        "Condition.signalAll();\n} finally {\nlock.unlock();\n",
+        "ondition.signalAll();\n} finally {\nlock.unlock();\n}",
+        "ndition.signalAll();\n} finally {\nlock.unlock();\n}\n",
+        "dition.signalAll();\n} finally {\nlock.unlock();\n}\nr"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.946,
+    "input": "    protected JsonFactory(JsonFactory src, ObjectCodec codec)\n    {\n        _objectCodec = codec;\n        _factoryFeatures = src._factoryFeatures;\n        _parserFeatures = src._parserFeatures;\n        _generatorFeatures = src._generatorFeatures;\n        _characterEscapes = src._characterEscapes;\n        _inputDecorator = src._inputDecorator;\n        _outputDecorator = src._outputDecorator;\n        _rootValueSeparator = src._rootValueSeparator;\n        \n        /* 27-Apr-2013, tatu: How about symbol table; should we try to\n         *   reuse shared symbol tables? Could be more efficient that way;\n         *   although can slightly add to concurrency overhead.\n         */\n    }",
+    "query_result": [
+        "oryFeatures = src._factoryFeatures; _parserFeatures = src._parserFeatures; _generatorFeatures = src._generatorFeatures; _characterEscapes = src._characterEscapes; _inputDecorator = src._inputDecorator; _outputDecorator = src._outputDecorator; _rootValueSeparator = src._rootValueSeparator; /* 27-Apr-2013, tatu: How about symbol table; should we try to * reuse shared symbol tables? Could be more efficient that way; * although can slightly add to c",
+        "oryFeatures; _parserFeatures = src._parserFeatures; _generatorFeatures = src._generatorFeatures; _characterEscapes = src._characterEscapes; _inputDecorator = src._inputDecorator; _outputDecorator = src._outputDecorator; _rootValueSeparator = src._roo",
+        "symbol table; should we try to * reuse shared symbol tables? Could be more efficient that way; * although can slightly add to concurrency overhead. *",
+        "c; _factoryFeatures = src._factoryFeatures; _parserFeatures = src._parserFeatures; _generatorFeature",
+        "actoryFeatures = src._factoryFeatures; _parserFeatures = src._parserFeatures; _generatorFeatures = s",
+        "ected JsonFactory(JsonFactory src, ObjectCodec cod",
+        "terEscapes; _inputDecorator = src._inputDecorator;",
+        "_inputDecorator; _outputDecorator = src._outputDec",
+        "tDecorator; _outputDecorator = src._outputDecorato"
+    ]
+}

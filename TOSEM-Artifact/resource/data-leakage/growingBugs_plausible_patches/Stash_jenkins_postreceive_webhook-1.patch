@@ -1,0 +1,33 @@
+diff --git a/src/main/java/com/nerdwin15/stash/webhook/Notifier.java b/src/main/java/com/nerdwin15/stash/webhook/Notifier.java
+index c07ddb4..998cb76 100644
+--- a/src/main/java/com/nerdwin15/stash/webhook/Notifier.java
++++ b/src/main/java/com/nerdwin15/stash/webhook/Notifier.java
+@@ -239,9 +239,9 @@ public class Notifier implements DisposableBean {
+    *        in notification to Jenkins.
+    * @return The url to use for notifying Jenkins
+    */
+-  protected String getUrl(final Repository repository, final String jenkinsBase,
+-      final String cloneType, final String customCloneUrl, final String strRef, final String strSha1, boolean omitHashCode, boolean omitBranchName) {
+-      String cloneUrl = customCloneUrl;
++protected String getUrl(final Repository repository, final String jenkinsBase,
++    final String cloneType, final String customCloneUrl, final String strRef, final String strSha1, boolean omitHashCode, boolean omitBranchName) {
++    String cloneUrl = customCloneUrl;
+     // Older installs won't have a cloneType value - treat as custom
+     if (cloneType != null && !cloneType.equals("custom")) {
+         if (cloneType.equals("http")) {
+@@ -261,11 +261,12 @@ public class Notifier implements DisposableBean {
+ 
+     if(strRef != null && !omitBranchName)
+       url.append(String.format(BRANCH_URL_PARAMETER, urlEncode(strRef)));
+-    if(!omitHashCode)
+-      url.append(String.format(HASH_URL_PARAMETER, strSha1));
++    if (!omitHashCode && strSha1 != null) {
++        url.append(String.format(HASH_URL_PARAMETER, strSha1));
++    }
+ 
+     return url.toString();
+-  }
++}
+ 
+   private static String urlEncode(String string) {
+     try {

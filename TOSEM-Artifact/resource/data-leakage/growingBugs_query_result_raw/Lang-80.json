@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.977366255144033,
+    "input": "    static Token[] lexx(final String format) {\n        final char[] array = format.toCharArray();\n        final ArrayList<Token> list = new ArrayList<Token>(array.length);\n\n        boolean inLiteral = false;\n        // Although the buffer is stored in a Token, the Tokens are only\n        // used internally, so cannot be accessed by other threads\n        StringBuilder buffer = null;\n        Token previous = null;\n        final int sz = array.length;\n        for (int i = 0; i < sz; i++) {\n            final char ch = array[i];\n            if (inLiteral && ch != '\\'') {\n                buffer.append(ch); // buffer can't be null if inLiteral is true\n                continue;\n            }\n            Object value = null;\n            switch (ch) {\n            // TODO: Need to handle escaping of '\n            case '\\'':\n                if (inLiteral) {\n                    buffer = null;\n                    inLiteral = false;\n                } else {\n                    buffer = new StringBuilder();\n                    list.add(new Token(buffer));\n                    inLiteral = true;\n                }\n                break;\n            case 'y':\n                value = y;\n                break;\n            case 'M':\n                value = M;\n                break;\n            case 'd':\n                value = d;\n                break;\n            case 'H':\n                value = H;\n                break;\n            case 'm':\n                value = m;\n                break;\n            case 's':\n                value = s;\n                break;\n            case 'S':\n                value = S;\n                break;\n            default:\n                if (buffer == null) {\n                    buffer = new StringBuilder();\n                    list.add(new Token(buffer));\n                }\n                buffer.append(ch);\n            }\n\n            if (value != null) {\n                if (previous != null && previous.getValue() == value) {\n                    previous.i",
+    "query_result": [
+        "inal String format) {\nfinal char[] array = format.toCharArray();\nfinal ArrayList<Token> list = new ArrayList<Token>(array.length);\nboolean inLiteral = false;\n// Although the buffer is stored in a Token, the Tokens are only\n// used internally, so cannot be accessed by other threads\nStringBuilder buffer = null;\nToken previous = null;\nfinal int sz = array.length;\nfor (int i = 0; i < sz; i++) {\nfinal char ch = array[i];\nif (inLiteral && ch != '\\'') {\nbuffer.append(ch); // buffer can't be null if inLiteral is true\ncontinue;\n}\nObject value = null;\nswitch (ch) {\n// TODO: Need to handle escaping of '\ncase '\\'':\nif (inLiteral) {\nbuffer = null;\ninLiteral = false;\n} else {\nbuffer = new StringBuilder();\nlist.add(new Token(buffer));\ninLiteral = true;\n}\nbreak;\ncase 'y':\nvalue = y;\nbreak;\ncase 'M':\nvalue = M;\nbreak;\ncase 'd':\nvalue = d;\nbreak;\ncase 'H':\nvalue = H;\nbreak;\ncase 'm':\nvalue = m;\nbreak;\ncase 's':\nvalue = s;\nbreak;\ncase 'S':\nvalue = S;\nbreak;\ndefault:\nif (buffer == null) {\nbuffer = new StringBuilder();\nlist.add(new Token(buffer));\n}\nbuffer.append(ch);\n}\nif (value != null) {\nif (previous != null && previous.getValue() == value) {\npreviou",
+        "o handle escaping of '\ncase '\\'':\nif (inLiteral) {\nbuffer = null;\ninLiteral = false;\n} else {\nbuffer = new StringBuilder();\nlist.add(new Token(buffer)",
+        " = new StringBuilder();\nlist.add(new Token(buffer));\n}\nbuffer.append(ch);\n}\nif (value != null) {\nif (previous != null && previous.getValue() == value)",
+        "<Token>(array.length);\nboolean inLiteral = false;\n// Although the buffer is stored in a Token, the T",
+        "f (inLiteral && ch != '\\'') {\nbuffer.append(ch); // buffer can't be null if inLiteral is true\ncontin",
+        "oken(buffer));\n}\nbuffer.append(ch);\n}\nif (value != null) {\nif (previous != null && previous.getValue",
+        "t<Token> list = new ArrayList<Token>(array.length)",
+        "lthough the buffer is stored in a Token, the Token",
+        "ough the buffer is stored in a Token, the Tokens a",
+        "gh the buffer is stored in a Token, the Tokens are",
+        "h the buffer is stored in a Token, the Tokens are ",
+        " the buffer is stored in a Token, the Tokens are o",
+        "// used internally, so cannot be accessed by other",
+        "/ used internally, so cannot be accessed by other ",
+        "internally, so cannot be accessed by other threads",
+        "StringBuilder buffer = null;\nToken previous = null",
+        "uffer = null;\ninLiteral = false;\n} else {\nbuffer =",
+        "uilder();\nlist.add(new Token(buffer));\ninLiteral =",
+        "buffer));\ninLiteral = true;\n}\nbreak;\ncase 'y':\nval",
+        "ault:\nif (buffer == null) {\nbuffer = new StringBui"
+    ]
+}

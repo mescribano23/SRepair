@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9762219286657859,
+    "input": "    public void addPropertyCreator(AnnotatedWithParams creator,\n            boolean explicit, SettableBeanProperty[] properties)\n    {\n        if (verifyNonDup(creator, C_PROPS, explicit)) {\n            // Better ensure we have no duplicate names either...\n            if (properties.length > 1) {\n                HashMap<String, Integer> names = new HashMap<String, Integer>();\n                for (int i = 0, len = properties.length; i < len; ++i) {\n                    String name = properties[i].getName();\n                    // Need to consider Injectables, which may not have\n                    // a name at all, and need to be skipped\n                    if (name.isEmpty() && (properties[i].getInjectableValueId() != null)) {\n                        continue;\n                    }\n                    Integer old = names.put(name, Integer.valueOf(i));\n                    if (old != null) {\n                        throw new IllegalArgumentException(String.format(\n                                \"Duplicate creator property \\\"%s\\\" (index %s vs %d) for type %s \",\n                                name, old, i, ClassUtil.nameOf(_beanDesc.getBeanClass())));\n                    }\n                }\n            }\n            _propertyBasedArgs = properties;\n        }\n    }",
+    "query_result": [
+        "lic void addPropertyCreator(AnnotatedWithParams creator,\nboolean explicit, SettableBeanProperty[] properties)\n{\nif (verifyNonDup(creator, C_PROPS, explicit)) {\n// Better ensure we have no duplicate names either...\nif (properties.length > 1) {\nHashMap<String, Integer> names = new HashMap<String, Integer>();\nfor (int i = 0, len = properties.length; i < len; ++i) {\nString name = properties[i].getName();\n// Need to consider Injectables, which may not have\n// a name at all, and need to be skipped\nif (name.isEmpty() && (properties[i].getInjectableValueId() != null)) {\ncontinue;\n}\nInteger old = names.put(name, Integer.valueOf(i));\nif (old != null) {\nthrow new IllegalArgumentException(String.format(\n\"Duplicate creator property \\\"%s\\\" (index %s vs %d) for type %s \",\nname, old, i, ClassUtil.nameOf(_beanDesc.getBeanClass())));\n}\n}\n}\n_propertyBasedAr",
+        "p<String, Integer> names = new HashMap<String, Integer>();\nfor (int i = 0, len = properties.length; i < len; ++i) {\nString name = properties[i].getNam",
+        "blic void addPropertyCreator(AnnotatedWithParams c",
+        "void addPropertyCreator(AnnotatedWithParams creato",
+        "id addPropertyCreator(AnnotatedWithParams creator,",
+        "ms creator,\nboolean explicit, SettableBeanProperty",
+        "oolean explicit, SettableBeanProperty[] properties",
+        "olean explicit, SettableBeanProperty[] properties)",
+        "e have no duplicate names either...\nif (properties",
+        " names either...\nif (properties.length > 1) {\nHash",
+        "f (properties.length > 1) {\nHashMap<String, Intege",
+        " (properties.length > 1) {\nHashMap<String, Integer",
+        "roperties.length > 1) {\nHashMap<String, Integer> n",
+        "shMap<String, Integer> names = new HashMap<String,",
+        "ap<String, Integer> names = new HashMap<String, In",
+        "String, Integer> names = new HashMap<String, Integ",
+        "ing, Integer> names = new HashMap<String, Integer>",
+        "ng, Integer> names = new HashMap<String, Integer>(",
+        "g, Integer> names = new HashMap<String, Integer>()",
+        ", Integer> names = new HashMap<String, Integer>();"
+    ]
+}

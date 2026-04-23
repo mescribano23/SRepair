@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.08441558441558442,
+    "input": "protected void processComment()\n        throws IOException, RDFHandlerException\n    {\n        StringBuilder comment = new StringBuilder(64);\n        int c = readCodePoint();\n        while (c != -1 && c != 0xD && c != 0xA) {\n            comment.append(Character.toChars(c));\n            c = readCodePoint();\n        }\n\n        if (c == 0xA) {\n            lineNumber++;\n        }\n        \n        // c is equal to -1, \\r or \\n.\n        // In case c is equal to \\r, we should also read a following \\n.\n        if (c == 0xD) {\n            c = readCodePoint();\n            lineNumber++;\n\n            if (c != 0xA) {\n                unread(c);\n            }\n        }\n        if (rdfHandler != null) {\n            rdfHandler.handleComment(comment.toString());\n        }\n        reportLocation();\n    }",
+    "query_result": [
+        " equal to \\r, we should also read a following \\n.\n"
+    ]
+}

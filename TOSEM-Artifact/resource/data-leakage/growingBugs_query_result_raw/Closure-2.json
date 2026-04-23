@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5402750491159135,
+    "input": "  private void checkInterfaceConflictProperties(NodeTraversal t, Node n,\n      String functionName, HashMap<String, ObjectType> properties,\n      HashMap<String, ObjectType> currentProperties,\n      ObjectType interfaceType) {\n    ObjectType implicitProto = interfaceType.getImplicitPrototype();\n    Set<String> currentPropertyNames;\n    if (implicitProto == null) {\n      // This can be the case if interfaceType is proxy to a non-existent\n      // object (which is a bad type annotation, but shouldn't crash).\n      currentPropertyNames = ImmutableSet.of();\n    } else {\n      currentPropertyNames = implicitProto.getOwnPropertyNames();\n    }\n    for (String name : currentPropertyNames) {\n      ObjectType oType = properties.get(name);\n      if (oType != null) {\n        if (!interfaceType.getPropertyType(name).isEquivalentTo(\n            oType.getPropertyType(name))) {\n          compiler.report(\n              t.makeError(n, INCOMPATIBLE_EXTENDED_PROPERTY_TYPE,\n                  functionName, name, oType.toString(),\n                  interfaceType.toString()));\n        }\n      }\n      currentProperties.put(name, interfaceType);\n    }\n    for (ObjectType iType : interfaceType.getCtorExtendedInterfaces()) {\n      checkInterfaceConflictProperties(t, n, functionName, properties,\n          currentProperties, iType);\n    }\n  }",
+    "query_result": [
+        "sal t, Node n,\nString functionName, HashMap<String, ObjectType> properties,\nHashMap<String, ObjectType> currentProperties,\nObjectType interfaceType) {\nObjectType implicitProto = interfaceType.getImplicitPrototype();\nSet<String> currentPropertyNames;\nif (implicitProto == null) {\n// This can be the case if interfaceType is proxy to a non-existent\n// object (which is a bad type annotation, but shouldn't crash).\ncurrentPropertyNames = ImmutableSet.of();\n} else {\ncurrentPropertyNames = implicitProto.",
+        "mplicitProto == null) {\n// This can be the case if interfaceType is proxy to a non-existent\n// object (which is a bad type annotation, but shouldn't c",
+        "Proto == null) {\n// This can be the case if interfaceType is proxy to a non-existent\n// object (which is a bad type annotation, but shouldn't crash).\n",
+        " HashMap<String, ObjectType> properties,\nHashMap<String, ObjectType> currentProperties,\nObjectType i",
+        "ctType interfaceType) {\nObjectType implicitProto = interfaceType.getImplicitPrototype();\nSet<String>",
+        "tType interfaceType) {\nObjectType implicitProto = interfaceType.getImplicitPrototype();\nSet<String> ",
+        "terfaceType) {\nObjectType implicitProto = interfaceType.getImplicitPrototype();\nSet<String> currentP",
+        "to == null) {\n// This can be the case if interfaceType is proxy to a non-existent\n// object (which i",
+        ") {\n// This can be the case if interfaceType is proxy to a non-existent\n// object (which is a bad ty",
+        " {\n// This can be the case if interfaceType is proxy to a non-existent\n// object (which is a bad typ",
+        "is can be the case if interfaceType is proxy to a non-existent\n// object (which is a bad type annota",
+        "an be the case if interfaceType is proxy to a non-existent\n// object (which is a bad type annotation",
+        " if interfaceType is proxy to a non-existent\n// object (which is a bad type annotation, but shouldn'",
+        " (String name : currentPropertyNames) {\nObjectType oType = properties.get(name);\nif (oType != null) ",
+        "citProto = interfaceType.getImplicitPrototype();\nS",
+        "se {\ncurrentPropertyNames = implicitProto.getOwnPr",
+        "{\ncurrentPropertyNames = implicitProto.getOwnPrope",
+        "ropertyNames = implicitProto.getOwnPropertyNames()",
+        "opertyNames = implicitProto.getOwnPropertyNames();",
+        "Names) {\nObjectType oType = properties.get(name);\n"
+    ]
+}

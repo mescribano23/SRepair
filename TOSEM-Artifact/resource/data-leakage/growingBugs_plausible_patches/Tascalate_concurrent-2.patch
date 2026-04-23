@@ -1,0 +1,29 @@
+diff --git a/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java b/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java
+index 405ea67..a503732 100644
+--- a/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java
++++ b/src/main/java/net/tascalate/concurrent/AbstractCompletableTask.java
+@@ -313,8 +313,6 @@ abstract class AbstractCompletableTask<T> extends PromiseAdapter<T> implements P
+                     action.accept(result, null);
+                     return result;
+                 } catch (Throwable e) {
+-                    // CompletableFuture wraps exception here
+-                    // Copying this behavior                    
+                     return forwardException(e);
+                 }
+             }, 
+@@ -324,11 +322,10 @@ abstract class AbstractCompletableTask<T> extends PromiseAdapter<T> implements P
+                     action.accept(null, failure);
+                     return forwardException(failure);
+                 } catch (Throwable e) {
+-                    // CompletableFuture does not override exception here
+-                    // unlike as in handle[Async](BiFunction)
+-                    // Preserve this behavior, but let us add at least 
+-                    // suppressed exception
+-                    failure.addSuppressed(e);
++                    // Check before adding suppressed exception
++                    if (e != failure) {
++                        failure.addSuppressed(e);
++                    }
+                     return forwardException(failure);
+                 }
+             }, 

@@ -1,0 +1,19 @@
+diff --git a/retrofit/src/main/java/retrofit/http/HttpMethodType.java b/retrofit/src/main/java/retrofit/http/HttpMethodType.java
+index d1a58e97..0c1db3fc 100644
+--- a/retrofit/src/main/java/retrofit/http/HttpMethodType.java
++++ b/retrofit/src/main/java/retrofit/http/HttpMethodType.java
+@@ -81,11 +81,11 @@ enum HttpMethodType {
+   }
+ 
+   /** Gets a URI with parameters specified as query string parameters. */
+-  private static URI getParameterizedUri(HttpRequestBuilder builder) throws URISyntaxException {
++private static URI getParameterizedUri(HttpRequestBuilder builder) throws URISyntaxException {
+     List<NameValuePair> queryParams = builder.getParamList(false);
+-    String queryString = URLEncodedUtils.format(queryParams, HTTP.UTF_8);
++    String queryString = queryParams.isEmpty() ? null : URLEncodedUtils.format(queryParams, HTTP.UTF_8);
+     return URIUtils.createURI(builder.getScheme(), builder.getHost(), -1, builder.getRelativePath(), queryString, null);
+-  }
++}
+ 
+   private static void addHeaders(HttpMessage message, HttpRequestBuilder builder) {
+     String mimeType = builder.getMimeType();

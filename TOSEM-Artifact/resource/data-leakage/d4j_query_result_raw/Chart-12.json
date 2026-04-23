@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.7034220532319392,
+    "input": "public MultiplePiePlot(CategoryDataset dataset) {\n    super();\n    setDataset(dataset);\n    PiePlot piePlot = new PiePlot(null);\n    this.pieChart = new JFreeChart(piePlot);\n    this.pieChart.removeLegend();\n    this.dataExtractOrder = TableOrder.BY_COLUMN;\n    this.pieChart.setBackgroundPaint(null);\n    TextTitle seriesTitle = new TextTitle(\"Series Title\",\n            new Font(\"SansSerif\", Font.BOLD, 12));\n    seriesTitle.setPosition(RectangleEdge.BOTTOM);\n    this.pieChart.setTitle(seriesTitle);\n    this.aggregatedItemsKey = \"Other\";\n    this.aggregatedItemsPaint = Color.lightGray;\n    this.sectionPaints = new HashMap();\n}",
+    "query_result": [
+        "his.pieChart = new JFreeChart(piePlot);\nthis.pieChart.removeLegend();\nthis.dataExtractOrder = TableOrder.BY_COLUMN;\nthis.pieChart.setBackgroundPaint(n",
+        " new JFreeChart(piePlot);\nthis.pieChart.removeLegend();\nthis.dataExtractOrder = TableOrder.BY_COLUMN;\nthis.pieChart.setBackgroundPaint(null);\nTextTitl",
+        "(RectangleEdge.BOTTOM);\nthis.pieChart.setTitle(seriesTitle);\nthis.aggregatedItemsKey = \"Other\";\nthis.aggregatedItemsPaint = Color.lightGray;\nthis.sect",
+        "hart.removeLegend();\nthis.dataExtractOrder = TableOrder.BY_COLUMN;\nthis.pieChart.setBackgroundPaint(",
+        "et(dataset);\nPiePlot piePlot = new PiePlot(null);\n",
+        "his.pieChart.removeLegend();\nthis.dataExtractOrder",
+        "\nthis.dataExtractOrder = TableOrder.BY_COLUMN;\nthi",
+        ", 12));\nseriesTitle.setPosition(RectangleEdge.BOTT",
+        "Position(RectangleEdge.BOTTOM);\nthis.pieChart.setT",
+        " = \"Other\";\nthis.aggregatedItemsPaint = Color.ligh",
+        "s.aggregatedItemsPaint = Color.lightGray;\nthis.sec"
+    ]
+}

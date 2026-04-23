@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/CheckSideEffects.java b/src/com/google/javascript/jscomp/CheckSideEffects.java
+index 0d1e95a0..d5d37f4c 100644
+--- a/src/com/google/javascript/jscomp/CheckSideEffects.java
++++ b/src/com/google/javascript/jscomp/CheckSideEffects.java
+@@ -115,11 +115,17 @@ final class CheckSideEffects extends AbstractPostOrderCallback
+         return;
+       }
+       if (n == parent.getLastChild()) {
++        boolean foundAncestor = false;
+         for (Node an : parent.getAncestors()) {
+           int ancestorType = an.getType();
+           if (ancestorType == Token.COMMA) continue;
+-          if (ancestorType != Token.EXPR_RESULT && ancestorType != Token.BLOCK) return;
+-          else break;
++          if (ancestorType != Token.EXPR_RESULT && ancestorType != Token.BLOCK) {
++            foundAncestor = true;
++            break;
++          }
++        }
++        if (!foundAncestor) {
++          // continue checking other conditions
+         }
+       }
+     } else if (parent.getType() != Token.EXPR_RESULT && parent.getType() != Token.BLOCK) {

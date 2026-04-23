@@ -1,0 +1,24 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 63292ee..9e0243d 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -636,7 +636,7 @@ public class HeaderReader {
+     }
+   }
+ 
+-  private AESExtraDataRecord readAesExtraDataRecord(List<ExtraDataRecord> extraDataRecords, RawIO rawIO)
++private AESExtraDataRecord readAesExtraDataRecord(List<ExtraDataRecord> extraDataRecords, RawIO rawIO)
+       throws ZipException {
+ 
+     if (extraDataRecords == null) {
+@@ -660,6 +660,10 @@ public class HeaderReader {
+         aesExtraDataRecord.setDataSize(extraDataRecord.getSizeOfData());
+ 
+         byte[] aesData = extraDataRecord.getData();
++        if (aesData.length < 7) {
++          throw new ZipException("corrupt AES extra data records");
++        }
++
+         aesExtraDataRecord.setAesVersion(AesVersion.getFromVersionNumber(rawIO.readShortLittleEndian(aesData, 0)));
+         byte[] vendorIDBytes = new byte[2];
+         System.arraycopy(aesData, 2, vendorIDBytes, 0, 2);

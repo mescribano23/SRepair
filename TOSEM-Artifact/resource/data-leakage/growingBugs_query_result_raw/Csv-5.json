@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.27607361963190186,
+    "input": "    public void println() throws IOException {\n        final String recordSeparator = format.getRecordSeparator();\n        if (recordSeparator != null) {\n            out.append(recordSeparator);\n        }\n        newRecord = true;\n    }",
+    "query_result": [
+        " (recordSeparator != null) {\nout.append(recordSepa"
+    ]
+}

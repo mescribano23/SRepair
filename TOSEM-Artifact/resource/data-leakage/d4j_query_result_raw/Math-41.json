@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8571428571428571,
+    "input": "public double evaluate(final double[] values, final double[] weights,\n                       final double mean, final int begin, final int length) {\n\n    double var = Double.NaN;\n\n    if (test(values, weights, begin, length)) {\n        if (length == 1) {\n            var = 0.0;\n        } else if (length > 1) {\n            double accum = 0.0;\n            double dev = 0.0;\n            double accum2 = 0.0;\n            for (int i = begin; i < begin + length; i++) {\n                dev = values[i] - mean;\n                accum += weights[i] * (dev * dev);\n                accum2 += weights[i] * dev;\n            }\n\n            double sumWts = 0;\n            for (int i = begin; i < begin + length; i++) {\n                sumWts += weights[i];\n            }\n\n            if (isBiasCorrected) {\n                var = (accum - (accum2 * accum2 / sumWts)) / (sumWts - 1.0);\n            } else {\n                var = (accum - (accum2 * accum2 / sumWts)) / sumWts;\n            }\n        }\n    }\n    return var;\n}",
+    "query_result": [
+        "var = Double.NaN;\nif (test(values, weights, begin, length)) {\nif (length == 1) {\nvar = 0.0;\n} else if (length > 1) {\ndouble accum = 0.0;\ndouble dev = 0.0;\ndouble accum2 = 0.0;\nfor (int i = begin; i < begin + length; i++) {\ndev = values[i] - mean;\naccum += weights[i] * (dev * dev);\naccum2 += weights[i] * dev;\n}\ndouble sumWts = 0;\nfor (int i = begin; i < begin + length; i++) {\nsumWts += weights[i];\n",
+        "begin, length)) {\nif (length == 1) {\nvar = 0.0;\n} else if (length > 1) {\ndouble accum = 0.0;\ndouble dev = 0.0;\ndouble accum2 = 0.0;\nfor (int i = begin; i < begin + length; i++) {\ndev = values[i] - mean;\naccum += weights[i] * (dev * dev);\naccum2 += weights[i] * dev;\n}\ndouble sumWts = 0;\nfor (int i = begin; i < begin + length; i++) {\nsumWts += weight",
+        ".NaN;\nif (test(values, weights, begin, length)) {\nif (length == 1) {\nvar = 0.0;\n} else if (length > 1) {\ndouble accum = 0.0;\ndouble dev = 0.0;\ndouble ",
+        " {\nif (length == 1) {\nvar = 0.0;\n} else if (length > 1) {\ndouble accum = 0.0;\ndouble dev = 0.0;\ndouble accum2 = 0.0;\nfor (int i = begin; i < begin + l",
+        "th == 1) {\nvar = 0.0;\n} else if (length > 1) {\ndouble accum = 0.0;\ndouble dev = 0.0;\ndouble accum2 = 0.0;\nfor (int i = begin; i < begin + length; i++)",
+        "final int begin, final int length) {\ndouble var = Double.NaN;\nif (test(values, weights, begin, lengt",
+        "n, length)) {\nif (length == 1) {\nvar = 0.0;\n} else if (length > 1) {\ndouble accum = 0.0;\ndouble dev ",
+        " 0.0;\n} else if (length > 1) {\ndouble accum = 0.0;\ndouble dev = 0.0;\ndouble accum2 = 0.0;\nfor (int i",
+        "ouble accum = 0.0;\ndouble dev = 0.0;\ndouble accum2 = 0.0;\nfor (int i = begin; i < begin + length; i+",
+        "uble accum = 0.0;\ndouble dev = 0.0;\ndouble accum2 = 0.0;\nfor (int i = begin; i < begin + length; i++",
+        "ev = values[i] - mean;\naccum += weights[i] * (dev * dev);\naccum2 += weights[i] * dev;\n}\ndouble sumWt",
+        " accum2 / sumWts)) / (sumWts - 1.0);\n} else {\nvar = (accum - (accum2 * accum2 / sumWts)) / sumWts;\n}",
+        "public double evaluate(final double[] values, fina",
+        "ublic double evaluate(final double[] values, final",
+        "blic double evaluate(final double[] values, final ",
+        "lic double evaluate(final double[] values, final d",
+        "ic double evaluate(final double[] values, final do",
+        "c double evaluate(final double[] values, final dou",
+        " double evaluate(final double[] values, final doub",
+        "double evaluate(final double[] values, final doubl"
+    ]
+}

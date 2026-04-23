@@ -1,0 +1,48 @@
+diff --git a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/metadata/builder/AnnotatedTypeImpl.java b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/metadata/builder/AnnotatedTypeImpl.java
+index f029eeebb..0c87ea71a 100644
+--- a/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/metadata/builder/AnnotatedTypeImpl.java
++++ b/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/metadata/builder/AnnotatedTypeImpl.java
+@@ -68,7 +68,7 @@ class AnnotatedTypeImpl<X> extends AnnotatedImpl implements AnnotatedType<X>
+         Set<Constructor<?>> cset = new HashSet<Constructor<?>>();
+         Set<Method> mset = new HashSet<Method>();
+         Set<Field> fset = new HashSet<Field>();
+-        for (Constructor<?> c : clazz.getConstructors())
++        for (Constructor<?> c : clazz.getDeclaredConstructors())
+         {
+             AnnotatedConstructor<X> nc = new AnnotatedConstructorImpl<X>(
+                     this, c, constructorAnnotations.get(c), constructorParameterAnnotations.get(c),
+@@ -87,19 +87,16 @@ class AnnotatedTypeImpl<X> extends AnnotatedImpl implements AnnotatedType<X>
+             }
+         }
+         methods = new HashSet<AnnotatedMethod<? super X>>();
+-        for (Method m : clazz.getMethods())
++        for (Method m : clazz.getDeclaredMethods())
+         {
+-            if (!m.getDeclaringClass().equals(Object.class))
+-            {
+-                AnnotatedMethodImpl<X> met = new AnnotatedMethodImpl<X>(this, m, methodAnnotations.get(m),
+-                        methodParameterAnnotations.get(m), methodParameterTypes.get(m));
+-                methods.add(met);
+-                mset.add(m);
+-            }
++            AnnotatedMethodImpl<X> met = new AnnotatedMethodImpl<X>(this, m, methodAnnotations.get(m),
++                    methodParameterAnnotations.get(m), methodParameterTypes.get(m));
++            methods.add(met);
++            mset.add(m);
+         }
+         for (Map.Entry<Method, AnnotationStore> c : methodAnnotations.entrySet())
+         {
+-            if (!c.getKey().getDeclaringClass().equals(Object.class) && !mset.contains(c.getKey()))
++            if (!mset.contains(c.getKey()))
+             {
+                 AnnotatedMethodImpl<X> nc = new AnnotatedMethodImpl<X>(
+                         this, c.getKey(),
+@@ -110,7 +107,7 @@ class AnnotatedTypeImpl<X> extends AnnotatedImpl implements AnnotatedType<X>
+             }
+         }
+         fields = new HashSet<AnnotatedField<? super X>>();
+-        for (Field f : clazz.getFields())
++        for (Field f : clazz.getDeclaredFields())
+         {
+             AnnotatedField<X> b = new AnnotatedFieldImpl<X>(this, f, fieldAnnotations.get(f), fieldTypes.get(f));
+             fields.add(b);

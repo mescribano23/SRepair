@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+index 9f98c280..2c55364e 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
++++ b/src/main/java/org/apache/commons/pool2/impl/GenericKeyedObjectPool.java
+@@ -96,22 +96,24 @@ public class GenericKeyedObjectPool<K,T> extends BaseGenericObjectPool<T>
+      *                  the configuration object will not be reflected in the
+      *                  pool.
+      */
+-    public GenericKeyedObjectPool(KeyedPooledObjectFactory<K,T> factory,
+-            GenericKeyedObjectPoolConfig config) {
++public GenericKeyedObjectPool(KeyedPooledObjectFactory<K,T> factory,
++        GenericKeyedObjectPoolConfig config) {
+ 
+-        super(config, ONAME_BASE, config.getJmxNamePrefix());
++    super(config, ONAME_BASE, config.getJmxNamePrefix());
+ 
+-        if (factory == null) {
+-            jmxUnregister(); // tidy up
+-            throw new IllegalArgumentException("factory may not be null");
+-        }
+-        this.factory = factory;
+-        this.fairness = config.getFairness();
++    if (factory == null) {
++        jmxUnregister(); // tidy up
++        throw new IllegalArgumentException("factory may not be null");
++    }
++    this.factory = factory;
++    this.fairness = config.getFairness();
+ 
+-        setConfig(config);
++    setConfig(config);
++}
+ 
+-        startEvictor(getMinEvictableIdleTimeMillis());
+-    }
++public void startEviction() {
++    startEvictor(getMinEvictableIdleTimeMillis());
++}
+ 
+     /**
+      * Returns the limit on the number of object instances allocated by the pool

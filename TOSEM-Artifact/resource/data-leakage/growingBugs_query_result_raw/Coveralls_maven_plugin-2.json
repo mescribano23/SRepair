@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.8158995815899581,
+    "input": "    public String getBranch() {\n        if (branch != null && getGit() != null && getGit().getRemotes() != null) {\n            for (Remote remote : getGit().getRemotes()) {\n                if (branch.startsWith(remote.getName() + \"/\")) {\n                    return branch.substring(remote.getName().length() + 1);\n                }\n            }\n        }\n        return branch;\n    }",
+    "query_result": [
+        "= null && getGit() != null && getGit().getRemotes() != null) {\nfor (Remote remote : getGit().getRemotes()) {\nif (branch.startsWith(remote.getName() + \"/\")) {\nreturn branch.substring(remote.getName().l",
+        "!= null && getGit() != null && getGit().getRemotes() != null) {\nfor (Remote remote : getGit().getRemotes()) {\nif (branch.startsWith(remote.getName() +",
+        "ranch() {\nif (branch != null && getGit() != null && getGit().getRemotes() != null) {\nfor (Remote rem"
+    ]
+}

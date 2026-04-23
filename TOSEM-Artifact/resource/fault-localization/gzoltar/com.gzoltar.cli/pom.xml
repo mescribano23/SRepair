@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2020 GZoltar contributors.
+
+  This file is part of GZoltar.
+
+  GZoltar is free software: you can redistribute it and/or modify it under the terms of the GNU
+  Lesser General Public License as published by the Free Software Foundation, either version 3 of
+  the License, or (at your option) any later version.
+
+  GZoltar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+  General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License along with GZoltar. If
+  not, see <https://www.gnu.org/licenses/>.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.gzoltar</groupId>
+    <artifactId>com.gzoltar.build</artifactId>
+    <version>1.7.4-SNAPSHOT</version>
+    <relativePath>../com.gzoltar.build</relativePath>
+  </parent>
+
+  <artifactId>com.gzoltar.cli</artifactId>
+
+  <name>GZoltar :: Command Line Interface</name>
+  <description>GZoltar Command Line Interface</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.gzoltar</groupId>
+      <artifactId>com.gzoltar.agent</artifactId>
+      <version>${project.version}</version>
+      <classifier>runtime</classifier>
+    </dependency>
+    <dependency>
+      <groupId>com.gzoltar</groupId>
+      <artifactId>com.gzoltar.core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.gzoltar</groupId>
+      <artifactId>com.gzoltar.fl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.gzoltar</groupId>
+      <artifactId>com.gzoltar.report</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>args4j</groupId>
+      <artifactId>args4j</artifactId>
+      <version>${args4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.classgraph</groupId>
+      <artifactId>classgraph</artifactId>
+      <version>4.8.160</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>jar-with-dependencies</shadedClassifierName>
+              <minimizeJar>true</minimizeJar>
+              <relocations>
+                <relocation>
+                  <pattern>com.gzoltar.agent.rt</pattern>
+                  <shadedPattern>com.gzoltar.internal.agent.rt</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.gzoltar.core</pattern>
+                  <shadedPattern>com.gzoltar.internal.core</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.gzoltar.fl</pattern>
+                  <shadedPattern>com.gzoltar.internal.fl</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.gzoltar.report</pattern>
+                  <shadedPattern>com.gzoltar.internal.report</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.gzoltar.sfl</pattern>
+                  <shadedPattern>com.gzoltar.internal.sfl</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>javassist</pattern>
+                  <shadedPattern>com.gzoltar.internal.javassist</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.jacoco</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.jacoco</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.apache.commons.lang3</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.apache.commons.lang3</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.apache.commons.io</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.apache.commons.io</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.kohsuke.args4j</pattern>
+                  <shadedPattern>com.gzoltar.internal.org.kohsuke.args4j</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.beust</pattern>
+                  <shadedPattern>com.gzoltar.internal.com.beust</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>io.github.classgraph</pattern>
+                  <shadedPattern>com.gzoltar.internal.io.github.classgraph</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>nonapi.io.github.classgraph</pattern>
+                  <shadedPattern>com.gzoltar.internal.nonapi.io.github.classgraph</shadedPattern>
+                </relocation>
+              </relocations>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Implementation-Title>${project.description}</Implementation-Title>
+                    <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                    <Implementation-Version>${dist.version}</Implementation-Version>
+                    <Main-Class>com.gzoltar.cli.Main</Main-Class>
+                  </manifestEntries>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

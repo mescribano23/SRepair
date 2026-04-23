@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8699029126213592,
+    "input": "  public RequestBuilder bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,\n    InputStream nonJsonContent) {\n    if (contentType != null) {\n      Gson requestGson = GsonSingleton.getGsonWithoutPrettyPrinting().newBuilder().create();\n      if (BaseService.isJsonMimeType(contentType)) {\n        this.bodyContent(requestGson.toJson(jsonContent), contentType);\n      } else if (BaseService.isJsonPatchMimeType(contentType)) {\n        this.bodyContent(requestGson.toJson(jsonPatchContent), contentType);\n      } else {\n        this.bodyContent(nonJsonContent, contentType);\n      }\n    }\n    return this;\n  }",
+    "query_result": [
+        "yContent(String contentType, Object jsonContent, Object jsonPatchContent,\nInputStream nonJsonContent) {\nif (contentType != null) {\nGson requestGson = GsonSingleton.getGsonWithoutPrettyPrinting().newBu",
+        "ic RequestBuilder bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,\nInputStream nonJsonContent) {\nif (contentType != null) ",
+        "uestBuilder bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,\nInputStream nonJsonContent) {\nif (contentType != null) {\nGson",
+        "der bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,\nInputStream nonJson",
+        "bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,\nInputStream nonJsonCont",
+        "entType, Object jsonContent, Object jsonPatchContent,\nInputStream nonJsonContent) {\nif (contentType ",
+        "is.bodyContent(requestGson.toJson(jsonPatchContent), contentType);\n} else {\nthis.bodyContent(nonJson",
+        "stBuilder bodyContent(String contentType, Object j",
+        "ntType, Object jsonContent, Object jsonPatchConten",
+        "ype, Object jsonContent, Object jsonPatchContent,\n",
+        "ce.isJsonMimeType(contentType)) {\nthis.bodyContent",
+        "nMimeType(contentType)) {\nthis.bodyContent(request",
+        "bodyContent(requestGson.toJson(jsonContent), conte",
+        "lse if (BaseService.isJsonPatchMimeType(contentTyp",
+        "Service.isJsonPatchMimeType(contentType)) {\nthis.b",
+        "ice.isJsonPatchMimeType(contentType)) {\nthis.bodyC",
+        "JsonPatchMimeType(contentType)) {\nthis.bodyContent",
+        "onPatchMimeType(contentType)) {\nthis.bodyContent(r",
+        " contentType);\n} else {\nthis.bodyContent(nonJsonCo",
+        "pe);\n} else {\nthis.bodyContent(nonJsonContent, con"
+    ]
+}

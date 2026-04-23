@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8725868725868726,
+    "input": "    private Integer getBasicRow(final int col) {\n        Integer row = null;\n        for (int i = getNumObjectiveFunctions(); i < getHeight(); i++) {\n            if (MathUtils.equals(getEntry(i, col), 1.0, epsilon) && (row == null)) {\n                row = i;\n            } else if (!MathUtils.equals(getEntry(i, col), 0.0, epsilon)) {\n                return null;\n            }\n        }\n        return row;\n    }",
+    "query_result": [
+        "ns(); i < getHeight(); i++) {\nif (MathUtils.equals(getEntry(i, col), 1.0, epsilon) && (row == null)) {\nrow = i;\n} else if (!MathUtils.equals(getEntry(",
+        "teger getBasicRow(final int col) {\nInteger row = null;\nfor (int i = getNumObjectiveFunctions(); i < ",
+        "(final int col) {\nInteger row = null;\nfor (int i = getNumObjectiveFunctions(); i < getHeight(); i++)",
+        "al int col) {\nInteger row = null;\nfor (int i = get",
+        "ol) {\nInteger row = null;\nfor (int i = getNumObjec",
+        "{\nInteger row = null;\nfor (int i = getNumObjective",
+        "Integer row = null;\nfor (int i = getNumObjectiveFu",
+        "teger row = null;\nfor (int i = getNumObjectiveFunc",
+        "eger row = null;\nfor (int i = getNumObjectiveFunct",
+        "hUtils.equals(getEntry(i, col), 1.0, epsilon) && (",
+        "ls.equals(getEntry(i, col), 1.0, epsilon) && (row ",
+        ".equals(getEntry(i, col), 1.0, epsilon) && (row ==",
+        "quals(getEntry(i, col), 1.0, epsilon) && (row == n",
+        "uals(getEntry(i, col), 1.0, epsilon) && (row == nu",
+        "getEntry(i, col), 1.0, epsilon) && (row == null)) ",
+        "else if (!MathUtils.equals(getEntry(i, col), 0.0, ",
+        " (!MathUtils.equals(getEntry(i, col), 0.0, epsilon",
+        "(!MathUtils.equals(getEntry(i, col), 0.0, epsilon)",
+        "MathUtils.equals(getEntry(i, col), 0.0, epsilon)) ",
+        "thUtils.equals(getEntry(i, col), 0.0, epsilon)) {\n"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.35294117647058826,
+    "input": "private static Map<String, String> parseParameters(String string) {\n        if (string.length() == 0) {\n            return Collections.<String, String>emptyMap();\n        }\n\n        // Extracts k1=v1, k2=v2 from mime/type; k1=v1; k2=v2\n        // Note - this logic isn't fully RFC2045 compliant yet, as it\n        //  doesn't fully handle quoted keys or values (eg containing ; or =)\n        Map<String, String> parameters = new HashMap<String, String>();\n        while (string.length() > 0) {\n            String key = string;\n            String value = \"\";\n\n            int semicolon = string.indexOf(';');\n            if (semicolon != -1) {\n                key = string.substring(0, semicolon);\n                string = string.substring(semicolon + 1);\n            } else {\n                string = \"\";\n            }\n\n            int equals = key.indexOf('=');\n            if (equals != -1) {\n                value = key.substring(equals + 1);\n                key = key.substring(0, equals);\n            }\n\n            key = key.trim();\n            if (key.length() > 0) {\n                parameters.put(key, unquote(value.trim()));\n            }\n        }\n        return parameters;\n    }",
+    "query_result": [
+        "private static Map<String, String> parseParameters(String string) {\nif (string.length() == 0) {\nretu",
+        "e; k1=v1; k2=v2\n// Note - this logic isn't fully RFC2045 compliant yet, as it\n// doesn't fully handl",
+        " static Map<String, String> parseParameters(String",
+        "static Map<String, String> parseParameters(String ",
+        "String string) {\nif (string.length() == 0) {\nretur",
+        "tring string) {\nif (string.length() == 0) {\nreturn",
+        "ring string) {\nif (string.length() == 0) {\nreturn ",
+        "ength() == 0) {\nreturn Collections.<String, String",
+        "ngth() == 0) {\nreturn Collections.<String, String>",
+        "() == 0) {\nreturn Collections.<String, String>empt",
+        ") == 0) {\nreturn Collections.<String, String>empty",
+        "0) {\nreturn Collections.<String, String>emptyMap()",
+        " {\nreturn Collections.<String, String>emptyMap();\n",
+        "{\nreturn Collections.<String, String>emptyMap();\n}",
+        "\nreturn Collections.<String, String>emptyMap();\n}\n",
+        "\nMap<String, String> parameters = new HashMap<Stri",
+        "Map<String, String> parameters = new HashMap<Strin",
+        "ap<String, String> parameters = new HashMap<String",
+        "p<String, String> parameters = new HashMap<String,",
+        "<String, String> parameters = new HashMap<String, "
+    ]
+}

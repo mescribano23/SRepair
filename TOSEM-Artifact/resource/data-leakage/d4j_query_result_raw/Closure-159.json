@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.1728395061728395,
+    "input": "private void findCalledFunctions(\n    Node node, Set<String> changed) {\n  Preconditions.checkArgument(changed != null);\n  // For each referenced function, add a new reference\n  if (node.getType() == Token.NAME) {\n    if (isCandidateUsage(node)) {\n      changed.add(node.getString());\n    }\n  }\n\n  for (Node c = node.getFirstChild(); c != null; c = c.getNext()) {\n    findCalledFunctions(c, changed);\n  }\n}",
+    "query_result": [
+        "for (Node c = node.getFirstChild(); c != null; c =",
+        "or (Node c = node.getFirstChild(); c != null; c = ",
+        "(Node c = node.getFirstChild(); c != null; c = c.g",
+        "de c = node.getFirstChild(); c != null; c = c.getN",
+        "e c = node.getFirstChild(); c != null; c = c.getNe",
+        "c = node.getFirstChild(); c != null; c = c.getNext",
+        "ode.getFirstChild(); c != null; c = c.getNext()) {",
+        ".getFirstChild(); c != null; c = c.getNext()) {\nfi"
+    ]
+}

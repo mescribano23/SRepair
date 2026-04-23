@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    private static void decompress(final InputStream in, final byte[] out)\n            throws IOException,ImageReadException {\n        int position = 0;\n        final int total = out.length;\n\n        while (position < total) {\n            final int n = in.read();\n\n            if (n < 0) {\n                throw new ImageReadException(\"Error decompressing RGBE file\");\n            }\n\n            if (n > 128) {\n                final int value = in.read();\n\n                for (int i = 0; i < (n & 0x7f); i++) {\n                    out[position++] = (byte) value;\n                }\n            } else {\n                for (int i = 0; i < n; i++) {\n                    out[position++] = (byte) in.read();\n                }\n            }\n        }\n    }",
+    "query_result": []
+}

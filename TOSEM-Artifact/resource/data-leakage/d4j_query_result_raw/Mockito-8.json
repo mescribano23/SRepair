@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5501089324618736,
+    "input": "protected void registerTypeVariablesOn(Type classType) {\n    if (!(classType instanceof ParameterizedType)) {\n        return;\n    }\n    ParameterizedType parameterizedType = (ParameterizedType) classType;\n    TypeVariable[] typeParameters = ((Class<?>) parameterizedType.getRawType()).getTypeParameters();\n    Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();\n    for (int i = 0; i < actualTypeArguments.length; i++) {\n        TypeVariable typeParameter = typeParameters[i];\n        Type actualTypeArgument = actualTypeArguments[i];\n\n        if (actualTypeArgument instanceof WildcardType) {\n            contextualActualTypeParameters.put(typeParameter, boundsOf((WildcardType) actualTypeArgument));\n        } else if (typeParameter != actualTypeArgument) {\n            contextualActualTypeParameters.put(typeParameter, actualTypeArgument);\n        }\n        // logger.log(\"For '\" + parameterizedType + \"' found type variable : { '\" + typeParameter + \"(\" + System.identityHashCode(typeParameter) + \")\" + \"' : '\" + actualTypeArgument + \"(\" + System.identityHashCode(typeParameter) + \")\" + \"' }\");\n    }\n}",
+    "query_result": [
+        "ardType) actualTypeArgument));\n} else if (typeParameter != actualTypeArgument) {\ncontextualActualTypeParameters.put(typeParameter, actualTypeArgument);\n}\n// logger.log(\"For '\" + parameterizedType + \"'",
+        "oid registerTypeVariablesOn(Type classType) {\nif (!(classType instanceof ParameterizedType)) {\nreturn;\n}\nParameterizedType parameterizedType = (Parame",
+        "Class<?>) parameterizedType.getRawType()).getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0",
+        "Type.getRawType()).getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualTypeArgumen",
+        "RawType()).getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualTypeArguments.lengt",
+        "awType()).getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualTypeArguments.length",
+        "e()).getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualTypeArguments.length; i++",
+        ")).getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualTypeArguments.length; i++) ",
+        ".getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualTypeArguments.length; i++) {\n",
+        "instanceof ParameterizedType)) {\nreturn;\n}\nParameterizedType parameterizedType = (ParameterizedType)",
+        ".getRawType()).getTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArgu",
+        "tTypeParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int",
+        "peParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i ",
+        "eParameters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i =",
+        "meters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i",
+        "eters();\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i ",
+        ";\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actua",
+        "\nType[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actual",
+        "Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualT",
+        "e[] actualTypeArguments = parameterizedType.getActualTypeArguments();\nfor (int i = 0; i < actualType"
+    ]
+}

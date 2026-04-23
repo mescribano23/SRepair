@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/iciql/Query.java b/src/main/java/com/iciql/Query.java
+index 08ac33c..5b99f3b 100644
+--- a/src/main/java/com/iciql/Query.java
++++ b/src/main/java/com/iciql/Query.java
+@@ -852,10 +852,17 @@ public class Query<T> {
+ 			Enum<?> anEnum = (Enum<?>) value;
+ 			Object y = Utils.convertEnum(anEnum, type);
+ 			stat.addParameter(y);
+-		} else if (col != null) {
+-			// object
+-					// clip strings (issue-15)
+-			Class<? extends DataTypeAdapter<?>> typeAdapter = col.getFieldDefinition().typeAdapter;
++		}
++		// Clipping strings to the defined maximum length
++		else if (col != null) {
++			TableDefinition.FieldDefinition field = col.getFieldDefinition();
++			if (value instanceof String && field.length > 0) { // Ensure it's a string and there's a defined length
++				String strValue = (String) value;
++				if (strValue.length() > field.length) {
++					value = strValue.substring(0, field.length);
++				}
++			}
++			Class<? extends DataTypeAdapter<?>> typeAdapter = field.typeAdapter;
+ 			Object parameter = db.getDialect().serialize(value, typeAdapter);
+ 			stat.addParameter(parameter);
+ 		} else {

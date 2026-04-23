@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.9095477386934674,
+    "input": "@Override\n        protected ContentHandler getContentHandler(\n                OutputStream output, Metadata metadata) throws Exception {\n            return new ExpandedTitleContentHandler(getTransformerHandler(output, \"html\", encoding, prettyPrint));\n        }",
+    "query_result": [
+        "tHandler(\nOutputStream output, Metadata metadata) throws Exception {\nreturn new ExpandedTitleContentHandler(getTransformerHandler(output, \"html\", enco",
+        "verride\nprotected ContentHandler getContentHandler(\nOutputStream output, Metadata metadata) throws E",
+        "erride\nprotected ContentHandler getContentHandler(\nOutputStream output, Metadata metadata) throws Ex",
+        "tentHandler getContentHandler(\nOutputStream output, Metadata metadata) throws Exception {\nreturn new",
+        "ndler(\nOutputStream output, Metadata metadata) throws Exception {\nreturn new ExpandedTitleContentHan",
+        "rows Exception {\nreturn new ExpandedTitleContentHandler(getTransformerHandler(output, \"html\", encodi",
+        "@Override\nprotected ContentHandler getContentHandl",
+        "ler getContentHandler(\nOutputStream output, Metada",
+        "r getContentHandler(\nOutputStream output, Metadata",
+        "tentHandler(\nOutputStream output, Metadata metadat"
+    ]
+}

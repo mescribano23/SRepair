@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.9107142857142857,
+    "input": "  private void checkInMethod() {\n    if (!METHOD_SCOPES.contains(scopes.peekFirst())) {\n      throw new IllegalArgumentException();\n    }\n  }",
+    "query_result": [
+        "d checkInMethod() {\nif (!METHOD_SCOPES.contains(scopes.peekFirst())) {\nthrow new IllegalArgumentExce",
+        "SCOPES.contains(scopes.peekFirst())) {\nthrow new I",
+        "st())) {\nthrow new IllegalArgumentException();\n}\n}"
+    ]
+}

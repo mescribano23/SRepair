@@ -1,0 +1,19 @@
+diff --git a/csv/src/main/java/org/apache/metamodel/csv/CsvConfiguration.java b/csv/src/main/java/org/apache/metamodel/csv/CsvConfiguration.java
+index abcf2d4c..ba1fb499 100644
+--- a/csv/src/main/java/org/apache/metamodel/csv/CsvConfiguration.java
++++ b/csv/src/main/java/org/apache/metamodel/csv/CsvConfiguration.java
+@@ -88,13 +88,13 @@ public final class CsvConfiguration extends BaseObject implements Serializable {
+             char separatorChar, char quoteChar, char escapeChar, boolean failOnInconsistentRowLength,
+             boolean multilineValues) {
+         this.columnNameLineNumber = columnNameLineNumber;
++        this.columnNamingStrategy = columnNamingStrategy;
+         this.encoding = encoding;
+         this.separatorChar = separatorChar;
+         this.quoteChar = quoteChar;
+         this.escapeChar = escapeChar;
+         this.failOnInconsistentRowLength = failOnInconsistentRowLength;
+         this.multilineValues = multilineValues;
+-        this.columnNamingStrategy = null;
+     }
+     
+     /**

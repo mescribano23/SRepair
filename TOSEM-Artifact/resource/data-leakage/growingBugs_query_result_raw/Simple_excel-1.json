@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.42193548387096774,
+    "input": "    @Override\n    protected boolean matchesSafely(Row actual, Description mismatch) {\n        if (numberOfCellsIn(expected) != numberOfCellsIn(actual)) {\n            mismatch.appendText(\"got \")\n                    .appendValue(numberOfCellsIn(actual))\n                    .appendText(\" cell(s) on row \")\n                    .appendValue(asExcelRow(expected))\n                    .appendText(\" expected \")\n                    .appendValue(numberOfCellsIn(expected))\n                    .appendText(\" sheet \")\n                    .appendValue(expected.getSheet().getSheetName());\n            return false;\n        }\n        if (numberOfPhysicalCellsIn(expected) != numberOfPhysicalCellsIn(actual)) {\n            mismatch.appendText(\"got \")\n                    .appendValue(numberOfPhysicalCellsIn(actual))\n                    .appendText(\" cell(s) containing value on row \")\n                    .appendValue(asExcelRow(expected))\n                    .appendText(\" expected \")\n                    .appendValue(numberOfPhysicalCellsIn(expected))\n                    .appendText(\" sheet \")\n                    .appendValue(expected.getSheet().getSheetName());\n            return false;\n        }\n\n        return true;\n    }",
+    "query_result": [
+        "alue(numberOfCellsIn(actual))\n.appendText(\" cell(s) on row \")\n.appendValue(asExcelRow(expected))\n.appendText(\" expected \")\n.appendValue(numberOfCellsI",
+        "pendValue(numberOfCellsIn(actual))\n.appendText(\" cell(s) on row \")\n.appendValue(asExcelRow(expected)",
+        "@Override\nprotected boolean matchesSafely(Row actu",
+        "e\nprotected boolean matchesSafely(Row actual, Desc",
+        "oolean matchesSafely(Row actual, Description misma",
+        "ean matchesSafely(Row actual, Description mismatch",
+        "tchesSafely(Row actual, Description mismatch) {\nif",
+        "alue(expected.getSheet().getSheetName());\nreturn f",
+        "ue(expected.getSheet().getSheetName());\nreturn fal",
+        "alue(expected.getSheet().getSheetName());\nreturn f",
+        "ue(expected.getSheet().getSheetName());\nreturn fal",
+        "getSheet().getSheetName());\nreturn false;\n}\nreturn"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.08899297423887588,
+    "input": "@Override\n    public int validateElementEnd(String localName, String uri, String prefix)\n        throws XMLStreamException\n    {\n        // First, let's remove the top:\n        final int ix = mElemCount-1;\n\n        // [WSTX-200]: need to avoid problems when doing sub-tree\n        //   validation...\n        if (ix < 0) {\n            return XMLValidator.CONTENT_ALLOW_WS;\n        }\n        mElemCount = ix;\n\n        DTDElement closingElem = mElems[ix];\n        mElems[ix] = null;\n        StructValidator v = mValidators[ix];\n        mValidators[ix] = null;\n\n        // Validation?\n        if (v != null) {\n            String msg = v.fullyValid();\n            if (msg != null) {\n                reportValidationProblem(\"Validation error, element </\"\n                                        +closingElem+\">: \"+msg);\n            }\n        }\n\n        // Then let's get info from parent, if any\n        if (ix < 1) { // root element closing..\n            // doesn't really matter; epilog/prolog differently handled:\n            return XMLValidator.CONTENT_ALLOW_WS;\n        }\n\n        final DTDElement element = mElems[ix-1];\n\n        // 22-Apr-2020, tatu: `null` validator added for unknown elements\n        return (element == null)\n                ? XMLValidator.CONTENT_ALLOW_ANY_TEXT\n                : element.getAllowedContent();\n    }",
+    "query_result": [
+        "alidateElementEnd(String localName, String uri, St",
+        " localName, String uri, String prefix)\nthrows XMLS",
+        "e, String uri, String prefix)\nthrows XMLStreamExce"
+    ]
+}

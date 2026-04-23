@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6928,
+    "input": "        public boolean useForType(JavaType t)\n        {\n            switch (_appliesFor) {\n            case NON_CONCRETE_AND_ARRAYS:\n                while (t.isArrayType()) {\n                    t = t.getContentType();\n                }\n                // fall through\n            case OBJECT_AND_NON_CONCRETE:\n//                return t.isJavaLangObject() || \n                return (t.getRawClass() == Object.class)\n                        || (!t.isConcrete()\n                                // [databind#88] Should not apply to JSON tree models:\n                                && !TreeNode.class.isAssignableFrom(t.getRawClass()));\n\n            case NON_FINAL:\n                while (t.isArrayType()) {\n                    t = t.getContentType();\n                }\n                // [Issue#88] Should not apply to JSON tree models:\n                return !t.isFinal() && !TreeNode.class.isAssignableFrom(t.getRawClass());\n            default:\n            //case JAVA_LANG_OBJECT:\n//                return t.isJavaLangObject();\n                return (t.getRawClass() == Object.class);\n            }\n        }",
+    "query_result": [
+        "ld not apply to JSON tree models: && !TreeNode.class.isAssignableFrom(t.getRawClass())); case NON_FINAL: while (t.isArrayType()) { t = t.getContentType(); } // [Issue#88] Should not apply to JSON tree models: return !t.isFinal() && !TreeNode.class.is",
+        "JavaType t) { switch (_appliesFor) { case NON_CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); } // fall through case OBJECT_AND",
+        "itch (_appliesFor) { case NON_CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); } // fall through case OBJECT_AND_NON_CONCRETE: /",
+        "#88] Should not apply to JSON tree models: && !TreeNode.class.isAssignableFrom(t.getRawClass())); case NON_FINAL: while (t.isArrayType()) { t = t.getC",
+        "] Should not apply to JSON tree models: && !TreeNode.class.isAssignableFrom(t.getRawClass())); case NON_FINAL: while (t.isArrayType()) { t = t.getCont",
+        "apply to JSON tree models: && !TreeNode.class.isAssignableFrom(t.getRawClass())); case NON_FINAL: while (t.isArrayType()) { t = t.getContentType(); }",
+        "ch (_appliesFor) { case NON_CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); }",
+        "h (_appliesFor) { case NON_CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); }",
+        "or) { case NON_CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); } // fall thro",
+        "{ case NON_CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); } // fall through",
+        "ase NON_CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); } // fall through cas",
+        "CONCRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); } // fall through case OBJECT",
+        "CRETE_AND_ARRAYS: while (t.isArrayType()) { t = t.getContentType(); } // fall through case OBJECT_AN",
+        "] Should not apply to JSON tree models: return !t.isFinal() && !TreeNode.class.isAssignableFrom(t.ge",
+        "ree models: return !t.isFinal() && !TreeNode.class.isAssignableFrom(t.getRawClass()); default: //cas",
+        "urn !t.isFinal() && !TreeNode.class.isAssignableFrom(t.getRawClass()); default: //case JAVA_LANG_OBJ",
+        "e (t.isArrayType()) { t = t.getContentType(); } //",
+        "AL: while (t.isArrayType()) { t = t.getContentType",
+        "while (t.isArrayType()) { t = t.getContentType();",
+        "ile (t.isArrayType()) { t = t.getContentType(); }"
+    ]
+}

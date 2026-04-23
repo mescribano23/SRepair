@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.9486404833836858,
+    "input": "  public synchronized void clear() throws IOException {\n    // Commit the header.\n    writeHeader(INITIAL_LENGTH, 0, 0, 0);\n\n    // Zero out data.\n    raf.seek(HEADER_LENGTH);\n    raf.write(ZEROES, 0, INITIAL_LENGTH - HEADER_LENGTH);\n\n    elementCount = 0;\n    first = Element.NULL;\n    last = Element.NULL;\n    if (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);\n    fileLength = INITIAL_LENGTH;\n    modCount++;\n  }",
+    "query_result": [
+        " synchronized void clear() throws IOException {\n// Commit the header.\nwriteHeader(INITIAL_LENGTH, 0, 0, 0);\n// Zero out data.\nraf.seek(HEADER_LENGTH);\nraf.write(ZEROES, 0, INITIAL_LENGTH - HEADER_LENGTH);\nelementCount = 0;\nfirst = Element.NULL;\nlast = Element.NULL;\nif (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);\nfileLength = INITIAL_LEN",
+        "hrows IOException {\n// Commit the header.\nwriteHeader(INITIAL_LENGTH, 0, 0, 0);\n// Zero out data.\nraf.seek(HEADER_LENGTH);\nraf.write(ZEROES, 0, INITIAL_LENGTH - HEADER_LENGTH);\nelementCount = 0;\nfirst = Element.NULL;\nlast = Element.NULL;\nif (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);\nfi",
+        " IOException {\n// Commit the header.\nwriteHeader(INITIAL_LENGTH, 0, 0, 0);\n// Zero out data.\nraf.seek(HEADER_LENGTH);\nraf.write(ZEROES, 0, INITIAL_LENGTH - HEADER_LENGTH);\nelementCount = 0;\nfirst = Element.NULL;\nlast = Element.NULL;\nif (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);\nfileLen",
+        " = 0;\nfirst = Element.NULL;\nlast = Element.NULL;\nif (fileLength > INITIAL_LENGTH) setLength(INITIAL_",
+        "= 0;\nfirst = Element.NULL;\nlast = Element.NULL;\nif (fileLength > INITIAL_LENGTH) setLength(INITIAL_L",
+        "ast = Element.NULL;\nif (fileLength > INITIAL_LENGTH) setLength(INITIAL_LENGTH);\nfileLength = INITIAL",
+        "ublic synchronized void clear() throws IOException",
+        "blic synchronized void clear() throws IOException ",
+        "ic synchronized void clear() throws IOException {\n",
+        "c synchronized void clear() throws IOException {\n/",
+        " the header.\nwriteHeader(INITIAL_LENGTH, 0, 0, 0);",
+        "the header.\nwriteHeader(INITIAL_LENGTH, 0, 0, 0);\n",
+        " data.\nraf.seek(HEADER_LENGTH);\nraf.write(ZEROES, ",
+        "t.NULL;\nlast = Element.NULL;\nif (fileLength > INIT"
+    ]
+}

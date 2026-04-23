@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.978021978021978,
+    "input": "public void integrate(final ExpandableStatefulODE equations, final double t)\n    throws MathIllegalStateException, MathIllegalArgumentException {\n\n  sanityChecks(equations, t);\n  setEquations(equations);\n  final boolean forward = t > equations.getTime();\n\n  // create some internal working arrays\n  final double[] y0  = equations.getCompleteState();\n  final double[] y = y0.clone();\n  final int stages = c.length + 1;\n  final double[][] yDotK = new double[stages][y.length];\n  final double[] yTmp    = y0.clone();\n  final double[] yDotTmp = new double[y.length];\n\n  // set up an interpolator sharing the integrator arrays\n  final RungeKuttaStepInterpolator interpolator = (RungeKuttaStepInterpolator) prototype.copy();\n  interpolator.reinitialize(this, yTmp, yDotK, forward,\n                            equations.getPrimaryMapper(), equations.getSecondaryMappers());\n  interpolator.storeTime(equations.getTime());\n\n  // set up integration control objects\n  stepStart         = equations.getTime();\n  double  hNew      = 0;\n  boolean firstTime = true;\n  initIntegration(equations.getTime(), y0, t);\n\n  // main integration loop\n  isLastStep = false;\n  do {\n\n    interpolator.shift();\n\n    // iterate over step size, ensuring local normalized error is smaller than 1\n    double error = 10;\n    while (error >= 1.0) {\n\n      if (firstTime || !fsal) {\n        // first stage\n        computeDerivatives(stepStart, y, yDotK[0]);\n      }\n\n      if (firstTime) {\n        final double[] scale = new double[main",
+    "query_result": [
+        "cks(equations, t);\nsetEquations(equations);\nfinal boolean forward = t > equations.getTime();\n// create some internal working arrays\nfinal double[] y0 = equations.getCompleteState();\nfinal double[] y = y0.clone();\nfinal int stages = c.length + 1;\nfinal double[][] yDotK = new double[stages][y.length];\nfinal double[] yTmp = y0.clone();\nfinal double[] yDotTmp = new double[y.length];\n// set up an interpolator sharing the integrator arrays\nfinal RungeKuttaStepInterpolator interpolator = (RungeKuttaStepInterpolator) prototype.copy();\ninterpolator.reinitialize(this, yTmp, yDotK, forward,\nequations.getPrimaryMapper(), equations.getSecondaryMappers());\ninterpolator.storeTime(equations.getTime());\n// set up integration control objects\nstepStart = equations.getTime();\ndouble hNew = 0;\nboolean firstTime = true;\ninitIntegration(equations.getTime(), y0, t);\n// main integration loop\nisLastStep = false;\ndo {\ninterpolator.shift();\n// iterate over step size, ensuring local normalized error is smaller than 1\ndouble error = 10;\nwhile (error >= 1.0) {\nif (firstTime || !fsal) {\n// first stage\ncomputeDerivatives(stepStart, y, yDotK[0]);\n}\nif (firstTime) {\n",
+        "ityChecks(equations, t);\nsetEquations(equations);\nfinal boolean forward = t > equations.getTime();\n// create some internal working arrays\nfinal double[] y0 = equations.getCompleteState();\nfinal double[] y = y0.clone();\nfinal int stages = c.length + 1;\nfinal double[][] yDotK = new double[stages][y.length];\nfinal double[] yTmp = y0.clone();\nfinal double[] yDotTmp = new double[y.length];\n// set up an interpolator sharing the integrator arrays\nfinal RungeKuttaStepInterpolator interpolator = (RungeKu",
+        "s.getPrimaryMapper(), equations.getSecondaryMappers());\ninterpolator.storeTime(equations.getTime());\n// set up integration control objects\nstepStart = equations.getTime();\ndouble hNew = 0;\nboolean firstTime = true;\ninitIntegration(equations.getTime(), y0, t);\n// main integration loop\nisLastStep = false;\ndo {\ninterpolator.shift();\n// iterate over step size, ensuring local normalized error is smalle",
+        "quations, t);\nsetEquations(equations);\nfinal boolean forward = t > equations.getTime();\n// create some internal working arrays\nfinal double[] y0 = equations.getCompleteState();\nfinal double[] y = y0.c",
+        "(error >= 1.0) {\nif (firstTime || !fsal) {\n// first stage\ncomputeDerivatives(stepStart, y, yDotK[0]);\n}\nif (firstTime) {\nfinal double[] scale = new do",
+        "galStateException, MathIllegalArgumentException {\nsanityChecks(equations, t);\nsetEquations(equations",
+        "[][] yDotK = new double[stages][y.length];\nfinal double[] yTmp = y0.clone();\nfinal double[] yDotTmp ",
+        "LastStep = false;\ndo {\ninterpolator.shift();\n// iterate over step size, ensuring local normalized er",
+        "ublic void integrate(final ExpandableStatefulODE e",
+        "ic void integrate(final ExpandableStatefulODE equa",
+        " void integrate(final ExpandableStatefulODE equati",
+        "void integrate(final ExpandableStatefulODE equatio",
+        "d integrate(final ExpandableStatefulODE equations,",
+        "integrate(final ExpandableStatefulODE equations, f",
+        "egrate(final ExpandableStatefulODE equations, fina",
+        "rate(final ExpandableStatefulODE equations, final ",
+        "te(final ExpandableStatefulODE equations, final do",
+        "e(final ExpandableStatefulODE equations, final dou",
+        "(final ExpandableStatefulODE equations, final doub",
+        "inal ExpandableStatefulODE equations, final double"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9690402476780186,
+    "input": "  Event buildEvent() {\n    byte[] body;\n    int pri = 0;\n    int sev = 0;\n    int facility = 0;\n\n    if(!isBadEvent){\n      pri = Integer.parseInt(prio.toString());\n      sev = pri % 8;\n      facility = pri / 8;\n      formatHeaders();\n    }\n\n    Map <String, String> headers = new HashMap<String, String>();\n    headers.put(SYSLOG_FACILITY, String.valueOf(facility));\n    headers.put(SYSLOG_SEVERITY, String.valueOf(sev));\n    if ((timeStamp != null) && timeStamp.length() > 0) {\n      headers.put(\"timestamp\", timeStamp);\n    }\n    if ((hostName != null) && (hostName.length() > 0)) {\n      headers.put(\"host\", hostName);\n    }\n    if(isBadEvent){\n      logger.warn(\"Event created from Invalid Syslog data.\");\n      headers.put(EVENT_STATUS, SyslogStatus.INVALID.getSyslogStatus());\n    } else if(isIncompleteEvent){\n      logger.warn(\"Event size larger than specified event size: {}. You should \" +\n          \"consider increasing your event size.\", maxSize);\n      headers.put(EVENT_STATUS, SyslogStatus.INCOMPLETE.getSyslogStatus());\n    }\n\n    if ((msgBody != null) && (msgBody.length() > 0)) {\n      body = msgBody.getBytes();\n    } else {\n      body = baos.toByteArray();\n    }\n    reset();\n    // format the message\n    return EventBuilder.withBody(body, headers);\n  }",
+    "query_result": [
+        "String, String> headers = new HashMap<String, String>();\nheaders.put(SYSLOG_FACILITY, String.valueOf(facility));\nheaders.put(SYSLOG_SEVERITY, String.valueOf(sev));\nif ((timeStamp != null) && timeStamp.length() > 0) {\nheaders.put(\"timestamp\", timeStamp);\n}\nif ((hostName != null) && (hostName.length() > 0)) {\nheaders.put(\"host\", hostName);\n}\nif(isBadEvent){\nlogger.warn(\"Event created from Invalid Syslog data.\");\nheaders.put(EVENT_STATUS, SyslogStatus.INVALID.getSyslogStatus());\n} else if(isIncompleteEvent){\nlogger.warn(\"Event size larger than specified event size: {}. You should \" +\n\"consider increasing your event size.\", maxSize);\nheaders.put(EVENT_STATUS, SyslogStatus.INCOMPLETE.getSyslogStatus());\n}\nif ((msgBody != null) && (msgBody.length() > 0)) {\nbody = msgBody.getBytes();\n} else {\nbody = baos.toByteArray();\n}\nreset();\n// format the message\nreturn EventBuilder.withBody(body, headers)",
+        ";\nint pri = 0;\nint sev = 0;\nint facility = 0;\nif(!isBadEvent){\npri = Integer.parseInt(prio.toString());\nsev = pri % 8;\nfacility = pri / 8;\nformatHeaders();\n}\nMap <String, String> headers = new HashMap<String, String>();\nheaders.put(SYSLOG_FACILITY, String.valueOf(facility));\nheaders.put(SYSLOG_SEVERITY, String.valueOf(sev));\nif ((timeStamp != null) && timeStamp.length() > 0) {\nheaders.put(\"timestamp\", timeStamp);\n}\nif ((hostName != null) && (hostName.length() > 0)) {\nheaders.put(\"host\", hostName);\n}\nif(isBadEvent){\nlogger.warn(\"Event created from Invalid Syslog data.\");\nheaders.put(EVENT_STATUS, SyslogStatus.INVALID.getSyslogStatus());\n} else if(isIncompleteEvent){\nlogger.warn(\"Event size larger than specified event size: {}. You should \" +\n\"consider increasing your event size.\", maxSize);\nheaders.put(EVENT_STATUS, SyslogStatus.INCOMPLETE",
+        "int sev = 0;\nint facility = 0;\nif(!isBadEvent){\npri = Integer.parseInt(prio.toString());\nsev = pri %",
+        "Map <String, String> headers = new HashMap<String,",
+        "<String, String> headers = new HashMap<String, Str",
+        "tring, String> headers = new HashMap<String, Strin",
+        "ring, String> headers = new HashMap<String, String",
+        "ing, String> headers = new HashMap<String, String>",
+        "ng, String> headers = new HashMap<String, String>(",
+        "g, String> headers = new HashMap<String, String>()",
+        ", String> headers = new HashMap<String, String>();",
+        " String> headers = new HashMap<String, String>();\n",
+        "String> headers = new HashMap<String, String>();\nh",
+        "tring> headers = new HashMap<String, String>();\nhe",
+        "ring> headers = new HashMap<String, String>();\nhea",
+        "ing> headers = new HashMap<String, String>();\nhead",
+        "ng> headers = new HashMap<String, String>();\nheade",
+        "g> headers = new HashMap<String, String>();\nheader",
+        "> headers = new HashMap<String, String>();\nheaders",
+        " headers = new HashMap<String, String>();\nheaders."
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.8266666666666667,
+    "input": "    private void destroy(final PooledObject<T> toDestroy) throws Exception {\n        toDestroy.invalidate();\n        idleObjects.remove(toDestroy);\n        allObjects.remove(new IdentityWrapper<>(toDestroy.getObject()));\n        try {\n            factory.destroyObject(toDestroy);\n        } finally {\n            destroyedCount.incrementAndGet();\n            createCount.decrementAndGet();\n        }\n\n        if (idleObjects.isEmpty() && idleObjects.hasTakeWaiters()) {\n            // POOL-356.\n            // In case there are already threads waiting on something in the pool\n            // (e.g. idleObjects.takeFirst(); then we need to provide them a fresh instance.\n            // Otherwise they will be stuck forever (or until timeout)\n            PooledObject<T> freshPooled = create();\n            idleObjects.put(freshPooled);\n        }\n    }",
+    "query_result": [
+        "oDestroy) throws Exception { toDestroy.invalidate(); idleObjects.remove(toDestroy); allObjects.remove(new IdentityWrapper<>(toDestroy.getObject())); try { factory.destroyObject(toDestroy); } finally { destroyedCount.incrementAndGet(); createCount.decrementAndGet(); } if (idleObjects.isEmpty() && idleObjects.hasTakeWaiters()) { // POOL-356. // In case there are already threads waiting on something in the pool // (e.g. idleObjects.takeFirst(); then we need to provide them a fresh instance. // Otherwise they will be stuck forever (or until timeout",
+        "toDestroy.invalidate(); idleObjects.remove(toDestroy); allObjects.remove(new IdentityWrapper<>(toDestroy.getObject())); try { factory.destroyObject(toDestroy); } finally { destroyedCount.incrementAndG",
+        "eption { toDestroy.invalidate(); idleObjects.remove(toDestroy); allObjects.remove(new IdentityWrapper<>(toDestroy.getObject())); try { factory.destroy",
+        "estroyObject(toDestroy); } finally { destroyedCount.incrementAndGet(); createCount.decrementAndGet()",
+        "stroyObject(toDestroy); } finally { destroyedCount.incrementAndGet(); createCount.decrementAndGet();",
+        "T> toDestroy) throws Exception { toDestroy.invalid",
+        "move(toDestroy); allObjects.remove(new IdentityWra",
+        "yedCount.incrementAndGet(); createCount.decrementA",
+        "eObjects.isEmpty() && idleObjects.hasTakeWaiters()",
+        "case there are already threads waiting on somethi",
+        "re are already threads waiting on something in the",
+        ". idleObjects.takeFirst(); then we need to provide",
+        "ise they will be stuck forever (or until timeout)"
+    ]
+}

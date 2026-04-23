@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.15558698727015557,
+    "input": "private String internalGetMinifiedName()\n    {\n        String minifiedName = MINIFIED_NAMES_CACHE.get(this);\n        if (minifiedName != null)\n        {\n            return minifiedName;\n        }\n\n        String name = getMinifiedName();\n        IResourceStreamLocator locator = Application.get()\n                .getResourceSettings()\n                .getResourceStreamLocator();\n        String absolutePath = Packages.absolutePath(getScope(), name);\n        IResourceStream stream = locator.locate(getScope(), absolutePath, getStyle(),\n                getVariation(), getLocale(), null, true);\n\n        minifiedName = stream != null ? name : NO_MINIFIED_NAME;\n        MINIFIED_NAMES_CACHE.put(this, minifiedName);\n        if (minifiedName == NO_MINIFIED_NAME && log.isDebugEnabled())\n        {\n            log.debug(\"No minified version of '\" + super.getName() +\n                    \"' found, expected a file with the name '\" + name + \"', using full version\");\n        }\n        return minifiedName;\n    }",
+    "query_result": [
+        "cator locator = Application.get()\n.getResourceSettings()\n.getResourceStreamLocator();\nString absolut",
+        "\nIResourceStreamLocator locator = Application.get(",
+        "tor = Application.get()\n.getResourceSettings()\n.ge",
+        "cation.get()\n.getResourceSettings()\n.getResourceSt",
+        "on.get()\n.getResourceSettings()\n.getResourceStream",
+        "get()\n.getResourceSettings()\n.getResourceStreamLoc",
+        "t()\n.getResourceSettings()\n.getResourceStreamLocat",
+        "getResourceSettings()\n.getResourceStreamLocator();"
+    ]
+}

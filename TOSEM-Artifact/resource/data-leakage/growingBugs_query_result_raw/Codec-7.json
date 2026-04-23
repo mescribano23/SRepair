@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.9416666666666667,
+    "input": "    public static String encodeBase64String(byte[] binaryData) {\n        return StringUtils.newStringUtf8(encodeBase64(binaryData, false));\n    }",
+    "query_result": [
+        "eBase64String(byte[] binaryData) {\nreturn StringUtils.newStringUtf8(encodeBase64(binaryData, false))",
+        " static String encodeBase64String(byte[] binaryDat",
+        "tatic String encodeBase64String(byte[] binaryData)",
+        "atic String encodeBase64String(byte[] binaryData) ",
+        "ing encodeBase64String(byte[] binaryData) {\nreturn",
+        "byte[] binaryData) {\nreturn StringUtils.newStringU",
+        "e[] binaryData) {\nreturn StringUtils.newStringUtf8",
+        " binaryData) {\nreturn StringUtils.newStringUtf8(en",
+        "aryData) {\nreturn StringUtils.newStringUtf8(encode",
+        "ta) {\nreturn StringUtils.newStringUtf8(encodeBase6",
+        "return StringUtils.newStringUtf8(encodeBase64(bina",
+        "urn StringUtils.newStringUtf8(encodeBase64(binaryD",
+        "n StringUtils.newStringUtf8(encodeBase64(binaryDat",
+        "StringUtils.newStringUtf8(encodeBase64(binaryData,",
+        "Utils.newStringUtf8(encodeBase64(binaryData, false",
+        "tils.newStringUtf8(encodeBase64(binaryData, false)",
+        "s.newStringUtf8(encodeBase64(binaryData, false));\n"
+    ]
+}

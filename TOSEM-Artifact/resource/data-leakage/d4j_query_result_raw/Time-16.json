@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6373276776246023,
+    "input": "public int parseInto(ReadWritableInstant instant, String text, int position) {\n    DateTimeParser parser = requireParser();\n    if (instant == null) {\n        throw new IllegalArgumentException(\"Instant must not be null\");\n    }\n    \n    long instantMillis = instant.getMillis();\n    Chronology chrono = instant.getChronology();\n    long instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\n    chrono = selectChronology(chrono);\n    \n    DateTimeParserBucket bucket = new DateTimeParserBucket(\n        instantLocal, chrono, iLocale, iPivotYear, chrono.year().get(instantLocal));\n    int newPos = parser.parseInto(bucket, text, position);\n    instant.setMillis(bucket.computeMillis(false, text));\n    if (iOffsetParsed && bucket.getOffsetInteger() != null) {\n        int parsedOffset = bucket.getOffsetInteger();\n        DateTimeZone parsedZone = DateTimeZone.forOffsetMillis(parsedOffset);\n        chrono = chrono.withZone(parsedZone);\n    } else if (bucket.getZone() != null) {\n        chrono = chrono.withZone(bucket.getZone());\n    }\n    instant.setChronology(chrono);\n    if (iZone != null) {\n        instant.setZone(iZone);\n    }\n    return newPos;\n}",
+    "query_result": [
+        "\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);\n\nDateTimeParserBucket bucket = new DateTimeParserBucket(\ninstantLocal, chrono, iLocal",
+        "Local = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);\n\nDateTimeParserBucket bucket = new DateTimeParserBucket(\ninstantLocal, chrono, iLocale, iPivotYear",
+        "o(ReadWritableInstant instant, String text, int position) {\nDateTimeParser parser = requireParser();\nif (instant == null) {\nthrow new IllegalArgumentE",
+        "ng instantMillis = instant.getMillis();\nChronology chrono = instant.getChronology();\nlong instantLocal = instantMillis + chrono.getZone().getOffset(in",
+        "ntMillis = instant.getMillis();\nChronology chrono = instant.getChronology();\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMil",
+        "lis();\nChronology chrono = instant.getChronology();\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChro",
+        "nology chrono = instant.getChronology();\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chro",
+        "ono.year().get(instantLocal));\nint newPos = parser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffse",
+        "arser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.getOffsetInteger() != null)",
+        "eTimeParser parser = requireParser();\nif (instant == null) {\nthrow new IllegalArgumentException(\"Ins",
+        "y();\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectC",
+        "ng instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronolo",
+        " instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology",
+        "ocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);",
+        "illis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);\n\nDateTimeParse",
+        "new DateTimeParserBucket(\ninstantLocal, chrono, iLocale, iPivotYear, chrono.year().get(instantLocal)",
+        " = parser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\ni",
+        "et, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && buck",
+        " text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.",
+        "xt, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.get"
+    ]
+}

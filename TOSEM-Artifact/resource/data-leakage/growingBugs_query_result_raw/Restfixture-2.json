@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.8757281553398059,
+    "input": "protected void doMethod(String method, String resUrl,\n            Map<String, String> headers, String rBody) {\n        setLastRequest(partsFactory.buildRestRequest());\n        getLastRequest().setMethod(RestRequest.Method.valueOf(method));\n        getLastRequest().addHeaders(headers);\n        getLastRequest().setFollowRedirect(followRedirects);\n        getLastRequest().setResourceUriEscaped(resourceUrisAreEscaped);\n        if (fileName != null) {\n            getLastRequest().setFileName(fileName);\n        }\n        if (multipartFileName != null) {\n            getLastRequest().setMultipartFileName(multipartFileName);\n        }\n        getLastRequest().setMultipartFileParameterName(\n                multipartFileParameterName);\n        String[] uri = resUrl.split(\"\\\\?\", 2);\n        String[] thisRequestUrlParts = buildThisRequestUrl(uri[0]);\n        getLastRequest().setResource(thisRequestUrlParts[1]);\n        if (uri.length == 2) {\n            getLastRequest().setQuery(uri[1]);\n        }\n        if (\"Post\".equals(method) || \"Put\".equals(method)) {\n            getLastRequest().setBody(rBody);\n        }\n\n        //sglebs dirty workaround for #96\n        configureCredentials();\n\n        restClient.setBaseUrl(thisRequestUrlParts[0]);\n        RestResponse response = restClient.execute(getLastRequest());\n        setLastResponse(response);\n    }",
+    "query_result": [
+        "ng method, String resUrl,\nMap<String, String> headers, String rBody) {\nsetLastRequest(partsFactory.buildRestRequest());\ngetLastRequest().setMethod(RestRequest.Method.valueOf(method));\ngetLastRequest().addHeaders(headers);\ngetLastRequest().setFollowRedirect(followRedirects);\ngetLastRequest().setResourceUriEscaped(resourceUrisAreEscaped);\nif (fileName != null) {\ngetLastRequest().setFileName(fileName);\n}\nif (multipartFileName != null) {\ngetLastReque",
+        ");\nString[] thisRequestUrlParts = buildThisRequestUrl(uri[0]);\ngetLastRequest().setResource(thisRequestUrlParts[1]);\nif (uri.length == 2) {\ngetLastRequest().setQuery(uri[1]);\n}\nif (\"Post\".equals(method) || \"Put\".equals(method)) {\ngetLastRequest().set",
+        "ll) {\ngetLastRequest().setFileName(fileName);\n}\nif (multipartFileName != null) {\ngetLastRequest().setMultipartFileName(multipartFileName);\n}\ngetLastRe",
+        "ory.buildRestRequest());\ngetLastRequest().setMethod(RestRequest.Method.valueOf(method));\ngetLastRequ",
+        "lParts[0]);\nRestResponse response = restClient.execute(getLastRequest());\nsetLastResponse(response);",
+        "estRequest.Method.valueOf(method));\ngetLastRequest",
+        ".setMultipartFileParameterName(\nmultipartFileParam",
+        "partFileParameterName(\nmultipartFileParameterName)",
+        "eParameterName);\nString[] uri = resUrl.split(\"\\\\?\"",
+        "\ngetLastRequest().setQuery(uri[1]);\n}\nif (\"Post\".e",
+        "ut\".equals(method)) {\ngetLastRequest().setBody(rBo",
+        "0]);\nRestResponse response = restClient.execute(ge"
+    ]
+}

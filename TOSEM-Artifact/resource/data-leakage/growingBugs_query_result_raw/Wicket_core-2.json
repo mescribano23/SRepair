@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.963963963963964,
+    "input": "@Override\n        public void component(final FormComponent<?> formComponent, final IVisit<Void> visit)\n        {\n\n            Form<?> form = formComponent.getForm();\n            if (!form.isVisibleInHierarchy() || !form.isEnabledInHierarchy())\n            {\n                // do not validate formComponent or any of formComponent's children\n                visit.dontGoDeeper();\n                return;\n            }\n\n            if (formComponent.isVisibleInHierarchy() && formComponent.isEnabledInHierarchy())\n            {\n                validate(formComponent);\n            }\n            if (formComponent.processChildren() == false)\n            {\n                visit.dontGoDeeper();\n            }\n        }",
+    "query_result": [
+        "onent(final FormComponent<?> formComponent, final IVisit<Void> visit)\n{\nForm<?> form = formComponent.getForm();\nif (!form.isVisibleInHierarchy() || !form.isEnabledInHierarchy())\n{\n// do not validate formComponent or any of formComponent's children\nvisit.dontGoDeeper();\nreturn;\n}\nif (formComponent.isVisibleInHierarchy() && formComponent.isEnabledInHierarchy())\n{\nvalidate(formComponent);\n}\nif (formComponent.processChildren() == false)\n{\nvisit.dontG",
+        "rride\npublic void component(final FormComponent<?>",
+        "public void component(final FormComponent<?> formC",
+        "nt(final FormComponent<?> formComponent, final IVi",
+        "mComponent<?> formComponent, final IVisit<Void> vi",
+        "tForm();\nif (!form.isVisibleInHierarchy() || !form",
+        "eturn;\n}\nif (formComponent.isVisibleInHierarchy() ",
+        ".isVisibleInHierarchy() && formComponent.isEnabled",
+        "e(formComponent);\n}\nif (formComponent.processChild"
+    ]
+}

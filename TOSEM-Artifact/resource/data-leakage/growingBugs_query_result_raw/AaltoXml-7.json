@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.6993464052287581,
+    "input": "    @Override\n    public AsyncXMLStreamReader<AsyncByteArrayFeeder> createAsyncFor(byte[] input) throws XMLStreamException\n    {\n        return createAsyncFor(input, 0, input.length);\n    }",
+    "query_result": [
+        "StreamReader<AsyncByteArrayFeeder> createAsyncFor(byte[] input) throws XMLStreamException\n{\nreturn c",
+        "\npublic AsyncXMLStreamReader<AsyncByteArrayFeeder>"
+    ]
+}

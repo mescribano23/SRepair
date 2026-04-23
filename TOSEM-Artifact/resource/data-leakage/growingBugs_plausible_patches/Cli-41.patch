@@ -1,0 +1,33 @@
+diff --git a/src/java/org/apache/commons/cli/HelpFormatter.java b/src/java/org/apache/commons/cli/HelpFormatter.java
+index 0b20bcc..b2ad521 100644
+--- a/src/java/org/apache/commons/cli/HelpFormatter.java
++++ b/src/java/org/apache/commons/cli/HelpFormatter.java
+@@ -806,6 +806,7 @@ public class HelpFormatter
+                                              int nextLineTabStop, String text)
+     {
+         int pos = findWrapPos(text, width, 0);
++        int lastPos = -1; // Track the last position for comparison
+ 
+         if (pos == -1)
+         {
+@@ -819,9 +820,10 @@ public class HelpFormatter
+         // characters
+         final String padding = createPadding(nextLineTabStop);
+ 
+-        while (true)
++        while (lastPos != pos) // Break if there's no progress (pos has not changed)
+         {
+             text = padding + text.substring(pos).trim();
++            lastPos = pos;
+             pos = findWrapPos(text, width, 0);
+ 
+             if (pos == -1)
+@@ -833,6 +835,8 @@ public class HelpFormatter
+ 
+             sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
+         }
++
++        return sb;
+     }
+ 
+     /**

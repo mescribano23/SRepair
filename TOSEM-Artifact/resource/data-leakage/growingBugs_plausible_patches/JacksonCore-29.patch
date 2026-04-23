@@ -1,0 +1,38 @@
+diff --git a/src/main/java/com/fasterxml/jackson/core/JsonFactory.java b/src/main/java/com/fasterxml/jackson/core/JsonFactory.java
+index 4c975d20..87aca7b3 100644
+--- a/src/main/java/com/fasterxml/jackson/core/JsonFactory.java
++++ b/src/main/java/com/fasterxml/jackson/core/JsonFactory.java
+@@ -288,22 +288,17 @@ public class JsonFactory
+      * 
+      * @since 2.2.1
+      */
+-    protected JsonFactory(JsonFactory src, ObjectCodec codec)
+-    {
+-        _objectCodec = null;
+-        _factoryFeatures = src._factoryFeatures;
+-        _parserFeatures = src._parserFeatures;
+-        _generatorFeatures = src._generatorFeatures;
+-        _characterEscapes = src._characterEscapes;
+-        _inputDecorator = src._inputDecorator;
+-        _outputDecorator = src._outputDecorator;
+-        _rootValueSeparator = src._rootValueSeparator;
+-        
+-        /* 27-Apr-2013, tatu: How about symbol table; should we try to
+-         *   reuse shared symbol tables? Could be more efficient that way;
+-         *   although can slightly add to concurrency overhead.
+-         */
+-    }
++protected JsonFactory(JsonFactory src, ObjectCodec codec)
++{
++    _objectCodec = codec; // Set codec to the one passed as parameter
++    _factoryFeatures = src._factoryFeatures;
++    _parserFeatures = src._parserFeatures;
++    _generatorFeatures = src._generatorFeatures;
++    _characterEscapes = src._characterEscapes;
++    _inputDecorator = src._inputDecorator;
++    _outputDecorator = src._outputDecorator;
++    _rootValueSeparator = src._rootValueSeparator;
++}
+     
+     /**
+      * Method for constructing a new {@link JsonFactory} that has

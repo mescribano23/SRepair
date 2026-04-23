@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.536096256684492,
+    "input": "    public SimpleRelocator( String patt, String shadedPattern, List includes, List excludes, boolean rawString )\n    {\n        this.rawString = rawString;\n\n        if ( rawString )\n        {\n            this.pathPattern = patt;\n            this.shadedPathPattern = shadedPattern;\n\n            this.pattern = null; // not used for raw string relocator\n            this.shadedPattern = null; // not used for raw string relocator\n        }\n        else\n        {\n            if ( patt == null )\n            {\n                this.pattern = \"\";\n                this.pathPattern = \"\";\n            }\n            else\n            {\n                this.pattern = patt.replace( '/', '.' );\n                this.pathPattern = patt.replace( '.', '/' );\n            }\n\n            if ( shadedPattern != null )\n            {\n                this.shadedPattern = shadedPattern.replace( '/', '.' );\n                this.shadedPathPattern = shadedPattern.replace( '.', '/' );\n            }\n            else\n            {\n                this.shadedPattern = \"hidden.\" + this.pattern;\n                this.shadedPathPattern = \"hidden/\" + this.pathPattern;\n            }\n        }\n\n        this.includes = normalizePatterns( includes );\n        this.excludes = normalizePatterns( excludes );\n    }",
+    "query_result": [
+        " shadedPattern != null )\n{\nthis.shadedPattern = shadedPattern.replace( '/', '.' );\nthis.shadedPathPattern = shadedPattern.replace( '.', '/' );\n}\nelse\n{\nthis.shadedPattern = \"hidden.\" + this.pattern;\nthis.shadedPathPattern = \"hidden/\" + this.pathPatte",
+        "hadedPathPattern = shadedPattern;\nthis.pattern = null; // not used for raw string relocator\nthis.shadedPattern = null; // not used for raw string relo",
+        " + this.pattern;\nthis.shadedPathPattern = \"hidden/\" + this.pathPattern;\n}\n}\nthis.includes = normaliz",
+        ");\nthis.shadedPathPattern = shadedPattern.replace(",
+        "s.includes = normalizePatterns( includes );\nthis.e"
+    ]
+}

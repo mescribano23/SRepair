@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6963562753036437,
+    "input": "    private Map<String, Integer> initializeHeader() throws IOException {\n        Map<String, Integer> hdrMap = null;\n        final String[] formatHeader = this.format.getHeader();\n        if (formatHeader != null) {\n            hdrMap = new LinkedHashMap<String, Integer>();\n\n            String[] headerRecord = null;\n            if (formatHeader.length == 0) {\n                // read the header from the first line of the file\n                final CSVRecord nextRecord = this.nextRecord();\n                if (nextRecord != null) {\n                    headerRecord = nextRecord.values();\n                }\n            } else {\n                if (this.format.getSkipHeaderRecord()) {\n                    this.nextRecord();\n                }\n                headerRecord = formatHeader;\n            }\n\n            // build the name to index mappings\n            if (headerRecord != null) {\n                for (int i = 0; i < headerRecord.length; i++) {\n                    final String header = headerRecord[i];\n                    final boolean containsHeader = hdrMap.containsKey(header);\n                    final boolean emptyHeader = header == null || header.trim().isEmpty();\n                    if (containsHeader && (!emptyHeader || (emptyHeader && !this.format.getIgnoreEmptyHeaders()))) {\n                        throw new IllegalArgumentException(\"The header contains a duplicate name: \\\"\" + header +\n                                \"\\\" in \" + Arrays.toString(headerRecord));\n                    }\n                    hdrMap.put(header, Integer.valueOf(i));\n                }\n            }\n        }\n        return hdrMap;\n    }",
+    "query_result": [
+        "ing[] headerRecord = null;\nif (formatHeader.length == 0) {\n// read the header from the first line of the file\nfinal CSVRecord nextRecord = this.nextRecord();\nif (nextRecord != null) {\nheaderRecord = nextRecord.values();\n}\n} else {\nif (this.format.getSkipHeaderRecord()) {\nthis.nextRecord();\n}\nheaderRecord = formatHeader;\n}\n// build the name to index mappings\nif (headerRecord != null) {\nfor (int i = 0; i < headerRecord.length; i++) {\nfinal String h",
+        "ead the header from the first line of the file\nfinal CSVRecord nextRecord = this.nextRecord();\nif (nextRecord != null) {\nheaderRecord = nextRecord.values();\n}\n} else {\nif (this.format.getSkipHeaderRecord()) {\nthis.nextRecord();\n}\nheaderRecord = formatHeader;\n}\n// build the name to index mappings\nif (headerRecord != null) {\nfor (int i = 0; i < headerRecord.length; i++) {\nfinal String header = heade",
+        "vate Map<String, Integer> initializeHeader() throws IOException {\nMap<String, Integer> hdrMap = null;\nfinal String[] formatHeader = this.format.getHeader();\nif (formatHeader != null) {\nhdrMap = new Li",
+        "formatHeader.length == 0) {\n// read the header from the first line of the file\nfinal CSVRecord nextRecord = this.nextRecord();\nif (nextRecord != null)",
+        "null;\nif (formatHeader.length == 0) {\n// read the header from the first line of the file\nfinal CSVRe",
+        "build the name to index mappings\nif (headerRecord != null) {\nfor (int i = 0; i < headerRecord.length",
+        "tainsKey(header);\nfinal boolean emptyHeader = header == null || header.trim().isEmpty();\nif (contain",
+        "final String[] formatHeader = this.format.getHeade",
+        "atHeader = this.format.getHeader();\nif (formatHead",
+        " = new LinkedHashMap<String, Integer>();\nString[] ",
+        "xtRecord = this.nextRecord();\nif (nextRecord != nu",
+        ".format.getSkipHeaderRecord()) {\nthis.nextRecord()",
+        "\nheaderRecord = formatHeader;\n}\n// build the name ",
+        " {\nfor (int i = 0; i < headerRecord.length; i++) {",
+        "; i < headerRecord.length; i++) {\nfinal String hea",
+        "final boolean emptyHeader = header == null || head",
+        "oolean emptyHeader = header == null || header.trim",
+        "olean emptyHeader = header == null || header.trim(",
+        "an emptyHeader = header == null || header.trim().i",
+        " = header == null || header.trim().isEmpty();\nif ("
+    ]
+}

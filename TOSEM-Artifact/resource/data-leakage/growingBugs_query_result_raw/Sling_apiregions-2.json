@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.09766454352441614,
+    "input": "    void validateProperties(final Configuration configuration,\n            final ConfigurableEntity desc,  \n            final Map<String, PropertyValidationResult> results,\n            final Region region,\n            final Mode mode) {\n        final Dictionary<String, Object> properties = configuration.getConfigurationProperties();\n\n        // validate the described properties\n        for(final Map.Entry<String, PropertyDescription> propEntry : desc.getPropertyDescriptions().entrySet()) {\n            final Object value = properties.get(propEntry.getKey());\n            final PropertyValidationResult result = propertyValidator.validate(value, propEntry.getValue(), mode);\n            results.put(propEntry.getKey(), result);\n        }\n\n        // validate additional properties\n        final Enumeration<String> keyEnum = properties.keys();\n        while ( keyEnum.hasMoreElements() ) {\n            final String propName = keyEnum.nextElement();\n            if ( !desc.getPropertyDescriptions().containsKey(propName) ) {\n                final PropertyValidationResult result = new PropertyValidationResult();\n                results.put(propName, result);\n\n                if ( desc.getInternalPropertyNames().contains(propName ) ) {\n                    if  ( region != Region.INTERNAL ) {\n                        PropertyValidator.setResult(result, null, mode, \"Property is not allowed\");\n                    }\n                } else if ( Constants.SERVICE_RANKING.equalsIgnoreCase(propName) ) {\n                    final Object value = properties.get(propName);\n                    if ( !(value instanceof Integer) ) {\n                        PropertyValidator.setResult(result, 0, mode, \"service.ranking must be of type Integer\");\n                    }    \n                } else if ( !isAllowedProperty(propName) && region != Region.INTERNAL && !desc.isAllowAdditionalProperties() ) {\n                    PropertyValidator.setResult(result, null, mode, \"Property is not allowed\");\n        ",
+    "query_result": [
+        "al Dictionary<String, Object> properties = configu",
+        "Dictionary<String, Object> properties = configurat",
+        "ictionary<String, Object> properties = configurati",
+        "tionary<String, Object> properties = configuration",
+        "ary<String, Object> properties = configuration.get",
+        "rties = configuration.getConfigurationProperties()",
+        "pertyValidationResult result = new PropertyValidat",
+        "onResult result = new PropertyValidationResult();\n"
+    ]
+}

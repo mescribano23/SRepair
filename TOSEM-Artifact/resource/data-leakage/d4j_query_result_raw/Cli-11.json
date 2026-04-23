@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.4037122969837587,
+    "input": "private static void appendOption(final StringBuffer buff, \n                                 final Option option, \n                                 final boolean required)\n{\n    if (!required)\n    {\n        buff.append(\"[\");\n    }\n\n    if (option.getOpt() != null)\n    {\n        buff.append(\"-\").append(option.getOpt());\n    }\n    else\n    {\n        buff.append(\"--\").append(option.getLongOpt());\n    }\n\n    // if the Option has a value\n    if (option.hasArg() && option.hasArgName())\n    {\n        buff.append(\" <\").append(option.getArgName()).append(\">\");\n    }\n\n    // if the Option is not a required option\n    if (!required)\n    {\n        buff.append(\"]\");\n    }\n}",
+    "query_result": [
+        "-\").append(option.getLongOpt());\n}\n// if the Option has a value\nif (option.hasArg() && option.hasArg",
+        "e Option has a value\nif (option.hasArg() && option",
+        "f.append(\" <\").append(option.getArgName()).append(",
+        "pend(\" <\").append(option.getArgName()).append(\">\")",
+        "ArgName()).append(\">\");\n}\n// if the Option is not ",
+        "me()).append(\">\");\n}\n// if the Option is not a req",
+        "ppend(\">\");\n}\n// if the Option is not a required o",
+        "nd(\">\");\n}\n// if the Option is not a required opti"
+    ]
+}

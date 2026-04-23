@@ -1,0 +1,20 @@
+diff --git a/src/java/org/apache/commons/math/complex/Complex.java b/src/java/org/apache/commons/math/complex/Complex.java
+index 3571567f8..f86071da4 100644
+--- a/src/java/org/apache/commons/math/complex/Complex.java
++++ b/src/java/org/apache/commons/math/complex/Complex.java
+@@ -249,13 +249,13 @@ public class Complex implements Serializable  {
+             ret = true;
+         } else if (other == null) {
+             ret = false;
+-        } else  {
++        } else {
+             try {
+                 Complex rhs = (Complex)other;
+                 if (rhs.isNaN()) {
+                     ret = this.isNaN();
+                 } else {
+-                    ret = (Double.doubleToRawLongBits(real) == Double.doubleToRawLongBits(rhs.getReal())) && (Double.doubleToRawLongBits(imaginary) == Double.doubleToRawLongBits(rhs.getImaginary())); 
++                    ret = (Double.doubleToRawLongBits(real) == Double.doubleToRawLongBits(rhs.getReal()) || (real == 0.0 && rhs.getReal() == 0.0)) && (Double.doubleToRawLongBits(imaginary) == Double.doubleToRawLongBits(rhs.getImaginary()) || (imaginary == 0.0 && rhs.getImaginary() == 0.0));
+                 }
+             } catch (ClassCastException ex) {
+                 // ignore exception

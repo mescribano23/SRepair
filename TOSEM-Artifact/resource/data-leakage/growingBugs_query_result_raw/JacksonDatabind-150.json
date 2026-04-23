@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.818639798488665,
+    "input": "    private JavaType _mapAbstractType2(DeserializationConfig config, JavaType type)\n        throws JsonMappingException\n    {\n        Class<?> currClass = type.getRawClass();\n        if (_factoryConfig.hasAbstractTypeResolvers()) {\n            for (AbstractTypeResolver resolver : _factoryConfig.abstractTypeResolvers()) {\n                JavaType concrete = resolver.findTypeMapping(config, type);\n                if ((concrete != null) && !concrete.hasRawClass(currClass)) {\n                    return concrete;\n                }\n            }\n        }\n        return null;\n    }",
+    "query_result": [
+        " JavaType _mapAbstractType2(DeserializationConfig config, JavaType type)\nthrows JsonMappingException\n{\nClass<?> currClass = type.getRawClass();\nif (_factoryConfig.hasAbstractTypeResolvers()) {\nfor (AbstractTypeResolver resolver : _factoryConfig.abstractTypeResolvers()) {\nJavaType concrete = resolver.findTypeMapping(config, type);\nif ((concrete != n",
+        "ivate JavaType _mapAbstractType2(DeserializationConfig config, JavaType type)\nthrows JsonMappingException\n{\nClass<?> currClass = type.getRawClass();\nif (_factoryConfig.hasAbstractTypeResolvers()) {\nfor (AbstractTypeResolver resolver : _factoryConfig.",
+        " config, JavaType type)\nthrows JsonMappingException\n{\nClass<?> currClass = type.getRawClass();\nif (_factoryConfig.hasAbstractTypeResolvers()) {\nfor (AbstractTypeResolver resolver : _factoryConfig.abstractTypeResolvers()) {\nJavaType concrete = resolve",
+        "urrClass = type.getRawClass();\nif (_factoryConfig.hasAbstractTypeResolvers()) {\nfor (AbstractTypeResolver resolver : _factoryConfig.abstractTypeResolvers()) {\nJavaType concrete = resolver.findTypeMapp",
+        "vate JavaType _mapAbstractType2(DeserializationCon",
+        "te JavaType _mapAbstractType2(DeserializationConfi",
+        "e _mapAbstractType2(DeserializationConfig config, ",
+        "pAbstractType2(DeserializationConfig config, JavaT",
+        "AbstractType2(DeserializationConfig config, JavaTy",
+        "ctType2(DeserializationConfig config, JavaType typ",
+        "toryConfig.hasAbstractTypeResolvers()) {\nfor (Abst",
+        "fig.hasAbstractTypeResolvers()) {\nfor (AbstractTyp",
+        "sAbstractTypeResolvers()) {\nfor (AbstractTypeResol",
+        "tractTypeResolvers()) {\nfor (AbstractTypeResolver ",
+        "TypeResolvers()) {\nfor (AbstractTypeResolver resol",
+        "onfig.abstractTypeResolvers()) {\nJavaType concrete",
+        "ypeResolvers()) {\nJavaType concrete = resolver.fin",
+        "olvers()) {\nJavaType concrete = resolver.findTypeM",
+        "rs()) {\nJavaType concrete = resolver.findTypeMappi",
+        " {\nJavaType concrete = resolver.findTypeMapping(co"
+    ]
+}

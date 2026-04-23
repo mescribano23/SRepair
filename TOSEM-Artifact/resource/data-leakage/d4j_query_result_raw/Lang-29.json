@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.8017241379310345,
+    "input": "static int toJavaVersionInt(String version) {\n    return toVersionInt(toJavaVersionIntArray(version, JAVA_VERSION_TRIM_SIZE));\n}",
+    "query_result": [
+        "tatic int toJavaVersionInt(String version) {\nreturn toVersionInt(toJavaVersionIntArray(version, JAVA",
+        " int toJavaVersionInt(String version) {\nreturn toV",
+        "return toVersionInt(toJavaVersionIntArray(version,"
+    ]
+}

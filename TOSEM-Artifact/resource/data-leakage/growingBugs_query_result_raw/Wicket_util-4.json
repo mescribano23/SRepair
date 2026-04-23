@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.9090909090909091,
+    "input": "public static Time getLastModified(final URL url) throws IOException\n    {\n        // check if url points to a local file\n        final File file = Files.getLocalFileFromUrl(url);\n\n        if (file != null)\n        {\n            // in that case we can get the timestamp faster\n            return Files.getLastModified(file);\n        }\n\n        // otherwise open the url and proceed\n        URLConnection connection = url.openConnection();\n\n        final long milliseconds;\n\n        try\n        {\n            if (connection instanceof JarURLConnection)\n            {\n                JarURLConnection jarUrlConnection = (JarURLConnection)connection;\n                URL jarFileUrl = jarUrlConnection.getJarFileURL();\n                URLConnection jarFileConnection = jarFileUrl.openConnection();\n                jarFileConnection.setDoInput(false);\n                // get timestamp from JAR\n                milliseconds = jarFileConnection.getLastModified();\n            }\n            else\n            {\n                // get timestamp from URL\n                milliseconds = connection.getLastModified();\n            }\n\n            // return null if timestamp is unavailable\n            if (milliseconds == 0)\n            {\n                return null;\n            }\n\n            // return UNIX timestamp\n            return Time.millis(milliseconds);\n\n        }\n        finally\n        {\n            closeQuietly(connection);\n        }\n    }",
+    "query_result": [
+        "RL url) throws IOException\n{\n// check if url points to a local file\nfinal File file = Files.getLocalFileFromUrl(url);\nif (file != null)\n{\n// in that case we can get the timestamp faster\nreturn Files.getLastModified(file);\n}\n// otherwise open the url and proceed\nURLConnection connection = url.openConnection();\nfinal long milliseconds;\ntry\n{\nif (connection instanceof JarURLConnection)\n{\nJarURLConnection jarUrlConnection = (JarURLConnection)connection;\nURL jarFileUrl = jarUrlConnection.getJarFileURL();\nURLConnection jarFileConnection = jarFileUrl.openConnection();\njarFileConnection.setDoInput(false);\n// get timestamp from JAR\nmilliseconds = jarFileConnection.getLastModified();\n}\nelse\n{\n// get timestamp from URL\nmilliseconds = connection.getLastModified();\n}\n// return null if timestamp is unavailable\nif (milliseconds == 0)\n{\nreturn null;\n}\n//",
+        "jarFileUrl = jarUrlConnection.getJarFileURL();\nURLConnection jarFileConnection = jarFileUrl.openConn",
+        "\nURLConnection connection = url.openConnection();\n",
+        "URLConnection connection = url.openConnection();\nf",
+        "RLConnection connection = url.openConnection();\nfi",
+        "LConnection connection = url.openConnection();\nfin",
+        "Connection connection = url.openConnection();\nfina",
+        "nnection connection = url.openConnection();\nfinal ",
+        "nection)\n{\nJarURLConnection jarUrlConnection = (Ja",
+        "arURLConnection jarUrlConnection = (JarURLConnecti",
+        "UrlConnection.getJarFileURL();\nURLConnection jarFi",
+        "tion jarFileConnection = jarFileUrl.openConnection",
+        "(milliseconds);\n}\nfinally\n{\ncloseQuietly(connectio"
+    ]
+}

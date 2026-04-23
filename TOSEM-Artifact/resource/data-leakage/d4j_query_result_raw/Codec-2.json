@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.49252013808975836,
+    "input": "void encode(byte[] in, int inPos, int inAvail) {\n    if (eof) {\n        return;\n    }\n    // inAvail < 0 is how we're informed of EOF in the underlying data we're\n    // encoding.\n    if (inAvail < 0) {\n        eof = true;\n        if (buf == null || buf.length - pos < encodeSize) {\n            resizeBuf();\n        }\n        switch (modulus) {\n            case 1:\n                buf[pos++] = encodeTable[(x >> 2) & MASK_6BITS];\n                buf[pos++] = encodeTable[(x << 4) & MASK_6BITS];\n                // URL-SAFE skips the padding to further reduce size.\n                if (encodeTable == STANDARD_ENCODE_TABLE) {\n                    buf[pos++] = PAD;\n                    buf[pos++] = PAD;\n                }\n                break;\n\n            case 2:\n                buf[pos++] = encodeTable[(x >> 10) & MASK_6BITS];\n                buf[pos++] = encodeTable[(x >> 4) & MASK_6BITS];\n                buf[pos++] = encodeTable[(x << 2) & MASK_6BITS];\n                // URL-SAFE skips the padding to further reduce size.\n                if (encodeTable == STANDARD_ENCODE_TABLE) {\n                    buf[pos++] = PAD;\n                }\n                break;\n        }\n        if (lineLength > 0 && pos > 0) {\n            System.arraycopy(lineSeparator, 0, buf, pos, lineSeparator.length);\n            pos += lineSeparator.length;\n        }\n    } else {\n        for (int i = 0; i < inAvail; i++) {\n            if (buf == null || buf.length - pos < encodeSize) {\n                resizeBuf();\n",
+    "query_result": [
+        "turn;\n}\n// inAvail < 0 is how we're informed of EOF in the underlying data we're\n// encoding.\nif (in",
+        "urn;\n}\n// inAvail < 0 is how we're informed of EOF in the underlying data we're\n// encoding.\nif (inA",
+        "rn;\n}\n// inAvail < 0 is how we're informed of EOF in the underlying data we're\n// encoding.\nif (inAv",
+        "\n}\n// inAvail < 0 is how we're informed of EOF in the underlying data we're\n// encoding.\nif (inAvail",
+        "// inAvail < 0 is how we're informed of EOF in the underlying data we're\n// encoding.\nif (inAvail < ",
+        "/ inAvail < 0 is how we're informed of EOF in the underlying data we're\n// encoding.\nif (inAvail < 0",
+        "(x << 4) & MASK_6BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STA",
+        " << 4) & MASK_6BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STAND",
+        "6BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STANDARD_ENCODE_TAB",
+        "BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STANDARD_ENCODE_TABL",
+        "ITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STANDARD_ENCODE_TABLE",
+        "= encodeTable[(x << 2) & MASK_6BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (enco",
+        "x << 2) & MASK_6BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STAN",
+        "< 2) & MASK_6BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STANDAR",
+        "6BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STANDARD_ENCODE_TAB",
+        "BITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STANDARD_ENCODE_TABL",
+        "ITS];\n// URL-SAFE skips the padding to further reduce size.\nif (encodeTable == STANDARD_ENCODE_TABLE",
+        " > 0) {\nSystem.arraycopy(lineSeparator, 0, buf, pos, lineSeparator.length);\npos += lineSeparator.len",
+        " pos, lineSeparator.length);\npos += lineSeparator.length;\n}\n} else {\nfor (int i = 0; i < inAvail; i+",
+        ", lineSeparator.length);\npos += lineSeparator.length;\n}\n} else {\nfor (int i = 0; i < inAvail; i++) {"
+    ]
+}

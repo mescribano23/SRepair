@@ -1,0 +1,74 @@
+diff --git a/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java b/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java
+index eda8e1135..1cbd383b4 100644
+--- a/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java
++++ b/maven-project/src/main/java/org/apache/maven/project/inheritance/DefaultModelInheritanceAssembler.java
+@@ -472,42 +472,43 @@ public class DefaultModelInheritanceAssembler
+     }
+ 
+     // TODO: This should eventually be migrated to DefaultPathTranslator.
+-    protected String appendPath( String parentPath, String childPath, String pathAdjustment, boolean appendPaths )
+-    {
+-        String uncleanPath = parentPath;
++protected String appendPath( String parentPath, String childPath, String pathAdjustment, boolean appendPaths )
++{
++    String uncleanPath = parentPath;
+ 
+-        if ( appendPaths )
++    if ( appendPaths )
++    {
++        if ( pathAdjustment != null )
+         {
+-            if ( pathAdjustment != null )
+-            {
+-                uncleanPath += "/" + pathAdjustment;
+-            }
+-
+-            if ( childPath != null )
+-            {
+-                uncleanPath += "/" + childPath;
+-            }
++            uncleanPath += "/" + pathAdjustment;
+         }
+ 
+-        String cleanedPath = "";
+-
+-        int protocolIdx = uncleanPath.indexOf( "://" );
+-
+-        if ( protocolIdx > -1 )
++        if ( childPath != null )
+         {
+-            cleanedPath = uncleanPath.substring( 0, protocolIdx + 3 );
+-            uncleanPath = uncleanPath.substring( protocolIdx + 3 );
++            uncleanPath += "/" + childPath;
+         }
++    }
+ 
+-            // preserve leading double slash for UNC paths like "file:////host/pom.xml"
+-        if ( uncleanPath.startsWith( "/" ) )
+-        {
+-            cleanedPath += "/";
+-        }
++    String cleanedPath = "";
++
++    int protocolIdx = uncleanPath.indexOf( "://" );
++
++    if ( protocolIdx > -1 )
++    {
++        cleanedPath = uncleanPath.substring( 0, protocolIdx + 3 );
++        uncleanPath = uncleanPath.substring( protocolIdx + 3 );
++    }
+ 
+-        return cleanedPath + resolvePath( uncleanPath );
++    // Comprehensive check for any extra leading slashes after the protocol
++    while ( uncleanPath.startsWith("/") )
++    {
++        cleanedPath += "/";
++        uncleanPath = uncleanPath.substring(1);
+     }
+ 
++    return cleanedPath + resolvePath( uncleanPath );
++}
++
+     // TODO: Move this to plexus-utils' PathTool.
+     private static String resolvePath( String uncleanPath )
+     {

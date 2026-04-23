@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9418604651162791,
+    "input": "    @SuppressWarnings(\"unchecked\")\n    @Override\n    public JsonDeserializer<T> createContextual(DeserializationContext ctxt,\n            BeanProperty property) throws JsonMappingException\n    {\n        InstantDeserializer<T> deserializer =\n                (InstantDeserializer<T>)super.createContextual(ctxt, property);\n        JsonFormat.Value val = findFormatOverrides(ctxt, property, handledType());\n        if (val != null) {\n            deserializer = new InstantDeserializer<>(deserializer, val.getFeature(JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE));\n            if (val.hasLenient()) {\n                Boolean leniency = val.getLenient();\n                if (leniency != null) {\n                    deserializer = deserializer.withLeniency(leniency);\n                }\n            }\n        }\n        return deserializer;\n    }",
+    "query_result": [
+        "lue val = findFormatOverrides(ctxt, property, handledType());\nif (val != null) {\ndeserializer = new InstantDeserializer<>(deserializer, val.getFeature(JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE));\nif (val.hasLenient()) {\nBoolean leniency = val.getLenient();\nif (leniency != null) {\ndeserializer = deserializer.withLeniency(leniency);\n}\n}\n}\n",
+        "arnings(\"unchecked\")\n@Override\npublic JsonDeserializer<T> createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\nInstantDeserializer<T> deserializer =\n(InstantDeserializer<T>)super.createContextual(ctxt, pr",
+        "s(\"unchecked\")\n@Override\npublic JsonDeserializer<T> createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\nInstantDeserializer<T> deserializer =\n(InstantDeserializer<T>)super.createContextual(ctxt, property",
+        "rride\npublic JsonDeserializer<T> createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\nInstantDeserializer<T> deserializer =\n(InstantDeserializer<T>)super.",
+        "ide\npublic JsonDeserializer<T> createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\nInstantDeserializer<T> deserializer =\n(InstantDeserializer<T>)super.cr",
+        "\npublic JsonDeserializer<T> createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMappingException\n{\nInstantDeserializer<T> deserializer =\n(InstantDeserializer<T>)super.creat",
+        "SuppressWarnings(\"unchecked\")\n@Override\npublic JsonDeserializer<T> createContextual(DeserializationContext ctxt,\nBeanProperty property) throws JsonMap",
+        "r = new InstantDeserializer<>(deserializer, val.getFeature(JsonFormat.Feature.ADJUST_DATES_TO_CONTEX",
+        "@SuppressWarnings(\"unchecked\")\n@Override\npublic Js",
+        "uppressWarnings(\"unchecked\")\n@Override\npublic Json",
+        "pressWarnings(\"unchecked\")\n@Override\npublic JsonDe",
+        "ssWarnings(\"unchecked\")\n@Override\npublic JsonDeser",
+        "sWarnings(\"unchecked\")\n@Override\npublic JsonDeseri",
+        "Warnings(\"unchecked\")\n@Override\npublic JsonDeseria",
+        "ings(\"unchecked\")\n@Override\npublic JsonDeserialize",
+        "sonDeserializer<T> createContextual(Deserializatio",
+        "createContextual(DeserializationContext ctxt,\nBean",
+        "reateContextual(DeserializationContext ctxt,\nBeanP",
+        "eateContextual(DeserializationContext ctxt,\nBeanPr",
+        "eContextual(DeserializationContext ctxt,\nBeanPrope"
+    ]
+}

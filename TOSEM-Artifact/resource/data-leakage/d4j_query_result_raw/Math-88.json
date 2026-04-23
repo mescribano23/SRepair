@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6761133603238867,
+    "input": "protected RealPointValuePair getSolution() {\n    double[] coefficients = new double[getOriginalNumDecisionVariables()];\n    Integer basicRow =\n        getBasicRow(getNumObjectiveFunctions() + getOriginalNumDecisionVariables());\n    double mostNegative = basicRow == null ? 0 : getEntry(basicRow, getRhsOffset());\n    Set<Integer> basicRows = new HashSet<Integer>();\n    for (int i = 0; i < coefficients.length; i++) {\n        basicRow = getBasicRow(getNumObjectiveFunctions() + i);\n        if (basicRows.contains(basicRow)) {\n            // if multiple variables can take a given value \n            // then we choose the first and set the rest equal to 0\n            coefficients[i] = 0;\n        } else {\n            basicRows.add(basicRow);\n            coefficients[i] =\n                (basicRow == null ? 0 : getEntry(basicRow, getRhsOffset())) -\n                (restrictToNonNegative ? 0 : mostNegative);\n        }\n    }\n    return new RealPointValuePair(coefficients, f.getValue(coefficients));\n}",
+    "query_result": [
+        "intValuePair getSolution() {\ndouble[] coefficients = new double[getOriginalNumDecisionVariables()];\nInteger basicRow =\ngetBasicRow(getNumObjectiveFunctions() + getOriginalNumDecisionVariables());\ndouble mostNegative = basicRow == null ? 0 : getEntry(",
+        "r basicRow =\ngetBasicRow(getNumObjectiveFunctions() + getOriginalNumDecisionVariables());\ndouble mostNegative = basicRow == null ? 0 : getEntry(basicR",
+        "icRow =\ngetBasicRow(getNumObjectiveFunctions() + getOriginalNumDecisionVariables());\ndouble mostNegative = basicRow == null ? 0 : getEntry(basicRow, g",
+        " =\ngetBasicRow(getNumObjectiveFunctions() + getOriginalNumDecisionVariables());\ndouble mostNegative = basicRow == null ? 0 : getEntry(basicRow, getRhs",
+        "Row(getNumObjectiveFunctions() + getOriginalNumDecisionVariables());\ndouble mostNegative = basicRow == null ? 0 : getEntry(basicRow, getRhsOffset());\n",
+        "jectiveFunctions() + i);\nif (basicRows.contains(basicRow)) {\n// if multiple variables can take a given value \n// then we choose the first and set the ",
+        "otected RealPointValuePair getSolution() {\ndouble[] coefficients = new double[getOriginalNumDecision",
+        "ointValuePair getSolution() {\ndouble[] coefficients = new double[getOriginalNumDecisionVariables()];",
+        "ow(getNumObjectiveFunctions() + getOriginalNumDecisionVariables());\ndouble mostNegative = basicRow =",
+        "Functions() + getOriginalNumDecisionVariables());\ndouble mostNegative = basicRow == null ? 0 : getEn",
+        " ? 0 : getEntry(basicRow, getRhsOffset());\nSet<Integer> basicRows = new HashSet<Integer>();\nfor (int",
+        "cRows = new HashSet<Integer>();\nfor (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicR",
+        "s = new HashSet<Integer>();\nfor (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicRow(g",
+        "w HashSet<Integer>();\nfor (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicRow(getNumO",
+        "hSet<Integer>();\nfor (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicRow(getNumObject",
+        "Integer>();\nfor (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicRow(getNumObjectiveFu",
+        ";\nfor (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicRow(getNumObjectiveFunctions() ",
+        "\nfor (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicRow(getNumObjectiveFunctions() +",
+        "for (int i = 0; i < coefficients.length; i++) {\nbasicRow = getBasicRow(getNumObjectiveFunctions() + ",
+        "s.contains(basicRow)) {\n// if multiple variables can take a given value \n// then we choose the first"
+    ]
+}

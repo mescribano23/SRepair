@@ -1,0 +1,29 @@
+diff --git a/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java b/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java
+index 492ae13f..601b0d78 100644
+--- a/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java
++++ b/src/main/java/com/ibm/cloud/sdk/core/http/RequestBuilder.java
+@@ -334,20 +334,20 @@ public class RequestBuilder {
+    *      the body content to be used if the content type indicates non-JSON content
+    * @return this
+    */
+-  public RequestBuilder bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,
++public RequestBuilder bodyContent(String contentType, Object jsonContent, Object jsonPatchContent,
+     InputStream nonJsonContent) {
+     if (contentType != null) {
+       Gson requestGson = GsonSingleton.getGson().newBuilder().create();
+       if (BaseService.isJsonMimeType(contentType)) {
+-        this.bodyContent(requestGson.toJsonTree(jsonContent).getAsJsonObject().toString(), contentType);
++        this.bodyContent(requestGson.toJsonTree(jsonContent).toString(), contentType);
+       } else if (BaseService.isJsonPatchMimeType(contentType)) {
+-        this.bodyContent(requestGson.toJsonTree(jsonPatchContent).getAsJsonObject().toString(), contentType);
++        this.bodyContent(requestGson.toJsonTree(jsonPatchContent).toString(), contentType);
+       } else {
+         this.bodyContent(nonJsonContent, contentType);
+       }
+     }
+     return this;
+-  }
++}
+ 
+   /**
+    * Sets the request body content from one of three different sources, based on the content type.

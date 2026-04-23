@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java b/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
+index b16a93d38..009c95e44 100644
+--- a/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
++++ b/src/main/java/org/apache/tika/parser/microsoft/OfficeParser.java
+@@ -63,6 +63,7 @@ public class OfficeParser implements Parser {
+ 
+         POIFSFileSystem filesystem = new POIFSFileSystem(stream);
+         Iterator<?> entries = filesystem.getRoot().getEntries();
++        boolean isOutlookMessageParsed = false;
+         while (entries.hasNext()) {
+             Entry entry = (Entry) entries.next();
+             String name = entry.getName();
+@@ -92,10 +93,10 @@ public class OfficeParser implements Parser {
+                 for (String text : extractor.getAllText()) {
+                     xhtml.element("p", text);
+                 }
+-                // TODO: Cleaner mechanism for detecting Outlook
+-            } else if (name.startsWith("__substg1.0_")) {
++            } else if (name.startsWith("__substg1.0_") && !isOutlookMessageParsed) {
+                 setType(metadata, "application/vnd.ms-outlook");
+                 new OutlookExtractor(filesystem).parse(xhtml, metadata);
++                isOutlookMessageParsed = true; // Mark as parsed
+             }
+         }
+ 

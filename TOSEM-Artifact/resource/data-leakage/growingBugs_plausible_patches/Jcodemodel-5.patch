@@ -1,0 +1,30 @@
+diff --git a/src/main/java/com/helger/jcodemodel/JPackage.java b/src/main/java/com/helger/jcodemodel/JPackage.java
+index c2fec151..9a84b6fe 100644
+--- a/src/main/java/com/helger/jcodemodel/JPackage.java
++++ b/src/main/java/com/helger/jcodemodel/JPackage.java
+@@ -139,15 +139,18 @@ public class JPackage implements IJDeclaration, IJGenerable, IJClassContainer, I
+   /**
+    * Gets the parent package, or null if this class is the root package.
+    */
+-  @Nullable
+-  public JPackage parent ()
+-  {
+-    if (m_sName.length () == 0)
+-      return null;
++public JPackage parent() {
++  if (m_sName.length() == 0) {
++    return null;
++  }
+ 
+-    final int idx = m_sName.lastIndexOf ('.');
+-    return m_aOwner._package (m_sName.substring (0, idx));
++  final int idx = m_sName.lastIndexOf('.');
++  if (idx == -1) {
++    return null;
++  } else {
++    return m_aOwner._package(m_sName.substring(0, idx));
+   }
++}
+ 
+   public boolean isClass ()
+   {

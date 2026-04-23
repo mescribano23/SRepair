@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9622641509433962,
+    "input": "    public static ZipExtraField[] parse(byte[] data, boolean local)\n        throws ZipException {\n        List v = new ArrayList();\n        int start = 0;\n        while (start <= data.length - WORD) {\n            ZipShort headerId = new ZipShort(data, start);\n            int length = (new ZipShort(data, start + 2)).getValue();\n            if (start + WORD + length > data.length) {\n                throw new ZipException(\"bad extra field starting at \"\n                                       + start + \".  Block length of \"\n                                       + length + \" bytes exceeds remaining\"\n                                       + \" data of \"\n                                       + (data.length - start - WORD)\n                                       + \" bytes.\");\n            }\n            try {\n                ZipExtraField ze = createExtraField(headerId);\n                if (local) {\n                    ze.parseFromLocalFileData(data, start + WORD, length);\n                } else {\n                    ze.parseFromCentralDirectoryData(data, start + WORD,\n                                                     length);\n                }\n                v.add(ze);\n            } catch (InstantiationException ie) {\n                throw new ZipException(ie.getMessage());\n            } catch (IllegalAccessException iae) {\n                throw new ZipException(iae.getMessage());\n            }\n            start += (length + WORD);\n        }\n\n        ZipExtraField[] result = new ZipExtraField[v.size()];\n        return (ZipExtraField[]) v.toArray(result);\n    }",
+    "query_result": [
+        " WORD) {\nZipShort headerId = new ZipShort(data, start);\nint length = (new ZipShort(data, start + 2)).getValue();\nif (start + WORD + length > data.length) {\nthrow new ZipException(\"bad extra field starting at \"\n+ start + \". Block length of \"\n+ length + \" bytes exceeds remaining\"\n+ \" data of \"\n+ (data.length - start - WORD)\n+ \" bytes.\");\n}\ntry {\nZipE",
+        "y {\nZipExtraField ze = createExtraField(headerId);\nif (local) {\nze.parseFromLocalFileData(data, start + WORD, length);\n} else {\nze.parseFromCentralDirectoryData(data, start + WORD,\nlength);\n}\nv.add(ze);\n} catch (InstantiationException ie) {\nthrow new",
+        "tart <= data.length - WORD) {\nZipShort headerId = new ZipShort(data, start);\nint length = (new ZipShort(data, start + 2)).getValue();\nif (start + WORD + length > data.length) {\nthrow new ZipException(",
+        "iationException ie) {\nthrow new ZipException(ie.getMessage());\n} catch (IllegalAccessException iae) {\nthrow new ZipException(iae.getMessage());\n}\nstar",
+        "D) {\nZipShort headerId = new ZipShort(data, start);\nint length = (new ZipShort(data, start + 2)).get",
+        "ion ie) {\nthrow new ZipException(ie.getMessage());\n} catch (IllegalAccessException iae) {\nthrow new ",
+        "(length + WORD);\n}\nZipExtraField[] result = new ZipExtraField[v.size()];\nreturn (ZipExtraField[]) v.",
+        "ic static ZipExtraField[] parse(byte[] data, boole",
+        "c static ZipExtraField[] parse(byte[] data, boolea",
+        "tic ZipExtraField[] parse(byte[] data, boolean loc",
+        "s ZipException {\nList v = new ArrayList();\nint sta",
+        "yList();\nint start = 0;\nwhile (start <= data.lengt",
+        "t headerId = new ZipShort(data, start);\nint length",
+        "ta, start);\nint length = (new ZipShort(data, start",
+        "rt + \". Block length of \"\n+ length + \" bytes excee",
+        ";\n}\ntry {\nZipExtraField ze = createExtraField(head",
+        "else {\nze.parseFromCentralDirectoryData(data, star",
+        "e);\n} catch (InstantiationException ie) {\nthrow ne",
+        ";\n} catch (InstantiationException ie) {\nthrow new ",
+        "Exception(ie.getMessage());\n} catch (IllegalAccess"
+    ]
+}

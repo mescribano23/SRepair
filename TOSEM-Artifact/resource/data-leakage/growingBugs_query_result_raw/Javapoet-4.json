@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.7828571428571428,
+    "input": "  public JavaWriter emitEndOfLineComment(String comment, Object... args) throws IOException {\n    indent();\n    out.write(\"// \");\n    out.write(String.format(comment, args));\n    out.write(\"\\n\");\n    return this;\n  }",
+    "query_result": [
+        "neComment(String comment, Object... args) throws IOException {\nindent();\nout.write(\"// \");\nout.write(String.format(comment, args));\nout.write(\"\\n\");\nr",
+        "ows IOException {\nindent();\nout.write(\"// \");\nout.write(String.format(comment, args));\nout.write(\"\\n"
+    ]
+}

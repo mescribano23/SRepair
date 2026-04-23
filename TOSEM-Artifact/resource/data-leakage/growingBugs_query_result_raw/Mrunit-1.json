@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.21216216216216216,
+    "input": "  @SuppressWarnings({ \"rawtypes\", \"unchecked\" })\n  protected void createCommon(\n      final TaskInputOutputContext context,\n      final ContextDriver contextDriver,\n      final MockOutputCreator mockOutputCreator) {\n        \n    when(context.getCounter((Enum) any())).thenAnswer(new Answer<Counter>() {\n      @Override\n      public Counter answer(final InvocationOnMock invocation) {\n        final Object[] args = invocation.getArguments();\n        return contextDriver.getCounters().findCounter((Enum) args[0]);\n      }\n    });\n    when(context.getCounter(anyString(), anyString())).thenAnswer(\n        new Answer<Counter>() {\n          @Override\n          public Counter answer(final InvocationOnMock invocation) {\n            final Object[] args = invocation.getArguments();\n            return contextDriver.getCounters().findCounter((String) args[0], (String) args[1]);\n          }\n    });\n    when(context.getConfiguration()).thenAnswer(new Answer<Configuration>() {\n      @Override\n      public Configuration answer(final InvocationOnMock invocation) {\n        return contextDriver.getConfiguration();\n      }\n    });\n    try {\n      doAnswer(new Answer<Object>() {\n        @Override\n        public Object answer(final InvocationOnMock invocation) {\n          final Object[] args = invocation.getArguments();\n          try {\n            if(outputCollectable == null) {\n              outputCollectable = mockOutputCreator.createMapReduceOutputCollectable(contextDriver.getConfiguration(), \n                  contextDriver.getOutputSerializationConfiguration(), context);\n            }\n            outputCollectable.collect((KEYOUT)args[0], (VALUEOUT)args[1]);\n          } catch (IOException e) {\n            throw new RuntimeException(e);\n          }\n          return null;\n        }\n      }).when(context).write(any(), any());\n      \n      \n      when(context.getSymlink()).thenAnswer(new Answer<Boolean>() {\n        @Override\n        @SuppressWarnings(\"deprecation\")\n        public Boolean ans",
+    "query_result": [
+        "\ndoAnswer(new Answer<Object>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.getArguments();\n",
+        "answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.getArguments();\nreturn ",
+        "answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.getArguments();\nreturn ",
+        "doAnswer(new Answer<Object>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\n",
+        "Answer(new Answer<Object>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfi",
+        "nswer(new Answer<Object>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfin",
+        "wer(new Answer<Object>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal",
+        "er(new Answer<Object>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal ",
+        "wer<Object>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] a",
+        "ct>() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = in",
+        "() {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invoc",
+        ") {\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invoca",
+        "\n@Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocatio",
+        "Override\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.",
+        "erride\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.ge",
+        "rride\npublic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.get",
+        "public Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.getArgume",
+        "blic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.getArgument",
+        "lic Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.getArguments",
+        "c Object answer(final InvocationOnMock invocation) {\nfinal Object[] args = invocation.getArguments()"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.7955555555555556,
+    "input": "private boolean hasExceptionHandler(Node cfgNode) {\n  List<DiGraphEdge<Node, Branch>> branchEdges = getCfg().getOutEdges(cfgNode);\n  for (DiGraphEdge<Node, Branch> edge : branchEdges) {\n    if (edge.getValue() == Branch.ON_EX) {\n      return true;\n    }\n  }\n  return false;\n}",
+    "query_result": [
+        "ler(Node cfgNode) {\nList<DiGraphEdge<Node, Branch>> branchEdges = getCfg().getOutEdges(cfgNode);\nfor (DiGraphEdge<Node, Branch> edge : branchEdges) {\nif (edge.getValue() == Branch.ON_EX) {\nreturn true",
+        "DiGraphEdge<Node, Branch>> branchEdges = getCfg().",
+        "e<Node, Branch>> branchEdges = getCfg().getOutEdge",
+        "Node, Branch>> branchEdges = getCfg().getOutEdges("
+    ]
+}

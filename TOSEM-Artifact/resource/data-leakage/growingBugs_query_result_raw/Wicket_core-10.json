@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.4219858156028369,
+    "input": "@Override\n    public final boolean isPageStateless()\n    {\n        if (isBookmarkable() == false)\n        {\n            stateless = Boolean.FALSE;\n            if (getStatelessHint())\n            {\n                log.warn(\"Page '\" + this + \"' is not stateless because it is not bookmarkable, \" +\n                    \"but the stateless hint is set to true!\");\n            }\n        }\n\n        if (getStatelessHint() == false)\n        {\n            return false;\n        }\n\n        if (stateless == null)\n        {\n            internalInitialize();\n\n            if (isStateless() == false)\n            {\n                stateless = Boolean.FALSE;\n            }\n        }\n\n        if (stateless == null)\n        {\n            Component statefulComponent = visitChildren(Component.class,\n                new IVisitor<Component, Component>()\n                {\n                    @Override\n                    public void component(final Component component, final IVisit<Component> visit)\n                    {\n                        if (!component.isStateless())\n                        {\n                            visit.stop(component);\n                        }\n                    }\n                });\n\n            stateless = statefulComponent == null;\n\n            if (log.isDebugEnabled() && !stateless.booleanValue() && getStatelessHint())\n            {\n                log.debug(\"Page '{}' is not stateless because of component with path '{}'.\", this,\n                    statefulComponent.getPageRelativePath());\n            }\n\n        }\n\n        return stateless;\n    }",
+    "query_result": [
+        "olean isPageStateless()\n{\nif (isBookmarkable() == false)\n{\nstateless = Boolean.FALSE;\nif (getStatelessHint())\n{\nlog.warn(\"Page '\" + this + \"' is not stateless because it is not bookmarkable, \" +\n\"but the stateless hint is set to true!\");\n}\n}\nif (getStatelessHint() == false)\n{\nreturn false;\n}\nif (sta",
+        "t.class,\nnew IVisitor<Component, Component>()\n{\n@O",
+        "nent>()\n{\n@Override\npublic void component(final Co",
+        "()\n{\n@Override\npublic void component(final Compone",
+        "\n{\n@Override\npublic void component(final Component",
+        "ride\npublic void component(final Component compone",
+        "de\npublic void component(final Component component",
+        "e\npublic void component(final Component component,",
+        "public void component(final Component component, f",
+        "blic void component(final Component component, fin",
+        "ic void component(final Component component, final",
+        "c void component(final Component component, final ",
+        "d component(final Component component, final IVisi"
+    ]
+}

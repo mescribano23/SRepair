@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3722397476340694,
+    "input": "    private boolean inSpecificScope(String[] targetNames, String[] baseTypes, String[] extraTypes) {\n        // https://html.spec.whatwg.org/multipage/parsing.html#has-an-element-in-the-specific-scope\n        final int bottom = stack.size() -1;\n        final int top = bottom > MaxScopeSearchDepth ? bottom - MaxScopeSearchDepth : 0;\n        // don't walk too far up the tree\n\n        for (int pos = bottom; pos >= top; pos--) {\n            final String elName = stack.get(pos).nodeName();\n            if (inSorted(elName, targetNames))\n                return true;\n            if (inSorted(elName, baseTypes))\n                return false;\n            if (extraTypes != null && inSorted(elName, extraTypes))\n                return false;\n        }\n        //Validate.fail(\"Should not be reachable\"); // would end up false because hitting 'html' at root (basetypes)\n        return false;\n    }",
+    "query_result": [
+        "turn false;\n}\n//Validate.fail(\"Should not be reachable\"); // would end up false because hitting 'htm",
+        "rivate boolean inSpecificScope(String[] targetName",
+        "olean inSpecificScope(String[] targetNames, String",
+        "an inSpecificScope(String[] targetNames, String[] ",
+        "pe(String[] targetNames, String[] baseTypes, Strin",
+        "targetNames, String[] baseTypes, String[] extraTyp",
+        " {\n// https://html.spec.whatwg.org/multipage/parsi",
+        "{\n// https://html.spec.whatwg.org/multipage/parsin",
+        "\n// https://html.spec.whatwg.org/multipage/parsing",
+        "// https://html.spec.whatwg.org/multipage/parsing.",
+        "/ https://html.spec.whatwg.org/multipage/parsing.h",
+        " https://html.spec.whatwg.org/multipage/parsing.ht",
+        "https://html.spec.whatwg.org/multipage/parsing.htm",
+        "ttps://html.spec.whatwg.org/multipage/parsing.html",
+        "tps://html.spec.whatwg.org/multipage/parsing.html#",
+        "ps://html.spec.whatwg.org/multipage/parsing.html#h",
+        "/html.spec.whatwg.org/multipage/parsing.html#has-a",
+        "html.spec.whatwg.org/multipage/parsing.html#has-an",
+        "ml.spec.whatwg.org/multipage/parsing.html#has-an-e",
+        "pec.whatwg.org/multipage/parsing.html#has-an-eleme"
+    ]
+}

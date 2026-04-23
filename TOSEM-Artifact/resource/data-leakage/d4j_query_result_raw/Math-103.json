@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.7180327868852459,
+    "input": "public double cumulativeProbability(double x) throws MathException {\n    try {\n        return 0.5 * (1.0 + Erf.erf((x - mean) /\n                (standardDeviation * Math.sqrt(2.0))));\n    } catch (MaxIterationsExceededException ex) {\n        if (x < (mean - 20 * standardDeviation)) { // JDK 1.5 blows at 38\n            return 0.0d;\n        } else if (x > (mean + 20 * standardDeviation)) {\n            return 1.0d;\n        } else {\n            throw ex;\n        }\n    }\n}",
+    "query_result": [
+        "0 * standardDeviation)) { // JDK 1.5 blows at 38\nreturn 0.0d;\n} else if (x > (mean + 20 * standardDe",
+        "blic double cumulativeProbability(double x) throws",
+        "lic double cumulativeProbability(double x) throws ",
+        "ouble cumulativeProbability(double x) throws MathE",
+        "uble cumulativeProbability(double x) throws MathEx",
+        "ble cumulativeProbability(double x) throws MathExc",
+        "cumulativeProbability(double x) throws MathExcepti",
+        "mulativeProbability(double x) throws MathException",
+        "0.5 * (1.0 + Erf.erf((x - mean) /\n(standardDeviati",
+        "(standardDeviation * Math.sqrt(2.0))));\n} catch (M",
+        "(x < (mean - 20 * standardDeviation)) { // JDK 1.5"
+    ]
+}

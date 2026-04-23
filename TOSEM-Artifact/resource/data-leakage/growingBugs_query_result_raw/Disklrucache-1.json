@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.2857142857142857,
+    "input": "        public OutputStream newOutputStream(int index) throws IOException {\n            synchronized (DiskLruCache.this) {\n                if (entry.currentEditor != this) {\n                    throw new IllegalStateException();\n                }\n                //Try twice to get the file. If we get a FNF make a quick effort\n                //to recreate the directory in which the cache should exist.\n                //See: https://github.com/JakeWharton/DiskLruCache/issues/2\n                FileOutputStream out;\n                try {\n                    out = new FileOutputStream(entry.getDirtyFile(index));\n                } catch (FileNotFoundException e) {\n                    directory.mkdirs();\n                    out = new FileOutputStream(entry.getDirtyFile(index));\n                }\n                return new FaultHidingOutputStream(out);\n            }\n        }",
+    "query_result": [
+        "lic OutputStream newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new Illeg",
+        "ic OutputStream newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new Illega",
+        "OutputStream newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalSt",
+        "tputStream newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStat",
+        "putStream newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalState",
+        "utStream newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStateE",
+        "tream newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStateExce",
+        "am newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStateExcepti",
+        "m newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStateExceptio",
+        " newOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStateException",
+        "wOutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStateException();",
+        "OutputStream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new IllegalStateException();\n",
+        "tream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != ",
+        "ream(int index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != t",
+        " index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nt",
+        "index) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nth",
+        "ndex) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthr",
+        "ex) throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow",
+        ") throws IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow n",
+        "rows IOException {\nsynchronized (DiskLruCache.this) {\nif (entry.currentEditor != this) {\nthrow new I"
+    ]
+}

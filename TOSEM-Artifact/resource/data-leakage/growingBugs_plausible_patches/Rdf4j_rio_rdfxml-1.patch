@@ -1,0 +1,26 @@
+diff --git a/core/rio/rdfxml/src/main/java/org/eclipse/rdf4j/rio/rdfxml/SAXFilter.java b/core/rio/rdfxml/src/main/java/org/eclipse/rdf4j/rio/rdfxml/SAXFilter.java
+index f737ea0fe5..79b3c3e510 100644
+--- a/core/rio/rdfxml/src/main/java/org/eclipse/rdf4j/rio/rdfxml/SAXFilter.java
++++ b/core/rio/rdfxml/src/main/java/org/eclipse/rdf4j/rio/rdfxml/SAXFilter.java
+@@ -323,6 +323,7 @@ class SAXFilter implements ContentHandler {
+ 		deferredElement = null;
+ 	}
+ 
++
+ 	public void endElement(String namespaceURI, String localName, String qName)
+ 		throws SAXException
+ 	{
+@@ -395,10 +396,11 @@ class SAXFilter implements ContentHandler {
+ 					parseLiteralMode = false;
+ 				}
+ 				else {
+-					String s = charBuf.toString().trim();
++					// Do not trim the string to preserve whitespace
++					String s = charBuf.toString();
+ 
+ 					// ignore whitespace-only nodes
+-					if (s.length() > 0) {
++					if (s.trim().length() > 0) {
+ 						rdfParser.text(s);
+ 					}
+ 				}

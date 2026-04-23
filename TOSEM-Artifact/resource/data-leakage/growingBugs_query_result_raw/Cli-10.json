@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.8778625954198473,
+    "input": "    protected void setOptions(final Options options) {\n        this.options = options;\n        this.requiredOptions = new ArrayList(options.getRequiredOptions());\n    }",
+    "query_result": [
+        " void setOptions(final Options options) {\nthis.opt",
+        "etOptions(final Options options) {\nthis.options = ",
+        "ons(final Options options) {\nthis.options = option",
+        "ions options) {\nthis.options = options;\nthis.requi",
+        " {\nthis.options = options;\nthis.requiredOptions = ",
+        "ions;\nthis.requiredOptions = new ArrayList(options",
+        "edOptions = new ArrayList(options.getRequiredOptio"
+    ]
+}

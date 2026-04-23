@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5006849315068493,
+    "input": "    static CoverageLongs coverBoundingBoxLongs(double topLeftLat, double topLeftLon,\n            double bottomRightLat, double bottomRightLon, final int length) {\n        Preconditions.checkArgument(topLeftLat >= bottomRightLat,\n                \"topLeftLat must be >= bottomRighLat\");\n        Preconditions.checkArgument(length > 0, \"length must be greater than zero\");\n        final double actualWidthDegreesPerHash = widthDegrees(length);\n        final double actualHeightDegreesPerHash = heightDegrees(length);\n\n        LongSet hashes = new LongSet();\n\n        double diff = bottomRightLon - topLeftLon;\n        if (diff < 0) {\n            // case where bottomRightLon cross the antimeridian\n            bottomRightLon += 360;\n            diff = bottomRightLon - topLeftLon;\n        } else if (diff > 360) {\n            // case where this bounding box displays more than one copy of the world\n            topLeftLon = -180;\n            bottomRightLon = 180;\n            diff = 360;\n        }\n\n        for (double lat = bottomRightLat; lat <= topLeftLat; lat += actualHeightDegreesPerHash) {\n            for (double lon = topLeftLon; lon <= bottomRightLon; lon += actualWidthDegreesPerHash) {\n                hashes.add(encodeHashToLong(lat, to180(lon), length));\n            }\n        }\n        // ensure have the borders covered\n        for (double lat = bottomRightLat; lat <= topLeftLat; lat += actualHeightDegreesPerHash) {\n            hashes.add(encodeHashToLong(lat, to180(bottomRightLon), length));\n        }\n        for (double lon = topLeftLon; lon <= bottomRightLon; lon += actualWidthDegreesPerHash) {\n            hashes.add(encodeHashToLong(topLeftLat, to180(lon), length));\n        }\n        // ensure that the topRight corner is covered\n        hashes.add(encodeHashToLong(topLeftLat, to180(bottomRightLon), length));\n\n        double areaDegrees = diff * (topLeftLat - bottomRightLat);\n        double coverageAreaDegrees = hashes.count * widthDegrees(length) * heightDegrees(length);",
+    "query_result": [
+        "length must be greater than zero\");\nfinal double actualWidthDegreesPerHash = widthDegrees(length);\nfinal double actualHeightDegreesPerHash = heightDegrees(length);\nLongSet hashes = new LongSet();\ndoub",
+        "ength must be greater than zero\");\nfinal double actualWidthDegreesPerHash = widthDegrees(length);\nfinal double actualHeightDegreesPerHash = heightDegrees(length);\nLongSet hashes = new LongSet();\ndoubl",
+        "uble bottomRightLat, double bottomRightLon, final int length) {\nPreconditions.checkArgument(topLeftLat >= bottomRightLat,\n\"topLeftLat must be >= botto",
+        " 0, \"length must be greater than zero\");\nfinal double actualWidthDegreesPerHash = widthDegrees(length);\nfinal double actualHeightDegreesPerHash = heig",
+        "gth));\n}\n}\n// ensure have the borders covered\nfor (double lat = bottomRightLat; lat <= topLeftLat; lat += actualHeightDegreesPerHash) {\nhashes.add(enc",
+        "nt length) {\nPreconditions.checkArgument(topLeftLat >= bottomRightLat,\n\"topLeftLat must be >= bottom",
+        "(double lat = bottomRightLat; lat <= topLeftLat; lat += actualHeightDegreesPerHash) {\nfor (double lo",
+        "lat = bottomRightLat; lat <= topLeftLat; lat += actualHeightDegreesPerHash) {\nfor (double lon = topL",
+        ");\n}\n}\n// ensure have the borders covered\nfor (double lat = bottomRightLat; lat <= topLeftLat; lat +",
+        "ers covered\nfor (double lat = bottomRightLat; lat <= topLeftLat; lat += actualHeightDegreesPerHash) ",
+        "red\nfor (double lat = bottomRightLat; lat <= topLeftLat; lat += actualHeightDegreesPerHash) {\nhashes",
+        "Degrees = diff * (topLeftLat - bottomRightLat);\ndouble coverageAreaDegrees = hashes.count * widthDeg",
+        "= diff * (topLeftLat - bottomRightLat);\ndouble coverageAreaDegrees = hashes.count * widthDegrees(len",
+        "- bottomRightLat);\ndouble coverageAreaDegrees = hashes.count * widthDegrees(length) * heightDegrees(",
+        "atic CoverageLongs coverBoundingBoxLongs(double to",
+        "ic CoverageLongs coverBoundingBoxLongs(double topL",
+        "CoverageLongs coverBoundingBoxLongs(double topLeft",
+        "(double topLeftLat, double topLeftLon,\ndouble bott",
+        "le topLeftLat, double topLeftLon,\ndouble bottomRig",
+        "e topLeftLat, double topLeftLon,\ndouble bottomRigh"
+    ]
+}

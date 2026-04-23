@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3741258741258741,
+    "input": "@Override\n    public <T> void writeBlock(\n            final String pathName,\n            final DatasetAttributes datasetAttributes,\n            final DataBlock<T> dataBlock) throws IOException {\n\n        final Path path = getDataBlockPath(Paths.get(basePath, pathName).toString(), dataBlock.getGridPosition());\n        Files.createDirectories(path.getParent());\n        try (final LockedFileChannel channel = LockedFileChannel.openForWriting(path)) {\n            final DataOutputStream dos = new DataOutputStream(Channels.newOutputStream(channel.getFileChannel()));\n\n            int mode = (dataBlock.getNumElements() == DataBlock.getNumElements(dataBlock.getSize())) ? 0 : 1; \n            dos.writeShort(mode);\n            \n            dos.writeShort(datasetAttributes.getNumDimensions());\n            for (final int size : dataBlock.getSize())\n                dos.writeInt(size);\n\n            if(mode != 0)\n                dos.writeInt(dataBlock.getNumElements());\n            \n            dos.flush();\n\n            final BlockWriter writer = datasetAttributes.getCompressionType().getWriter();\n            writer.write(dataBlock, channel.getFileChannel());\n        }\n    }",
+    "query_result": [
+        "T> void writeBlock(\nfinal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> dataBlock) throws IOException {\nfinal Path pa",
+        "ic <T> void writeBlock(\nfinal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal Data",
+        "> void writeBlock(\nfinal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock",
+        "riteBlock(\nfinal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> data",
+        "ock(\nfinal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> dataBlock)",
+        "ck(\nfinal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> dataBlock) ",
+        "(\nfinal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> dataBlock) th",
+        "nal String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> dataBlock) throws",
+        "l String pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> dataBlock) throws I",
+        "ring pathName,\nfinal DatasetAttributes datasetAttributes,\nfinal DataBlock<T> dataBlock) throws IOExc",
+        "hannel = LockedFileChannel.openForWriting(path)) {\nfinal DataOutputStream dos = new DataOutputStream",
+        "annel = LockedFileChannel.openForWriting(path)) {\nfinal DataOutputStream dos = new DataOutputStream(",
+        "s.writeShort(datasetAttributes.getNumDimensions());\nfor (final int size : dataBlock.getSize())\ndos.w",
+        "lock(\nfinal String pathName,\nfinal DatasetAttribut",
+        "final String pathName,\nfinal DatasetAttributes dat",
+        "inal String pathName,\nfinal DatasetAttributes data",
+        " String pathName,\nfinal DatasetAttributes datasetA",
+        "ing pathName,\nfinal DatasetAttributes datasetAttri",
+        "ng pathName,\nfinal DatasetAttributes datasetAttrib",
+        "pathName,\nfinal DatasetAttributes datasetAttribute"
+    ]
+}

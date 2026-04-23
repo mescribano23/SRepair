@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6046176046176046,
+    "input": "    protected void parse(Multipart parent, MimePart part)\n        throws MessagingException, IOException\n    {\n        if (part.isMimeType(\"text/plain\") && (plainContent == null)\n                && (! MimePart.ATTACHMENT.equalsIgnoreCase(part.getDisposition())))\n        {\n            plainContent = (String) part.getContent();\n        }\n        else\n        {\n            if (part.isMimeType(\"text/html\") && (htmlContent == null)\n                    && (! MimePart.ATTACHMENT.equalsIgnoreCase(part.getDisposition())))\n            {\n                htmlContent = (String) part.getContent();\n            }\n            else\n            {\n                if (part.isMimeType(\"multipart/*\"))\n                {\n                    this.isMultiPart = true;\n                    Multipart mp = (Multipart) part.getContent();\n                    int count = mp.getCount();\n\n                    // iterate over all MimeBodyPart\n\n                    for (int i = 0; i < count; i++)\n                    {\n                        parse(mp, (MimeBodyPart) mp.getBodyPart(i));\n                    }\n                }\n                else\n                {\n                    this.attachmentList.add(createDataSource(parent, part));\n                }\n            }\n        }\n    }",
+    "query_result": [
+        "= mp.getCount();\n// iterate over all MimeBodyPart\nfor (int i = 0; i < count; i++)\n{\nparse(mp, (MimeBodyPart) mp.getBodyPart(i));\n}\n}\nelse\n{\nthis.attachmentList.add(createDataSource(parent, part));\n}\n}",
+        "Multipart) part.getContent();\nint count = mp.getCount();\n// iterate over all MimeBodyPart\nfor (int i",
+        "ws MessagingException, IOException\n{\nif (part.isMi",
+        "xception\n{\nif (part.isMimeType(\"text/plain\") && (p",
+        "Part.ATTACHMENT.equalsIgnoreCase(part.getDispositi",
+        "art.ATTACHMENT.equalsIgnoreCase(part.getDispositio",
+        "rt.ATTACHMENT.equalsIgnoreCase(part.getDisposition",
+        "t.ATTACHMENT.equalsIgnoreCase(part.getDisposition(",
+        ".ATTACHMENT.equalsIgnoreCase(part.getDisposition()",
+        "ATTACHMENT.equalsIgnoreCase(part.getDisposition())",
+        "TTACHMENT.equalsIgnoreCase(part.getDisposition()))",
+        "Part.ATTACHMENT.equalsIgnoreCase(part.getDispositi",
+        "art.ATTACHMENT.equalsIgnoreCase(part.getDispositio",
+        "rt.ATTACHMENT.equalsIgnoreCase(part.getDisposition",
+        "t.ATTACHMENT.equalsIgnoreCase(part.getDisposition(",
+        ".ATTACHMENT.equalsIgnoreCase(part.getDisposition()",
+        "ATTACHMENT.equalsIgnoreCase(part.getDisposition())",
+        "TTACHMENT.equalsIgnoreCase(part.getDisposition()))",
+        "sMultiPart = true;\nMultipart mp = (Multipart) part",
+        "ipart mp = (Multipart) part.getContent();\nint coun"
+    ]
+}

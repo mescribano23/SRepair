@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.5467625899280576,
+    "input": "    public ZipArchiveInputStream(InputStream inputStream,\n                                 String encoding,\n                                 boolean useUnicodeExtraFields,\n                                 boolean allowStoredEntriesWithDataDescriptor) {\n        zipEncoding = ZipEncodingHelper.getZipEncoding(encoding);\n        this.useUnicodeExtraFields = useUnicodeExtraFields;\n        in = new PushbackInputStream(inputStream, buf.capacity());\n        this.allowStoredEntriesWithDataDescriptor =\n            allowStoredEntriesWithDataDescriptor;\n        // haven't read anything so far\n        buf.limit(0);\n    }",
+    "query_result": [
+        "r) {\nzipEncoding = ZipEncodingHelper.getZipEncoding(encoding);\nthis.useUnicodeExtraFields = useUnico",
+        "pEncoding = ZipEncodingHelper.getZipEncoding(encoding);\nthis.useUnicodeExtraFields = useUnicodeExtra",
+        "Encoding = ZipEncodingHelper.getZipEncoding(encoding);\nthis.useUnicodeExtraFields = useUnicodeExtraF",
+        "ncodingHelper.getZipEncoding(encoding);\nthis.useUnicodeExtraFields = useUnicodeExtraFields;\nin = new",
+        "public ZipArchiveInputStream(InputStream inputStre",
+        "lic ZipArchiveInputStream(InputStream inputStream,",
+        "eInputStream(InputStream inputStream,\nString encod",
+        "Stream(InputStream inputStream,\nString encoding,\nb",
+        "zipEncoding = ZipEncodingHelper.getZipEncoding(enc",
+        "coding = ZipEncodingHelper.getZipEncoding(encoding",
+        "EncodingHelper.getZipEncoding(encoding);\nthis.useU",
+        "ding(encoding);\nthis.useUnicodeExtraFields = useUn",
+        "(encoding);\nthis.useUnicodeExtraFields = useUnicod",
+        "his.useUnicodeExtraFields = useUnicodeExtraFields;",
+        "esWithDataDescriptor =\nallowStoredEntriesWithDataD"
+    ]
+}

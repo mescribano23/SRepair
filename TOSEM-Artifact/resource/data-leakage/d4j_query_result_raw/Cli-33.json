@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.9607843137254902,
+    "input": "public void printWrapped(PrintWriter pw, int width, int nextLineTabStop, String text)\n    {\n        StringBuffer sb = new StringBuffer(text.length());\n\n        renderWrappedTextBlock(sb, width, nextLineTabStop, text);\n        pw.println(sb.toString());\n    }",
+    "query_result": [
+        "StringBuffer sb = new StringBuffer(text.length()); renderWrappedTextBlock(sb, width, nextLineTabSto",
+        "tringBuffer sb = new StringBuffer(text.length()); renderWrappedTextBlock(sb, width, nextLineTabStop,",
+        "c void printWrapped(PrintWriter pw, int width, int",
+        "printWrapped(PrintWriter pw, int width, int nextLi",
+        "ntWrapped(PrintWriter pw, int width, int nextLineT",
+        "PrintWriter pw, int width, int nextLineTabStop, St",
+        "ntWriter pw, int width, int nextLineTabStop, Strin",
+        "r pw, int width, int nextLineTabStop, String text)",
+        "StringBuffer sb = new StringBuffer(text.length());",
+        "new StringBuffer(text.length()); renderWrappedTex",
+        "ringBuffer(text.length()); renderWrappedTextBlock(",
+        "nextLineTabStop, text); pw.println(sb.toString())"
+    ]
+}

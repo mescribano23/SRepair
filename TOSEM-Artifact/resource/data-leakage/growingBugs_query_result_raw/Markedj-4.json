@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.2347417840375587,
+    "input": "    public static String marked(String src, Options options, Renderer renderer){\n        Lexer lexer = new Lexer(options);\n        Lexer.LexerResult result = lexer.lex(src);\n        Parser parser = new Parser(options, renderer);\n        String html = parser.parse(result.getTokens(), result.getLinks());\n\n        Whitelist whitelist = Whitelist.relaxed();\n        whitelist.addAttributes(\"code\", \"class\");\n        whitelist.addAttributes(\"th\", \"style\");\n        whitelist.addAttributes(\"td\", \"style\");\n        whitelist.addAttributes(\"h1\", \"id\");\n        whitelist.addAttributes(\"h2\", \"id\");\n        whitelist.addAttributes(\"h3\", \"id\");\n        whitelist.addAttributes(\"h4\", \"id\");\n        whitelist.addAttributes(\"h5\", \"id\");\n        whitelist.addAttributes(\"h6\", \"id\");\n\n        return Jsoup.clean(html, whitelist);\n    }",
+    "query_result": [
+        "{\nLexer lexer = new Lexer(options);\nLexer.LexerResult result = lexer.lex(src);\nParser parser = new P",
+        ");\nWhitelist whitelist = Whitelist.relaxed();\nwhit",
+        "ist whitelist = Whitelist.relaxed();\nwhitelist.add",
+        "ist = Whitelist.relaxed();\nwhitelist.addAttributes"
+    ]
+}

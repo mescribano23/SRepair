@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6010544815465729,
+    "input": "    public TarArchiveEntry getNextTarEntry() throws IOException {\n        if (hasHitEOF) {\n            return null;\n        }\n\n        if (currEntry != null) {\n            long numToSkip = entrySize - entryOffset;\n\n            while (numToSkip > 0) {\n                long skipped = skip(numToSkip);\n                if (skipped <= 0) {\n                    throw new RuntimeException(\"failed to skip current tar\"\n                                               + \" entry\");\n                }\n                numToSkip -= skipped;\n            }\n\n            readBuf = null;\n        }\n\n        byte[] headerBuf = getRecord();\n\n        if (hasHitEOF) {\n            currEntry = null;\n            return null;\n        }\n\n        try {\n            currEntry = new TarArchiveEntry(headerBuf, encoding);\n        } catch (IllegalArgumentException e) {\n            IOException ioe = new IOException(\"Error detected parsing the header\");\n            ioe.initCause(e);\n            throw ioe;\n        }\n        entryOffset = 0;\n        entrySize = currEntry.getSize();\n\n        if (currEntry.isGNULongNameEntry()) {\n            // read in the name\n            ByteArrayOutputStream longName = new ByteArrayOutputStream();\n            byte[] buf = new byte[SMALL_BUFFER_SIZE];\n            int length = 0;\n            while ((length = read(buf)) >= 0) {\n                longName.write(buf, 0, length);\n            }\n            getNextEntry();\n            if (currEntry == null) {\n                // Bugzilla: 40334\n                // Malformed tar file - long entry name not followed by entry\n                return null;\n            }\n            byte[] longNameData = longName.toByteArray();\n            // remove trailing null terminator(s)\n            length = longNameData.length;\n            while (length > 0 && longNameData[length - 1] == 0) {\n                --length;\n            }\n            if (length != longNameData.length) {\n                byte[] l = new byte[length];\n                System.arraycop",
+    "query_result": [
+        "asHitEOF) {\nreturn null;\n}\nif (currEntry != null) {\nlong numToSkip = entrySize - entryOffset;\nwhile (numToSkip > 0) {\nlong skipped = skip(numToSkip);\n",
+        "mToSkip);\nif (skipped <= 0) {\nthrow new RuntimeException(\"failed to skip current tar\"\n+ \" entry\");\n}\nnumToSkip -= skipped;\n}\nreadBuf = null;\n}\nbyte[] ",
+        "ntry() throws IOException {\nif (hasHitEOF) {\nreturn null;\n}\nif (currEntry != null) {\nlong numToSkip ",
+        "byte[] buf = new byte[SMALL_BUFFER_SIZE];\nint length = 0;\nwhile ((length = read(buf)) >= 0) {\nlongNa",
+        "try == null) {\n// Bugzilla: 40334\n// Malformed tar file - long entry name not followed by entry\nretu",
+        "y == null) {\n// Bugzilla: 40334\n// Malformed tar file - long entry name not followed by entry\nreturn",
+        "ull) {\n// Bugzilla: 40334\n// Malformed tar file - long entry name not followed by entry\nreturn null;",
+        "\nwhile (length > 0 && longNameData[length - 1] == 0) {\n--length;\n}\nif (length != longNameData.length",
+        "kipped <= 0) {\nthrow new RuntimeException(\"failed ",
+        "\nthrow new RuntimeException(\"failed to skip curren",
+        "oSkip -= skipped;\n}\nreadBuf = null;\n}\nbyte[] heade",
+        ");\n} catch (IllegalArgumentException e) {\nIOExcept",
+        "tException e) {\nIOException ioe = new IOException(",
+        "Exception e) {\nIOException ioe = new IOException(\"",
+        "ion e) {\nIOException ioe = new IOException(\"Error ",
+        "ception ioe = new IOException(\"Error detected pars",
+        "currEntry.isGNULongNameEntry()) {\n// read in the n",
+        " = new ByteArrayOutputStream();\nbyte[] buf = new b",
+        "= new ByteArrayOutputStream();\nbyte[] buf = new by",
+        " new ByteArrayOutputStream();\nbyte[] buf = new byt"
+    ]
+}

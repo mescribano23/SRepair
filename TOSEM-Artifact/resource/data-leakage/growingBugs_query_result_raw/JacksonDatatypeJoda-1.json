@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.8074074074074075,
+    "input": "    public InstantSerializer(JacksonJodaDateFormat format) {\n        super(Instant.class, format, false,\n                SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);\n    }",
+    "query_result": [
+        "cksonJodaDateFormat format) {\nsuper(Instant.class,",
+        "format, false,\nSerializationFeature.WRITE_DATES_AS",
+        "SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);\n}"
+    ]
+}

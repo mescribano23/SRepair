@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.9494163424124513,
+    "input": "    private String sanitizeName(MetricName name) {\n        final StringBuilder sb = new StringBuilder()\n                .append(name.getGroup())\n                .append('.')\n                .append(name.getType())\n                .append('.');\n        if (name.hasScope()) {\n            sb.append(name.getScope())\n                    .append('.');\n        }\n        return sb.append(name.getName()).toString();\n    }",
+    "query_result": [
+        "ng sanitizeName(MetricName name) {\nfinal StringBuilder sb = new StringBuilder()\n.append(name.getGroup())\n.append('.')\n.append(name.getType())\n.append('.');\nif (name.hasScope()) {\nsb.append(name.getScope())\n.append('.');\n}\nreturn sb.append(name.getNam",
+        "(MetricName name) {\nfinal StringBuilder sb = new StringBuilder()\n.append(name.getGroup())\n.append('.')\n.append(name.getType())\n.append('.');\nif (name.hasScope()) {\nsb.append(name.getScope())\n.append('.');\n}\nreturn sb.append(name.getName()).toString()",
+        "me) {\nfinal StringBuilder sb = new StringBuilder()\n.append(name.getGroup())\n.append('.')\n.append(nam",
+        "Name(MetricName name) {\nfinal StringBuilder sb = n",
+        "Name name) {\nfinal StringBuilder sb = new StringBu",
+        " name) {\nfinal StringBuilder sb = new StringBuilde",
+        "name) {\nfinal StringBuilder sb = new StringBuilder",
+        "ame) {\nfinal StringBuilder sb = new StringBuilder(",
+        "{\nfinal StringBuilder sb = new StringBuilder()\n.ap",
+        "\nfinal StringBuilder sb = new StringBuilder()\n.app",
+        "final StringBuilder sb = new StringBuilder()\n.appe",
+        "inal StringBuilder sb = new StringBuilder()\n.appen",
+        "al StringBuilder sb = new StringBuilder()\n.append(",
+        "b.append(name.getScope())\n.append('.');\n}\nreturn s"
+    ]
+}

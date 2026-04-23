@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7152600170502984,
+    "input": "public double integrate(final FirstOrderDifferentialEquations equations,\n                        final double t0, final double[] y0,\n                        final double t, final double[] y)\nthrows DerivativeException, IntegratorException {\n\n  sanityChecks(equations, t0, y0, t, y);\n  setEquations(equations);\n  resetEvaluations();\n  final boolean forward = t > t0;\n\n  // create some internal working arrays\n  final int stages = c.length + 1;\n  if (y != y0) {\n    System.arraycopy(y0, 0, y, 0, y0.length);\n  }\n  final double[][] yDotK = new double[stages][y0.length];\n  final double[] yTmp = new double[y0.length];\n\n  // set up an interpolator sharing the integrator arrays\n  AbstractStepInterpolator interpolator;\n  if (requiresDenseOutput() || (! eventsHandlersManager.isEmpty())) {\n    final RungeKuttaStepInterpolator rki = (RungeKuttaStepInterpolator) prototype.copy();\n    rki.reinitialize(this, yTmp, yDotK, forward);\n    interpolator = rki;\n  } else {\n    interpolator = new DummyStepInterpolator(yTmp, forward);\n  }\n  interpolator.storeTime(t0);\n\n  // set up integration control objects\n  stepStart         = t0;\n  double  hNew      = 0;\n  boolean firstTime = true;\n  for (StepHandler handler : stepHandlers) {\n      handler.reset();\n  }\n  CombinedEventsManager manager = addEndTimeChecker(t0, t, eventsHandlersManager);\n  boolean lastStep = false;\n\n  // main integration loop\n  while (!lastStep) {\n\n    interpolator.shift();\n\n    double error = 0;\n    for (boolean loop = true; loop;) {\n\n  ",
+    "query_result": [
+        "rows DerivativeException, IntegratorException {\nsanityChecks(equations, t0, y0, t, y);\nsetEquations(equations);\nresetEvaluations();\nfinal boolean forward = t > t0;\n// create some internal working arrays\nfinal int stages = c.length + 1;\nif (y != y0) {\nSystem.arraycopy(y0, 0, y, 0, y0.length);\n}\nfinal double[][] yDotK = new double[stages][y0.length];",
+        "ntegrate(final FirstOrderDifferentialEquations equations,\nfinal double t0, final double[] y0,\nfinal double t, final double[] y)\nthrows DerivativeExcep",
+        "OrderDifferentialEquations equations,\nfinal double t0, final double[] y0,\nfinal double t, final double[] y)\nthrows DerivativeException, IntegratorExce",
+        "ard);\n}\ninterpolator.storeTime(t0);\n// set up integration control objects\nstepStart = t0;\ndouble hNew = 0;\nboolean firstTime = true;\nfor (StepHandler ",
+        "on {\nsanityChecks(equations, t0, y0, t, y);\nsetEquations(equations);\nresetEvaluations();\nfinal boole",
+        " up an interpolator sharing the integrator arrays\nAbstractStepInterpolator interpolator;\nif (require",
+        "y();\nrki.reinitialize(this, yTmp, yDotK, forward);\ninterpolator = rki;\n} else {\ninterpolator = new D",
+        "ndler : stepHandlers) {\nhandler.reset();\n}\nCombinedEventsManager manager = addEndTimeChecker(t0, t, ",
+        "ler : stepHandlers) {\nhandler.reset();\n}\nCombinedEventsManager manager = addEndTimeChecker(t0, t, ev",
+        "s) {\nhandler.reset();\n}\nCombinedEventsManager manager = addEndTimeChecker(t0, t, eventsHandlersManag",
+        "lic double integrate(final FirstOrderDifferentialE",
+        " double integrate(final FirstOrderDifferentialEqua",
+        "uble integrate(final FirstOrderDifferentialEquatio",
+        "rentialEquations equations,\nfinal double t0, final",
+        "\nthrows DerivativeException, IntegratorException {",
+        "yChecks(equations, t0, y0, t, y);\nsetEquations(equ",
+        "tions, t0, y0, t, y);\nsetEquations(equations);\nres",
+        "t, y);\nsetEquations(equations);\nresetEvaluations()",
+        ");\nsetEquations(equations);\nresetEvaluations();\nfi",
+        "me internal working arrays\nfinal int stages = c.le"
+    ]
+}

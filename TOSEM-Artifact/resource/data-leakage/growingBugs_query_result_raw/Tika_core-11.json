@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.41832324978392393,
+    "input": "private static CompositeParser parserFromDomElement(\n            Element element, MimeTypes mimeTypes, ClassLoader loader)\n            throws TikaException, IOException {\n        List<Parser> parsers = new ArrayList<Parser>();\n        NodeList nodes = element.getElementsByTagName(\"parser\");\n        for (int i = 0; i < nodes.getLength(); i++) {\n            Element node = (Element) nodes.item(i);\n            String name = node.getAttribute(\"class\");\n\n            try {\n                Class<?> parserClass = Class.forName(name, true, loader);\n                // https://issues.apache.org/jira/browse/TIKA-866\n                if (DefaultParser.class.isAssignableFrom(parserClass)\n                        || AutoDetectParser.class.isAssignableFrom(parserClass)) {\n                    throw new TikaException(\n                            \"Composite parsers not supported in <parser>\"\n                            + \" configuration elements: \" + name);\n                }\n                Object instance = parserClass.newInstance();\n                if (!(instance instanceof Parser)) {\n                    throw new TikaException(\n                            \"Configured class is not a Tika Parser: \" + name);\n                }\n                Parser parser = (Parser) instance;\n\n                NodeList mimes = node.getElementsByTagName(\"mime\");\n                if (mimes.getLength() > 0) {\n                    Set<MediaType> types = new HashSet<MediaType>();\n                    for (int j = 0; j < mimes.getLength(); j++) {\n                        String mime = getText(mimes.item(j));\n                        MediaType type = MediaType.parse(mime);\n                        if (type != null) {\n                            types.add(type);\n                        } else {\n                            throw new TikaException(\n                                    \"Invalid media type name: \" + mime);\n                        }\n                    }\n                    parser = ParserDecorator.withTypes",
+    "query_result": [
+        "ngth() > 0) {\nSet<MediaType> types = new HashSet<MediaType>();\nfor (int j = 0; j < mimes.getLength(); j++) {\nString mime = getText(mimes.item(j));\nMediaType type = MediaType.parse(mime);\nif (type != null) {\ntypes.add(type);\n} else {\nthrow new TikaExc",
+        ", IOException {\nList<Parser> parsers = new ArrayList<Parser>();\nNodeList nodes = element.getElementsByTagName(\"parser\");\nfor (int i = 0; i < nodes.getLength(); i++) {\nElement node = (Element) nodes.it",
+        "r\");\nfor (int i = 0; i < nodes.getLength(); i++) {\nElement node = (Element) nodes.item(i);\nString na",
+        ");\nfor (int i = 0; i < nodes.getLength(); i++) {\nElement node = (Element) nodes.item(i);\nString name",
+        "nt i = 0; i < nodes.getLength(); i++) {\nElement node = (Element) nodes.item(i);\nString name = node.g",
+        " i++) {\nElement node = (Element) nodes.item(i);\nString name = node.getAttribute(\"class\");\ntry {\nClas",
+        "rserFromDomElement(\nElement element, MimeTypes mim",
+        "n {\nList<Parser> parsers = new ArrayList<Parser>()",
+        "();\nNodeList nodes = element.getElementsByTagName(",
+        "\");\nfor (int i = 0; i < nodes.getLength(); i++) {\n",
+        ";\nfor (int i = 0; i < nodes.getLength(); i++) {\nEl",
+        "\nfor (int i = 0; i < nodes.getLength(); i++) {\nEle",
+        "for (int i = 0; i < nodes.getLength(); i++) {\nElem",
+        "or (int i = 0; i < nodes.getLength(); i++) {\nEleme",
+        "r (int i = 0; i < nodes.getLength(); i++) {\nElemen",
+        " (int i = 0; i < nodes.getLength(); i++) {\nElement",
+        "(int i = 0; i < nodes.getLength(); i++) {\nElement ",
+        "int i = 0; i < nodes.getLength(); i++) {\nElement n",
+        " i = 0; i < nodes.getLength(); i++) {\nElement node",
+        "i = 0; i < nodes.getLength(); i++) {\nElement node "
+    ]
+}

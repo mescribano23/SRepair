@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.7264367816091954,
+    "input": "  private String assertionContentForField(FieldDescription field) {\n    String assertionContent = baseAssertionContentFor(field);\n\n    // we reuse template for properties to have consistent assertions for property and field but change the way we get\n    // the value since it's a field and not a property:\n    assertionContent = assertionContent.replace(\"get${Property}()\", \"${property}\")\n                                       .replace(\"is${Property}())\", \"${property})\");\n    // - remove also ${throws} and ${throws_javadoc} since it does not make any sense for a field\n    assertionContent = remove(assertionContent, \"${throws}\");\n    assertionContent = remove(assertionContent, \"${throws_javadoc}\");\n\n    // replace ${Property} and ${property} by field name (starting with uppercase/lowercase)\n    return assertionContent.replaceAll(PROPERTY_WITH_UPPERCASE_FIRST_CHAR_REGEXP, capitalize(field.getName()))\n                           .replaceAll(PROPERTY_TYPE_REGEXP, field.getTypeName())\n                           .replaceAll(PROPERTY_WITH_LOWERCASE_FIRST_CHAR_REGEXP, field.getName());\n  }",
+    "query_result": [
+        "es to have consistent assertions for property and field but change the way we get\n// the value since it's a field and not a property:\nassertionContent = assertionContent.replace(\"get${Property}()\", \"${property}\")\n.replace(\"is${Property}())\", \"${property})\");\n// - remove also ${throws} and ${throws_javadoc} since it does not make any sense for a field\nassertionContent = remove(assertionContent, \"${throws}\");\nassertionContent = remove(assertionContent, \"${throws_javadoc}\");\n// replace ${Property} and ${property} by field name (starting with upper",
+        "also ${throws} and ${throws_javadoc} since it does not make any sense for a field\nassertionContent = remove(assertionContent, \"${throws}\");\nassertionContent = remove(assertionContent, \"${throws_javado",
+        "erties to have consistent assertions for property and field but change the way we get\n// the value since it's a field and not a property:\nassertionCon",
+        "ring assertionContentForField(FieldDescription fie",
+        "g assertionContent = baseAssertionContentFor(field",
+        "nt.replaceAll(PROPERTY_WITH_UPPERCASE_FIRST_CHAR_R"
+    ]
+}

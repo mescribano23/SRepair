@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "public Iterator<Chromosome> iterator() {\n    return getChromosomes().iterator();\n}",
+    "query_result": []
+}

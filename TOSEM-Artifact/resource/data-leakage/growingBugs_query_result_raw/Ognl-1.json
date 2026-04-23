@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.3233082706766917,
+    "input": "    public static Method getReadMethod( Class target, String name, int numParms )\n    {\n        try\n        {\n            name = name.replaceAll( \"\\\"\", \"\" ).toLowerCase();\n\n            BeanInfo info = Introspector.getBeanInfo( target );\n            MethodDescriptor[] methods = info.getMethodDescriptors();\n\n            // exact matches first\n\n            Method m = null;\n\n            for ( int i = 0; i < methods.length; i++ )\n            {\n                if ( !isMethodCallable( methods[i].getMethod() ) )\n                    continue;\n\n                if ( ( methods[i].getName().equalsIgnoreCase( name )\n                    || methods[i].getName().toLowerCase().equals( name )\n                    || methods[i].getName().toLowerCase().equals( \"get\" + name )\n                    || methods[i].getName().toLowerCase().equals( \"has\" + name )\n                    || methods[i].getName().toLowerCase().equals( \"is\" + name ) )\n                    && !methods[i].getName().startsWith( \"set\" ) )\n                {\n                    if ( numParms > 0 && methods[i].getMethod().getParameterTypes().length == numParms )\n                        return methods[i].getMethod();\n                    else if ( numParms < 0 )\n                    {\n                        if ( methods[i].getName().equals( name ) )\n                        {\n                            return methods[i].getMethod();\n                        }\n                        else if ( ( m != null\n                                && m.getParameterTypes().length > methods[i].getMethod().getParameterTypes().length )\n                            || m == null )\n                        {\n                            m = methods[i].getMethod();\n                        }\n                    }\n                }\n            }\n\n            if ( m != null )\n                return m;\n\n            for ( int i = 0; i < methods.length; i++ )\n            {\n                if ( !isMethodCallable( methods[i].getMethod() ) )\n                    c",
+    "query_result": [
+        "me ) )\n{\nreturn methods[i].getMethod();\n}\nelse if ( ( m != null\n&& m.getParameterTypes().length > methods[i].getMethod().getParameterTypes().length )\n",
+        "fo info = Introspector.getBeanInfo( target );\nMeth",
+        "spector.getBeanInfo( target );\nMethodDescriptor[] ",
+        ";\nMethodDescriptor[] methods = info.getMethodDescr",
+        "ethodDescriptor[] methods = info.getMethodDescript",
+        "dDescriptor[] methods = info.getMethodDescriptors(",
+        "criptors();\n// exact matches first\nMethod m = null",
+        "null;\nfor ( int i = 0; i < methods.length; i++ )\n{",
+        "& methods[i].getMethod().getParameterTypes().lengt",
+        "ds[i].getMethod().getParameterTypes().length == nu",
+        "terTypes().length > methods[i].getMethod().getPara"
+    ]
+}

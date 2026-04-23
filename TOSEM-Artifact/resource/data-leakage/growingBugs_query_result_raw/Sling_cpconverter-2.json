@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.21805392731535755,
+    "input": "    public void addConfiguration(String runMode, String pid, Dictionary<String, Object> configurationProperties) {\n        Feature feature = getRunMode(runMode);\n        Configuration configuration = feature.getConfigurations().getConfiguration(pid);\n\n        if (configuration == null) {\n            configuration = new Configuration(pid);\n            feature.getConfigurations().add(configuration);\n        } else if (!mergeConfigurations) {\n            throw new IllegalStateException(\"Configuration '\"\n                                            + pid\n                                            + \"' already defined in Feature Model '\"\n                                            + feature.getId().toMvnId()\n                                            + \"', set the 'mergeConfigurations' flag to 'true' if you want to merge multiple configurations with same PID\");\n        }\n\n        Enumeration<String> keys = configurationProperties.keys();\n        while (keys.hasMoreElements()) {\n            String key = keys.nextElement();\n            Object value = configurationProperties.get(key);\n\n            if (value != null && Collection.class.isInstance(value)) {\n                value = ((Collection<?>) value).toArray();\n            }\n\n            configuration.getProperties().put(key, value);\n        }\n    }",
+    "query_result": [
+        "ure.getConfigurations().getConfiguration(pid);\nif (configuration == null) {\nconfiguration = new Conf",
+        "ion(String runMode, String pid, Dictionary<String,",
+        "tring pid, Dictionary<String, Object> configuratio",
+        "pid, Dictionary<String, Object> configurationPrope",
+        "id, Dictionary<String, Object> configurationProper",
+        "figuration = feature.getConfigurations().getConfig",
+        ");\nif (configuration == null) {\nconfiguration = ne",
+        ";\nif (configuration == null) {\nconfiguration = new",
+        "\nif (configuration == null) {\nconfiguration = new ",
+        "if (configuration == null) {\nconfiguration = new C",
+        "f (configuration == null) {\nconfiguration = new Co",
+        " (configuration == null) {\nconfiguration = new Con",
+        "configuration == null) {\nconfiguration = new Confi",
+        "onfiguration == null) {\nconfiguration = new Config",
+        "nfiguration == null) {\nconfiguration = new Configu",
+        "figuration == null) {\nconfiguration = new Configur",
+        "iguration == null) {\nconfiguration = new Configura",
+        "guration == null) {\nconfiguration = new Configurat",
+        "uration == null) {\nconfiguration = new Configurati",
+        "ration == null) {\nconfiguration = new Configuratio"
+    ]
+}

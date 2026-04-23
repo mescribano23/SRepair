@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6297262059973925,
+    "input": "  public static <T> Binding<T> create(Class<T> type, boolean mustBeInjectable) {\n    boolean singleton = type.isAnnotationPresent(Singleton.class);\n    List<String> keys = new ArrayList<String>();\n\n    // Lookup the injectable fields and their corresponding keys.\n    List<Field> injectedFields = new ArrayList<Field>();\n    for (Class<?> c = type; c != Object.class; c = c.getSuperclass()) {\n      for (Field field : c.getDeclaredFields()) {\n        if (!field.isAnnotationPresent(Inject.class) || Modifier.isStatic(field.getModifiers())) {\n          continue;\n        }\n        if ((field.getModifiers() & Modifier.PRIVATE) != 0) {\n          throw new IllegalStateException(\"Can't inject private field: \" + field);\n        }\n        field.setAccessible(true);\n        injectedFields.add(field);\n        keys.add(Keys.get(field.getGenericType(), field.getAnnotations(), field));\n      }\n    }\n\n    // Look up @Inject-annotated constructors. If there's no @Inject-annotated\n    // constructor, use a default public constructor if the class has other\n    // injections. Otherwise treat the class as non-injectable.\n    Constructor<T> injectedConstructor = null;\n    for (Constructor<T> constructor : getConstructorsForType(type)) {\n      if (!constructor.isAnnotationPresent(Inject.class)) {\n        continue;\n      }\n      if (injectedConstructor != null) {\n        throw new IllegalArgumentException(\"Too many injectable constructors on \" + type.getName());\n      }\n      injectedConstructor = constructor;\n    }\n    if (injectedConstructor == null) {\n      if (injectedFields.isEmpty() && mustBeInjectable) {\n        throw new IllegalArgumentException(\"No injectable members on \" + type.getName()\n            + \". Do you want to add an injectable constructor?\");\n      }\n      try {\n        injectedConstructor = type.getDeclaredConstructor();\n      } catch (NoSuchMethodException ignored) {\n      }\n    }\n\n    int parameterCount;\n    String provideKey;\n    if (injectedConstructor != null) {\n     ",
+    "query_result": [
+        "sent(Singleton.class);\nList<String> keys = new ArrayList<String>();\n// Lookup the injectable fields and their corresponding keys.\nList<Field> injectedFields = new ArrayList<Field>();\nfor (Class<?> c = type; c != Object.class; c = c.getSuperclass()) {\nfor (Field field : c.getDeclaredFields()) {\nif (!field.isAnnotationPresent(Inject.class) || Modifier.isStatic(field.getModifiers())) {\ncontinue;\n}\nif ((field.getModifiers() & Modifier.PRIVATE) != 0) {\nthrow new IllegalStateException(\"Can't inject private field: \" + field);\n}\nfield.setAccessible(true);\ninjectedFields.add(field);\nkeys.add(Keys.get(field.getGenericType(), field.getAnnotations(), field));\n}\n}\n// Look up @Inject-annotated constructors. If there's no @Inject-annotated\n// constructor, use a default public constructor if the class has other\n// injections. Otherwise treat the class as non-injectable.\nConstructor<T> injectedConstructor = null;\nfor (Constructor<T> constructor : getConstructorsForType(type)) {\nif (!constructor.isAnnotationPresent(Inject.class)) {\ncontinue;\n}\nif (inje",
+        " = new ArrayList<Field>();\nfor (Class<?> c = type; c != Object.class; c = c.getSuperclass()) {\nfor (",
+        "new ArrayList<Field>();\nfor (Class<?> c = type; c != Object.class; c = c.getSuperclass()) {\nfor (Fie",
+        "for (Class<?> c = type; c != Object.class; c = c.getSuperclass()) {\nfor (Field field : c.getDeclared",
+        "ss; c = c.getSuperclass()) {\nfor (Field field : c.getDeclaredFields()) {\nif (!field.isAnnotationPres",
+        "; c = c.getSuperclass()) {\nfor (Field field : c.getDeclaredFields()) {\nif (!field.isAnnotationPresen",
+        " c = c.getSuperclass()) {\nfor (Field field : c.getDeclaredFields()) {\nif (!field.isAnnotationPresent",
+        "c = c.getSuperclass()) {\nfor (Field field : c.getDeclaredFields()) {\nif (!field.isAnnotationPresent(",
+        "ield.getModifiers())) {\ncontinue;\n}\nif ((field.getModifiers() & Modifier.PRIVATE) != 0) {\nthrow new ",
+        " singleton = type.isAnnotationPresent(Singleton.cl",
+        "ingleton = type.isAnnotationPresent(Singleton.clas",
+        ");\nList<String> keys = new ArrayList<String>();\n//",
+        "ields = new ArrayList<Field>();\nfor (Class<?> c = ",
+        "= new ArrayList<Field>();\nfor (Class<?> c = type; ",
+        " new ArrayList<Field>();\nfor (Class<?> c = type; c",
+        "ew ArrayList<Field>();\nfor (Class<?> c = type; c !",
+        "; c != Object.class; c = c.getSuperclass()) {\nfor ",
+        "c.getSuperclass()) {\nfor (Field field : c.getDecla",
+        ".getSuperclass()) {\nfor (Field field : c.getDeclar",
+        "getSuperclass()) {\nfor (Field field : c.getDeclare"
+    ]
+}

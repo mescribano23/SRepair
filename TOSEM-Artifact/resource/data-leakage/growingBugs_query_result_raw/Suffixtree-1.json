@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.8292682926829268,
+    "input": "    public Collection<Integer> search(String word, int results) {\n        Node tmpNode = searchNode(word);\n        if (tmpNode == null) {\n            return Collections.EMPTY_LIST;\n        }\n        return tmpNode.getData(results);\n    }",
+    "query_result": [
+        "search(String word, int results) {\nNode tmpNode = searchNode(word);\nif (tmpNode == null) {\nreturn Collections.EMPTY_LIST;\n}\nreturn tmpNode.getData(res",
+        "ger> search(String word, int results) {\nNode tmpNode = searchNode(word);\nif (tmpNode == null) {\nretu",
+        ") {\nNode tmpNode = searchNode(word);\nif (tmpNode == null) {\nreturn Collections.EMPTY_LIST;\n}\nreturn ",
+        "sults) {\nNode tmpNode = searchNode(word);\nif (tmpN",
+        " = searchNode(word);\nif (tmpNode == null) {\nreturn",
+        " == null) {\nreturn Collections.EMPTY_LIST;\n}\nretur",
+        "== null) {\nreturn Collections.EMPTY_LIST;\n}\nreturn"
+    ]
+}

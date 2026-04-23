@@ -1,0 +1,49 @@
+diff --git a/src/main/java/com/squareup/java/JavaWriter.java b/src/main/java/com/squareup/java/JavaWriter.java
+index 55a3b18..115dd15 100644
+--- a/src/main/java/com/squareup/java/JavaWriter.java
++++ b/src/main/java/com/squareup/java/JavaWriter.java
+@@ -118,7 +118,7 @@ public final class JavaWriter implements Closeable {
+   }
+ 
+   /** Try to compress a fully-qualified class name to only the class name. */
+-  public String compressType(String type) {
++public String compressType(String type) {
+     StringBuilder sb = new StringBuilder();
+     if (this.packagePrefix == null) {
+       throw new IllegalStateException();
+@@ -139,21 +139,25 @@ public final class JavaWriter implements Closeable {
+ 
+       // Copy a single class name, shortening it if possible.
+       String name = m.group(0);
+-      String imported = importedTypes.get(name);
+-      if (imported != null) {
+-        sb.append(imported);
+-      } else if (isClassInPackage(name)) {
+-        String compressed = name.substring(packagePrefix.length());
+-          sb.append(compressed);
+-      } else if (name.startsWith("java.lang.")) {
+-        sb.append(name.substring("java.lang.".length()));
++      if (name.startsWith("denominator.")) {
++        sb.append(name); // Keep the full name if its a nested type from the same package.
+       } else {
+-        sb.append(name);
++        String imported = importedTypes.get(name);
++        if (imported != null) {
++          sb.append(imported);
++        } else if (isClassInPackage(name)) {
++          String compressed = name.substring(packagePrefix.length());
++          sb.append(compressed);
++        } else if (name.startsWith("java.lang.")) {
++          sb.append(name.substring("java.lang.".length()));
++        } else {
++          sb.append(name);
++        }
+       }
+       pos = m.end();
+     }
+     return sb.toString();
+-  }
++}
+ 
+   private boolean isClassInPackage(String name) {
+     if (name.startsWith(packagePrefix)) {

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6523143164693218,
+    "input": "    public XYDataItem addOrUpdate(Number x, Number y) {\n        if (x == null) {\n            throw new IllegalArgumentException(\"Null 'x' argument.\");\n        }\n        if (this.allowDuplicateXValues) {\n            add(x, y);\n            return null;\n        }\n\n        // if we get to here, we know that duplicate X values are not permitted\n        XYDataItem overwritten = null;\n        int index = indexOf(x);\n        if (index >= 0) {\n            XYDataItem existing = (XYDataItem) this.data.get(index);\n            try {\n                overwritten = (XYDataItem) existing.clone();\n            }\n            catch (CloneNotSupportedException e) {\n                throw new SeriesException(\"Couldn't clone XYDataItem!\");\n            }\n            existing.setY(y);\n        }\n        else {\n            // if the series is sorted, the negative index is a result from\n            // Collections.binarySearch() and tells us where to insert the\n            // new item...otherwise it will be just -1 and we should just\n            // append the value to the list...\n            if (this.autoSort) {\n                this.data.add(-index - 1, new XYDataItem(x, y));\n            }\n            else {\n                this.data.add(new XYDataItem(x, y));\n            }\n            // check if this addition will exceed the maximum item count...\n            if (getItemCount() > this.maximumItemCount) {\n                this.data.remove(0);\n            }\n        }\n        fireSeriesChanged();\n        return overwritten;\n    }",
+    "query_result": [
+        " sorted, the negative index is a result from\n// Collections.binarySearch() and tells us where to insert the\n// new item...otherwise it will be just -1 and we should just\n// append the value to the lis",
+        "{\nXYDataItem existing = (XYDataItem) this.data.get(index);\ntry {\noverwritten = (XYDataItem) existing.clone();\n}\ncatch (CloneNotSupportedException e) {",
+        "tem existing = (XYDataItem) this.data.get(index);\ntry {\noverwritten = (XYDataItem) existing.clone();\n}\ncatch (CloneNotSupportedException e) {\nthrow ne",
+        "em existing = (XYDataItem) this.data.get(index);\ntry {\noverwritten = (XYDataItem) existing.clone();\n}\ncatch (CloneNotSupportedException e) {\nthrow new",
+        "ex is a result from\n// Collections.binarySearch() and tells us where to insert the\n// new item...otherwise it will be just -1 and we should just\n// ap",
+        "(Number x, Number y) {\nif (x == null) {\nthrow new IllegalArgumentException(\"Null 'x' argument.\");\n}\n",
+        " we get to here, we know that duplicate X values are not permitted\nXYDataItem overwritten = null;\nin",
+        "we get to here, we know that duplicate X values are not permitted\nXYDataItem overwritten = null;\nint",
+        "e get to here, we know that duplicate X values are not permitted\nXYDataItem overwritten = null;\nint ",
+        " get to here, we know that duplicate X values are not permitted\nXYDataItem overwritten = null;\nint i",
+        " we know that duplicate X values are not permitted\nXYDataItem overwritten = null;\nint index = indexO",
+        "e know that duplicate X values are not permitted\nXYDataItem overwritten = null;\nint index = indexOf(",
+        " know that duplicate X values are not permitted\nXYDataItem overwritten = null;\nint index = indexOf(x",
+        "now that duplicate X values are not permitted\nXYDataItem overwritten = null;\nint index = indexOf(x);",
+        " (index >= 0) {\nXYDataItem existing = (XYDataItem) this.data.get(index);\ntry {\noverwritten = (XYData",
+        " 0) {\nXYDataItem existing = (XYDataItem) this.data.get(index);\ntry {\noverwritten = (XYDataItem) exis",
+        " {\nXYDataItem existing = (XYDataItem) this.data.get(index);\ntry {\noverwritten = (XYDataItem) existin",
+        "check if this addition will exceed the maximum item count...\nif (getItemCount() > this.maximumItemCo",
+        "addition will exceed the maximum item count...\nif (getItemCount() > this.maximumItemCount) {\nthis.da",
+        "n will exceed the maximum item count...\nif (getItemCount() > this.maximumItemCount) {\nthis.data.remo"
+    ]
+}

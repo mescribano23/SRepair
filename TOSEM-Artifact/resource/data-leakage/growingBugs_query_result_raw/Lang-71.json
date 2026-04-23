@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7933425797503467,
+    "input": "    private String insertFormats(final String pattern, final ArrayList<String> customPatterns) {\n        if (!containsElements(customPatterns)) {\n            return pattern;\n        }\n        final StringBuilder sb = new StringBuilder(pattern.length() * 2);\n        final ParsePosition pos = new ParsePosition(0);\n        int fe = -1;\n        int depth = 0;\n        while (pos.getIndex() < pattern.length()) {\n            final char c = pattern.charAt(pos.getIndex());\n            switch (c) {\n            case QUOTE:\n                appendQuotedString(pattern, pos, sb, false);\n                break;\n            case START_FE:\n                depth++;\n                if (depth == 1) {\n                    fe++;\n                    sb.append(START_FE).append(\n                            readArgumentIndex(pattern, next(pos)));\n                    final String customPattern = customPatterns.get(fe);\n                    if (customPattern != null) {\n                        sb.append(START_FMT).append(customPattern);\n                    }\n                }\n                break;\n            case END_FE:\n                depth--;\n                //$FALL-THROUGH$\n            default:\n                sb.append(c);\n                next(pos);\n            }\n        }\n        return sb.toString();\n    }",
+    "query_result": [
+        "rivate String insertFormats(final String pattern, final ArrayList<String> customPatterns) {\nif (!containsElements(customPatterns)) {\nreturn pattern;\n}\nfinal StringBuilder sb = new StringBuilder(pattern.length() * 2);\nfinal ParsePosition pos = new ParsePosition(0);\nint fe = -1;\nint depth = 0;\nwhile (pos.getIndex() < pattern.length()) {\nfinal char c = pattern.charAt(pos.getIndex());\nswitch (c) {\ncas",
+        "ats(final String pattern, final ArrayList<String> customPatterns) {\nif (!containsElements(customPatterns)) {\nreturn pattern;\n}\nfinal StringBuilder sb = new StringBuilder(pattern.length() * 2);\nfinal ParsePosition pos = new ParsePosition(0);\nint fe = -1;\nint depth = 0;\nwhile (pos.getIndex() < pattern.length()) {\nfinal char c = pattern.charAt(pos.getIndex());\nswitch (c) {\ncase QUOTE:\nappendQuotedStr",
+        " String customPattern = customPatterns.get(fe);\nif (customPattern != null) {\nsb.append(START_FMT).append(customPattern);\n}\n}\nbreak;\ncase END_FE:\ndepth--;\n//$FALL-THROUGH$\ndefault:\nsb.append(c);\nnext(p",
+        "customPatterns.get(fe);\nif (customPattern != null) {\nsb.append(START_FMT).append(customPattern);\n}\n}\nbreak;\ncase END_FE:\ndepth--;\n//$FALL-THROUGH$\ndefault:\nsb.append(c);\nnext(pos);\n}\n}\nreturn sb.toStr",
+        "on pos = new ParsePosition(0);\nint fe = -1;\nint depth = 0;\nwhile (pos.getIndex() < pattern.length())",
+        "ate String insertFormats(final String pattern, fin",
+        "String insertFormats(final String pattern, final A",
+        "ring insertFormats(final String pattern, final Arr",
+        "ing insertFormats(final String pattern, final Arra",
+        "ng insertFormats(final String pattern, final Array",
+        " insertFormats(final String pattern, final ArrayLi",
+        "nsertFormats(final String pattern, final ArrayList",
+        "> customPatterns) {\nif (!containsElements(customPa",
+        "inal StringBuilder sb = new StringBuilder(pattern.",
+        "al StringBuilder sb = new StringBuilder(pattern.le",
+        "StringBuilder sb = new StringBuilder(pattern.lengt",
+        "tringBuilder sb = new StringBuilder(pattern.length",
+        "ringBuilder sb = new StringBuilder(pattern.length(",
+        "ingBuilder sb = new StringBuilder(pattern.length()",
+        "Builder sb = new StringBuilder(pattern.length() * "
+    ]
+}

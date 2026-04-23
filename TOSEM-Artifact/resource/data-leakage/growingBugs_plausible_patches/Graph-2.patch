@@ -1,0 +1,67 @@
+diff --git a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java b/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
+index f78705f..634fb85 100644
+--- a/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
++++ b/src/main/java/org/apache/commons/graph/model/BaseMutableGraph.java
+@@ -97,37 +97,35 @@ public abstract class BaseMutableGraph<V extends Vertex, E extends Edge>
+     /**
+      * {@inheritDoc}
+      */
+-    public void addEdge( V head, E e, V tail )
+-    {
+-        if ( head == null )
+-        {
+-            throw new GraphException( "Null head Vertex not admitted" );
+-        }
+-        if ( e == null )
+-        {
+-            throw new GraphException( "Impossible to add a null Edge in the Graph" );
+-        }
+-        if ( tail == null )
+-        {
+-            throw new GraphException( "Null tail Vertex not admitted" );
+-        }
++public void addEdge(V head, E e, V tail) {
++    if (head == null) {
++        throw new GraphException("Null head Vertex not admitted");
++    }
++    if (e == null) {
++        throw new GraphException("Impossible to add a null Edge in the Graph");
++    }
++    if (tail == null) {
++        throw new GraphException("Null tail Vertex not admitted");
++    }
+ 
+-        if ( !getAdjacencyList().containsKey( head ) )
+-        {
+-            throw new GraphException( "Head Vertex '%s' not present in the Graph", head );
+-        }
+-        if ( !getAdjacencyList().containsKey( tail ) )
+-        {
+-            throw new GraphException( "Tail Vertex '%s' not present in the Graph", tail );
+-        }
+-        
++    if (!getAdjacencyList().containsKey(head)) {
++        throw new GraphException("Head Vertex '%s' not present in the Graph", head);
++    }
++    if (!getAdjacencyList().containsKey(tail)) {
++        throw new GraphException("Tail Vertex '%s' not present in the Graph", tail);
++    }
+ 
+-        getAllEdges().add( e );
++    // Check if the graph is undirected and the edge already exists
++    if (this instanceof UndirectedMutableGraph && getAdjacencyList().get(head).contains(tail)) {
++        return; // Edge already exists, do not add it again
++    }
+ 
+-        internalAddEdge( head, e, tail );
++    getAllEdges().add(e);
+ 
+-        decorateAddEdge( head, e, tail );
+-    }
++    internalAddEdge(head, e, tail);
++
++    decorateAddEdge(head, e, tail);
++}
+ 
+     protected void internalAddEdge( V head, E e, V tail )
+     {

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8893854748603351,
+    "input": "    public TimeSeries createCopy(RegularTimePeriod start, RegularTimePeriod end)\n        throws CloneNotSupportedException {\n\n        if (start == null) {\n            throw new IllegalArgumentException(\"Null 'start' argument.\");\n        }\n        if (end == null) {\n            throw new IllegalArgumentException(\"Null 'end' argument.\");\n        }\n        if (start.compareTo(end) > 0) {\n            throw new IllegalArgumentException(\n                    \"Requires start on or before end.\");\n        }\n        boolean emptyRange = false;\n        int startIndex = getIndex(start);\n        if (startIndex < 0) {\n            startIndex = -(startIndex + 1);\n            if (startIndex == this.data.size()) {\n                emptyRange = true;  // start is after last data item\n            }\n        }\n        int endIndex = getIndex(end);\n        if (endIndex < 0) {             // end period is not in original series\n            endIndex = -(endIndex + 1); // this is first item AFTER end period\n            endIndex = endIndex - 1;    // so this is last item BEFORE end\n        }\n        if ((endIndex < 0)  || (endIndex < startIndex)) {\n            emptyRange = true;\n        }\n        if (emptyRange) {\n            TimeSeries copy = (TimeSeries) super.clone();\n            copy.data = new java.util.ArrayList();\n            return copy;\n        }\n        else {\n            return createCopy(startIndex, endIndex);\n        }\n\n    }",
+    "query_result": [
+        "od start, RegularTimePeriod end)\nthrows CloneNotSupportedException {\nif (start == null) {\nthrow new IllegalArgumentException(\"Null 'start' argument.\");\n}\nif (end == null) {\nthrow new IllegalArgumentException(\"Null 'end' argument.\");\n}\nif (start.compareTo(end) > 0) {\nthrow new IllegalArgumentException(\n\"Requires start on or before end.\");\n}\nboolean emptyRange = false;\nint startIndex = getIndex(start);\nif (startIndex < 0) {\nstartIndex = -(startIndex + 1);\nif (startIndex == this.data.size()) {\nemptyRange = true; // start is after last data item\n}\n}\nint endIndex = getIndex(end);\nif (endIndex < 0) { // end period is not in original series\nendIndex = -(endIndex + 1); // this is first item AFTER end period\nendIndex = endIndex - 1; // so this is la",
+        "ge = true;\n}\nif (emptyRange) {\nTimeSeries copy = (TimeSeries) super.clone();\ncopy.data = new java.util.ArrayList();\nreturn copy;\n}\nelse {\nreturn creat",
+        "ndIndex = -(endIndex + 1); // this is first item AFTER end period\nendIndex = endIndex - 1; // so thi",
+        "dex = -(endIndex + 1); // this is first item AFTER end period\nendIndex = endIndex - 1; // so this is",
+        "ex = -(endIndex + 1); // this is first item AFTER end period\nendIndex = endIndex - 1; // so this is ",
+        "ex + 1); // this is first item AFTER end period\nendIndex = endIndex - 1; // so this is last item BEF",
+        "1); // this is first item AFTER end period\nendIndex = endIndex - 1; // so this is last item BEFORE e",
+        "// this is first item AFTER end period\nendIndex = endIndex - 1; // so this is last item BEFORE end\n}",
+        "if (emptyRange) {\nTimeSeries copy = (TimeSeries) super.clone();\ncopy.data = new java.util.ArrayList(",
+        "Copy(RegularTimePeriod start, RegularTimePeriod en",
+        "ception {\nif (start == null) {\nthrow new IllegalAr",
+        "ption {\nif (start == null) {\nthrow new IllegalArgu",
+        " {\nif (start == null) {\nthrow new IllegalArgumentE",
+        "{\nif (start == null) {\nthrow new IllegalArgumentEx",
+        "\nif (start == null) {\nthrow new IllegalArgumentExc",
+        "if (start == null) {\nthrow new IllegalArgumentExce",
+        "f (start == null) {\nthrow new IllegalArgumentExcep",
+        " (start == null) {\nthrow new IllegalArgumentExcept",
+        "(start == null) {\nthrow new IllegalArgumentExcepti",
+        "start == null) {\nthrow new IllegalArgumentExceptio"
+    ]
+}

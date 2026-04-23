@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.36752988047808766,
+    "input": "public Object complete(JsonParser p, DeserializationContext ctxt,\n        PropertyValueBuffer buffer, PropertyBasedCreator creator)\n    throws IOException\n{\n    // first things first: deserialize all data buffered:\n    final int len = _properties.length;\n    Object[] values = new Object[len];\n    for (int i = 0; i < len; ++i) {\n        String typeId = _typeIds[i];\n        final ExtTypedProperty extProp = _properties[i];\n        if (typeId == null) {\n            // let's allow missing both type and property (may already have been set, too)\n            if (_tokens[i] == null) {\n                continue;\n            }\n            // but not just one\n            // 26-Oct-2012, tatu: As per [databind#94], must allow use of 'defaultImpl'\n            if (!extProp.hasDefaultType()) {\n                ctxt.reportInputMismatch(_beanType,\n                        \"Missing external type id property '%s'\",\n                        extProp.getTypePropertyName());\n            } else {\n                typeId = extProp.getDefaultTypeId();\n            }\n        } else if (_tokens[i] == null) {\n            SettableBeanProperty prop = extProp.getProperty();\n            ctxt.reportInputMismatch(_beanType,\n                    \"Missing property '%s' for external type id '%s'\",\n                    prop.getName(), _properties[i].getTypePropertyName());\n        }\n        values[i] = _deserialize(p, ctxt, i, typeId);\n\n        final SettableBeanProperty prop = extProp.getProperty();\n        // also: if it",
+    "query_result": [
+        "te(JsonParser p, DeserializationContext ctxt,\nPropertyValueBuffer buffer, PropertyBasedCreator creat",
+        "Missing property '%s' for external type id '%s'\",\nprop.getName(), _properties[i].getTypePropertyName",
+        "public Object complete(JsonParser p, Deserializati",
+        "ublic Object complete(JsonParser p, Deserializatio",
+        "ject complete(JsonParser p, DeserializationContext",
+        "rtyValueBuffer buffer, PropertyBasedCreator creato",
+        "perties.length;\nObject[] values = new Object[len];",
+        "\nObject[] values = new Object[len];\nfor (int i = 0",
+        "bject[] values = new Object[len];\nfor (int i = 0; ",
+        " values = new Object[len];\nfor (int i = 0; i < len",
+        "values = new Object[len];\nfor (int i = 0; i < len;",
+        " = new Object[len];\nfor (int i = 0; i < len; ++i) ",
+        "= new Object[len];\nfor (int i = 0; i < len; ++i) {",
+        " new Object[len];\nfor (int i = 0; i < len; ++i) {\n",
+        " As per [databind#94], must allow use of 'defaultI",
+        "[i] == null) {\nSettableBeanProperty prop = extProp",
+        "%s' for external type id '%s'\",\nprop.getName(), _p",
+        "_properties[i].getTypePropertyName());\n}\nvalues[i]"
+    ]
+}

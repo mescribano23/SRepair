@@ -1,0 +1,32 @@
+diff --git a/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java b/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java
+index f5aae96..d7bdbbd 100644
+--- a/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java
++++ b/src/main/java/com/pablissimo/sonar/TsCoverageSensorImpl.java
+@@ -37,17 +37,19 @@ public class TsCoverageSensorImpl implements TsCoverageSensor {
+     /**
+      * Returns list of paths provided by "propertyValue" (divided by comma)
+      */
+-    private static List<String> parseReportsProperty(String propertyValue) {
+-        List<String> reportPaths = new ArrayList<>();
++private static List<String> parseReportsProperty(String propertyValue) {
++    if (propertyValue == null) {
++        return new ArrayList<>();
++    }
+ 
+-            for (String path : propertyValue.split(",")) {
+-                if (!path.trim().isEmpty()) {
+-                    reportPaths.add(path.trim());
+-            }
++    List<String> reportPaths = new ArrayList<>();
++    for (String path : propertyValue.split(",")) {
++        if (!path.trim().isEmpty()) {
++            reportPaths.add(path.trim());
+         }
+-
+-        return reportPaths;
+     }
++    return reportPaths;
++}
+ 
+     private void saveZeroValueForAllFiles(SensorContext context, Map<InputFile, Set<Integer>> nonCommentLineNumbersByFile) {
+         for (InputFile inputFile : context.fileSystem().inputFiles(context.fileSystem().predicates().hasLanguage(TypeScriptLanguage.LANGUAGE_KEY))) {

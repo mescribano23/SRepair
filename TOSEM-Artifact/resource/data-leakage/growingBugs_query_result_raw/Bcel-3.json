@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.41647241647241645,
+    "input": "    @Override\n    public void visitReturnInstruction(ReturnInstruction o){\n        Type method_type = mg.getType();\n        if (method_type == Type.BOOLEAN ||\n            method_type == Type.BYTE ||\n            method_type == Type.SHORT ||\n            method_type == Type.CHAR){\n                method_type = Type.INT;\n            }\n\n        if (o instanceof RETURN){\n            if (method_type != Type.VOID){\n                constraintViolated(o, \"RETURN instruction in non-void method.\");\n            }\n            else{\n                return;\n            }\n        }\n        if (o instanceof ARETURN){\n            if (method_type == Type.VOID){\n                constraintViolated(o, \"ARETURN instruction in void method.\");\n            }\n            if (stack().peek() == Type.NULL){\n                return;\n            }\n            if (! (stack().peek() instanceof ReferenceType)){\n                constraintViolated(o, \"Reference type expected on top of stack, but is: '\"+stack().peek()+\"'.\");\n            }\n            referenceTypeIsInitialized(o, (ReferenceType) (stack().peek()));\n            //ReferenceType objectref = (ReferenceType) (stack().peek());\n            // TODO: This can only be checked if using Staerk-et-al's \"set of object types\" instead of a\n            // \"wider cast object type\" created during verification.\n            //if (! (objectref.isAssignmentCompatibleWith(mg.getType())) ){\n            //    constraintViolated(o, \"Type on stack top which should be returned is a '\"+stack().peek()+\"' which is not assignment compatible with the return type of this method, '\"+mg.getType()+\"'.\");\n            //}\n        }\n        else{\n            if (! ( method_type.equals( stack().peek() ))){\n                constraintViolated(o, \"Current method has return type of '\"+mg.getType()+\"' expecting a '\"+method_type+\"' on top of the stack. But stack top is a '\"+stack().peek()+\"'.\");\n            }\n        }\n    }",
+    "query_result": [
+        "ceType) (stack().peek());\n// TODO: This can only be checked if using Staerk-et-al's \"set of object types\" instead of a\n// \"wider cast object type\" created during verification.\n//if (! (objectref.isAss",
+        ").peek());\n// TODO: This can only be checked if using Staerk-et-al's \"set of object types\" instead of a\n// \"wider cast object type\" created during ver",
+        "@Override\npublic void visitReturnInstruction(Retur",
+        "ide\npublic void visitReturnInstruction(ReturnInstr",
+        "ublic void visitReturnInstruction(ReturnInstructio",
+        "straintViolated(o, \"RETURN instruction in non-void",
+        "URN instruction in void method.\");\n}\nif (stack().p",
+        "onstraintViolated(o, \"Reference type expected on t",
+        "(o, \"Reference type expected on top of stack, but ",
+        "\"Reference type expected on top of stack, but is: ",
+        "eferenceTypeIsInitialized(o, (ReferenceType) (stac",
+        "ferenceTypeIsInitialized(o, (ReferenceType) (stack",
+        "sing Staerk-et-al's \"set of object types\" instead ",
+        "aintViolated(o, \"Type on stack top which should be",
+        ", \"Type on stack top which should be returned is a",
+        "ot assignment compatible with the return type of t",
+        "compatible with the return type of this method, '\""
+    ]
+}

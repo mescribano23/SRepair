@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "  public TypePair getTypesUnderInequality(JSType that) {\n    // unions types\n    if (that instanceof UnionType) {\n      TypePair p = that.getTypesUnderInequality(this);\n      return new TypePair(p.typeB, p.typeA);\n    }\n\n    // other types\n    switch (this.testForEquality(that)) {\n      case TRUE:\n        JSType noType = getNativeType(JSTypeNative.NO_TYPE);\n        return new TypePair(noType, noType);\n\n      case FALSE:\n      case UNKNOWN:\n        return new TypePair(this, that);\n    }\n\n    // switch case is exhaustive\n    throw new IllegalStateException();\n  }",
+    "query_result": []
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5935727788279773,
+    "input": "  public synchronized void remove() throws IOException {\n    if (isEmpty()) throw new NoSuchElementException();\n    if (elementCount == 1) {\n      clear();\n    } else {\n      // assert elementCount > 1\n      int firstTotalLength = Element.HEADER_LENGTH + first.length;\n\n      ringErase(first.position, firstTotalLength);\n\n      int newFirstPosition = wrapPosition(first.position + firstTotalLength);\n      ringRead(newFirstPosition, buffer, 0, Element.HEADER_LENGTH);\n      int length = readInt(buffer, 0);\n      writeHeader(fileLength, elementCount - 1, newFirstPosition, last.position);\n      elementCount--;\n      first = new Element(newFirstPosition, length);\n    }\n  }",
+    "query_result": [
+        "(newFirstPosition, buffer, 0, Element.HEADER_LENGTH);\nint length = readInt(buffer, 0);\nwriteHeader(fileLength, elementCount - 1, newFirstPosition, last.position);\nelementCount--;\nfirst = new Element(n",
+        "lic synchronized void remove() throws IOException {\nif (isEmpty()) throw new NoSuchElementException(",
+        "ed void remove() throws IOException {\nif (isEmpty(",
+        "throws IOException {\nif (isEmpty()) throw new NoSu",
+        "Exception {\nif (isEmpty()) throw new NoSuchElement",
+        "xception {\nif (isEmpty()) throw new NoSuchElementE",
+        "ception {\nif (isEmpty()) throw new NoSuchElementEx",
+        "eption {\nif (isEmpty()) throw new NoSuchElementExc",
+        "ption {\nif (isEmpty()) throw new NoSuchElementExce",
+        "tion {\nif (isEmpty()) throw new NoSuchElementExcep",
+        "n {\nif (isEmpty()) throw new NoSuchElementExceptio",
+        " {\nif (isEmpty()) throw new NoSuchElementException",
+        "\nif (isEmpty()) throw new NoSuchElementException()",
+        "if (isEmpty()) throw new NoSuchElementException();",
+        "f (isEmpty()) throw new NoSuchElementException();\n",
+        " (isEmpty()) throw new NoSuchElementException();\ni",
+        "(isEmpty()) throw new NoSuchElementException();\nif",
+        "isEmpty()) throw new NoSuchElementException();\nif ",
+        "sEmpty()) throw new NoSuchElementException();\nif (",
+        "1) {\nclear();\n} else {\n// assert elementCount > 1\n"
+    ]
+}

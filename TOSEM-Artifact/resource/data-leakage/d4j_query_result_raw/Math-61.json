@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5019455252918288,
+    "input": "public PoissonDistributionImpl(double p, double epsilon, int maxIterations) {\n        if (p <= 0) {\n            throw new NotStrictlyPositiveException(LocalizedFormats.MEAN, p);\n        }\n        mean = p;\n        normal = new NormalDistributionImpl(p, FastMath.sqrt(p));\n        this.epsilon = epsilon;\n        this.maxIterations = maxIterations;\n    }",
+    "query_result": [
+        "ouble epsilon, int maxIterations) {\nif (p <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFo",
+        "PoissonDistributionImpl(double p, double epsilon, ",
+        "issonDistributionImpl(double p, double epsilon, in",
+        "istributionImpl(double p, double epsilon, int maxI",
+        "mpl(double p, double epsilon, int maxIterations) {",
+        " <= 0) {\nthrow new NotStrictlyPositiveException(Lo",
+        "= 0) {\nthrow new NotStrictlyPositiveException(Loca",
+        " 0) {\nthrow new NotStrictlyPositiveException(Local",
+        "0) {\nthrow new NotStrictlyPositiveException(Locali",
+        ") {\nthrow new NotStrictlyPositiveException(Localiz",
+        " {\nthrow new NotStrictlyPositiveException(Localize",
+        "{\nthrow new NotStrictlyPositiveException(Localized",
+        "\nthrow new NotStrictlyPositiveException(LocalizedF",
+        "hrow new NotStrictlyPositiveException(LocalizedFor",
+        "row new NotStrictlyPositiveException(LocalizedForm",
+        "ow new NotStrictlyPositiveException(LocalizedForma",
+        "w new NotStrictlyPositiveException(LocalizedFormat",
+        " new NotStrictlyPositiveException(LocalizedFormats",
+        "new NotStrictlyPositiveException(LocalizedFormats.",
+        "w NotStrictlyPositiveException(LocalizedFormats.ME"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7983193277310925,
+    "input": "@Override\n    public boolean equals(final Object object) {\n        return object instanceof BulkSet && this.map.equals(((BulkSet) object).map);\n    }",
+    "query_result": [
+        "de\npublic boolean equals(final Object object) {\nreturn object instanceof BulkSet && this.map.equals(",
+        "@Override\npublic boolean equals(final Object objec",
+        "Override\npublic boolean equals(final Object object",
+        "verride\npublic boolean equals(final Object object)",
+        "erride\npublic boolean equals(final Object object) ",
+        "rride\npublic boolean equals(final Object object) {",
+        "ride\npublic boolean equals(final Object object) {\n",
+        "ide\npublic boolean equals(final Object object) {\nr",
+        "e\npublic boolean equals(final Object object) {\nret",
+        "\npublic boolean equals(final Object object) {\nretu",
+        "public boolean equals(final Object object) {\nretur",
+        "ublic boolean equals(final Object object) {\nreturn",
+        "blic boolean equals(final Object object) {\nreturn ",
+        "lic boolean equals(final Object object) {\nreturn o",
+        "ic boolean equals(final Object object) {\nreturn ob",
+        "boolean equals(final Object object) {\nreturn objec",
+        "oolean equals(final Object object) {\nreturn object",
+        "olean equals(final Object object) {\nreturn object ",
+        "ean equals(final Object object) {\nreturn object in",
+        "an equals(final Object object) {\nreturn object ins"
+    ]
+}

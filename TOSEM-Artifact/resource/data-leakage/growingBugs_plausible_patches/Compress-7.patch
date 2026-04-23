@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
+index bca115fa..c928e744 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
+@@ -91,14 +91,21 @@ public class TarUtils {
+      * @return The entry name.
+      */
+     public static String parseName(byte[] buffer, final int offset, final int length) {
+-        StringBuffer result = new StringBuffer(length);
+-        int          end = offset + length;
++        StringBuilder result = new StringBuilder(length);
++        int end = offset + length;
+ 
+         for (int i = offset; i < end; ++i) {
+             if (buffer[i] == 0) {
+                 break;
+             }
+-            result.append((char) buffer[i]);
++            // Directly cast bytes that are within the ASCII range
++            if (buffer[i] >= 0) {
++                result.append((char) buffer[i]);
++            } else {
++                // Manually handle extended ASCII characters
++                int extendedChar = buffer[i] & 0xFF;
++                result.append((char) extendedChar);
++            }
+         }
+ 
+         return result.toString();

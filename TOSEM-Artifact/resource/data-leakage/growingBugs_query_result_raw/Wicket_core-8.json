@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.19730941704035873,
+    "input": "public static boolean isEqual(Cookie c1, Cookie c2)\n    {\n        Args.notNull(c1, \"c1\");\n        Args.notNull(c2, \"c2\");\n\n        return c1.getName().equals(c2.getName()) &&\n                Objects.isEqual(c1.getPath(), c2.getPath()) &&\n                Objects.isEqual(c1.getDomain(), c2.getDomain());\n    }",
+    "query_result": [
+        "qual(Cookie c1, Cookie c2)\n{\nArgs.notNull(c1, \"c1\""
+    ]
+}

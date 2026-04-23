@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.9403973509933775,
+    "input": "public String html() {\n    StringBuilder accum = new StringBuilder();\n    html(accum);\n    return getOutputSettings().prettyPrint() ? accum.toString().trim() : accum.toString();\n}",
+    "query_result": [
+        "ring html() {\nStringBuilder accum = new StringBuilder();\nhtml(accum);\nreturn getOutputSettings().prettyPrint() ? accum.toString().trim() : accum.toStr",
+        "blic String html() {\nStringBuilder accum = new Str",
+        ") {\nStringBuilder accum = new StringBuilder();\nhtm",
+        "tSettings().prettyPrint() ? accum.toString().trim(",
+        ".prettyPrint() ? accum.toString().trim() : accum.t",
+        "rettyPrint() ? accum.toString().trim() : accum.toS"
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public int compareTo(Duration other) {\n        return ((Long)inMillis()).compareTo(other.inMillis());\n    }",
+    "query_result": []
+}

@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.7661795407098121,
+    "input": "protected boolean isValidDomain(String domain) {\n        // see if domain is an IP address in brackets\n        Matcher ipDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);\n\n        if (ipDomainMatcher.matches()) {\n            InetAddressValidator inetAddressValidator =\n                    InetAddressValidator.getInstance();\n            return inetAddressValidator.isValid(ipDomainMatcher.group(1));\n        } else {\n            // Domain is symbolic name\n            DomainValidator domainValidator =\n                    DomainValidator.getInstance(allowLocal);\n            return domainValidator.isValid(domain) ||\n                    domainValidator.isValidTld(domain);\n        }\n    }",
+    "query_result": [
+        "omain(String domain) {\n// see if domain is an IP address in brackets\nMatcher ipDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);\nif (ipDomainMatcher.matches()) {\nInetAddressValidator inetAddressValidator =\nInetAddressValidator.getInstance();\nreturn inetAddressValidator.isValid(ipDomainMatcher.group(1));\n} else {\n// Domain is symbolic name\nDomainValidator domainValidator =\nDomainValidator.getInsta",
+        "lidDomain(String domain) {\n// see if domain is an IP address in brackets\nMatcher ipDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);\nif (ipDomainMatcher.matches()) {\nInetAddressValidator inetAddressValidator =\nInetAddressValidator.getInstance();\nreturn inetAddressValidator.isValid(ipDomainMatcher.g",
+        "TERN.matcher(domain);\nif (ipDomainMatcher.matches()) {\nInetAddressValidator inetAddressValidator =\nInetAddressValidator.getInstance();\nreturn inetAddressValidator.isValid(ipDomainMatcher.group(1));\n} ",
+        "is an IP address in brackets\nMatcher ipDomainMatch",
+        "ress in brackets\nMatcher ipDomainMatcher = IP_DOMA",
+        "pDomainMatcher = IP_DOMAIN_PATTERN.matcher(domain)",
+        "DomainMatcher = IP_DOMAIN_PATTERN.matcher(domain);",
+        "N.matcher(domain);\nif (ipDomainMatcher.matches()) ",
+        "tAddressValidator inetAddressValidator =\nInetAddre",
+        "ddressValidator =\nInetAddressValidator.getInstance",
+        "dressValidator.isValid(ipDomainMatcher.group(1));\n",
+        ".group(1));\n} else {\n// Domain is symbolic name\nDo"
+    ]
+}

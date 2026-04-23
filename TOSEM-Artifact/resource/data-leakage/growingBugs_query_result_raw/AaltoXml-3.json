@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9598765432098766,
+    "input": "    @Override\n    public void writeRaw(char[] cbuf, int offset, int len)\n        throws IOException, XMLStreamException\n    {\n        if (_out == null || len == 0) {\n            return;\n        }\n        if (_surrogate != 0) {\n            outputSurrogates(_surrogate, cbuf[offset]);\n            ++offset;\n            --len;\n        }\n\n        len += offset; // now marks the end\n\n        // !!! TODO: combine input+output length checks into just one\n\n        main_loop:\n        while (offset < len) {\n            inner_loop:\n            while (true) {\n                int ch = (int) cbuf[offset];\n                if (ch >= 0x80) {\n                    break inner_loop;\n                }\n                // !!! TODO: fast writes\n                if (_outputPtr >= _outputBufferLen) {\n                    flushBuffer();\n                }\n                _outputBuffer[_outputPtr++] = (byte) ch;\n                if (++offset >= len) {\n                    break main_loop;\n                }\n            }\n            char ch = cbuf[offset++];\n            if (ch < 0x800) { // 2-byte?\n                output2ByteChar(ch);\n                continue;\n            }\n            offset = outputMultiByteChar(ch, cbuf, offset, len);\n        }\n    }",
+    "query_result": [
+        "cbuf, int offset, int len)\nthrows IOException, XMLStreamException\n{\nif (_out == null || len == 0) {\nreturn;\n}\nif (_surrogate != 0) {\noutputSurrogates(_surrogate, cbuf[offset]);\n++offset;\n--len;\n}\nlen += offset; // now marks the end\n// !!! TODO: combine input+output length checks into just one\nmain_loop:\nwhile (offset < len) {\ninner_loop:\nwhile (true) {\nint ch = (int) cbuf[offset];\nif (ch >= 0x80) {\nbreak inner_loop;\n}\n// !!! TODO: fast writes\nif (_outputPtr >= _outputBufferLen) {\nflushBuffer();\n}\n_outputBuffer[_outputPtr++] = (byte) ch;\nif (++offset >= len) {\nbreak main_loop;\n}\n}\nchar ch = cbuf[offset++];\nif (ch < 0x800) { // 2-byte?\noutput2ByteChar(ch);\ncontinue;\n}\noffset = outputMultiByteC",
+        "@Override\npublic void writeRaw(char[] cbuf, int offset, int len)\nthrows IOException, XMLStreamException\n{\nif (_out == null || len == 0) {\nreturn;\n}\nif (_surrogate != 0) {\noutputSurrogates(_surrogate, cbuf[offset]);\n++offset;\n--len;\n}\nlen += offset; // now marks the end\n// !!! TODO: combine input+out",
+        "if (_outputPtr >= _outputBufferLen) {\nflushBuffer();\n}\n_outputBuffer[_outputPtr++] = (byte) ch;\nif (",
+        "utputPtr >= _outputBufferLen) {\nflushBuffer();\n}\n_outputBuffer[_outputPtr++] = (byte) ch;\nif (++offs",
+        "{\nflushBuffer();\n}\n_outputBuffer[_outputPtr++] = (byte) ch;\nif (++offset >= len) {\nbreak main_loop;\n",
+        "ublic void writeRaw(char[] cbuf, int offset, int l",
+        "(char[] cbuf, int offset, int len)\nthrows IOExcept",
+        "char[] cbuf, int offset, int len)\nthrows IOExcepti",
+        "uf, int offset, int len)\nthrows IOException, XMLSt",
+        "nt offset, int len)\nthrows IOException, XMLStreamE",
+        "t offset, int len)\nthrows IOException, XMLStreamEx",
+        "t, int len)\nthrows IOException, XMLStreamException",
+        " int len)\nthrows IOException, XMLStreamException\n{",
+        "!= 0) {\noutputSurrogates(_surrogate, cbuf[offset])",
+        "utputSurrogates(_surrogate, cbuf[offset]);\n++offse",
+        "inner_loop:\nwhile (true) {\nint ch = (int) cbuf[off",
+        "r_loop:\nwhile (true) {\nint ch = (int) cbuf[offset]",
+        " (_outputPtr >= _outputBufferLen) {\nflushBuffer();",
+        "tr >= _outputBufferLen) {\nflushBuffer();\n}\n_output",
+        "_outputBufferLen) {\nflushBuffer();\n}\n_outputBuffer"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.24414715719063546,
+    "input": "private void init() {\n    thisYear= Calendar.getInstance(timeZone, locale).get(Calendar.YEAR);\n\n    nameValues= new ConcurrentHashMap<Integer, KeyValue[]>();\n\n    StringBuilder regex= new StringBuilder();\n    List<Strategy> collector = new ArrayList<Strategy>();\n\n    Matcher patternMatcher= formatPattern.matcher(pattern);\n    if(!patternMatcher.lookingAt()) {\n        throw new IllegalArgumentException(\"Invalid pattern\");\n    }\n\n    currentFormatField= patternMatcher.group();\n    Strategy currentStrategy= getStrategy(currentFormatField);\n    for(;;) {\n        patternMatcher.region(patternMatcher.end(), patternMatcher.regionEnd());\n        if(!patternMatcher.lookingAt()) {\n            nextStrategy = null;\n            break;\n        }\n        String nextFormatField= patternMatcher.group();\n        nextStrategy = getStrategy(nextFormatField);\n        if(currentStrategy.addRegex(this, regex)) {\n            collector.add(currentStrategy);\n        }\n        currentFormatField= nextFormatField;\n        currentStrategy= nextStrategy;\n    }\n    if (patternMatcher.regionStart() != patternMatcher.regionEnd()) {\n        throw new IllegalArgumentException(\"Failed to parse \\\"\"+pattern+\"\\\" ; gave up at index \"+patternMatcher.regionStart());\n    }\n    if(currentStrategy.addRegex(this, regex)) {\n        collector.add(currentStrategy);\n    }\n    currentFormatField= null;\n    strategies= collector.toArray(new Strategy[collector.size()]);\n    parsePattern= Pattern.compile(regex.toString());\n}",
+    "query_result": [
+        "Matcher.regionStart() != patternMatcher.regionEnd()) {\nthrow new IllegalArgumentException(\"Failed to",
+        "cher.regionStart() != patternMatcher.regionEnd()) {\nthrow new IllegalArgumentException(\"Failed to pa",
+        "tcher.regionEnd()) {\nthrow new IllegalArgumentException(\"Failed to parse \\\"\"+pattern+\"\\\" ; gave up a",
+        "nEnd()) {\nthrow new IllegalArgumentException(\"Failed to parse \\\"\"+pattern+\"\\\" ; gave up at index \"+p",
+        ") {\nthrow new IllegalArgumentException(\"Failed to parse \\\"\"+pattern+\"\\\" ; gave up at index \"+pattern",
+        "lector = new ArrayList<Strategy>();\nMatcher patter",
+        "ookingAt()) {\nthrow new IllegalArgumentException(\"",
+        "ingAt()) {\nthrow new IllegalArgumentException(\"Inv",
+        "t()) {\nthrow new IllegalArgumentException(\"Invalid",
+        "()) {\nthrow new IllegalArgumentException(\"Invalid ",
+        ")) {\nthrow new IllegalArgumentException(\"Invalid p",
+        ") {\nthrow new IllegalArgumentException(\"Invalid pa",
+        " {\nthrow new IllegalArgumentException(\"Invalid pat",
+        "{\nthrow new IllegalArgumentException(\"Invalid patt",
+        "\nthrow new IllegalArgumentException(\"Invalid patte",
+        "throw new IllegalArgumentException(\"Invalid patter",
+        "hrow new IllegalArgumentException(\"Invalid pattern",
+        " new IllegalArgumentException(\"Invalid pattern\");\n",
+        "ew IllegalArgumentException(\"Invalid pattern\");\n}\n",
+        " {\npatternMatcher.region(patternMatcher.end(), pat"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8626465661641541,
+    "input": "public static boolean containsAny(CharSequence cs, char[] searchChars) {\n    if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {\n        return false;\n    }\n    int csLength = cs.length();\n    int searchLength = searchChars.length;\n    int csLastIndex = csLength - 1;\n    int searchLastIndex = searchLength - 1;\n    for (int i = 0; i < csLength; i++) {\n        char ch = cs.charAt(i);\n        for (int j = 0; j < searchLength; j++) {\n            if (searchChars[j] == ch) {\n                if (i < csLastIndex && j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {\n                    // ch is a supplementary character\n                    if (searchChars[j + 1] == cs.charAt(i + 1)) {\n                        return true;\n                    }\n                } else {\n                    // ch is in the Basic Multilingual Plane\n                    return true;\n                }\n            }\n        }\n    }\n    return false;\n}",
+    "query_result": [
+        "searchLength - 1;\nfor (int i = 0; i < csLength; i++) {\nchar ch = cs.charAt(i);\nfor (int j = 0; j < searchLength; j++) {\nif (searchChars[j] == ch) {\nif (i < csLastIndex && j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MA",
+        "c boolean containsAny(CharSequence cs, char[] searchChars) {\nif (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {\nreturn false;\n}\nint csLength = cs.l",
+        "archChars) {\nif (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {\nreturn false;\n}\nint csLength = cs.length();\nint searchLength = searchChars.length;\n",
+        "int searchLastIndex = searchLength - 1;\nfor (int i = 0; i < csLength; i++) {\nchar ch = cs.charAt(i);\nfor (int j = 0; j < searchLength; j++) {\nif (sear",
+        "\nif (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {\nreturn false;\n}\nint csLength = cs.length();\ni",
+        "Length - 1;\nfor (int i = 0; i < csLength; i++) {\nchar ch = cs.charAt(i);\nfor (int j = 0; j < searchL",
+        " - 1;\nfor (int i = 0; i < csLength; i++) {\nchar ch = cs.charAt(i);\nfor (int j = 0; j < searchLength;",
+        "for (int i = 0; i < csLength; i++) {\nchar ch = cs.charAt(i);\nfor (int j = 0; j < searchLength; j++) ",
+        "int i = 0; i < csLength; i++) {\nchar ch = cs.charAt(i);\nfor (int j = 0; j < searchLength; j++) {\nif ",
+        "th; i++) {\nchar ch = cs.charAt(i);\nfor (int j = 0; j < searchLength; j++) {\nif (searchChars[j] == ch",
+        "sLastIndex && j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_",
+        "stIndex && j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SUR",
+        "& j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {",
+        "j < searchLastIndex && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {\n/",
+        "searchChars[j + 1] == cs.charAt(i + 1)) {\nreturn true;\n}\n} else {\n// ch is in the Basic Multilingual",
+        "archChars[j + 1] == cs.charAt(i + 1)) {\nreturn true;\n}\n} else {\n// ch is in the Basic Multilingual P",
+        " == cs.charAt(i + 1)) {\nreturn true;\n}\n} else {\n// ch is in the Basic Multilingual Plane\nreturn true",
+        " cs.charAt(i + 1)) {\nreturn true;\n}\n} else {\n// ch is in the Basic Multilingual Plane\nreturn true;\n}",
+        "cs.charAt(i + 1)) {\nreturn true;\n}\n} else {\n// ch is in the Basic Multilingual Plane\nreturn true;\n}\n",
+        "charAt(i + 1)) {\nreturn true;\n}\n} else {\n// ch is in the Basic Multilingual Plane\nreturn true;\n}\n}\n}"
+    ]
+}

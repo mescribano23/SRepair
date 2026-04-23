@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8514644351464435,
+    "input": "    @Override\n    public boolean equals(Object obj) {\n        if (obj == null) {\n            return false;\n        }\n        if (obj == this) {\n            return true;\n        }\n        if (obj instanceof Column) {\n            Column other = (Column) obj;\n            if (getColumnNumber() != other.getColumnNumber()) {\n                return false;\n            }\n            \n            if (!getName().equals(other.getName())) {\n                return false;\n            }\n            if (getType() != other.getType()) {\n                return false;\n            }\n\n            final Table table1 = getTable();\n            final Table table2 = other.getTable();\n            if (table1 == null) {\n                if (table2 != null) {\n                    return false;\n                }\n            } else {\n                if (!table1.equals(table2)) {\n                    return false;\n                }\n            }\n            return true;\n        }\n        return false;\n    }",
+    "query_result": [
+        "rn false;\n}\nif (getType() != other.getType()) {\nreturn false;\n}\nfinal Table table1 = getTable();\nfinal Table table2 = other.getTable();\nif (table1 == null) {\nif (table2 != null) {\nreturn false;\n}\n} else {\nif (!table1.equals(table2)) {\nreturn false;\n}",
+        "t obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true;\n}\nif (obj instanceof Column) {\nColumn other = (Column) obj;\nif (getColumnNumber() != other.getColumnNumber()) {\nreturn false",
+        "@Override\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\n",
+        "Override\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nr",
+        "verride\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nre",
+        "erride\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nret",
+        "rride\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nretu",
+        "ride\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nretur",
+        "ide\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn",
+        "de\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn ",
+        "e\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn t",
+        "\npublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn tr",
+        "public boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn tru",
+        "ublic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true",
+        "blic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true;",
+        "lic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true;\n",
+        "ic boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true;\n}",
+        "c boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true;\n}\n",
+        " boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true;\n}\ni",
+        "boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n}\nif (obj == this) {\nreturn true;\n}\nif"
+    ]
+}

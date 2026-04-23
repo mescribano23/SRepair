@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.13564668769716087,
+    "input": "public int readRawFully(byte[] b) throws  IOException {\n\n    int readLen = inputStream.read(b);\n\n    if (readLen == -1) {\n      throw new IOException(\"Unexpected EOF reached when trying to read stream\");\n    }\n\n    if (readLen != b.length) {\n      readLen = readUntilBufferIsFull(b, readLen);\n\n      if (readLen != b.length) {\n        throw new IOException(\"Cannot read fully into byte buffer\");\n      }\n    }\n\n    return readLen;\n  }",
+    "query_result": [
+        "= -1) {\nthrow new IOException(\"Unexpected EOF reac"
+    ]
+}

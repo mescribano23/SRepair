@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    protected static void annotateSourcePath(NodeBuilder builder, String path) {\n        PropertyState base = builder.getBaseState().getProperty(MoveDetector.SOURCE_PATH);\n        PropertyState head = builder.getNodeState().getProperty(MoveDetector.SOURCE_PATH);\n        if (Objects.equal(base, head)) {\n            builder.setProperty(MoveDetector.SOURCE_PATH, path);\n        }\n    }",
+    "query_result": []
+}

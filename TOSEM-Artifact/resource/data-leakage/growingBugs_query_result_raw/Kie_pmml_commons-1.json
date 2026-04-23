@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.35766423357664234,
+    "input": "    public static String getSanitizedPackageName(String modelName) {\n        return modelName.replace(\" \", \"\").replace(\"-\", \"\").replace(\"_\", \"\").toLowerCase();\n    }",
+    "query_result": [
+        ".replace(\" \", \"\").replace(\"-\", \"\").replace(\"_\", \"\"",
+        "replace(\" \", \"\").replace(\"-\", \"\").replace(\"_\", \"\")",
+        "eplace(\" \", \"\").replace(\"-\", \"\").replace(\"_\", \"\").",
+        "place(\" \", \"\").replace(\"-\", \"\").replace(\"_\", \"\").t"
+    ]
+}

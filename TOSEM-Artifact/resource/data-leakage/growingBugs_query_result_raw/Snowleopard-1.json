@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.1341772151898734,
+    "input": "    @Override\n    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\n        if (args.length == 0 && registeredCommands.containsKey(\"\")) {\n            registeredCommands.get(\"\").accept(sender, args);\n            return true;\n        }\n\n        String fullExecution = String.join(\" \", args).toLowerCase();\n        Optional<Map.Entry<String, BiConsumer<CommandSender, String[]>>> matchedCommand =\n                registeredCommands.entrySet().stream()\n                        .filter(entry -> !entry.getKey().equals(\"\"))\n                        .filter(entry -> fullExecution.startsWith(entry.getKey()))\n                        .findAny();\n        if (matchedCommand.isPresent()) {\n            String[] param = args.length == 0 ? new String[0] : Arrays.copyOfRange(args, matchedCommand.get().getKey().split(\" \").length, args.length);\n            matchedCommand.get().getValue().accept(sender, param);\n        } else\n            sender.sendMessage(ChatColor.RED + \"Unknown command. Please check your spellings.\");\n        return true;\n    }",
+    "query_result": [
+        "@Override\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] arg",
+        "Override\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args",
+        "verride\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args)",
+        "erride\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) ",
+        "rride\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {",
+        "ride\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\n",
+        "ide\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\ni",
+        "de\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif",
+        "e\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif ",
+        "\npublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (",
+        "public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (a",
+        "ublic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (ar",
+        "blic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (arg",
+        "lic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (args",
+        "ic boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (args.",
+        "c boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (args.l",
+        " boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (args.le",
+        "boolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (args.len",
+        "oolean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (args.leng",
+        "olean onCommand(CommandSender sender, Command command, String label, String[] args) {\nif (args.lengt"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.6728971962616822,
+    "input": "public double getNumericalMean() {\n    return getSampleSize() * (getNumberOfSuccesses() / (double) getPopulationSize());\n}",
+    "query_result": [
+        "eturn getSampleSize() * (getNumberOfSuccesses() / ",
+        "turn getSampleSize() * (getNumberOfSuccesses() / (",
+        "rn getSampleSize() * (getNumberOfSuccesses() / (do",
+        "tSampleSize() * (getNumberOfSuccesses() / (double)",
+        "SampleSize() * (getNumberOfSuccesses() / (double) ",
+        "ampleSize() * (getNumberOfSuccesses() / (double) g",
+        "pleSize() * (getNumberOfSuccesses() / (double) get",
+        "eSize() * (getNumberOfSuccesses() / (double) getPo",
+        "* (getNumberOfSuccesses() / (double) getPopulation",
+        " (getNumberOfSuccesses() / (double) getPopulationS",
+        "(getNumberOfSuccesses() / (double) getPopulationSi",
+        "NumberOfSuccesses() / (double) getPopulationSize()"
+    ]
+}

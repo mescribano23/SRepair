@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.48128342245989303,
+    "input": "    @Override\n    public Repo create(@NotNull(message = \"JSON can't be NULL\")\n        final JsonObject json) throws IOException {\n        final String coordinates = this.request.method(Request.POST)\n            .body().set(json).back()\n            .fetch().as(RestResponse.class)\n            .assertStatus(HttpURLConnection.HTTP_CREATED)\n            .as(JsonResponse.class)\n            .json().readObject().getString(\"full_name\");\n        return this.get(new Coordinates.Simple(coordinates));\n    }",
+    "query_result": [
+        ").back()\n.fetch().as(RestResponse.class)\n.assertStatus(HttpURLConnection.HTTP_CREATED)\n.as(JsonRespo",
+        "etch().as(RestResponse.class)\n.assertStatus(HttpURLConnection.HTTP_CREATED)\n.as(JsonResponse.class)\n",
+        ".assertStatus(HttpURLConnection.HTTP_CREATED)\n.as(JsonResponse.class)\n.json().readObject().getString",
+        " be NULL\")\nfinal JsonObject json) throws IOExcepti",
+        ".back()\n.fetch().as(RestResponse.class)\n.assertSta",
+        "k()\n.fetch().as(RestResponse.class)\n.assertStatus(",
+        ")\n.fetch().as(RestResponse.class)\n.assertStatus(Ht",
+        ".fetch().as(RestResponse.class)\n.assertStatus(Http",
+        "fetch().as(RestResponse.class)\n.assertStatus(HttpU",
+        "tch().as(RestResponse.class)\n.assertStatus(HttpURL",
+        "ch().as(RestResponse.class)\n.assertStatus(HttpURLC",
+        "h().as(RestResponse.class)\n.assertStatus(HttpURLCo",
+        "().as(RestResponse.class)\n.assertStatus(HttpURLCon",
+        ").as(RestResponse.class)\n.assertStatus(HttpURLConn",
+        ".as(RestResponse.class)\n.assertStatus(HttpURLConne",
+        "as(RestResponse.class)\n.assertStatus(HttpURLConnec",
+        "s(RestResponse.class)\n.assertStatus(HttpURLConnect",
+        "(RestResponse.class)\n.assertStatus(HttpURLConnecti",
+        "RestResponse.class)\n.assertStatus(HttpURLConnectio",
+        "estResponse.class)\n.assertStatus(HttpURLConnection"
+    ]
+}

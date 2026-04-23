@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6356435643564357,
+    "input": "public LanguageIdentifier() {\n\n    // Gets ngram sizes to take into account from the Nutch Config\n    minLength = NGramProfile.DEFAULT_MIN_NGRAM_LENGTH;\n    maxLength = NGramProfile.DEFAULT_MAX_NGRAM_LENGTH;\n    // Ensure the min and max values are in an acceptale range\n    // (ie min >= DEFAULT_MIN_NGRAM_LENGTH and max <= DEFAULT_MAX_NGRAM_LENGTH)\n    maxLength = Math.min(maxLength, NGramProfile.ABSOLUTE_MAX_NGRAM_LENGTH);\n    maxLength = Math.max(maxLength, NGramProfile.ABSOLUTE_MIN_NGRAM_LENGTH);\n    minLength = Math.max(minLength, NGramProfile.ABSOLUTE_MIN_NGRAM_LENGTH);\n    minLength = Math.min(minLength, maxLength);\n\n    // Gets the value of the maximum size of data to analyze\n    analyzeLength = DEFAULT_ANALYSIS_LENGTH;\n    \n    Properties p = new Properties();\n    try {\n      p.load(this.getClass().getResourceAsStream(\"langmappings.properties\"));\n\n      Enumeration alllanguages = p.keys();\n\n      StringBuffer list = new StringBuffer(\"Language identifier plugin supports:\");\n      HashMap<NGramEntry, List<NGramEntry>> tmpIdx = new HashMap<NGramEntry, List<NGramEntry>>();\n      while (alllanguages.hasMoreElements()) {\n        String lang = (String) (alllanguages.nextElement());\n\n        InputStream is = this.getClass().getClassLoader().getResourceAsStream(\n                \"org/apache/tika/language/\" + lang + \".\" + NGramProfile.FILE_EXTENSION);\n\n        if (is != null) {\n          NGramProfile profile = new NGramProfile(lang, minLength, maxLength);\n          try {\n            profile.load(is);\n            languages.add(profile);\n            supportedLanguages.add(lang);\n            List<NGramEntry> ngrams = profile.getSorted();\n            for (int i=0; i<ngrams.size(); i++) {\n                NGramEntry entry = ngrams.get(i);\n                List<NGramEntry> registered = tmpIdx.get(entry);\n                if (registered == null) {\n                    registered = new ArrayList<NGramEntry>();\n                    tmpIdx.put(entry, registered);\n                }\n  ",
+    "query_result": [
+        " acceptale range\n// (ie min >= DEFAULT_MIN_NGRAM_LENGTH and max <= DEFAULT_MAX_NGRAM_LENGTH)\nmaxLength = Math.min(maxLength, NGramProfile.ABSOLUTE_MAX_NGRAM_LENGTH);\nmaxLength = Math.max(maxLength, NGramProfile.ABSOLUTE_MIN_NGRAM_LENGTH);\nminLength = Math.max(minLength, NGramProfile.ABSOLUTE_MIN_NGRAM_LENGTH);\nminLength = Math.min(minLength, maxLength);\n// Gets the value of the maximum size of dat",
+        "shMap<NGramEntry, List<NGramEntry>> tmpIdx = new HashMap<NGramEntry, List<NGramEntry>>();\nwhile (alllanguages.hasMoreElements()) {\nString lang = (String) (alllanguages.nextElement());\nInputStream is = this.getClass().getClassLoader().getResourceAsStr",
+        "ang + \".\" + NGramProfile.FILE_EXTENSION);\nif (is != null) {\nNGramProfile profile = new NGramProfile(lang, minLength, maxLength);\ntry {\nprofile.load(is",
+        "ry entry = ngrams.get(i);\nList<NGramEntry> registered = tmpIdx.get(entry);\nif (registered == null) {\nregistered = new ArrayList<NGramEntry>();\ntmpIdx.",
+        " = new Properties();\ntry {\np.load(this.getClass().getResourceAsStream(\"langmappings.properties\"));\nE",
+        "ramProfile.ABSOLUTE_MIN_NGRAM_LENGTH);\nminLength =",
+        "\nProperties p = new Properties();\ntry {\np.load(thi",
+        "roperties p = new Properties();\ntry {\np.load(this.",
+        "perties p = new Properties();\ntry {\np.load(this.ge",
+        "ties p = new Properties();\ntry {\np.load(this.getCl",
+        "es p = new Properties();\ntry {\np.load(this.getClas",
+        "s p = new Properties();\ntry {\np.load(this.getClass",
+        " p = new Properties();\ntry {\np.load(this.getClass(",
+        "new Properties();\ntry {\np.load(this.getClass().get",
+        "w Properties();\ntry {\np.load(this.getClass().getRe",
+        "Properties();\ntry {\np.load(this.getClass().getReso",
+        "ies();\ntry {\np.load(this.getClass().getResourceAsS",
+        "s();\ntry {\np.load(this.getClass().getResourceAsStr",
+        "();\ntry {\np.load(this.getClass().getResourceAsStre",
+        "));\nInputStream is = this.getClass().getClassLoade"
+    ]
+}

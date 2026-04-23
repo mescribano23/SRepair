@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9465116279069767,
+    "input": "  private void ringRead(int position, byte[] buffer, int offset, int count) throws IOException {\n    position = wrapPosition(position);\n    if (position + count <= fileLength) {\n      raf.seek(position);\n      raf.readFully(buffer, offset, count);\n    } else {\n      // The read overlaps the EOF.\n      // # of bytes to read before the EOF.\n      int beforeEof = fileLength - position;\n      raf.seek(position);\n      raf.readFully(buffer, offset, beforeEof);\n      raf.seek(HEADER_LENGTH);\n      raf.readFully(buffer, offset + beforeEof, count - beforeEof);\n    }\n  }",
+    "query_result": [
+        "void ringRead(int position, byte[] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(position);\nraf.readFully(buffer, offset, count);\n} else {\n// The read overlaps the EOF.\n// # of bytes to read before the EOF.\nint beforeEof = fileLength - position;\nraf.seek(position);\nraf.readFully(buffer, offset, beforeEof);\nraf.seek(HEADER_LENGTH);\nraf.readFully(buffer, offset ",
+        "int position, byte[] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(position);\nraf.readFully(buffer, offset, count);\n} else {\n// The read overlaps the EOF.\n// # of bytes to read before the EOF.\nint beforeEof = fileLength - position;\nraf.seek(position);\nraf.readFully(buffer, offset, beforeEof);\nraf.seek(HEADER_LENGTH);\nraf.readFully(buffer, offset + beforeEof, c",
+        "t position, byte[] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(position);\nraf.readFully(buffer, offset, count);\n} else {\n// The read overlaps the EOF.\n// # of bytes to read before the EOF.\nint beforeEof = fileLength - position;\nraf.seek(position);\nraf.readFully(buffer, offset, beforeEof);\nraf.seek(HEADER_LENGTH);\nraf.readFully(buffer, offset + beforeEof, cou",
+        "fer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(position);\nraf.readFully(buffer, offset, count);\n} else {\n// The read overlaps the EOF.\n// # of bytes to read before the EOF.\nint beforeEof = fileLength - position;\nraf.seek(position);\nraf.readFully(buffer, offset, beforeEof);\nraf.seek(HEADER_LENGTH);\nraf.readFully(buf",
+        "d(int position, byte[] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(position);\nraf.readFully(buffer, offset, count);\n} else {\n// The read overlaps the EOF.\n// # ",
+        "tion, byte[] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(position);\nraf.readFully(buffer, offset, count);\n} else {\n// The read overlaps the EOF.\n// # of bytes t",
+        " position, byte[] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.see",
+        "osition, byte[] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(",
+        "] buffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= fileLength) {\nraf.seek(position);\nraf",
+        "uffer, int offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position +",
+        "nt offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <",
+        "offset, int count) throws IOException {\nposition = wrapPosition(position);\nif (position + count <= f",
+        "oid ringRead(int position, byte[] buffer, int offs",
+        " byte[] buffer, int offset, int count) throws IOEx",
+        "byte[] buffer, int offset, int count) throws IOExc",
+        "yte[] buffer, int offset, int count) throws IOExce",
+        "te[] buffer, int offset, int count) throws IOExcep",
+        "e[] buffer, int offset, int count) throws IOExcept",
+        "[] buffer, int offset, int count) throws IOExcepti",
+        " buffer, int offset, int count) throws IOException"
+    ]
+}

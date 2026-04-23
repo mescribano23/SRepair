@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.4142857142857143,
+    "input": "public Attribute(String key, String val, Attributes parent) {\n    Validate.notNull(key);\n    key = key.trim();\n    Validate.notEmpty(key); // trimming could potentially make empty, so validate here\n    this.key = key;\n    this.val = val;\n    this.parent = parent;\n}",
+    "query_result": [
+        " val, Attributes parent) {\nValidate.notNull(key);\n",
+        "is.key = key;\nthis.val = val;\nthis.parent = parent",
+        "s.key = key;\nthis.val = val;\nthis.parent = parent;",
+        ".key = key;\nthis.val = val;\nthis.parent = parent;\n"
+    ]
+}

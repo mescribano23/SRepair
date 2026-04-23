@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.4646128226477935,
+    "input": "public void initialize() {\n        super.initialize();\n        double con, com, cosphi0, d, f, h, l, sinphi0, p, j, gamma0;\n\n        //FIXME-setup rot, alpha, longc,lon/lat1/2\n        rot = true;\n    lamc = lonc;\n\n    // true if alpha provided\n    int azi = Double.isNaN(alpha) ? 0 : 1;\n    // true if gamma provided\n    int gzi = Double.isNaN(Gamma) ? 0 : 1;\n        if (azi != 0) { // alpha specified\n            if (Math.abs(alpha) <= TOL ||\n                Math.abs(Math.abs(projectionLatitude) - ProjectionMath.HALFPI) <= TOL ||\n                Math.abs(Math.abs(alpha) - ProjectionMath.HALFPI) <= TOL)\n                throw new ProjectionException(\"Obl 1\");\n        } else {\n            if (Math.abs(phi1 - phi2) <= TOL ||\n                (con = Math.abs(phi1)) <= TOL ||\n                Math.abs(con - ProjectionMath.HALFPI) <= TOL ||\n                Math.abs(Math.abs(projectionLatitude) - ProjectionMath.HALFPI) <= TOL ||\n                Math.abs(Math.abs(phi2) - ProjectionMath.HALFPI) <= TOL) throw new ProjectionException(\"Obl 2\");\n        }\n        com = (spherical = es == 0.) ? 1 : Math.sqrt(one_es);\n        if (Math.abs(projectionLatitude) > EPS10) {\n            sinphi0 = Math.sin(projectionLatitude);\n            cosphi0 = Math.cos(projectionLatitude);\n            if (!spherical) {\n                con = 1. - es * sinphi0 * sinphi0;\n                bl = cosphi0 * cosphi0;\n                bl = Math.sqrt(1. + es * bl * bl / one_es);\n                al = bl * scaleFactor * com / con;\n                d = bl * com / (cosphi0 * Math.sqrt(con));\n            } else {\n                bl = 1.;\n                al = scaleFactor;\n                d = 1. / cosphi0;\n            }\n            if ((f = d * d - 1.) <= 0.)\n                f = 0.;\n            else {\n                f = Math.sqrt(f);\n                if (projectionLatitude < 0.)\n                    f = -f;\n            }\n            el = f += d;\n            if (!spherical)\n                el *= Math.pow(ProjectionMath.tsfn(p",
+    "query_result": [
+        "es == 0.) ? 1 : Math.sqrt(one_es);\nif (Math.abs(projectionLatitude) > EPS10) {\nsinphi0 = Math.sin(projectionLatitude);\ncosphi0 = Math.cos(projectionLatitude);\nif (!spherical) {\ncon = 1. - es * sinphi0 * sinphi0;\nbl = cosphi0 * cosphi0;\nbl = Math.sqrt(1. + es * bl * bl / one_es);\nal = bl * scaleFactor * com / con;\nd = bl * com / (cosphi0 * Math.sqrt(con));\n} else {\nbl = 1.;\nal = scaleFactor;\nd = 1. / cosphi0;\n}\nif ((f = d * d - 1.) <= 0.)\nf = 0.;\nelse {\nf = Math.sqrt(f);\nif (projectionLatitude < 0.)\nf = -f;\n}\nel = f += d;\nif (!spherical)\nel *= M",
+        "pherical) {\ncon = 1. - es * sinphi0 * sinphi0;\nbl = cosphi0 * cosphi0;\nbl = Math.sqrt(1. + es * bl * bl / one_es);\nal = bl * scaleFactor * com / con;\n",
+        "bl 1\");\n} else {\nif (Math.abs(phi1 - phi2) <= TOL ||\n(con = Math.abs(phi1)) <= TOL ||\nMath.abs(con -",
+        "itialize();\ndouble con, com, cosphi0, d, f, h, l, ",
+        "de) > EPS10) {\nsinphi0 = Math.sin(projectionLatitu",
+        "nphi0 = Math.sin(projectionLatitude);\ncosphi0 = Ma",
+        "i0 = Math.sin(projectionLatitude);\ncosphi0 = Math.",
+        "0 = Math.sin(projectionLatitude);\ncosphi0 = Math.c",
+        "sin(projectionLatitude);\ncosphi0 = Math.cos(projec",
+        "jectionLatitude);\ncosphi0 = Math.cos(projectionLat",
+        "ectionLatitude);\ncosphi0 = Math.cos(projectionLati",
+        "onLatitude);\ncosphi0 = Math.cos(projectionLatitude",
+        "leFactor * com / con;\nd = bl * com / (cosphi0 * Ma",
+        "{\nbl = 1.;\nal = scaleFactor;\nd = 1. / cosphi0;\n}\ni"
+    ]
+}

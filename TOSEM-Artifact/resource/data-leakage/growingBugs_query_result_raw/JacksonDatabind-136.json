@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public Boolean hasAnySetter(Annotated a) {\n        return null;\n    }",
+    "query_result": []
+}

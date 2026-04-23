@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.7717842323651453,
+    "input": "    protected JsonLocation _locationFor(Mark m)\n    {\n        if (m == null) {\n            return new JsonLocation(_ioContext.getSourceReference(),\n                    -1, -1, -1);\n        }\n        return new JsonLocation(_ioContext.getSourceReference(),\n                m.getIndex(),\n                m.getLine() + 1, // from 0- to 1-based\n                m.getColumn() + 1); // ditto\n    }",
+    "query_result": [
+        "ocationFor(Mark m)\n{\nif (m == null) {\nreturn new J",
+        "\nif (m == null) {\nreturn new JsonLocation(_ioConte",
+        "return new JsonLocation(_ioContext.getSourceRefere",
+        "urn new JsonLocation(_ioContext.getSourceReference",
+        " new JsonLocation(_ioContext.getSourceReference(),",
+        "return new JsonLocation(_ioContext.getSourceRefere",
+        "urn new JsonLocation(_ioContext.getSourceReference",
+        " new JsonLocation(_ioContext.getSourceReference(),",
+        "Reference(),\nm.getIndex(),\nm.getLine() + 1, // fro",
+        "dex(),\nm.getLine() + 1, // from 0- to 1-based\nm.ge"
+    ]
+}

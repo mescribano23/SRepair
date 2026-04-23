@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.06098654708520179,
+    "input": "protected Object deserializeUsingPropertyBasedWithUnwrapped(JsonParser p,\n\t\tDeserializationContext ctxt)\n    throws IOException, JsonProcessingException\n{\n    final PropertyBasedCreator creator = _propertyBasedCreator;\n    PropertyValueBuffer buffer = creator.startBuilding(p, ctxt, _objectIdReader);\n\n    TokenBuffer tokens = new TokenBuffer(p, ctxt);\n    tokens.writeStartObject();\n\n    JsonToken t = p.getCurrentToken();\n    for (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {\n        String propName = p.getCurrentName();\n        p.nextToken(); // to point to value\n        // creator property?\n        SettableBeanProperty creatorProp = creator.findCreatorProperty(propName);\n        if (creatorProp != null) {\n            buffer.assignParameter(creatorProp, creatorProp.deserialize(p, ctxt));\n            continue;\n        }\n        // Object Id property?\n        if (buffer.readIdProperty(propName)) {\n            continue;\n        }\n        // regular property? needs buffering\n        SettableBeanProperty prop = _beanProperties.find(propName);\n        if (prop != null) {\n            buffer.bufferProperty(prop, prop.deserialize(p, ctxt));\n            continue;\n        }\n        if (_ignorableProps != null && _ignorableProps.contains(propName)) {\n            handleIgnoredProperty(p, ctxt, handledType(), propName);\n            continue;\n        }\n        tokens.writeFieldName(propName);\n        tokens.copyCurrentStructure(p);\n        // \"any property\"?\n        if (_anySetter != nul",
+    "query_result": [
+        "protected Object deserializeUsingPropertyBasedWith",
+        "tected Object deserializeUsingPropertyBasedWithUnw",
+        "ected Object deserializeUsingPropertyBasedWithUnwr",
+        "ted Object deserializeUsingPropertyBasedWithUnwrap",
+        "ed Object deserializeUsingPropertyBasedWithUnwrapp",
+        "d Object deserializeUsingPropertyBasedWithUnwrappe",
+        " Object deserializeUsingPropertyBasedWithUnwrapped",
+        "Object deserializeUsingPropertyBasedWithUnwrapped(",
+        "bject deserializeUsingPropertyBasedWithUnwrapped(J",
+        "ject deserializeUsingPropertyBasedWithUnwrapped(Js",
+        "ect deserializeUsingPropertyBasedWithUnwrapped(Jso",
+        "ct deserializeUsingPropertyBasedWithUnwrapped(Json",
+        "t deserializeUsingPropertyBasedWithUnwrapped(JsonP",
+        "deserializeUsingPropertyBasedWithUnwrapped(JsonPar",
+        "eserializeUsingPropertyBasedWithUnwrapped(JsonPars",
+        "serializeUsingPropertyBasedWithUnwrapped(JsonParse",
+        "rializeUsingPropertyBasedWithUnwrapped(JsonParser "
+    ]
+}

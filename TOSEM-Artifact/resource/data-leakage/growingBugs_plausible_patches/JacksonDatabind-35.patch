@@ -1,0 +1,62 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsWrapperTypeDeserializer.java b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsWrapperTypeDeserializer.java
+index 0b954f686..adfb6bd68 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsWrapperTypeDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/AsWrapperTypeDeserializer.java
+@@ -75,26 +75,33 @@ public class AsWrapperTypeDeserializer
+      * subtype deserializer to use, and calls it to do actual
+      * deserialization.
+      */
+-    @SuppressWarnings("resource")
+-    private final Object _deserialize(JsonParser p, DeserializationContext ctxt) throws IOException
+-    {
+-        // 02-Aug-2013, tatu: May need to use native type ids
+-        if (p.canReadTypeId()) {
+-            Object typeId = p.getTypeId();
+-            if (typeId != null) {
+-                return _deserializeWithNativeTypeId(p, ctxt, typeId);
++
++    private final Object _deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
++        // Check if current token is FIELD_NAME, indicating type information in JSON array structure
++        if (p.getCurrentToken() == JsonToken.FIELD_NAME) {
++            final String typeId = p.getText();
++            JsonDeserializer<Object> deser = _findDeserializer(ctxt, typeId);
++            p.nextToken();
++
++            Object value = deser.deserialize(p, ctxt);
++            // Check for END_OBJECT or END_ARRAY token after deserialization
++            if (p.nextToken() != JsonToken.END_OBJECT && p.getCurrentToken() != JsonToken.END_ARRAY) {
++                throw ctxt.wrongTokenException(p, JsonToken.END_OBJECT,
++                        "expected closing END_OBJECT after type information and deserialized value");
+             }
++            return value;
+         }
+-        // first, sanity checks
++        
++        // Fallback to handling structured JSON Object for type information
+         if (p.getCurrentToken() != JsonToken.START_OBJECT) {
+             throw ctxt.wrongTokenException(p, JsonToken.START_OBJECT,
+-                    "need JSON Object to contain As.WRAPPER_OBJECT type information for class "+baseTypeName());
++                    "need JSON Object to contain As.WRAPPER_OBJECT type information for class " + baseTypeName());
++        }
++        // should always get field name, but just in case...
++        if (p.nextToken() != JsonToken.FIELD_NAME) {
++            throw ctxt.wrongTokenException(p, JsonToken.FIELD_NAME,
++                    "need JSON String that contains type id (for subtype of " + baseTypeName() + ")");
+         }
+-            // should always get field name, but just in case...
+-            if (p.nextToken() != JsonToken.FIELD_NAME) {
+-                throw ctxt.wrongTokenException(p, JsonToken.FIELD_NAME,
+-                        "need JSON String that contains type id (for subtype of "+baseTypeName()+")");
+-            }
+         final String typeId = p.getText();
+         JsonDeserializer<Object> deser = _findDeserializer(ctxt, typeId);
+         p.nextToken();
+@@ -109,7 +116,7 @@ public class AsWrapperTypeDeserializer
+             p = JsonParserSequence.createFlattened(tb.asParser(p), p);
+             p.nextToken();
+         }
+-        
++
+         Object value = deser.deserialize(p, ctxt);
+         // And then need the closing END_OBJECT
+         if (p.nextToken() != JsonToken.END_OBJECT) {

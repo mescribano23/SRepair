@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.6868686868686869,
+    "input": "    private static float min_max_normalization(final float value, final float min, final float max)\n            throws HiveException {\n        if (min > max) {\n            throw new HiveException(\"min value `\" + min + \"` SHOULD be less than max value `\" + max\n                    + '`');\n        }\n        if (min == max) {\n            return 0.5f;\n        }\n        if (value < min) {\n            return 0.f;\n        }\n        if (value > max) {\n            return 1.f;\n        }\n        return (value - min) / (max - min);\n    }",
+    "query_result": [
+        " static float min_max_normalization(final float value, final float min, final float max)\nthrows HiveException {\nif (min > max) {\nthrow new HiveExcepti",
+        "rn 0.5f;\n}\nif (value < min) {\nreturn 0.f;\n}\nif (value > max) {\nreturn 1.f;\n}\nreturn (value - min) / ",
+        "final float value, final float min, final float ma"
+    ]
+}

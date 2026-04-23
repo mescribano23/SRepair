@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9330024813895782,
+    "input": "    @Override\n    public Double apply(final CharSequence left, final CharSequence right) {\n        final double defaultScalingFactor = 0.1;\n\n        if (left == null || right == null) {\n            throw new IllegalArgumentException(\"Strings must not be null\");\n        }\n\n        int[] mtp = matches(left, right);\n        double m = mtp[0];\n        if (m == 0) {\n            return 0D;\n        }\n        double j = ((m / left.length() + m / right.length() + (m - mtp[1]) / m)) / 3;\n        double jw = j < 0.7D ? j : j + Math.min(defaultScalingFactor, 1D / mtp[3]) * mtp[2] * (1D - j);\n        return jw;\n    }",
+    "query_result": [
+        " {\nthrow new IllegalArgumentException(\"Strings must not be null\");\n}\nint[] mtp = matches(left, right);\ndouble m = mtp[0];\nif (m == 0) {\nreturn 0D;\n}\ndouble j = ((m / left.length() + m / right.length() + (m - mtp[1]) / m)) / 3;\ndouble jw = j < 0.7D ? j : j + Math.min(defaultScalingFactor, 1D / mtp[3]",
+        "lic Double apply(final CharSequence left, final CharSequence right) {\nfinal double defaultScalingFactor = 0.1;\nif (left == null || right == null) {\nthrow new IllegalArgumentException(\"Strings must not",
+        "inal CharSequence left, final CharSequence right) {\nfinal double defaultScalingFactor = 0.1;\nif (left == null || right == null) {\nthrow new IllegalArg",
+        "rSequence left, final CharSequence right) {\nfinal double defaultScalingFactor = 0.1;\nif (left == null || right == null) {\nthrow new IllegalArgumentExc",
+        "e left, final CharSequence right) {\nfinal double defaultScalingFactor = 0.1;\nif (left == null || right == null) {\nthrow new IllegalArgumentException(\"",
+        "Override\npublic Double apply(final CharSequence left, final CharSequence right) {\nfinal double defau",
+        "public Double apply(final CharSequence left, final CharSequence right) {\nfinal double defaultScaling",
+        "\nif (left == null || right == null) {\nthrow new IllegalArgumentException(\"Strings must not be null\")",
+        " (left == null || right == null) {\nthrow new IllegalArgumentException(\"Strings must not be null\");\n}",
+        "(left == null || right == null) {\nthrow new IllegalArgumentException(\"Strings must not be null\");\n}\n",
+        "left == null || right == null) {\nthrow new IllegalArgumentException(\"Strings must not be null\");\n}\ni",
+        "eft == null || right == null) {\nthrow new IllegalArgumentException(\"Strings must not be null\");\n}\nin",
+        "ublic Double apply(final CharSequence left, final ",
+        "c Double apply(final CharSequence left, final Char",
+        " apply(final CharSequence left, final CharSequence",
+        "apply(final CharSequence left, final CharSequence ",
+        "pply(final CharSequence left, final CharSequence r",
+        "ply(final CharSequence left, final CharSequence ri",
+        "ly(final CharSequence left, final CharSequence rig",
+        "(final CharSequence left, final CharSequence right"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.4263803680981595,
+    "input": "    private Command getCloseCommand(final PlaceRequest place,\n                                    final boolean force,\n                                    final Command onAfterClose) {\n        return () -> {\n\n            final Activity activity = existingWorkbenchActivities.get(place);\n            if (activity == null) {\n                return;\n            }\n\n            workbenchPartBeforeCloseEvent.fire(new BeforeClosePlaceEvent(place,\n                                                                         force,\n                                                                         true));\n\n            closeSplashScreen(place);\n            activePopups.remove(place.getIdentifier());\n\n            if (activity.isType(ActivityResourceType.SCREEN.name()) || activity.isType(ActivityResourceType.EDITOR.name())) {\n                WorkbenchActivity activity1 = (WorkbenchActivity) activity;\n                if (force || onMayCloseList.containsKey(place) || activity1.onMayClose()) {\n                    onMayCloseList.remove(place);\n                    try {\n                        activity1.onClose();\n                    } catch (Exception ex) {\n                        lifecycleErrorHandler.handle(activity1,\n                                                     LifecyclePhase.CLOSE,\n                                                     ex);\n                    }\n                } else {\n                    return;\n                }\n            } else if (activity.isType(ActivityResourceType.POPUP.name())) {\n                PopupActivity activity1 = (PopupActivity) activity;\n                if (force || activity1.onMayClose()) {\n                    try {\n                        activity1.onClose();\n                    } catch (Exception ex) {\n                        lifecycleErrorHandler.handle(activity1,\n                                                     LifecyclePhase.CLOSE,\n                                                     ex);\n                    }\n                ",
+    "query_result": [
+        "tivity.isType(ActivityResourceType.SCREEN.name()) || activity.isType(ActivityResourceType.EDITOR.name())) {\nWorkbenchActivity activity1 = (WorkbenchAc",
+        "eType.SCREEN.name()) || activity.isType(ActivityResourceType.EDITOR.name())) {\nWorkbenchActivity act",
+        "} else if (activity.isType(ActivityResourceType.POPUP.name())) {\nPopupActivity activity1 = (PopupAct",
+        "chActivities.get(place);\nif (activity == null) {\nr",
+        "oseList.containsKey(place) || activity1.onMayClose",
+        "} catch (Exception ex) {\nlifecycleErrorHandler.han",
+        "tivityResourceType.POPUP.name())) {\nPopupActivity ",
+        "} catch (Exception ex) {\nlifecycleErrorHandler.han"
+    ]
+}

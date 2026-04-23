@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.8534278959810875,
+    "input": "    public void addValue(double value) {\n        sumImpl.increment(value);\n        sumsqImpl.increment(value);\n        minImpl.increment(value);\n        maxImpl.increment(value);\n        sumLogImpl.increment(value);\n        secondMoment.increment(value);\n        // If mean, variance or geomean have been overridden,\n        // need to increment these\n        if (meanImpl != mean) {\n            meanImpl.increment(value);\n        }\n        if (varianceImpl != variance) {\n            varianceImpl.increment(value);\n        }\n        if (geoMeanImpl != geoMean) {\n            geoMeanImpl.increment(value);\n        }\n        n++;\n    }",
+    "query_result": [
+        "sumImpl.increment(value);\nsumsqImpl.increment(value);\nminImpl.increment(value);\nmaxImpl.increment(value);\nsumLogImpl.increment(value);\nsecondMoment.increment(value);\n// If mean, variance or geomean have been overridden,\n// need to increment these\nif (meanImpl != mean) {\nmeanImpl.increment(value);\n}\nif (varianceImpl != variance) {\nvarianceImpl.increment(value);\n}\nif (geoMeanImpl != geoMean) {\ngeoMe",
+        ", variance or geomean have been overridden,\n// nee"
+    ]
+}

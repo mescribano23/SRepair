@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.88,
+    "input": "    public ValueMarker(double value, Paint paint, Stroke stroke, \n                       Paint outlinePaint, Stroke outlineStroke, float alpha) {\n        super(paint, stroke, outlinePaint, outlineStroke, alpha);\n        this.value = value;\n    }",
+    "query_result": [
+        "ueMarker(double value, Paint paint, Stroke stroke, \nPaint outlinePaint, Stroke outlineStroke, float ",
+        "t outlinePaint, Stroke outlineStroke, float alpha) {\nsuper(paint, stroke, outlinePaint, outlineStrok",
+        "aint, Stroke outlineStroke, float alpha) {\nsuper(paint, stroke, outlinePaint, outlineStroke, alpha);",
+        "lic ValueMarker(double value, Paint paint, Stroke ",
+        "ic ValueMarker(double value, Paint paint, Stroke s",
+        "alueMarker(double value, Paint paint, Stroke strok",
+        "ke stroke, \nPaint outlinePaint, Stroke outlineStro",
+        "ke outlineStroke, float alpha) {\nsuper(paint, stro",
+        "float alpha) {\nsuper(paint, stroke, outlinePaint, "
+    ]
+}

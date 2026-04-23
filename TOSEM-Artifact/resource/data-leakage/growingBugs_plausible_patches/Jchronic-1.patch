@@ -1,0 +1,61 @@
+diff --git a/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java b/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java
+index 178eb77..00258d1 100644
+--- a/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java
++++ b/src/main/java/com/mdimension/jchronic/tags/ScalarYear.java
+@@ -17,29 +17,37 @@ public class ScalarYear extends Scalar {
+     return super.toString() + "-year-" + getType();
+   }
+ 
+-  public static ScalarYear scan(Token token, Token postToken, Options options) {
++public static ScalarYear scan(Token token, Token postToken, Options options) {
+     if (ScalarYear.YEAR_PATTERN.matcher(token.getWord()).matches()) {
+       int scalarValue = Integer.parseInt(token.getWord());
+       if (!(postToken != null && Scalar.TIMES.contains(postToken.getWord()))) {
+         Pointer.PointerType context = options.getContext();
+-            // If the context indicates no bias,
+-            // treat anything up to 37 as 20xx, anything from 69-99 as 19xx,
+-            // anything from 100-137 as 20xx, and leave 38-68 alone (treating
+-            // that range as ambiguous, I guess).
+-            // This used to be the behavior regardless of the context.
+-            if (scalarValue <= 37) {
+-              scalarValue += 2000;
+-            }
+-            else if (scalarValue <= 137 && scalarValue >= 69) {
+-              scalarValue += 1900;
+-
+-            // If the context indicates a bias to past dates,
+-            // treat anything from 20-99 as 19xx, and otherwise
+-            // match the NONE behavior.
+-
+-            // If the context indicates a bias to future dates,
+-            // treat anything up to 68 as 20xx, and otherwise
+-            // match the NONE behavior.
++        if (context == Pointer.PointerType.NONE) {
++          if (scalarValue <= 37) {
++            scalarValue += 2000;
++          }
++          else if (scalarValue <= 137 && scalarValue >= 69) {
++            scalarValue += 1900;
++          }
++        }
++        else if (context == Pointer.PointerType.PAST) {
++          if (scalarValue <= 99 && scalarValue >= 20) {
++            scalarValue += 1900;
++          }
++          else if (scalarValue <= 37) {
++            scalarValue += 2000;
++          }
++          else if (scalarValue <= 137 && scalarValue >= 69) {
++            scalarValue += 1900;
++          }
++        }
++        else if (context == Pointer.PointerType.FUTURE) {
++          if (scalarValue <= 68) {
++            scalarValue += 2000;
++          }
++          else if (scalarValue <= 137 && scalarValue >= 69) {
++            scalarValue += 1900;
++          }
+         }
+         return new ScalarYear(Integer.valueOf(scalarValue));
+       }

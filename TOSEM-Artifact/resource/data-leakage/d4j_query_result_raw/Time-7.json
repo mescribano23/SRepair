@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.575,
+    "input": "public int parseInto(ReadWritableInstant instant, String text, int position) {\n    DateTimeParser parser = requireParser();\n    if (instant == null) {\n        throw new IllegalArgumentException(\"Instant must not be null\");\n    }\n    \n    long instantMillis = instant.getMillis();\n    Chronology chrono = instant.getChronology();\n    int defaultYear = DateTimeUtils.getChronology(chrono).year().get(instantMillis);\n    long instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\n    chrono = selectChronology(chrono);\n    \n    DateTimeParserBucket bucket = new DateTimeParserBucket(\n        instantLocal, chrono, iLocale, iPivotYear, defaultYear);\n    int newPos = parser.parseInto(bucket, text, position);\n    instant.setMillis(bucket.computeMillis(false, text));\n    if (iOffsetParsed && bucket.getOffsetInteger() != null) {\n        int parsedOffset = bucket.getOffsetInteger();\n        DateTimeZone parsedZone = DateTimeZone.forOffsetMillis(parsedOffset);\n        chrono = chrono.withZone(parsedZone);\n    } else if (bucket.getZone() != null) {\n        chrono = chrono.withZone(bucket.getZone());\n    }\n    instant.setChronology(chrono);\n    if (iZone != null) {\n        instant.setZone(iZone);\n    }\n    return newPos;\n}",
+    "query_result": [
+        "s.getChronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);\n\nDateTimeParserBucket bucket = new DateTimeParserBucket(\ninstantLocal, chrono, iLocal",
+        "gy(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);\n\nDateTimeParserBucket bucket = new DateTimeParserBucket(\ninstantLocal, chrono, iLocale, iPivotYear",
+        "ParserBucket bucket = new DateTimeParserBucket(\ninstantLocal, chrono, iLocale, iPivotYear, defaultYear);\nint newPos = parser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.getOffse",
+        "arserBucket bucket = new DateTimeParserBucket(\ninstantLocal, chrono, iLocale, iPivotYear, defaultYear);\nint newPos = parser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.getOffset",
+        "ltYear = DateTimeUtils.getChronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);\n\nDateTimeParse",
+        " iLocale, iPivotYear, defaultYear);\nint newPos = parser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.getOffsetInteger() != null)",
+        "o(ReadWritableInstant instant, String text, int position) {\nDateTimeParser parser = requireParser();\nif (instant == null) {\nthrow new IllegalArgumentE",
+        "aultYear = DateTimeUtils.getChronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis",
+        "ultYear = DateTimeUtils.getChronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis)",
+        "tils.getChronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectCh",
+        "ls.getChronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChro",
+        "etChronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronolo",
+        "Chronology(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology",
+        "y(chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chrono);",
+        "efaultYear);\nint newPos = parser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.",
+        "ultYear);\nint newPos = parser.parseInto(bucket, text, position);\ninstant.setMillis(bucket.computeMillis(false, text));\nif (iOffsetParsed && bucket.get",
+        "eTimeParser parser = requireParser();\nif (instant == null) {\nthrow new IllegalArgumentException(\"Ins",
+        "chrono).year().get(instantMillis);\nlong instantLocal = instantMillis + chrono.getZone().getOffset(in",
+        "antLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\nchrono = selectChronology(chro",
+        "o, iLocale, iPivotYear, defaultYear);\nint newPos = parser.parseInto(bucket, text, position);\ninstant"
+    ]
+}

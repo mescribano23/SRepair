@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.13861386138613863,
+    "input": "    @Override\n    public JsonObject json() throws IOException {\n        return Json.createObjectBuilder()\n            // @checkstyle MultipleStringLiterals (3 lines)\n            .add(\"status\", \"test-status\")\n            .add(\"ahead_by\", 1)\n            .add(\"behind_by\", 2)\n            .add(\n                \"author\",\n                Json.createObjectBuilder()\n                // @checkstyle MultipleStringLiterals (3 lines)\n                    .add(\"login\", \"test\")\n                    .build()\n            )\n            .add(\n                \"files\",\n                Json.createObjectBuilder()\n                    .add(\"sha\", \"bbcd538c8e72b8c175046e27cc8f907076331401\")\n                    .add(\"filename\", \"test-file\")\n                    // @checkstyle MultipleStringLiterals (1 lines)\n                    .add(\"status\", \"test\")\n                    .build()\n            )\n            .build();\n    }",
+    "query_result": [
+        "@Override\npublic JsonObject json() throws IOExcept",
+        "Override\npublic JsonObject json() throws IOExcepti",
+        "verride\npublic JsonObject json() throws IOExceptio",
+        "erride\npublic JsonObject json() throws IOException",
+        "rride\npublic JsonObject json() throws IOException ",
+        "ride\npublic JsonObject json() throws IOException {",
+        "ide\npublic JsonObject json() throws IOException {\n",
+        "de\npublic JsonObject json() throws IOException {\nr",
+        "e\npublic JsonObject json() throws IOException {\nre",
+        "ublic JsonObject json() throws IOException {\nretur",
+        "blic JsonObject json() throws IOException {\nreturn",
+        "lic JsonObject json() throws IOException {\nreturn ",
+        "json() throws IOException {\nreturn Json.createObje"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.16447368421052633,
+    "input": "    @Override\n    public void configure(Binder binder) {\n        // init properties' defaults\n        contributeMulticastAddress(binder, JavaGroupsBridge.MCAST_ADDRESS_DEFAULT);\n        contributeMulticastPort(binder, JavaGroupsBridge.MCAST_PORT_DEFAULT_INT);\n\n        binder.bind(EventBridge.class).toProvider(JavaGroupsBridgeProvider.class).withoutScope();\n    }",
+    "query_result": [
+        "@Override\npublic void configure(Binder binder) {\n/",
+        "Override\npublic void configure(Binder binder) {\n//",
+        "e\npublic void configure(Binder binder) {\n// init p"
+    ]
+}

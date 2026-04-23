@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.8978102189781022,
+    "input": "public boolean hasAttr(String attributeKey) {\n    Validate.notNull(attributeKey);\n\n    if (attributeKey.toLowerCase().startsWith(\"abs:\")) {\n        String key = attributeKey.substring(\"abs:\".length());\n        if (attributes.hasKey(key) && !absUrl(key).equals(\"\"))\n            return true;\n    }\n    return attributes.hasKey(attributeKey);\n}",
+    "query_result": [
+        " boolean hasAttr(String attributeKey) {\nValidate.notNull(attributeKey);\nif (attributeKey.toLowerCase().startsWith(\"abs:\")) {\nString key = attributeKey.substring(\"abs:\".length());\nif (attributes.hasKey(key) && !absUrl(key).equals(\"\"))\nreturn true;\n}\nr",
+        "c boolean hasAttr(String attributeKey) {\nValidate.",
+        "sAttr(String attributeKey) {\nValidate.notNull(attr",
+        "tr(String attributeKey) {\nValidate.notNull(attribu",
+        "r(String attributeKey) {\nValidate.notNull(attribut",
+        "String attributeKey) {\nValidate.notNull(attributeK",
+        "ring attributeKey) {\nValidate.notNull(attributeKey",
+        "attributeKey) {\nValidate.notNull(attributeKey);\nif",
+        "if (attributeKey.toLowerCase().startsWith(\"abs:\"))",
+        "String key = attributeKey.substring(\"abs:\".length(",
+        "ing key = attributeKey.substring(\"abs:\".length());",
+        "Url(key).equals(\"\"))\nreturn true;\n}\nreturn attribu",
+        "(key).equals(\"\"))\nreturn true;\n}\nreturn attributes"
+    ]
+}

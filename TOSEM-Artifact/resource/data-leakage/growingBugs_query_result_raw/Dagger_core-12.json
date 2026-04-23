@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.47368421052631576,
+    "input": "  public ObjectGraph plus(Object... modules) {\n    linkEverything();\n    return makeGraph(this, plugin, modules);\n  }",
+    "query_result": [
+        "\nlinkEverything();\nreturn makeGraph(this, plugin, "
+    ]
+}

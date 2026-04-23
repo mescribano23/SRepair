@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.6580645161290323,
+    "input": "    @Override\n    public int getHeaderHeight() {\n        try {\n            return workbenchLayout.getHeaderPanel().getBoundingClientRect().getHeight().intValue();\n        } catch (Exception e) {\n            return 0;\n        }\n    }",
+    "query_result": [
+        "orkbenchLayout.getHeaderPanel().getBoundingClientR",
+        "kbenchLayout.getHeaderPanel().getBoundingClientRec",
+        "ayout.getHeaderPanel().getBoundingClientRect().get",
+        "().intValue();\n} catch (Exception e) {\nreturn 0;\n}",
+        ").intValue();\n} catch (Exception e) {\nreturn 0;\n}\n",
+        ".intValue();\n} catch (Exception e) {\nreturn 0;\n}\n}"
+    ]
+}

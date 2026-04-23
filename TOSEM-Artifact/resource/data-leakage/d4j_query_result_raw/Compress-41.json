@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.22929936305732485,
+    "input": "public ZipArchiveEntry getNextZipEntry() throws IOException {\n    boolean firstEntry = true;\n    if (closed || hitCentralDirectory) {\n        return null;\n    }\n    if (current != null) {\n        closeEntry();\n        firstEntry = false;\n    }\n\n    try {\n        if (firstEntry) {\n            // split archives have a special signature before the\n            // first local file header - look for it and fail with\n            // the appropriate error message if this is a split\n            // archive.\n            readFirstLocalFileHeader(LFH_BUF);\n        } else {\n            readFully(LFH_BUF);\n        }\n    } catch (final EOFException e) {\n        return null;\n    }\n\n    final ZipLong sig = new ZipLong(LFH_BUF);\n    if (sig.equals(ZipLong.CFH_SIG) || sig.equals(ZipLong.AED_SIG)) {\n        hitCentralDirectory = true;\n        skipRemainderOfArchive();\n        return null;\n    }\n    if (!sig.equals(ZipLong.LFH_SIG)) {\n        throw new ZipException(String.format(\"Unexpected record signature: 0X%X\", sig.getValue()));\n    }\n\n    int off = WORD;\n    current = new CurrentEntry();\n\n    final int versionMadeBy = ZipShort.getValue(LFH_BUF, off);\n    off += SHORT;\n    current.entry.setPlatform((versionMadeBy >> ZipFile.BYTE_SHIFT) & ZipFile.NIBLET_MASK);\n\n    final GeneralPurposeBit gpFlag = GeneralPurposeBit.parse(LFH_BUF, off);\n    final boolean hasUTF8Flag = gpFlag.usesUTF8ForNames();\n    final ZipEncoding entryEncoding = hasUTF8Flag ? ZipEncodingHelper.UTF8_ZIP_ENCODING : zipEncoding;\n",
+    "query_result": [
+        "pFlag.usesUTF8ForNames();\nfinal ZipEncoding entryEncoding = hasUTF8Flag ? ZipEncodingHelper.UTF8_ZIP",
+        "public ZipArchiveEntry getNextZipEntry() throws IO",
+        "ublic ZipArchiveEntry getNextZipEntry() throws IOE",
+        "alDirectory) {\nreturn null;\n}\nif (current != null)",
+        "turn null;\n}\nif (current != null) {\ncloseEntry();\n",
+        "GeneralPurposeBit gpFlag = GeneralPurposeBit.parse",
+        "ntryEncoding = hasUTF8Flag ? ZipEncodingHelper.UTF",
+        "hasUTF8Flag ? ZipEncodingHelper.UTF8_ZIP_ENCODING "
+    ]
+}

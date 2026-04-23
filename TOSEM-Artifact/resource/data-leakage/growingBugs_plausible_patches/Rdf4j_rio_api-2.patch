@@ -1,0 +1,245 @@
+diff --git a/core/rio/api/src/main/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelper.java b/core/rio/api/src/main/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelper.java
+index 52595ab8ae..cd7b69521a 100644
+--- a/core/rio/api/src/main/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelper.java
++++ b/core/rio/api/src/main/java/org/eclipse/rdf4j/rio/helpers/RDFParserHelper.java
+@@ -86,123 +86,128 @@ public class RDFParserHelper {
+ 	 * @throws RDFParseException If there was an error during the process that could not be recovered from, based on
+ 	 *                           settings in the given parser config.
+ 	 */
+-	public static final Literal createLiteral(String label, String lang, IRI datatype, ParserConfig parserConfig,
+-			ParseErrorListener errListener, ValueFactory valueFactory, long lineNo, long columnNo)
+-			throws RDFParseException {
+-		if (label == null) {
+-			throw new NullPointerException("Cannot create a literal using a null label");
+-		}
++public static final Literal createLiteral(String label, String lang, IRI datatype, ParserConfig parserConfig,
++        ParseErrorListener errListener, ValueFactory valueFactory, long lineNo, long columnNo)
++        throws RDFParseException {
++    if (label == null) {
++        throw new NullPointerException("Cannot create a literal using a null label");
++    }
+ 
+-		Literal result = null;
+-		String workingLabel = label;
+-		Optional<String> workingLang = Optional.ofNullable(lang);
+-		IRI workingDatatype = datatype;
++    Literal result = null;
++    String workingLabel = label;
++    Optional<String> workingLang = Optional.ofNullable(lang);
++    IRI workingDatatype = datatype;
+ 
+-		// In RDF-1.1 we must do lang check first as language literals will all
+-		// have datatype RDF.LANGSTRING, but only language literals would have a
+-		// non-null lang
+-		if (workingLang.isPresent() && (workingDatatype == null || RDF.LANGSTRING.equals(workingDatatype))) {
+-			boolean recognisedLanguage = false;
+-			for (LanguageHandler nextHandler : parserConfig.get(BasicParserSettings.LANGUAGE_HANDLERS)) {
+-				if (nextHandler.isRecognizedLanguage(workingLang.get())) {
+-					recognisedLanguage = true;
+-					if (parserConfig.get(BasicParserSettings.VERIFY_LANGUAGE_TAGS)) {
+-						try {
+-							if (!nextHandler.verifyLanguage(workingLabel, workingLang.get())) {
+-								reportError("'" + lang + "' is not a valid language tag ", lineNo, columnNo,
+-										BasicParserSettings.VERIFY_LANGUAGE_TAGS, parserConfig, errListener);
+-							}
+-						} catch (LiteralUtilException e) {
+-							reportError("'" + label
+-									+ " could not be verified by a language handler that recognised it. language was "
+-									+ lang, lineNo, columnNo, BasicParserSettings.VERIFY_LANGUAGE_TAGS, parserConfig,
+-									errListener);
+-						}
+-					}
+-					if (parserConfig.get(BasicParserSettings.NORMALIZE_LANGUAGE_TAGS)) {
+-						try {
+-							result = nextHandler.normalizeLanguage(workingLabel, workingLang.get(), valueFactory);
+-							workingLabel = result.getLabel();
+-							workingLang = result.getLanguage();
+-							workingDatatype = result.getDatatype();
+-						} catch (LiteralUtilException e) {
+-							reportError(
+-									"'" + label + "' did not have a valid value for language " + lang + ": "
+-											+ e.getMessage() + " and could not be normalised",
+-									lineNo, columnNo, BasicParserSettings.NORMALIZE_LANGUAGE_TAGS, parserConfig,
+-									errListener);
+-						}
+-					}
+-				}
+-			}
+-			if (!recognisedLanguage) {
+-				reportError("'" + label
+-						+ "' was not recognised as a language literal, and could not be verified, with language "
+-						+ lang, lineNo, columnNo, BasicParserSettings.FAIL_ON_UNKNOWN_LANGUAGES, parserConfig,
+-						errListener);
+-			}
+-		} else if (workingDatatype != null) {
+-			boolean recognisedDatatype = false;
+-			for (DatatypeHandler nextHandler : parserConfig.get(BasicParserSettings.DATATYPE_HANDLERS)) {
+-				if (nextHandler.isRecognizedDatatype(workingDatatype)) {
+-					recognisedDatatype = true;
+-					if (parserConfig.get(BasicParserSettings.VERIFY_DATATYPE_VALUES)) {
+-						try {
+-							if (!nextHandler.verifyDatatype(workingLabel, workingDatatype)) {
+-								reportError("'" + label + "' is not a valid value for datatype " + datatype, lineNo,
+-										columnNo, BasicParserSettings.VERIFY_DATATYPE_VALUES, parserConfig,
+-										errListener);
+-							}
+-						} catch (LiteralUtilException e) {
+-							reportError("'" + label
+-									+ " could not be verified by a datatype handler that recognised it. datatype was "
+-									+ datatype, lineNo, columnNo, BasicParserSettings.VERIFY_DATATYPE_VALUES,
+-									parserConfig, errListener);
+-						}
+-					}
+-					if (parserConfig.get(BasicParserSettings.NORMALIZE_DATATYPE_VALUES)) {
+-						try {
+-							result = nextHandler.normalizeDatatype(workingLabel, workingDatatype, valueFactory);
+-							workingLabel = result.getLabel();
+-							workingLang = result.getLanguage();
+-							workingDatatype = result.getDatatype();
+-						} catch (LiteralUtilException e) {
+-							reportError(
+-									"'" + label + "' is not a valid value for datatype " + datatype + ": "
+-											+ e.getMessage() + " and could not be normalised",
+-									lineNo, columnNo, BasicParserSettings.NORMALIZE_DATATYPE_VALUES, parserConfig,
+-									errListener);
+-						}
+-					}
+-				}
+-			}
+-			if (!recognisedDatatype) {
+-				reportError("'" + label + "' was not recognised, and could not be verified, with datatype " + datatype,
+-						lineNo, columnNo, BasicParserSettings.FAIL_ON_UNKNOWN_DATATYPES, parserConfig, errListener);
+-			}
++    // In RDF-1.1 we must do lang check first as language literals will all
++    // have datatype RDF.LANGSTRING, but only language literals would have a
++    // non-null lang
++    if (workingLang.isPresent() && (workingDatatype == null || RDF.LANGSTRING.equals(workingDatatype))) {
++        boolean recognisedLanguage = false;
++        for (LanguageHandler nextHandler : parserConfig.get(BasicParserSettings.LANGUAGE_HANDLERS)) {
++            if (nextHandler.isRecognizedLanguage(workingLang.get())) {
++                recognisedLanguage = true;
++                if (parserConfig.get(BasicParserSettings.VERIFY_LANGUAGE_TAGS)) {
++                    try {
++                        if (!nextHandler.verifyLanguage(workingLabel, workingLang.get())) {
++                            reportError("'" + lang + "' is not a valid language tag ", lineNo, columnNo,
++                                    BasicParserSettings.VERIFY_LANGUAGE_TAGS, parserConfig, errListener);
++                        }
++                    } catch (LiteralUtilException e) {
++                        reportError("'" + label
++                                + " could not be verified by a language handler that recognised it. language was "
++                                + lang, lineNo, columnNo, BasicParserSettings.VERIFY_LANGUAGE_TAGS, parserConfig,
++                                errListener);
++                    }
++                }
++                if (parserConfig.get(BasicParserSettings.NORMALIZE_LANGUAGE_TAGS)) {
++                    try {
++                        result = nextHandler.normalizeLanguage(workingLabel, workingLang.get(), valueFactory);
++                        workingLabel = result.getLabel();
++                        workingLang = result.getLanguage();
++                        workingDatatype = result.getDatatype();
++                    } catch (LiteralUtilException e) {
++                        reportError(
++                                "'" + label + "' did not have a valid value for language " + lang + ": "
++                                        + e.getMessage() + " and could not be normalised",
++                                lineNo, columnNo, BasicParserSettings.NORMALIZE_LANGUAGE_TAGS, parserConfig,
++                                errListener);
++                    }
++                }
++            }
++        }
++        if (!recognisedLanguage) {
++            reportError("'" + label
++                    + "' was not recognised as a language literal, and could not be verified, with language "
++                    + lang, lineNo, columnNo, BasicParserSettings.FAIL_ON_UNKNOWN_LANGUAGES, parserConfig,
++                    errListener);
++        }
++    } else if (workingDatatype != null) {
++        boolean recognisedDatatype = false;
++        for (DatatypeHandler nextHandler : parserConfig.get(BasicParserSettings.DATATYPE_HANDLERS)) {
++            if (nextHandler.isRecognizedDatatype(workingDatatype)) {
++                recognisedDatatype = true;
++                if (parserConfig.get(BasicParserSettings.VERIFY_DATATYPE_VALUES)) {
++                    try {
++                        if (!nextHandler.verifyDatatype(workingLabel, workingDatatype)) {
++                            reportError("'" + label + "' is not a valid value for datatype " + datatype, lineNo,
++                                    columnNo, BasicParserSettings.VERIFY_DATATYPE_VALUES, parserConfig,
++                                    errListener);
++                        }
++                    } catch (LiteralUtilException e) {
++                        reportError("'" + label
++                                + " could not be verified by a datatype handler that recognised it. datatype was "
++                                + datatype, lineNo, columnNo, BasicParserSettings.VERIFY_DATATYPE_VALUES,
++                                parserConfig, errListener);
++                    }
++                }
++                if (parserConfig.get(BasicParserSettings.NORMALIZE_DATATYPE_VALUES)) {
++                    try {
++                        result = nextHandler.normalizeDatatype(workingLabel, workingDatatype, valueFactory);
++                        workingLabel = result.getLabel();
++                        workingLang = result.getLanguage();
++                        workingDatatype = result.getDatatype();
++                    } catch (LiteralUtilException e) {
++                        reportError(
++                                "'" + label + "' is not a valid value for datatype " + datatype + ": "
++                                        + e.getMessage() + " and could not be normalised",
++                                lineNo, columnNo, BasicParserSettings.NORMALIZE_DATATYPE_VALUES, parserConfig,
++                                errListener);
++                    }
++                }
++            }
++        }
++        if (!recognisedDatatype) {
++            reportError("'" + label + "' was not recognised, and could not be verified, with datatype " + datatype,
++                    lineNo, columnNo, BasicParserSettings.FAIL_ON_UNKNOWN_DATATYPES, parserConfig, errListener);
++        }
+ 
+-		}
++    }
+ 
+-		if (result == null) {
+-			try {
+-				// Removes datatype for langString datatype with no language tag when VERIFY_DATATYPE_VALUES is False.
+-				// Backup for unnormalised language literal creation
+-				if (workingLang.isPresent() && (workingDatatype == null || RDF.LANGSTRING.equals(workingDatatype))) {
+-					result = valueFactory.createLiteral(workingLabel, workingLang.get().intern());
+-				}
+-				// Backup for unnormalised datatype literal creation
+-				else if (workingDatatype != null) {
+-					result = valueFactory.createLiteral(workingLabel, workingDatatype);
+-				} else {
+-					result = valueFactory.createLiteral(workingLabel, XMLSchema.STRING);
+-				}
+-			} catch (Exception e) {
+-				reportFatalError(e, lineNo, columnNo, errListener);
+-			}
+-		}
++    // Add a condition before the final try-catch block for specific handling:
++    if (RDF.LANGSTRING.equals(workingDatatype) && !workingLang.isPresent()) {
++        if (!parserConfig.get(BasicParserSettings.VERIFY_DATATYPE_VALUES)) {
++            // Create a literal with default datatype XMLSchema.STRING
++            result = valueFactory.createLiteral(workingLabel, XMLSchema.STRING);
++        }
++        // Else, this will be handled as an error as per existing logic
++    }
+ 
+-		return result;
+-	}
++    if (result == null) {
++        try {
++            if (workingLang.isPresent() && (workingDatatype == null || RDF.LANGSTRING.equals(workingDatatype))) {
++                result = valueFactory.createLiteral(workingLabel, workingLang.get().intern());
++            } else if (workingDatatype != null) {
++                result = valueFactory.createLiteral(workingLabel, workingDatatype);
++            } else {
++                result = valueFactory.createLiteral(workingLabel, XMLSchema.STRING);
++            }
++        } catch (Exception e) {
++            reportFatalError(e, lineNo, columnNo, errListener);
++        }
++    }
++
++    return result;
++}
+ 
+ 	/**
+ 	 * Reports an error with associated line- and column number to the registered ParseErrorListener, if the given

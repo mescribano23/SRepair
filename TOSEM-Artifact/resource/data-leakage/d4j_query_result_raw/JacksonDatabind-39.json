@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.18208092485549132,
+    "input": "public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException\n{\n    // 29-Jan-2016, tatu: Simple skipping for all other tokens, but FIELD_NAME bit\n    //    special unfortunately\n    if (p.hasToken(JsonToken.FIELD_NAME)) {\n        while (true) {\n            JsonToken t = p.nextToken();\n            if ((t == null) || (t == JsonToken.END_OBJECT)) {\n                break;\n            }\n            p.skipChildren();\n        }\n    } else {\n        p.skipChildren();\n    }\n    return null;\n}",
+    "query_result": [
+        "public Object deserialize(JsonParser p, Deserializ",
+        "ublic Object deserialize(JsonParser p, Deserializa",
+        "blic Object deserialize(JsonParser p, Deserializat",
+        "lic Object deserialize(JsonParser p, Deserializati",
+        "ic Object deserialize(JsonParser p, Deserializatio",
+        "c Object deserialize(JsonParser p, Deserialization",
+        " Object deserialize(JsonParser p, DeserializationC",
+        "Object deserialize(JsonParser p, DeserializationCo",
+        "bject deserialize(JsonParser p, DeserializationCon",
+        "ject deserialize(JsonParser p, DeserializationCont",
+        "ect deserialize(JsonParser p, DeserializationConte",
+        "ct deserialize(JsonParser p, DeserializationContex",
+        "t deserialize(JsonParser p, DeserializationContext",
+        " deserialize(JsonParser p, DeserializationContext ",
+        "deserialize(JsonParser p, DeserializationContext c",
+        "eserialize(JsonParser p, DeserializationContext ct",
+        "serialize(JsonParser p, DeserializationContext ctx",
+        "erialize(JsonParser p, DeserializationContext ctxt",
+        "rialize(JsonParser p, DeserializationContext ctxt)",
+        "ialize(JsonParser p, DeserializationContext ctxt) "
+    ]
+}

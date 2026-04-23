@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.5921052631578947,
+    "input": "    private <T> CollectionMapping createCollectionMapping(final ParameterizedType aType, final Type root) {\n        final Type[] fieldArgTypes = aType.getActualTypeArguments();\n        final Type raw = aType.getRawType();\n        if (fieldArgTypes.length == 1 && Class.class.isInstance(raw)) {\n            final Class<?> r = Class.class.cast(raw);\n            final Class<?> collectionType;\n            if (List.class.isAssignableFrom(r)) {\n                collectionType = List.class;\n            } else if (SortedSet.class.isAssignableFrom(r)) {\n                collectionType = SortedSet.class;\n            } else if (EnumSet.class.isAssignableFrom(r)) {\n                collectionType = EnumSet.class;\n            } else if (Set.class.isAssignableFrom(r)) {\n                collectionType = Set.class;\n            } else if (Deque.class.isAssignableFrom(r)) {\n                collectionType = Deque.class;\n            } else if (Queue.class.isAssignableFrom(r)) {\n                collectionType = Queue.class;\n            } else if (Collection.class.isAssignableFrom(r)) {\n                collectionType = Collection.class;\n            } else {\n                return null;\n            }\n\n            final CollectionMapping mapping = new CollectionMapping(isPrimitive(fieldArgTypes[0]), collectionType,\n                    Generics.resolve(fieldArgTypes[0], Class.class.isInstance(root) ? Class.class.cast(root) : null));\n            collections.putIfAbsent(aType, mapping);\n            return mapping;\n        }\n        return null;\n    }",
+    "query_result": [
+        "ypes = aType.getActualTypeArguments();\nfinal Type raw = aType.getRawType();\nif (fieldArgTypes.length == 1 && Class.class.isInstance(raw)) {\nfinal Class<?> r = Class.class.cast(raw);\nfinal Class<?> collectionType;\nif (List.class.isAssignableFrom(r)) {",
+        "e.class.isAssignableFrom(r)) {\ncollectionType = Queue.class;\n} else if (Collection.class.isAssignableFrom(r)) {\ncollectionType = Collection.class;\n} else {\nreturn null;\n}\nfinal CollectionMapping mapping = new CollectionMapping(isPrimitive(fieldArgTyp",
+        "T> CollectionMapping createCollectionMapping(final",
+        "Type[] fieldArgTypes = aType.getActualTypeArgument",
+        "ype[] fieldArgTypes = aType.getActualTypeArguments",
+        "pe[] fieldArgTypes = aType.getActualTypeArguments(",
+        "e[] fieldArgTypes = aType.getActualTypeArguments()",
+        "[] fieldArgTypes = aType.getActualTypeArguments();",
+        "] fieldArgTypes = aType.getActualTypeArguments();\n",
+        " fieldArgTypes = aType.getActualTypeArguments();\nf",
+        "class;\n} else if (SortedSet.class.isAssignableFrom",
+        "lass;\n} else if (SortedSet.class.isAssignableFrom(",
+        "class.isAssignableFrom(r)) {\ncollectionType = Sort",
+        "ions.putIfAbsent(aType, mapping);\nreturn mapping;\n"
+    ]
+}

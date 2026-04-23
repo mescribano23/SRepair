@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.9265175718849841,
+    "input": "    public String tablecell(String content, TableCellFlags flags){\n        String cellType;\n        if(flags.isHeader()){\n            cellType = \"th\";\n        } else {\n            cellType = \"td\";\n        }\n\n        String align = flags.getAlign();\n        if(align != null){\n            return \"<\" + cellType + \" style=\\\"text-align: \" + align + \"\\\">\" + content + \"</\" + cellType + \">\\n\";\n        } else {\n            return \"<\" + cellType + \">\" + content + \"</\" + cellType + \">\\n\";\n        }\n    }",
+    "query_result": [
+        " String tablecell(String content, TableCellFlags flags){\nString cellType;\nif(flags.isHeader()){\ncellType = \"th\";\n} else {\ncellType = \"td\";\n}\nString align = flags.getAlign();\nif(align != null){\nreturn \"<\" + cellType + \" style=\\\"text-align: \" + align + \"\\\">\" + content + \"</\" + cellType + \">\\n\";\n} else {\nreturn \"<\" + cellType + \">\" + content + \"</\" + ",
+        ", TableCellFlags flags){\nString cellType;\nif(flags.isHeader()){\ncellType = \"th\";\n} else {\ncellType = \"td\";\n}\nString align = flags.getAlign();\nif(align != null){\nreturn \"<\" + cellType + \" style=\\\"text-align: \" + align + \"\\\">\" + content + \"</\" + cellType + \">\\n\";\n} else {\nreturn \"<\" + cellType + \">\" +"
+    ]
+}

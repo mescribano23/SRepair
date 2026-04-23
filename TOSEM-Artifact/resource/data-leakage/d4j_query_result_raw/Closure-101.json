@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4878472222222222,
+    "input": "protected CompilerOptions createOptions() {\n  CompilerOptions options = new CompilerOptions();\n  options.setCodingConvention(new ClosureCodingConvention());\n  CompilationLevel level = flags.compilation_level;\n  level.setOptionsForCompilationLevel(options);\n  if (flags.debug) {\n    level.setDebugOptionsForCompilationLevel(options);\n  }\n\n  WarningLevel wLevel = flags.warning_level;\n  wLevel.setOptionsForWarningLevel(options);\n  for (FormattingOption formattingOption : flags.formatting) {\n    formattingOption.applyToOptions(options);\n  }\n\n  options.closurePass = flags.process_closure_primitives;\n  initOptionsFromFlags(options);\n  return options;\n}",
+    "query_result": [
+        ".setOptionsForWarningLevel(options);\nfor (FormattingOption formattingOption : flags.formatting) {\nformattingOption.applyToOptions(options);\n}\noptions.",
+        "otected CompilerOptions createOptions() {\nCompilerOptions options = new CompilerOptions();\noptions.s",
+        "eateOptions() {\nCompilerOptions options = new CompilerOptions();\noptions.setCodingConvention(new Clo",
+        "teOptions() {\nCompilerOptions options = new CompilerOptions();\noptions.setCodingConvention(new Closu",
+        "() {\nCompilerOptions options = new CompilerOptions();\noptions.setCodingConvention(new ClosureCodingC",
+        "{\nCompilerOptions options = new CompilerOptions();\noptions.setCodingConvention(new ClosureCodingConv",
+        "ompilerOptions options = new CompilerOptions();\noptions.setCodingConvention(new ClosureCodingConvent",
+        "pilerOptions options = new CompilerOptions();\noptions.setCodingConvention(new ClosureCodingConventio",
+        "ilerOptions options = new CompilerOptions();\noptions.setCodingConvention(new ClosureCodingConvention",
+        "lerOptions options = new CompilerOptions();\noptions.setCodingConvention(new ClosureCodingConvention(",
+        "vel.setOptionsForWarningLevel(options);\nfor (FormattingOption formattingOption : flags.formatting) {",
+        "tected CompilerOptions createOptions() {\nCompilerO",
+        "ected CompilerOptions createOptions() {\nCompilerOp",
+        "CompilerOptions createOptions() {\nCompilerOptions ",
+        "Options createOptions() {\nCompilerOptions options ",
+        "tions createOptions() {\nCompilerOptions options = ",
+        "ateOptions() {\nCompilerOptions options = new Compi",
+        "Options() {\nCompilerOptions options = new Compiler",
+        "tions() {\nCompilerOptions options = new CompilerOp",
+        "ons() {\nCompilerOptions options = new CompilerOpti"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.39038785834738615,
+    "input": "    public static Range iterateZBounds(XYZDataset dataset,\n            boolean includeInterval) {\n        double minimum = Double.POSITIVE_INFINITY;\n        double maximum = Double.NEGATIVE_INFINITY;\n        int seriesCount = dataset.getSeriesCount();\n\n        if (includeInterval && dataset instanceof IntervalXYZDataset) {\n            IntervalXYZDataset intervalDataset = (IntervalXYZDataset) dataset;\n            for (int series = 0; series < seriesCount; series++) {\n                int itemCount = dataset.getItemCount(series);\n                for (int item = 0; item < itemCount; item++) {\n                    // first apply the z-value itself\n                    double value = dataset.getZValue(series, item);\n                    if (!Double.isNaN(value)) {\n                        minimum = Math.min(minimum, value);\n                        maximum = Math.max(maximum, value);\n                    }\n                    \n                    Number start = intervalDataset.getStartZValue(series, item);\n                    if (start != null && !Double.isNaN(start.doubleValue())) {\n                        minimum = Math.min(minimum, start.doubleValue());\n                        maximum = Math.max(maximum, start.doubleValue());                        \n                    }\n                    Number end = intervalDataset.getEndZValue(series, item);\n                    if (end != null && !Double.isNaN(end.doubleValue())) {\n                        minimum = Math.min(minimum, end.doubleValue());\n                        maximum = Math.max(maximum, end.doubleValue());                        \n                    }\n                }\n            }            \n        } else {\n            for (int series = 0; series < seriesCount; series++) {\n                int itemCount = dataset.getItemCount(series);\n                for (int item = 0; item < itemCount; item++) {\n                    double value = dataset.getZValue(series, item);\n                    if (!Double.isNaN(value)) {\n      ",
+    "query_result": [
+        "olean includeInterval) {\ndouble minimum = Double.POSITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCount = dataset.getSeriesCoun",
+        "ITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCount = dataset.getSeriesCount();\nif (includeInterval && dataset instanceof Inter",
+        "t) dataset;\nfor (int series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (int item = 0; item < itemCount; ",
+        " {\nfor (int series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (int item = 0; item < itemCount; item++) {",
+        "(int series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (int item = 0; item < itemCount; item++) {\ndouble",
+        "nt series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (int item = 0; item < itemCount; item++) {\ndouble v",
+        " series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (int item = 0; item < itemCount; item++) {\ndouble val",
+        "eriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (int item = 0; item < itemCount; item++) {\ndouble value = dataset.getZValue(",
+        "\ndouble minimum = Double.POSITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCou",
+        "double minimum = Double.POSITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCoun",
+        "ouble minimum = Double.POSITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCount",
+        "mum = Double.POSITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCount = dataset",
+        " = Double.POSITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCount = dataset.ge",
+        "Double.POSITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCount = dataset.getSe",
+        "SITIVE_INFINITY;\ndouble maximum = Double.NEGATIVE_INFINITY;\nint seriesCount = dataset.getSeriesCount",
+        "(int series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor",
+        "int series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor ",
+        "nt series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (",
+        "t series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (i",
+        " series = 0; series < seriesCount; series++) {\nint itemCount = dataset.getItemCount(series);\nfor (in"
+    ]
+}

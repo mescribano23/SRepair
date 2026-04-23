@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.15868673050615595,
+    "input": "    private static Validator newValidator(final Object validatorObject, final Method publicMethod, QName name) {\n        Validator validator = new BaseValidator(name) {\n            @Override\n            public boolean validate(Object subject) {\n                try {\n                    return Boolean.parseBoolean(publicMethod.invoke(validatorObject, subject).toString());\n                } catch (InvocationTargetException e) {\n                    throw new SwitchYardException(\"Error executing @Validator method '\" + publicMethod.getName() + \"' on class '\" + publicMethod.getDeclaringClass().getName() + \"'.\", e.getCause());\n                } catch (Exception e) {\n                    throw new SwitchYardException(\"Error executing @Validator method '\" + publicMethod.getName() + \"' on class '\" + publicMethod.getDeclaringClass().getName() + \"'.\", e);\n                }\n            }\n            \n            @Override\n            public Class<?> getType() {\n                return publicMethod.getParameterTypes()[0];\n            }\n        };\n\n        return validator;\n    }",
+    "query_result": [
+        ".toString());\n} catch (InvocationTargetException e",
+        "toString());\n} catch (InvocationTargetException e)",
+        "oString());\n} catch (InvocationTargetException e) ",
+        "String());\n} catch (InvocationTargetException e) {",
+        "tring());\n} catch (InvocationTargetException e) {\n",
+        "ing());\n} catch (InvocationTargetException e) {\nth",
+        "ng());\n} catch (InvocationTargetException e) {\nthr",
+        "g());\n} catch (InvocationTargetException e) {\nthro",
+        "());\n} catch (InvocationTargetException e) {\nthrow",
+        "));\n} catch (InvocationTargetException e) {\nthrow ",
+        ");\n} catch (InvocationTargetException e) {\nthrow n",
+        ";\n} catch (InvocationTargetException e) {\nthrow ne",
+        "\n} catch (InvocationTargetException e) {\nthrow new",
+        "} catch (InvocationTargetException e) {\nthrow new ",
+        " catch (InvocationTargetException e) {\nthrow new S",
+        ", e.getCause());\n} catch (Exception e) {\nthrow new",
+        " e.getCause());\n} catch (Exception e) {\nthrow new ",
+        "));\n} catch (Exception e) {\nthrow new SwitchYardEx",
+        ";\n} catch (Exception e) {\nthrow new SwitchYardExce",
+        " catch (Exception e) {\nthrow new SwitchYardExcepti"
+    ]
+}

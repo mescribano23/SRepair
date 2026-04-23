@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4740740740740741,
+    "input": "public static boolean isStaticResource(Class<?> cls) {\n        if(Modifier.isInterface(cls.getModifiers()) || Modifier.isAbstract(cls.getModifiers())) {\n            return false;\n        }\n        \n        if (cls.getAnnotation(Path.class) != null) {\n            return true;\n        }\n\n        Class<?> declaringClass = cls;\n\n        while (!declaringClass.equals(Object.class)) {\n            // try a superclass\n            Class<?> superclass = declaringClass.getSuperclass();\n            if (superclass.getAnnotation(Path.class) != null) {\n                // issue warning\n                logger.warn(Messages.getMessage(\"rootResourceShouldBeAnnotatedDirectly\", cls));\n                return true;\n            }\n\n            // try interfaces\n            Class<?>[] interfaces = declaringClass.getInterfaces();\n            for (Class<?> interfaceClass : interfaces) {\n                if (interfaceClass.getAnnotation(Path.class) != null) {\n                    // issue warning\n                    logger.warn(Messages.getMessage(\"rootResourceShouldBeAnnotatedDirectly\", cls));\n                    return true;\n                }\n            }\n            declaringClass = declaringClass.getSuperclass();\n        }\n        return false;\n    }",
+    "query_result": [
+        "laringClass.equals(Object.class)) {\n// try a superclass\nClass<?> superclass = declaringClass.getSuperclass();\nif (superclass.getAnnotation(Path.class)",
+        ";\n}\n// try interfaces\nClass<?>[] interfaces = declaringClass.getInterfaces();\nfor (Class<?> interfaceClass : interfaces) {\nif (interfaceClass.getAnnot",
+        "<?>[] interfaces = declaringClass.getInterfaces();\nfor (Class<?> interfaceClass : interfaces) {\nif (interfaceClass.getAnnotation(Path.class) != null) ",
+        "declaringClass.equals(Object.class)) {\n// try a superclass\nClass<?> superclass = declaringClass.getS",
+        "\nClass<?>[] interfaces = declaringClass.getInterfaces();\nfor (Class<?> interfaceClass : interfaces) ",
+        "interfaces = declaringClass.getInterfaces();\nfor (Class<?> interfaceClass : interfaces) {\nif (interf",
+        "odifier.isInterface(cls.getModifiers()) || Modifie",
+        "tModifiers()) || Modifier.isAbstract(cls.getModifi",
+        "odifiers()) || Modifier.isAbstract(cls.getModifier",
+        ") || Modifier.isAbstract(cls.getModifiers())) {\nre",
+        "ass<?> superclass = declaringClass.getSuperclass()",
+        "ass.getSuperclass();\nif (superclass.getAnnotation(",
+        "Class.getInterfaces();\nfor (Class<?> interfaceClas",
+        "lass.getInterfaces();\nfor (Class<?> interfaceClass",
+        "s.getInterfaces();\nfor (Class<?> interfaceClass : ",
+        ".getInterfaces();\nfor (Class<?> interfaceClass : i",
+        "getInterfaces();\nfor (Class<?> interfaceClass : in",
+        "etInterfaces();\nfor (Class<?> interfaceClass : int",
+        "Interfaces();\nfor (Class<?> interfaceClass : inter",
+        "nterfaces();\nfor (Class<?> interfaceClass : interf"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8186046511627907,
+    "input": "    private Integer getPivotRow(final int col, final SimplexTableau tableau) {\n        double minRatio = Double.MAX_VALUE;\n        Integer minRatioPos = null;\n        for (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\n            final double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\n            final double entry = tableau.getEntry(i, col);\n            if (MathUtils.compareTo(entry, 0, epsilon) > 0) {\n                final double ratio = rhs / entry;\n                if (ratio < minRatio) {\n                    minRatio = ratio;\n                    minRatioPos = i; \n                }\n            }\n        }\n        return minRatioPos;\n    }",
+    "query_result": [
+        "for (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau.getEntry(i, col);\nif (MathUtils.compareTo(entry, 0, epsilon) > 0) {\nfinal double ratio = rhs / entry;\nif (ratio < minRatio) {\n",
+        " minRatioPos = null;\nfor (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau.getEn",
+        "r (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal d",
+        "nt i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal doubl",
+        "leau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = ",
+        ".getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tabl",
+        "tNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau",
+        "NumObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau.",
+        "ObjectiveFunctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau.get",
+        "unctions(); i < tableau.getHeight(); i++) {\nfinal double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau.getEntry(i, c",
+        "inRatio = Double.MAX_VALUE;\nInteger minRatioPos = null;\nfor (int i = tableau.getNumObjectiveFunction",
+        "inRatioPos = null;\nfor (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\n",
+        "e rhs = tableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau.getEntry(i, col);\n",
+        "ableau.getEntry(i, tableau.getWidth() - 1);\nfinal double entry = tableau.getEntry(i, col);\nif (MathU",
+        "getPivotRow(final int col, final SimplexTableau ta",
+        "etPivotRow(final int col, final SimplexTableau tab",
+        "nRatioPos = null;\nfor (int i = tableau.getNumObjec",
+        " null;\nfor (int i = tableau.getNumObjectiveFunctio",
+        "ull;\nfor (int i = tableau.getNumObjectiveFunctions",
+        "l;\nfor (int i = tableau.getNumObjectiveFunctions()"
+    ]
+}

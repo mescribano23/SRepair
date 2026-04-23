@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.9489795918367347,
+    "input": "public Timer(long durationMillis) {\n        validateInput(durationMillis);\n        this.durationMillis = durationMillis;\n    }",
+    "query_result": [
+        "ublic Timer(long durationMillis) { validateInput(durationMillis); this.durationMillis = durationMill",
+        "validateInput(durationMillis); this.durationMilli",
+        "alidateInput(durationMillis); this.durationMillis"
+    ]
+}

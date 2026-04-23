@@ -1,0 +1,20 @@
+diff --git a/core/src/main/java/dagger/ObjectGraph.java b/core/src/main/java/dagger/ObjectGraph.java
+index ccc24809..0d8c4be4 100644
+--- a/core/src/main/java/dagger/ObjectGraph.java
++++ b/core/src/main/java/dagger/ObjectGraph.java
+@@ -145,10 +145,12 @@ public final class ObjectGraph {
+    * <p>This <strong>does not</strong> inject any members or validate the graph.
+    * See {@link #create} for guidance on injection and validation.
+    */
+-  public ObjectGraph plus(Object... modules) {
+-    linker.linkAll();
++public ObjectGraph plus(Object... modules) {
++    synchronized (linker) {
++        linker.linkAll();
++    }
+     return makeGraph(this, plugin, modules);
+-  }
++}
+ 
+ 
+   private void linkStaticInjections() {

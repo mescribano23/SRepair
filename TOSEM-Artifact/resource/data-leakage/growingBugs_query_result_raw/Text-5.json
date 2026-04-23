@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9753787878787878,
+    "input": "private String parseFormatDescription(final String pattern, final ParsePosition pos) {\n        final int start = pos.getIndex();\n        seekNonWs(pattern, pos);\n        final int text = pos.getIndex();\n        int depth = 1;\n        while (pos.getIndex() < pattern.length()) {\n            switch (pattern.charAt(pos.getIndex())) {\n            case START_FE:\n                depth++;\n                next(pos);\n                break;\n            case END_FE:\n                depth--;\n                if (depth == 0) {\n                    return pattern.substring(text, pos.getIndex());\n                }\n                next(pos);\n                break;\n            case QUOTE:\n                getQuotedString(pattern, pos);\n                break;\n            default:\n                next(pos);\n                break;\n            }\n        }\n        throw new IllegalArgumentException(\n                \"Unterminated format element at position \" + start);\n    }",
+    "query_result": [
+        "ion(final String pattern, final ParsePosition pos) {\nfinal int start = pos.getIndex();\nseekNonWs(pattern, pos);\nfinal int text = pos.getIndex();\nint depth = 1;\nwhile (pos.getIndex() < pattern.length()) {\nswitch (pattern.charAt(pos.getIndex())) {\ncase START_FE:\ndepth++;\nnext(pos);\nbreak;\ncase END_FE:\ndepth--;\nif (depth == 0) {\nreturn pattern.substring(text, pos.getIndex());\n}\nnext(pos);\nbreak;\ncase QUOTE:\ngetQuotedString(pattern, pos);\nbreak;\ndefault:\nnext(pos);\nbreak;\n}\n}\nthrow new IllegalArgumentException(\n\"Unterminated format element at posit",
+        "arseFormatDescription(final String pattern, final ParsePosition pos) {\nfinal int start = pos.getIndex();\nseekNonWs(pattern, pos);\nfinal int text = pos",
+        "Description(final String pattern, final ParsePosition pos) {\nfinal int start = pos.getIndex();\nseekN",
+        "l String pattern, final ParsePosition pos) {\nfinal int start = pos.getIndex();\nseekNonWs(pattern, po",
+        "private String parseFormatDescription(final String",
+        "rivate String parseFormatDescription(final String ",
+        "ivate String parseFormatDescription(final String p",
+        "ate String parseFormatDescription(final String pat",
+        "ring parseFormatDescription(final String pattern, ",
+        "ing parseFormatDescription(final String pattern, f",
+        "ng parseFormatDescription(final String pattern, fi",
+        "parseFormatDescription(final String pattern, final",
+        "FormatDescription(final String pattern, final Pars",
+        "ormatDescription(final String pattern, final Parse",
+        "ription(final String pattern, final ParsePosition ",
+        "ption(final String pattern, final ParsePosition po",
+        "tion(final String pattern, final ParsePosition pos",
+        "on(final String pattern, final ParsePosition pos) ",
+        "n(final String pattern, final ParsePosition pos) {",
+        "reak;\ncase END_FE:\ndepth--;\nif (depth == 0) {\nretu"
+    ]
+}

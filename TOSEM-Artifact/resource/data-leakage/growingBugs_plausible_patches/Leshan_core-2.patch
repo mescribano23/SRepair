@@ -1,0 +1,17 @@
+diff --git a/leshan-core/src/main/java/org/eclipse/leshan/core/node/codec/tlv/LwM2mNodeTlvDecoder.java b/leshan-core/src/main/java/org/eclipse/leshan/core/node/codec/tlv/LwM2mNodeTlvDecoder.java
+index 13ef1161..6dffd7b1 100644
+--- a/leshan-core/src/main/java/org/eclipse/leshan/core/node/codec/tlv/LwM2mNodeTlvDecoder.java
++++ b/leshan-core/src/main/java/org/eclipse/leshan/core/node/codec/tlv/LwM2mNodeTlvDecoder.java
+@@ -181,6 +181,12 @@ public class LwM2mNodeTlvDecoder {
+                 throw new CodecException("Expected TLV of type RESOURCE_INSTANCE but was %s for path %s",
+                         tlvChild.getType().name(), path);
+ 
++            // Check if the identifier already exists in the map
++            if (values.containsKey(tlvChild.getIdentifier())) {
++                throw new CodecException("Duplicate RESOURCE_INSTANCE identifier %d found for path %s",
++                        tlvChild.getIdentifier(), path);
++            }
++
+             values.put(tlvChild.getIdentifier(), parseTlvValue(tlvChild.getValue(), expectedType, path));
+         }
+         return values;

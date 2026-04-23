@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.7912946428571429,
+    "input": "    public void validate(final WriteableCommandLine commandLine)\n        throws OptionException {\n        // number of options found\n        int present = 0;\n\n        // reference to first unexpected option\n        Option unexpected = null;\n\n        for (final Iterator i = options.iterator(); i.hasNext();) {\n            final Option option = (Option) i.next();\n\n            // needs validation?\n            boolean validate = option.isRequired() || option instanceof Group;\n\n            // if the child option is present then validate it\n            if (commandLine.hasOption(option)) {\n                if (++present > maximum) {\n                    unexpected = option;\n\n                    break;\n                }\n                validate = true;\n            }\n\n            if (validate) {\n                option.validate(commandLine);\n            }\n        }\n\n        // too many options\n        if (unexpected != null) {\n            throw new OptionException(this, ResourceConstants.UNEXPECTED_TOKEN,\n                                      unexpected.getPreferredName());\n        }\n\n        // too few option\n        if (present < minimum) {\n            throw new OptionException(this, ResourceConstants.MISSING_OPTION);\n        }\n\n        // validate each anonymous argument\n        for (final Iterator i = anonymous.iterator(); i.hasNext();) {\n            final Option option = (Option) i.next();\n            option.validate(commandLine);\n        }\n    }",
+    "query_result": [
+        "ndLine);\n}\n}\n// too many options\nif (unexpected != null) {\nthrow new OptionException(this, ResourceConstants.UNEXPECTED_TOKEN,\nunexpected.getPreferredName());\n}\n// too few option\nif (present < minimum) {\nthrow new OptionException(this, ResourceConstants.MISSING_OPTION);\n}\n// validate each anonymous argument\nfor (final Iterator i = anonymous.iterator(); i.hasNext();) {\nfinal Option option = (Option",
+        "ommandLine commandLine)\nthrows OptionException {\n// number of options found\nint present = 0;\n// reference to first unexpected option\nOption unexpected = null;\nfor (final Iterator i = options.iterator(); i.hasNext();) {\nfinal Option option = (Option) ",
+        "mber of options found\nint present = 0;\n// reference to first unexpected option\nOption unexpected = n",
+        "option is present then validate it\nif (commandLine.hasOption(option)) {\nif (++present > maximum) {\nu",
+        "r (final Iterator i = anonymous.iterator(); i.hasNext();) {\nfinal Option option = (Option) i.next();",
+        "id validate(final WriteableCommandLine commandLine",
+        "ator i = options.iterator(); i.hasNext();) {\nfinal",
+        "tions.iterator(); i.hasNext();) {\nfinal Option opt",
+        "r(); i.hasNext();) {\nfinal Option option = (Option",
+        "; i.hasNext();) {\nfinal Option option = (Option) i",
+        "ext();) {\nfinal Option option = (Option) i.next();",
+        ") {\nthrow new OptionException(this, ResourceConsta",
+        "for (final Iterator i = anonymous.iterator(); i.ha",
+        "); i.hasNext();) {\nfinal Option option = (Option) ",
+        "; i.hasNext();) {\nfinal Option option = (Option) i",
+        " Option option = (Option) i.next();\noption.validat"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3855042016806723,
+    "input": "public int translate(CharSequence input, int index, Writer out) throws IOException {\n    int seqEnd = input.length();\n    // Uses -2 to ensure there is something after the &#\n    if(input.charAt(index) == '&' && index < seqEnd - 2 && input.charAt(index + 1) == '#') {\n        int start = index + 2;\n        boolean isHex = false;\n\n        char firstChar = input.charAt(start);\n        if(firstChar == 'x' || firstChar == 'X') {\n            start++;\n            isHex = true;\n\n            // Check there's more than just an x after the &#\n            if(start == seqEnd) {\n                return 0;\n            }\n        }\n\n        int end = start;\n        // Note that this supports character codes without a ; on the end\n        while(end < seqEnd && ( (input.charAt(end) >= '0' && input.charAt(end) <= '9') ||\n                                (input.charAt(end) >= 'a' && input.charAt(end) <= 'f') ||\n                                (input.charAt(end) >= 'A' && input.charAt(end) <= 'F') ) )\n        {\n            end++;\n        }\n\n        int entityValue;\n        try {\n            if(isHex) {\n                entityValue = Integer.parseInt(input.subSequence(start, end).toString(), 16);\n            } else {\n                entityValue = Integer.parseInt(input.subSequence(start, end).toString(), 10);\n            }\n        } catch(NumberFormatException nfe) {\n        System.err.println(\"FAIL: \" + input.subSequence(start, end) + \"[\" + start +\"][\"+ end +\"]\");\n            return 0;\n        }\n\n   ",
+    "query_result": [
+        "false;\nchar firstChar = input.charAt(start);\nif(firstChar == 'x' || firstChar == 'X') {\nstart++;\nisH",
+        "== 'x' || firstChar == 'X') {\nstart++;\nisHex = true;\n// Check there's more than just an x after the ",
+        "qEnd) {\nreturn 0;\n}\n}\nint end = start;\n// Note that this supports character codes without a ; on the",
+        "lue = Integer.parseInt(input.subSequence(start, end).toString(), 10);\n}\n} catch(NumberFormatExceptio",
+        "ic int translate(CharSequence input, int index, Wr",
+        "c int translate(CharSequence input, int index, Wri",
+        " int translate(CharSequence input, int index, Writ",
+        "nt translate(CharSequence input, int index, Writer",
+        " translate(CharSequence input, int index, Writer o",
+        "translate(CharSequence input, int index, Writer ou",
+        "ranslate(CharSequence input, int index, Writer out",
+        "anslate(CharSequence input, int index, Writer out)",
+        "nslate(CharSequence input, int index, Writer out) ",
+        "slate(CharSequence input, int index, Writer out) t",
+        "late(CharSequence input, int index, Writer out) th",
+        "te(CharSequence input, int index, Writer out) thro",
+        "rSequence input, int index, Writer out) throws IOE",
+        "Sequence input, int index, Writer out) throws IOEx",
+        "equence input, int index, Writer out) throws IOExc",
+        "quence input, int index, Writer out) throws IOExce"
+    ]
+}

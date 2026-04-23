@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.512735326688815,
+    "input": "    static void parseSettings(final XmlPullParser reader, MavenSettings mavenSettings) throws XmlPullParserException, IOException {\n        int eventType;\n        while ((eventType = reader.nextTag()) != END_DOCUMENT) {\n            switch (eventType) {\n                case END_TAG: {\n                    return;\n                }\n                case START_TAG: {\n\n                    switch (reader.getName()) {\n                        case \"localRepository\": {\n                            String localRepository = reader.nextText();\n                            boolean localRepositoryNotDefinedViaProperty = mavenSettings.getLocalRepository() == null;\n                            if (localRepositoryNotDefinedViaProperty && localRepository != null && !localRepository.trim().isEmpty()) {\n                                mavenSettings.setLocalRepository(Paths.get(interpolateVariables(localRepository)));\n                            }\n                            break;\n                        }\n                        case \"proxies\": {\n                            while ((eventType = reader.nextTag()) != END_DOCUMENT) {\n                                if (eventType == START_TAG) {\n                                    switch (reader.getName()) {\n                                        case \"proxy\": {\n                                            parseProxy(reader, mavenSettings);\n                                            break;\n                                        }\n                                    }\n                                } else {\n                                    break;\n                                }\n                            }\n                            break;\n                        }\n                        case \"profiles\": {\n                            while ((eventType = reader.nextTag()) != END_DOCUMENT) {\n                                if (eventType == START_TAG) {\n                                    switch (reader.getName()) {\n                    ",
+    "query_result": [
+        "llParser reader, MavenSettings mavenSettings) throws XmlPullParserException, IOException {\nint eventType;\nwhile ((eventType = reader.nextTag()) != END_DOCUMENT) {\nswitch (eventType) {\ncase END_TAG: {\nreturn;\n}\ncase START_TAG: {\nswitch (reader.getName()) {\ncase \"localRepository\": {\nString localReposi",
+        "hile ((eventType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader",
+        "((eventType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader.getN",
+        "ntType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader.getName()",
+        "tType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader.getName())",
+        "e = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader.getName()) {\nc",
+        "hile ((eventType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader",
+        "((eventType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader.getN",
+        "ntType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader.getName()",
+        "tType = reader.nextTag()) != END_DOCUMENT) {\nif (eventType == START_TAG) {\nswitch (reader.getName())",
+        "ettings mavenSettings) throws XmlPullParserExcepti",
+        ") throws XmlPullParserException, IOException {\nint",
+        " throws XmlPullParserException, IOException {\nint ",
+        "throws XmlPullParserException, IOException {\nint e",
+        "hrows XmlPullParserException, IOException {\nint ev",
+        "rows XmlPullParserException, IOException {\nint eve",
+        "ows XmlPullParserException, IOException {\nint even",
+        "s XmlPullParserException, IOException {\nint eventT",
+        " XmlPullParserException, IOException {\nint eventTy",
+        "XmlPullParserException, IOException {\nint eventTyp"
+    ]
+}

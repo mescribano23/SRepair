@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7637362637362637,
+    "input": "    public void atan2(final double[] y, final int yOffset,\n                      final double[] x, final int xOffset,\n                      final double[] result, final int resultOffset) {\n\n        // compute r = sqrt(x^2+y^2)\n        double[] tmp1 = new double[getSize()];\n        multiply(x, xOffset, x, xOffset, tmp1, 0);      // x^2\n        double[] tmp2 = new double[getSize()];\n        multiply(y, yOffset, y, yOffset, tmp2, 0);      // y^2\n        add(tmp1, 0, tmp2, 0, tmp2, 0);                 // x^2 + y^2\n        rootN(tmp2, 0, 2, tmp1, 0);                     // r = sqrt(x^2 + y^2)\n\n        if (x[xOffset] >= 0) {\n\n            // compute atan2(y, x) = 2 atan(y / (r + x))\n            add(tmp1, 0, x, xOffset, tmp2, 0);          // r + x\n            divide(y, yOffset, tmp2, 0, tmp1, 0);       // y /(r + x)\n            atan(tmp1, 0, tmp2, 0);                     // atan(y / (r + x))\n            for (int i = 0; i < tmp2.length; ++i) {\n                result[resultOffset + i] = 2 * tmp2[i]; // 2 * atan(y / (r + x))\n            }\n\n        } else {\n\n            // compute atan2(y, x) = +/- pi - 2 atan(y / (r - x))\n            subtract(tmp1, 0, x, xOffset, tmp2, 0);     // r - x\n            divide(y, yOffset, tmp2, 0, tmp1, 0);       // y /(r - x)\n            atan(tmp1, 0, tmp2, 0);                     // atan(y / (r - x))\n            result[resultOffset] =\n                    ((tmp2[0] <= 0) ? -FastMath.PI : FastMath.PI) - 2 * tmp2[0]; // +/-pi - 2 * atan(y / (r - x))\n            for (int i = 1; i < tmp2.length; ++i) {\n                result[resultOffset + i] = -2 * tmp2[i]; // +/-pi - 2 * atan(y / (r - x))\n            }\n\n        }\n\n        // fix value to take special cases (+0/+0, +0/-0, -0/+0, -0/-0, +/-infinity) correctly\n        result[resultOffset] = FastMath.atan2(y[yOffset], x[xOffset]);\n\n    }",
+    "query_result": [
+        "x^2+y^2)\ndouble[] tmp1 = new double[getSize()];\nmultiply(x, xOffset, x, xOffset, tmp1, 0); // x^2\ndouble[] tmp2 = new double[getSize()];\nmultiply(y, yOffset, y, yOffset, tmp2, 0); // y^2\nadd(tmp1, 0, tmp2, 0, tmp2, 0); // x^2 + y^2\nrootN(tmp2, 0, 2, tmp1, 0); // r = sqrt(x^2 + y^2)\nif (x[xOffset] >=",
+        " / (r - x))\nsubtract(tmp1, 0, x, xOffset, tmp2, 0); // r - x\ndivide(y, yOffset, tmp2, 0, tmp1, 0); // y /(r - x)\natan(tmp1, 0, tmp2, 0); // atan(y / (r - x))\nresult[resultOffset] =\n((tmp2[0] <= 0) ? -FastMath.PI : FastMath.PI) - 2 * tmp2[0]; // +/-pi - 2 * atan(y / (r - x))\nfor (int i = 1; i < tmp2.",
+        "\nadd(tmp1, 0, x, xOffset, tmp2, 0); // r + x\ndivide(y, yOffset, tmp2, 0, tmp1, 0); // y /(r + x)\natan(tmp1, 0, tmp2, 0); // atan(y / (r + x))\nfor (int",
+        "2[i]; // +/-pi - 2 * atan(y / (r - x))\n}\n}\n// fix value to take special cases (+0/+0, +0/-0, -0/+0, -0/-0, +/-infinity) correctly\nresult[resultOffset]",
+        "e[] tmp1 = new double[getSize()];\nmultiply(x, xOff",
+        "ble[getSize()];\nmultiply(y, yOffset, y, yOffset, t",
+        "sult[resultOffset + i] = 2 * tmp2[i]; // 2 * atan(",
+        "ult[resultOffset + i] = 2 * tmp2[i]; // 2 * atan(y",
+        "[resultOffset + i] = 2 * tmp2[i]; // 2 * atan(y / ",
+        "ultOffset + i] = 2 * tmp2[i]; // 2 * atan(y / (r +",
+        "t + i] = 2 * tmp2[i]; // 2 * atan(y / (r + x))\n}\n}",
+        " {\n// compute atan2(y, x) = +/- pi - 2 atan(y / (r",
+        "compute atan2(y, x) = +/- pi - 2 atan(y / (r - x))",
+        "divide(y, yOffset, tmp2, 0, tmp1, 0); // y /(r - x",
+        ") ? -FastMath.PI : FastMath.PI) - 2 * tmp2[0]; // ",
+        "Math.PI : FastMath.PI) - 2 * tmp2[0]; // +/-pi - 2",
+        ".PI : FastMath.PI) - 2 * tmp2[0]; // +/-pi - 2 * a",
+        "lt[resultOffset + i] = -2 * tmp2[i]; // +/-pi - 2 ",
+        "t[resultOffset + i] = -2 * tmp2[i]; // +/-pi - 2 *",
+        "esultOffset + i] = -2 * tmp2[i]; // +/-pi - 2 * at"
+    ]
+}

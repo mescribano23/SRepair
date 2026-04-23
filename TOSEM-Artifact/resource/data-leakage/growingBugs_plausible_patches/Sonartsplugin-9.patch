@@ -1,0 +1,58 @@
+diff --git a/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java b/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java
+index 3e7b3f1..b9357f2 100644
+--- a/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java
++++ b/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java
+@@ -146,30 +146,27 @@ public class LCOVParserImpl implements LCOVParser {
+     LOG.warn(String.format("Problem during processing LCOV report: can't save %s data for line %s (%s).", dataType, lineNumber, e.getMessage()));
+   }
+ 
+-  @CheckForNull
+   private FileData loadCurrentFileData(final Map<InputFile, FileData> files, String line) {
+     String filePath = line.substring(SF.length());
+-    FileData fileData = null;
++    filePath = normalizePath(filePath); // Normalize the file path
+     
+-    // some tools (like Istanbul, Karma) provide relative paths, so let's consider them relative to project directory
++    FileData fileData = null;
+     InputFile inputFile = null;
++    
+     try {
+-        Paths.get(filePath);
+-        inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(filePath));    
+-    }
+-    catch (InvalidPathException ex) {
+-        LOG.debug("LCOV file referred to path that appears invalid (not just not on disk): " + filePath);
++      inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(filePath)); 
++    } catch (InvalidPathException ex) {
++      LOG.debug("LCOV file referred to path that appears invalid (not just not on disk): " + filePath);
+     }   
+         
+-    // Try to accommodate Angular projects that, when the angular template loader's used
+-    // by checking for a ! in the filepath if the path isn't found - have a bash at seeking
+-    // everything after the last ! as a second fallback pass
+-    if (inputFile == null && filePath.contains("!") && (filePath.indexOf("!") + 1) < filePath.length()) {
+-        String amendedPath = filePath.substring(filePath.indexOf("!") + 1);
+-        
++    if (inputFile == null && filePath.contains("!")) {
++      int lastExclamIndex = filePath.lastIndexOf("!");
++      if (lastExclamIndex + 1 < filePath.length()) {
++        String amendedPath = filePath.substring(lastExclamIndex + 1);
+         LOG.debug("Failed to resolve " + filePath + " as a valid source file, so attempting " + amendedPath + " instead");
+         
+-        inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(amendedPath));
++        inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(normalizePath(amendedPath))); // Normalize the amended path
++      }
+     }
+     
+     if (inputFile != null) {
+@@ -185,6 +182,10 @@ public class LCOVParserImpl implements LCOVParser {
+     return fileData;
+   }
+ 
++  private String normalizePath(String path) {
++    return Paths.get(path).normalize().toString();
++  }
++
+   private static class FileData {
+     /**
+      * line number -> branch number -> taken

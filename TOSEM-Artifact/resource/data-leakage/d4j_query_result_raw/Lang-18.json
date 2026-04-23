@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7387836490528414,
+    "input": "protected List<Rule> parsePattern() {\n    DateFormatSymbols symbols = new DateFormatSymbols(mLocale);\n    List<Rule> rules = new ArrayList<Rule>();\n\n    String[] ERAs = symbols.getEras();\n    String[] months = symbols.getMonths();\n    String[] shortMonths = symbols.getShortMonths();\n    String[] weekdays = symbols.getWeekdays();\n    String[] shortWeekdays = symbols.getShortWeekdays();\n    String[] AmPmStrings = symbols.getAmPmStrings();\n\n    int length = mPattern.length();\n    int[] indexRef = new int[1];\n\n    for (int i = 0; i < length; i++) {\n        indexRef[0] = i;\n        String token = parseToken(mPattern, indexRef);\n        i = indexRef[0];\n\n        int tokenLen = token.length();\n        if (tokenLen == 0) {\n            break;\n        }\n\n        Rule rule;\n        char c = token.charAt(0);\n\n        switch (c) {\n        case 'G': // era designator (text)\n            rule = new TextField(Calendar.ERA, ERAs);\n            break;\n        case 'y': // year (number)\n            if (tokenLen == 2) {\n                rule = TwoDigitYearField.INSTANCE;\n            } else {\n                rule = selectNumberRule(Calendar.YEAR, tokenLen < 4 ? 4 : tokenLen);\n            }\n            break;\n        case 'M': // month in year (text and number)\n            if (tokenLen >= 4) {\n                rule = new TextField(Calendar.MONTH, months);\n            } else if (tokenLen == 3) {\n                rule = new TextField(Calendar.MONTH, shortMonths);\n            } else if (tokenLen == 2) {\n ",
+    "query_result": [
+        "ar c = token.charAt(0);\nswitch (c) {\ncase 'G': // era designator (text)\nrule = new TextField(Calendar.ERA, ERAs);\nbreak;\ncase 'y': // year (number)\nif (tokenLen == 2) {\nrule = TwoDigitYearField.INSTANCE;\n} else {\nrule = selectNumberRule(Calendar.YEAR, tokenLen < 4 ? 4 : tokenLen);\n}\nbreak;\ncase 'M': // month in year (text and number)\nif (tokenLen >= 4) {\nrule = new TextField(Calendar.MONTH, months);\n} else if (tokenLen == 3) {\nrule = new TextField(Calendar.MONTH, shortMonths);\n} else if (tokenLe",
+        "xt and number)\nif (tokenLen >= 4) {\nrule = new TextField(Calendar.MONTH, months);\n} else if (tokenLen == 3) {\nrule = new TextField(Calendar.MONTH, sho",
+        "= symbols.getAmPmStrings();\nint length = mPattern.length();\nint[] indexRef = new int[1];\nfor (int i ",
+        " c = token.charAt(0);\nswitch (c) {\ncase 'G': // era designator (text)\nrule = new TextField(Calendar.",
+        "DigitYearField.INSTANCE;\n} else {\nrule = selectNumberRule(Calendar.YEAR, tokenLen < 4 ? 4 : tokenLen",
+        " {\nDateFormatSymbols symbols = new DateFormatSymbo",
+        "{\nDateFormatSymbols symbols = new DateFormatSymbol",
+        "\nDateFormatSymbols symbols = new DateFormatSymbols",
+        "DateFormatSymbols symbols = new DateFormatSymbols(",
+        "ist<Rule> rules = new ArrayList<Rule>();\nString[] ",
+        "tring[] shortWeekdays = symbols.getShortWeekdays()",
+        "tern.length();\nint[] indexRef = new int[1];\nfor (i",
+        "String token = parseToken(mPattern, indexRef);\ni =",
+        "ring token = parseToken(mPattern, indexRef);\ni = i",
+        " = parseToken(mPattern, indexRef);\ni = indexRef[0]",
+        "i = indexRef[0];\nint tokenLen = token.length();\nif",
+        "[0];\nint tokenLen = token.length();\nif (tokenLen =",
+        "int tokenLen = token.length();\nif (tokenLen == 0) ",
+        "Field(Calendar.ERA, ERAs);\nbreak;\ncase 'y': // yea",
+        "selectNumberRule(Calendar.YEAR, tokenLen < 4 ? 4 :"
+    ]
+}

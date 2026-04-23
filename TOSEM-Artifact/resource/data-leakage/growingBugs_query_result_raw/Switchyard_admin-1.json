@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.08576642335766424,
+    "input": "    private void addComponents() {\n        _componentServices = new LinkedHashMap<QName, ComponentService>();\n        if (_config.getComposite().getComponents() == null) {\n            return;\n        }\n        for (ComponentModel component : _config.getComposite().getComponents()) {\n            // TODO: we need a separate node for components, to support cases\n            // where the component implements no services.  Should also consider\n            // multiple services per component.\n            if (component.getServices().size() > 0) {\n                ComponentServiceModel service = component.getServices().get(0);\n                _componentServices.put(service.getQName(), new BaseComponentService(service, component, this));\n            }\n        }\n    }",
+    "query_result": [
+        "ponentServiceModel service = component.getServices"
+    ]
+}

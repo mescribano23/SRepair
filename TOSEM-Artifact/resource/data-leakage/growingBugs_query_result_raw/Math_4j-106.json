@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5882352941176471,
+    "input": "    public Fraction parse(String source, ParsePosition pos) {\n        // try to parse improper fraction\n        Fraction ret = super.parse(source, pos);\n        if (ret != null) {\n            return ret;\n        }\n        \n        int initialIndex = pos.getIndex();\n\n        // parse whitespace\n        parseAndIgnoreWhitespace(source, pos);\n\n        // parse whole\n        Number whole = getWholeFormat().parse(source, pos);\n        if (whole == null) {\n            // invalid integer number\n            // set index back to initial, error index should already be set\n            // character examined.\n            pos.setIndex(initialIndex);\n            return null;\n        }\n\n        // parse whitespace\n        parseAndIgnoreWhitespace(source, pos);\n        \n        // parse numerator\n        Number num = getNumeratorFormat().parse(source, pos);\n        if (num == null) {\n            // invalid integer number\n            // set index back to initial, error index should already be set\n            // character examined.\n            pos.setIndex(initialIndex);\n            return null;\n        }\n        \n        if (num.intValue() < 0) {\n            // minus signs should be leading, invalid expression\n            pos.setIndex(initialIndex);\n            return null;\n        }\n\n        // parse '/'\n        int startIndex = pos.getIndex();\n        char c = parseNextCharacter(source, pos);\n        switch (c) {\n        case 0 :\n            // no '/'\n            // return num as a fraction\n            return new Fraction(num.intValue(), 1);\n        case '/' :\n            // found '/', continue parsing denominator\n            break;\n        default :\n            // invalid '/'\n            // set index back to initial, error index should be the last\n            // character examined.\n            pos.setIndex(initialIndex);\n            pos.setErrorIndex(startIndex);\n            return null;\n        }\n\n        // parse whitespace\n        parseAndIgnoreWhitespace(source, pos);\n\n       ",
+    "query_result": [
+        "parsing denominator\nbreak;\ndefault :\n// invalid '/'\n// set index back to initial, error index should be the last\n// character examined.\npos.setIndex(initialIndex);\npos.setErrorIndex(startIndex);\nreturn null;\n}\n// parse whitespace\nparseAndIgnoreWhites",
+        "enominator\nbreak;\ndefault :\n// invalid '/'\n// set index back to initial, error index should be the last\n// character examined.\npos.setIndex(initialIndex);\npos.setErrorIndex(startIndex);\nreturn null;\n}\n// parse whitespace\nparseAndIgnoreWhitespace(sour",
+        "os);\nif (whole == null) {\n// invalid integer number\n// set index back to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\nreturn null;\n}\n// parse whitespac",
+        " null) {\n// invalid integer number\n// set index back to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\n",
+        "ull) {\n// invalid integer number\n// set index back to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\nre",
+        "rce, pos);\nif (num == null) {\n// invalid integer number\n// set index back to initial, error index should already be set\n// character examined.\npos.set",
+        " null) {\n// invalid integer number\n// set index back to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\n",
+        "ull) {\n// invalid integer number\n// set index back to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\nre",
+        "tialIndex = pos.getIndex();\n// parse whitespace\nparseAndIgnoreWhitespace(source, pos);\n// parse whol",
+        "/ invalid integer number\n// set index back to initial, error index should already be set\n// characte",
+        "id integer number\n// set index back to initial, error index should already be set\n// character exami",
+        "umber\n// set index back to initial, error index should already be set\n// character examined.\npos.set",
+        "ndex back to initial, error index should already be set\n// character examined.\npos.setIndex(initialI",
+        "/ invalid integer number\n// set index back to initial, error index should already be set\n// characte",
+        "id integer number\n// set index back to initial, error index should already be set\n// character exami",
+        "r\n// set index back to initial, error index should already be set\n// character examined.\npos.setInde",
+        "ndex back to initial, error index should already be set\n// character examined.\npos.setIndex(initialI",
+        "uld be the last\n// character examined.\npos.setIndex(initialIndex);\npos.setErrorIndex(startIndex);\nre",
+        "Fraction parse(String source, ParsePosition pos) {",
+        "\nFraction ret = super.parse(source, pos);\nif (ret "
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9251497005988024,
+    "input": "    private static String doGetPath(String filename, int separatorAdd) {\n        if (filename == null) {\n            return null;\n        }\n        int prefix = getPrefixLength(filename);\n        if (prefix < 0) {\n            return null;\n        }\n        int index = indexOfLastSeparator(filename);\n        int endIndex = index+separatorAdd;\n        if (prefix >= filename.length() || index < 0 || prefix >= endIndex) {\n            return \"\";\n        }\n        return filename.substring(prefix, endIndex);\n    }",
+    "query_result": [
+        "doGetPath(String filename, int separatorAdd) {\nif (filename == null) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nint index = indexOfLastSeparator(filename",
+        "(String filename, int separatorAdd) {\nif (filename == null) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nint index = indexOfLastSeparator(filename);\nint en",
+        "ng filename, int separatorAdd) {\nif (filename == null) {\nreturn null;\n}\nint prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nint index = indexOfLastSeparator(filename);\nint endInde",
+        "prefix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nint index = indexOfLastSeparato",
+        "fix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nint index = indexOfLastSeparator(f",
+        "ix = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nint index = indexOfLastSeparator(fi",
+        " = getPrefixLength(filename);\nif (prefix < 0) {\nreturn null;\n}\nint index = indexOfLastSeparator(file",
+        "ame.length() || index < 0 || prefix >= endIndex) {\nreturn \"\";\n}\nreturn filename.substring(prefix, en",
+        "ength() || index < 0 || prefix >= endIndex) {\nreturn \"\";\n}\nreturn filename.substring(prefix, endInde",
+        "c String doGetPath(String filename, int separatorA",
+        "ing filename, int separatorAdd) {\nif (filename == ",
+        "nt separatorAdd) {\nif (filename == null) {\nreturn ",
+        "eturn null;\n}\nint prefix = getPrefixLength(filenam",
+        "nt prefix = getPrefixLength(filename);\nif (prefix ",
+        " prefix = getPrefixLength(filename);\nif (prefix < ",
+        "efix = getPrefixLength(filename);\nif (prefix < 0) ",
+        "rn null;\n}\nint index = indexOfLastSeparator(filena",
+        "null;\n}\nint index = indexOfLastSeparator(filename)",
+        "eparatorAdd;\nif (prefix >= filename.length() || in",
+        "rAdd;\nif (prefix >= filename.length() || index < 0"
+    ]
+}

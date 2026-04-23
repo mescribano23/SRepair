@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.9808795411089866,
+    "input": "protected Date parseAsISO8601(String dateStr, ParsePosition pos)\n{\n    /* 21-May-2009, tatu: DateFormat has very strict handling of\n     * timezone  modifiers for ISO-8601. So we need to do some scrubbing.\n     */\n\n    /* First: do we have \"zulu\" format ('Z' == \"GMT\")? If yes, that's\n     * quite simple because we already set date format timezone to be\n     * GMT, and hence can just strip out 'Z' altogether\n     */\n    int len = dateStr.length();\n    char c = dateStr.charAt(len-1);\n    DateFormat df;\n\n    // [JACKSON-200]: need to support \"plain\" date...\n    if (len <= 10 && Character.isDigit(c)) {\n        df = _formatPlain;\n        if (df == null) {\n            df = _formatPlain = _cloneFormat(DATE_FORMAT_PLAIN, DATE_FORMAT_STR_PLAIN, _timezone, _locale);\n        }\n    } else if (c == 'Z') {\n        df = _formatISO8601_z;\n        if (df == null) {\n            df = _formatISO8601_z = _cloneFormat(DATE_FORMAT_ISO8601_Z, DATE_FORMAT_STR_ISO8601_Z, _timezone, _locale);\n        }\n        // [JACKSON-334]: may be missing milliseconds... if so, add\n        if (dateStr.charAt(len-4) == ':') {\n            StringBuilder sb = new StringBuilder(dateStr);\n            sb.insert(len-1, \".000\");\n            dateStr = sb.toString();\n        }\n    } else {\n        // Let's see if we have timezone indicator or not...\n        if (hasTimeZone(dateStr)) {\n            c = dateStr.charAt(len-3);\n            if (c == ':') { // remove optional colon\n                // remove colon\n                Str",
+    "query_result": [
+        " dateStr, ParsePosition pos)\n{\n/* 21-May-2009, tatu: DateFormat has very strict handling of\n* timezone modifiers for ISO-8601. So we need to do some scrubbing.\n*/\n/* First: do we have \"zulu\" format ('Z' == \"GMT\")? If yes, that's\n* quite simple because we already set date format timezone to be\n* GMT, and hence can just strip out 'Z' altogether\n*/\nint len = dateStr.length();\nchar c = dateStr.charAt(len-1);\nDateFormat df;\n// [JACKSON-200]: need to support \"plain\" date...\nif (len <= 10 && Character.isDigit(c)) {\ndf = _formatPlain;\nif (df == null) {\ndf = _formatPlain = _cloneFormat(DATE_FORMAT_PLAIN, DATE_FORMAT_STR_PLAIN, _timezone, _locale);\n}\n} else if (c == 'Z') {\ndf = _formatISO8601_z;\nif (df == null) {\ndf = _formatISO8601_z = _cloneFormat(DATE_FORMAT_ISO8601_Z, DATE_FORMAT_STR_ISO8601_Z, _timezone, _locale);\n}\n// [JACKSON-334]: may be missing milliseconds... if so, add\nif (dateStr.charAt(len-4) == ':') {\nStringBuilder sb = new StringBuilder(dateStr);\nsb.insert(len-1, \".000\");\ndateStr = sb.toString();\n}\n} else {\n// Let's see if we have timezone indicator or not...\nif (hasTimeZone(dateStr)) {\nc = dateStr.charAt(len-3);\nif (c == ':') ",
+        "f so, add\nif (dateStr.charAt(len-4) == ':') {\nStringBuilder sb = new StringBuilder(dateStr);\nsb.insert(len-1, \".000\");\ndateStr = sb.toString();\n}\n} else {\n// Let's see if we have timezone indicator or not...\nif (hasTimeZone(dateStr)) {\nc = dateStr.charAt(len-3);\nif (c == ':') { // remove optional co",
+        "ct handling of\n* timezone modifiers for ISO-8601. So we need to do some scrubbing.\n*/\n/* First: do w",
+        "ISO8601_z;\nif (df == null) {\ndf = _formatISO8601_z = _cloneFormat(DATE_FORMAT_ISO8601_Z, DATE_FORMAT",
+        "rotected Date parseAsISO8601(String dateStr, Parse",
+        "tected Date parseAsISO8601(String dateStr, ParsePo",
+        "ted Date parseAsISO8601(String dateStr, ParsePosit",
+        "parseAsISO8601(String dateStr, ParsePosition pos)\n",
+        "s\n* quite simple because we already set date forma",
+        "ut 'Z' altogether\n*/\nint len = dateStr.length();\nc",
+        "f (len <= 10 && Character.isDigit(c)) {\ndf = _form",
+        " == null) {\ndf = _formatPlain = _cloneFormat(DATE_",
+        "== null) {\ndf = _formatISO8601_z = _cloneFormat(DA",
+        "\nStringBuilder sb = new StringBuilder(dateStr);\nsb"
+    ]
+}

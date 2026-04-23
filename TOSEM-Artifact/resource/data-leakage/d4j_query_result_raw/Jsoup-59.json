@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5044585987261146,
+    "input": "final void newAttribute() {\n    if (attributes == null)\n        attributes = new Attributes();\n\n    if (pendingAttributeName != null) {\n        // the tokeniser has skipped whitespace control chars, but trimming could collapse to empty for other control codes, so verify here\n        pendingAttributeName = pendingAttributeName.trim();\n        if (pendingAttributeName.length() > 0) {\n            Attribute attribute;\n            if (hasPendingAttributeValue)\n                attribute = new Attribute(pendingAttributeName,\n                    pendingAttributeValue.length() > 0 ? pendingAttributeValue.toString() : pendingAttributeValueS);\n            else if (hasEmptyAttributeValue)\n                attribute = new Attribute(pendingAttributeName, \"\");\n            else\n                attribute = new BooleanAttribute(pendingAttributeName);\n            attributes.put(attribute);\n        }\n    }\n    pendingAttributeName = null;\n    hasEmptyAttributeValue = false;\n    hasPendingAttributeValue = false;\n    reset(pendingAttributeValue);\n    pendingAttributeValueS = null;\n}",
+    "query_result": [
+        ";\nelse if (hasEmptyAttributeValue)\nattribute = new Attribute(pendingAttributeName, \"\");\nelse\nattribute = new BooleanAttribute(pendingAttributeName);\na",
+        "if (hasEmptyAttributeValue)\nattribute = new Attribute(pendingAttributeName, \"\");\nelse\nattribute = new BooleanAttribute(pendingAttributeName);\nattribut",
+        "id newAttribute() {\nif (attributes == null)\nattributes = new Attributes();\nif (pendingAttributeName ",
+        "nal void newAttribute() {\nif (attributes == null)\n",
+        "ute() {\nif (attributes == null)\nattributes = new A",
+        "{\nif (attributes == null)\nattributes = new Attribu",
+        "f (attributes == null)\nattributes = new Attributes",
+        "attributes == null)\nattributes = new Attributes();",
+        "ttributes == null)\nattributes = new Attributes();\n",
+        "ributes = new Attributes();\nif (pendingAttributeNa",
+        "trimming could collapse to empty for other control",
+        "ingAttributeValue)\nattribute = new Attribute(pendi",
+        "ibuteValue)\nattribute = new Attribute(pendingAttri",
+        "hasEmptyAttributeValue)\nattribute = new Attribute(",
+        "ibuteValue)\nattribute = new Attribute(pendingAttri",
+        "e = new Attribute(pendingAttributeName, \"\");\nelse\n",
+        "ooleanAttribute(pendingAttributeName);\nattributes.",
+        "e(pendingAttributeName);\nattributes.put(attribute)",
+        "me = null;\nhasEmptyAttributeValue = false;\nhasPend",
+        " null;\nhasEmptyAttributeValue = false;\nhasPendingA"
+    ]
+}

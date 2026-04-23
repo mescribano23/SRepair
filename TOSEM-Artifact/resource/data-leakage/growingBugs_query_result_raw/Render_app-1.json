@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.07755775577557755,
+    "input": "    private void buildMaps(final Collection<TileSpec> tileSpecs) {\n\n        final List<Color> colorList = buildColorList();\n\n        if (tileSpecs.size() > colorList.size()) {\n            throw new IllegalArgumentException(\n                    tileSpecs.size() + \" tile specs were specified but color model can only support a maximum of \" +\n                    colorList.size() + \" distinct labels\");\n        }\n\n        int tileIndex = 0;\n        ChannelSpec firstChannelSpec;\n        String imageUrl;\n        for (final TileSpec tileSpec : tileSpecs) {\n            firstChannelSpec = tileSpec.getAllChannels().get(0);\n            imageUrl = firstChannelSpec.getFloorMipmapEntry(0).getValue().getImageUrl();\n            urlToTileSpec.put(imageUrl, tileSpec);\n            urlToColor.put(imageUrl, colorList.get(tileIndex));\n            tileIndex++;\n        }\n\n    }",
+    "query_result": [
+        "rList.size()) {\nthrow new IllegalArgumentException",
+        "List.size()) {\nthrow new IllegalArgumentException(",
+        "ist.size()) {\nthrow new IllegalArgumentException(\n"
+    ]
+}

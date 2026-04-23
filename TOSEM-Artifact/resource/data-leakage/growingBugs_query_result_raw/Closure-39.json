@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.07373271889400922,
+    "input": "  @Override\n  String toStringHelper(boolean forAnnotations) {\n    if (hasReferenceName()) {\n      return getReferenceName();\n    } else if (prettyPrint) {\n      // Don't pretty print recursively.\n      prettyPrint = false;\n\n      // Use a tree set so that the properties are sorted.\n      Set<String> propertyNames = Sets.newTreeSet();\n      for (ObjectType current = this;\n           current != null && !current.isNativeObjectType() &&\n               propertyNames.size() <= MAX_PRETTY_PRINTED_PROPERTIES;\n           current = current.getImplicitPrototype()) {\n        propertyNames.addAll(current.getOwnPropertyNames());\n      }\n\n      StringBuilder sb = new StringBuilder();\n      sb.append(\"{\");\n\n      int i = 0;\n      for (String property : propertyNames) {\n        if (i > 0) {\n          sb.append(\", \");\n        }\n\n        sb.append(property);\n        sb.append(\": \");\n        sb.append(getPropertyType(property).toStringHelper(forAnnotations));\n\n        ++i;\n        if (!forAnnotations && i == MAX_PRETTY_PRINTED_PROPERTIES) {\n          sb.append(\", ...\");\n          break;\n        }\n      }\n\n      sb.append(\"}\");\n\n      prettyPrint = true;\n      return sb.toString();\n    } else {\n      return forAnnotations ? \"?\" : \"{...}\";\n    }\n  }",
+    "query_result": [
+        "s());\n}\nStringBuilder sb = new StringBuilder();\nsb",
+        "());\n}\nStringBuilder sb = new StringBuilder();\nsb.",
+        "));\n}\nStringBuilder sb = new StringBuilder();\nsb.a",
+        ");\n}\nStringBuilder sb = new StringBuilder();\nsb.ap",
+        ";\n}\nStringBuilder sb = new StringBuilder();\nsb.app",
+        "\n}\nStringBuilder sb = new StringBuilder();\nsb.appe",
+        "}\nStringBuilder sb = new StringBuilder();\nsb.appen",
+        "\nStringBuilder sb = new StringBuilder();\nsb.append",
+        "StringBuilder sb = new StringBuilder();\nsb.append(",
+        "tringBuilder sb = new StringBuilder();\nsb.append(\"",
+        "ringBuilder sb = new StringBuilder();\nsb.append(\"{",
+        "ingBuilder sb = new StringBuilder();\nsb.append(\"{\"",
+        "ngBuilder sb = new StringBuilder();\nsb.append(\"{\")",
+        "gBuilder sb = new StringBuilder();\nsb.append(\"{\");",
+        "Builder sb = new StringBuilder();\nsb.append(\"{\");\n",
+        "uilder sb = new StringBuilder();\nsb.append(\"{\");\ni",
+        "ilder sb = new StringBuilder();\nsb.append(\"{\");\nin",
+        "der sb = new StringBuilder();\nsb.append(\"{\");\nint ",
+        "er sb = new StringBuilder();\nsb.append(\"{\");\nint i",
+        " new StringBuilder();\nsb.append(\"{\");\nint i = 0;\nf"
+    ]
+}

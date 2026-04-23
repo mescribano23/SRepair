@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.17843866171003717,
+    "input": "    private static List<String> parseReportsProperty(String propertyValue) {\n        List<String> reportPaths = new ArrayList<>();\n\n        if (StringUtils.isNotBlank(propertyValue)) {\n            for (String path : propertyValue.split(\",\")) {\n                if (!path.trim().isEmpty()) {\n                    reportPaths.add(path.trim());\n                }\n            }\n        }\n\n        return reportPaths;\n    }",
+    "query_result": [
+        "s = new ArrayList<>();\nif (StringUtils.isNotBlank(",
+        " = new ArrayList<>();\nif (StringUtils.isNotBlank(p",
+        " new ArrayList<>();\nif (StringUtils.isNotBlank(pro"
+    ]
+}

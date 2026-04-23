@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6717391304347826,
+    "input": "  public Gson create() {\n    List<TypeAdapter.Factory> factories = new ArrayList<TypeAdapter.Factory>();\n    factories.addAll(this.factories);\n    factories.addAll(this.hierarchyFactories);\n    addTypeAdaptersForDate(datePattern, dateStyle, timeStyle, factories);\n\n    return new Gson(excluder, fieldNamingPolicy, instanceCreators,\n        serializeNulls, complexMapKeySerialization,\n        generateNonExecutableJson, escapeHtmlChars, prettyPrinting,\n        serializeSpecialFloatingPointValues, longSerializationPolicy, factories);\n  }",
+    "query_result": [
+        "tories.addAll(this.hierarchyFactories);\naddTypeAdaptersForDate(datePattern, dateStyle, timeStyle, factories);\nreturn new Gson(excluder, fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, escape",
+        "(this.hierarchyFactories);\naddTypeAdaptersForDate(datePattern, dateStyle, timeStyle, factories);\nreturn new Gson(excluder, fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, escapeHtmlChars, pr",
+        "erarchyFactories);\naddTypeAdaptersForDate(datePattern, dateStyle, timeStyle, factories);\nreturn new Gson(excluder, fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, escapeHtmlChars, prettyPrin",
+        "eAdaptersForDate(datePattern, dateStyle, timeStyle, factories);\nreturn new Gson(excluder, fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, es",
+        "te(datePattern, dateStyle, timeStyle, factories);\nreturn new Gson(excluder, fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, escapeHtmlChars,",
+        "\nreturn new Gson(excluder, fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, escapeHtmlChars",
+        "(excluder, fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, escapeHtmlChars, prettyPrinting",
+        "actories.addAll(this.hierarchyFactories);\naddTypeAdaptersForDate(datePattern, dateStyle, timeStyle, ",
+        ", fieldNamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecut",
+        "NamingPolicy, instanceCreators,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJso",
+        "tors,\nserializeNulls, complexMapKeySerialization,\ngenerateNonExecutableJson, escapeHtmlChars, pretty",
+        "ter.Factory> factories = new ArrayList<TypeAdapter",
+        "s.addAll(this.hierarchyFactories);\naddTypeAdapters",
+        ".addAll(this.hierarchyFactories);\naddTypeAdaptersF",
+        "l(this.hierarchyFactories);\naddTypeAdaptersForDate",
+        "ories);\naddTypeAdaptersForDate(datePattern, dateSt",
+        "ries);\naddTypeAdaptersForDate(datePattern, dateSty",
+        "dTypeAdaptersForDate(datePattern, dateStyle, timeS",
+        "TypeAdaptersForDate(datePattern, dateStyle, timeSt",
+        " Gson(excluder, fieldNamingPolicy, instanceCreator"
+    ]
+}

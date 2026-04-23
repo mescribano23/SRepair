@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.8732782369146006,
+    "input": "    public static String getProjectStageAwarePropertyValue(String key)\n    {\n        ConfigResolverContext configResolverContext = \n                new ConfigResolverContext()\n                    .setProjectStageAware(true)\n                    .setEvaluateVariables(true);\n        \n        ProjectStage ps = getProjectStage();\n\n        String value = getPropertyValue(key + '.' + ps, configResolverContext);\n        if (value == null)\n        {\n            value = getPropertyValue(key, configResolverContext);\n        }\n\n        return value;\n    }",
+    "query_result": [
+        "tStageAwarePropertyValue(String key)\n{\nConfigResolverContext configResolverContext = \nnew ConfigResolverContext()\n.setProjectStageAware(true)\n.setEvaluateVariables(true);\n\nProjectStage ps = getProjectStage();\nString value = getPropertyValue(key + '.' + ps, configResolverContext);\nif (value == null)\n{\nvalue = getPropertyValue(key, configResolverCont"
+    ]
+}

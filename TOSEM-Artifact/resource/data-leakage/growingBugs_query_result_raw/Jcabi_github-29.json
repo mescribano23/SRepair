@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.36363636363636365,
+    "input": "    @Override\n    public void unstar() throws IOException {\n        this.request.uri().path(\"star\").back()\n            .method(Request.DELETE)\n            .fetch().as(RestResponse.class)\n            .assertStatus(HttpURLConnection.HTTP_NO_CONTENT);\n    }",
+    "query_result": [
+        ")\n.fetch().as(RestResponse.class)\n.assertStatus(Ht",
+        ".fetch().as(RestResponse.class)\n.assertStatus(Http",
+        "fetch().as(RestResponse.class)\n.assertStatus(HttpU",
+        "etch().as(RestResponse.class)\n.assertStatus(HttpUR",
+        "tch().as(RestResponse.class)\n.assertStatus(HttpURL",
+        "ch().as(RestResponse.class)\n.assertStatus(HttpURLC",
+        "h().as(RestResponse.class)\n.assertStatus(HttpURLCo",
+        "().as(RestResponse.class)\n.assertStatus(HttpURLCon",
+        ").as(RestResponse.class)\n.assertStatus(HttpURLConn",
+        ".as(RestResponse.class)\n.assertStatus(HttpURLConne",
+        "as(RestResponse.class)\n.assertStatus(HttpURLConnec",
+        "s(RestResponse.class)\n.assertStatus(HttpURLConnect",
+        "(RestResponse.class)\n.assertStatus(HttpURLConnecti",
+        "RestResponse.class)\n.assertStatus(HttpURLConnectio",
+        "estResponse.class)\n.assertStatus(HttpURLConnection",
+        "stResponse.class)\n.assertStatus(HttpURLConnection.",
+        "tResponse.class)\n.assertStatus(HttpURLConnection.H",
+        "Response.class)\n.assertStatus(HttpURLConnection.HT",
+        "esponse.class)\n.assertStatus(HttpURLConnection.HTT",
+        "sponse.class)\n.assertStatus(HttpURLConnection.HTTP"
+    ]
+}

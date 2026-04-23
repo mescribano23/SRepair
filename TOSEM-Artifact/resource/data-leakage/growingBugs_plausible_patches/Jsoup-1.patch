@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/jsoup/nodes/Document.java b/src/main/java/org/jsoup/nodes/Document.java
+index bc0f650..279da97 100644
+--- a/src/main/java/org/jsoup/nodes/Document.java
++++ b/src/main/java/org/jsoup/nodes/Document.java
+@@ -110,22 +110,21 @@ public class Document extends Element {
+     }
+ 
+     // does not recurse.
+-    private void normalise(Element element) {
+-        List<Node> toMove = new ArrayList<Node>();
+-        for (Node node: element.childNodes) {
+-            if (node instanceof TextNode) {
+-                TextNode tn = (TextNode) node;
+-                if (!tn.isBlank())
+-                    toMove.add(tn);
+-            }
++private void normalise(Element element) {
++    List<Node> toMove = new ArrayList<Node>();
++    for (Node node: element.childNodes) {
++        if (node instanceof TextNode) {
++            TextNode tn = (TextNode) node;
++            if (!tn.isBlank())
++                toMove.add(tn);
+         }
++    }
+ 
+-        for (Node node: toMove) {
+-            element.removeChild(node);
+-            body().appendChild(new TextNode(" ", ""));
+-            body().appendChild(node);
+-        }
++    for (Node node: toMove) {
++        element.removeChild(node);
++        body().prependChild(node); // Use prependChild instead of appendChild
+     }
++}
+ 
+     @Override
+     public String outerHtml() {

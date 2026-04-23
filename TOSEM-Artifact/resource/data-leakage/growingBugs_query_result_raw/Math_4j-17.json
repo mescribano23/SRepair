@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.75,
+    "input": "    public Dfp multiply(final int x) {\n        if (x >= 0 && x < RADIX) {\n            return multiplyFast(x);\n        } else {\n            return multiply(newInstance(x));\n        }\n    }",
+    "query_result": [
+        " x) {\nif (x >= 0 && x < RADIX) {\nreturn multiplyFast(x);\n} else {\nreturn multiply(newInstance(x));\n}"
+    ]
+}

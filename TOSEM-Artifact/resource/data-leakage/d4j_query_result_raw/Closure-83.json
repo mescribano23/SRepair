@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9974358974358974,
+    "input": "public int parseArguments(Parameters params) throws CmdLineException {\n  String param = null;\n  try {\n    param = params.getParameter(0);\n  } catch (CmdLineException e) {}\n\n  if (param == null) {\n    setter.addValue(true);\n    return 0;\n  } else {\n    String lowerParam = param.toLowerCase();\n    if (TRUES.contains(lowerParam)) {\n      setter.addValue(true);\n    } else if (FALSES.contains(lowerParam)) {\n      setter.addValue(false);\n    } else {\n      setter.addValue(true);\n      return 0;\n    }\n    return 1;\n  }\n}",
+    "query_result": [
+        "arseArguments(Parameters params) throws CmdLineException {\nString param = null;\ntry {\nparam = params.getParameter(0);\n} catch (CmdLineException e) {}\nif (param == null) {\nsetter.addValue(true);\nreturn 0;\n} else {\nString lowerParam = param.toLowerCase();\nif (TRUES.contains(lowerParam)) {\nsetter.addValue(true);\n} else if (FALSES.contains(lowerParam)) {\nsetter.addValue(false);\n} else {\nsetter.addValu",
+        "null) {\nsetter.addValue(true);\nreturn 0;\n} else {\nString lowerParam = param.toLowerCase();\nif (TRUES.contains(lowerParam)) {\nsetter.addValue(true);\n} else if (FALSES.contains(lowerParam)) {\nsetter.addValue(false);\n} else {\nsetter.addValue(true);\nretu",
+        "ddValue(true);\nreturn 0;\n} else {\nString lowerParam = param.toLowerCase();\nif (TRUES.contains(lowerParam)) {\nsetter.addValue(true);\n} else if (FALSES.contains(lowerParam)) {\nsetter.addValue(false);\n} else {\nsetter.addValue(true);\nreturn 0;\n}\nreturn 1",
+        "alue(true);\nreturn 0;\n} else {\nString lowerParam = param.toLowerCase();\nif (TRUES.contains(lowerParam)) {\nsetter.addValue(true);\n} else if (FALSES.contains(lowerParam)) {\nsetter.addValue(false);\n} else {\nsetter.addValue(true);\nreturn 0;\n}\nreturn 1;\n}",
+        "turn 0;\n} else {\nString lowerParam = param.toLowerCase();\nif (TRUES.contains(lowerParam)) {\nsetter.addValue(true);\n} else if (FALSES.contains(lowerParam)) {\nsetter.addValue(false);\n} else {\nsetter.add",
+        "ers params) throws CmdLineException {\nString param = null;\ntry {\nparam = params.getParameter(0);\n} c",
+        "s params) throws CmdLineException {\nString param = null;\ntry {\nparam = params.getParameter(0);\n} cat",
+        "arams) throws CmdLineException {\nString param = null;\ntry {\nparam = params.getParameter(0);\n} catch ",
+        "public int parseArguments(Parameters params) throw",
+        "ublic int parseArguments(Parameters params) throws",
+        "blic int parseArguments(Parameters params) throws ",
+        "lic int parseArguments(Parameters params) throws C",
+        "c int parseArguments(Parameters params) throws Cmd",
+        " int parseArguments(Parameters params) throws CmdL",
+        "int parseArguments(Parameters params) throws CmdLi",
+        "nt parseArguments(Parameters params) throws CmdLin",
+        " parseArguments(Parameters params) throws CmdLineE",
+        "rseArguments(Parameters params) throws CmdLineExce",
+        "seArguments(Parameters params) throws CmdLineExcep",
+        "eArguments(Parameters params) throws CmdLineExcept"
+    ]
+}

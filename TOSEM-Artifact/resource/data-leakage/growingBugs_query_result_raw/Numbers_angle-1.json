@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public PlaneAngle normalize(PlaneAngle center) {\n        final double lowerBound = center.value - HALF_TURN;\n        final double upperBound = center.value + HALF_TURN;\n\n        double normalized = value - Math.floor(value - lowerBound);\n\n        // If value is too small to be representable compared to the floor\n        // expression above (ie, if value + x = x), then we may end up with a number\n        // exactly equal to the upper bound here. In that case, subtract\n        // one from the normalized value so that we can fulfill the contract\n        // of only returning results strictly less than the upper bound.\n        if (normalized >= upperBound) {\n            normalized -= 1.0;\n        }\n\n        return new PlaneAngle(normalized);\n    }",
+    "query_result": []
+}

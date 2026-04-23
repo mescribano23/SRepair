@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5940996948118006,
+    "input": "private void printAndQuote(final Object object, final CharSequence value, final int offset, final int len,\n        final Appendable out, final boolean newRecord) throws IOException {\n    boolean quote = false;\n    int start = offset;\n    int pos = offset;\n    final int end = offset + len;\n\n    final char delimChar = getDelimiter();\n    final char quoteChar = getQuoteCharacter().charValue();\n\n    QuoteMode quoteModePolicy = getQuoteMode();\n    if (quoteModePolicy == null) {\n        quoteModePolicy = QuoteMode.MINIMAL;\n    }\n    switch (quoteModePolicy) {\n    case ALL:\n        quote = true;\n        break;\n    case NON_NUMERIC:\n        quote = !(object instanceof Number);\n        break;\n    case NONE:\n        // Use the existing escaping code\n        printAndEscape(value, offset, len, out);\n        return;\n    case MINIMAL:\n        if (len <= 0) {\n            // always quote an empty token that is the first\n            // on the line, as it may be the only thing on the\n            // line. If it were not quoted in that case,\n            // an empty line has no tokens.\n            if (newRecord) {\n                quote = true;\n            }\n        } else {\n            char c = value.charAt(pos);\n\n            // RFC4180 (https://tools.ietf.org/html/rfc4180) TEXTDATA =  %x20-21 / %x23-2B / %x2D-7E\n            if (newRecord && (c < 0x20 || c > 0x21 && c < 0x23 || c > 0x2B && c < 0x2D || c > 0x7E)) {\n                quote = true;\n            } else if (c <= COMMENT) {\n              ",
+    "query_result": [
+        "IMAL:\nif (len <= 0) {\n// always quote an empty token that is the first\n// on the line, as it may be the only thing on the\n// line. If it were not quoted in that case,\n// an empty line has no tokens.\nif (newRecord) {\nquote = true;\n}\n} else {\nchar c = ",
+        " delimChar = getDelimiter();\nfinal char quoteChar = getQuoteCharacter().charValue();\nQuoteMode quoteModePolicy = getQuoteMode();\nif (quoteModePolicy == null) {\nquoteModePolicy = QuoteMode.MINIMAL;\n}\ns",
+        "INIMAL:\nif (len <= 0) {\n// always quote an empty token that is the first\n// on the line, as it may be the only thing on the\n// line. If it were not quoted in that case,\n// an empty line has no tokens.",
+        "\n// always quote an empty token that is the first\n// on the line, as it may be the only thing on the\n// line. If it were not quoted in that case,\n// an empty line has no tokens.\nif (newRecord) {\nquote",
+        "lways quote an empty token that is the first\n// on the line, as it may be the only thing on the\n// line. If it were not quoted in that case,\n// an empty line has no tokens.\nif (newRecord) {\nquote = tr",
+        "ways quote an empty token that is the first\n// on the line, as it may be the only thing on the\n// line. If it were not quoted in that case,\n// an empt",
+        "al Appendable out, final boolean newRecord) throws IOException {\nboolean quote = false;\nint start = ",
+        "icy = getQuoteMode();\nif (quoteModePolicy == null) {\nquoteModePolicy = QuoteMode.MINIMAL;\n}\nswitch (",
+        "if (quoteModePolicy == null) {\nquoteModePolicy = QuoteMode.MINIMAL;\n}\nswitch (quoteModePolicy) {\ncas",
+        "ote = true;\nbreak;\ncase NON_NUMERIC:\nquote = !(object instanceof Number);\nbreak;\ncase NONE:\n// Use t",
+        "e NON_NUMERIC:\nquote = !(object instanceof Number);\nbreak;\ncase NONE:\n// Use the existing escaping c",
+        "at is the first\n// on the line, as it may be the only thing on the\n// line. If it were not quoted in",
+        " Appendable out, final boolean newRecord) throws I",
+        "Appendable out, final boolean newRecord) throws IO",
+        "endable out, final boolean newRecord) throws IOExc",
+        "ean newRecord) throws IOException {\nboolean quote ",
+        "wRecord) throws IOException {\nboolean quote = fals",
+        "Char = getDelimiter();\nfinal char quoteChar = getQ",
+        " char quoteChar = getQuoteCharacter().charValue();",
+        "= !(object instanceof Number);\nbreak;\ncase NONE:\n/"
+    ]
+}

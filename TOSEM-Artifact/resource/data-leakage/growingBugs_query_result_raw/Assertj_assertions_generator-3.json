@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.632183908045977,
+    "input": "  private String assertionContentFor(GetterDescription getter) {\n    // sets default content (most likely case)\n    String assertionContent = hasAssertionTemplate.getContent();\n    if (getter.isBooleanPropertyType()) {\n      assertionContent = isAssertionTemplate.getContent();\n    } else if (getter.isIterablePropertyType()) {\n      assertionContent = hasIterableElementsAssertionTemplate.getContent().replaceAll(ELEMENT_TYPE_REGEXP,\n          getter.getElementTypeName());\n    } else if (getter.isArrayPropertyType()) {\n      assertionContent = hasArrayElementsAssertionTemplate.getContent().replaceAll(ELEMENT_TYPE_REGEXP,\n          getter.getElementTypeName());\n    }\n    if (getter.isPrimitivePropertyType()) {\n      // primitive must be compared with != instead of (not) equals()\n      assertionContent = assertionContent.replace(\"!actual.get${Property}().equals(${property})\",\n          \"actual.get${Property}() != ${property}\");\n    }\n    String propertyName = getter.getPropertyName();\n    assertionContent = assertionContent.replaceAll(PROPERTY_WITH_UPPERCASE_FIRST_CHAR_REGEXP, capitalize(propertyName));\n    assertionContent = assertionContent.replaceAll(PROPERTY_TYPE_REGEXP, getter.getPropertyTypeName());\n    return assertionContent.replaceAll(PROPERTY_WITH_LOWERCASE_FIRST_CHAR_REGEXP, propertyName);\n  }",
+    "query_result": [
+        "tPropertyName();\nassertionContent = assertionContent.replaceAll(PROPERTY_WITH_UPPERCASE_FIRST_CHAR_REGEXP, capitalize(propertyName));\nassertionContent = assertionContent.replaceAll(PROPERTY_TYPE_REGEXP, getter.getPropertyTypeName());\nreturn assertionContent.replaceAll(PROPERTY_WITH_LOWERCASE_FIRST_C",
+        "ContentFor(GetterDescription getter) {\n// sets default content (most likely case)\nString assertionContent = hasAssertionTemplate.getContent();\nif (getter.isBooleanPropertyType()) {\nassertionContent = isAssertionTemplate.getContent();\n} else if (gette",
+        "ertionTemplate.getContent().replaceAll(ELEMENT_TYPE_REGEXP,\ngetter.getElementTypeName());\n} else if ",
+        "tyType()) {\nassertionContent = hasArrayElementsAssertionTemplate.getContent().replaceAll(ELEMENT_TYP",
+        "emplate.getContent().replaceAll(ELEMENT_TYPE_REGEX",
+        "emplate.getContent().replaceAll(ELEMENT_TYPE_REGEX"
+    ]
+}

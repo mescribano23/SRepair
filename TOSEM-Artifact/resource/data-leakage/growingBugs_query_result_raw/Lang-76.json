@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9303135888501742,
+    "input": "    private static boolean startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\n        if (str == null || prefix == null) {\n            return str == null && prefix == null;\n        }\n        if (prefix.length() > str.length()) {\n            return false;\n        }\n        return CharSequenceUtils.regionMatches(str, ignoreCase, 0, prefix, 0, prefix.length());\n    }",
+    "query_result": [
+        "boolean startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn false;\n}\nreturn CharSequenceUtils.regionMatches(str, ignoreCase, 0, prefix, 0, p",
+        " startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn false;\n}\nreturn CharSequenceUtils.reg",
+        "final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn false;\n}\nreturn CharSequenceUtils.regionMatches(s",
+        "arSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn false;\n}\nreturn CharSequenceUtils.regionMatches(str, igno",
+        "artsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length())",
+        "rtsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) ",
+        "nal CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn f",
+        "vate static boolean startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nret",
+        "te static boolean startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nretur",
+        "tatic boolean startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn st",
+        "tsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefi",
+        "th(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix ==",
+        "boolean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn false;",
+        "lean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn false;\n}\n",
+        "ean ignoreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length() > str.length()) {\nreturn false;\n}\nr",
+        "lean startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (s",
+        "an startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {\nif (str",
+        "ce str, final CharSequence prefix, final boolean ignoreCase) {\nif (str == null || prefix == null) {\n",
+        "noreCase) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.",
+        "se) {\nif (str == null || prefix == null) {\nreturn str == null && prefix == null;\n}\nif (prefix.length"
+    ]
+}

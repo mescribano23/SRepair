@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.09825528007346189,
+    "input": "protected JavaType _typeFromId(String id, DatabindContext ctxt) throws IOException\n{\n    /* 30-Jan-2010, tatu: Most ids are basic class names; so let's first\n     *    check if any generics info is added; and only then ask factory\n     *    to do translation when necessary\n     */\n    TypeFactory tf = ctxt.getTypeFactory();\n    if (id.indexOf('<') > 0) {\n        // note: may want to try combining with specialization (esp for EnumMap)?\n        // 17-Aug-2017, tatu: As per [databind#1735] need to ensure assignment\n        //    compatibility -- needed later anyway, and not doing so may open\n        //    security issues.\n        JavaType t = tf.constructFromCanonical(id);\n        if (!t.isTypeOrSubTypeOf(_baseType.getRawClass())) {\n            // Probably cleaner to have a method in `TypeFactory` but can't add in patch\n            throw new IllegalArgumentException(String.format(\n                    \"Class %s not subtype of %s\", t.getRawClass().getName(), _baseType));\n        }\n        return t;\n    }\n    Class<?> cls;\n    try {\n        cls =  tf.findClass(id);\n    } catch (ClassNotFoundException e) {\n        // 24-May-2016, tatu: Ok, this is pretty ugly, but we should always get\n        //   DeserializationContext, just playing it safe\n        if (ctxt instanceof DeserializationContext) {\n            DeserializationContext dctxt = (DeserializationContext) ctxt;\n            // First: we may have problem handlers that can deal with it?\n            return dctxt.handleUnknownTypeI",
+    "query_result": [
+        "JavaType _typeFromId(String id, DatabindContext ct",
+        " _typeFromId(String id, DatabindContext ctxt) thro",
+        "\nthrow new IllegalArgumentException(String.format(",
+        "throw new IllegalArgumentException(String.format(\n",
+        "hrow new IllegalArgumentException(String.format(\n\"",
+        "row new IllegalArgumentException(String.format(\n\"C",
+        " new IllegalArgumentException(String.format(\n\"Clas",
+        "w IllegalArgumentException(String.format(\n\"Class %"
+    ]
+}

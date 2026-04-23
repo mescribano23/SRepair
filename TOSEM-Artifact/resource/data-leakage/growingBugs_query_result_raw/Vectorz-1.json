@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "private PermutationMatrix getPivotMatrix() {\n        int numPivots = LU.rowCount();\n        return PermutationMatrix.create(Index.wrap(Arrays.copyOf(pivot, numPivots))).getTranspose();\n    }",
+    "query_result": []
+}

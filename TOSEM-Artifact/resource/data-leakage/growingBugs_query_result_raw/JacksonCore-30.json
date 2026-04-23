@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7747858017135862,
+    "input": "    private final JsonToken _parseNumber2(char[] outBuf, int outPtr, boolean negative,\n            int intPartLength) throws IOException\n    {\n        // Ok, parse the rest\n        while (true) {\n            if (_inputPtr >= _inputEnd && !_loadMore()) {\n                _textBuffer.setCurrentLength(outPtr);\n                return resetInt(negative, intPartLength);\n            }\n            int c = (int) _inputBuffer[_inputPtr++] & 0xFF;\n            if (c > INT_9 || c < INT_0) {\n                if (c == INT_PERIOD || c == INT_e || c == INT_E) {\n                    return _parseFloat(outBuf, outPtr, c, negative, intPartLength);\n                }\n                break;\n            }\n            if (outPtr >= outBuf.length) {\n                outBuf = _textBuffer.finishCurrentSegment();\n                outPtr = 0;\n            }\n            outBuf[outPtr++] = (char) c;\n            ++intPartLength;\n        }\n        --_inputPtr; // to push back trailing char (comma etc)\n        _textBuffer.setCurrentLength(outPtr);\n        // As per #105, need separating space between root values; check here\n        if (_parsingContext.inRoot()) {\n            _verifyRootSpace(_inputBuffer[_inputPtr] & 0xFF);\n        }\n\n        // And there we have it!\n        return resetInt(negative, intPartLength);\n        \n    }",
+    "query_result": [
+        "&& !_loadMore()) { _textBuffer.setCurrentLength(outPtr); return resetInt(negative, intPartLength); } int c = (int) _inputBuffer[_inputPtr++] & 0xFF; if (c > INT_9 || c < INT_0) { if (c == INT_PERIOD || c == INT_e || c == INT_E) { return _parseFloat(outBuf, outPtr, c, negative, intPartLength); } break; } if (outPtr >= outBuf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[outPtr++] = (char) c; ++intPartLength; } --_inp",
+        "railing char (comma etc) _textBuffer.setCurrentLength(outPtr); // As per #105, need separating space between root values; check here if (_parsingConte",
+        "if (outPtr >= outBuf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[ou",
+        "(outPtr >= outBuf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[outPt",
+        "outPtr >= outBuf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[outPtr+",
+        "utBuf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[outPtr++] = (char)",
+        "tBuf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[outPtr++] = (char)",
+        "Buf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[outPtr++] = (char) c",
+        "uf.length) { outBuf = _textBuffer.finishCurrentSegment(); outPtr = 0; } outBuf[outPtr++] = (char) c;",
+        "etc) _textBuffer.setCurrentLength(outPtr); // As per #105, need separating space between root value",
+        "ting space between root values; check here if (_parsingContext.inRoot()) { _verifyRootSpace(_inputBu",
+        "JsonToken _parseNumber2(char[] outBuf, int outPtr,",
+        "le (true) { if (_inputPtr >= _inputEnd && !_loadMo",
+        "CurrentLength(outPtr); return resetInt(negative, i",
+        "eturn resetInt(negative, intPartLength); } int c =",
+        "seFloat(outBuf, outPtr, c, negative, intPartLength",
+        "utPtr >= outBuf.length) { outBuf = _textBuffer.fin",
+        ">= outBuf.length) { outBuf = _textBuffer.finishCu",
+        "outBuf.length) { outBuf = _textBuffer.finishCurren",
+        ".length) { outBuf = _textBuffer.finishCurrentSegme"
+    ]
+}

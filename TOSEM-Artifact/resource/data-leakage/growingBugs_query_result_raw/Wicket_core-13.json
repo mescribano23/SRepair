@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.4793388429752066,
+    "input": "protected IRequestHandler processHybrid(PageInfo pageInfo,\n        Class<? extends IRequestablePage> pageClass, PageParameters pageParameters,\n        Integer renderCount)\n    {\n        PageProvider provider = new PageProvider(pageInfo.getPageId(), pageClass, pageParameters,\n            renderCount);\n        provider.setPageSource(getContext());\n        if (provider.isNewPageInstance() && !getRecreateMountedPagesAfterExpiry())\n        {\n            throw new PageExpiredException(String.format(\"Bookmarkable page id '%d' has expired.\",\n                pageInfo.getPageId()));\n        }\n        else\n        {\n            /** \n             * https://issues.apache.org/jira/browse/WICKET-5734\n             * */\n            PageParameters constructionPageParameters = provider.hasPageInstance() ? \n                provider.getPageInstance().getPageParameters() : new PageParameters();\n\n            if (PageParameters.equals(constructionPageParameters, pageParameters) == false)\n            {\n                // create a fresh page instance because the request page parameters are different than the ones\n                // when the resolved page by id has been created\n                return new RenderPageRequestHandler(new PageProvider(pageClass, pageParameters));\n            }\n            return new RenderPageRequestHandler(provider);\n        }\n    }",
+    "query_result": [
+        " pageInfo,\nClass<? extends IRequestablePage> pageClass, PageParameters pageParameters,\nInteger renderCount)\n{\nPageProvider provider = new PageProvider(pageInfo.getPageId(), pageClass, pageParameters,\nrenderCount);\nprovider.setPageSource(getContext())",
+        "ected IRequestHandler processHybrid(PageInfo pageInfo,\nClass<? extends IRequestablePage> pageClass, PageParameters pageParameters,\nInteger renderCount",
+        "questHandler processHybrid(PageInfo pageInfo,\nClass<? extends IRequestablePage> pageClass, PageParam",
+        "ler processHybrid(PageInfo pageInfo,\nClass<? extends IRequestablePage> pageClass, PageParameters pag",
+        "ageInfo pageInfo,\nClass<? extends IRequestablePage> pageClass, PageParameters pageParameters,\nIntege",
+        "ce().getPageParameters() : new PageParameters();\nif (PageParameters.equals(constructionPageParameter",
+        "essHybrid(PageInfo pageInfo,\nClass<? extends IRequ",
+        "extends IRequestablePage> pageClass, PageParameter",
+        "ends IRequestablePage> pageClass, PageParameters p",
+        "uestablePage> pageClass, PageParameters pageParame",
+        "\n/** \n* https://issues.apache.org/jira/browse/WICK",
+        "\nreturn new RenderPageRequestHandler(new PageProvi",
+        "turn new RenderPageRequestHandler(new PageProvider",
+        "urn new RenderPageRequestHandler(new PageProvider("
+    ]
+}

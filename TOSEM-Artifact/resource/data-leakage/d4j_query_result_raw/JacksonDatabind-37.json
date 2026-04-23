@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.11706349206349206,
+    "input": "protected JavaType _narrow(Class<?> subclass)\n{\n    if (_class == subclass) {\n        return this;\n    }\n    // Should we check that there is a sub-class relationship?\n    // 15-Jan-2016, tatu: Almost yes, but there are some complications with\n    //    placeholder values, so no.\n    /*\n    if (!_class.isAssignableFrom(subclass)) {\n        throw new IllegalArgumentException(\"Class \"+subclass.getName()+\" not sub-type of \"\n                +_class.getName());\n    }\n    */\n    // 15-Jan-2015, tatu: Not correct; should really re-resolve...\n    return new SimpleType(subclass, _bindings, this, _superInterfaces,\n            _valueHandler, _typeHandler, _asStatic);\n}",
+    "query_result": [
+        "bleFrom(subclass)) {\nthrow new IllegalArgumentExce",
+        "leFrom(subclass)) {\nthrow new IllegalArgumentExcep",
+        "m(subclass)) {\nthrow new IllegalArgumentException(",
+        "subclass)) {\nthrow new IllegalArgumentException(\"C",
+        "ss)) {\nthrow new IllegalArgumentException(\"Class \""
+    ]
+}

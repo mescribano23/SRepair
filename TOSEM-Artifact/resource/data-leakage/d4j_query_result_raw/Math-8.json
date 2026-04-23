@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.895910780669145,
+    "input": "public Object[] sample(int sampleSize) throws NotStrictlyPositiveException {\n    if (sampleSize <= 0) {\n        throw new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAMPLES,\n                sampleSize);\n    }\n\n    final Object[] out = new Object[sampleSize];\n\n    for (int i = 0; i < sampleSize; i++) {\n        out[i] = sample();\n    }\n\n    return out;\n\n}",
+    "query_result": [
+        "public Object[] sample(int sampleSize) throws NotStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFo",
+        "bject[] sample(int sampleSize) throws NotStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFormats.NU",
+        "ple(int sampleSize) throws NotStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAM",
+        "le(int sampleSize) throws NotStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAMP",
+        "int sampleSize) throws NotStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAMPLES",
+        "ws NotStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(Loca",
+        "s NotStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(Local",
+        "tStrictlyPositiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(Localized",
+        "itiveException {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFormats.NUMB",
+        " {\nif (sampleSize <= 0) {\nthrow new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAMPLES,",
+        "bject[] out = new Object[sampleSize];\nfor (int i = 0; i < sampleSize; i++) {\nout[i] = sample();\n}\nre",
+        "ublic Object[] sample(int sampleSize) throws NotSt",
+        "sample(int sampleSize) throws NotStrictlyPositiveE",
+        "mple(int sampleSize) throws NotStrictlyPositiveExc",
+        "e(int sampleSize) throws NotStrictlyPositiveExcept",
+        "(int sampleSize) throws NotStrictlyPositiveExcepti",
+        "if (sampleSize <= 0) {\nthrow new NotStrictlyPositi",
+        "f (sampleSize <= 0) {\nthrow new NotStrictlyPositiv",
+        "ampleSize <= 0) {\nthrow new NotStrictlyPositiveExc",
+        "mpleSize <= 0) {\nthrow new NotStrictlyPositiveExce"
+    ]
+}

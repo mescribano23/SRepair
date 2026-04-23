@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.9420289855072463,
+    "input": "public void outputMetadata(String[] names) {\n           for (String name : names) {\n              for(String value : metadata.getValues(name)) {\n                 writer.println(name + \": \" + value);\n              }\n           }\n        }",
+    "query_result": [
+        "lic void outputMetadata(String[] names) {\nfor (String name : names) {\nfor(String value : metadata.getValues(name)) {\nwriter.println(name + \": \" + valu",
+        "c void outputMetadata(String[] names) {\nfor (Strin",
+        "Values(name)) {\nwriter.println(name + \": \" + value"
+    ]
+}

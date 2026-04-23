@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.08246708246708247,
+    "input": "void buildKeyInfo(\n            X509Certificate signingCertificate,\n            XMLSignature xmlSig) throws KeyingDataException, UnsupportedAlgorithmException\n    {\n        // Check key usage.\n        // - KeyUsage[0] = digitalSignature\n        // - KeyUsage[1] = nonRepudiation\n        boolean[] keyUsage = signingCertificate.getKeyUsage();\n        if (keyUsage != null && !keyUsage[0] && !keyUsage[1])\n        {\n            throw new SigningCertKeyUsageException(signingCertificate);\n        }\n\n        try\n        {\n            signingCertificate.checkValidity();\n        } catch (CertificateException ce)\n        {\n            // CertificateExpiredException or CertificateNotYetValidException\n            throw new SigningCertValidityException(signingCertificate);\n        }\n\n        if (this.basicSignatureOptionsProvider.includeSigningCertificate())\n        {\n            try\n            {\n                X509Data x509Data = new X509Data(xmlSig.getDocument());\n                x509Data.addCertificate(signingCertificate);\n                x509Data.addSubjectName(RfcUtils.toRfc4514(signingCertificate.getSubjectX500Principal()));\n                x509Data.addIssuerSerial(RfcUtils.toRfc4514(signingCertificate.getIssuerX500Principal()), signingCertificate.getSerialNumber());\n                xmlSig.getKeyInfo().add(x509Data);\n\n                if (this.basicSignatureOptionsProvider.signSigningCertificate())\n                {\n                    String keyInfoId = xmlSig.getId() + \"-keyinfo\";\n                    xmlSig.getKeyInfo().setId(keyInfoId);\n\n                    // Use same canonicalization URI as specified in the ds:CanonicalizationMethod for Signature.\n                    Algorithm canonAlg = this.algorithmsProvider.getCanonicalizationAlgorithmForSignature();\n                    CanonicalizerUtils.checkC14NAlgorithm(canonAlg);\n                    Transforms transforms = TransformUtils.createTransforms(canonAlg, this.algorithmsParametersMarshaller, xmlSig.getDocument());\n\n   ",
+    "query_result": [
+        "tificate.getKeyUsage();\nif (keyUsage != null && !k",
+        "eyUsage();\nif (keyUsage != null && !keyUsage[0] &&",
+        " (keyUsage != null && !keyUsage[0] && !keyUsage[1]",
+        "ertificate.checkValidity();\n} catch (CertificateEx",
+        "rtificate.checkValidity();\n} catch (CertificateExc",
+        "ficate.checkValidity();\n} catch (CertificateExcept"
+    ]
+}

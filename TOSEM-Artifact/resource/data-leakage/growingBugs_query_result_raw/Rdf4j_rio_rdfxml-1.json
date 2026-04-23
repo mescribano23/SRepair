@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.05363321799307959,
+    "input": "public void endElement(String namespaceURI, String localName, String qName)\n        throws SAXException\n    {\n        try {\n            // FIXME: in parseLiteralMode we should also check if start- and\n            // end-tags match but these start tags are not tracked yet.\n\n            if (rdfParser.getParserConfig().get(XMLParserSettings.FAIL_ON_MISMATCHED_TAGS)\n                    && !parseLiteralMode)\n            {\n                // Verify that the end tag matches the start tag.\n                ElementInfo elInfo;\n\n                if (deferredElement != null) {\n                    elInfo = deferredElement;\n                }\n                else {\n                    elInfo = peekStack();\n                }\n\n                if (!qName.equals(elInfo.qName)) {\n                    rdfParser.reportError(\"expected end tag </'\" + elInfo.qName + \">, found </\" + qName + \">\",\n                            XMLParserSettings.FAIL_ON_MISMATCHED_TAGS);\n                }\n            }\n\n            if (!inRDFContext) {\n                elInfoStack.pop();\n                charBuf.setLength(0);\n                return;\n            }\n\n            if (deferredElement == null && rdfContextStackHeight == 0) {\n                // This end tag removes the element that signaled the start\n                // of the RDF context (i.e. <rdf:RDF>) from the stack.\n                inRDFContext = false;\n\n                elInfoStack.pop();\n                charBuf.setLength(0);\n                return;\n            }\n\n            // We're still in RDF context.\n\n            if (parseLiteralMode && xmlLiteralStackHeight > 0) {\n                appendEndTag(qName);\n                xmlLiteralStackHeight--;\n                return;\n            }\n\n            // Check for any deferred start elements\n            if (deferredElement != null) {\n                // Start element still deferred, this is an empty element\n                rdfParser.setBaseURI(deferredElement.baseURI);\n                rdfParser.setXMLLang(de",
+    "query_result": [
+        "public void endElement(String namespaceURI, String",
+        "ublic void endElement(String namespaceURI, String ",
+        "blic void endElement(String namespaceURI, String l",
+        "lic void endElement(String namespaceURI, String lo",
+        "ic void endElement(String namespaceURI, String loc",
+        "c void endElement(String namespaceURI, String loca",
+        " void endElement(String namespaceURI, String local",
+        "void endElement(String namespaceURI, String localN",
+        "oid endElement(String namespaceURI, String localNa",
+        "id endElement(String namespaceURI, String localNam",
+        "d endElement(String namespaceURI, String localName",
+        " endElement(String namespaceURI, String localName,",
+        "endElement(String namespaceURI, String localName, ",
+        "ndElement(String namespaceURI, String localName, S",
+        "dElement(String namespaceURI, String localName, St",
+        "Element(String namespaceURI, String localName, Str",
+        "lement(String namespaceURI, String localName, Stri",
+        "ement(String namespaceURI, String localName, Strin",
+        "ment(String namespaceURI, String localName, String",
+        "ent(String namespaceURI, String localName, String "
+    ]
+}

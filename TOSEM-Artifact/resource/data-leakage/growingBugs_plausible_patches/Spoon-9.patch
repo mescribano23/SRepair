@@ -1,0 +1,30 @@
+diff --git a/src/main/java/spoon/support/reflect/code/CtStatementImpl.java b/src/main/java/spoon/support/reflect/code/CtStatementImpl.java
+index 4d70eae4d..cf6a1cdcd 100644
+--- a/src/main/java/spoon/support/reflect/code/CtStatementImpl.java
++++ b/src/main/java/spoon/support/reflect/code/CtStatementImpl.java
+@@ -105,6 +105,11 @@ public abstract class CtStatementImpl extends CtCodeElementImpl implements
+ 				else
+ 					((CtIf) targetParent).setElseStatement(block);
+ 				parentBlock = block;
++                // Properly set parent
++                block.setParent(targetParent);
++                for (CtStatement s : block.getStatements()) {
++                    s.setParent(block);
++                }
+ 			}
+ 		} else if (targetParent instanceof CtSwitch) {
+             for (CtStatement s : statementsToBeInserted) {
+@@ -135,7 +140,12 @@ public abstract class CtStatementImpl extends CtCodeElementImpl implements
+ 				CtBlock<?> block = target.getFactory().Core().createBlock();
+ 				block.getStatements().add(stat);
+ 				((CtLoop) targetParent).setBody(block);
+-				parentBlock = block;
++                // Properly set parent
++                block.setParent(targetParent);
++                for (CtStatement s : block.getStatements()) {
++                    s.setParent(block);
++                }
++                parentBlock = block;
+ 			}
+ 		} else if (targetParent instanceof CtCase) {
+             int i=0;

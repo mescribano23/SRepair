@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8039906103286385,
+    "input": "    private void getNumUseInUseCfgNode(final Node cfgNode) {\n\n      numUsesWithinCfgNode = 0;\n      AbstractCfgNodeTraversalCallback gatherCb =\n          new AbstractCfgNodeTraversalCallback() {\n\n        @Override\n        public void visit(NodeTraversal t, Node n, Node parent) {\n          if (n.isName() && n.getString().equals(varName)) {\n            // We make a special exception when the entire cfgNode is a chain\n            // of assignments, since in that case the assignment statements\n            // will happen after the inlining of the right hand side.\n            // TODO(blickly): Make the SIDE_EFFECT_PREDICATE check more exact\n            //   and remove this special case.\n            if (parent.isAssign() && (parent.getFirstChild() == n)\n                && isAssignChain(parent, cfgNode)) {\n              // Don't count lhs of top-level assignment chain\n              return;\n            } else {\n              numUsesWithinCfgNode++;\n            }\n          }\n        }\n\n        private boolean isAssignChain(Node child, Node ancestor) {\n          for (Node n = child; n != ancestor; n = n.getParent()) {\n            if (!n.isAssign()) {\n              return false;\n            }\n          }\n          return true;\n        }\n      };\n\n      NodeTraversal.traverse(compiler, cfgNode, gatherCb);\n    }",
+    "query_result": [
+        "seCfgNode(final Node cfgNode) {\nnumUsesWithinCfgNode = 0;\nAbstractCfgNodeTraversalCallback gatherCb =\nnew AbstractCfgNodeTraversalCallback() {\n@Override\npublic void visit(NodeTraversal t, Node n, Node parent) {\nif (n.isName() && n.getString().equals(varName)) {\n// We make a special exception when the entire cfgNode is a chain\n// of assignments, since in that case the assignment statements\n// will happen after the inlining of the right hand side.\n",
+        "FirstChild() == n)\n&& isAssignChain(parent, cfgNode)) {\n// Don't count lhs of top-level assignment chain\nreturn;\n} else {\nnumUsesWithinCfgNode++;\n}\n}\n}\nprivate boolean isAssignChain(Node child, Node ancestor) {\nfor (Node n = child; n != ancestor; n = n.getParent()) {\nif (!n.isAssign()) {\nreturn false;\n}\n}\nreturn true;\n}\n};\nNodeTraversal.traverse(co",
+        "ck gatherCb =\nnew AbstractCfgNodeTraversalCallback() {\n@Override\npublic void visit(NodeTraversal t, ",
+        "TraversalCallback() {\n@Override\npublic void visit(",
+        "allback() {\n@Override\npublic void visit(NodeTraver",
+        "llback() {\n@Override\npublic void visit(NodeTravers",
+        "ack() {\n@Override\npublic void visit(NodeTraversal ",
+        "ck() {\n@Override\npublic void visit(NodeTraversal t",
+        " {\n@Override\npublic void visit(NodeTraversal t, No",
+        "\n@Override\npublic void visit(NodeTraversal t, Node",
+        "@Override\npublic void visit(NodeTraversal t, Node ",
+        "Override\npublic void visit(NodeTraversal t, Node n",
+        "verride\npublic void visit(NodeTraversal t, Node n,",
+        "erride\npublic void visit(NodeTraversal t, Node n, ",
+        "rride\npublic void visit(NodeTraversal t, Node n, N",
+        "ride\npublic void visit(NodeTraversal t, Node n, No",
+        "ide\npublic void visit(NodeTraversal t, Node n, Nod",
+        "e\npublic void visit(NodeTraversal t, Node n, Node ",
+        "\npublic void visit(NodeTraversal t, Node n, Node p",
+        "public void visit(NodeTraversal t, Node n, Node pa"
+    ]
+}

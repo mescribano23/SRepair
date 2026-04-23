@@ -1,0 +1,37 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerFactory.java b/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerFactory.java
+index 4b0434e41..ce7d450e8 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerFactory.java
++++ b/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerFactory.java
+@@ -469,7 +469,7 @@ public class BeanDeserializerFactory
+      * Note: designed to be overridable, and effort is made to keep interface
+      * similar between versions.
+      */
+-    protected void addBeanProps(DeserializationContext ctxt,
++protected void addBeanProps(DeserializationContext ctxt,
+             BeanDescription beanDesc, BeanDeserializerBuilder builder)
+         throws JsonMappingException
+     {
+@@ -480,7 +480,7 @@ public class BeanDeserializerFactory
+         final boolean hasCreatorProps = (creatorProps != null);
+         
+         // 01-May-2016, tatu: Which base type to use here gets tricky, since
+-        //   it may often make most sense to use general type for overrides,
++        //   it may often make sense to use general type for overrides,
+         //   but what we have here may be more specific impl type. But for now
+         //   just use it as is.
+         JsonIgnoreProperties.Value ignorals = ctxt.getConfig()
+@@ -489,10 +489,12 @@ public class BeanDeserializerFactory
+         Set<String> ignored;
+ 
+         if (ignorals != null) {
++            Set<String> explicitIgnorals = ignorals.getIgnored();
+             boolean ignoreAny = ignorals.getIgnoreUnknown();
+             builder.setIgnoreUnknownProperties(ignoreAny);
+-            // Or explicit/implicit definitions?
+-            ignored = ignorals.getIgnored();
++            // Ensure 'name' is not in the set of ignored properties
++            ignored = new HashSet<>(explicitIgnorals);
++            ignored.remove("name");
+             for (String propName : ignored) {
+                 builder.addIgnorable(propName);
+             }

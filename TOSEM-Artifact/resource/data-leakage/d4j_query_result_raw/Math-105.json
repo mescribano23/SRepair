@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "public double getSumSquaredErrors() {\n    return Math.max(0d, sumYY - sumXY * sumXY / sumXX);\n}",
+    "query_result": []
+}

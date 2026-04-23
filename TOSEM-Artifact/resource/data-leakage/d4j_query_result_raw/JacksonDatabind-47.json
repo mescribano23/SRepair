@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.18181818181818182,
+    "input": "public JavaType refineSerializationType(final MapperConfig<?> config,\n        final Annotated a, final JavaType baseType) throws JsonMappingException\n{\n    JavaType type = baseType;\n    final TypeFactory tf = config.getTypeFactory();\n    \n    // 10-Oct-2015, tatu: For 2.7, we'll need to delegate back to\n    //    now-deprecated secondary methods; this because while\n    //    direct sub-class not yet retrofitted may only override\n    //    those methods. With 2.8 or later we may consider removal\n    //    of these methods\n\n    \n    // Ok: start by refining the main type itself; common to all types\n    Class<?> serClass = findSerializationType(a);\n    if (serClass != null) {\n        if (type.hasRawClass(serClass)) {\n            // 30-Nov-2015, tatu: As per [databind#1023], need to allow forcing of\n            //    static typing this way\n            type = type.withStaticTyping();\n        } else {\n            Class<?> currRaw = type.getRawClass();\n            try {\n                // 11-Oct-2015, tatu: For deser, we call `TypeFactory.constructSpecializedType()`,\n                //   may be needed here too in future?\n                if (serClass.isAssignableFrom(currRaw)) { // common case\n                    type = tf.constructGeneralizedType(type, serClass);\n                } else if (currRaw.isAssignableFrom(serClass)) { // specialization, ok as well\n                    type = tf.constructSpecializedType(type, serClass);\n                } else {\n                    throw new J",
+    "query_result": [
+        "zationType(final MapperConfig<?> config,\nfinal Annotated a, final JavaType baseType) throws JsonMapp",
+        "inal MapperConfig<?> config,\nfinal Annotated a, final JavaType baseType) throws JsonMappingException",
+        "Type(final MapperConfig<?> config,\nfinal Annotated",
+        "ype = type.withStaticTyping();\n} else {\nClass<?> c",
+        "eralizedType(type, serClass);\n} else if (currRaw.i"
+    ]
+}

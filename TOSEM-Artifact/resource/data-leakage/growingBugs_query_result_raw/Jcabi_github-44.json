@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.14576271186440679,
+    "input": "    @Override\n    public Release create(final String tag) throws IOException {\n        this.storage.lock();\n        final int number;\n        try {\n            number = 1 + this.storage.xml().xpath(\n                String.format(\"%s/release/id/text()\", this.xpath())\n            ).size();\n            this.storage.apply(\n                new Directives().xpath(this.xpath()).add(\"release\")\n                    .add(\"id\").set(Integer.toString(number)).up()\n                    .add(\"tag_name\").set(tag).up()\n                    .add(\"target_commitish\").set(\"master\").up()\n                    .add(\"name\").set(\"v1.0.0\").up()\n                    .add(\"body\").set(\"Description of the release\").up()\n                    .add(\"draft\").set(\"true\").up()\n                    .add(\"prerelease\").set(\"false\").up()\n                    .add(\"created_at\").set(new Github.Time().toString()).up()\n                    .add(\"published_at\").set(new Github.Time().toString()).up()\n                    .add(\"url\").set(\"http://localhost/1\").up()\n                    .add(\"html_url\").set(\"http://localhost/2\").up()\n                    .add(\"assets_url\").set(\"http://localhost/3\").up()\n                    .add(\"upload_url\").set(\"http://localhost/4\").up()\n            );\n        } finally {\n            this.storage.unlock();\n        }\n        return this.get(number);\n    }",
+    "query_result": [
+        "ows IOException {\nthis.storage.lock();\nfinal int n",
+        "lock();\nfinal int number;\ntry {\nnumber = 1 + this.",
+        "();\nthis.storage.apply(\nnew Directives().xpath(thi",
+        "this.storage.apply(\nnew Directives().xpath(this.xp",
+        "is.storage.apply(\nnew Directives().xpath(this.xpat",
+        ".storage.apply(\nnew Directives().xpath(this.xpath(",
+        "torage.apply(\nnew Directives().xpath(this.xpath())",
+        "ge.apply(\nnew Directives().xpath(this.xpath()).add"
+    ]
+}

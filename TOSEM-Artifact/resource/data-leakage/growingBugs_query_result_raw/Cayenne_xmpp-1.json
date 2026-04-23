@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.9158878504672897,
+    "input": "    @Override\n    public void configure(Binder binder) {\n        // init properties' defaults\n        contributeChatService(binder, XMPPBridge.DEFAULT_CHAT_SERVICE);\n\n        binder.bind(EventBridge.class).toProvider(XMPPBridgeProvider.class).withoutScope();\n    }",
+    "query_result": [
+        "e\npublic void configure(Binder binder) {\n// init properties' defaults\ncontributeChatService(binder, XMPPBridge.DEFAULT_CHAT_SERVICE);\nbinder.bind(EventBridge.class).toProvider(XMPPBridgeProvider.class",
+        "@Override\npublic void configure(Binder binder) {\n/",
+        "Override\npublic void configure(Binder binder) {\n//"
+    ]
+}

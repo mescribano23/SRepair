@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5241090146750524,
+    "input": "public void escape(Writer writer, String str) throws IOException {\n    int len = str.length();\n    for (int i = 0; i < len; i++) {\n        int c = Character.codePointAt(str, i); \n        String entityName = this.entityName(c);\n        if (entityName == null) {\n            if (c >= 0x010000 && i < len - 1) {\n                writer.write(\"&#\");\n                writer.write(Integer.toString(c, 10));\n                writer.write(';');\n                i++;\n            } else if (c > 0x7F) { \n                writer.write(\"&#\");\n                writer.write(Integer.toString(c, 10));\n                writer.write(';');\n            } else {\n                writer.write(c);\n            }\n        } else {\n            writer.write('&');\n            writer.write(entityName);\n            writer.write(';');\n        }\n    }\n}",
+    "query_result": [
+        "r.write(Integer.toString(c, 10));\nwriter.write(';');\n} else {\nwriter.write(c);\n}\n} else {\nwriter.write('&');\nwriter.write(entityName);\nwriter.write(';",
+        "d escape(Writer writer, String str) throws IOException {\nint len = str.length();\nfor (int i = 0; i <",
+        "(Writer writer, String str) throws IOException {\nint len = str.length();\nfor (int i = 0; i < len; i+",
+        "writer, String str) throws IOException {\nint len = str.length();\nfor (int i = 0; i < len; i++) {\nint",
+        "r, String str) throws IOException {\nint len = str.length();\nfor (int i = 0; i < len; i++) {\nint c = ",
+        "write(\"&#\");\nwriter.write(Integer.toString(c, 10));\nwriter.write(';');\n} else {\nwriter.write(c);\n}\n}",
+        "te(\"&#\");\nwriter.write(Integer.toString(c, 10));\nwriter.write(';');\n} else {\nwriter.write(c);\n}\n} el",
+        "rite(Integer.toString(c, 10));\nwriter.write(';');\n} else {\nwriter.write(c);\n}\n} else {\nwriter.write(",
+        "er, String str) throws IOException {\nint len = str",
+        "String str) throws IOException {\nint len = str.len",
+        "ng str) throws IOException {\nint len = str.length(",
+        "tr) throws IOException {\nint len = str.length();\nf",
+        "ows IOException {\nint len = str.length();\nfor (int",
+        " IOException {\nint len = str.length();\nfor (int i ",
+        "IOException {\nint len = str.length();\nfor (int i =",
+        "OException {\nint len = str.length();\nfor (int i = ",
+        "n {\nint len = str.length();\nfor (int i = 0; i < le",
+        " {\nint len = str.length();\nfor (int i = 0; i < len",
+        "{\nint len = str.length();\nfor (int i = 0; i < len;",
+        "\nint len = str.length();\nfor (int i = 0; i < len; "
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.5268817204301075,
+    "input": "    public static float max(final float a, final float b) {\n        return (a <= b) ? b : (Float.isNaN(a + b) ? Float.NaN : a);\n    }",
+    "query_result": [
+        "public static float max(final float a, final float",
+        "blic static float max(final float a, final float b",
+        "c static float max(final float a, final float b) {",
+        " static float max(final float a, final float b) {\n",
+        "atic float max(final float a, final float b) {\nret"
+    ]
+}

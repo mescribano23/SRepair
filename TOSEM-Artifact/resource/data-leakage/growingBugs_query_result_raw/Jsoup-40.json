@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.9316770186335404,
+    "input": "    public DocumentType(String name, String publicId, String systemId, String baseUri) {\n        super(baseUri);\n\n        attr(\"name\", name);\n        attr(\"publicId\", publicId);\n        attr(\"systemId\", systemId);\n    }",
+    "query_result": [
+        "public DocumentType(String name, String publicId, String systemId, String baseUri) {\nsuper(baseUri);",
+        "ing publicId, String systemId, String baseUri) {\nsuper(baseUri);\nattr(\"name\", name);\nattr(\"publicId\"",
+        " DocumentType(String name, String publicId, String",
+        "DocumentType(String name, String publicId, String ",
+        "ocumentType(String name, String publicId, String s",
+        "cumentType(String name, String publicId, String sy",
+        "ntType(String name, String publicId, String system",
+        "(String name, String publicId, String systemId, St",
+        "String name, String publicId, String systemId, Str",
+        "tring name, String publicId, String systemId, Stri",
+        "ring name, String publicId, String systemId, Strin",
+        "ing name, String publicId, String systemId, String",
+        "ng name, String publicId, String systemId, String ",
+        "g name, String publicId, String systemId, String b",
+        "ame, String publicId, String systemId, String base",
+        "e, String publicId, String systemId, String baseUr",
+        "ring publicId, String systemId, String baseUri) {\n",
+        "ublicId, String systemId, String baseUri) {\nsuper(",
+        "me);\nattr(\"publicId\", publicId);\nattr(\"systemId\", "
+    ]
+}

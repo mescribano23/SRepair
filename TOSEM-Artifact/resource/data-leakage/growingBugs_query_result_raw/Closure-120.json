@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.17732558139534885,
+    "input": "    boolean isAssignedOnceInLifetime() {\n      Reference ref = getOneAndOnlyAssignment();\n      if (ref == null) {\n        return false;\n      }\n\n      // Make sure this assignment is not in a loop.\n      for (BasicBlock block = ref.getBasicBlock();\n           block != null; block = block.getParent()) {\n        if (block.isFunction) {\n          if (ref.getSymbol().getScope() != ref.scope) {\n            return false;\n          }\n          break;\n        } else if (block.isLoop) {\n          return false;\n        }\n      }\n\n      return true;\n    }",
+    "query_result": [
+        "k = ref.getBasicBlock();\nblock != null; block = bl",
+        "getBasicBlock();\nblock != null; block = block.getP",
+        "();\nblock != null; block = block.getParent()) {\nif"
+    ]
+}

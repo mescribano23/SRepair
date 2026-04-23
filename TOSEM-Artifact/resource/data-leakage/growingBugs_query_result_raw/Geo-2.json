@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.9829545454545454,
+    "input": "    public static String encodeHash(double latitude, double longitude, int length) {\n        Preconditions.checkArgument(length > 0 && length <=12, \"length must be between 1 and 12\");\n        Preconditions.checkArgument(latitude >= -90 && latitude <= 90,\n                \"latitude must be between -90 and 90 inclusive\");\n        longitude = Position.to180(longitude);\n\n        return fromLongToString(encodeHashToLong(latitude, longitude, length));\n    }",
+    "query_result": [
+        "ublic static String encodeHash(double latitude, double longitude, int length) {\nPreconditions.checkArgument(length > 0 && length <=12, \"length must be between 1 and 12\");\nPreconditions.checkArgument(latitude >= -90 && latitude <= 90,\n\"latitude must b",
+        "0 && latitude <= 90,\n\"latitude must be between -90 and 90 inclusive\");\nlongitude = Position.to180(longitude);\nreturn fromLongToString(encodeHashToLong",
+        "public static String encodeHash(double latitude, d",
+        "c static String encodeHash(double latitude, double",
+        "tatic String encodeHash(double latitude, double lo",
+        "tic String encodeHash(double latitude, double long",
+        "Hash(double latitude, double longitude, int length",
+        "ash(double latitude, double longitude, int length)",
+        "nt length) {\nPreconditions.checkArgument(length > ",
+        "t length) {\nPreconditions.checkArgument(length > 0",
+        "nditions.checkArgument(latitude >= -90 && latitude",
+        "ument(latitude >= -90 && latitude <= 90,\n\"latitude",
+        "= -90 && latitude <= 90,\n\"latitude must be between",
+        "0(longitude);\nreturn fromLongToString(encodeHashTo",
+        "ude);\nreturn fromLongToString(encodeHashToLong(lat",
+        "oString(encodeHashToLong(latitude, longitude, leng"
+    ]
+}

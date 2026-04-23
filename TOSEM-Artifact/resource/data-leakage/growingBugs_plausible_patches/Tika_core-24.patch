@@ -1,0 +1,48 @@
+diff --git a/tika-core/src/main/java/org/apache/tika/detect/NameDetector.java b/tika-core/src/main/java/org/apache/tika/detect/NameDetector.java
+index 9a4646d1a..0f797967a 100644
+--- a/tika-core/src/main/java/org/apache/tika/detect/NameDetector.java
++++ b/tika-core/src/main/java/org/apache/tika/detect/NameDetector.java
+@@ -102,24 +102,20 @@ public class NameDetector implements Detector {
+             if (question != -1) {
+                 name = name.substring(0, question);
+             }
+-            int hash = name.indexOf('#');
+-            if (hash != -1) {
+-                name = name.substring(0, hash);
+-            }
+ 
+-            // If the name is a URL or a path, skip all but the last component
+-            int slash = name.lastIndexOf('/');
+-            if (slash != -1) {
+-                name = name.substring(slash + 1);
+-            }
+-            int backslash = name.lastIndexOf('\\');
+-            if (backslash != -1) {
+-                name = name.substring(backslash + 1);
++            int lastSlash = Math.max(name.lastIndexOf('/'), name.lastIndexOf('\\'));
++            if (lastSlash != -1) {
++                name = name.substring(lastSlash + 1);
+             }
+ 
+-            // Strip any fragments from the end, but only ones after the extension
++            // Adjust to only remove # if it is after the file extension
++            int dot = name.lastIndexOf('.');
++            int hash = name.indexOf('#');
++            if (hash != -1 && (dot == -1 || hash > dot)) {
++                name = name.substring(0, hash);
++            }
+ 
+-            // Decode any potential URL encoding
++            // Continue with the decoding and trimming steps
+             int percent = name.indexOf('%');
+             if (percent != -1) {
+                 try {
+@@ -128,8 +124,6 @@ public class NameDetector implements Detector {
+                     throw new IllegalStateException("UTF-8 not supported", e);
+                 }
+             }
+-
+-            // Skip any leading or trailing whitespace
+             name = name.trim();
+             if (name.length() > 0) {
+                 // Match the name against the registered patterns

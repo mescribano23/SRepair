@@ -1,0 +1,71 @@
+diff --git a/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java b/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
+index 4b0a406..5dfe033 100644
+--- a/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
++++ b/java/src/main/java/com/google/openlocationcode/OpenLocationCode.java
+@@ -507,55 +507,43 @@ public final class OpenLocationCode {
+     if (separatorPosition != code.lastIndexOf(SEPARATOR)) {
+       return false;
+     }
+-    // There must be an even number of at most 8 characters before the separator.
++
++    // Ensure there are an even number of characters before the separator (2, 4, 6, or 8).
+     if (separatorPosition % 2 != 0 || separatorPosition > SEPARATOR_POSITION) {
+       return false;
+     }
+ 
+-    // Check first two characters: only some values from the alphabet are permitted.
++    // Check the first two characters for latitude and longitude restrictions.
+     if (separatorPosition == SEPARATOR_POSITION) {
+-      // First latitude character can only have first 9 values.
+       if (CODE_ALPHABET.indexOf(code.charAt(0)) > 8) {
+         return false;
+       }
+-
+-      // First longitude character can only have first 18 values.
+       if (CODE_ALPHABET.indexOf(code.charAt(1)) > 17) {
+         return false;
+       }
+     }
+ 
+-    // Check the characters before the separator.
++    // Ensure padding follows the rules and does not occur in short codes.
+     boolean paddingStarted = false;
+     for (int i = 0; i < separatorPosition; i++) {
+-      if (paddingStarted) {
+-        // Once padding starts, there must not be anything but padding.
+-        if (code.charAt(i) != PADDING_CHARACTER) {
+-          return false;
+-        }
+-        continue;
+-      }
+-      if (CODE_ALPHABET.indexOf(code.charAt(i)) != -1) {
+-        continue;
++      if (paddingStarted && code.charAt(i) != PADDING_CHARACTER) {
++        return false;
+       }
+-      if (PADDING_CHARACTER == code.charAt(i)) {
++      if (code.charAt(i) == PADDING_CHARACTER) {
+         paddingStarted = true;
+-        // Short codes cannot have padding
+-        // Padding can start on even character: 2, 4 or 6.
+-        if (i != 2 && i != 4 && i != 6) {
++        if (separatorPosition != SEPARATOR_POSITION) {
+           return false;
+         }
+-        continue;
++      } else if (CODE_ALPHABET.indexOf(code.charAt(i)) == -1) {
++        return false;
+       }
+-      return false; // Illegal character.
+     }
+ 
+-    // Check the characters after the separator.
++    // Validate characters after the separator.
+     if (code.length() > separatorPosition + 1) {
+       if (paddingStarted) {
+         return false;
+       }
+-      // Only one character after separator is forbidden.
+       if (code.length() == separatorPosition + 2) {
+         return false;
+       }

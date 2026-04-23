@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public UnarySequence<A> then(UnaryProcedure<? super A> p) {\n        if (p != null) {\n            list.add(p);\n        }\n        return this;\n    }",
+    "query_result": []
+}

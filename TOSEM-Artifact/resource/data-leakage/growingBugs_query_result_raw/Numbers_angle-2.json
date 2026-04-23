@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.4692028985507246,
+    "input": "    public PlaneAngle normalize(PlaneAngle center) {\n        final double lowerBound = center.value - HALF_TURN;\n        final double upperBound = center.value + HALF_TURN;\n\n        final double normalized = value - Math.floor(value - lowerBound);\n\n        return normalized < upperBound ?\n            new PlaneAngle(normalized) :\n            // If value is too small to be representable compared to the\n            // floor expression above (ie, if value + x = x), then we may\n            // end up with a number exactly equal to the upper bound here.\n            // In that case, subtract one from the normalized value so that\n            // we can fulfill the contract of only returning results strictly\n            // less than the upper bound.\n            new PlaneAngle(normalized - 1);\n    }",
+    "query_result": [
+        "compared to the\n// floor expression above (ie, if value + x = x), then we may\n// end up with a number exactly equal to the upper bound here.\n// In that case, subtract one from the normalized value so that\n// we can fulfill the contract of only returning results strictly\n// less than the upper bound.",
+        "to be representable compared to the\n// floor expre",
+        "nd up with a number exactly equal to the upper bou"
+    ]
+}

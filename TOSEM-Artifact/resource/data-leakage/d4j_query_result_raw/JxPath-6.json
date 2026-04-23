@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.7582292849035187,
+    "input": "protected boolean equal(\n    EvalContext context,\n    Expression left,\n    Expression right) \n{\n    Object l = left.compute(context);\n    Object r = right.compute(context);\n\n      System.err.println(\"COMPARING: \" +\n          (l == null ? \"null\" : l.getClass().getName()) + \" \" +\n          (r == null ? \"null\" : r.getClass().getName()));\n\n    if (l instanceof InitialContext) {\n        ((EvalContext) l).reset();\n    }\n\n    if (l instanceof SelfContext) {\n        l = ((EvalContext) l).getSingleNodePointer();\n    }\n\n    if (r instanceof InitialContext) {\n        ((EvalContext) r).reset();\n    }\n\n    if (r instanceof SelfContext) {\n        r = ((EvalContext) r).getSingleNodePointer();\n    }\n\n    if (l instanceof Collection) {\n        l = ((Collection) l).iterator();\n    }\n\n    if (r instanceof Collection) {\n        r = ((Collection) r).iterator();\n    }\n\n    if ((l instanceof Iterator) && !(r instanceof Iterator)) {\n        return contains((Iterator) l, r);\n    }\n    if (!(l instanceof Iterator) && (r instanceof Iterator)) {\n        return contains((Iterator) r, l);\n    }\n    if (l instanceof Iterator && r instanceof Iterator) {\n        return findMatch((Iterator) l, (Iterator) r);\n    }\n    return equal(l, r);\n}",
+    "query_result": [
+        "ntext) l).reset();\n}\nif (l instanceof SelfContext) {\nl = ((EvalContext) l).getSingleNodePointer();\n}\nif (r instanceof InitialContext) {\n((EvalContext) r).reset();\n}\nif (r instanceof SelfContext) {\nr = ((EvalContext) r).getSingleNodePointer();\n}\nif (l instanceof Collection) {\nl = ((Collection) l).iterator();\n}\nif (r instanceof Collection) {\nr = ((Co",
+        "fContext) {\nr = ((EvalContext) r).getSingleNodePointer();\n}\nif (l instanceof Collection) {\nl = ((Collection) l).iterator();\n}\nif (r instanceof Collection) {\nr = ((Collection) r).iterator();\n}\nif ((l instanceof Iterator) && !(r instanceof Iterator)) {",
+        "oolean equal(\nEvalContext context,\nExpression left,\nExpression right) \n{\nObject l = left.compute(con",
+        "stanceof Iterator && r instanceof Iterator) {\nreturn findMatch((Iterator) l, (Iterator) r);\n}\nreturn",
+        "eft.compute(context);\nObject r = right.compute(con",
+        " ? \"null\" : r.getClass().getName()));\nif (l instan",
+        "\nl = ((EvalContext) l).getSingleNodePointer();\n}\ni",
+        "instanceof Iterator) && (r instanceof Iterator)) {",
+        "or && r instanceof Iterator) {\nreturn findMatch((I"
+    ]
+}

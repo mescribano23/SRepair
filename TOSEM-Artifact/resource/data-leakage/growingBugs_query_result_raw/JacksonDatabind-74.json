@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9174228675136116,
+    "input": "    @SuppressWarnings(\"resource\")\n    protected Object _deserializeTypedUsingDefaultImpl(JsonParser p, DeserializationContext ctxt,\n            TokenBuffer tb) throws IOException\n    {\n        // As per [JACKSON-614], may have default implementation to use\n        JsonDeserializer<Object> deser = _findDefaultImplDeserializer(ctxt);\n        if (deser != null) {\n            if (tb != null) {\n                tb.writeEndObject();\n                p = tb.asParser(p);\n                // must move to point to the first token:\n                p.nextToken();\n            }\n            return deser.deserialize(p, ctxt);\n        }\n        // or, perhaps we just bumped into a \"natural\" value (boolean/int/double/String)?\n        Object result = TypeDeserializer.deserializeIfNatural(p, ctxt, _baseType);\n        if (result != null) {\n            return result;\n        }\n        // or, something for which \"as-property\" won't work, changed into \"wrapper-array\" type:\n        if (p.getCurrentToken() == JsonToken.START_ARRAY) {\n            return super.deserializeTypedFromAny(p, ctxt);\n        } else if (p.getCurrentToken() == JsonToken.VALUE_STRING) {\n            if (ctxt.isEnabled(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)) {\n                String str = p.getText().trim();\n                if (str.isEmpty()) {\n                    return null;\n                }\n            }\n        }\n        ctxt.reportWrongTokenException(p, JsonToken.FIELD_NAME,\n                \"missing property '\"+_typePropertyName+\"' that is to contain type id  (for class \"+baseTypeName()+\")\");\n        return null;\n    }",
+    "query_result": [
+        "(tb != null) { tb.writeEndObject(); p = tb.asParser(p); // must move to point to the first token: p.nextToken(); } return deser.deserialize(p, ctxt); } // or, perhaps we just bumped into a \"natural\" value (boolean/int/double/String)? Object result = TypeDeserializer.deserializeIfNatural(p, ctxt, _baseType); if (result != null) { return result; } // or, something for which \"as-property\" won't work, changed into \"wrapper-array\" type: if (p.getCurrentToken() == JsonToken.START_ARRAY) { return super",
+        "ect _deserializeTypedUsingDefaultImpl(JsonParser p, DeserializationContext ctxt, TokenBuffer tb) throws IOException { // As per [JACKSON-614], may have default implementation to use JsonDeserializer<Object> deser = _findDefaultImplDeserializer(ctxt);",
+        "or, perhaps we just bumped into a \"natural\" value (boolean/int/double/String)? Object result = TypeDeserializer.deserializeIfNatural(p, ctxt, _baseType); if (result != null) { return result; } // or, something for which \"as-property\" won't work, chan",
+        "just bumped into a \"natural\" value (boolean/int/double/String)? Object result = TypeDeserializer.deserializeIfNatural(p, ctxt, _baseType); if (result != null) { return result; } // or, something for which \"as-property\" won't work, changed into \"wrapp",
+        "ongTokenException(p, JsonToken.FIELD_NAME, \"missing property '\"+_typePropertyName+\"' that is to contain type id (for class \"+baseTypeName()+\")\"); retu",
+        ") { tb.writeEndObject(); p = tb.asParser(p); // must move to point to the first token: p.nextToken()",
+        ".asParser(p); // must move to point to the first token: p.nextToken(); } return deser.deserialize(p,",
+        "f (p.getCurrentToken() == JsonToken.VALUE_STRING) { if (ctxt.isEnabled(DeserializationFeature.ACCEPT",
+        "(p.getCurrentToken() == JsonToken.VALUE_STRING) { if (ctxt.isEnabled(DeserializationFeature.ACCEPT_E",
+        "xt.isEnabled(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)) { String str = p.getText().",
+        ".ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)) { String str = p.getText().trim(); if (str.isEmpty()) { return",
+        "sWarnings(\"resource\") protected Object _deserializ",
+        "otected Object _deserializeTypedUsingDefaultImpl(J",
+        "ed Object _deserializeTypedUsingDefaultImpl(JsonPa",
+        "Object _deserializeTypedUsingDefaultImpl(JsonPars",
+        "bject _deserializeTypedUsingDefaultImpl(JsonParser",
+        "nDeserializer<Object> deser = _findDefaultImplDese",
+        "Deserializer<Object> deser = _findDefaultImplDeser",
+        "rializer<Object> deser = _findDefaultImplDeseriali",
+        "> deser = _findDefaultImplDeserializer(ctxt); if ("
+    ]
+}

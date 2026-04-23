@@ -1,0 +1,80 @@
+diff --git a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+index 7b458af..b34eabc 100755
+--- a/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
++++ b/src/main/java/net/lingala/zip4j/headers/HeaderReader.java
+@@ -636,46 +636,46 @@ public class HeaderReader {
+     }
+   }
+ 
+-  private AESExtraDataRecord readAesExtraDataRecord(List<ExtraDataRecord> extraDataRecords, RawIO rawIO)
+-      throws ZipException {
++private AESExtraDataRecord readAesExtraDataRecord(List<ExtraDataRecord> extraDataRecords, RawIO rawIO)
++    throws ZipException {
+ 
+-    if (extraDataRecords == null) {
+-      return null;
+-    }
++  if (extraDataRecords == null) {
++    return null;
++  }
+ 
+-    for (ExtraDataRecord extraDataRecord : extraDataRecords) {
+-      if (extraDataRecord == null) {
+-        continue;
+-      }
++  for (ExtraDataRecord extraDataRecord : extraDataRecords) {
++    if (extraDataRecord == null) {
++      continue;
++    }
+ 
+-      if (extraDataRecord.getHeader() == HeaderSignature.AES_EXTRA_DATA_RECORD.getValue()) {
++    if (extraDataRecord.getHeader() == HeaderSignature.AES_EXTRA_DATA_RECORD.getValue()) {
+ 
+-        byte[] aesExtraDataRecordBytes = extraDataRecord.getData();
+-        if (aesExtraDataRecordBytes == null || aesExtraDataRecordBytes.length != 9) {
+-          throw new ZipException("corrupt AES extra data records");
+-        }
++      byte[] aesExtraDataRecordBytes = extraDataRecord.getData();
++      if (aesExtraDataRecordBytes == null || aesExtraDataRecordBytes.length < 7) {
++        throw new ZipException("corrupt AES extra data records");
++      }
+ 
+-        AESExtraDataRecord aesExtraDataRecord = new AESExtraDataRecord();
++      AESExtraDataRecord aesExtraDataRecord = new AESExtraDataRecord();
+ 
+-        aesExtraDataRecord.setSignature(HeaderSignature.AES_EXTRA_DATA_RECORD);
+-        aesExtraDataRecord.setDataSize(extraDataRecord.getSizeOfData());
++      aesExtraDataRecord.setSignature(HeaderSignature.AES_EXTRA_DATA_RECORD);
++      aesExtraDataRecord.setDataSize(extraDataRecord.getSizeOfData());
+ 
+-        byte[] aesData = extraDataRecord.getData();
+-        aesExtraDataRecord.setAesVersion(AesVersion.getFromVersionNumber(rawIO.readShortLittleEndian(aesData, 0)));
+-        byte[] vendorIDBytes = new byte[2];
+-        System.arraycopy(aesData, 2, vendorIDBytes, 0, 2);
+-        aesExtraDataRecord.setVendorID(new String(vendorIDBytes));
+-        aesExtraDataRecord.setAesKeyStrength(AesKeyStrength.getAesKeyStrengthFromRawCode(aesData[4] & 0xFF));
+-        aesExtraDataRecord.setCompressionMethod(
+-            CompressionMethod.getCompressionMethodFromCode(rawIO.readShortLittleEndian(aesData, 5)));
++      byte[] aesData = extraDataRecord.getData();
++      aesExtraDataRecord.setAesVersion(AesVersion.getFromVersionNumber(rawIO.readShortLittleEndian(aesData, 0)));
++      byte[] vendorIDBytes = new byte[2];
++      System.arraycopy(aesData, 2, vendorIDBytes, 0, 2);
++      aesExtraDataRecord.setVendorID(new String(vendorIDBytes));
++      aesExtraDataRecord.setAesKeyStrength(AesKeyStrength.getAesKeyStrengthFromRawCode(aesData[4] & 0xFF));
++      aesExtraDataRecord.setCompressionMethod(
++          CompressionMethod.getCompressionMethodFromCode(rawIO.readShortLittleEndian(aesData, 5)));
+ 
+-        return aesExtraDataRecord;
+-      }
++      return aesExtraDataRecord;
+     }
+-
+-    return null;
+   }
+ 
++  return null;
++}
++
+   private long getNumberOfEntriesInCentralDirectory(ZipModel zipModel) {
+     if (zipModel.isZip64Format()) {
+       return zipModel.getZip64EndOfCentralDirectoryRecord().getTotalNumberOfEntriesInCentralDirectory();

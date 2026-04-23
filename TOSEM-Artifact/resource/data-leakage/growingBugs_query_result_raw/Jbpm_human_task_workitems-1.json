@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.0,
+    "input": "\tprotected void processPeopleAssignments(String peopleAssignmentIds, List<OrganizationalEntity> organizationalEntities, boolean user) {\n\n        if (peopleAssignmentIds != null && peopleAssignmentIds.trim().length() > 0) {\n\n            String[] ids = peopleAssignmentIds.split(separator);\n            for (String id : ids) {\n                id = id.trim();\n                // JBPM-7356 - ignore empty strings\n                if(id.length()==0)\n                    continue;\n                boolean exists = false;\n                for (OrganizationalEntity orgEntity : organizationalEntities) {\n                    if (orgEntity.getId().equals(id)) {\n                        exists = true;\n                    }\n                }\n\n                if (!exists) {\n                    OrganizationalEntity organizationalEntity = null;\n                    if (user) {\n                    \torganizationalEntity = TaskModelProvider.getFactory().newUser();\n                    \t((InternalOrganizationalEntity) organizationalEntity).setId(id);\n                        \n                    } else {\n                    \torganizationalEntity = TaskModelProvider.getFactory().newGroup();\n                    \t((InternalOrganizationalEntity) organizationalEntity).setId(id);\n                    }\n                    organizationalEntities.add(organizationalEntity);\n\n                }\n            }\n        }\n\t}",
+    "query_result": [
+        "inputs = tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device) outputs = model.generate(inputs) print(tokenizer.decode(outputs",
+        "ormers import AutoModelForCausalLM, AutoTokenizer device = \"cuda\" # for GPU usage or \"cpu\" for CPU u",
+        "vice) inputs = tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device) outputs",
+        "= tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device) outputs = model.gener",
+        "tokenizer.encode(\"def print_hello_world():\", return_tensors=\"pt\").to(device) outputs = model.genera",
+        "ode(\"def print_hello_world():\", return_tensors=\"pt\").to(device) outputs = model.generate(inputs) pri",
+        "ello_world():\", return_tensors=\"pt\").to(device) outputs = model.generate(inputs) print(tokenizer.dec",
+        "from transformers import AutoModelForCausalLM, Aut",
+        "rom transformers import AutoModelForCausalLM, Auto",
+        "om transformers import AutoModelForCausalLM, AutoT",
+        "m transformers import AutoModelForCausalLM, AutoTo",
+        "transformers import AutoModelForCausalLM, AutoTok",
+        "transformers import AutoModelForCausalLM, AutoToke",
+        "ransformers import AutoModelForCausalLM, AutoToken",
+        "ansformers import AutoModelForCausalLM, AutoTokeni",
+        "nsformers import AutoModelForCausalLM, AutoTokeniz",
+        "sformers import AutoModelForCausalLM, AutoTokenize",
+        "formers import AutoModelForCausalLM, AutoTokenizer",
+        "ers import AutoModelForCausalLM, AutoTokenizer dev",
+        "import AutoModelForCausalLM, AutoTokenizer device"
+    ]
+}

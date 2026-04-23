@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.9124579124579124,
+    "input": "JSType meet(JSType that) {\n  UnionTypeBuilder builder = new UnionTypeBuilder(registry);\n  for (JSType alternate : alternates) {\n    if (alternate.isSubtype(that)) {\n      builder.addAlternate(alternate);\n    }\n  }\n\n  if (that instanceof UnionType) {\n    for (JSType otherAlternate : ((UnionType) that).alternates) {\n      if (otherAlternate.isSubtype(this)) {\n        builder.addAlternate(otherAlternate);\n      }\n    }\n  } else if (that.isSubtype(this)) {\n    builder.addAlternate(that);\n  }\n  JSType result = builder.build();\n  if (!result.isNoType()) {\n    return result;\n  } else if (this.isObject() && that.isObject()) {\n    return getNativeType(JSTypeNative.NO_OBJECT_TYPE);\n  } else {\n    return getNativeType(JSTypeNative.NO_TYPE);\n  }\n}",
+    "query_result": [
+        "nTypeBuilder builder = new UnionTypeBuilder(registry);\nfor (JSType alternate : alternates) {\nif (alternate.isSubtype(that)) {\nbuilder.addAlternate(alternate);\n}\n}\nif (that instanceof UnionType) {\nfor (JSType otherAlternate : ((UnionType) that).alternates) {\nif (otherAlternate.isSubtype(this)) {\nbuilder.addAlternate(otherAlternate);\n}\n}\n} else if (that.isSubtype(this)) {\nbuilder.addAlternate(that);\n}\nJSType result = builder.build();\nif (!result.isNoType()) {\nreturn result;\n} else if (this.isObject() && that.isObject()) {\nreturn getNativeType(JSTypeNative.NO_OBJECT_TYPE);\n} else {\nreturn getNati",
+        " alternates) {\nif (alternate.isSubtype(that)) {\nbuilder.addAlternate(alternate);\n}\n}\nif (that instanceof UnionType) {\nfor (JSType otherAlternate : ((UnionType) that).alternates) {\nif (otherAlternate.isSubtype(this)) {\nbuilder.addAlternate(otherAlternate);\n}\n}\n} else if (that.isSubtype(this)) {\nbuilder.addAlternate(that);\n}\nJSType result = builder.build();\nif (!result.isNoType()) {\nreturn result;\n}",
+        "peBuilder builder = new UnionTypeBuilder(registry)",
+        "ilder = new UnionTypeBuilder(registry);\nfor (JSTyp",
+        "ype(that)) {\nbuilder.addAlternate(alternate);\n}\n}\n",
+        "ive.NO_OBJECT_TYPE);\n} else {\nreturn getNativeType"
+    ]
+}

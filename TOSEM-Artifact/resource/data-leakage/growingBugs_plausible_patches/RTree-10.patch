@@ -1,0 +1,26 @@
+diff --git a/src/main/java/com/github/davidmoten/rtree/geometry/Line.java b/src/main/java/com/github/davidmoten/rtree/geometry/Line.java
+index 85732c7..b014159 100644
+--- a/src/main/java/com/github/davidmoten/rtree/geometry/Line.java
++++ b/src/main/java/com/github/davidmoten/rtree/geometry/Line.java
+@@ -71,17 +71,10 @@ public final class Line implements Geometry {
+                 Math.max(y1, y2));
+     }
+ 
+-    @Override
+-    public boolean intersects(Rectangle r) {
+-        GeometryFactory gf = new GeometryFactory();
+-        GeometricShapeFactory f = new GeometricShapeFactory(gf);
+-        f.setBase(new Coordinate(r.x1(), r.y1()));
+-        f.setWidth(r.x2() - r.x1());
+-        f.setHeight(r.y2() - r.y1());
+-        Polygon rect = f.createRectangle();
+-        LineSegment line = new LineSegment(x1, y1, x2, y2);
+-        return new Line2D.Float(x1, y1, x2, y2).intersects(new Rectangle2D.Float(r.x1(), r.y1(), r.x2(), r.y2()));
+-    }
++@Override
++public boolean intersects(Rectangle r) {
++    return new Line2D.Float(x1, y1, x2, y2).intersectsLine(r.x1(), r.y1(), r.x2(), r.y2());
++}
+ 
+     public float x1() {
+         return x1;

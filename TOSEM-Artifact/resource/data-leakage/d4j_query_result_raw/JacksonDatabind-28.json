@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4089935760171306,
+    "input": "public ObjectNode deserialize(JsonParser p, DeserializationContext ctxt) throws IOException\n{\n    if (p.isExpectedStartObjectToken() || p.hasToken(JsonToken.FIELD_NAME)) {\n        return deserializeObject(p, ctxt, ctxt.getNodeFactory());\n    }\n    // 23-Sep-2015, tatu: Ugh. We may also be given END_OBJECT (similar to FIELD_NAME),\n    //    if caller has advanced to the first token of Object, but for empty Object\n    if (p.hasToken(JsonToken.END_OBJECT)) {\n        return ctxt.getNodeFactory().objectNode();\n    }\n    throw ctxt.mappingException(ObjectNode.class);\n }",
+    "query_result": [
+        "e(JsonParser p, DeserializationContext ctxt) throws IOException\n{\nif (p.isExpectedStartObjectToken()",
+        "caller has advanced to the first token of Object, but for empty Object\nif (p.hasToken(JsonToken.END_",
+        "ode deserialize(JsonParser p, DeserializationConte",
+        "e deserialize(JsonParser p, DeserializationContext",
+        " deserialize(JsonParser p, DeserializationContext ",
+        "deserialize(JsonParser p, DeserializationContext c",
+        "eserialize(JsonParser p, DeserializationContext ct",
+        "serialize(JsonParser p, DeserializationContext ctx",
+        "erialize(JsonParser p, DeserializationContext ctxt",
+        "rialize(JsonParser p, DeserializationContext ctxt)",
+        "ialize(JsonParser p, DeserializationContext ctxt) ",
+        "alize(JsonParser p, DeserializationContext ctxt) t",
+        "lize(JsonParser p, DeserializationContext ctxt) th",
+        "ize(JsonParser p, DeserializationContext ctxt) thr",
+        "ze(JsonParser p, DeserializationContext ctxt) thro",
+        "(JsonParser p, DeserializationContext ctxt) throws",
+        "JsonParser p, DeserializationContext ctxt) throws ",
+        "sonParser p, DeserializationContext ctxt) throws I",
+        "onParser p, DeserializationContext ctxt) throws IO",
+        "nParser p, DeserializationContext ctxt) throws IOE"
+    ]
+}

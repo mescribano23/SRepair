@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9323308270676691,
+    "input": "protected Size2D arrangeFF(BlockContainer container, Graphics2D g2,\n                           RectangleConstraint constraint) {\n    double[] w = new double[5];\n    double[] h = new double[5];\n    w[0] = constraint.getWidth();\n    if (this.topBlock != null) {\n        RectangleConstraint c1 = new RectangleConstraint(w[0], null,\n                LengthConstraintType.FIXED, 0.0,\n                new Range(0.0, constraint.getHeight()),\n                LengthConstraintType.RANGE);\n        Size2D size = this.topBlock.arrange(g2, c1);\n        h[0] = size.height;\n    }\n    w[1] = w[0];\n    if (this.bottomBlock != null) {\n        RectangleConstraint c2 = new RectangleConstraint(w[0], null,\n                LengthConstraintType.FIXED, 0.0, new Range(0.0,\n                constraint.getHeight() - h[0]), LengthConstraintType.RANGE);\n        Size2D size = this.bottomBlock.arrange(g2, c2);\n        h[1] = size.height;\n    }\n    h[2] = constraint.getHeight() - h[1] - h[0];\n    if (this.leftBlock != null) {\n        RectangleConstraint c3 = new RectangleConstraint(0.0,\n                new Range(0.0, constraint.getWidth()),\n                LengthConstraintType.RANGE, h[2], null,\n                LengthConstraintType.FIXED);\n        Size2D size = this.leftBlock.arrange(g2, c3);\n        w[2] = size.width;\n    }\n    h[3] = h[2];\n    if (this.rightBlock != null) {\n        RectangleConstraint c4 = new RectangleConstraint(0.0,\n                new Range(0.0, Math.max(constraint.getWidth() - w[2], 0.0)),\n  ",
+    "query_result": [
+        "Size2D arrangeFF(BlockContainer container, Graphics2D g2,\nRectangleConstraint constraint) {\ndouble[] w = new double[5];\ndouble[] h = new double[5];\nw[0] = constraint.getWidth();\nif (this.topBlock != null) {\nRectangleConstraint c1 = new RectangleConstraint(w[0], null,\nLengthConstraintType.FIXED, 0.0,\nnew Range(0.0, constraint.getHeight()),\nLengthConstraintType.RANGE);\nSize2D size = this.topBlock.arrange(g2, c1);\nh[0] = size.height;\n}\nw[1] = w[0];\nif (this.bottomBlock != null) {\nRectangleConstraint c2 = new RectangleConstraint(w[0], null,\nLengthConstraintType.FIXED, 0.0, new Range(0.0,\nconstraint.getHeight() - h[0]), LengthConstraintType.RANGE);\nSize2D size = this.bottomBlock.arrange(g2, c2);\n",
+        "ight() - h[1] - h[0];\nif (this.leftBlock != null) {\nRectangleConstraint c3 = new RectangleConstraint(0.0,\nnew Range(0.0, constraint.getWidth()),\nLengthConstraintType.RANGE, h[2], null,\nLengthConstraintType.FIXED);\nSize2D size = this.leftBlock.arrange(g2, c3);\nw[2] = size.width;\n}\nh[3] = h[2];\nif (this.rightBlock != null) {\nRectangleConstraint c4 = ",
+        "Container container, Graphics2D g2,\nRectangleConstraint constraint) {\ndouble[] w = new double[5];\ndouble[] h = new double[5];\nw[0] = constraint.getWidth();\nif (this.topBlock != null) {\nRectangleConstraint c1 = new RectangleConstraint(w[0], null,\nLeng",
+        "0] = size.height;\n}\nw[1] = w[0];\nif (this.bottomBlock != null) {\nRectangleConstraint c2 = new RectangleConstraint(w[0], null,\nLengthConstraintType.FIX",
+        " this.bottomBlock.arrange(g2, c2);\nh[1] = size.height;\n}\nh[2] = constraint.getHeight() - h[1] - h[0]",
+        "s.bottomBlock.arrange(g2, c2);\nh[1] = size.height;\n}\nh[2] = constraint.getHeight() - h[1] - h[0];\nif",
+        "ottomBlock.arrange(g2, c2);\nh[1] = size.height;\n}\nh[2] = constraint.getHeight() - h[1] - h[0];\nif (t",
+        "height;\n}\nh[2] = constraint.getHeight() - h[1] - h[0];\nif (this.leftBlock != null) {\nRectangleConstr",
+        "LengthConstraintType.RANGE, h[2], null,\nLengthConstraintType.FIXED);\nSize2D size = this.leftBlock.ar",
+        "gthConstraintType.RANGE, h[2], null,\nLengthConstraintType.FIXED);\nSize2D size = this.leftBlock.arran",
+        "2] = size.width;\n}\nh[3] = h[2];\nif (this.rightBlock != null) {\nRectangleConstraint c4 = new Rectangl",
+        "rotected Size2D arrangeFF(BlockContainer container",
+        "cted Size2D arrangeFF(BlockContainer container, Gr",
+        "d Size2D arrangeFF(BlockContainer container, Graph",
+        "ze2D arrangeFF(BlockContainer container, Graphics2",
+        "e2D arrangeFF(BlockContainer container, Graphics2D",
+        "D arrangeFF(BlockContainer container, Graphics2D g",
+        "ockContainer container, Graphics2D g2,\nRectangleCo",
+        "ntainer container, Graphics2D g2,\nRectangleConstra",
+        "iner container, Graphics2D g2,\nRectangleConstraint"
+    ]
+}

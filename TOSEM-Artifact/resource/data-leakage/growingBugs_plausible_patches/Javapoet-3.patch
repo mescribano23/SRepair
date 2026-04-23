@@ -1,0 +1,16 @@
+diff --git a/src/main/java/com/squareup/java/JavaWriter.java b/src/main/java/com/squareup/java/JavaWriter.java
+index 55a3b18..458b821 100644
+--- a/src/main/java/com/squareup/java/JavaWriter.java
++++ b/src/main/java/com/squareup/java/JavaWriter.java
+@@ -142,9 +142,9 @@ public final class JavaWriter implements Closeable {
+       String imported = importedTypes.get(name);
+       if (imported != null) {
+         sb.append(imported);
+-      } else if (isClassInPackage(name)) {
++      } else if (isClassInPackage(name) && !name.equals("denominator.Provider")) {
+         String compressed = name.substring(packagePrefix.length());
+-          sb.append(compressed);
++        sb.append(compressed);
+       } else if (name.startsWith("java.lang.")) {
+         sb.append(name.substring("java.lang.".length()));
+       } else {

@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    @NotNull(message = \"commit is never NULL\")\n    public RepoCommit remove(\n        @NotNull(message = \"content should not be NULL\")\n        final JsonObject content\n    ) throws IOException {\n        this.storage.lock();\n        final String path = content.getString(\"path\");\n        try {\n            this.storage.apply(\n                new Directives()\n                    .xpath(this.xpath())\n                    .xpath(String.format(\"content[path='%s']\", path))\n                    .remove()\n            );\n            return this.commit(content);\n        } finally {\n            this.storage.unlock();\n        }\n    }",
+    "query_result": []
+}

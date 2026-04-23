@@ -1,0 +1,15 @@
+diff --git a/tape/src/main/java/com/squareup/tape/QueueFile.java b/tape/src/main/java/com/squareup/tape/QueueFile.java
+index bffbbc4..bc3d2b6 100644
+--- a/tape/src/main/java/com/squareup/tape/QueueFile.java
++++ b/tape/src/main/java/com/squareup/tape/QueueFile.java
+@@ -510,6 +510,10 @@ public class QueueFile implements Closeable {
+    * @throws NoSuchElementException if the queue is empty
+    */
+   public synchronized void remove(int n) throws IOException {
++    if (n < 0) {
++      throw new IllegalArgumentException(
++          "Cannot remove negative (" + n + ") number of elements.");
++    }
+     if (isEmpty()) {
+       throw new NoSuchElementException();
+     }

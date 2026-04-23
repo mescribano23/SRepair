@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.9230769230769231,
+    "input": "    @Setup\n    public void setup() {\n        template = MustacheEngineBuilder\n                .newBuilder()\n                // Disable HTML escaping\n                .setProperty(EngineConfigurationKey.SKIP_VALUE_ESCAPING, true)\n                // Disable useless resolver\n                .setProperty(CombinedIndexResolver.ENABLED_KEY, false)\n                .addTemplateLocator(ClassPathTemplateLocator.builder(1).setRootPath(\"templates\").setScanClasspath(false).setSuffix(\"trimou.html\").build())\n                .registerHelpers(HelpersBuilder.extra().add(\"isNeg\", new NumberMatchingHelper() {\n                    @Override\n                    protected boolean isMatching(Number value) {\n                        if (value instanceof Double) {\n                            return value.doubleValue() < 0;\n                        }\n                        // TODO other number types\n                        return false;\n                    }\n                }).build()).build().getMustache(\"stocks\");\n        this.context = getContext();\n    }",
+    "query_result": [
+        "\npublic void setup() {\ntemplate = MustacheEngineBuilder\n.newBuilder()\n// Disable HTML escaping\n.setProperty(EngineConfigurationKey.SKIP_VALUE_ESCAPING, true)\n// Disable useless resolver\n.setProperty(CombinedIndexResolver.ENABLED_KEY, false)\n.addTemplateLocator(ClassPathTemplateLocator.builder(1).setRootPath(\"templates\").setScanClasspath(false).setSuffix(\"trimou.html\").build())\n.registerHelpers(HelpersBuilder.extra().add(\"isNeg\", new NumberMatchingHelper() {\n@Override\nprotected boolean isMatching(Number value) {\nif (value instanceof Double) {\nreturn value.doubleValue() < 0;\n}\n// TODO other number types\nreturn false;\n}\n}).build()).build().getMu",
+        "addTemplateLocator(ClassPathTemplateLocator.builde",
+        "egisterHelpers(HelpersBuilder.extra().add(\"isNeg\",",
+        "(value instanceof Double) {\nreturn value.doubleVal"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.20844564240790656,
+    "input": "private JSType getDeclaredType(String sourceName, JSDocInfo info,\n    Node lValue, @Nullable Node rValue) {\n  if (info != null && info.hasType()) {\n    return getDeclaredTypeInAnnotation(sourceName, lValue, info);\n  } else if (rValue != null && rValue.isFunction() &&\n      shouldUseFunctionLiteralType(\n          JSType.toMaybeFunctionType(rValue.getJSType()), info, lValue)) {\n    return rValue.getJSType();\n  } else if (info != null) {\n    if (info.hasEnumParameterType()) {\n      if (rValue != null && rValue.isObjectLit()) {\n        return rValue.getJSType();\n      } else {\n        return createEnumTypeFromNodes(\n            rValue, lValue.getQualifiedName(), info, lValue);\n      }\n    } else if (info.isConstructor() || info.isInterface()) {\n      return createFunctionTypeFromNodes(\n          rValue, lValue.getQualifiedName(), info, lValue);\n    } else {\n      // Check if this is constant, and if it has a known type.\n      if (info.isConstant()) {\n        JSType knownType = null;\n        if (rValue != null) {\n          JSDocInfo rValueInfo = rValue.getJSDocInfo();\n          if (rValueInfo != null && rValueInfo.hasType()) {\n            // If rValue has a type-cast, we use the type in the type-cast.\n            return rValueInfo.getType().evaluate(scope, typeRegistry);\n          } else if (rValue.getJSType() != null\n              && !rValue.getJSType().isUnknownType()) {\n            // If rValue's type was already computed during scope creation,\n            // then we can safely",
+    "query_result": [
+        "Value.getJSType().isUnknownType()) {\n// If rValue's type was already computed during scope creation,",
+        "UnknownType()) {\n// If rValue's type was already computed during scope creation,\n// then we can safe",
+        "()) {\nJSType knownType = null;\nif (rValue != null)",
+        "pe()) {\n// If rValue has a type-cast, we use the t",
+        " rValueInfo.getType().evaluate(scope, typeRegistry"
+    ]
+}

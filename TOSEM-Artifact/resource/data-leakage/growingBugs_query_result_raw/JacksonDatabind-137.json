@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 1.0,
+    "input": "        protected JsonSerializer<Object> _findAndAddDynamic(PropertySerializerMap map,\n                Class<?> type, SerializerProvider provider) throws JsonMappingException\n        {\n            // 27-Jun-2017, tatu: [databind#1679] Need to avoid StackOverflowError...\n            if (type == Object.class) {\n                // basically just need to call `toString()`, easiest way:\n                JsonSerializer<Object> ser = new Default(Default.TYPE_TO_STRING, type);\n                _dynamicSerializers = map.newWith(type, ser);\n                return ser;\n            }\n            PropertySerializerMap.SerializerAndMapResult result =\n                    // null -> for now we won't keep ref or pass BeanProperty; could change\n                    map.findAndAddKeySerializer(type, provider, null);\n            // did we get a new map of serializers? If so, start using it\n            if (map != result.map) {\n                _dynamicSerializers = result.map;\n            }\n            return result.serializer;\n        }",
+    "query_result": [
+        "er<Object> _findAndAddDynamic(PropertySerializerMap map,\nClass<?> type, SerializerProvider provider) throws JsonMappingException\n{\n// 27-Jun-2017, tatu: [databind#1679] Need to avoid StackOverflowError...\nif (type == Object.class) {\n// basically just need to call `toString()`, easiest way:\nJsonSerializer<Object> ser = new Default(Default.TYPE_TO_STRING, type);\n_dynamicSerializers = map.newWith(type, ser);\nreturn ser;\n}\nPropertySerializerMap.SerializerAndMapResult result =\n// null -> for now we won't keep ref or pass BeanProperty; could change\nmap.findAndAddKeySerializer(type, provider, null);\n// did we get a new map of serializers? If so, start using it\nif (map != result.map) {\n_dynamicSerializers = result.map;\n}\nreturn result.serializer;\n}",
+        "ializerMap.SerializerAndMapResult result =\n// null -> for now we won't keep ref or pass BeanProperty; could change\nmap.findAndAddKeySerializer(type, provider, null);\n// did we get a new map of serializers? If so, start using it\nif (map != result.map) {\n_dynamicSerializers = result.map;\n}\nreturn resu",
+        ");\n// did we get a new map of serializers? If so, start using it\nif (map != result.map) {\n_dynamicSerializers = result.map;\n}\nreturn result.serializer",
+        "Serializer<Object> _findAndAddDynamic(PropertySerializerMap map,\nClass<?> type, SerializerProvider p",
+        "rializer<Object> _findAndAddDynamic(PropertySerializerMap map,\nClass<?> type, SerializerProvider pro",
+        "alizer<Object> _findAndAddDynamic(PropertySerializerMap map,\nClass<?> type, SerializerProvider provi",
+        "r<Object> _findAndAddDynamic(PropertySerializerMap map,\nClass<?> type, SerializerProvider provider) ",
+        "dDynamic(PropertySerializerMap map,\nClass<?> type, SerializerProvider provider) throws JsonMappingEx",
+        "id we get a new map of serializers? If so, start using it\nif (map != result.map) {\n_dynamicSerialize",
+        " serializers? If so, start using it\nif (map != result.map) {\n_dynamicSerializers = result.map;\n}\nret",
+        "erializers? If so, start using it\nif (map != result.map) {\n_dynamicSerializers = result.map;\n}\nretur",
+        "protected JsonSerializer<Object> _findAndAddDynami",
+        "ected JsonSerializer<Object> _findAndAddDynamic(Pr",
+        " JsonSerializer<Object> _findAndAddDynamic(Propert",
+        "JsonSerializer<Object> _findAndAddDynamic(Property",
+        "sonSerializer<Object> _findAndAddDynamic(PropertyS",
+        "onSerializer<Object> _findAndAddDynamic(PropertySe",
+        "nSerializer<Object> _findAndAddDynamic(PropertySer",
+        "erializer<Object> _findAndAddDynamic(PropertySeria",
+        "lizer<Object> _findAndAddDynamic(PropertySerialize"
+    ]
+}

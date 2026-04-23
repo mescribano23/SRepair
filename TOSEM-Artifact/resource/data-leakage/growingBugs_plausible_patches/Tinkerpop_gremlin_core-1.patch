@@ -1,0 +1,22 @@
+diff --git a/gremlin-core/src/main/java/org/apache/tinkerpop/gremlin/process/traversal/step/util/BulkSet.java b/gremlin-core/src/main/java/org/apache/tinkerpop/gremlin/process/traversal/step/util/BulkSet.java
+index ce29b5ae06..65727aaa6a 100644
+--- a/gremlin-core/src/main/java/org/apache/tinkerpop/gremlin/process/traversal/step/util/BulkSet.java
++++ b/gremlin-core/src/main/java/org/apache/tinkerpop/gremlin/process/traversal/step/util/BulkSet.java
+@@ -135,10 +135,13 @@ public final class BulkSet<S> extends AbstractSet<S> implements Set<S>, Serializ
+         return this.map.hashCode();
+     }
+ 
+-    @Override
+-    public boolean equals(final Object object) {
+-        return this.map.equals(object);
+-    }
++@Override
++public boolean equals(final Object object) {
++    if (this == object) return true;
++    if (!(object instanceof BulkSet<?>)) return false;
++    BulkSet<?> other = (BulkSet<?>) object;
++    return this.map.equals(other.map);
++}
+ 
+     @Override
+     public String toString() {

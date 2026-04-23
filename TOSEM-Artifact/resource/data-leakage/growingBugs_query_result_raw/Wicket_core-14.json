@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.17245005257623555,
+    "input": "public static TagTester createTagByAttribute(String markup, String attribute, String value)\n    {\n        TagTester tester = null;\n\n        if (Strings.isEmpty(markup) == false && Strings.isEmpty(attribute) == false &&\n            Strings.isEmpty(value) == false)\n        {\n            try\n            {\n                // remove the CDATA and\n                // the id attribute of the component because it is often the same as the element's id\n                markup = AJAX_COMPONENT_CDATA_OPEN.matcher(markup).replaceAll(\"<component>\");\n                markup = AJAX_COMPONENT_CDATA_CLOSE.matcher(markup).replaceAll(\"</component>\");\n\n                XmlPullParser parser = new XmlPullParser();\n                parser.parse(markup);\n\n                XmlTag elm;\n                XmlTag openTag = null;\n                XmlTag closeTag = null;\n                int level = 0;\n                while ((elm = parser.nextTag()) != null && closeTag == null)\n                {\n                    XmlTag xmlTag = elm;\n\n                    if (openTag == null)\n                    {\n                        IValueMap attributeMap = xmlTag.getAttributes();\n\n                        for (Map.Entry<String, Object> entry : attributeMap.entrySet())\n                        {\n                            String attr = entry.getKey();\n                            if (attr.equals(attribute) && value.equals(entry.getValue()))\n                            {\n                                if (xmlTag.isOpen())\n                                {\n                                    openTag = xmlTag;\n                                }\n                                else if (xmlTag.isOpenClose())\n                                {\n                                    openTag = xmlTag;\n                                    closeTag = xmlTag;\n                                }\n                            }\n                        }\n                    }\n                    else\n                    {\n                    ",
+    "query_result": [
+        "ateTagByAttribute(String markup, String attribute,",
+        "Parser parser = new XmlPullParser();\nparser.parse(",
+        ".getAttributes();\nfor (Map.Entry<String, Object> e",
+        "Attributes();\nfor (Map.Entry<String, Object> entry",
+        "tributes();\nfor (Map.Entry<String, Object> entry :",
+        "ributes();\nfor (Map.Entry<String, Object> entry : ",
+        "butes();\nfor (Map.Entry<String, Object> entry : at",
+        "s();\nfor (Map.Entry<String, Object> entry : attrib",
+        "();\nfor (Map.Entry<String, Object> entry : attribu",
+        ");\nfor (Map.Entry<String, Object> entry : attribut",
+        ";\nfor (Map.Entry<String, Object> entry : attribute",
+        "\nfor (Map.Entry<String, Object> entry : attributeM",
+        "for (Map.Entry<String, Object> entry : attributeMa",
+        "Map.Entry<String, Object> entry : attributeMap.ent",
+        "ap.Entry<String, Object> entry : attributeMap.entr",
+        "ntry<String, Object> entry : attributeMap.entrySet"
+    ]
+}

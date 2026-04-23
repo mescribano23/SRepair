@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.675,
+    "input": "    @Override\n    protected String buildCanonicalName()\n    {\n        StringBuilder sb = new StringBuilder();\n        sb.append(_class.getName());\n        sb.append('<');\n        sb.append(_referencedType.toCanonical());\n        sb.append('>');\n        return sb.toString();\n    }",
+    "query_result": [
+        "ed String buildCanonicalName()\n{\nStringBuilder sb = new StringBuilder();\nsb.append(_class.getName())",
+        "uilder sb = new StringBuilder();\nsb.append(_class.getName());\nsb.append('<');\nsb.append(_referencedT",
+        "rotected String buildCanonicalName()\n{\nStringBuild",
+        "ldCanonicalName()\n{\nStringBuilder sb = new StringB",
+        "calName()\n{\nStringBuilder sb = new StringBuilder()",
+        "ame()\n{\nStringBuilder sb = new StringBuilder();\nsb",
+        "me()\n{\nStringBuilder sb = new StringBuilder();\nsb.",
+        "e()\n{\nStringBuilder sb = new StringBuilder();\nsb.a",
+        "()\n{\nStringBuilder sb = new StringBuilder();\nsb.ap",
+        ")\n{\nStringBuilder sb = new StringBuilder();\nsb.app",
+        "\n{\nStringBuilder sb = new StringBuilder();\nsb.appe",
+        "{\nStringBuilder sb = new StringBuilder();\nsb.appen",
+        "\nStringBuilder sb = new StringBuilder();\nsb.append",
+        "StringBuilder sb = new StringBuilder();\nsb.append(",
+        "tringBuilder sb = new StringBuilder();\nsb.append(_"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.2692307692307692,
+    "input": "public int read() throws IOException {\n    int current = super.read();\n    if (current == '\\r' || (current == '\\n' && lastChar != '\\r')) {\n        lineCounter++;\n    }\n    lastChar = current;\n    return lastChar;\n}",
+    "query_result": [
+        "blic int read() throws IOException {\nint current ="
+    ]
+}

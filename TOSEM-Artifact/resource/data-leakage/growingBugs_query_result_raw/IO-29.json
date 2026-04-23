@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7664670658682635,
+    "input": "    public static void copyToFile(final InputStream source, final File destination) throws IOException {\n        try (OutputStream out = openOutputStream(destination)) {\n            IOUtils.copy(source, out);\n        }\n    }",
+    "query_result": [
+        "public static void copyToFile(final InputStream source, final File destination) throws IOException {",
+        "ublic static void copyToFile(final InputStream source, final File destination) throws IOException {\n",
+        "nal InputStream source, final File destination) throws IOException {\ntry (OutputStream out = openOut",
+        "Stream source, final File destination) throws IOException {\ntry (OutputStream out = openOutputStream",
+        "eam source, final File destination) throws IOException {\ntry (OutputStream out = openOutputStream(de",
+        "ic static void copyToFile(final InputStream source",
+        "c static void copyToFile(final InputStream source,",
+        " static void copyToFile(final InputStream source, ",
+        "tatic void copyToFile(final InputStream source, fi",
+        "atic void copyToFile(final InputStream source, fin",
+        "tic void copyToFile(final InputStream source, fina",
+        "ic void copyToFile(final InputStream source, final",
+        "c void copyToFile(final InputStream source, final ",
+        "opyToFile(final InputStream source, final File des",
+        "ToFile(final InputStream source, final File destin",
+        "ile(final InputStream source, final File destinati",
+        "le(final InputStream source, final File destinatio",
+        "e(final InputStream source, final File destination",
+        "(final InputStream source, final File destination)",
+        "final InputStream source, final File destination) "
+    ]
+}

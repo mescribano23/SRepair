@@ -1,0 +1,57 @@
+diff --git a/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
+index dcf0766c..17c6e23e 100644
+--- a/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
++++ b/src/main/java/org/apache/commons/text/ExtendedMessageFormat.java
+@@ -411,23 +411,46 @@ public class ExtendedMessageFormat extends MessageFormat {
+         seekNonWs(pattern, pos);
+         final int text = pos.getIndex();
+         int depth = 1;
++        boolean inQuote = false;
++        boolean escaped = false;
+         for (; pos.getIndex() < pattern.length(); next(pos)) {
+-            switch (pattern.charAt(pos.getIndex())) {
++            char c = pattern.charAt(pos.getIndex());
++            switch (c) {
+             case START_FE:
+-                depth++;
++                if (!inQuote) {
++                    depth++;
++                }
+                 break;
+             case END_FE:
+-                depth--;
+-                if (depth == 0) {
+-                    return pattern.substring(text, pos.getIndex());
++                if (!inQuote) {
++                    depth--;
++                    if (depth == 0) {
++                        return pattern.substring(text, pos.getIndex());
++                    }
+                 }
+                 break;
+             case QUOTE:
+-                getQuotedString(pattern, pos);
++                if (inQuote) {
++                    if (escaped) {
++                        escaped = false;
++                    } else if (pattern.charAt(pos.getIndex() - 1) == QUOTE) {
++                        escaped = true;
++                    } else {
++                        inQuote = false;
++                    }
++                } else {
++                    inQuote = true;
++                }
+                 break;
+             default:
++                if (inQuote && escaped) {
++                    escaped = false;
++                }
+                 break;
+             }
++            if (inQuote && c == QUOTE && !escaped) {
++                escaped = true;
++            }
+         }
+         throw new IllegalArgumentException(
+                 "Unterminated format element at position " + start);

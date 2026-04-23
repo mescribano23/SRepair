@@ -1,0 +1,29 @@
+diff --git a/src/main/java/com/github/davidmoten/rtree/fbs/SerializerFlatBuffers.java b/src/main/java/com/github/davidmoten/rtree/fbs/SerializerFlatBuffers.java
+index aa1a46c..57e399a 100644
+--- a/src/main/java/com/github/davidmoten/rtree/fbs/SerializerFlatBuffers.java
++++ b/src/main/java/com/github/davidmoten/rtree/fbs/SerializerFlatBuffers.java
+@@ -157,13 +157,17 @@ public final class SerializerFlatBuffers<T, S extends Geometry> implements Seria
+         }
+     }
+ 
+-    @VisibleForTesting
+-    static byte[] readFully(InputStream is, int numBytes) throws IOException {
+-        byte[] b = new byte[numBytes];
+-        int n = is.read(b);
+-        if (n != numBytes)
+-            throw new RuntimeException("unexpected");
+-        return b;
++static byte[] readFully(InputStream is, int numBytes) throws IOException {
++    byte[] b = new byte[numBytes];
++    int bytesRead = 0;
++    while (bytesRead < numBytes) {
++        int n = is.read(b, bytesRead, numBytes - bytesRead);
++        if (n == -1) {
++            throw new RuntimeException("unexpected end of stream");
++        }
++        bytesRead += n;
+     }
++    return b;
++}
+ 
+ }

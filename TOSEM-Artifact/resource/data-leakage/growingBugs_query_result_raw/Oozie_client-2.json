@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.04588014981273408,
+    "input": "        @SuppressWarnings(\"unchecked\")\n        private Object parseType(Class type, Object obj) {\n            if (type == String.class) {\n                return obj == null ? obj : obj.toString();\n            }\n            else if (type == Integer.TYPE) {\n                return (obj != null) ? new Integer(((Long) obj).intValue()) : new Integer(0);\n            }\n            else if (type == Long.TYPE) {\n                return (obj != null) ? obj : new Long(0);\n            }\n            else if (type == Date.class) {\n                return JsonUtils.parseDateRfc822((String) obj);\n            }\n            else if (type.isEnum()) {\n                return Enum.valueOf(type, (String) obj);\n            }\n            else if (type == WorkflowAction.class) {\n                return createWorkflowAction((JSONObject) obj);\n            }\n            else if (type == Properties.class){\n                JSONObject jsonMap = (JSONObject)JSONValue.parse((String)obj);\n                Properties props = new Properties();\n                Set<Map.Entry> entrySet = jsonMap.entrySet();\n                for (Map.Entry jsonEntry: entrySet){\n                    props.put(jsonEntry.getKey(), jsonEntry.getValue());\n                }\n                return props;\n            }\n            else if (type == CoordinatorJob.class) {\n                return createCoordinatorJob((JSONObject) obj);\n            }\n            else if (type == CoordinatorAction.class) {\n                return createCoordinatorAction((JSONObject) obj);\n            }\n            else if (type == BundleJob.class) {\n                return createBundleJob((JSONObject) obj);\n            }\n            else {\n                throw new RuntimeException(\"Unsupported type : \" + type.getSimpleName());\n            }\n        }",
+    "query_result": [
+        ");\n}\nelse {\nthrow new RuntimeException(\"Unsupporte",
+        ";\n}\nelse {\nthrow new RuntimeException(\"Unsupported",
+        "\n}\nelse {\nthrow new RuntimeException(\"Unsupported ",
+        "else {\nthrow new RuntimeException(\"Unsupported typ",
+        "lse {\nthrow new RuntimeException(\"Unsupported type",
+        "se {\nthrow new RuntimeException(\"Unsupported type "
+    ]
+}

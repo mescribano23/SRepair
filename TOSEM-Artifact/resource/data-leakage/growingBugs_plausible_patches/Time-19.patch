@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/joda/time/DateTimeZone.java b/src/main/java/org/joda/time/DateTimeZone.java
+index 855cad05..bff1b8f9 100644
+--- a/src/main/java/org/joda/time/DateTimeZone.java
++++ b/src/main/java/org/joda/time/DateTimeZone.java
+@@ -896,8 +896,21 @@ public abstract class DateTimeZone implements Serializable {
+                 if (nextLocal != nextAdjusted) {
+                     return offsetLocal;
+                 }
++            } else {
++                // for positive offset differences, we need to check if we're
++                // before the DST transition and adjust accordingly
++                long prev = previousTransition(instantAdjusted);
++                if (prev < instantAdjusted) {
++                    int offsetPrev = getOffset(prev);
++                    int diff = offsetPrev - offsetLocal;
++                    if (instantAdjusted - prev <= diff) {
++                        return offsetPrev;
++                    }
++                }
+             }
+-        } else if (offsetLocal > 0) {
++        } else {
++            // if offsets are the same, still check if we're in the DST transition period
++            // this is to ensure that we're not accidentally in the "gap" after a DST change
+             long prev = previousTransition(instantAdjusted);
+             if (prev < instantAdjusted) {
+                 int offsetPrev = getOffset(prev);

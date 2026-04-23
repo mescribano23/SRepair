@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    JsonObjectImpl(final Map<String, JsonValue> backingMap) {\n        super();\n        this.unmodifieableBackingMap = new LinkedHashMap<>(backingMap);\n    }",
+    "query_result": []
+}

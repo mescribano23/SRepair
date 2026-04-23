@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.585,
+    "input": "public Range getDataRange(ValueAxis axis) {\n\n    Range result = null;\n    List mappedDatasets = new ArrayList();\n    List includedAnnotations = new ArrayList();\n    boolean isDomainAxis = true;\n\n    // is it a domain axis?\n    int domainIndex = getDomainAxisIndex(axis);\n    if (domainIndex >= 0) {\n        isDomainAxis = true;\n        mappedDatasets.addAll(getDatasetsMappedToDomainAxis(\n                new Integer(domainIndex)));\n        if (domainIndex == 0) {\n            // grab the plot's annotations\n            Iterator iterator = this.annotations.iterator();\n            while (iterator.hasNext()) {\n                XYAnnotation annotation = (XYAnnotation) iterator.next();\n                if (annotation instanceof XYAnnotationBoundsInfo) {\n                    includedAnnotations.add(annotation);\n                }\n            }\n        }\n    }\n\n    // or is it a range axis?\n    int rangeIndex = getRangeAxisIndex(axis);\n    if (rangeIndex >= 0) {\n        isDomainAxis = false;\n        mappedDatasets.addAll(getDatasetsMappedToRangeAxis(\n                new Integer(rangeIndex)));\n        if (rangeIndex == 0) {\n            Iterator iterator = this.annotations.iterator();\n            while (iterator.hasNext()) {\n                XYAnnotation annotation = (XYAnnotation) iterator.next();\n                if (annotation instanceof XYAnnotationBoundsInfo) {\n                    includedAnnotations.add(annotation);\n                }\n            }\n        }\n    }\n\n    // iterate through th",
+    "query_result": [
+        "= true;\n// is it a domain axis?\nint domainIndex = getDomainAxisIndex(axis);\nif (domainIndex >= 0) {\nisDomainAxis = true;\nmappedDatasets.addAll(getDatasetsMappedToDomainAxis(\nnew Integer(domainIndex)))",
+        "rangeIndex = getRangeAxisIndex(axis);\nif (rangeIndex >= 0) {\nisDomainAxis = false;\nmappedDatasets.addAll(getDatasetsMappedToRangeAxis(\nnew Integer(ran",
+        "AxisIndex(axis);\nif (domainIndex >= 0) {\nisDomainAxis = true;\nmappedDatasets.addAll(getDatasetsMappe",
+        "ator = this.annotations.iterator();\nwhile (iterator.hasNext()) {\nXYAnnotation annotation = (XYAnnota",
+        "RangeAxisIndex(axis);\nif (rangeIndex >= 0) {\nisDomainAxis = false;\nmappedDatasets.addAll(getDatasets",
+        "isIndex(axis);\nif (rangeIndex >= 0) {\nisDomainAxis = false;\nmappedDatasets.addAll(getDatasetsMappedT",
+        "ator = this.annotations.iterator();\nwhile (iterator.hasNext()) {\nXYAnnotation annotation = (XYAnnota",
+        "c Range getDataRange(ValueAxis axis) {\nRange resul",
+        " Range getDataRange(ValueAxis axis) {\nRange result",
+        "e getDataRange(ValueAxis axis) {\nRange result = nu",
+        " getDataRange(ValueAxis axis) {\nRange result = nul",
+        "(ValueAxis axis) {\nRange result = null;\nList mappe",
+        "ndex(axis);\nif (domainIndex >= 0) {\nisDomainAxis =",
+        ");\nif (domainIndex >= 0) {\nisDomainAxis = true;\nma",
+        "= this.annotations.iterator();\nwhile (iterator.has",
+        "nnotations.iterator();\nwhile (iterator.hasNext()) ",
+        "notations.iterator();\nwhile (iterator.hasNext()) {",
+        "ations.iterator();\nwhile (iterator.hasNext()) {\nXY",
+        "r();\nwhile (iterator.hasNext()) {\nXYAnnotation ann",
+        "XYAnnotation annotation = (XYAnnotation) iterator."
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.9191919191919192,
+    "input": "public Paint getPaint(double value) {\n    double v = Math.max(value, this.lowerBound);\n    v = Math.min(v, this.upperBound);\n    int g = (int) ((v - this.lowerBound) / (this.upperBound \n            - this.lowerBound) * 255.0);\n    return new Color(g, g, g);\n}",
+    "query_result": [
+        "nt getPaint(double value) {\ndouble v = Math.max(value, this.lowerBound);\nv = Math.min(v, this.upperB",
+        "Paint(double value) {\ndouble v = Math.max(value, this.lowerBound);\nv = Math.min(v, this.upperBound);",
+        "g = (int) ((v - this.lowerBound) / (this.upperBound \n- this.lowerBound) * 255.0);\nreturn new Color(g",
+        "nt(double value) {\ndouble v = Math.max(value, this",
+        "e) {\ndouble v = Math.max(value, this.lowerBound);\n",
+        " {\ndouble v = Math.max(value, this.lowerBound);\nv ",
+        "{\ndouble v = Math.max(value, this.lowerBound);\nv =",
+        "= Math.max(value, this.lowerBound);\nv = Math.min(v",
+        "int g = (int) ((v - this.lowerBound) / (this.upper",
+        "(v - this.lowerBound) / (this.upperBound \n- this.l",
+        "werBound) / (this.upperBound \n- this.lowerBound) *",
+        "erBound) / (this.upperBound \n- this.lowerBound) * ",
+        "d) / (this.upperBound \n- this.lowerBound) * 255.0)",
+        "/ (this.upperBound \n- this.lowerBound) * 255.0);\nr",
+        "upperBound \n- this.lowerBound) * 255.0);\nreturn ne"
+    ]
+}

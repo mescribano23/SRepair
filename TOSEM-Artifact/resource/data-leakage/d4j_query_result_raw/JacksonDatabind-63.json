@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.13233287858117326,
+    "input": "public String getDescription() {\n            if (_desc == null) {\n                StringBuilder sb = new StringBuilder();\n\n                if (_from == null) { // can this ever occur?\n                    sb.append(\"UNKNOWN\");\n                } else {\n                    Class<?> cls = (_from instanceof Class<?>) ? (Class<?>)_from : _from.getClass();\n                    // Hmmh. Although Class.getName() is mostly ok, it does look\n                    // butt-ugly for arrays.\n                    // 06-Oct-2016, tatu: as per [databind#1403], `getSimpleName()` not so good\n                    //   as it drops enclosing class. So let's try bit different approach\n                    int arrays = 0;\n                    while (cls.isArray()) {\n                        cls = cls.getComponentType();\n                        ++arrays;\n                    }\n                    sb.append(cls.getName());\n                    while (--arrays >= 0) {\n                        sb.append(\"[]\");\n                    }\n                    /* was:\n                    String pkgName = ClassUtil.getPackageName(cls);\n                    if (pkgName != null) {\n                        sb.append(pkgName);\n                        sb.append('.');\n                    }\n                    */\n                }\n                sb.append('[');\n                if (_fieldName != null) {\n                    sb.append('\"');\n                    sb.append(_fieldName);\n                    sb.append('\"');\n                } ",
+    "query_result": [
+        "== null) { StringBuilder sb = new StringBuilder()",
+        "== null) { StringBuilder sb = new StringBuilder();",
+        "= null) { StringBuilder sb = new StringBuilder();",
+        "null) { StringBuilder sb = new StringBuilder(); i",
+        "null) { StringBuilder sb = new StringBuilder(); if",
+        "ull) { StringBuilder sb = new StringBuilder(); if",
+        "ll) { StringBuilder sb = new StringBuilder(); if (",
+        ") { StringBuilder sb = new StringBuilder(); if (_f",
+        "0; while (cls.isArray()) { cls = cls.getComponentT",
+        "while (cls.isArray()) { cls = cls.getComponentType",
+        "ile (cls.isArray()) { cls = cls.getComponentType()"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.769825918762089,
+    "input": "public Complex parse(String source, ParsePosition pos) {\n    int initialIndex = pos.getIndex();\n\n    // parse whitespace\n    parseAndIgnoreWhitespace(source, pos);\n\n    // parse real\n    Number re = parseNumber(source, getRealFormat(), pos);\n    if (re == null) {\n        // invalid real number\n        // set index back to initial, error index should already be set\n        // character examined.\n        pos.setIndex(initialIndex);\n        return null;\n    }\n\n    // parse sign\n    int startIndex = pos.getIndex();\n    char c = parseNextCharacter(source, pos);\n    int sign = 0;\n    switch (c) {\n    case 0 :\n        // no sign\n        // return real only complex number\n        return new Complex(re.doubleValue(), 0.0);\n    case '-' :\n        sign = -1;\n        break;\n    case '+' :\n        sign = 1;\n        break;\n    default :\n        // invalid sign\n        // set index back to initial, error index should be the last\n        // character examined.\n        pos.setIndex(initialIndex);\n        pos.setErrorIndex(startIndex);\n        return null;\n    }\n\n    // parse whitespace\n    parseAndIgnoreWhitespace(source, pos);\n\n    // parse imaginary\n    Number im = parseNumber(source, getRealFormat(), pos);\n    if (im == null) {\n        // invalid imaginary number\n        // set index back to initial, error index should already be set\n        // character examined.\n        pos.setIndex(initialIndex);\n        return null;\n    }\n\n    // parse imaginary character\n    int n = getImaginaryCharac",
+    "query_result": [
+        " sign = 0;\nswitch (c) {\ncase 0 :\n// no sign\n// return real only complex number\nreturn new Complex(re.doubleValue(), 0.0);\ncase '-' :\nsign = -1;\nbreak;\ncase '+' :\nsign = 1;\nbreak;\ndefault :\n// invalid sign\n// set index back to initial, error index should be the last\n// character examined.\npos.setIndex(initialIndex);\npos.setErrorIndex(startIndex);\nre",
+        "index back to initial, error index should be the last\n// character examined.\npos.setIndex(initialIndex);\npos.setErrorIndex(startIndex);\nreturn null;\n}\n// parse whitespace\nparseAndIgnoreWhitespace(sour",
+        " == null) {\n// invalid real number\n// set index back to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\n",
+        " be the last\n// character examined.\npos.setIndex(initialIndex);\npos.setErrorIndex(startIndex);\nreturn null;\n}\n// parse whitespace\nparseAndIgnoreWhites",
+        "omplex parse(String source, ParsePosition pos) {\nint initialIndex = pos.getIndex();\n// parse whitesp",
+        " parse(String source, ParsePosition pos) {\nint initialIndex = pos.getIndex();\n// parse whitespace\npa",
+        "valid real number\n// set index back to initial, error index should already be set\n// character exami",
+        "umber\n// set index back to initial, error index should already be set\n// character examined.\npos.set",
+        "r\n// set index back to initial, error index should already be set\n// character examined.\npos.setInde",
+        "ndex back to initial, error index should already be set\n// character examined.\npos.setIndex(initialI",
+        " to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\nre",
+        "tartIndex = pos.getIndex();\nchar c = parseNextCharacter(source, pos);\nint sign = 0;\nswitch (c) {\ncas",
+        "ult :\n// invalid sign\n// set index back to initial, error index should be the last\n// character exam",
+        "rce, getRealFormat(), pos);\nif (im == null) {\n// invalid imaginary number\n// set index back to initi",
+        "umber\n// set index back to initial, error index should already be set\n// character examined.\npos.set",
+        "r\n// set index back to initial, error index should already be set\n// character examined.\npos.setInde",
+        "ndex back to initial, error index should already be set\n// character examined.\npos.setIndex(initialI",
+        "ck to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\n",
+        " to initial, error index should already be set\n// character examined.\npos.setIndex(initialIndex);\nre",
+        "tring source, ParsePosition pos) {\nint initialInde"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.212443095599393,
+    "input": "    @Override\n    @NotNull(message = \"Iterable of pull comments is never NULL\")\n    public Iterable<PullComment> iterate(\n        @NotNull(message = \"number can't be NULL\") final int number,\n        @NotNull(message = \"params can't be NULL\")\n        final Map<String, String> params) {\n        final Request newreq = this.entry.uri()\n            .path(\"/repos\")\n            .path(this.owner.repo().coordinates().user())\n            .path(this.owner.repo().coordinates().repo())\n            .path(\"/pulls\")\n            .path(String.valueOf(number))\n            .path(\"/comments\")\n            .back();\n        return new RtPagination<PullComment>(\n            newreq.uri().queryParams(params).back(),\n            new RtPagination.Mapping<PullComment, JsonObject>() {\n                @Override\n                public PullComment map(final JsonObject value) {\n                    return RtPullComments.this.get(\n                        value.getInt(\"id\")\n                    );\n                }\n            }\n        );\n    }",
+    "query_result": [
+        ")\n.path(this.owner.repo().coordinates().user())\n.path(this.owner.repo().coordinates().repo())\n.path(",
+        "l(message = \"params can't be NULL\")\nfinal Map<Stri"
+    ]
+}

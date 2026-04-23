@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.2604166666666667,
+    "input": "    public Object callRealMethod() throws Throwable {\n        if (this.getMethod().getDeclaringClass().isInterface()) {\n            new Reporter().cannotCallRealMethodOnInterface();\n        }\n        return realMethod.invoke(mock, rawArguments);\n    }",
+    "query_result": [
+        "this.getMethod().getDeclaringClass().isInterface()"
+    ]
+}

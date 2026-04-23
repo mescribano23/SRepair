@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9680451127819549,
+    "input": "protected Object deserializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\n    throws IOException\n{\n    final ExternalTypeHandler ext = _externalTypeIdHandler.start();\n    final PropertyBasedCreator creator = _propertyBasedCreator;\n    PropertyValueBuffer buffer = creator.startBuilding(p, ctxt, _objectIdReader);\n\n    TokenBuffer tokens = new TokenBuffer(p);\n    tokens.writeStartObject();\n\n    JsonToken t = p.getCurrentToken();\n    for (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {\n        String propName = p.getCurrentName();\n        p.nextToken(); // to point to value\n        // creator property?\n        SettableBeanProperty creatorProp = creator.findCreatorProperty(propName);\n        if (creatorProp != null) {\n            // first: let's check to see if this might be part of value with external type id:\n            // 11-Sep-2015, tatu: Important; do NOT pass buffer as last arg, but null,\n            //   since it is not the bean\n            if (ext.handlePropertyValue(p, ctxt, propName, null)) {\n                ;\n            } else {\n                // Last creator property to set?\n                if (buffer.assignParameter(creatorProp, _deserializeWithErrorWrapping(p, ctxt, creatorProp))) {\n                    t = p.nextToken(); // to move to following FIELD_NAME/END_OBJECT\n                    Object bean;\n                    try {\n                        bean = creator.build(ctxt, buffer);\n                    } catch (Exception e) {\n ",
+    "query_result": [
+        "rtObject();\nJsonToken t = p.getCurrentToken();\nfor (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {\nString propName = p.getCurrentName();\np.nextToken(); // to point to value\n// creator property?\nSettableBeanProperty creatorProp = creator.findCreatorProperty(propName);\nif (creatorProp != null) {\n// first: let's check to see if this might be part of value with external type id:\n// 11-Sep-2015, tatu: Important; do NOT pass buffer as last arg, but null,\n// since it is not the bean\nif (ext.handlePropertyValue(p, ctxt, propName, null)) {\n;\n} else {\n// Last creator property to set?\nif (buffer.assignParameter(creatorProp, _deserializeWithErrorWrapping(p, ctxt, creatorProp))) {\nt = p.nextToken(); // to move to following FIELD_NAME/END_OBJECT\nObject bean;\ntry {\nbean = creator.build(ctxt, buffer);\n",
+        "sedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOException\n{\nfinal ExternalTypeHandler ext = _externalTypeIdHandler.start();\nfinal PropertyBasedCreator creator = _propertyBasedCreator;\nPropertyValueBuffer buffer = creator.startBuilding(p, ctxt, _objectIdReader);\nTokenBuffer ",
+        "StartObject();\nJsonToken t = p.getCurrentToken();\nfor (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {\nString propName = p.getCurrentName();\np.nextToken(); // to point to value\n// creator property?\nSettableBeanProperty creatorProp = creator.findCreatorProperty(propName);\nif (creatorProp != null) {",
+        "lTypeHandler ext = _externalTypeIdHandler.start();\nfinal PropertyBasedCreator creator = _propertyBasedCreator;\nPropertyValueBuffer buffer = creator.st",
+        "r creator = _propertyBasedCreator;\nPropertyValueBuffer buffer = creator.startBuilding(p, ctxt, _objectIdReader);\nTokenBuffer tokens = new TokenBuffer(",
+        "eBeanProperty creatorProp = creator.findCreatorProperty(propName);\nif (creatorProp != null) {\n// first: let's check to see if this might be part of va",
+        "ithErrorWrapping(p, ctxt, creatorProp))) {\nt = p.nextToken(); // to move to following FIELD_NAME/END_OBJECT\nObject bean;\ntry {\nbean = creator.build(ct",
+        "protected Object deserializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContex",
+        "ected Object deserializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ct",
+        "ted Object deserializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt",
+        "ct deserializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows",
+        "eserializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOE",
+        "erializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOExc",
+        "rializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOExce",
+        "lizeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOExcepti",
+        "izeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOExceptio",
+        "zeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOException",
+        "UsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\nthrows IOException\n{",
+        "l PropertyBasedCreator creator = _propertyBasedCreator;\nPropertyValueBuffer buffer = creator.startBu",
+        "PropertyBasedCreator creator = _propertyBasedCreator;\nPropertyValueBuffer buffer = creator.startBuil"
+    ]
+}

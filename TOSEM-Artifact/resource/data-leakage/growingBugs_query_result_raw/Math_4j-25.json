@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.4310197086546701,
+    "input": "        private void guessAOmega() {\n            // initialize the sums for the linear model between the two integrals\n            double sx2 = 0;\n            double sy2 = 0;\n            double sxy = 0;\n            double sxz = 0;\n            double syz = 0;\n\n            double currentX = observations[0].getX();\n            double currentY = observations[0].getY();\n            double f2Integral = 0;\n            double fPrime2Integral = 0;\n            final double startX = currentX;\n            for (int i = 1; i < observations.length; ++i) {\n                // one step forward\n                final double previousX = currentX;\n                final double previousY = currentY;\n                currentX = observations[i].getX();\n                currentY = observations[i].getY();\n\n                // update the integrals of f<sup>2</sup> and f'<sup>2</sup>\n                // considering a linear model for f (and therefore constant f')\n                final double dx = currentX - previousX;\n                final double dy = currentY - previousY;\n                final double f2StepIntegral =\n                    dx * (previousY * previousY + previousY * currentY + currentY * currentY) / 3;\n                final double fPrime2StepIntegral = dy * dy / dx;\n\n                final double x = currentX - startX;\n                f2Integral += f2StepIntegral;\n                fPrime2Integral += fPrime2StepIntegral;\n\n                sx2 += x * x;\n                sy2 += f2Integral * f2Integral;\n                sxy += x * f2Integral;\n                sxz += x * fPrime2Integral;\n                syz += f2Integral * fPrime2Integral;\n            }\n\n            // compute the amplitude and pulsation coefficients\n            double c1 = sy2 * sxz - sxy * syz;\n            double c2 = sxy * sxz - sx2 * syz;\n            double c3 = sx2 * sy2 - sxy * sxy;\n            if ((c1 / c2 < 0) || (c2 / c3 < 0)) {\n                final int last = observations.length - 1;\n                // Range of the obse",
+    "query_result": [
+        "entX - startX;\nf2Integral += f2StepIntegral;\nfPrime2Integral += fPrime2StepIntegral;\nsx2 += x * x;\nsy2 += f2Integral * f2Integral;\nsxy += x * f2Integral;\nsxz += x * fPrime2Integral;\nsyz += f2Integral ",
+        "al += f2StepIntegral;\nfPrime2Integral += fPrime2StepIntegral;\nsx2 += x * x;\nsy2 += f2Integral * f2Integral;\nsxy += x * f2Integral;\nsxz += x * fPrime2I",
+        "\ndouble currentX = observations[0].getX();\ndouble currentY = observations[0].getY();\ndouble f2Integr",
+        "+= x * x;\nsy2 += f2Integral * f2Integral;\nsxy += x * f2Integral;\nsxz += x * fPrime2Integral;\nsyz += ",
+        "gral * f2Integral;\nsxy += x * f2Integral;\nsxz += x * fPrime2Integral;\nsyz += f2Integral * fPrime2Int",
+        "uble c1 = sy2 * sxz - sxy * syz;\ndouble c2 = sxy * sxz - sx2 * syz;\ndouble c3 = sx2 * sy2 - sxy * sx",
+        "ums for the linear model between the two integrals",
+        "ble currentX = observations[0].getX();\ndouble curr",
+        "ervations[0].getX();\ndouble currentY = observation",
+        ".getX();\ndouble currentY = observations[0].getY();",
+        "ble currentY = observations[0].getY();\ndouble f2In",
+        " previousY = currentY;\ncurrentX = observations[i].",
+        "viousY = currentY;\ncurrentX = observations[i].getX",
+        "Y = currentY;\ncurrentX = observations[i].getX();\nc",
+        "entY;\ncurrentX = observations[i].getX();\ncurrentY ",
+        " observations[i].getX();\ncurrentY = observations[i",
+        "reviousY * previousY + previousY * currentY + curr",
+        "Y * previousY + previousY * currentY + currentY * "
+    ]
+}

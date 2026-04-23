@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8429003021148036,
+    "input": "    @SuppressWarnings(\"resource\")\n    @Override\n    public SmileParser createParser(byte[] data, int offset, int len) throws IOException {\n        IOContext ctxt = _createContext(data, true);\n        if (_inputDecorator != null) {\n            InputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\n            if (in != null) {\n                return _createParser(in, ctxt);\n            }\n        }\n        return _createParser(data, offset, len, ctxt);\n    }",
+    "query_result": [
+        "ser(byte[] data, int offset, int len) throws IOException {\nIOContext ctxt = _createContext(data, true);\nif (_inputDecorator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\nreturn _createParser(data, offset, len, ",
+        " data, int offset, int len) throws IOException {\nIOContext ctxt = _createContext(data, true);\nif (_inputDecorator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\n",
+        "set, int len) throws IOException {\nIOContext ctxt = _createContext(data, true);\nif (_inputDecorator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\nreturn _create",
+        "ows IOException {\nIOContext ctxt = _createContext(data, true);\nif (_inputDecorator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createPar",
+        "er(byte[] data, int offset, int len) throws IOException {\nIOContext ctxt = _createContext(data, true);\nif (_inputDecorator != null) {\nInputStream in =",
+        "f (_inputDecorator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);",
+        "putDecorator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\nr",
+        "corator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\nreturn",
+        "ator != null) {\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\nreturn _c",
+        "\nInputStream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\nreturn _createParser(dat",
+        "eateParser(byte[] data, int offset, int len) throws IOException {\nIOContext ctxt = _createContext(da",
+        " ctxt = _createContext(data, true);\nif (_inputDecorator != null) {\nInputStream in = _inputDecorator.",
+        "ream in = _inputDecorator.decorate(ctxt, data, 0, data.length);\nif (in != null) {\nreturn _createPars",
+        "if (in != null) {\nreturn _createParser(in, ctxt);\n}\n}\nreturn _createParser(data, offset, len, ctxt);",
+        "rser createParser(byte[] data, int offset, int len",
+        "Parser(byte[] data, int offset, int len) throws IO",
+        "(byte[] data, int offset, int len) throws IOExcept",
+        "byte[] data, int offset, int len) throws IOExcepti",
+        "yte[] data, int offset, int len) throws IOExceptio",
+        "te[] data, int offset, int len) throws IOException"
+    ]
+}

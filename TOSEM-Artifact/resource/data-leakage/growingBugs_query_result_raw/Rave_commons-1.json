@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6008064516129032,
+    "input": "    protected static ResultSet executeQuery(Connection conn, String executeScriptQuery) throws SQLException {\n        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);\n        return statement.executeQuery(executeScriptQuery);\n    }",
+    "query_result": [
+        "ry) throws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);\nreturn statement.",
+        "y) throws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);\nreturn statement.e",
+        " throws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);\nreturn statement.exe",
+        "throws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);\nreturn statement.exec",
+        "ows SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);\nreturn statement.execute",
+        "uery) throws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSI",
+        "ery) throws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSIT",
+        ") throws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE",
+        "hrows SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, R",
+        "rows SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, Re",
+        "ws SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, Resu",
+        "s SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, Resul",
+        " SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, Result",
+        "SQLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultS",
+        "QLException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSe",
+        "LException {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet",
+        "Exception {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.",
+        "xception {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.C",
+        "ception {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CO",
+        "eption {\nStatement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CON"
+    ]
+}

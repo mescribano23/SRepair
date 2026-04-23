@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7223684210526315,
+    "input": "    public static final long copyReader(Reader source, Writer dest,\n                                        int bufferSize, long streamSize,\n                                        CopyStreamListener listener)\n    throws CopyStreamException\n    {\n        int chars;\n        long total = 0;\n        char[] buffer = new char[bufferSize >= 0 ? bufferSize : DEFAULT_COPY_BUFFER_SIZE];\n\n        try\n        {\n            while ((chars = source.read(buffer)) != -1)\n            {\n                // Technically, some read(char[]) methods may return 0 and we cannot\n                // accept that as an indication of EOF.\n                if (chars == 0)\n                {\n                    chars = source.read();\n                    if (chars < 0) {\n                        break;\n                    }\n                    dest.write(chars);\n                    dest.flush();\n                    ++total;\n                    if (listener != null) {\n                        listener.bytesTransferred(total, 1, streamSize);\n                    }\n                    continue;\n                }\n\n                dest.write(buffer, 0, chars);\n                dest.flush();\n                total += chars;\n                if (listener != null) {\n                    listener.bytesTransferred(total, chars, streamSize);\n                }\n            }\n        }\n        catch (IOException e)\n        {\n            throw new CopyStreamException(\"IOException caught while copying.\",\n                                          total, e);\n        }\n\n        return total;\n    }",
+    "query_result": [
+        "copyReader(Reader source, Writer dest,\nint bufferSize, long streamSize,\nCopyStreamListener listener)\nthrows CopyStreamException\n{\nint chars;\nlong tota",
+        ")) != -1)\n{\n// Technically, some read(char[]) methods may return 0 and we cannot\n// accept that as an indication of EOF.\nif (chars == 0)\n{\nchars = sou",
+        "!= -1)\n{\n// Technically, some read(char[]) methods may return 0 and we cannot\n// accept that as an indication of EOF.\nif (chars == 0)\n{\nchars = source",
+        "yReader(Reader source, Writer dest,\nint bufferSize, long streamSize,\nCopyStreamListener listener)\nth",
+        "l;\nif (listener != null) {\nlistener.bytesTransferred(total, 1, streamSize);\n}\ncontinue;\n}\ndest.write",
+        "tener != null) {\nlistener.bytesTransferred(total, 1, streamSize);\n}\ncontinue;\n}\ndest.write(buffer, 0",
+        "}\ncatch (IOException e)\n{\nthrow new CopyStreamException(\"IOException caught while copying.\",\ntotal, ",
+        "atch (IOException e)\n{\nthrow new CopyStreamException(\"IOException caught while copying.\",\ntotal, e);",
+        " (IOException e)\n{\nthrow new CopyStreamException(\"IOException caught while copying.\",\ntotal, e);\n}\nr",
+        "c static final long copyReader(Reader source, Writ",
+        "static final long copyReader(Reader source, Writer",
+        "atic final long copyReader(Reader source, Writer d",
+        "c final long copyReader(Reader source, Writer dest",
+        "int bufferSize, long streamSize,\nCopyStreamListene",
+        "ufferSize, long streamSize,\nCopyStreamListener lis",
+        "hods may return 0 and we cannot\n// accept that as ",
+        "ds may return 0 and we cannot\n// accept that as an",
+        "cannot\n// accept that as an indication of EOF.\nif ",
+        "f (chars < 0) {\nbreak;\n}\ndest.write(chars);\ndest.f",
+        ";\nif (listener != null) {\nlistener.bytesTransferre"
+    ]
+}

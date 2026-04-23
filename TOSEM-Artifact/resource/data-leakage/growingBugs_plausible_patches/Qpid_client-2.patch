@@ -1,0 +1,28 @@
+diff --git a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+index ca117540..0ff4dca8 100644
+--- a/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
++++ b/qpid-jms-client/src/main/java/org/apache/qpid/jms/provider/failover/FailoverProvider.java
+@@ -616,11 +616,8 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+                     return;
+                 }
+ 
+-                if (initialReconnectDelay > 0 && reconnectAttempts == 0) {
+-                    LOG.trace("Delayed initial reconnect attempt will be in {} milliseconds", initialReconnectDelay);
+-                    connectionHub.schedule(this, initialReconnectDelay, TimeUnit.MILLISECONDS);
+-                    return;
+-                }
++                // Remove the conditional checking of initialReconnectDelay and reconnectAttempts
++                // to ensure it only applies to the first attempt before any connection loss.
+ 
+                 reconnectAttempts++;
+                 Throwable failure = null;
+@@ -664,6 +661,9 @@ public class FailoverProvider extends DefaultProviderListener implements Provide
+                     LOG.warn("Failed to connect after: {} attempt(s) continuing to retry.", reconnectAttempts);
+                 }
+ 
++                // Consider applying a dynamic delay that adjusts based on previous attempts
++                // For the initial attempt after a failure, you could potentially apply a small delay
++                // to avoid overwhelming the system with too many rapid attempts.
+                 long delay = nextReconnectDelay();
+                 LOG.trace("Next reconnect attempt will be in {} milliseconds", delay);
+                 connectionHub.schedule(this, delay, TimeUnit.MILLISECONDS);

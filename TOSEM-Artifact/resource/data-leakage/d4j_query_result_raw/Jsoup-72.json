@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.9515477792732167,
+    "input": "private static String cacheString(final char[] charBuf, final String[] stringCache, final int start, final int count) {\n    // limit (no cache):\n    if (count > maxStringCacheLen)\n        return new String(charBuf, start, count);\n    if (count < 1)\n        return \"\";\n\n    // calculate hash:\n    int hash = 0;\n    int offset = start;\n    for (int i = 0; i < count; i++) {\n        hash = 31 * hash + charBuf[offset++];\n    }\n\n    // get from cache\n    final int index = hash & stringCache.length - 1;\n    String cached = stringCache[index];\n\n    if (cached == null) { // miss, add\n        cached = new String(charBuf, start, count);\n        stringCache[index] = cached;\n    } else { // hashcode hit, check equality\n        if (rangeEquals(charBuf, start, count, cached)) { // hit\n            return cached;\n        } else { // hashcode conflict\n            cached = new String(charBuf, start, count);\n            stringCache[index] = cached; // update the cache, as recently used strings are more likely to show up again\n        }\n    }\n    return cached;\n}",
+    "query_result": [
+        "cheString(final char[] charBuf, final String[] stringCache, final int start, final int count) {\n// limit (no cache):\nif (count > maxStringCacheLen)\nreturn new String(charBuf, start, count);\nif (count < 1)\nreturn \"\";\n// calculate hash:\nint hash = 0;\nint offset = start;\nfor (int i = 0; i < count; i++) {\nhash = 31 * hash + charBuf[offset++];\n}\n// get from cache\nfinal int index = hash & stringCache.length - 1;\nString cached = stringCache[index];\nif (cached == null) { // miss, add\ncached = new String(charBuf, start, count);\nstringCache[index] = cached;\n} else { // hashcode hit, check equality\nif (rangeEquals(charBuf, start, count, cached)) { // hit\nreturn cached;\n} else { // hashcode conflict\ncached = new String(charBuf, start, count);\nstringCache[index] = cached; // update the cache, as recently used strings are more likely to show up again\n}",
+        ";\n// calculate hash:\nint hash = 0;\nint offset = start;\nfor (int i = 0; i < count; i++) {\nhash = 31 *",
+        "String(final char[] charBuf, final String[] string",
+        " offset = start;\nfor (int i = 0; i < count; i++) {",
+        "hed = new String(charBuf, start, count);\nstringCac",
+        "ex] = cached;\n} else { // hashcode hit, check equa",
+        "ached;\n} else { // hashcode hit, check equality\nif",
+        "it\nreturn cached;\n} else { // hashcode conflict\nca",
+        "n cached;\n} else { // hashcode conflict\ncached = n",
+        "(charBuf, start, count);\nstringCache[index] = cach",
+        "d; // update the cache, as recently used strings a"
+    ]
+}

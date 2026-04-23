@@ -1,0 +1,28 @@
+diff --git a/src/java/org/apache/commons/jxpath/ri/model/NodePointer.java b/src/java/org/apache/commons/jxpath/ri/model/NodePointer.java
+index 6ff8d5f..88e363f 100644
+--- a/src/java/org/apache/commons/jxpath/ri/model/NodePointer.java
++++ b/src/java/org/apache/commons/jxpath/ri/model/NodePointer.java
+@@ -639,12 +639,22 @@ public abstract class NodePointer implements Pointer {
+         return compareNodePointers(this, depth1, pointer, depth2);
+     }
+ 
+-    private int compareNodePointers(
++private int compareNodePointers(
+         NodePointer p1,
+         int depth1,
+         NodePointer p2,
+         int depth2) 
+     {
++        if (p1 instanceof VariablePointer || p2 instanceof VariablePointer) {
++            if (p1 instanceof VariablePointer) {
++                return 1; // p1 is a VariablePointer, p2 is not
++            }
++            if (p2 instanceof VariablePointer) {
++                return -1; // p2 is a VariablePointer, p1 is not
++            }
++            return 0; // Both are VariablePointers
++        }
++        
+         if (depth1 < depth2) {
+             int r = compareNodePointers(p1, depth1, p2.parent, depth2 - 1);
+             return r == 0 ? -1 : r;

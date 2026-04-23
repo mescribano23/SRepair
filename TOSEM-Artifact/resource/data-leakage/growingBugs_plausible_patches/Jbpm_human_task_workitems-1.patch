@@ -1,0 +1,67 @@
+diff --git a/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java b/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java
+index bf45d27cb..357002f58 100644
+--- a/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java
++++ b/jbpm-human-task/jbpm-human-task-workitems/src/main/java/org/jbpm/services/task/wih/util/PeopleAssignmentHelper.java
+@@ -198,37 +198,35 @@ public class PeopleAssignmentHelper {
+ 
+     }
+ 
+-	protected void processPeopleAssignments(String peopleAssignmentIds, List<OrganizationalEntity> organizationalEntities, boolean user) {
+-
+-        if (peopleAssignmentIds != null && peopleAssignmentIds.trim().length() > 0) {
+-
+-            String[] ids = peopleAssignmentIds.split(separator);
+-            for (String id : ids) {
+-                id = id.trim();
+-                // JBPM-7356 - ignore empty strings
+-                boolean exists = false;
+-                for (OrganizationalEntity orgEntity : organizationalEntities) {
+-                    if (orgEntity.getId().equals(id)) {
+-                        exists = true;
+-                    }
++protected void processPeopleAssignments(String peopleAssignmentIds, List<OrganizationalEntity> organizationalEntities, boolean user) {
++    if (peopleAssignmentIds != null && peopleAssignmentIds.trim().length() > 0) {
++        String[] ids = peopleAssignmentIds.split(separator);
++        for (String id : ids) {
++            id = id.trim();
++            // Skip empty IDs
++            if (id.isEmpty()) {
++                continue;
++            }
++            boolean exists = false;
++            for (OrganizationalEntity orgEntity : organizationalEntities) {
++                if (orgEntity.getId().equals(id)) {
++                    exists = true;
++                    break;
+                 }
+-
+-                if (!exists) {
+-                    OrganizationalEntity organizationalEntity = null;
+-                    if (user) {
+-                    	organizationalEntity = TaskModelProvider.getFactory().newUser();
+-                    	((InternalOrganizationalEntity) organizationalEntity).setId(id);
+-                        
+-                    } else {
+-                    	organizationalEntity = TaskModelProvider.getFactory().newGroup();
+-                    	((InternalOrganizationalEntity) organizationalEntity).setId(id);
+-                    }
+-                    organizationalEntities.add(organizationalEntity);
+-
++            }
++            if (!exists) {
++                OrganizationalEntity organizationalEntity = null;
++                if (user) {
++                    organizationalEntity = TaskModelProvider.getFactory().newUser();
++                } else {
++                    organizationalEntity = TaskModelProvider.getFactory().newGroup();
+                 }
++                ((InternalOrganizationalEntity) organizationalEntity).setId(id);
++                organizationalEntities.add(organizationalEntity);
+             }
+         }
+-	}
++    }
++}
+ 	
+    protected void processPeopleAssignments(Collection<OrganizationalEntity> peopleAssignmentIds, List<OrganizationalEntity> organizationalEntities) {
+ 

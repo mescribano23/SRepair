@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.22083333333333333,
+    "input": "    public static ObjectLink decodeObjlnk(byte[] value) throws TlvException {\n        ByteBuffer bff = ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN);\n        bff.put(value);\n        int val1 = bff.getShort(0) & 0xFFFF;\n        int val2 = bff.getShort(2) & 0xFFFF;\n        return new ObjectLink(val1, val2);\n    }",
+    "query_result": [
+        "f = ByteBuffer.allocate(4).order(ByteOrder.BIG_END",
+        " = ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDI",
+        "= ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIA",
+        " ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN",
+        "ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN)",
+        "yteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN);",
+        "teBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN);\n"
+    ]
+}

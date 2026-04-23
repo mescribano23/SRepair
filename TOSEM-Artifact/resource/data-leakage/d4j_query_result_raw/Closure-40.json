@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.28900709219858156,
+    "input": "public void visit(NodeTraversal t, Node n, Node parent) {\n\n  // Record global variable and function declarations\n  if (t.inGlobalScope()) {\n    if (NodeUtil.isVarDeclaration(n)) {\n      NameInformation ns = createNameInformation(t, n, parent);\n      Preconditions.checkNotNull(ns);\n      recordSet(ns.name, n);\n    } else if (NodeUtil.isFunctionDeclaration(n)) {\n      Node nameNode = n.getFirstChild();\n      NameInformation ns = createNameInformation(t, nameNode, n);\n      if (ns != null) {\n        JsName nameInfo = getName(nameNode.getString(), true);\n        recordSet(nameInfo.name, nameNode);\n      }\n    } else if (NodeUtil.isObjectLitKey(n, parent)) {\n      NameInformation ns = createNameInformation(t, n, parent);\n      if (ns != null) {\n        recordSet(ns.name, n);\n      }\n    }\n  }\n\n  // Record assignments and call sites\n  if (n.isAssign()) {\n    Node nameNode = n.getFirstChild();\n\n    NameInformation ns = createNameInformation(t, nameNode, n);\n    if (ns != null) {\n      if (ns.isPrototype) {\n        recordPrototypeSet(ns.prototypeClass, ns.prototypeProperty, n);\n      } else {\n        recordSet(ns.name, nameNode);\n      }\n    }\n  } else if (n.isCall()) {\n    Node nameNode = n.getFirstChild();\n    NameInformation ns = createNameInformation(t, nameNode, n);\n    if (ns != null && ns.onlyAffectsClassDef) {\n      JsName name = getName(ns.name, true);\n      refNodes.add(new ClassDefiningFunctionNode(\n          name, n, parent, parent.getParent()));\n    }\n  }\n}",
+    "query_result": [
+        "de nameNode = n.getFirstChild();\nNameInformation ns = createNameInformation(t, nameNode, n);\nif (ns ",
+        "de nameNode = n.getFirstChild();\nNameInformation ns = createNameInformation(t, nameNode, n);\nif (ns ",
+        "de nameNode = n.getFirstChild();\nNameInformation ns = createNameInformation(t, nameNode, n);\nif (ns ",
+        "n.getFirstChild();\nNameInformation ns = createNameInformation(t, nameNode, n);\nif (ns != null && ns.",
+        "public void visit(NodeTraversal t, Node n, Node pa",
+        "ublic void visit(NodeTraversal t, Node n, Node par",
+        "blic void visit(NodeTraversal t, Node n, Node pare",
+        "lic void visit(NodeTraversal t, Node n, Node paren",
+        "ic void visit(NodeTraversal t, Node n, Node parent",
+        "c void visit(NodeTraversal t, Node n, Node parent)",
+        " void visit(NodeTraversal t, Node n, Node parent) ",
+        "void visit(NodeTraversal t, Node n, Node parent) {",
+        "oid visit(NodeTraversal t, Node n, Node parent) {\n",
+        "id visit(NodeTraversal t, Node n, Node parent) {\n/",
+        "d visit(NodeTraversal t, Node n, Node parent) {\n//",
+        "n.getFirstChild();\nNameInformation ns = createName",
+        "Information ns = createNameInformation(t, nameNode",
+        "mation ns = createNameInformation(t, nameNode, n);",
+        "n.getFirstChild();\nNameInformation ns = createName",
+        "Information ns = createNameInformation(t, nameNode"
+    ]
+}

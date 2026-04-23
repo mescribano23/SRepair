@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.9457478005865103,
+    "input": "public static double pow(double x, double y) {\n        final double lns[] = new double[2];\n\n        if (y == 0.0) {\n            return 1.0;\n        }\n\n        if (x != x) { // X is NaN\n            return x;\n        }\n\n\n        if (x == 0) {\n            long bits = Double.doubleToLongBits(x);\n            if ((bits & 0x8000000000000000L) != 0) {\n                // -zero\n                long yi = (long) y;\n\n                if (y < 0 && y == yi && (yi & 1) == 1) {\n                    return Double.NEGATIVE_INFINITY;\n                }\n\n                if (y > 0 && y == yi && (yi & 1) == 1) {\n                    return -0.0;\n                }\n            }\n\n            if (y < 0) {\n                return Double.POSITIVE_INFINITY;\n            }\n            if (y > 0) {\n                return 0.0;\n            }\n\n            return Double.NaN;\n        }\n\n        if (x == Double.POSITIVE_INFINITY) {\n            if (y != y) { // y is NaN\n                return y;\n            }\n            if (y < 0.0) {\n                return 0.0;\n            } else {\n                return Double.POSITIVE_INFINITY;\n            }\n        }\n\n        if (y == Double.POSITIVE_INFINITY) {\n            if (x * x == 1.0) {\n                return Double.NaN;\n            }\n\n            if (x * x > 1.0) {\n                return Double.POSITIVE_INFINITY;\n            } else {\n                return 0.0;\n            }\n        }\n\n        if (x == Double.NEGATIVE_INFINITY) {\n            if (y != y) { // y is NaN\n     ",
+    "query_result": [
+        "y) {\nfinal double lns[] = new double[2];\nif (y == 0.0) {\nreturn 1.0;\n}\nif (x != x) { // X is NaN\nreturn x;\n}\nif (x == 0) {\nlong bits = Double.doubleToLongBits(x);\nif ((bits & 0x8000000000000000L) != 0) {\n// -zero\nlong yi = (long) y;\nif (y < 0 && y == yi && (yi & 1) == 1) {\nreturn Double.NEGATIVE_INFINITY;\n}\nif (y > 0 && y == yi && (yi & 1) == 1) {\nreturn -0.0;\n}\n}\nif (y < 0) {\nreturn Double.POSITIVE_INFINITY;\n}\nif (y > 0) {\nreturn 0.0;\n}\nreturn Double.NaN;\n}\nif (x == Double.POSITIVE_INFINITY) {\nif (y != y) { // y is NaN\nreturn y;\n}\nif (y < 0.0) {\nreturn 0.0;\n} else {\nreturn Double.POSITIVE_INFINITY;\n}\n}\nif (y == Double.POSITIVE_INFINITY) {\nif (x * x == 1.0) {\nreturn Double.NaN;\n}\nif (x * x > 1.0) {\nreturn Double.POSITIVE_INFINITY;\n} else {\nreturn 0.0;\n}\n}\nif (x == Double.NEGATIVE_INFINITY)",
+        " == yi && (yi & 1) == 1) {\nreturn -0.0;\n}\n}\nif (y < 0) {\nreturn Double.POSITIVE_INFINITY;\n}\nif (y > 0) {\nreturn 0.0;\n}\nreturn Double.NaN;\n}\nif (x == Double.POSITIVE_INFINITY) {\nif (y != y) { // y is NaN\nreturn y;\n}\nif (y < 0.0) {\nreturn 0.0;\n} else {\nreturn Double.POSITIVE_INFINITY;\n}\n}\nif (y == Dou",
+        " x) { // X is NaN\nreturn x;\n}\nif (x == 0) {\nlong bits = Double.doubleToLongBits(x);\nif ((bits & 0x8000000000000000L) != 0) {\n// -zero\nlong yi = (long) y;\nif (y < 0 && y == yi && (yi & 1) == 1) {\nretur",
+        "IVE_INFINITY;\n} else {\nreturn 0.0;\n}\n}\nif (x == Double.NEGATIVE_INFINITY) {\nif (y != y) { // y is Na",
+        "00000000000L) != 0) {\n// -zero\nlong yi = (long) y;",
+        "yi && (yi & 1) == 1) {\nreturn Double.NEGATIVE_INFI",
+        " {\nif (y != y) { // y is NaN\nreturn y;\n}\nif (y < 0",
+        " NaN\nreturn y;\n}\nif (y < 0.0) {\nreturn 0.0;\n} else",
+        "} else {\nreturn Double.POSITIVE_INFINITY;\n}\n}\nif (",
+        "INITY) {\nif (x * x == 1.0) {\nreturn Double.NaN;\n}\n",
+        "1.0) {\nreturn Double.POSITIVE_INFINITY;\n} else {\nr",
+        ".0) {\nreturn Double.POSITIVE_INFINITY;\n} else {\nre",
+        "0) {\nreturn Double.POSITIVE_INFINITY;\n} else {\nret",
+        ") {\nreturn Double.POSITIVE_INFINITY;\n} else {\nretu",
+        " {\nreturn Double.POSITIVE_INFINITY;\n} else {\nretur",
+        "{\nreturn Double.POSITIVE_INFINITY;\n} else {\nreturn",
+        "\nreturn Double.POSITIVE_INFINITY;\n} else {\nreturn ",
+        "ouble.POSITIVE_INFINITY;\n} else {\nreturn 0.0;\n}\n}\n",
+        "ble.POSITIVE_INFINITY;\n} else {\nreturn 0.0;\n}\n}\nif"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.5189309576837416,
+    "input": "  private void visitNew(NodeTraversal t, Node n) {\n    Node constructor = n.getFirstChild();\n    JSType type = getJSType(constructor).restrictByNotNullOrUndefined();\n    if (type.isConstructor() || type.isEmptyType() || type.isUnknownType()) {\n      FunctionType fnType = type.toMaybeFunctionType();\n      if (fnType != null && fnType.hasInstanceType()) {\n        visitParameterList(t, n, fnType);\n        ensureTyped(t, n, fnType.getInstanceType());\n      } else {\n        ensureTyped(t, n);\n      }\n    } else {\n      report(t, n, NOT_A_CONSTRUCTOR);\n      ensureTyped(t, n);\n    }\n  }",
+    "query_result": [
+        "ype = getJSType(constructor).restrictByNotNullOrUndefined();\nif (type.isConstructor() || type.isEmptyType() || type.isUnknownType()) {\nFunctionType fn",
+        "pe = getJSType(constructor).restrictByNotNullOrUndefined();\nif (type.isConstructor() || type.isEmptyType() || type.isUnknownType()) {\nFunctionType fnT",
+        "onstructor).restrictByNotNullOrUndefined();\nif (type.isConstructor() || type.isEmptyType() || type.isUnknownType()) {\nFunctionType fnType = type.toMay",
+        "nctionType fnType = type.toMaybeFunctionType();\nif",
+        "eType()) {\nvisitParameterList(t, n, fnType);\nensur",
+        "arameterList(t, n, fnType);\nensureTyped(t, n, fnTy"
+    ]
+}

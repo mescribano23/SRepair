@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public static String getSanitizedPackageName(String modelName) {\n        return modelName.replaceAll(\"[^A-Za-z0-9.]\", \"\").toLowerCase();\n    }",
+    "query_result": []
+}

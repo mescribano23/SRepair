@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.7976653696498055,
+    "input": "    private void annotateCalls(Node n) {\n      Preconditions.checkState(n.isCall());\n\n      // Keep track of of the \"this\" context of a call.  A call without an\n      // explicit \"this\" is a free call.\n      Node first = n.getFirstChild();\n\n      // ignore cast nodes.\n      while (first.isCast()) {\n        first = first.getFirstChild();\n      }\n\n      if (!NodeUtil.isGet(first)) {\n        n.putBooleanProp(Node.FREE_CALL, true);\n      }\n\n      // Keep track of the context in which eval is called. It is important\n      // to distinguish between \"(0, eval)()\" and \"eval()\".\n      if (first.isName() &&\n          \"eval\".equals(first.getString())) {\n        first.putBooleanProp(Node.DIRECT_EVAL, true);\n      }\n    }",
+    "query_result": [
+        " the \"this\" context of a call. A call without an\n// explicit \"this\" is a free call.\nNode first = n.getFirstChild();\n// ignore cast nodes.\nwhile (first.isCast()) {\nfirst = first.getFirstChild();\n}\nif (",
+        "leanProp(Node.FREE_CALL, true);\n}\n// Keep track of the context in which eval is called. It is important\n// to distinguish between \"(0, eval)()\" and \"e",
+        "s(Node n) {\nPreconditions.checkState(n.isCall());\n",
+        "l.isGet(first)) {\nn.putBooleanProp(Node.FREE_CALL,",
+        "getString())) {\nfirst.putBooleanProp(Node.DIRECT_E"
+    ]
+}

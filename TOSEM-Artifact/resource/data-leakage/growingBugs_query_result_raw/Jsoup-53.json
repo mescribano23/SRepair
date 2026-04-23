@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.4456066945606695,
+    "input": "    public String chompBalanced(char open, char close) {\n        int start = -1;\n        int end = -1;\n        int depth = 0;\n        char last = 0;\n        boolean inQuote = false;\n\n        do {\n            if (isEmpty()) break;\n            Character c = consume();\n            if (last == 0 || last != ESC) {\n                if (c.equals('\\'') || c.equals('\"') && c != open)\n                    inQuote = !inQuote;\n                if (inQuote)\n                    continue;\n                if (c.equals(open)) {\n                    depth++;\n                    if (start == -1)\n                        start = pos;\n                }\n                else if (c.equals(close))\n                    depth--;\n            }\n\n            if (depth > 0 && last != 0)\n                end = pos; // don't include the outer match pair in the return\n            last = c;\n        } while (depth > 0);\n        return (end >= 0) ? queue.substring(start, end) : \"\";\n    }",
+    "query_result": [
+        "String chompBalanced(char open, char close) {\nint start = -1;\nint end = -1;\nint depth = 0;\nchar last",
+        "chompBalanced(char open, char close) {\nint start = -1;\nint end = -1;\nint depth = 0;\nchar last = 0;\nb",
+        "mpBalanced(char open, char close) {\nint start = -1;\nint end = -1;\nint depth = 0;\nchar last = 0;\nbool",
+        "(depth > 0 && last != 0)\nend = pos; // don't include the outer match pair in the return\nlast = c;\n} ",
+        " > 0 && last != 0)\nend = pos; // don't include the outer match pair in the return\nlast = c;\n} while ",
+        "&& last != 0)\nend = pos; // don't include the outer match pair in the return\nlast = c;\n} while (dept",
+        "ced(char open, char close) {\nint start = -1;\nint e",
+        "e) {\nint start = -1;\nint end = -1;\nint depth = 0;\n",
+        "depth++;\nif (start == -1)\nstart = pos;\n}\nelse if (",
+        "\nend = pos; // don't include the outer match pair ",
+        "end = pos; // don't include the outer match pair i",
+        "; // don't include the outer match pair in the ret",
+        "t include the outer match pair in the return\nlast "
+    ]
+}

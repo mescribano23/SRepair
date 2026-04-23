@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7264808362369338,
+    "input": "public FileHeader generateFileHeader(ZipParameters zipParameters, boolean isSplitZip, int currentDiskNumberStart, Charset charset)\n      throws ZipException {\n\n    FileHeader fileHeader = new FileHeader();\n    fileHeader.setSignature(HeaderSignature.CENTRAL_DIRECTORY);\n    fileHeader.setVersionMadeBy(20);\n    fileHeader.setVersionNeededToExtract(20);\n\n    if (zipParameters.isEncryptFiles() && zipParameters.getEncryptionMethod() == EncryptionMethod.AES) {\n      fileHeader.setCompressionMethod(CompressionMethod.AES_INTERNAL_ONLY);\n      fileHeader.setAesExtraDataRecord(generateAESExtraDataRecord(zipParameters));\n    } else {\n      fileHeader.setCompressionMethod(zipParameters.getCompressionMethod());\n    }\n\n    if (zipParameters.isEncryptFiles()) {\n      if (zipParameters.getEncryptionMethod() == null || zipParameters.getEncryptionMethod() == EncryptionMethod.NONE) {\n        throw new ZipException(\"Encryption method has to be set when encryptFiles flag is set in zip parameters\");\n      }\n\n      fileHeader.setEncrypted(true);\n      fileHeader.setEncryptionMethod(zipParameters.getEncryptionMethod());\n    }\n\n    String fileName = validateAndGetFileName(zipParameters.getFileNameInZip());\n    fileHeader.setFileName(fileName);\n    fileHeader.setFileNameLength(determineFileNameLength(fileName));\n    fileHeader.setDiskNumberStart(isSplitZip ? currentDiskNumberStart : 0);\n\n    if (zipParameters.getLastModifiedFileTime() > 0) {\n      fileHeader.setLastModifiedTime(Zip4jUtil.javaToDosTime(zipParameters.getLastModifiedFileTime()));\n    } else {\n      fileHeader.setLastModifiedTime(Zip4jUtil.javaToDosTime(System.currentTimeMillis()));\n    }\n\n    //For files added by this library, this attribute will be set after closeEntry is done\n    fileHeader.setExternalFileAttributes(new byte[4]);\n    fileHeader.setDirectory(isZipEntryDirectory(fileName));\n\n    if (zipParameters.isWriteExtendedLocalFileHeader() && zipParameters.getEntrySize() == -1) {\n      fileHeader.setUncompressedSize(0);\n ",
+    "query_result": [
+        "(generateAESExtraDataRecord(zipParameters));\n} else {\nfileHeader.setCompressionMethod(zipParameters.getCompressionMethod());\n}\nif (zipParameters.isEncryptFiles()) {\nif (zipParameters.getEncryptionMethod() == null || zipParameters.getEncryptionMethod() == EncryptionMethod.NONE) {\nthrow new ZipException(\"Encryption method has to be set when encryptFiles flag is set in zip parameters\");\n}\nfileHeader.setEncrypted(true);\nfileHeader.setEncryptionMethod(zipParameters.getEncryptionMethod());\n}\nString fileName = validateAndGetFileName(zipParameters.getFileNameInZip());\nfileHeader.setFileName(fileName);\nfileHeader.setFileNameLength(determineFileNameLen",
+        "sEncryptFiles() && zipParameters.getEncryptionMethod() == EncryptionMethod.AES) {\nfileHeader.setCompressionMethod(CompressionMethod.AES_INTERNAL_ONLY);\nfileHeader.setAesExtraDataRecord(generateAESExtr",
+        "esExtraDataRecord(generateAESExtraDataRecord(zipParameters));\n} else {\nfileHeader.setCompressionMethod(zipParameters.getCompressionMethod());\n}\nif (zi",
+        "ileHeader generateFileHeader(ZipParameters zipParameters, boolean isSplitZip, int currentDiskNumberS",
+        "ption {\nFileHeader fileHeader = new FileHeader();\nfileHeader.setSignature(HeaderSignature.CENTRAL_DI",
+        "setVersionMadeBy(20);\nfileHeader.setVersionNeededToExtract(20);\nif (zipParameters.isEncryptFiles() &",
+        "(20);\nfileHeader.setVersionNeededToExtract(20);\nif (zipParameters.isEncryptFiles() && zipParameters.",
+        "ypted(true);\nfileHeader.setEncryptionMethod(zipParameters.getEncryptionMethod());\n}\nString fileName ",
+        "tart(isSplitZip ? currentDiskNumberStart : 0);\nif (zipParameters.getLastModifiedFileTime() > 0) {\nfi",
+        "eters.isWriteExtendedLocalFileHeader() && zipParameters.getEntrySize() == -1) {\nfileHeader.setUncomp",
+        "eption {\nFileHeader fileHeader = new FileHeader();",
+        "{\nFileHeader fileHeader = new FileHeader();\nfileHe",
+        "FileHeader fileHeader = new FileHeader();\nfileHead",
+        "ader fileHeader = new FileHeader();\nfileHeader.set",
+        "eHeader = new FileHeader();\nfileHeader.setSignatur",
+        "eHeader.setSignature(HeaderSignature.CENTRAL_DIREC",
+        "setSignature(HeaderSignature.CENTRAL_DIRECTORY);\nf",
+        "gnature(HeaderSignature.CENTRAL_DIRECTORY);\nfileHe",
+        "eters.isEncryptFiles() && zipParameters.getEncrypt",
+        "rameters.getEncryptionMethod() == EncryptionMethod"
+    ]
+}

@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/csv/CSVRecord.java b/src/main/java/org/apache/commons/csv/CSVRecord.java
+index dc52017..8f07a4d 100644
+--- a/src/main/java/org/apache/commons/csv/CSVRecord.java
++++ b/src/main/java/org/apache/commons/csv/CSVRecord.java
+@@ -76,14 +76,20 @@ public class CSVRecord implements Serializable, Iterable<String> {
+      *             if the record is inconsistent
+      * @see #isConsistent()
+      */
+-    public String get(final String name) {
+-        if (mapping == null) {
+-            throw new IllegalStateException(
+-                    "No header mapping was specified, the record values can't be accessed by name");
++public String get(final String name) {
++    if (mapping == null) {
++        throw new IllegalStateException(
++                "No header mapping was specified, the record values can't be accessed by name");
++    }
++    final Integer index = mapping.get(name);
++    if (index != null) {
++        if (index < 0 || index >= values.length) { // Check for valid range
++            throw new IllegalArgumentException("Record is inconsistent: index out of bounds");
+         }
+-        final Integer index = mapping.get(name);
+-            return index != null ? values[index.intValue()] : null;
++        return values[index.intValue()];
+     }
++    return null;
++}
+ 
+     /**
+      * Returns true if this record is consistent, false if not. Currently, the only check is matching the record size to

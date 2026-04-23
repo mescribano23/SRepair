@@ -1,0 +1,51 @@
+diff --git a/src/main/java/org/jsoup/parser/XmlTreeBuilder.java b/src/main/java/org/jsoup/parser/XmlTreeBuilder.java
+index 65d3045..d77f71f 100644
+--- a/src/main/java/org/jsoup/parser/XmlTreeBuilder.java
++++ b/src/main/java/org/jsoup/parser/XmlTreeBuilder.java
+@@ -113,27 +113,27 @@ public class XmlTreeBuilder extends TreeBuilder {
+      *
+      * @param endTag tag to close
+      */
+-    private void popStackToClose(Token.EndTag endTag) {
+-        String elName = endTag.name();
+-        Element firstFound = null;
+-
+-        for (int pos = stack.size() -1; pos >= 0; pos--) {
+-            Element next = stack.get(pos);
+-            if (next.nodeName().equals(elName)) {
+-                firstFound = next;
+-                break;
+-            }
+-        }
+-        if (firstFound == null)
+-            return; // not found, skip
+-
+-        for (int pos = stack.size() -1; pos >= 0; pos--) {
+-            Element next = stack.get(pos);
+-            stack.remove(pos);
+-            if (next == firstFound)
+-                break;
++private void popStackToClose(Token.EndTag endTag) {
++    String elName = endTag.name().toLowerCase(); // Convert to lower case for HTML
++    Element firstFound = null;
++
++    for (int pos = stack.size() -1; pos >= 0; pos--) {
++        Element next = stack.get(pos);
++        if (next.nodeName().equalsIgnoreCase(elName)) { // Use equalsIgnoreCase
++            firstFound = next;
++            break;
+         }
+     }
++    if (firstFound == null)
++        return; // not found, skip
++
++    for (int pos = stack.size() -1; pos >= 0; pos--) {
++        Element next = stack.get(pos);
++        stack.remove(pos);
++        if (next == firstFound)
++            break;
++    }
++}
+ 
+     List<Node> parseFragment(String inputFragment, String baseUri, ParseErrorList errors, ParseSettings settings) {
+         initialiseParse(new StringReader(inputFragment), baseUri, errors, settings);

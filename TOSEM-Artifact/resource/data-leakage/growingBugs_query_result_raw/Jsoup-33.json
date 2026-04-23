@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9489981785063752,
+    "input": "    Element insert(Token.StartTag startTag) {\n        // handle empty unknown tags\n        // when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\n        if (startTag.isSelfClosing()) {\n            Element el = insertEmpty(startTag);\n            stack.add(el);\n            tokeniser.transition(TokeniserState.Data); // handles <script />, otherwise needs breakout steps from script data\n            tokeniser.emit(new Token.EndTag(el.tagName()));  // ensure we get out of whatever state we are in. emitted for yielded processing\n            return el;\n        }\n        \n        Element el = new Element(Tag.valueOf(startTag.name()), baseUri, startTag.attributes);\n        insert(el);\n        return el;\n    }",
+    "query_result": [
+        "spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\nif (startTag.isSelfClosing()) {\nElement el = insertEmpty(startTag);\nstack.add(el);\ntokeniser.transition(TokeniserState.Data); // handles <script />, otherwise needs breakout steps from script data\ntokenise",
+        ") {\n// handle empty unknown tags\n// when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\nif (startTag.isSelfClosing()) {\nElement el = insertEmpty(sta",
+        "gName())); // ensure we get out of whatever state we are in. emitted for yielded processing\nreturn el;\n}\n\nElement el = new Element(Tag.valueOf(startTag.name()), baseUri, startTag.attributes);\ninsert(e",
+        "{\n// handle empty unknown tags\n// when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\nif (startTag",
+        "pty unknown tags\n// when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\nif (startTag.isSelfClosing",
+        "e spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\nif (startTag.isSelfClosing()) {\nElement el = insertEm",
+        "xpects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\nif (startTag.isSelfClosing()) {\nElement el = insertEmpty(star",
+        "sert(Token.StartTag startTag) {\n// handle empty unknown tags\n// when the spec expects an empty tag, ",
+        " unknown tags\n// when the spec expects an empty tag, will directly hit insertEmpty, so won't generat",
+        "gs\n// when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake",
+        "\n// when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake e",
+        " when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end ",
+        "iser.transition(TokeniserState.Data); // handles <script />, otherwise needs breakout steps from scr",
+        "r.transition(TokeniserState.Data); // handles <script />, otherwise needs breakout steps from script",
+        "(new Token.EndTag(el.tagName())); // ensure we get out of whatever state we are in. emitted for yiel",
+        ".tagName())); // ensure we get out of whatever state we are in. emitted for yielded processing\nretur",
+        " of whatever state we are in. emitted for yielded processing\nreturn el;\n}\n\nElement el = new Element(",
+        "andle empty unknown tags\n// when the spec expects ",
+        "own tags\n// when the spec expects an empty tag, wi",
+        "hen the spec expects an empty tag, will directly h"
+    ]
+}

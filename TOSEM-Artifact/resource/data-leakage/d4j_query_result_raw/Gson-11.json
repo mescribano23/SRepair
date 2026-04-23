@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.917910447761194,
+    "input": "public Number read(JsonReader in) throws IOException {\n  JsonToken jsonToken = in.peek();\n  switch (jsonToken) {\n  case NULL:\n    in.nextNull();\n    return null;\n  case NUMBER:\n  case STRING:\n    return new LazilyParsedNumber(in.nextString());\n  default:\n    throw new JsonSyntaxException(\"Expecting number, got: \" + jsonToken);\n  }\n}",
+    "query_result": [
+        "(JsonReader in) throws IOException {\nJsonToken jsonToken = in.peek();\nswitch (jsonToken) {\ncase NULL:\nin.nextNull();\nreturn null;\ncase NUMBER:\ncase STRING:\nreturn new LazilyParsedNumber(in.nextString());\ndefault:\nthrow new JsonSyntaxException(\"Expect",
+        "der in) throws IOException {\nJsonToken jsonToken = in.peek();\nswitch (jsonToken) {\ncase NULL:\nin.nextNull();\nreturn null;\ncase NUMBER:\ncase STRING:\nreturn new LazilyParsedNumber(in.nextString());\ndefault:\nthrow new JsonSyntaxException(\"Expecting numb",
+        "blic Number read(JsonReader in) throws IOException {\nJsonToken jsonToken = in.peek();\nswitch (jsonTo",
+        "r read(JsonReader in) throws IOException {\nJsonToken jsonToken = in.peek();\nswitch (jsonToken) {\ncas",
+        " read(JsonReader in) throws IOException {\nJsonToken jsonToken = in.peek();\nswitch (jsonToken) {\ncase",
+        "sonReader in) throws IOException {\nJsonToken jsonToken = in.peek();\nswitch (jsonToken) {\ncase NULL:\n",
+        "ption {\nJsonToken jsonToken = in.peek();\nswitch (jsonToken) {\ncase NULL:\nin.nextNull();\nreturn null;",
+        "eturn new LazilyParsedNumber(in.nextString());\ndefault:\nthrow new JsonSyntaxException(\"Expecting num",
+        "public Number read(JsonReader in) throws IOExcepti",
+        "ublic Number read(JsonReader in) throws IOExceptio",
+        "lic Number read(JsonReader in) throws IOException ",
+        "ic Number read(JsonReader in) throws IOException {",
+        "c Number read(JsonReader in) throws IOException {\n",
+        "umber read(JsonReader in) throws IOException {\nJso",
+        "er read(JsonReader in) throws IOException {\nJsonTo",
+        "read(JsonReader in) throws IOException {\nJsonToken",
+        "ead(JsonReader in) throws IOException {\nJsonToken ",
+        "er in) throws IOException {\nJsonToken jsonToken = ",
+        " in) throws IOException {\nJsonToken jsonToken = in",
+        "n) throws IOException {\nJsonToken jsonToken = in.p"
+    ]
+}

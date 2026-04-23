@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+index 967912e2..c36b1857 100644
+--- a/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
++++ b/src/main/java/org/apache/commons/imaging/formats/pnm/PnmImageParser.java
+@@ -83,6 +83,7 @@ public class PnmImageParser extends ImageParser {
+         };
+     }
+ 
++
+     private FileInfo readHeader(final InputStream is) throws ImageReadException,
+             IOException {
+         final byte identifier1 = readByte("Identifier1", is, "Not a Valid PNM File");
+@@ -155,19 +156,19 @@ public class PnmImageParser extends ImageParser {
+                 }
+                 final StringTokenizer tokenizer = new StringTokenizer(line, " ", false);
+                 final String type = tokenizer.nextToken();
+-                if ("WIDTH".equals(type)) {
++                if ("WIDTH".equals(type) && tokenizer.hasMoreTokens()) {
+                     seenWidth = true;
+                     width = Integer.parseInt(tokenizer.nextToken());
+-                } else if ("HEIGHT".equals(type)) {
++                } else if ("HEIGHT".equals(type) && tokenizer.hasMoreTokens()) {
+                     seenHeight = true;
+                     height = Integer.parseInt(tokenizer.nextToken());
+-                } else if ("DEPTH".equals(type)) {
++                } else if ("DEPTH".equals(type) && tokenizer.hasMoreTokens()) {
+                     seenDepth = true;
+                     depth = Integer.parseInt(tokenizer.nextToken());
+-                } else if ("MAXVAL".equals(type)) {
++                } else if ("MAXVAL".equals(type) && tokenizer.hasMoreTokens()) {
+                     seenMaxVal = true;
+                     maxVal = Integer.parseInt(tokenizer.nextToken());
+-                } else if ("TUPLTYPE".equals(type)) {
++                } else if ("TUPLTYPE".equals(type) && tokenizer.hasMoreTokens()) {
+                     seenTupleType = true;
+                     tupleType.append(tokenizer.nextToken());
+                 } else if ("ENDHDR".equals(type)) {

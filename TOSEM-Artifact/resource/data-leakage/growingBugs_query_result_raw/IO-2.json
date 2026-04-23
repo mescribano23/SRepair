@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.6231003039513677,
+    "input": "    public static long readSwappedLong(byte[] data, int offset) {\n        long low = \n            ( ( data[ offset + 0 ] & 0xff ) << 0 ) +\n            ( ( data[ offset + 1 ] & 0xff ) << 8 ) +\n            ( ( data[ offset + 2 ] & 0xff ) << 16 ) +\n            ( ( (long) ( data[ offset + 3 ] & 0xff ) ) << 24 );\n        long high = \n            ( ( data[ offset + 4 ] & 0xff ) << 0 ) +\n            ( ( data[ offset + 5 ] & 0xff ) << 8 ) +\n            ( ( data[ offset + 6 ] & 0xff ) << 16 ) +\n            ( ( (long) ( data[ offset + 7 ] & 0xff ) ) << 24 );\n        return low + (high << 32);\n    }",
+    "query_result": [
+        "c static long readSwappedLong(byte[] data, int offset) {\nlong low = \n( ( data[ offset + 0 ] & 0xff ) << 0 ) +\n( ( data[ offset + 1 ] & 0xff ) << 8 ) +",
+        " & 0xff ) << 0 ) +\n( ( data[ offset + 1 ] & 0xff ) << 8 ) +\n( ( data[ offset + 2 ] & 0xff ) << 16 ) ",
+        " data[ offset + 4 ] & 0xff ) << 0 ) +\n( ( data[ offset + 5 ] & 0xff ) << 8 ) +\n( ( data[ offset + 6 ",
+        "a[ offset + 0 ] & 0xff ) << 0 ) +\n( ( data[ offset",
+        " offset + 0 ] & 0xff ) << 0 ) +\n( ( data[ offset +",
+        "offset + 0 ] & 0xff ) << 0 ) +\n( ( data[ offset + ",
+        "t + 0 ] & 0xff ) << 0 ) +\n( ( data[ offset + 1 ] &",
+        "<< 0 ) +\n( ( data[ offset + 1 ] & 0xff ) << 8 ) +\n",
+        " +\n( ( data[ offset + 1 ] & 0xff ) << 8 ) +\n( ( da",
+        " ( data[ offset + 1 ] & 0xff ) << 8 ) +\n( ( data[ "
+    ]
+}

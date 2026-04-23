@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.1506434519303558,
+    "input": "    public static Command from(\n            final Message message,\n            final String tenantId,\n            final String deviceId) {\n\n        Objects.requireNonNull(message);\n        Objects.requireNonNull(tenantId);\n        Objects.requireNonNull(deviceId);\n\n        final StringJoiner validationErrorJoiner = new StringJoiner(\", \");\n        if (message.getSubject() == null) {\n            validationErrorJoiner.add(\"subject not set\");\n        }\n\n        final String correlationId = Optional.ofNullable(message.getCorrelationId()).map(obj -> {\n            if (obj instanceof String) {\n                return (String) obj;\n            } else {\n                return null;\n            }\n        }).orElseGet(() -> {\n            final Object obj = message.getMessageId();\n            if (obj instanceof String) {\n                return (String) obj;\n            } else {\n                return null;\n            }\n        });\n\n        if (correlationId == null) {\n            validationErrorJoiner.add(\"message/correlation-id not set\");\n        }\n\n        String originalReplyToId = null;\n        boolean replyToLegacyEndpointUsed = false;\n        if (message.getReplyTo() != null) {\n            try {\n                final ResourceIdentifier replyTo = ResourceIdentifier.fromString(message.getReplyTo());\n                if (!CommandConstants.isNorthboundCommandResponseEndpoint(replyTo.getEndpoint())) {\n                    // not a command message\n                    validationErrorJoiner.add(\"reply-to not a command address: \" + message.getReplyTo());\n                } else if (!tenantId.equals(replyTo.getTenantId())) {\n                    // command response is targeted at wrong tenant\n                    validationErrorJoiner.add(\"reply-to not targeted at tenant \" + tenantId + \": \" + message.getReplyTo());\n                } else {\n                    replyToLegacyEndpointUsed = CommandConstants.isNorthboundCommandLegacyEndpoint(replyTo.getEndpoint());\n                    origina",
+    "query_result": [
+        ".requireNonNull(message);\nObjects.requireNonNull(tenantId);\nObjects.requireNonNull(deviceId);\nfinal ",
+        "{\nObjects.requireNonNull(message);\nObjects.require",
+        "\nObjects.requireNonNull(message);\nObjects.requireN",
+        "Objects.requireNonNull(message);\nObjects.requireNo",
+        "bjects.requireNonNull(message);\nObjects.requireNon",
+        "jects.requireNonNull(message);\nObjects.requireNonN",
+        "ects.requireNonNull(message);\nObjects.requireNonNu",
+        "s.requireNonNull(message);\nObjects.requireNonNull(",
+        "ects.requireNonNull(tenantId);\nObjects.requireNonN",
+        "eNonNull(tenantId);\nObjects.requireNonNull(deviceI",
+        "{\nif (obj instanceof String) {\nreturn (String) obj",
+        "\nif (obj instanceof String) {\nreturn (String) obj;",
+        "if (obj instanceof String) {\nreturn (String) obj;\n",
+        "f (obj instanceof String) {\nreturn (String) obj;\n}",
+        " (obj instanceof String) {\nreturn (String) obj;\n} ",
+        "(obj instanceof String) {\nreturn (String) obj;\n} e",
+        "obj instanceof String) {\nreturn (String) obj;\n} el",
+        "bj instanceof String) {\nreturn (String) obj;\n} els",
+        "j instanceof String) {\nreturn (String) obj;\n} else",
+        " instanceof String) {\nreturn (String) obj;\n} else "
+    ]
+}

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/SubTypeValidator.java b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/SubTypeValidator.java
+index 9865b1a20..c0444ac2e 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/SubTypeValidator.java
++++ b/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/SubTypeValidator.java
+@@ -74,13 +74,18 @@ public class SubTypeValidator
+         // via default typing -- catch them here.
+         final Class<?> raw = type.getRawClass();
+         String full = raw.getName();
+-
++        
+         main_check:
+         do {
+             if (_cfgIllegalClassNames.contains(full)) {
+                 break;
+             }
+-
++            
++            // Check for C3P0 types
++            if (full.startsWith("com.mchange.v2.c3p0.")) {
++                break main_check; // Consider all C3P0 types illegal
++            }
++            
+             // 18-Dec-2017, tatu: As per [databind#1855], need bit more sophisticated handling
+             //    for some Spring framework types
+             // 05-Jan-2017, tatu: ... also, only applies to classes, not interfaces

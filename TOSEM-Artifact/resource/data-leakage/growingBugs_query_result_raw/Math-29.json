@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public Line revert() {\n        final Line reverted = new Line(this);\n        reverted.direction = reverted.direction.negate();\n        return reverted;\n    }",
+    "query_result": []
+}

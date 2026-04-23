@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.9606060606060606,
+    "input": "protected void verifyNonDup(AnnotatedWithParams newOne, int typeIndex, boolean explicit)\n{\n    final int mask = (1 << typeIndex);\n    _hasNonDefaultCreator = true;\n    AnnotatedWithParams oldOne = _creators[typeIndex];\n    // already had an explicitly marked one?\n    if (oldOne != null) {\n        boolean verify;\n\n        if ((_explicitCreators & mask) != 0) { // already had explicitly annotated, leave as-is\n            // but skip, if new one not annotated\n            if (!explicit) {\n                return;\n            }\n            // both explicit: verify\n            verify = true;\n        } else {\n            // otherwise only verify if neither explicitly annotated.\n            verify = !explicit;\n        }\n\n        // one more thing: ok to override in sub-class\n        if (verify && (oldOne.getClass() == newOne.getClass())) {\n            // [databind#667]: avoid one particular class of bogus problems\n            Class<?> oldType = oldOne.getRawParameterType(0);\n            Class<?> newType = newOne.getRawParameterType(0);\n\n            if (oldType == newType) {\n                throw new IllegalArgumentException(\"Conflicting \"+TYPE_DESCS[typeIndex]\n                        +\" creators: already had explicitly marked \"+oldOne+\", encountered \"+newOne);\n            }\n            // otherwise, which one to choose?\n            if (newType.isAssignableFrom(oldType)) {\n                // new type more generic, use old\n                return;\n            }\n            // new type mo",
+    "query_result": [
+        "protected void verifyNonDup(AnnotatedWithParams newOne, int typeIndex, boolean explicit)\n{\nfinal int mask = (1 << typeIndex);\n_hasNonDefaultCreator = true;\nAnnotatedWithParams oldOne = _creators[typeIndex];\n// already had an explicitly marked one?\nif (oldOne != null) {\nboolean verify;\nif ((_explicitCreators & mask) != 0) { // already had explicitly annotated, leave as-is\n// but skip, if new one not annotated\nif (!explicit) {\nreturn;\n}\n// both explicit: verify\nverify = true;\n} else {\n// otherwise only verify if neither explicitly annotated.\nverify = !explicit;\n}\n// one more thing: ok to override in sub-class\nif (verify && (oldOne.getClass() == newOne.getClass())) {\n// [databind#667]: avoid one particular class of bogus problems\nClass<?> oldType = oldOne.getRawParameterType(0);\nClass<?> newType = newOne.getRawParameterType(0);\nif (oldType == newType) {\nthrow new IllegalArgumentException(\"Conflicting \"+TYPE_DESCS[typeIndex]\n+\" creators: already had explicitly marked \"+oldOne+\", encountered \"+newOne);\n}\n// otherwise, which one to choose?\nif (newType.isAssignableFrom(oldType)) {\n// new ty",
+        "erifyNonDup(AnnotatedWithParams newOne, int typeIndex, boolean explicit)\n{\nfinal int mask = (1 << typeIndex);\n_hasNonDefaultCreator = true;\nAnnotatedWithParams oldOne = _creators[typeIndex];\n// already had an explicitly marked one?\nif (oldOne != null) {\nboolean verify;\nif ((_explicitCreators & mask) != 0) { // already had explicitly annotated, leave as-is\n// but skip, if new one not annotated\nif (",
+        ".getRawParameterType(0);\nif (oldType == newType) {\nthrow new IllegalArgumentException(\"Conflicting \"+TYPE_DESCS[typeIndex]\n+\" creators: already had explicitly marked \"+oldOne+\", encountered \"+newOne);",
+        "ify\nverify = true;\n} else {\n// otherwise only verify if neither explicitly annotated.\nverify = !explicit;\n}\n// one more thing: ok to override in sub-c",
+        "(oldOne.getClass() == newOne.getClass())) {\n// [databind#667]: avoid one particular class of bogus p",
+        "<?> oldType = oldOne.getRawParameterType(0);\nClass<?> newType = newOne.getRawParameterType(0);\nif (o",
+        "erType(0);\nClass<?> newType = newOne.getRawParameterType(0);\nif (oldType == newType) {\nthrow new Ill",
+        " verifyNonDup(AnnotatedWithParams newOne, int type",
+        "rifyNonDup(AnnotatedWithParams newOne, int typeInd",
+        "tatedWithParams newOne, int typeIndex, boolean exp",
+        "dWithParams newOne, int typeIndex, boolean explici",
+        "\n_hasNonDefaultCreator = true;\nAnnotatedWithParams",
+        "Class<?> oldType = oldOne.getRawParameterType(0);\n",
+        "arameterType(0);\nClass<?> newType = newOne.getRawP",
+        " {\nthrow new IllegalArgumentException(\"Conflicting",
+        "{\nthrow new IllegalArgumentException(\"Conflicting "
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.7604651162790698,
+    "input": "    public int indexOf(String str, int startIndex) {\n        startIndex = (startIndex < 0 ? 0 : startIndex);\n        if (str == null || startIndex >= size) {\n            return -1;\n        }\n        int strLen = str.length();\n        if (strLen == 1) {\n            return indexOf(str.charAt(0), startIndex);\n        }\n        if (strLen == 0) {\n            return startIndex;\n        }\n        if (strLen > size) {\n            return -1;\n        }\n        char[] thisBuf = buffer;\n        int len = size - strLen + 1;\n        outer:\n        for (int i = startIndex; i < len; i++) {\n            for (int j = 0; j < strLen; j++) {\n                if (str.charAt(j) != thisBuf[i + j]) {\n                    continue outer;\n                }\n            }\n            return i;\n        }\n        return -1;\n    }",
+    "query_result": [
+        "rLen + 1;\nouter:\nfor (int i = startIndex; i < len; i++) {\nfor (int j = 0; j < strLen; j++) {\nif (str.charAt(j) != thisBuf[i + j]) {\ncontinue outer;\n}\n",
+        "\nfor (int i = startIndex; i < len; i++) {\nfor (int j = 0; j < strLen; j++) {\nif (str.charAt(j) != thisBuf[i + j]) {\ncontinue outer;\n}\n}\nreturn i;\n}\nre",
+        "r, int startIndex) {\nstartIndex = (startIndex < 0 ? 0 : startIndex);\nif (str == null || startIndex >",
+        "x) {\nstartIndex = (startIndex < 0 ? 0 : startIndex);\nif (str == null || startIndex >= size) {\nreturn",
+        "th();\nif (strLen == 1) {\nreturn indexOf(str.charAt(0), startIndex);\n}\nif (strLen == 0) {\nreturn star",
+        " == 1) {\nreturn indexOf(str.charAt(0), startIndex);\n}\nif (strLen == 0) {\nreturn startIndex;\n}\nif (st",
+        "outer:\nfor (int i = startIndex; i < len; i++) {\nfor (int j = 0; j < strLen; j++) {\nif (str.charAt(j)",
+        "tartIndex) {\nstartIndex = (startIndex < 0 ? 0 : st",
+        "tIndex) {\nstartIndex = (startIndex < 0 ? 0 : start",
+        "rtIndex = (startIndex < 0 ? 0 : startIndex);\nif (s",
+        " < 0 ? 0 : startIndex);\nif (str == null || startIn",
+        "\nouter:\nfor (int i = startIndex; i < len; i++) {\nf",
+        " (int i = startIndex; i < len; i++) {\nfor (int j =",
+        "artIndex; i < len; i++) {\nfor (int j = 0; j < strL",
+        " {\nfor (int j = 0; j < strLen; j++) {\nif (str.char",
+        "str.charAt(j) != thisBuf[i + j]) {\ncontinue outer;",
+        "j) != thisBuf[i + j]) {\ncontinue outer;\n}\n}\nreturn",
+        "j]) {\ncontinue outer;\n}\n}\nreturn i;\n}\nreturn -1;\n}"
+    ]
+}

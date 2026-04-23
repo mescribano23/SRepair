@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.9249394673123487,
+    "input": "public void validate(Answer<?> answer, Invocation invocation) {\n        if (answer instanceof ThrowsException) {\n            validateException((ThrowsException) answer, invocation);\n        }\n        \n        if (answer instanceof Returns) {\n            validateReturnValue((Returns) answer, invocation);\n        }\n        \n        if (answer instanceof DoesNothing) {\n            validateDoNothing((DoesNothing) answer, invocation);\n        }\n        \n        if (answer instanceof CallsRealMethods) {\n            validateMockingConcreteClass((CallsRealMethods) answer, invocation);\n        }\n    }",
+    "query_result": [
+        "r<?> answer, Invocation invocation) { if (answer instanceof ThrowsException) { validateException((ThrowsException) answer, invocation); } if (answer instanceof Returns) { validateReturnValue((Returns) answer, invocation); } if (answer instanceof DoesNothing) { validateDoNothing((DoesNothing) answer, invocation); } if (answer instanceof CallsRealMethods) { validateMockingConcreteClass((CallsReal",
+        "blic void validate(Answer<?> answer, Invocation in"
+    ]
+}

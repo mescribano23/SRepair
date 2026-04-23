@@ -1,0 +1,25 @@
+diff --git a/burst/src/main/java/com/squareup/burst/Burst.java b/burst/src/main/java/com/squareup/burst/Burst.java
+index 806e1d8..50b069e 100644
+--- a/burst/src/main/java/com/squareup/burst/Burst.java
++++ b/burst/src/main/java/com/squareup/burst/Burst.java
+@@ -65,16 +65,18 @@ public final class Burst {
+     StringBuilder builder = new StringBuilder(name);
+     for (Object argument : constructorArgs) {
+       Enum<?> value = (Enum<?>) argument;
+-      // Appends the enum name and value name. (e.g., Card.VISA)
++      // Appends the enum name and value name with a dot separator (e.g., Card.VISA)
+       builder.append('_') //
+           .append(value.getClass().getSimpleName()) //
++          .append('.') //
+           .append(value.name());
+     }
+     for (Object argument : methodArgs) {
+       Enum<?> value = (Enum<?>) argument;
+-      // Appends the enum name and value name. (e.g., Card.VISA)
++      // Appends the enum name and value name with a dot separator (e.g., Card.VISA)
+       builder.append('_') //
+           .append(value.getClass().getSimpleName()) //
++          .append('.') //
+           .append(value.name());
+     }
+     return builder.toString();

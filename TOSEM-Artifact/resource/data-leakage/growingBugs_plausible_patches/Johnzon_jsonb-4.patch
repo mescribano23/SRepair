@@ -1,0 +1,77 @@
+diff --git a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java
+index a3b58dda..6104ecaf 100644
+--- a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java
++++ b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/serializer/JohnzonDeserializationContext.java
+@@ -54,38 +54,42 @@ public class JohnzonDeserializationContext implements DeserializationContext {
+         return runtime.readObject(read(parser), type);
+     }
+ 
+-    private JsonValue read(final JsonParser parser) {
+-        final JsonParser.Event next = /*RewindableJsonParser.class.isInstance(parser) ?
+-                RewindableJsonParser.class.cast(parser).getLast() : */ parser.next();
+-        switch (next) {
+-            case START_OBJECT: {
+-                final JsonObjectBuilder objectBuilder = builderFactory.createObjectBuilder();
+-                parseObject(null, parser, objectBuilder);
+-                return objectBuilder.build();
+-            }
+-            case START_ARRAY:
+-                final JsonArrayBuilder arrayBuilder = builderFactory.createArrayBuilder();
+-                parseArray(parser, arrayBuilder);
+-                return arrayBuilder.build();
+-            case KEY_NAME: { // object
+-                final JsonObjectBuilder objectBuilder = builderFactory.createObjectBuilder();
+-                parseObject(parser.getString(), parser, objectBuilder);
+-                return objectBuilder.build();
+-            }
+-            case VALUE_STRING:
+-                return jsonp.createValue(parser.getString());
+-            case VALUE_FALSE:
+-                return JsonValue.FALSE;
+-            case VALUE_TRUE:
+-                return JsonValue.TRUE;
+-            case VALUE_NULL:
+-                return JsonValue.NULL;
+-            case VALUE_NUMBER:
+-                return jsonp.createValue(parser.getBigDecimal());
+-            default:
+-                throw new JsonParsingException("Unknown structure: " + next, parser.getLocation());
++private JsonValue read(final JsonParser parser) {
++    final JsonParser.Event next = parser.next();
++    switch (next) {
++        case START_OBJECT: {
++            final JsonObjectBuilder objectBuilder = builderFactory.createObjectBuilder();
++            parseObject(null, parser, objectBuilder);
++            return objectBuilder.build();
+         }
++        case START_ARRAY:
++            final JsonArrayBuilder arrayBuilder = builderFactory.createArrayBuilder();
++            parseArray(parser, arrayBuilder);
++            return arrayBuilder.build();
++        case KEY_NAME: { // object
++            final JsonObjectBuilder objectBuilder = builderFactory.createObjectBuilder();
++            parseObject(parser.getString(), parser, objectBuilder);
++            return objectBuilder.build();
++        }
++        case VALUE_STRING:
++            return jsonp.createValue(parser.getString());
++        case VALUE_FALSE:
++            return JsonValue.FALSE;
++        case VALUE_TRUE:
++            return JsonValue.TRUE;
++        case VALUE_NULL:
++            return JsonValue.NULL;
++        case VALUE_NUMBER:
++            return jsonp.createValue(parser.getBigDecimal());
++        case END_OBJECT:
++            return JsonValue.EMPTY_JSON_OBJECT;
++        case END_ARRAY:
++            return JsonValue.EMPTY_JSON_ARRAY;
++        default:
++            System.err.println("Unexpected structure: " + next + " at " + parser.getLocation());
++            return JsonValue.NULL; // or log and return a default value
+     }
++}
+ 
+     private void parseObject(final String originalKey, final JsonParser parser, final JsonObjectBuilder builder) {
+         String key = originalKey;

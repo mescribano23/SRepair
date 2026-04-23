@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.5009242144177449,
+    "input": "    public boolean hasSerializerFor(Class<?> cls, AtomicReference<Throwable> cause)\n    {\n        // 07-Nov-2015, tatu: One special case, Object.class; will work only if\n        //   empty beans are allowed or custom serializer registered. Easiest to\n        //   check here.\n        if (cls == Object.class) {\n            if (!_config.isEnabled(SerializationFeature.FAIL_ON_EMPTY_BEANS)) {\n                return true;\n            }\n        }\n        \n        try {\n            JsonSerializer<?> ser = _findExplicitUntypedSerializer(cls);\n            return (ser != null);\n        } catch (JsonMappingException e) {\n            if (cause != null) {\n                cause.set(e);\n            }\n        } catch (RuntimeException e) {\n            if (cause == null) { // earlier behavior\n                throw e;\n            }\n            cause.set(e);\n        }\n        return false;\n    }",
+    "query_result": [
+        "\nif (cause != null) {\ncause.set(e);\n}\n} catch (RuntimeException e) {\nif (cause == null) { // earlier behavior\nthrow e;\n}\ncause.set(e);\n}\nreturn false;",
+        "an hasSerializerFor(Class<?> cls, AtomicReference<",
+        "sSerializerFor(Class<?> cls, AtomicReference<Throw",
+        "alizerFor(Class<?> cls, AtomicReference<Throwable>",
+        "onfig.isEnabled(SerializationFeature.FAIL_ON_EMPTY",
+        ".isEnabled(SerializationFeature.FAIL_ON_EMPTY_BEAN",
+        "isEnabled(SerializationFeature.FAIL_ON_EMPTY_BEANS",
+        "sEnabled(SerializationFeature.FAIL_ON_EMPTY_BEANS)",
+        "nabled(SerializationFeature.FAIL_ON_EMPTY_BEANS)) ",
+        "bled(SerializationFeature.FAIL_ON_EMPTY_BEANS)) {\n",
+        "zationFeature.FAIL_ON_EMPTY_BEANS)) {\nreturn true;",
+        "onMappingException e) {\nif (cause != null) {\ncause"
+    ]
+}

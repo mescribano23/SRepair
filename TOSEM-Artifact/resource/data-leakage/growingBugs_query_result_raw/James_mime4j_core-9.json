@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.9140625,
+    "input": "    public String getBody() {\n        if (body != null) {\n            return body;\n        }\n        if (raw != null) {\n            int len = raw.length();\n            int off = delimiterIdx + 1;\n            if (len > off + 1 && (CharsetUtil.isWhitespace((char) (raw.byteAt(off) & 0xff)))) {\n                off++;\n            }\n            return MimeUtil.unfold(ContentUtil.decode(raw, off, len - off));\n        }\n        return null;\n    }",
+    "query_result": [
+        "Body() {\nif (body != null) {\nreturn body;\n}\nif (raw != null) {\nint len = raw.length();\nint off = delimiterIdx + 1;\nif (len > off + 1 && (CharsetUtil.isWhitespace((char) (raw.byteAt(off) & 0xff)))) {\noff++;\n}\nreturn MimeUtil.unfold(ContentUtil.decode(",
+        "eturn body;\n}\nif (raw != null) {\nint len = raw.length();\nint off = delimiterIdx + 1;\nif (len > off + 1 && (CharsetUtil.isWhitespace((char) (raw.byteAt(off) & 0xff)))) {\noff++;\n}\nreturn MimeUtil.unfold(ContentUtil.decode(raw, off, len - off));\n}\nretur"
+    ]
+}

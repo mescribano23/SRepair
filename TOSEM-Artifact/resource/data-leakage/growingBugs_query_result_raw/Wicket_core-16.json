@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.2907216494845361,
+    "input": "@Override\n    public IMarkupFragment getMarkup(final MarkupContainer container, final Component child)\n    {\n        // If the sourcing strategy did not provide one, than ask the component.\n        // Get the markup for the container\n        IMarkupFragment markup = container.getMarkup();\n        if (markup == null)\n        {\n            return null;\n        }\n\n        if (child == null)\n        {\n            return markup;\n        }\n\n        // Find the child's markup\n        markup = markup.find(child.getId());\n        if (markup != null)\n        {\n            return markup;\n        }\n        \n        if(!(child instanceof IComponentResolver)) \n        {\n            markup = searchMarkupInTransparentResolvers(container, child);\n        }\n        \n        return markup;\n    }",
+    "query_result": [
+        "arkupFragment getMarkup(final MarkupContainer container, final Component child)\n{\n// If the sourcing",
+        "de\npublic IMarkupFragment getMarkup(final MarkupCo",
+        "lic IMarkupFragment getMarkup(final MarkupContaine",
+        "etMarkup(final MarkupContainer container, final Co",
+        "ent.\n// Get the markup for the container\nIMarkupFr"
+    ]
+}

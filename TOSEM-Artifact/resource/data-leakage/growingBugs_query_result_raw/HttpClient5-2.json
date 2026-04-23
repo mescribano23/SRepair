@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5233118971061094,
+    "input": "    @Override\n    public LeaseRequest lease(\n            final HttpRoute route,\n            final Timeout requestTimeout,\n            final Object state) {\n        Args.notNull(route, \"HTTP route\");\n        if (this.log.isDebugEnabled()) {\n            this.log.debug(\"Connection request: \" + ConnPoolSupport.formatStats(null, route, state, this.pool));\n        }\n        final Future<PoolEntry<HttpRoute, ManagedHttpClientConnection>> leaseFuture = this.pool.lease(route, state, requestTimeout, null);\n        return new LeaseRequest() {\n\n            private volatile ConnectionEndpoint endpoint;\n\n            @Override\n            public synchronized ConnectionEndpoint get(\n                    final Timeout timeout) throws InterruptedException, ExecutionException, TimeoutException {\n                Args.notNull(timeout, \"Operation timeout\");\n                if (this.endpoint != null) {\n                    return this.endpoint;\n                }\n                final PoolEntry<HttpRoute, ManagedHttpClientConnection> poolEntry;\n                try {\n                    poolEntry = leaseFuture.get(timeout.getDuration(), timeout.getTimeUnit());\n                    if (poolEntry == null || leaseFuture.isCancelled()) {\n                        throw new ExecutionException(new CancellationException(\"Operation cancelled\"));\n                    }\n                } catch (final TimeoutException ex) {\n                    leaseFuture.cancel(true);\n                    throw ex;\n                }\n                try {\n                    if (TimeValue.isPositive(validateAfterInactivity)) {\n                        final ManagedHttpClientConnection conn = poolEntry.getConnection();\n                        if (conn != null\n                                && poolEntry.getUpdated() + validateAfterInactivity.toMillis() <= System.currentTimeMillis()) {\n                            boolean stale;\n                            try {\n                                stale = conn.isStale();\n           ",
+    "query_result": [
+        " Future<PoolEntry<HttpRoute, ManagedHttpClientConnection>> leaseFuture = this.pool.lease(route, state, requestTimeout, null);\nreturn new LeaseRequest() {\nprivate volatile ConnectionEndpoint endpoint;\n@Override\npublic synchronized ConnectionEndpoint get(\nfinal Timeout timeout) throws InterruptedException, ExecutionException, TimeoutException {\nArgs.notNull(timeout, \"Operation timeout\");\nif (this.endpoint != null) {\nreturn this.endpoint;\n}\nfinal PoolEntry<HttpRoute, ManagedHttpClientConnection> poolEntry;\ntry {\npoolEntry = leaseFuture.get(timeout",
+        "ute route,\nfinal Timeout requestTimeout,\nfinal Object state) {\nArgs.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"Con",
+        "al Object state) {\nArgs.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debu",
+        "bject state) {\nArgs.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"C",
+        "ject state) {\nArgs.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"Co",
+        "e) {\nArgs.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"Connection ",
+        "Args.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"Connection reque",
+        "gs.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"Connection request",
+        "s.notNull(route, \"HTTP route\");\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"Connection request:",
+        "onnectionEndpoint get(\nfinal Timeout timeout) throws InterruptedException, ExecutionException, Timeo",
+        "ndpoint get(\nfinal Timeout timeout) throws InterruptedException, ExecutionException, TimeoutExceptio",
+        "ull(route, \"HTTP route\");\nif (this.log.isDebugEnab",
+        "ute, \"HTTP route\");\nif (this.log.isDebugEnabled())",
+        "TTP route\");\nif (this.log.isDebugEnabled()) {\nthis",
+        "P route\");\nif (this.log.isDebugEnabled()) {\nthis.l",
+        " route\");\nif (this.log.isDebugEnabled()) {\nthis.lo",
+        ");\nif (this.log.isDebugEnabled()) {\nthis.log.debug",
+        ";\nif (this.log.isDebugEnabled()) {\nthis.log.debug(",
+        "\nif (this.log.isDebugEnabled()) {\nthis.log.debug(\"",
+        "(this.log.isDebugEnabled()) {\nthis.log.debug(\"Conn"
+    ]
+}

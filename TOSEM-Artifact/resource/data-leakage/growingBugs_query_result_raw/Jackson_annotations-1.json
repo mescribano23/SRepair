@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.26292134831460673,
+    "input": "        public Value withOverrides(Value overrides) {\n            if ((overrides == null) || (overrides == EMPTY)) {\n                return this;\n            }\n            Include vi = overrides._valueInclusion;\n            Include ci = overrides._contentInclusion;\n\n            boolean viDiff = (vi != _valueInclusion) && (vi != Include.USE_DEFAULTS);\n            boolean ciDiff = (ci != _contentInclusion) && (ci != Include.USE_DEFAULTS);\n\n            if (viDiff) {\n                if (ciDiff) {\n                    return new Value(vi, ci);\n                }\n                return new Value(vi, _contentInclusion);\n            } else if (ciDiff) {\n                return new Value(_valueInclusion, ci);\n            }\n            return this;\n        }",
+    "query_result": [
+        "s(Value overrides) {\nif ((overrides == null) || (o",
+        " == null) || (overrides == EMPTY)) {\nreturn this;\n",
+        "s._valueInclusion;\nInclude ci = overrides._content"
+    ]
+}

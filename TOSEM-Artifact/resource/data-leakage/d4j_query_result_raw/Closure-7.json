@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.810958904109589,
+    "input": "public JSType caseObjectType(ObjectType type) {\n  if (value.equals(\"function\")) {\n    JSType ctorType = getNativeType(U2U_CONSTRUCTOR_TYPE);\n    if (resultEqualsValue) {\n      // Objects are restricted to \"Function\", subtypes are left\n      return ctorType.getGreatestSubtype(type);\n    } else {\n      // Only filter out subtypes of \"function\"\n      return type.isSubtype(ctorType) ? null : type;\n    }\n  }\n  return matchesExpectation(\"object\") ? type : null;\n}",
+    "query_result": [
+        "are restricted to \"Function\", subtypes are left\nreturn ctorType.getGreatestSubtype(type);\n} else {\n// Only filter out subtypes of \"function\"\nreturn ty",
+        "ype caseObjectType(ObjectType type) {\nif (value.equals(\"function\")) {\nJSType ctorType = getNativeTyp",
+        "ctType(ObjectType type) {\nif (value.equals(\"function\")) {\nJSType ctorType = getNativeType(U2U_CONSTR",
+        "ype(ObjectType type) {\nif (value.equals(\"function\")) {\nJSType ctorType = getNativeType(U2U_CONSTRUCT",
+        "caseObjectType(ObjectType type) {\nif (value.equals",
+        "ype type) {\nif (value.equals(\"function\")) {\nJSType",
+        "e type) {\nif (value.equals(\"function\")) {\nJSType c",
+        "e) {\nif (value.equals(\"function\")) {\nJSType ctorTy",
+        ") {\nif (value.equals(\"function\")) {\nJSType ctorTyp",
+        "\nif (value.equals(\"function\")) {\nJSType ctorType =",
+        "Type ctorType = getNativeType(U2U_CONSTRUCTOR_TYPE",
+        " Objects are restricted to \"Function\", subtypes ar",
+        "Objects are restricted to \"Function\", subtypes are",
+        "cts are restricted to \"Function\", subtypes are lef",
+        "ts are restricted to \"Function\", subtypes are left",
+        "}\n}\nreturn matchesExpectation(\"object\") ? type : n",
+        "\nreturn matchesExpectation(\"object\") ? type : null",
+        "return matchesExpectation(\"object\") ? type : null;"
+    ]
+}

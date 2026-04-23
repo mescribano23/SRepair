@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6910569105691057,
+    "input": "@SuppressWarnings(\"deprecation\")\n    public void process(Class<?> context, Object testClass) {\n        Field[] fields = context.getDeclaredFields();\n        for (Field field : fields) {\n            if (field.isAnnotationPresent(Spy.class)) {\n                assertNoAnnotations(Spy.class, field, Mock.class, org.mockito.MockitoAnnotations.Mock.class, Captor.class);\n                boolean wasAccessible = field.isAccessible();\n                field.setAccessible(true);\n                try {\n                    Object instance = field.get(testClass);\n                    if (instance == null) {\n                        throw new MockitoException(\"Cannot create a @Spy for '\" + field.getName() + \"' field because the *instance* is missing\\n\" +\n                                  \"The instance must be created *before* initMocks();\\n\" +\n                                  \"Example of correct usage of @Spy:\\n\" +\n                                  \"   @Spy List mock = new LinkedList();\\n\" +\n                                  \"   //also, don't forget about MockitoAnnotations.initMocks();\");\n\n                    }\n                    if (new MockUtil().isMock(instance)) { \n                        // instance has been spied earlier\n                        Mockito.reset(instance);\n                    } else {\n                        field.set(testClass, Mockito.mock(instance.getClass(), withSettings()\n                                .spiedInstance(instance)\n                                .defaultAnswer(Mockito.CALLS_REAL_METHODS)\n                                .name(field.getName())));\n                    }\n                } catch (IllegalAccessException e) {\n                    throw new MockitoException(\"Problems initiating spied field \" + field.getName(), e);\n                } finally {\n                    field.setAccessible(wasAccessible);\n                }\n            }\n        }\n    }",
+    "query_result": [
+        "Class, Mockito.mock(instance.getClass(), withSettings()\n.spiedInstance(instance)\n.defaultAnswer(Mockito.CALLS_REAL_METHODS)\n.name(field.getName())));\n}\n} catch (IllegalAccessException e) {\nthrow new MockitoException(\"Problems initiating spied field \" + field.getName(), e);\n} finally {\nfield.setAcces",
+        "nce.getClass(), withSettings()\n.spiedInstance(instance)\n.defaultAnswer(Mockito.CALLS_REAL_METHODS)\n.name(field.getName())));\n}\n} catch (IllegalAccessException e) {\nthrow new MockitoException(\"Problems initiating spied field \" + field.getName(), e);\n} finally {\nfield.setAccessible(wasAccessible);\n}\n}",
+        "deprecation\")\npublic void process(Class<?> context, Object testClass) {\nField[] fields = context.getDeclaredFields();\nfor (Field field : fields) {\nif (field.isAnnotationPresent(Spy.class)) {\nassertNoAnnotations(Spy.class, field, Mock.class, org.mocki",
+        "kito.MockitoAnnotations.Mock.class, Captor.class);\nboolean wasAccessible = field.isAccessible();\nfield.setAccessible(true);\ntry {\nObject instance = field.get(testClass);\nif (instance == null) {\nthrow new MockitoException(\"Cannot create a @Spy for '\" ",
+        "k(instance.getClass(), withSettings()\n.spiedInstance(instance)\n.defaultAnswer(Mockito.CALLS_REAL_METHODS)\n.name(field.getName())));\n}\n} catch (IllegalAccessException e) {\nthrow new MockitoException(\"Problems initiating spied field \" + field.getName()",
+        "stClass) {\nField[] fields = context.getDeclaredFields();\nfor (Field field : fields) {\nif (field.isAn",
+        "Field[] fields = context.getDeclaredFields();\nfor (Field field : fields) {\nif (field.isAnnotationPre",
+        "@SuppressWarnings(\"deprecation\")\npublic void proce",
+        "SuppressWarnings(\"deprecation\")\npublic void proces",
+        "text.getDeclaredFields();\nfor (Field field : field",
+        "t.getDeclaredFields();\nfor (Field field : fields) ",
+        ".getDeclaredFields();\nfor (Field field : fields) {",
+        "getDeclaredFields();\nfor (Field field : fields) {\n",
+        "etDeclaredFields();\nfor (Field field : fields) {\ni",
+        "tDeclaredFields();\nfor (Field field : fields) {\nif",
+        "eclaredFields();\nfor (Field field : fields) {\nif (",
+        "claredFields();\nfor (Field field : fields) {\nif (f",
+        "laredFields();\nfor (Field field : fields) {\nif (fi",
+        "aredFields();\nfor (Field field : fields) {\nif (fie",
+        "redFields();\nfor (Field field : fields) {\nif (fiel"
+    ]
+}

@@ -1,0 +1,30 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 0b7a5ed..b2a9901 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -164,7 +164,13 @@ public class JavaWriter implements Closeable {
+   }
+ 
+   /** Try to compress a fully-qualified class name to only the class name. */
+-  public String compressType(String type) {
++public String compressType(String type) {
++    String ellipsis = "";
++    if (type.endsWith("...")) {
++        ellipsis = "...";
++        type = type.substring(0, type.length() - 3);
++    }
++
+     Matcher trailer = TYPE_TRAILER.matcher(type);
+     if (trailer.matches()) {
+     }
+@@ -209,8 +215,8 @@ public class JavaWriter implements Closeable {
+ 
+     if (trailer.matches()) {
+     }
+-    return sb.toString();
+-  }
++    return sb.append(ellipsis).toString();
++}
+ 
+   private static boolean isClassInPackage(String name, String packagePrefix) {
+     if (name.startsWith(packagePrefix)) {

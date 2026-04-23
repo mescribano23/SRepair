@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.7272727272727273,
+    "input": "    protected final int _decode32Bits() throws IOException {\n        int ptr = _inputPtr;\n        if ((ptr + 3) >= _inputEnd) {\n            return _slow32();\n        }\n        final byte[] b = _inputBuffer;\n        int v = (b[ptr] & 0xFF) + ((b[ptr+1] & 0xFF) << 8)\n                + ((b[ptr+2] & 0xFF) << 16) + ((b[ptr+3] & 0xFF) << 24);\n        _inputPtr = ptr+4;\n        return v;\n    }",
+    "query_result": [
+        "ption {\nint ptr = _inputPtr;\nif ((ptr + 3) >= _inputEnd) {\nreturn _slow32();\n}\nfinal byte[] b = _inputBuffer;\nint v = (b[ptr] & 0xFF) + ((b[ptr+1] & 0xFF) << 8)\n+ ((b[ptr+2] & 0xFF) << 16) + ((b[ptr+3",
+        "int ptr = _inputPtr;\nif ((ptr + 3) >= _inputEnd) {\nreturn _slow32();\n}\nfinal byte[] b = _inputBuffer",
+        "ts() throws IOException {\nint ptr = _inputPtr;\nif "
+    ]
+}

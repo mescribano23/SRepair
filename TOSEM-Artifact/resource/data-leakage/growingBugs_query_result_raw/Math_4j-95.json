@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.6028368794326241,
+    "input": "    protected double getInitialDomain(double p) {\n        double ret = 1.0;\n        double d = getDenominatorDegreesOfFreedom();\n        if (d > 2.0) {\n            // use mean\n            ret = d / (d - 2.0);\n        }\n        return ret;\n    }",
+    "query_result": [
+        "protected double getInitialDomain(double p) {\ndoub",
+        "rotected double getInitialDomain(double p) {\ndoubl",
+        "otected double getInitialDomain(double p) {\ndouble",
+        "tected double getInitialDomain(double p) {\ndouble ",
+        "ected double getInitialDomain(double p) {\ndouble r",
+        "cted double getInitialDomain(double p) {\ndouble re",
+        "ted double getInitialDomain(double p) {\ndouble ret",
+        "ouble ret = 1.0;\ndouble d = getDenominatorDegreesO"
+    ]
+}

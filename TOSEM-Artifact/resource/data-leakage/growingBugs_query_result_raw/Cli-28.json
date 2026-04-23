@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5586592178770949,
+    "input": "    protected void processProperties(Properties properties)\n    {\n        if (properties == null)\n        {\n            return;\n        }\n\n        for (Enumeration e = properties.propertyNames(); e.hasMoreElements();)\n        {\n            String option = e.nextElement().toString();\n\n            if (!cmd.hasOption(option))\n            {\n                Option opt = getOptions().getOption(option);\n\n                // get the value from the properties instance\n                String value = properties.getProperty(option);\n\n                if (opt.hasArg())\n                {\n                    if (opt.getValues() == null || opt.getValues().length == 0)\n                    {\n                        try\n                        {\n                            opt.addValueForProcessing(value);\n                        }\n                        catch (RuntimeException exp)\n                        {\n                            // if we cannot add the value don't worry about it\n                        }\n                    }\n                }\n                else if (!(\"yes\".equalsIgnoreCase(value)\n                        || \"true\".equalsIgnoreCase(value)\n                        || \"1\".equalsIgnoreCase(value)))\n                {\n                    // if the value is not yes, true or 1 then don't add the\n                    // option to the CommandLine\n                    continue;\n                }\n\n                cmd.addOption(opt);\n            }\n        }\n    }",
+    "query_result": [
+        "\nelse if (!(\"yes\".equalsIgnoreCase(value)\n|| \"true\".equalsIgnoreCase(value)\n|| \"1\".equalsIgnoreCase(value)))\n{\n// if the value is not yes, true or 1 t",
+        "operties)\n{\nif (properties == null)\n{\nreturn;\n}\nfor (Enumeration e = properties.propertyNames(); e.h",
+        "roperties.getProperty(option);\nif (opt.hasArg())\n{\nif (opt.getValues() == null || opt.getValues().le",
+        "f (!(\"yes\".equalsIgnoreCase(value)\n|| \"true\".equalsIgnoreCase(value)\n|| \"1\".equalsIgnoreCase(value))",
+        "ue is not yes, true or 1 then don't add the\n// option to the CommandLine\ncontinue;\n}\ncmd.addOption(o",
+        "Properties(Properties properties)\n{\nif (properties",
+        "erties(Properties properties)\n{\nif (properties == ",
+        "rties(Properties properties)\n{\nif (properties == n",
+        "ties(Properties properties)\n{\nif (properties == nu",
+        "(Properties properties)\n{\nif (properties == null)\n",
+        "Properties properties)\n{\nif (properties == null)\n{",
+        "roperties properties)\n{\nif (properties == null)\n{\n",
+        "perties properties)\n{\nif (properties == null)\n{\nre",
+        "ies properties)\n{\nif (properties == null)\n{\nreturn",
+        " properties)\n{\nif (properties == null)\n{\nreturn;\n}",
+        "for (Enumeration e = properties.propertyNames(); e",
+        " (Enumeration e = properties.propertyNames(); e.ha",
+        "Enumeration e = properties.propertyNames(); e.hasM",
+        "numeration e = properties.propertyNames(); e.hasMo",
+        "meration e = properties.propertyNames(); e.hasMore"
+    ]
+}

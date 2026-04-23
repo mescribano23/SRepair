@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9809523809523809,
+    "input": "    private String _findSecondary(int origOffset, int hash, int[] q, int qlen)\n    {\n        int offset = _tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift);\n        final int[] hashArea = _hashArea;\n\n        final int bucketSize = (1 << _tertiaryShift);\n        for (int end = offset + bucketSize; offset < end; offset += 4) {\n            int len = hashArea[offset+3];\n            if ((hash == hashArea[offset]) && (qlen == len)) {\n                if (_verifyLongName(q, qlen, hashArea[offset+1])) {\n                    return _names[offset >> 2];\n                }\n            }\n            if (len == 0) {\n                return null;\n            }\n        }\n        for (offset = _spilloverStart(); offset < _spilloverEnd; offset += 4) {\n            if ((hash == hashArea[offset]) && (qlen == hashArea[offset+3])) {\n                if (_verifyLongName(q, qlen, hashArea[offset+1])) {\n                    return _names[offset >> 2];\n                }\n            }\n        }\n        return null;\n    }",
+    "query_result": [
+        "fset, int hash, int[] q, int qlen) { int offset = _tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift); final int[] hashArea = _hashArea; final int bucketSize = (1 << _tertiaryShift); for (int end = offset + bucketSize; offset < end; offset += 4) { int len = hashArea[offset+3]; if ((hash == hashArea[offset]) && (qlen == len)) { if (_verifyLongName(q, qlen, hashArea[offset+1])) { return _names[offset >> 2]; } } if (len == 0) { return null; } } for (offset = _spilloverStart(); offset < _spilloverEnd; offset += 4) { if ((hash == hashArea[offset]) && (qlen == hashArea[offset+3])) { if (_verifyLongName(q, qlen, hashArea[offset+1])) { return _names[offset >> 2]; } } } return n",
+        "int hash, int[] q, int qlen) { int offset = _tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift); final int[] hashArea = _hashArea; final int bucketSize = (1 << _tertiaryShift); for (int end = offset + bucketSize; offset < end;",
+        ") { int offset = _tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift); final int[] hashArea = _hashArea; final int bucketSize = (1 << _tertiaryShift); for (int end = offset + bucketSize; offset < end; offset += 4) { int len = has",
+        "_tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift); final int[] hashArea = _hashArea; final int bucketSize = (1 << _tertiaryShift); for (int end = offset + bucketSize; offset < end; offset += 4) { int len = hashArea[offset+3];",
+        "Offset >> (_tertiaryShift + 2)) << _tertiaryShift); final int[] hashArea = _hashArea; final int bucketSize = (1 << _tertiaryShift); for (int end = offset + bucketSize; offset < end; offset += 4) { int len = hashArea[offset+3]; if ((hash == hashArea[o",
+        "t + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift); final int[] hashArea = _hashArea; final int bucketSize = (1 << _tertiaryShift); for (int end = offset + bucketSize; offset < end; offset +",
+        "set >> (_tertiaryShift + 2)) << _tertiaryShift); final int[] hashArea = _hashArea; final int bucketSize = (1 << _tertiaryShift); for (int end = offset + bucketSize; offset < end; offset += 4) { int le",
+        "tring _findSecondary(int origOffset, int hash, int[] q, int qlen) { int offset = _tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiarySh",
+        "String _findSecondary(int origOffset, int hash, int[] q, int qlen) { int offset = _tertiaryStart + (",
+        "} if (len == 0) { return null; } } for (offset = _spilloverStart(); offset < _spilloverEnd; offset",
+        "t = _spilloverStart(); offset < _spilloverEnd; offset += 4) { if ((hash == hashArea[offset]) && (qle",
+        "findSecondary(int origOffset, int hash, int[] q, i",
+        "ndary(int origOffset, int hash, int[] q, int qlen)",
+        "fset >> (_tertiaryShift + 2)) << _tertiaryShift);",
+        ">> (_tertiaryShift + 2)) << _tertiaryShift); final",
+        "final int bucketSize = (1 << _tertiaryShift); for",
+        "int bucketSize = (1 << _tertiaryShift); for (int",
+        "t bucketSize = (1 << _tertiaryShift); for (int end",
+        "= (1 << _tertiaryShift); for (int end = offset + b",
+        "<< _tertiaryShift); for (int end = offset + bucke"
+    ]
+}

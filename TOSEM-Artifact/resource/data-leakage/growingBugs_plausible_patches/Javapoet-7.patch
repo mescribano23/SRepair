@@ -1,0 +1,30 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 704d4ae..65a1d37 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -806,15 +806,17 @@ public class JavaWriter implements Closeable {
+   }
+ 
+   /** Emits the modifiers to the writer. */
+-  private void emitModifiers(Set<Modifier> modifiers) throws IOException {
+-    // Use an EnumSet to ensure the proper ordering
+-    if (!(modifiers instanceof EnumSet)) {
+-      modifiers = EnumSet.copyOf(modifiers);
+-    }
+-    for (Modifier modifier : modifiers) {
+-      out.append(modifier.toString()).append(' ');
+-    }
++private void emitModifiers(Set<Modifier> modifiers) throws IOException {
++  if (modifiers.isEmpty()) {
++    return; // No modifiers to process, return early.
++  }
++  if (!(modifiers instanceof EnumSet)) {
++    modifiers = EnumSet.copyOf(modifiers);
+   }
++  for (Modifier modifier : modifiers) {
++    out.append(modifier.toString()).append(' ');
++  }
++}
+ 
+   private void indent() throws IOException {
+     for (int i = 0, count = scopes.size(); i < count; i++) {

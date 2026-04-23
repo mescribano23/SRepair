@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "@Override\n    public CtVariableReference<T> getVariable() {\n        if (variable == null && getFactory() != null) {\n            variable = getFactory().Core().createLocalVariableReference();\n            variable.setParent(this);\n        }\n        return (CtVariableReference<T>) variable;\n    }",
+    "query_result": []
+}

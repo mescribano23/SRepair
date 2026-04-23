@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.33189655172413796,
+    "input": "    public static int getDepth(String path) {\n        assert isValid(path);\n\n        if (path.isEmpty()) {\n            return 0;\n        }\n        int count = 1, i = 0;\n        if (isAbsolutePath(path)) {\n            if (denotesRootPath(path)) {\n                return 0;\n            }\n            i++;\n        }\n        while (true) {\n            i = path.indexOf('/', i) + 1;\n            if (i == 0) {\n                return count;\n            }\n            count++;\n        }\n    }",
+    "query_result": [
+        "urn 0;\n}\ni++;\n}\nwhile (true) {\ni = path.indexOf('/', i) + 1;\nif (i == 0) {\nreturn count;\n}\ncount++;\n"
+    ]
+}

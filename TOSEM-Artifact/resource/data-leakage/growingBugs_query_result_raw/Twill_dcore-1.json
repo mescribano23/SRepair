@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "void setDiscoverables(Set<Discoverable> discoverables) {\n    this.discoverables.set(ImmutableSet.copyOf(discoverables));\n\n    // Collect all listeners with a read lock to the listener list.\n    List<ListenerCaller> callers = Lists.newArrayList();\n    Lock readLock = callerLock.readLock();\n    readLock.lock();\n    try {\n      callers.addAll(listenerCallers);\n    } finally {\n      readLock.unlock();\n    }\n\n    // Invoke listeners.\n    for (ListenerCaller caller : callers) {\n      caller.invoke();\n    }\n  }",
+    "query_result": []
+}

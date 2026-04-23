@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.3215339233038348,
+    "input": "    public void remove(SettableBeanProperty propToRm)\n    {\n        ArrayList<SettableBeanProperty> props = new ArrayList<SettableBeanProperty>(_size);\n        String key = getPropertyName(propToRm);\n        boolean found = false;\n\n        for (int i = 1, end = _hashArea.length; i < end; i += 2) {\n            SettableBeanProperty prop = (SettableBeanProperty) _hashArea[i];\n            if (prop == null) {\n                continue;\n            }\n            if (!found) {\n                // 09-Jan-2017, tatu: Important: must check name slot and NOT property name,\n                //   as only former is lower-case in case-insensitive case\n                found = key.equals(_hashArea[i-1]);\n                if (found) {\n                    // need to leave a hole here\n                    _propsInOrder[_findFromOrdered(prop)] = null;\n                    continue;\n                }\n            }\n            props.add(prop);\n        }\n        if (!found) {\n            throw new NoSuchElementException(\"No entry '\"+propToRm.getName()+\"' found, can't remove\");\n        }\n        init(props);\n    }",
+    "query_result": [
+        "rea.length; i < end; i += 2) { SettableBeanProperty prop = (SettableBeanProperty) _hashArea[i]; if (",
+        "); } if (!found) { throw new NoSuchElementException(\"No entry '\"+propToRm.getName()+\"' found, can't",
+        "; String key = getPropertyName(propToRm); boolean",
+        "} if (!found) { throw new NoSuchElementException(",
+        "} if (!found) { throw new NoSuchElementException(\"",
+        "(!found) { throw new NoSuchElementException(\"No en"
+    ]
+}

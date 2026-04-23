@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5740740740740741,
+    "input": "public Object answer(InvocationOnMock invocation) throws Throwable {\n        if (Modifier.isAbstract(invocation.getMethod().getModifiers())) {\n            return new GloballyConfiguredAnswer().answer(invocation);\n        }\n        return invocation.callRealMethod();\n    }",
+    "query_result": [
+        "nMock invocation) throws Throwable {\nif (Modifier.isAbstract(invocation.getMethod().getModifiers()))",
+        "public Object answer(InvocationOnMock invocation) ",
+        "ublic Object answer(InvocationOnMock invocation) t",
+        "blic Object answer(InvocationOnMock invocation) th",
+        "lic Object answer(InvocationOnMock invocation) thr",
+        "ic Object answer(InvocationOnMock invocation) thro",
+        "c Object answer(InvocationOnMock invocation) throw",
+        " Object answer(InvocationOnMock invocation) throws",
+        "Object answer(InvocationOnMock invocation) throws ",
+        "bject answer(InvocationOnMock invocation) throws T",
+        "ject answer(InvocationOnMock invocation) throws Th",
+        "ect answer(InvocationOnMock invocation) throws Thr",
+        "ct answer(InvocationOnMock invocation) throws Thro",
+        "t answer(InvocationOnMock invocation) throws Throw",
+        " answer(InvocationOnMock invocation) throws Throwa",
+        "answer(InvocationOnMock invocation) throws Throwab",
+        "nswer(InvocationOnMock invocation) throws Throwabl",
+        "swer(InvocationOnMock invocation) throws Throwable",
+        "wer(InvocationOnMock invocation) throws Throwable ",
+        "er(InvocationOnMock invocation) throws Throwable {"
+    ]
+}

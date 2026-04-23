@@ -1,0 +1,49 @@
+diff --git a/src/main/java/com/fasterxml/jackson/core/json/JsonWriteContext.java b/src/main/java/com/fasterxml/jackson/core/json/JsonWriteContext.java
+index 4ff12d70..4d3e65d5 100644
+--- a/src/main/java/com/fasterxml/jackson/core/json/JsonWriteContext.java
++++ b/src/main/java/com/fasterxml/jackson/core/json/JsonWriteContext.java
+@@ -163,26 +163,28 @@ public class JsonWriteContext extends JsonStreamContext
+         if (dd.isDup(name)) { throw new JsonGenerationException("Duplicate field '"+name+"'"); }
+     }
+     
+-    public int writeValue() {
+-        // Most likely, object:
+-        if (_type == TYPE_OBJECT) {
+-            _gotName = false;
+-            ++_index;
+-            return STATUS_OK_AFTER_COLON;
++public int writeValue() {
++    // Check for object context and ensure field name was written
++    if (_type == TYPE_OBJECT) {
++        if (!_gotName) {
++            return STATUS_EXPECT_NAME;
+         }
++        _gotName = false;
++        ++_index;
++        return STATUS_OK_AFTER_COLON;
++    }
+ 
+-        // Ok, array?
+-        if (_type == TYPE_ARRAY) {
+-            int ix = _index;
+-            ++_index;
+-            return (ix < 0) ? STATUS_OK_AS_IS : STATUS_OK_AFTER_COMMA;
+-        }
+-        
+-        // Nope, root context
+-        // No commas within root context, but need space
++    // Check for array context
++    if (_type == TYPE_ARRAY) {
++        int ix = _index;
+         ++_index;
+-        return (_index == 0) ? STATUS_OK_AS_IS : STATUS_OK_AFTER_SPACE;
++        return (ix < 0) ? STATUS_OK_AS_IS : STATUS_OK_AFTER_COMMA;
+     }
++    
++    // Handle root context
++    ++_index;
++    return (_index == 0) ? STATUS_OK_AS_IS : STATUS_OK_AFTER_SPACE;
++}
+ 
+     // // // Internally used abstract methods
+ 

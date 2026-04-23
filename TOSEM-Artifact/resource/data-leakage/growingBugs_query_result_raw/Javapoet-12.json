@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.9247648902821317,
+    "input": "  public JavaWriter emitJavadoc(String javadoc, Object... params) throws IOException {\n    String formatted = String.format(javadoc, params);\n\n    indent();\n    out.write(\"/**\\n\");\n    for (String line : formatted.split(\"\\n\")) {\n      indent();\n      out.write(\" *\");\n      if (!line.isEmpty()) {\n        out.write(\" \");\n        out.write(line);\n      }\n      out.write(\"\\n\");\n    }\n    indent();\n    out.write(\" */\\n\");\n    return this;\n  }",
+    "query_result": [
+        "adoc(String javadoc, Object... params) throws IOException {\nString formatted = String.format(javadoc, params);\nindent();\nout.write(\"/**\\n\");\nfor (String line : formatted.split(\"\\n\")) {\nindent();\nout.write(\" *\");\nif (!line.isEmpty()) {\nout.write(\" \");\nout.write(line);\n}\nout.write(\"\\n\");\n}\nindent();\no",
+        ");\nout.write(\"/**\\n\");\nfor (String line : formatte",
+        "\\n\");\n}\nindent();\nout.write(\" */\\n\");\nreturn this;"
+    ]
+}

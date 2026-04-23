@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.631578947368421,
+    "input": "    public void removeIgnoreCase(String key) {\n        Validate.notEmpty(key);\n        if (attributes == null)\n            return;\n        for (Iterator<String> it = attributes.keySet().iterator(); it.hasNext(); ) {\n            String attrKey = it.next();\n            if (attrKey.equalsIgnoreCase(key))\n                it.remove();\n        }\n    }",
+    "query_result": [
+        "terator<String> it = attributes.keySet().iterator(); it.hasNext(); ) {\nString attrKey = it.next();\ni",
+        "key) {\nValidate.notEmpty(key);\nif (attributes == n",
+        "Validate.notEmpty(key);\nif (attributes == null)\nre",
+        "\nfor (Iterator<String> it = attributes.keySet().it",
+        "r (Iterator<String> it = attributes.keySet().itera",
+        "(Iterator<String> it = attributes.keySet().iterato",
+        "Iterator<String> it = attributes.keySet().iterator",
+        " it = attributes.keySet().iterator(); it.hasNext()",
+        "t = attributes.keySet().iterator(); it.hasNext(); ",
+        "= attributes.keySet().iterator(); it.hasNext(); ) ",
+        "butes.keySet().iterator(); it.hasNext(); ) {\nStrin",
+        "utes.keySet().iterator(); it.hasNext(); ) {\nString"
+    ]
+}

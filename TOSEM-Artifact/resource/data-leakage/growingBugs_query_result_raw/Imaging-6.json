@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.4219512195121951,
+    "input": "    @Override\n    public void writeImage(final BufferedImage src, final OutputStream os, Map<String, Object> params)\n            throws ImageWriteException, IOException {\n        PnmWriter writer = null;\n        boolean useRawbits = true;\n        final boolean hasAlpha = new PaletteFactory().hasTransparency(src);\n\n        if (params != null) {\n            final Object useRawbitsParam = params.get(PARAM_KEY_PNM_RAWBITS);\n            if (useRawbitsParam != null) {\n                if (useRawbitsParam.equals(PARAM_VALUE_PNM_RAWBITS_NO)) {\n                    useRawbits = false;\n                }\n            }\n\n            final Object subtype = params.get(PARAM_KEY_FORMAT);\n            if (subtype != null) {\n                if (subtype.equals(ImageFormats.PBM)) {\n                    writer = new PbmWriter(useRawbits);\n                } else if (subtype.equals(ImageFormats.PGM)) {\n                    writer = new PgmWriter(useRawbits);\n                } else if (subtype.equals(ImageFormats.PPM)) {\n                    writer = new PpmWriter(useRawbits);\n                } else if (subtype.equals(ImageFormats.PAM)) { \n                    writer = new PamWriter();\n                }\n            }\n        }\n\n        if (writer == null) {\n            if (hasAlpha) {\n                writer = new PamWriter();\n            } else {   \n                writer = new PpmWriter(useRawbits);\n            }\n        }\n\n        // make copy of params; we'll clear keys as we consume them.\n        if (params != null) {\n            params = new HashMap<>(params);\n        } else {\n            params = new HashMap<>();\n        }\n\n        // clear format key.\n        if (params.containsKey(PARAM_KEY_FORMAT)) {\n            params.remove(PARAM_KEY_FORMAT);\n        }\n\n        // clear rawbits key.\n        if (params.containsKey(PARAM_KEY_PNM_RAWBITS)) {\n            params.remove(PARAM_KEY_PNM_RAWBITS);\n        }\n        \n        if (!params.isEmpty()) {\n            final Object firstKey = params.keyS",
+    "query_result": [
+        "(subtype.equals(ImageFormats.PBM)) {\nwriter = new PbmWriter(useRawbits);\n} else if (subtype.equals(ImageFormats.PGM)) {\nwriter = new PgmWriter(useRawbits);\n} else if (subtype.equals(ImageFormats.PPM)) {\nwriter = new PpmWriter(useRawbits);\n} else if (",
+        "e(final BufferedImage src, final OutputStream os, Map<String, Object> params)\nthrows ImageWriteExcep",
+        "\n// clear format key.\nif (params.containsKey(PARAM_KEY_FORMAT)) {\nparams.remove(PARAM_KEY_FORMAT);\n}",
+        "rride\npublic void writeImage(final BufferedImage s",
+        "blic void writeImage(final BufferedImage src, fina",
+        "c void writeImage(final BufferedImage src, final O",
+        "eImage(final BufferedImage src, final OutputStream",
+        "Image(final BufferedImage src, final OutputStream ",
+        "tring, Object> params)\nthrows ImageWriteException,",
+        " Object> params)\nthrows ImageWriteException, IOExc",
+        "n, IOException {\nPnmWriter writer = null;\nboolean ",
+        "ean hasAlpha = new PaletteFactory().hasTransparenc"
+    ]
+}

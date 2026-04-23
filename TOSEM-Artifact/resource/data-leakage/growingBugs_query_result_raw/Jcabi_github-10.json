@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.8841698841698842,
+    "input": "    RtHook(final Request req, final Repo repo, final int number) {\n        final Coordinates coords = repo.coordinates();\n        this.request = req.uri()\n            .path(\"/repos\")\n            .path(coords.user())\n            .path(coords.repo())\n            .path(\"/hooks\")\n            .path(Integer.toString(number))\n            .back();\n        this.owner = repo;\n        this.num = number;\n    }",
+    "query_result": [
+        " Request req, final Repo repo, final int number) {",
+        "rdinates coords = repo.coordinates();\nthis.request",
+        "quest = req.uri()\n.path(\"/repos\")\n.path(coords.use",
+        "= req.uri()\n.path(\"/repos\")\n.path(coords.user())\n.",
+        ".uri()\n.path(\"/repos\")\n.path(coords.user())\n.path(",
+        "uri()\n.path(\"/repos\")\n.path(coords.user())\n.path(c",
+        "ath(\"/repos\")\n.path(coords.user())\n.path(coords.re",
+        "repos\")\n.path(coords.user())\n.path(coords.repo())\n",
+        ".path(coords.user())\n.path(coords.repo())\n.path(\"/",
+        "path(Integer.toString(number))\n.back();\nthis.owner",
+        "Integer.toString(number))\n.back();\nthis.owner = re",
+        "er))\n.back();\nthis.owner = repo;\nthis.num = number"
+    ]
+}

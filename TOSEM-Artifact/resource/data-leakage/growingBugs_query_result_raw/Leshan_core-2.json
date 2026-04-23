@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.5415472779369628,
+    "input": "    private static Map<Integer, Object> parseTlvValues(Tlv[] tlvs, Type expectedType, LwM2mPath path)\n            throws CodecException {\n        Map<Integer, Object> values = new HashMap<>();\n        for (Tlv tlvChild : tlvs) {\n            if (tlvChild.getType() != TlvType.RESOURCE_INSTANCE)\n                throw new CodecException(\"Expected TLV of type RESOURCE_INSTANCE but was %s for path %s\",\n                        tlvChild.getType().name(), path);\n\n            Object resourceInstance = parseTlvValue(tlvChild.getValue(), expectedType, path);\n            Object previousResourceInstance = values.put(tlvChild.getIdentifier(), resourceInstance);\n            if (previousResourceInstance != null) {\n                throw new CodecException(\"2 RESOURCE_INSTANCE (%s,%s) with the same identifier %d for path %s\",\n                        previousResourceInstance, resourceInstance, tlvChild.getIdentifier(), path);\n            }\n        }\n        return values;\n    }",
+    "query_result": [
+        ");\nfor (Tlv tlvChild : tlvs) {\nif (tlvChild.getType() != TlvType.RESOURCE_INSTANCE)\nthrow new CodecException(\"Expected TLV of type RESOURCE_INSTANCE but was %s for path %s\",\ntlvChild.getType().name(),",
+        "tlvChild.getIdentifier(), resourceInstance);\nif (previousResourceInstance != null) {\nthrow new Codec",
+        "the same identifier %d for path %s\",\npreviousResourceInstance, resourceInstance, tlvChild.getIdentif",
+        "TLV of type RESOURCE_INSTANCE but was %s for path ",
+        "ce != null) {\nthrow new CodecException(\"2 RESOURCE"
+    ]
+}

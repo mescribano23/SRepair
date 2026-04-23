@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3533026113671275,
+    "input": "  @CheckForNull\n  private FileData loadCurrentFileData(final Map<InputFile, FileData> files, String line) {\n    String filePath = line.substring(SF.length());\n    FileData fileData = null;\n    \n    // some tools (like Istanbul, Karma) provide relative paths, so let's consider them relative to project directory\n    InputFile inputFile = null;\n    try {\n        Paths.get(filePath);\n        inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(filePath));    \n    }\n    catch (InvalidPathException ex) {\n        LOG.debug(\"LCOV file referred to path that appears invalid (not just not on disk): \" + filePath);\n    }   \n        \n    // Try to accommodate Angular projects that, when the angular template loader's used\n    // by checking for a ! in the filepath if the path isn't found - have a bash at seeking\n    // everything after the last ! as a second fallback pass\n    if (inputFile == null && filePath.contains(\"!\") && (filePath.lastIndexOf(\"!\") + 1) < filePath.length()) {\n        String amendedPath = filePath.substring(filePath.lastIndexOf(\"!\") + 1);\n        \n        LOG.debug(\"Failed to resolve \" + filePath + \" as a valid source file, so attempting \" + amendedPath + \" instead\");\n        \n        inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(amendedPath));\n    }\n    \n    if (inputFile != null) {\n      fileData = files.get(inputFile);\n      if (fileData == null) {\n        fileData = new FileData(inputFile);\n        files.put(inputFile, fileData);\n      }\n    } else {\n      LOG.debug(\"Failed to resolve path \" + filePath + \" to a file in the analysis set\");\n      unresolvedPaths.add(filePath);\n    }\n    return fileData;\n  }",
+    "query_result": [
+        "putFile != null) {\nfileData = files.get(inputFile);\nif (fileData == null) {\nfileData = new FileData(inputFile);\nfiles.put(inputFile, fileData);\n}\n} el",
+        "l, Karma) provide relative paths, so let's consider them relative to project directory\nInputFile inp",
+        "eData(final Map<InputFile, FileData> files, String",
+        "String filePath = line.substring(SF.length());\nFil",
+        "nputFile = context.fileSystem().inputFile(context.",
+        "utFile = context.fileSystem().inputFile(context.fi",
+        "ile = context.fileSystem().inputFile(context.fileS",
+        "= context.fileSystem().inputFile(context.fileSyste",
+        "ntext.fileSystem().inputFile(context.fileSystem().",
+        "xt.fileSystem().inputFile(context.fileSystem().pre",
+        "t.fileSystem().inputFile(context.fileSystem().pred",
+        "eSystem().inputFile(context.fileSystem().predicate",
+        "tem().inputFile(context.fileSystem().predicates().",
+        "m().inputFile(context.fileSystem().predicates().ha",
+        "nputFile = context.fileSystem().inputFile(context.",
+        "utFile = context.fileSystem().inputFile(context.fi",
+        "ile = context.fileSystem().inputFile(context.fileS",
+        "= context.fileSystem().inputFile(context.fileSyste",
+        "ntext.fileSystem().inputFile(context.fileSystem().",
+        "xt.fileSystem().inputFile(context.fileSystem().pre"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9563567362428842,
+    "input": "    @Override\n    public JsonObject json() throws IOException {\n        final XML xml = this.storage.xml();\n        final JsonObject obj = new JsonNode(\n            xml.nodes(this.xpath()).get(0)\n        ).json();\n        final JsonObjectBuilder json = Json.createObjectBuilder();\n        for (final Map.Entry<String, JsonValue> val: obj.entrySet()) {\n            json.add(val.getKey(), val.getValue());\n        }\n        final JsonArrayBuilder array = Json.createArrayBuilder();\n        for (final Label label : this.labels().iterate()) {\n            array.add(\n                Json.createObjectBuilder().add(\"name\", label.name()).build()\n            );\n        }\n        final JsonObjectBuilder res = json\n            .add(\"labels\", array)\n            .add(\n                // @checkstyle MultipleStringLiteralsCheck (1 line)\n                \"assignee\",\n                Json.createObjectBuilder().add(\n                    \"login\", obj.getString(\"assignee\", \"\")\n                ).build()\n            );\n        final JsonObjectBuilder pull = Json.createObjectBuilder();\n        final String html = \"html_url\";\n        if (xml.nodes(\n                String.format(\n                    // @checkstyle LineLengthCheck (1 line)\n                    \"/github/repos/repo[@coords='%s']/pulls/pull/number[text() = '%d']\",\n                    this.coords,\n                    this.num\n                )\n            ).isEmpty()) {\n            pull.addNull(html);\n        } else {\n            pull.add(\n                html,\n                String.format(\n                    \"https://%s/pulls/%d\",\n                    this.coords,\n                    this.num\n                )\n            );\n        }\n        return res.add(\"pull_request\", pull.build()).build();\n    }",
+    "query_result": [
+        "nObject json() throws IOException {\nfinal XML xml = this.storage.xml();\nfinal JsonObject obj = new JsonNode(\nxml.nodes(this.xpath()).get(0)\n).json();\nfinal JsonObjectBuilder json = Json.createObjectBuilder();\nfor (final Map.Entry<String, JsonValue> val: obj.entrySet()) {\njson.add(val.getKey(), val.getValue());\n}\nfinal JsonArrayBuilder array = Json.createArrayBuilder();\nfor (final Label label : this.labels().iterate()) {\narray.add(\nJson.createObjectBuilder().add(\"name\", label.name()).build()\n);\n}\nfinal JsonObjectBuilder res = json\n.add(\"labels\", array)\n.add(\n// @checkstyle MultipleStringLiteralsCheck (1 line)\n\"assignee\",\nJson.createObjectBuilder().add(\n\"login\", obj.getString(\"assignee\", \"\")\n).build()\n);\nfinal JsonObjectBuilder pull = Json.createObjectBuilder();\nfinal String html = \"html_url\";\nif (xml.nodes(\nString.format(\n// @checkstyle LineLengthCheck (1 line)\n\"/github/repos/repo[@coords='%s']/pulls/pull/number[text() = '%d']\",\nthis.coords,\nthis.num\n)\n).isEmpty()) {\npull.addNull(html);\n} else {\npull.add(\nhtml,\nString.format(\n\"https://%s/pulls/%d\",\nthis.coords,\nthis.num\n)\n);\n}\nreturn ",
+        ".json();\nfinal JsonObjectBuilder json = Json.createObjectBuilder();\nfor (final Map.Entry<String, Jso",
+        "@Override\npublic JsonObject json() throws IOExcept",
+        "Override\npublic JsonObject json() throws IOExcepti",
+        "verride\npublic JsonObject json() throws IOExceptio",
+        "erride\npublic JsonObject json() throws IOException",
+        "rride\npublic JsonObject json() throws IOException ",
+        "ride\npublic JsonObject json() throws IOException {",
+        "ide\npublic JsonObject json() throws IOException {\n",
+        "onObject json() throws IOException {\nfinal XML xml",
+        "ject json() throws IOException {\nfinal XML xml = t",
+        "son() throws IOException {\nfinal XML xml = this.st",
+        ");\nfinal JsonObjectBuilder json = Json.createObjec",
+        "inal JsonObjectBuilder json = Json.createObjectBui",
+        "nal JsonObjectBuilder json = Json.createObjectBuil",
+        "al JsonObjectBuilder json = Json.createObjectBuild",
+        " JsonObjectBuilder json = Json.createObjectBuilder",
+        "JsonObjectBuilder json = Json.createObjectBuilder(",
+        "sonObjectBuilder json = Json.createObjectBuilder()",
+        "onObjectBuilder json = Json.createObjectBuilder();"
+    ]
+}

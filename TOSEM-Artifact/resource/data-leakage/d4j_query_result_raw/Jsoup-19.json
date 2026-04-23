@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.9922330097087378,
+    "input": "private boolean testValidProtocol(Element el, Attribute attr, Set<Protocol> protocols) {\n    // try to resolve relative urls to abs, and optionally update the attribute so output html has abs.\n    // rels without a baseuri get removed\n    String value = el.absUrl(attr.getKey());\n    if (value.length() == 0)\n        value = attr.getValue(); // if it could not be made abs, run as-is to allow custom unknown protocols\n    if (!preserveRelativeLinks)\n        attr.setValue(value);\n    \n    for (Protocol protocol : protocols) {\n        String prot = protocol.toString() + \":\";\n        if (value.toLowerCase().startsWith(prot)) {\n            return true;\n        }\n    }\n    return false;\n}",
+    "query_result": [
+        "ment el, Attribute attr, Set<Protocol> protocols) {\n// try to resolve relative urls to abs, and optionally update the attribute so output html has abs.\n// rels without a baseuri get removed\nString value = el.absUrl(attr.getKey());\nif (value.length() == 0)\nvalue = attr.getValue(); // if it could not be made abs, run as-is to allow custom unknown protocols\nif (!preserveRelativeLinks)\nattr.setValue(value);\n\nfor (Protocol protocol : protocols) {\nString prot = protocol.toString() + \":\";\nif (value.toLowerCase().startsWith(prot)) {\nreturn true;\n}\n}\nre",
+        "// try to resolve relative urls to abs, and optionally update the attribute so output html has abs.\n",
+        " resolve relative urls to abs, and optionally update the attribute so output html has abs.\n// rels w",
+        "lative urls to abs, and optionally update the attribute so output html has abs.\n// rels without a ba",
+        "rls to abs, and optionally update the attribute so output html has abs.\n// rels without a baseuri ge",
+        "bs, and optionally update the attribute so output html has abs.\n// rels without a baseuri get remove",
+        "); // if it could not be made abs, run as-is to allow custom unknown protocols\nif (!preserveRelative",
+        "// if it could not be made abs, run as-is to allow custom unknown protocols\nif (!preserveRelativeLin",
+        "ate boolean testValidProtocol(Element el, Attribut",
+        " boolean testValidProtocol(Element el, Attribute a",
+        "ve relative urls to abs, and optionally update the",
+        "d optionally update the attribute so output html h",
+        "tionally update the attribute so output html has a",
+        "e(); // if it could not be made abs, run as-is to ",
+        "(); // if it could not be made abs, run as-is to a",
+        "w custom unknown protocols\nif (!preserveRelativeLi",
+        "artsWith(prot)) {\nreturn true;\n}\n}\nreturn false;\n}"
+    ]
+}

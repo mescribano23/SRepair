@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.07827359180687637,
+    "input": "    @Override\n    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {\n        // convert to DocViewNode (mostly taken over from DocViewSAXImporter#startElement)\n        String label = qName;\n        Name name;\n        if (elementNameStack.isEmpty() && localName.equals(NameConstants.JCR_ROOT.getLocalName())\n                    && uri.equals(NameConstants.JCR_ROOT.getNamespaceURI())) {\n                // take over node name from file name\n                label = rootNodeName;\n                try {\n                    if (rootNodeName.equals(\"\")) {\n                        name = NameConstants.JCR_ROOT;\n                    } else {\n                        // how to get name of root node?\n                        name = getExpandedName(rootNodeName);\n                    }\n                } catch (IllegalNameException|NamespaceException e) {\n                    throw new SAXException(\"Given root node name '\" + rootNodeName + \"' (implicitly given via filename) cannot be resolved. The prefix used in the filename must be defined in the XML as well!\", e);\n                }\n        } else {\n            name = NameFactoryImpl.getInstance().create(uri, getNormalizedName(localName));\n        }\n\n        // the path is being given via the qualified (prefixed) names\n        elementNameStack.push(label);\n\n        // add fully qualified name\n        StringBuilder nodePath = new StringBuilder(rootNodeParentPath);\n        Iterator<String> iterator = elementNameStack.descendingIterator();\n        while (iterator.hasNext()) {\n            nodePath.append(\"/\").append(iterator.next());\n        }\n        nodePathStack.push(nodePath.toString());\n        \n        try {\n            DocViewNode node = getDocViewNode(name, qName, attributes);\n            nodeStack.push(node);\n            violations.add(new ValidationViolation(ValidationMessageSeverity.DEBUG, \"Validate node '\" + node + \"' start\"));\n            for (Map.Entry<String, Docum",
+    "query_result": [
+        "@Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes",
+        "Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes)",
+        "verride\npublic void startElement(String uri, String localName, String qName, Attributes attributes) ",
+        "erride\npublic void startElement(String uri, String localName, String qName, Attributes attributes) t",
+        "rride\npublic void startElement(String uri, String localName, String qName, Attributes attributes) th",
+        "ride\npublic void startElement(String uri, String localName, String qName, Attributes attributes) thr",
+        "ide\npublic void startElement(String uri, String localName, String qName, Attributes attributes) thro",
+        "de\npublic void startElement(String uri, String localName, String qName, Attributes attributes) throw",
+        "e\npublic void startElement(String uri, String localName, String qName, Attributes attributes) throws",
+        "\npublic void startElement(String uri, String localName, String qName, Attributes attributes) throws ",
+        "public void startElement(String uri, String localName, String qName, Attributes attributes) throws S",
+        "ublic void startElement(String uri, String localName, String qName, Attributes attributes) throws SA",
+        "blic void startElement(String uri, String localName, String qName, Attributes attributes) throws SAX",
+        "lic void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXE",
+        "ic void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXEx",
+        "c void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXExc",
+        " void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXExce",
+        "void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXExcep",
+        "oid startElement(String uri, String localName, String qName, Attributes attributes) throws SAXExcept",
+        "id startElement(String uri, String localName, String qName, Attributes attributes) throws SAXExcepti"
+    ]
+}

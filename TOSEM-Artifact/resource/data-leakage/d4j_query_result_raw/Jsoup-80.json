@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.6011315417256011,
+    "input": "void insert(Token.Comment commentToken) {\n    Comment comment = new Comment(commentToken.getData());\n    Node insert = comment;\n    if (commentToken.bogus) { // xml declarations are emitted as bogus comments (which is right for html, but not xml)\n        // so we do a bit of a hack and parse the data as an element to pull the attributes out\n        String data = comment.getData();\n        if (data.length() > 1 && (data.startsWith(\"!\") || data.startsWith(\"?\"))) {\n            Document doc = Jsoup.parse(\"<\" + data.substring(1, data.length() -1) + \">\", baseUri, Parser.xmlParser());\n            if (doc.childNodeSize() > 0) {\n                Element el = doc.child(0);\n                insert = new XmlDeclaration(settings.normalizeTag(el.tagName()), data.startsWith(\"!\"));\n                insert.attributes().addAll(el.attributes());\n            } // else, we couldn't parse it as a decl, so leave as a comment\n        }\n    }\n    insertNode(insert);\n}",
+    "query_result": [
+        "bogus) { // xml declarations are emitted as bogus comments (which is right for html, but not xml)\n// so we do a bit of a hack and parse the data as an",
+        "commentToken.bogus) { // xml declarations are emitted as bogus comments (which is right for html, bu",
+        "as bogus comments (which is right for html, but not xml)\n// so we do a bit of a hack and parse the d",
+        "insert(Token.Comment commentToken) {\nComment comme",
+        "\nComment comment = new Comment(commentToken.getDat",
+        "ment comment = new Comment(commentToken.getData())",
+        "ken.getData());\nNode insert = comment;\nif (comment",
+        "tions are emitted as bogus comments (which is righ",
+        "arse the data as an element to pull the attributes",
+        "ent.getData();\nif (data.length() > 1 && (data.star",
+        " (data.length() > 1 && (data.startsWith(\"!\") || da",
+        "ngth() > 1 && (data.startsWith(\"!\") || data.starts",
+        " XmlDeclaration(settings.normalizeTag(el.tagName()",
+        "ttings.normalizeTag(el.tagName()), data.startsWith",
+        "e()), data.startsWith(\"!\"));\ninsert.attributes().a"
+    ]
+}

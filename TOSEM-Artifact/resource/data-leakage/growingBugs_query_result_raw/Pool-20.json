@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.9228395061728395,
+    "input": "    @Override\n    public void printStackTrace(PrintWriter writer) {\n        boolean written = false;\n        Exception borrowedByCopy = this.borrowedBy;\n        if (borrowedByCopy != null) {\n            borrowedByCopy.printStackTrace(writer);\n            written = true;\n        }\n        Exception usedByCopy = this.usedBy;\n        if (usedByCopy != null) {\n            usedByCopy.printStackTrace(writer);\n            written = true;\n        }\n        if (written) {\n            writer.flush();\n        }\n    }",
+    "query_result": [
+        "PrintWriter writer) { boolean written = false; Exception borrowedByCopy = this.borrowedBy; if (borrowedByCopy != null) { borrowedByCopy.printStackTrace(writer); written = true; } Exception usedByCopy = this.usedBy; if (usedByCopy != null) { usedByCopy.printStackTrace(writer); written = true; } if (w",
+        "@Override public void printStackTrace(PrintWriter",
+        "Override public void printStackTrace(PrintWriter w",
+        "verride public void printStackTrace(PrintWriter wr",
+        "erride public void printStackTrace(PrintWriter wri",
+        "rride public void printStackTrace(PrintWriter writ",
+        "ride public void printStackTrace(PrintWriter write",
+        "de public void printStackTrace(PrintWriter writer)",
+        "e public void printStackTrace(PrintWriter writer)",
+        "public void printStackTrace(PrintWriter writer) {",
+        "public void printStackTrace(PrintWriter writer) {",
+        "rintStackTrace(PrintWriter writer) { boolean writt",
+        "Exception borrowedByCopy = this.borrowedBy; if (b",
+        "Exception borrowedByCopy = this.borrowedBy; if (bo",
+        "rrowedByCopy.printStackTrace(writer); written = tr"
+    ]
+}

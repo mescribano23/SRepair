@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.9368421052631579,
+    "input": "  private void emitModifiers(Set<Modifier> modifiers) throws IOException {\n    if (modifiers.isEmpty()) {\n      return;\n    }\n    // Use an EnumSet to ensure the proper ordering\n    if (!(modifiers instanceof EnumSet)) {\n      modifiers = EnumSet.copyOf(modifiers);\n    }\n    for (Modifier modifier : modifiers) {\n      out.append(modifier.toString()).append(' ');\n    }\n  }",
+    "query_result": [
+        "rs(Set<Modifier> modifiers) throws IOException {\nif (modifiers.isEmpty()) {\nreturn;\n}\n// Use an EnumSet to ensure the proper ordering\nif (!(modifiers instanceof EnumSet)) {\nmodifiers = EnumSet.copyOf(modifiers);\n}\nfor (Modifier modifier : modifiers) {\nout.append(modifier.toString()).append(' ');\n}\n}",
+        "ifiers(Set<Modifier> modifiers) throws IOException",
+        "iers(Set<Modifier> modifiers) throws IOException {",
+        "iers) {\nout.append(modifier.toString()).append(' '"
+    ]
+}

@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java b/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
+index 243d271..828bd77 100644
+--- a/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
++++ b/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
+@@ -85,22 +85,22 @@ public final class InitialContextFactory implements javax.naming.spi.InitialCont
+         return InitialContextFactory.class.getClassLoader();
+     }
+ 
+-    private Properties findClientProperties(final Hashtable<?, ?> env) throws ConfigurationException {
+-        final Properties properties = new Properties();
++private Properties findClientProperties(final Hashtable<?, ?> env) throws ConfigurationException {
++    final Properties properties = new Properties();
+ 
+-        // First load the props file if it exists
+-        findAndPopulateClientProperties(properties);
++    // First load the props file if it exists
++    findAndPopulateClientProperties(properties);
+ 
+-        // Now override with naming env entries
+-        for (Map.Entry<?, ?> entry : env.entrySet()) {
+-            if (entry.getKey() instanceof String && entry.getValue() instanceof String) {
+-                properties.setProperty((String) entry.getKey(), (String) entry.getValue());
+-            }
++    // Now override with naming env entries
++    for (Map.Entry<?, ?> entry : env.entrySet()) {
++        if (entry.getKey() instanceof String) {
++            properties.setProperty((String) entry.getKey(), entry.getValue().toString());
+         }
+-
+-        return properties;
+     }
+ 
++    return properties;
++}
++
+     private void findAndPopulateClientProperties(final Properties props) throws ConfigurationException {
+         final ClassLoader classLoader = getClientClassLoader();
+         Messages.log.debug("Looking for " + CLIENT_PROPS_FILE_NAME + " using classloader " + classLoader);

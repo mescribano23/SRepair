@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.2708860759493671,
+    "input": "    @Override\n    public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\n        String str;\n        Class<?> cls = value.getClass();\n        \n        if (cls == String.class) {\n            str = (String) value;\n        } else if (Date.class.isAssignableFrom(cls)) {\n            provider.defaultSerializeDateKey((Date) value, jgen);\n            return;\n        } else if (cls == Class.class) {\n            str = ((Class<?>) value).getName();\n        } else {\n            str = value.toString();\n        }\n        jgen.writeFieldName(str);\n    }",
+    "query_result": [
+        "@Override public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throw",
+        "Override public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws",
+        "verride public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws",
+        "erride public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws I",
+        "rride public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IO",
+        "ride public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOE",
+        "ide public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOEx",
+        "de public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExc",
+        "e public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExce",
+        "public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExcep",
+        "public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExcept",
+        "ublic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExcepti",
+        "blic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExceptio",
+        "lic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException",
+        "ic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException",
+        "c void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {",
+        "void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {",
+        "void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException { S",
+        "oid serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException { St",
+        "id serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException { Str"
+    ]
+}

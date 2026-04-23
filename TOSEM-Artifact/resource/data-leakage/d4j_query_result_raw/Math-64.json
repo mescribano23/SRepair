@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5283194057567316,
+    "input": "protected VectorialPointValuePair doOptimize()\n    throws FunctionEvaluationException, OptimizationException, IllegalArgumentException {\n\n    // arrays shared with the other private methods\n    solvedCols  = Math.min(rows, cols);\n    diagR       = new double[cols];\n    jacNorm     = new double[cols];\n    beta        = new double[cols];\n    permutation = new int[cols];\n    lmDir       = new double[cols];\n\n    // local point\n    double   delta   = 0;\n    double   xNorm   = 0;\n    double[] diag    = new double[cols];\n    double[] oldX    = new double[cols];\n    double[] oldRes  = new double[rows];\n    double[] oldObj  = new double[rows];\n    double[] qtf     = new double[rows];\n    double[] work1   = new double[cols];\n    double[] work2   = new double[cols];\n    double[] work3   = new double[cols];\n\n    // evaluate the function at the starting point and calculate its norm\n    updateResidualsAndCost();\n\n    // outer loop\n    lmPar = 0;\n    boolean firstIteration = true;\n    VectorialPointValuePair current = new VectorialPointValuePair(point, objective);\n    while (true) {\n        for (int i=0;i<rows;i++) {\n            qtf[i]=residuals[i];\n        }\n        incrementIterationsCounter();\n\n        // compute the Q.R. decomposition of the jacobian matrix\n        VectorialPointValuePair previous = current;\n        updateJacobian();\n        qrDecomposition();\n\n        // compute Qt.res\n        qTy(qtf);\n        // now we don't need Q anymore,\n        // so let jacobian contain the R ma",
+    "query_result": [
+        "OptimizationException, IllegalArgumentException {\n// arrays shared with the other private methods\nsolvedCols = Math.min(rows, cols);\ndiagR = new double[cols];\njacNorm = new double[cols];\nbeta = new double[cols];\npermutation = new int[cols];\nlmDir = n",
+        " new double[rows];\ndouble[] work1 = new double[cols];\ndouble[] work2 = new double[cols];\ndouble[] work3 = new double[cols];\n// evaluate the function at the starting point and calculate its norm\nupdate",
+        "ctorialPointValuePair doOptimize()\nthrows FunctionEvaluationException, OptimizationException, Illega",
+        "ble[] qtf = new double[rows];\ndouble[] work1 = new double[cols];\ndouble[] work2 = new double[cols];\n",
+        "rows];\ndouble[] work1 = new double[cols];\ndouble[] work2 = new double[cols];\ndouble[] work3 = new do",
+        "double[] work1 = new double[cols];\ndouble[] work2 = new double[cols];\ndouble[] work3 = new double[co",
+        "firstIteration = true;\nVectorialPointValuePair current = new VectorialPointValuePair(point, objectiv",
+        "teration = true;\nVectorialPointValuePair current = new VectorialPointValuePair(point, objective);\nwh",
+        "tion = true;\nVectorialPointValuePair current = new VectorialPointValuePair(point, objective);\nwhile ",
+        "true;\nVectorialPointValuePair current = new VectorialPointValuePair(point, objective);\nwhile (true) ",
+        "Optimize()\nthrows FunctionEvaluationException, Opt",
+        "ize()\nthrows FunctionEvaluationException, Optimiza",
+        "hrows FunctionEvaluationException, OptimizationExc",
+        "rows FunctionEvaluationException, OptimizationExce",
+        "ows FunctionEvaluationException, OptimizationExcep",
+        "s FunctionEvaluationException, OptimizationExcepti",
+        " FunctionEvaluationException, OptimizationExceptio",
+        "FunctionEvaluationException, OptimizationException",
+        "nctionEvaluationException, OptimizationException, ",
+        "ctionEvaluationException, OptimizationException, I"
+    ]
+}

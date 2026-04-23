@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @VisibleForTesting\n    static double normalizeLongitude(double d) {\n        if (d == -180.0)\n            return -180.0;\n        else {\n            double sign = Math.signum(d);\n            double x = Math.abs(d) / 360;\n            double x2 = (x - Math.floor(x)) * 360;\n            if (x2 >= 180)\n                x2 -= 360;\n            return x2 * sign;\n        }\n    }",
+    "query_result": []
+}

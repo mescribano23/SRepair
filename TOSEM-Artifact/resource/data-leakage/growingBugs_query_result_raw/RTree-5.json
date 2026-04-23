@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.9473684210526315,
+    "input": "    @Override\n    public boolean contains(double x, double y) {\n        return this.x == x && this.y == y;\n    }",
+    "query_result": [
+        "@Override\npublic boolean contains(double x, double",
+        "Override\npublic boolean contains(double x, double ",
+        "verride\npublic boolean contains(double x, double y",
+        "erride\npublic boolean contains(double x, double y)",
+        "rride\npublic boolean contains(double x, double y) ",
+        "ride\npublic boolean contains(double x, double y) {",
+        "ide\npublic boolean contains(double x, double y) {\n",
+        "e\npublic boolean contains(double x, double y) {\nre",
+        "\npublic boolean contains(double x, double y) {\nret",
+        "public boolean contains(double x, double y) {\nretu",
+        "ublic boolean contains(double x, double y) {\nretur",
+        "blic boolean contains(double x, double y) {\nreturn",
+        "lic boolean contains(double x, double y) {\nreturn ",
+        "oolean contains(double x, double y) {\nreturn this.",
+        "an contains(double x, double y) {\nreturn this.x ==",
+        "ouble x, double y) {\nreturn this.x == x && this.y ",
+        "uble x, double y) {\nreturn this.x == x && this.y ="
+    ]
+}

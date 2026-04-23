@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.0,
+    "input": "    @Override\n    @NotNull(message = \"Trees is never NULL\")\n    public Trees trees() {\n        try {\n            return new MkTrees(this.storage, this.self, this.coords);\n        } catch (final IOException ex) {\n            throw new IllegalStateException(ex);\n        }\n    }",
+    "query_result": [
+        "Iterable<Repo>(\nthis.storage,\n\"/github/repos/repo\",\nnew MkIterable.Mapping<Repo>() {\n@Override\npublic Repo map(final XML xml) {\nreturn new MkRepo(\nMkRepos.this.storage, MkRepos.this.self,\nnew Coordinates.Simple(xml.xpath(\"@coords\").get(0))\n);\n}\n}\n);\n"
+    ]
+}

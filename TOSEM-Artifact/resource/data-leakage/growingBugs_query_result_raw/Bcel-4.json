@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.5607064017660044,
+    "input": "    public static Type getType( final String signature ) throws StringIndexOutOfBoundsException {\n        byte type = Utility.typeOfSignature(signature);\n        if (type <= Const.T_VOID) {\n            //corrected concurrent private static field acess\n            wrap(consumed_chars, 1);\n            return BasicType.getType(type);\n        } else if (type == Const.T_ARRAY) {\n            int dim = 0;\n            do { // Count dimensions\n                dim++;\n            } while (signature.charAt(dim) == '[');\n            // Recurse, but just once, if the signature is ok\n            Type t = getType(signature.substring(dim));\n            //corrected concurrent private static field acess\n            //  consumed_chars += dim; // update counter - is replaced by\n            int _temp = unwrap(consumed_chars) + dim;\n            wrap(consumed_chars, _temp);\n            return new ArrayType(t, dim);\n        } else { // type == T_REFERENCE\n            // Utility.signatureToString understands how to parse\n            // generic types.\n            String parsedSignature = Utility.signatureToString(signature, false);\n            wrap(consumed_chars, parsedSignature.length() + 2); // \"Lblabla;\" `L' and `;' are removed\n            return ObjectType.getInstance(parsedSignature.replace('/', '.'));\n        }\n    }",
+    "query_result": [
+        " throws StringIndexOutOfBoundsException {\nbyte type = Utility.typeOfSignature(signature);\nif (type <",
+        "t private static field acess\nwrap(consumed_chars, 1);\nreturn BasicType.getType(type);\n} else if (typ",
+        "mp = unwrap(consumed_chars) + dim;\nwrap(consumed_chars, _temp);\nreturn new ArrayType(t, dim);\n} else",
+        "throws StringIndexOutOfBoundsException {\nbyte type",
+        "OutOfBoundsException {\nbyte type = Utility.typeOfS",
+        "te type = Utility.typeOfSignature(signature);\nif (",
+        "//corrected concurrent private static field acess\n",
+        "d concurrent private static field acess\nwrap(consu",
+        "oncurrent private static field acess\nwrap(consumed",
+        "pe == Const.T_ARRAY) {\nint dim = 0;\ndo { // Count ",
+        "nature.charAt(dim) == '[');\n// Recurse, but just o",
+        "(dim) == '[');\n// Recurse, but just once, if the s",
+        "== '[');\n// Recurse, but just once, if the signatu",
+        "= '[');\n// Recurse, but just once, if the signatur",
+        "//corrected concurrent private static field acess\n",
+        "eld acess\n// consumed_chars += dim; // update coun",
+        "nsumed_chars) + dim;\nwrap(consumed_chars, _temp);\n",
+        "ing(signature, false);\nwrap(consumed_chars, parsed"
+    ]
+}

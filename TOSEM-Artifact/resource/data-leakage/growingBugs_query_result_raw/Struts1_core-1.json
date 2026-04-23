@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3566487317448117,
+    "input": "public final void field() throws RecognitionException, TokenStreamException {\n        \n        \n        if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && (LA(3)==RBRACKET) && (LA(4)==IDENTIFIER)) {\n            identifier();\n            match(LBRACKET);\n            match(RBRACKET);\n            identifier();\n            \n            Object i2 = argStack.pop();\n            Object i1 = argStack.pop();\n            argStack.push(ValidatorUtils.getValueAsString(form, i1 + \"[\" + index + \"]\" + i2));\n            \n        }\n        else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (LA(5)==IDENTIFIER)) {\n            identifier();\n            match(LBRACKET);\n            integer();\n            match(RBRACKET);\n            identifier();\n            \n            Object i5 = argStack.pop();\n            Object i4 = argStack.pop();\n            Object i3 = argStack.pop();\n            argStack.push(ValidatorUtils.getValueAsString(form, i3 + \"[\" + i4 + \"]\" + i5));\n            \n        }\n        else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (_tokenSet_0.member(LA(5)))) {\n            identifier();\n            match(LBRACKET);\n            integer();\n            match(RBRACKET);\n            \n            Object i7 = argStack.pop();\n            Object i6 = argStack.pop();\n            argStack.push(ValidatorUtils.getValueAsString(form, i6 + \"[\" + i7 + \"]\"));\n            \n        }\n        else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && (LA(3)==RBRACKET) && (_tokenSet_0.member(LA(4)))) {\n            identifier();\n            match(LBRACKET);\n            match(RBRACKET);\n            \n            Object i8 = argStack.pop();\n            argStack.push(ValidatorUtils.getValueAsString(form, i8 + \"[\" + index + \"]\"));\n            \n        }\n        else if ((LA(1)==IDENTIFIER) && (_tokenSet_0.member(LA(2)))) {\n            identifier()",
+    "query_result": [
+        "ER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACK",
+        ") && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET",
+        "ER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACK",
+        ") && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET",
+        "inal void field() throws RecognitionException, Tok",
+        "d() throws RecognitionException, TokenStreamExcept",
+        "() throws RecognitionException, TokenStreamExcepti",
+        ") throws RecognitionException, TokenStreamExceptio",
+        " throws RecognitionException, TokenStreamException",
+        "throws RecognitionException, TokenStreamException ",
+        "hrows RecognitionException, TokenStreamException {",
+        "rows RecognitionException, TokenStreamException {\n",
+        "ows RecognitionException, TokenStreamException {\n\n",
+        "ws RecognitionException, TokenStreamException {\n\n\n",
+        " RecognitionException, TokenStreamException {\n\n\nif",
+        "TIFIER) && (LA(2)==LBRACKET) && (LA(3)==RBRACKET) ",
+        "Utils.getValueAsString(form, i1 + \"[\" + index + \"]",
+        "rUtils.getValueAsString(form, i3 + \"[\" + i4 + \"]\" ",
+        "lidatorUtils.getValueAsString(form, i6 + \"[\" + i7 ",
+        "TIFIER) && (LA(2)==LBRACKET) && (LA(3)==RBRACKET) "
+    ]
+}

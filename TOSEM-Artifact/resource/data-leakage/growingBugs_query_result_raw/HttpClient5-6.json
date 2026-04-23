@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.6920529801324503,
+    "input": "    @Override\n    public void processChallenge(\n            final AuthChallenge authChallenge,\n            final HttpContext context) throws MalformedChallengeException {\n        Args.notNull(authChallenge, \"AuthChallenge\");\n\n        this.challenge = authChallenge.getValue();\n        if (this.challenge == null || this.challenge.isEmpty()) {\n            if (this.state == State.UNINITIATED) {\n                this.state = State.CHALLENGE_RECEIVED;\n            } else {\n                this.state = State.FAILED;\n            }\n        } else {\n            if (this.state.compareTo(State.MSG_TYPE1_GENERATED) < 0) {\n                this.state = State.FAILED;\n                throw new MalformedChallengeException(\"Out of sequence NTLM response message\");\n            } else if (this.state == State.MSG_TYPE1_GENERATED) {\n                this.state = State.MSG_TYPE2_RECEVIED;\n            }\n        }\n    }",
+    "query_result": [
+        "lic void processChallenge(\nfinal AuthChallenge authChallenge,\nfinal HttpContext context) throws MalformedChallengeException {\nArgs.notNull(authChallenge, \"AuthChallenge\");\nthis.challenge = authChallen",
+        "e(\nfinal AuthChallenge authChallenge,\nfinal HttpContext context) throws MalformedChallengeException ",
+        "final AuthChallenge authChallenge,\nfinal HttpContext context) throws MalformedChallengeException {\nA",
+        "al AuthChallenge authChallenge,\nfinal HttpContext context) throws MalformedChallengeException {\nArgs",
+        "hChallenge authChallenge,\nfinal HttpContext context) throws MalformedChallengeException {\nArgs.notNu",
+        "{\nif (this.state == State.UNINITIATED) {\nthis.state = State.CHALLENGE_RECEIVED;\n} else {\nthis.state ",
+        "ate == State.UNINITIATED) {\nthis.state = State.CHALLENGE_RECEIVED;\n} else {\nthis.state = State.FAILE",
+        ".FAILED;\nthrow new MalformedChallengeException(\"Out of sequence NTLM response message\");\n} else if (",
+        "nal HttpContext context) throws MalformedChallenge",
+        "Context context) throws MalformedChallengeExceptio",
+        "ext context) throws MalformedChallengeException {\n",
+        "t context) throws MalformedChallengeException {\nAr",
+        "ontext) throws MalformedChallengeException {\nArgs.",
+        "s.challenge == null || this.challenge.isEmpty()) {",
+        "GE_RECEIVED;\n} else {\nthis.state = State.FAILED;\n}",
+        "hrow new MalformedChallengeException(\"Out of seque",
+        " new MalformedChallengeException(\"Out of sequence ",
+        "Exception(\"Out of sequence NTLM response message\")"
+    ]
+}

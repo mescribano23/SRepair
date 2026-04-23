@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.1781305114638448,
+    "input": "    private void rollback(List<UpdateOp> newDocuments,\n                          List<UpdateOp> changed,\n                          UpdateOp commitRoot) {\n        DocumentStore store = nodeStore.getDocumentStore();\n        for (UpdateOp op : changed) {\n            UpdateOp reverse = op.getReverseOperation();\n            store.createOrUpdate(NODES, reverse);\n        }\n        for (UpdateOp op : newDocuments) {\n            UpdateOp reverse = op.getReverseOperation();\n            NodeDocument.unsetLastRev(reverse, revision.getClusterId());\n            store.createOrUpdate(NODES, reverse);\n        }\n        UpdateOp removeCollision = new UpdateOp(commitRoot.getId(), false);\n        NodeDocument.removeCollision(removeCollision, revision);\n        store.createOrUpdate(NODES, removeCollision);\n    }",
+    "query_result": [
+        "\nfor (UpdateOp op : changed) {\nUpdateOp reverse = ",
+        " false);\nNodeDocument.removeCollision(removeCollis",
+        "ocument.removeCollision(removeCollision, revision)"
+    ]
+}

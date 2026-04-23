@@ -1,0 +1,61 @@
+diff --git a/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java b/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
+index 6e64577..27d2bb3 100644
+--- a/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
++++ b/src/main/java/org/apache/maven/plugins/gpg/GpgVersion.java
+@@ -47,47 +47,21 @@ public class GpgVersion implements Comparable<GpgVersion>
+     @Override
+     public int compareTo( GpgVersion other )
+     {
+-        Pattern p = Pattern.compile( "([.\\d]+)$" );
++        String[] thisSegments = rawVersion.replaceAll("[^\\d.]+", "").split("\\.");
++        String[] otherSegments = other.rawVersion.replaceAll("[^\\d.]+", "").split("\\.");
+ 
+-        String[] thisSegments;
+-        Matcher m = p.matcher( rawVersion );
+-        if ( m.find() )
+-        {
+-            thisSegments  = m.group( 1 ).split( "\\." );
+-        }
+-        else
+-        {
+-          throw new IllegalArgumentException( "Can't parse version of " + this.rawVersion );
+-        }
+-
+-        String[] otherSegments;
+-        m = p.matcher( other.rawVersion );
+-        if ( m.find() )
+-        {
+-            otherSegments  = m.group( 1 ).split( "\\." );
+-        }
+-        else
+-        {
+-          throw new IllegalArgumentException( "Can't parse version of " + other.rawVersion );
+-        }
+-
+-        int minSegments = Math.min( thisSegments.length, otherSegments.length );
+-
+-        for ( int index = 0; index < minSegments; index++ )
+-        {
+-            int thisValue = Integer.parseInt( thisSegments[index] );
+-
+-            int otherValue = Integer.parseInt( otherSegments[index] );
++        int minSegments = Math.min(thisSegments.length, otherSegments.length);
+ 
+-            int compareValue = Integer.compare( thisValue, otherValue );
++        for (int index = 0; index < minSegments; index++) {
++            int thisValue = Integer.parseInt(thisSegments[index]);
++            int otherValue = Integer.parseInt(otherSegments[index]);
+ 
+-            if ( compareValue != 0 )
+-            {
+-                return compareValue;
++            if (thisValue != otherValue) {
++                return thisValue - otherValue;
+             }
+         }
+ 
+-        return ( thisSegments.length - otherSegments.length );
++        return thisSegments.length - otherSegments.length;
+     }
+ 
+     /**

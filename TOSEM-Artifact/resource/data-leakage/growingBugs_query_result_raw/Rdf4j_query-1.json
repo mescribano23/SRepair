@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.2893081761006289,
+    "input": "@Override\n    public final int hashCode() {\n        int hashCode = 0;\n\n        for (Binding binding : this) {\n            hashCode ^= binding.getName().hashCode() ^ binding.getValue().hashCode();\n        }\n        return hashCode;\n    }",
+    "query_result": [
+        "@Override\npublic final int hashCode() {\nint hashCo",
+        "Override\npublic final int hashCode() {\nint hashCod",
+        "rride\npublic final int hashCode() {\nint hashCode =",
+        "ride\npublic final int hashCode() {\nint hashCode = "
+    ]
+}

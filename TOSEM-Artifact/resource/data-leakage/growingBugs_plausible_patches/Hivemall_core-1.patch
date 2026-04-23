@@ -1,0 +1,32 @@
+diff --git a/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java b/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java
+index a3e4799c..77aae18d 100644
+--- a/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java
++++ b/core/src/main/java/hivemall/ftvec/scaling/RescaleUDF.java
+@@ -97,17 +97,17 @@ public final class RescaleUDF extends UDF {
+         return val(ret);
+     }
+ 
+-    private static float min_max_normalization(final float value, final float min, final float max)
+-            throws HiveException {
+-        if (min > max) {
+-            throw new HiveException("min value `" + min + "` SHOULD be less than max value `" + max
+-                    + '`');
+-        }
+-        if (min == max) {
+-            return 0.5f;
+-        }
+-        return (value - min) / (max - min);
++private static float min_max_normalization(final float value, final float min, final float max)
++        throws HiveException {
++    if (min > max) {
++        throw new HiveException("min value `" + min + "` SHOULD be less than max value `" + max + '`');
+     }
++    if (min == max) {
++        return 0.5f;
++    }
++    float normalized = (value - min) / (max - min);
++    return Math.max(0.0f, Math.min(1.0f, normalized));
++}
+ 
+     @Nullable
+     private static Float double2Float(@Nullable final Double value) {

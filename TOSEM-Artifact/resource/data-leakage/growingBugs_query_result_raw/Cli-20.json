@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3299284984678243,
+    "input": "    protected String[] flatten(Options options, String[] arguments, boolean stopAtNonOption)\n    {\n        init();\n        this.options = options;\n\n        // an iterator for the command line tokens\n        Iterator iter = Arrays.asList(arguments).iterator();\n\n        // process each command line token\n        while (iter.hasNext())\n        {\n            // get the next command line token\n            String token = (String) iter.next();\n\n            // handle long option --foo or --foo=bar\n            if (token.startsWith(\"--\"))\n            {\n                int pos = token.indexOf('=');\n                String opt = pos == -1 ? token : token.substring(0, pos); // --foo\n\n                if (!options.hasOption(opt) && stopAtNonOption)\n                {\n                    process(token);\n                }\n                else\n                {\n                    tokens.add(opt);\n                    if (pos != -1) {\n                        tokens.add(token.substring(pos + 1));\n                    }\n                }\n            }\n\n            // single hyphen\n            else if (\"-\".equals(token))\n            {\n                tokens.add(token);\n            }\n            else if (token.startsWith(\"-\"))\n            {\n                if (token.length() == 2)\n                {\n                    processOptionToken(token, stopAtNonOption);\n                }\n                else if (options.hasOption(token))\n                {\n                    tokens.add(token);\n                }\n                // requires bursting\n                else\n                {\n                    burstToken(token, stopAtNonOption);\n                }\n            }\n            else if (stopAtNonOption)\n            {\n                process(token);\n            }\n            else\n            {\n                tokens.add(token);\n            }\n\n            gobble(iter);\n        }\n\n        return (String[]) tokens.toArray(new String[tokens.size()]);\n    }",
+    "query_result": [
+        "rotected String[] flatten(Options options, String[",
+        "ected String[] flatten(Options options, String[] a",
+        "cted String[] flatten(Options options, String[] ar",
+        "ted String[] flatten(Options options, String[] arg",
+        "[] flatten(Options options, String[] arguments, bo",
+        "(Options options, String[] arguments, boolean stop",
+        "Options options, String[] arguments, boolean stopA",
+        "tions options, String[] arguments, boolean stopAtN",
+        "ions options, String[] arguments, boolean stopAtNo",
+        "s options, String[] arguments, boolean stopAtNonOp",
+        "ptions, String[] arguments, boolean stopAtNonOptio",
+        "is.options = options;\n// an iterator for the comma",
+        " = options;\n// an iterator for the command line to",
+        "ts).iterator();\n// process each command line token",
+        "process each command line token\nwhile (iter.hasNex",
+        " opt = pos == -1 ? token : token.substring(0, pos)",
+        " = pos == -1 ? token : token.substring(0, pos); //",
+        "s == -1 ? token : token.substring(0, pos); // --fo",
+        "if (pos != -1) {\ntokens.add(token.substring(pos + ",
+        " requires bursting\nelse\n{\nburstToken(token, stopAt"
+    ]
+}

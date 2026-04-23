@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.15916398713826366,
+    "input": "    private static GregorianCalendar addFractionOfDay(GregorianCalendar day, final double fraction) {\n        GregorianCalendar dayStart = (GregorianCalendar) day.clone();\n        dayStart.set(Calendar.MINUTE, 0);\n        dayStart.set(Calendar.SECOND, 0);\n        dayStart.set(Calendar.MILLISECOND, 0);\n        dayStart.set(Calendar.HOUR_OF_DAY, 0);\n        final int offset = day.getTimeZone().getOffset(dayStart.getTimeInMillis());\n\n        dayStart.set(Calendar.HOUR_OF_DAY, 0);\n        final double offsetFraction = (double) offset / MS_PER_DAY;\n        final int addMs = (int) (MS_PER_DAY * limitTo(fraction + offsetFraction, 1.0));\n        assert addMs >= 0 && addMs <= MS_PER_DAY;\n        dayStart.setTimeInMillis(dayStart.getTimeInMillis() + addMs);\n\n        return dayStart;\n    }",
+    "query_result": [
+        ");\ndayStart.set(Calendar.MINUTE, 0);\ndayStart.set(Calendar.SECOND, 0);\ndayStart.set(Calendar.MILLISE",
+        ";\ndayStart.set(Calendar.MINUTE, 0);\ndayStart.set(C",
+        "set(Calendar.MINUTE, 0);\ndayStart.set(Calendar.SEC",
+        "et(Calendar.MINUTE, 0);\ndayStart.set(Calendar.SECO",
+        "(Calendar.MINUTE, 0);\ndayStart.set(Calendar.SECOND",
+        "lendar.MINUTE, 0);\ndayStart.set(Calendar.SECOND, 0",
+        "endar.MINUTE, 0);\ndayStart.set(Calendar.SECOND, 0)",
+        "ar.MINUTE, 0);\ndayStart.set(Calendar.SECOND, 0);\nd",
+        "E, 0);\ndayStart.set(Calendar.SECOND, 0);\ndayStart.",
+        ", 0);\ndayStart.set(Calendar.SECOND, 0);\ndayStart.s",
+        ";\ndayStart.set(Calendar.SECOND, 0);\ndayStart.set(C",
+        "\ndayStart.set(Calendar.SECOND, 0);\ndayStart.set(Ca",
+        "yStart.set(Calendar.SECOND, 0);\ndayStart.set(Calen",
+        ".set(Calendar.SECOND, 0);\ndayStart.set(Calendar.MI",
+        "set(Calendar.SECOND, 0);\ndayStart.set(Calendar.MIL",
+        "ndar.SECOND, 0);\ndayStart.set(Calendar.MILLISECOND"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9615384615384616,
+    "input": "  static Type getSupertype(Type context, Class<?> contextRawType, Class<?> supertype) {\n    if (context instanceof WildcardType) {\n      // wildcards are useless for resolving supertypes. As the upper bound has the same raw type, use it instead\n      context = ((WildcardType)context).getUpperBounds()[0];\n    }\n    checkArgument(supertype.isAssignableFrom(contextRawType));\n    return resolve(context, contextRawType,\n        $Gson$Types.getGenericSupertype(context, contextRawType, supertype));\n  }",
+    "query_result": [
+        " context, Class<?> contextRawType, Class<?> supertype) {\nif (context instanceof WildcardType) {\n// wildcards are useless for resolving supertypes. As the upper bound has the same raw type, use it instead\ncontext = ((WildcardType)context).getUpperBounds()[0];\n}\ncheckArgument(supertype.isAssignableFrom(contextRawType));\nreturn resolve(context, contextRawType,\n$Gson$Types.getGenericSupertype(context,",
+        "static Type getSupertype(Type context, Class<?> contextRawType, Class<?> supertype) {\nif (context instanceof WildcardType) {\n// wildcards are useless for resolving supertypes. As the upper bound has the same raw type, use it instead\ncontext = ((Wildc",
+        "upertype(Type context, Class<?> contextRawType, Class<?> supertype) {\nif (context instanceof WildcardType) {\n// wildcards are useless for resolving supertypes. As the upper bound has the same raw type",
+        "ass<?> contextRawType, Class<?> supertype) {\nif (context instanceof WildcardType) {\n// wildcards are useless for resolving supertypes. As the upper bound has the same raw type, use it instead\ncontext ",
+        "eckArgument(supertype.isAssignableFrom(contextRawType));\nreturn resolve(context, contextRawType,\n$Gson$Types.getGenericSupertype(context, contextRawTy",
+        "are useless for resolving supertypes. As the upper bound has the same raw type, use it instead\nconte",
+        "om(contextRawType));\nreturn resolve(context, contextRawType,\n$Gson$Types.getGenericSupertype(context",
+        "c Type getSupertype(Type context, Class<?> context",
+        "e getSupertype(Type context, Class<?> contextRawTy",
+        "Supertype(Type context, Class<?> contextRawType, C",
+        "rtype(Type context, Class<?> contextRawType, Class",
+        "type(Type context, Class<?> contextRawType, Class<",
+        "ype context, Class<?> contextRawType, Class<?> sup",
+        "pe context, Class<?> contextRawType, Class<?> supe",
+        "e context, Class<?> contextRawType, Class<?> super",
+        "context, Class<?> contextRawType, Class<?> superty",
+        "t, Class<?> contextRawType, Class<?> supertype) {\n",
+        "ckArgument(supertype.isAssignableFrom(contextRawTy",
+        "kArgument(supertype.isAssignableFrom(contextRawTyp",
+        "Argument(supertype.isAssignableFrom(contextRawType"
+    ]
+}

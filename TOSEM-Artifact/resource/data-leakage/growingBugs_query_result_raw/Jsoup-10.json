@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9224283305227656,
+    "input": "    public String absUrl(String attributeKey) {\n        Validate.notEmpty(attributeKey);\n\n        String relUrl = attr(attributeKey);\n        if (!hasAttr(attributeKey)) {\n            return \"\"; // nothing to make absolute with\n        } else {\n            URL base;\n            try {\n                try {\n                    base = new URL(baseUri);\n                } catch (MalformedURLException e) {\n                    // the base is unsuitable, but the attribute may be abs on its own, so try that\n                    URL abs = new URL(relUrl);\n                    return abs.toExternalForm();\n                }\n                // workaround: java resolves '//path/file + ?foo' to '//path/?foo', not '//path/file?foo' as desired\n                if (relUrl.startsWith(\"?\"))\n                    relUrl = base.getPath() + relUrl;\n                URL abs = new URL(base, relUrl);\n                return abs.toExternalForm();\n            } catch (MalformedURLException e) {\n                return \"\";\n            }\n        }\n    }",
+    "query_result": [
+        "idate.notEmpty(attributeKey);\nString relUrl = attr(attributeKey);\nif (!hasAttr(attributeKey)) {\nreturn \"\"; // nothing to make absolute with\n} else {\nURL base;\ntry {\ntry {\nbase = new URL(baseUri);\n} catch (MalformedURLException e) {\n// the base is unsuitable, but the attribute may be abs on its own, so try that\nURL abs = new URL(relUrl);\nreturn abs.toExternalForm();\n}\n// workaround: java resolves '//path/file + ?foo' to '//path/?foo', not '//path/",
+        " {\nbase = new URL(baseUri);\n} catch (MalformedURLException e) {\n// the base is unsuitable, but the attribute may be abs on its own, so try that\nURL abs = new URL(relUrl);\nreturn abs.toExternalForm();\n}\n// workaround: java resolves '//path/file + ?foo' to '//path/?foo', not '//path/file?foo' as desired\nif (relUrl.startsWith(\"?\"))\nrelUrl = base.getPa",
+        "around: java resolves '//path/file + ?foo' to '//path/?foo', not '//path/file?foo' as desired\nif (relUrl.startsWith(\"?\"))\nrelUrl = base.getPath() + relUrl;\nURL abs = new URL(base, relUrl);\nreturn abs.toExternalForm();\n} catch (MalformedURLException e",
+        "ry {\nbase = new URL(baseUri);\n} catch (MalformedURLException e) {\n// the base is unsuitable, but the attribute may be abs on its own, so try that\nURL ",
+        "w URL(relUrl);\nreturn abs.toExternalForm();\n}\n// workaround: java resolves '//path/file + ?foo' to '//path/?foo', not '//path/file?foo' as desired\nif ",
+        "lForm();\n}\n// workaround: java resolves '//path/file + ?foo' to '//path/?foo', not '//path/file?foo' as desired\nif (relUrl.startsWith(\"?\"))\nrelUrl = b",
+        "rkaround: java resolves '//path/file + ?foo' to '//path/?foo', not '//path/file?foo' as desired\nif (relUrl.startsWith(\"?\"))\nrelUrl = base.getPath() + ",
+        "ired\nif (relUrl.startsWith(\"?\"))\nrelUrl = base.getPath() + relUrl;\nURL abs = new URL(base, relUrl);\nreturn abs.toExternalForm();\n} catch (MalformedURL",
+        "if (relUrl.startsWith(\"?\"))\nrelUrl = base.getPath() + relUrl;\nURL abs = new URL(base, relUrl);\nreturn abs.toExternalForm();\n} catch (MalformedURLExcep",
+        "rtsWith(\"?\"))\nrelUrl = base.getPath() + relUrl;\nURL abs = new URL(base, relUrl);\nreturn abs.toExternalForm();\n} catch (MalformedURLException e) {\nretu",
+        "{\nValidate.notEmpty(attributeKey);\nString relUrl = attr(attributeKey);\nif (!hasAttr(attributeKey)) {",
+        "ase = new URL(baseUri);\n} catch (MalformedURLException e) {\n// the base is unsuitable, but the attri",
+        " new URL(baseUri);\n} catch (MalformedURLException e) {\n// the base is unsuitable, but the attribute ",
+        "RL(baseUri);\n} catch (MalformedURLException e) {\n// the base is unsuitable, but the attribute may be",
+        "lformedURLException e) {\n// the base is unsuitable, but the attribute may be abs on its own, so try ",
+        "ormedURLException e) {\n// the base is unsuitable, but the attribute may be abs on its own, so try th",
+        "ion e) {\n// the base is unsuitable, but the attribute may be abs on its own, so try that\nURL abs = n",
+        "the base is unsuitable, but the attribute may be abs on its own, so try that\nURL abs = new URL(relUr",
+        " = new URL(relUrl);\nreturn abs.toExternalForm();\n}\n// workaround: java resolves '//path/file + ?foo'",
+        "relUrl);\nreturn abs.toExternalForm();\n}\n// workaround: java resolves '//path/file + ?foo' to '//path"
+    ]
+}

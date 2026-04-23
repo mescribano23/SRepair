@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.24031007751937986,
+    "input": "  private static URI getParameterizedUri(HttpRequestBuilder builder) throws URISyntaxException {\n    List<NameValuePair> queryParams = builder.getParamList(false);\n    String queryString = URLEncodedUtils.format(queryParams, HTTP.UTF_8);\n    if (queryString != null && queryString.length() == 0) {\n      queryString = null;\n    }\n    return URIUtils.createURI(builder.getScheme(), builder.getHost(), -1, builder.getRelativePath(), queryString, null);\n  }",
+    "query_result": [
+        "ISyntaxException {\nList<NameValuePair> queryParams",
+        ");\nif (queryString != null && queryString.length()",
+        ";\nif (queryString != null && queryString.length() ",
+        "if (queryString != null && queryString.length() =="
+    ]
+}

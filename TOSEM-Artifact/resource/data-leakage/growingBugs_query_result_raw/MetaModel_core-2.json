@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9825479930191972,
+    "input": "    @Override\n    protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\n        final String className = desc.getName();\n        if (className.startsWith(\"org.eobjects.metamodel\") || className.startsWith(\"[Lorg.eobjects.metamodel\")) {\n            final String newClassName;\n            if (OLD_CLASS_NAME_COLUMN_TYPE.equals(className)) {\n                // since ColumnType was changed from enum to interface, there's\n                // some special treatment here.\n                newClassName = LegacyColumnType.class.getName();\n            } else {\n                newClassName = className.replace(\"org.eobjects\", \"org.apache\");\n            }\n            return Class.forName(newClassName);\n        }\n        return super.resolveClass(desc);\n    }",
+    "query_result": [
+        "d Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfinal String className = desc.getName();\nif (className.startsWith(\"org.eobjects.metamodel\") || className.startsWith(\"[Lorg.eobjects.metamodel\")) {\nfinal String newClassName;\nif (OLD_CLASS_NAME_COLUMN_TYPE.equals(className)) {\n// since ColumnType was changed from enum to interface, there's\n// some special treatment here.\nnewClassName = LegacyColumnType.class.getName();\n} else {\nnewClassName = className.replace(\"org.eobjects\", \"org.apache\");\n}\nreturn Class.forName(newClassName);\n}\nreturn super.resolveCla",
+        "\")) {\nfinal String newClassName;\nif (OLD_CLASS_NAME_COLUMN_TYPE.equals(className)) {\n// since ColumnType was changed from enum to interface, there's\n// some special treatment here.\nnewClassName = LegacyColumnType.class.getName();\n} else {\nnewClassName = className.replace(\"org.eobjects\", \"org.apache\");\n}\nreturn Class.forName(newClassName);\n}\nreturn ",
+        "verride\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfinal String className = desc.getName();\nif (className.startsWith(\"org.eobjects.metamodel\")",
+        "@Override\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundE",
+        "Override\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundEx",
+        "erride\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundExce",
+        "rride\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundExcep",
+        "ride\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundExcept",
+        "ide\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundExcepti",
+        "de\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundExceptio",
+        "e\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException",
+        "\nprotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException ",
+        "protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {",
+        "rotected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\n",
+        "ected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfin",
+        "cted Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfina",
+        "ted Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfinal",
+        "ed Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfinal ",
+        "Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfinal Str",
+        "lass<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\nfinal Stri"
+    ]
+}

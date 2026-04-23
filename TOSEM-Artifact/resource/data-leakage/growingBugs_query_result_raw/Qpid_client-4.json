@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.29863013698630136,
+    "input": "        @Override\n        public void onFailure(final Throwable result) {\n            if (result instanceof JMSException || closingConnection.get() || closed.get() || failed.get()) {\n                requests.remove(id);\n                super.onFailure(result);\n            } else {\n                LOG.debug(\"Request received error: {}\", result.getMessage());\n                serializer.execute(new Runnable() {\n                    @Override\n                    public void run() {\n                        handleProviderFailure(IOExceptionSupport.create(result));\n                    }\n                });\n            }\n        }",
+    "query_result": [
+        "@Override\npublic void onFailure(final Throwable re",
+        "\nserializer.execute(new Runnable() {\n@Override\npub",
+        "serializer.execute(new Runnable() {\n@Override\npubl",
+        "erializer.execute(new Runnable() {\n@Override\npubli",
+        "zer.execute(new Runnable() {\n@Override\npublic void",
+        "er.execute(new Runnable() {\n@Override\npublic void ",
+        "r.execute(new Runnable() {\n@Override\npublic void r",
+        ".execute(new Runnable() {\n@Override\npublic void ru",
+        "execute(new Runnable() {\n@Override\npublic void run",
+        "xecute(new Runnable() {\n@Override\npublic void run(",
+        "ecute(new Runnable() {\n@Override\npublic void run()",
+        "cute(new Runnable() {\n@Override\npublic void run() ",
+        "ute(new Runnable() {\n@Override\npublic void run() {",
+        "te(new Runnable() {\n@Override\npublic void run() {\n",
+        "e(new Runnable() {\n@Override\npublic void run() {\nh",
+        "(new Runnable() {\n@Override\npublic void run() {\nha",
+        "new Runnable() {\n@Override\npublic void run() {\nhan",
+        "ew Runnable() {\n@Override\npublic void run() {\nhand",
+        "w Runnable() {\n@Override\npublic void run() {\nhandl",
+        " Runnable() {\n@Override\npublic void run() {\nhandle"
+    ]
+}

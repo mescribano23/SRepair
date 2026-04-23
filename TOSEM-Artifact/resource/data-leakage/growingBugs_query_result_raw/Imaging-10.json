@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9491869918699187,
+    "input": "    @Override\n    public ImageMetadata getMetadata(final ByteSource byteSource, final Map<String, Object> params)\n            throws ImageReadException, IOException {\n        final List<PngChunk> chunks = readChunks(byteSource, new ChunkType[] { ChunkType.tEXt, ChunkType.zTXt, }, false);\n\n        if ((chunks == null) || (chunks.isEmpty())) {\n            return null;\n        }\n\n        final GenericImageMetadata result = new GenericImageMetadata();\n\n        for (final PngChunk chunk : chunks) {\n            final PngTextChunk textChunk = (PngTextChunk) chunk;\n\n            result.add(textChunk.getKeyword(), textChunk.getText());\n        }\n\n        return result;\n    }",
+    "query_result": [
+        "c ImageMetadata getMetadata(final ByteSource byteSource, final Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSource, new ChunkType[] { ChunkType.tEXt, ChunkType.zTXt, }, false);\nif ((chunks == null) || (chunks.isEmpty())) {\nreturn null;\n}\nfinal GenericImageMetadata result = new GenericImageMetadata();\nfor (final PngChunk chunk : chunks) {\nfinal PngTextChunk textChunk = (PngTextChunk) chunk;\nresult.add(textChunk.getKeyword(), tex",
+        "tMetadata(final ByteSource byteSource, final Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSource, new ChunkType[] { ChunkType.tEXt, ChunkType.zTXt, }, false);\nif ((chunks == null) || (chunks.isEmpty())) {\nreturn null;\n}\nfinal GenericImageMetadata result = new GenericImageMetadata();\nfor (final PngChunk chunk : chunks) {\nfinal PngTextChunk textChunk = (PngTextChunk) chunk;\nresult.add(textChunk.getKeyword(), textChunk.getText());",
+        "al ByteSource byteSource, final Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSour",
+        "Source byteSource, final Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSource, new",
+        "urce byteSource, final Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSource, new C",
+        " byteSource, final Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSource, new Chunk",
+        "inal Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSource, new ChunkType[] { Chunk",
+        "Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = readChunks(byteSource, new ChunkType[] { ChunkType.",
+        "inal ByteSource byteSource, final Map<String, Object> params)\nthrows ImageReadException, IOException",
+        " Map<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = ",
+        "<String, Object> params)\nthrows ImageReadException, IOException {\nfinal List<PngChunk> chunks = read",
+        "ublic ImageMetadata getMetadata(final ByteSource b",
+        "lic ImageMetadata getMetadata(final ByteSource byt",
+        " ImageMetadata getMetadata(final ByteSource byteSo",
+        "Source, final Map<String, Object> params)\nthrows I",
+        "l Map<String, Object> params)\nthrows ImageReadExce",
+        "ring, Object> params)\nthrows ImageReadException, I",
+        "ing, Object> params)\nthrows ImageReadException, IO",
+        "bject> params)\nthrows ImageReadException, IOExcept",
+        "dException, IOException {\nfinal List<PngChunk> chu"
+    ]
+}

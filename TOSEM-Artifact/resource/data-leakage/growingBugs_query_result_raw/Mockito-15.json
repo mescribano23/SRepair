@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.32771535580524347,
+    "input": "    public OngoingInjecter filterCandidate(final Collection<Object> mocks, final Field field, final Object fieldInstance) {\n        if(mocks.size() == 1) {\n            final Object matchingMock = mocks.iterator().next();\n\n            return new OngoingInjecter() {\n                public boolean thenInject() {\n                    try {\n                        if (!new BeanPropertySetter(fieldInstance, field).set(matchingMock)) {\n                            new FieldSetter(fieldInstance, field).set(matchingMock);\n                        }\n                    } catch (Exception e) {\n                        throw new MockitoException(\"Problems injecting dependency in \" + field.getName(), e);\n                    }\n                    return true;\n                }\n            };\n        }\n\n        return new OngoingInjecter() {\n            public boolean thenInject() {\n                return false;\n            }\n        };\n\n    }",
+    "query_result": [
+        "ks.size() == 1) {\nfinal Object matchingMock = mock",
+        "ew BeanPropertySetter(fieldInstance, field).set(ma",
+        "PropertySetter(fieldInstance, field).set(matchingM",
+        "(Exception e) {\nthrow new MockitoException(\"Proble",
+        "Exception e) {\nthrow new MockitoException(\"Problem",
+        "xception e) {\nthrow new MockitoException(\"Problems",
+        "row new MockitoException(\"Problems injecting depen",
+        "w new MockitoException(\"Problems injecting depende",
+        "oException(\"Problems injecting dependency in \" + f",
+        "ion(\"Problems injecting dependency in \" + field.ge"
+    ]
+}

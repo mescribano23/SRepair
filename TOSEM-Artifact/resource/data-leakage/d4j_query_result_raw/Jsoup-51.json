@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.9230769230769231,
+    "input": "boolean matchesLetter() {\n    if (isEmpty())\n        return false;\n    char c = input[pos];\n    return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || Character.isLetter(c);\n}",
+    "query_result": [
+        "olean matchesLetter() {\nif (isEmpty())\nreturn false;\nchar c = input[pos];\nreturn (c >= 'A' && c <= '",
+        "y())\nreturn false;\nchar c = input[pos];\nreturn (c ",
+        " = input[pos];\nreturn (c >= 'A' && c <= 'Z') || (c",
+        ";\nreturn (c >= 'A' && c <= 'Z') || (c >= 'a' && c ",
+        "\nreturn (c >= 'A' && c <= 'Z') || (c >= 'a' && c <",
+        "return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <=",
+        "eturn (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= ",
+        "turn (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= '",
+        "urn (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z",
+        "rn (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'",
+        "n (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')",
+        " (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ",
+        "(c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') |",
+        "c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ||",
+        " >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || ",
+        " 'Z') || (c >= 'a' && c <= 'z') || Character.isLet"
+    ]
+}

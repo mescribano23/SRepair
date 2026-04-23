@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.738831615120275,
+    "input": "    static boolean preserveWhitespace(Node node) {\n        // looks only at this element and five levels up, to prevent recursion & needless stack searches\n        if (node != null && node instanceof Element) {\n            Element el = (Element) node;\n            int i = 0;\n            do {\n                if (el.tag.preserveWhitespace())\n                    return true;\n                el = el.parent();\n                i++;\n            } while (i < 6 && el != null);\n        }\n        return false;\n    }",
+    "query_result": [
+        "on & needless stack searches\nif (node != null && node instanceof Element) {\nElement el = (Element) n",
+        "veWhitespace(Node node) {\n// looks only at this el",
+        "espace(Node node) {\n// looks only at this element ",
+        "y at this element and five levels up, to prevent r",
+        " levels up, to prevent recursion & needless stack ",
+        "nt recursion & needless stack searches\nif (node !=",
+        "dless stack searches\nif (node != null && node inst",
+        "stack searches\nif (node != null && node instanceof",
+        "hes\nif (node != null && node instanceof Element) {",
+        "\nif (node != null && node instanceof Element) {\nEl",
+        " node instanceof Element) {\nElement el = (Element)",
+        "de instanceof Element) {\nElement el = (Element) no",
+        "e instanceof Element) {\nElement el = (Element) nod",
+        "instanceof Element) {\nElement el = (Element) node;",
+        "nstanceof Element) {\nElement el = (Element) node;\n",
+        "stanceof Element) {\nElement el = (Element) node;\ni",
+        "tanceof Element) {\nElement el = (Element) node;\nin",
+        " {\nElement el = (Element) node;\nint i = 0;\ndo {\nif",
+        " el.parent();\ni++;\n} while (i < 6 && el != null);\n"
+    ]
+}

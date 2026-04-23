@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9226519337016574,
+    "input": "protected CompilerOptions createOptions() {\n  CompilerOptions options = new CompilerOptions();\n  if (flags.processJqueryPrimitives) {\n    options.setCodingConvention(new JqueryCodingConvention());\n  } else {\n    options.setCodingConvention(new ClosureCodingConvention());\n  }\n\n  options.setExtraAnnotationNames(flags.extraAnnotationName);\n\n  CompilationLevel level = flags.compilationLevel;\n  level.setOptionsForCompilationLevel(options);\n\n  if (flags.debug) {\n    level.setDebugOptionsForCompilationLevel(options);\n  }\n\n  if (flags.useTypesForOptimization) {\n    level.setTypeBasedOptimizationOptions(options);\n  }\n\n  if (flags.generateExports) {\n    options.setGenerateExports(flags.generateExports);\n  }\n\n  WarningLevel wLevel = flags.warningLevel;\n  wLevel.setOptionsForWarningLevel(options);\n  for (FormattingOption formattingOption : flags.formatting) {\n    formattingOption.applyToOptions(options);\n  }\n\n  options.closurePass = flags.processClosurePrimitives;\n\n  options.jqueryPass = CompilationLevel.ADVANCED_OPTIMIZATIONS == level &&\n      flags.processJqueryPrimitives;\n\n  options.angularPass = flags.angularPass;\n\n  if (!flags.translationsFile.isEmpty()) {\n    try {\n      options.messageBundle = new XtbMessageBundle(\n          new FileInputStream(flags.translationsFile),\n          flags.translationsProject);\n    } catch (IOException e) {\n      throw new RuntimeException(\"Reading XTB file\", e);\n    }\n  } else if (CompilationLevel.ADVANCED_OPTIMIZATIONS == level) {\n    // In SIMPLE or",
+    "query_result": [
+        "(options);\nif (flags.debug) {\nlevel.setDebugOptionsForCompilationLevel(options);\n}\nif (flags.useTypesForOptimization) {\nlevel.setTypeBasedOptimizationOptions(options);\n}\nif (flags.generateExports) {\noptions.setGenerateExports(flags.generateExports);\n}\nWarningLevel wLevel = flags.warningLevel;\nwLevel.setOptionsForWarningLevel(options);\nfor (FormattingOption formattingOption : flags.formatting) {\nformattingOption.applyToOptions(options);\n}\noptions.closurePass = flags.processClosurePrimitives;\noptions.jqueryPass = CompilationLevel.ADVANCED_OPTIMIZATIONS == level &&\nflags.processJqueryPrimitives;\n",
+        ";\nif (!flags.translationsFile.isEmpty()) {\ntry {\noptions.messageBundle = new XtbMessageBundle(\nnew FileInputStream(flags.translationsFile),\nflags.translationsProject);\n} catch (IOException e) {\nthrow new RuntimeException(\"Reading XTB file\", e);\n}\n} else if (CompilationLevel.ADVANCED_OPTIMIZATIONS ==",
+        "tected CompilerOptions createOptions() {\nCompilerOptions options = new CompilerOptions();\nif (flags.processJqueryPrimitives) {\noptions.setCodingConvention(new JqueryCodingConvention());\n} else {\noptions.setCodingConvention(new ClosureCodingConvention",
+        "e.isEmpty()) {\ntry {\noptions.messageBundle = new XtbMessageBundle(\nnew FileInputStream(flags.translationsFile),\nflags.translationsProject);\n} catch (IOException e) {\nthrow new RuntimeException(\"Reading XTB file\", e);\n}\n} else if (CompilationLevel.ADV",
+        "ationsFile.isEmpty()) {\ntry {\noptions.messageBundle = new XtbMessageBundle(\nnew FileInputStream(flags.translationsFile),\nflags.translationsProject);\n} catch (IOException e) {\nthrow new RuntimeExceptio",
+        "ject);\n} catch (IOException e) {\nthrow new RuntimeException(\"Reading XTB file\", e);\n}\n} else if (CompilationLevel.ADVANCED_OPTIMIZATIONS == level) {\n/",
+        "options.setExtraAnnotationNames(flags.extraAnnotationName);\nCompilationLevel level = flags.compilati",
+        "vel.setOptionsForWarningLevel(options);\nfor (FormattingOption formattingOption : flags.formatting) {",
+        "otected CompilerOptions createOptions() {\nCompiler",
+        "ected CompilerOptions createOptions() {\nCompilerOp",
+        "CompilerOptions createOptions() {\nCompilerOptions ",
+        "Options createOptions() {\nCompilerOptions options ",
+        "tions createOptions() {\nCompilerOptions options = ",
+        "eateOptions() {\nCompilerOptions options = new Comp",
+        "ateOptions() {\nCompilerOptions options = new Compi",
+        "teOptions() {\nCompilerOptions options = new Compil",
+        "Options() {\nCompilerOptions options = new Compiler",
+        "tions() {\nCompilerOptions options = new CompilerOp",
+        "ons() {\nCompilerOptions options = new CompilerOpti",
+        "ns() {\nCompilerOptions options = new CompilerOptio"
+    ]
+}

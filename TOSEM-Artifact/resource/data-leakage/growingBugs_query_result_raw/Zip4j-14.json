@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.251063829787234,
+    "input": "public ZipFile(File zipFile, char[] password) {\n    if (zipFile == null) {\n      throw new IllegalArgumentException(\"input zip file parameter is null\");\n    }\n\n    this.zipFile = zipFile;\n    this.password = password;\n    this.runInThread = false;\n    this.progressMonitor = new ProgressMonitor();\n  }",
+    "query_result": [
+        ") {\nif (zipFile == null) {\nthrow new IllegalArgume",
+        "\nif (zipFile == null) {\nthrow new IllegalArgumentE",
+        "(zipFile == null) {\nthrow new IllegalArgumentExcep",
+        "pFile == null) {\nthrow new IllegalArgumentExceptio",
+        "File == null) {\nthrow new IllegalArgumentException",
+        "ile == null) {\nthrow new IllegalArgumentException(",
+        "le == null) {\nthrow new IllegalArgumentException(\"",
+        "e == null) {\nthrow new IllegalArgumentException(\"i",
+        " == null) {\nthrow new IllegalArgumentException(\"in",
+        "== null) {\nthrow new IllegalArgumentException(\"inp",
+        "= null) {\nthrow new IllegalArgumentException(\"inpu",
+        " null) {\nthrow new IllegalArgumentException(\"input",
+        "null) {\nthrow new IllegalArgumentException(\"input "
+    ]
+}

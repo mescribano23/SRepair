@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.9408983451536643,
+    "input": "    public static boolean containsWord(String word, String body) {\n        // $ is quite a common character for a drools binding but it's not considered a word for the regexp engine\n        // By converting to a character is easier to write the regexp\n        final String wordWithDollarReplaced = word.replace(\"$\", \"\u72ac\");\n        final String bodyWithDollarReplaced = body.replace(\"$\", \"\u72ac\");\n\n        Pattern p = Pattern.compile(\"\\\\b\" + wordWithDollarReplaced + \"\\\\b\");\n        Matcher m = p.matcher(bodyWithDollarReplaced);\n        return m.find();\n    }",
+    "query_result": [
+        "oolean containsWord(String word, String body) {\n// $ is quite a common character for a drools binding but it's not considered a word for the regexp engine\n// By converting to a character is easier to write the regexp\nfinal String wordWithDollarReplaced = word.replace(\"$\", \"\u72ac\");\nfinal String bodyWithDollarReplaced = body.replace(\"$\", \"\u72ac\");\nPattern p = Pattern.compile(\"\\\\b\" + wordWithDollarReplaced + \"\\\\b\");\nMatcher m = p.matcher(bodyWithDollarRepl",
+        "lic static boolean containsWord(String word, Strin"
+    ]
+}

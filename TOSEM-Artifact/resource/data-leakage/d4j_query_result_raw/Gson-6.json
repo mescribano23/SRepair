@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7155067155067155,
+    "input": "static TypeAdapter<?> getTypeAdapter(ConstructorConstructor constructorConstructor, Gson gson,\n    TypeToken<?> fieldType, JsonAdapter annotation) {\n  Class<?> value = annotation.value();\n  TypeAdapter<?> typeAdapter;\n  if (TypeAdapter.class.isAssignableFrom(value)) {\n    Class<TypeAdapter<?>> typeAdapterClass = (Class<TypeAdapter<?>>) value;\n    typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterClass)).construct();\n  } else if (TypeAdapterFactory.class.isAssignableFrom(value)) {\n    Class<TypeAdapterFactory> typeAdapterFactory = (Class<TypeAdapterFactory>) value;\n    typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterFactory))\n        .construct()\n        .create(gson, fieldType);\n  } else {\n    throw new IllegalArgumentException(\n        \"@JsonAdapter value must be TypeAdapter or TypeAdapterFactory reference.\");\n  }\n  if (typeAdapter != null) {\n    typeAdapter = typeAdapter.nullSafe();\n  }\n  return typeAdapter;\n}",
+    "query_result": [
+        "dapter<?> getTypeAdapter(ConstructorConstructor constructorConstructor, Gson gson,\nTypeToken<?> fieldType, JsonAdapter annotation) {\nClass<?> value = ",
+        "r.class.isAssignableFrom(value)) {\nClass<TypeAdapter<?>> typeAdapterClass = (Class<TypeAdapter<?>>) value;\ntypeAdapter = constructorConstructor.get(Ty",
+        "ass.isAssignableFrom(value)) {\nClass<TypeAdapterFactory> typeAdapterFactory = (Class<TypeAdapterFact",
+        ", fieldType);\n} else {\nthrow new IllegalArgumentException(\n\"@JsonAdapter value must be TypeAdapter o",
+        "e);\n} else {\nthrow new IllegalArgumentException(\n\"@JsonAdapter value must be TypeAdapter or TypeAdap",
+        "else {\nthrow new IllegalArgumentException(\n\"@JsonAdapter value must be TypeAdapter or TypeAdapterFac",
+        "ew IllegalArgumentException(\n\"@JsonAdapter value must be TypeAdapter or TypeAdapterFactory reference",
+        "Adapter<?> getTypeAdapter(ConstructorConstructor c",
+        "apter(ConstructorConstructor constructorConstructo",
+        "er(ConstructorConstructor constructorConstructor, ",
+        "tructorConstructor constructorConstructor, Gson gs",
+        "torConstructor constructorConstructor, Gson gson,\n",
+        "tor constructorConstructor, Gson gson,\nTypeToken<?",
+        "ass.isAssignableFrom(value)) {\nClass<TypeAdapter<?",
+        "ory> typeAdapterFactory = (Class<TypeAdapterFactor",
+        "value;\ntypeAdapter = constructorConstructor.get(Ty",
+        "eToken.get(typeAdapterFactory))\n.construct()\n.crea",
+        "Type);\n} else {\nthrow new IllegalArgumentException",
+        "ype);\n} else {\nthrow new IllegalArgumentException(",
+        "pe);\n} else {\nthrow new IllegalArgumentException(\n"
+    ]
+}

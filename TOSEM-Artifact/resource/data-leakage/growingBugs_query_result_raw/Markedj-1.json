@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.9778325123152709,
+    "input": "    public String parse(Stack<Token> src, Map<String, Lexer.Link> links){\n        Map<String, Rule> rules;\n        if(options.isGfm()){\n            if(options.isBreaks()){\n                rules = Grammer.INLINE_BREAKS_RULES;\n            } else {\n                rules = Grammer.INLINE_GFM_RULES;\n            }\n        } else {\n            rules = Grammer.INLINE_RULES;\n        }\n\n        ParserContext context = new ParserContext(src, links, rules);\n        StringBuilder out = new StringBuilder();\n\n        while(context.nextToken() != null){\n            out.append(tok(context));\n        }\n\n        return out.toString();\n    }",
+    "query_result": [
+        ", Map<String, Lexer.Link> links){\nMap<String, Rule> rules;\nif(options.isGfm()){\nif(options.isBreaks()){\nrules = Grammer.INLINE_BREAKS_RULES;\n} else {\nrules = Grammer.INLINE_GFM_RULES;\n}\n} else {\nrules = Grammer.INLINE_RULES;\n}\nParserContext context = new ParserContext(src, links, rules);\nStringBuilder out = new StringBuilder();\nwhile(context.nextToken() != null){\nout.append(tok(context));\n}\nreturn",
+        "ing, Lexer.Link> links){\nMap<String, Rule> rules;\nif(options.isGfm()){\nif(options.isBreaks()){\nrules = Grammer.INLINE_BREAKS_RULES;\n} else {\nrules = Grammer.INLINE_GFM_RULES;\n}\n} else {\nrules = Grammer.INLINE_RULES;\n}\nParserContext context = new ParserContext(src, links, rules);\nStringBuilder out = new StringBuilder();\nwhile(context.nextToken() != null){\nout.append(tok(context));\n}\nreturn out.toSt",
+        "s = Grammer.INLINE_RULES;\n}\nParserContext context = new ParserContext(src, links, rules);\nStringBuilder out = new StringBuilder();\nwhile(context.nextToken() != null){\nout.append(tok(context));\n}\nretur",
+        "ublic String parse(Stack<Token> src, Map<String, Lexer.Link> links){\nMap<String, Rule> rules;\nif(opt",
+        " String parse(Stack<Token> src, Map<String, Lexer.Link> links){\nMap<String, Rule> rules;\nif(options.",
+        " parse(Stack<Token> src, Map<String, Lexer.Link> links){\nMap<String, Rule> rules;\nif(options.isGfm()",
+        "(src, links, rules);\nStringBuilder out = new Strin"
+    ]
+}

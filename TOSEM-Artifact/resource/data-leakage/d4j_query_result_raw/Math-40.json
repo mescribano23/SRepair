@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5565476190476191,
+    "input": "protected double doSolve() {\n\n    // prepare arrays with the first points\n    final double[] x = new double[maximalOrder + 1];\n    final double[] y = new double[maximalOrder + 1];\n    x[0] = getMin();\n    x[1] = getStartValue();\n    x[2] = getMax();\n    verifySequence(x[0], x[1], x[2]);\n\n    // evaluate initial guess\n    y[1] = computeObjectiveValue(x[1]);\n    if (Precision.equals(y[1], 0.0, 1)) {\n        // return the initial guess if it is a perfect root.\n        return x[1];\n    }\n\n    // evaluate first  endpoint\n    y[0] = computeObjectiveValue(x[0]);\n    if (Precision.equals(y[0], 0.0, 1)) {\n        // return the first endpoint if it is a perfect root.\n        return x[0];\n    }\n\n    int nbPoints;\n    int signChangeIndex;\n    if (y[0] * y[1] < 0) {\n\n        // reduce interval if it brackets the root\n        nbPoints        = 2;\n        signChangeIndex = 1;\n\n    } else {\n\n        // evaluate second endpoint\n        y[2] = computeObjectiveValue(x[2]);\n        if (Precision.equals(y[2], 0.0, 1)) {\n            // return the second endpoint if it is a perfect root.\n            return x[2];\n        }\n\n        if (y[1] * y[2] < 0) {\n            // use all computed point as a start sampling array for solving\n            nbPoints        = 3;\n            signChangeIndex = 2;\n        } else {\n            throw new NoBracketingException(x[0], x[2], y[0], y[2]);\n        }\n\n    }\n\n    // prepare a work array for inverse polynomial interpolation\n    final double[] tmpX = new double[x.l",
+    "query_result": [
+        "rn the first endpoint if it is a perfect root.\nreturn x[0];\n}\nint nbPoints;\nint signChangeIndex;\nif ",
+        "terval if it brackets the root\nnbPoints = 2;\nsignChangeIndex = 1;\n} else {\n// evaluate second endpoi",
+        "ling array for solving\nnbPoints = 3;\nsignChangeIndex = 2;\n} else {\nthrow new NoBracketingException(x",
+        "] = getMin();\nx[1] = getStartValue();\nx[2] = getMa",
+        ";\nx[2] = getMax();\nverifySequence(x[0], x[1], x[2]",
+        "Sequence(x[0], x[1], x[2]);\n// evaluate initial gu",
+        "uteObjectiveValue(x[1]);\nif (Precision.equals(y[1]",
+        " {\n// return the initial guess if it is a perfect ",
+        "he initial guess if it is a perfect root.\nreturn x",
+        "al guess if it is a perfect root.\nreturn x[1];\n}\n/",
+        "uess if it is a perfect root.\nreturn x[1];\n}\n// ev",
+        "t is a perfect root.\nreturn x[0];\n}\nint nbPoints;\n",
+        "rfect root.\nreturn x[0];\n}\nint nbPoints;\nint signC",
+        " root.\nreturn x[0];\n}\nint nbPoints;\nint signChange",
+        "val if it brackets the root\nnbPoints = 2;\nsignChan",
+        "f it brackets the root\nnbPoints = 2;\nsignChangeInd",
+        "uteObjectiveValue(x[2]);\nif (Precision.equals(y[2]",
+        " return the second endpoint if it is a perfect roo",
+        "int if it is a perfect root.\nreturn x[2];\n}\nif (y[",
+        "t if it is a perfect root.\nreturn x[2];\n}\nif (y[1]"
+    ]
+}

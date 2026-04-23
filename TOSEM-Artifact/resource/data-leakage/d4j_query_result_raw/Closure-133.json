@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.9105691056910569,
+    "input": "private String getRemainingJSDocLine() {\n  String result = stream.getRemainingJSDocLine();\n  unreadToken = NO_UNREAD_TOKEN;\n  return result;\n}",
+    "query_result": [
+        "ingJSDocLine() {\nString result = stream.getRemainingJSDocLine();\nunreadToken = NO_UNREAD_TOKEN;\nretu",
+        "rivate String getRemainingJSDocLine() {\nString res",
+        "te String getRemainingJSDocLine() {\nString result ",
+        "mainingJSDocLine() {\nString result = stream.getRem",
+        "ningJSDocLine() {\nString result = stream.getRemain"
+    ]
+}

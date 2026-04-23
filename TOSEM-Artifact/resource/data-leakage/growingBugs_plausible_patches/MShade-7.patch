@@ -1,0 +1,69 @@
+diff --git a/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java b/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
+index bfbf504..4f74791 100644
+--- a/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
++++ b/src/main/java/org/apache/maven/plugins/shade/relocation/SimpleRelocator.java
+@@ -55,39 +55,36 @@ public class SimpleRelocator
+         this( patt, shadedPattern, includes, excludes, false );
+     }
+ 
+-    public SimpleRelocator( String patt, String shadedPattern, List includes, List excludes, boolean rawString )
+-    {
+-        this.rawString = rawString;
++public SimpleRelocator(String patt, String shadedPattern, List includes, List excludes, boolean rawString) {
++    this.rawString = rawString;
+ 
+-        if ( rawString )
+-        {
+-            this.pathPattern = patt;
+-            this.shadedPathPattern = shadedPattern;
++    // Add a null check for patt and assign a default value if null
++    if (patt == null) {
++        patt = "";
++    }
+ 
+-            this.pattern = null; // not used for raw string relocator
+-            this.shadedPattern = null; // not used for raw string relocator
++    if (rawString) {
++        this.pathPattern = patt;
++        this.shadedPathPattern = shadedPattern;
++        this.pattern = null; // not used for raw string relocator
++        this.shadedPattern = null; // not used for raw string relocator
++    } else {
++        this.pattern = patt.replace('/', '.');
++        this.pathPattern = patt.replace('.', '/');
++
++        if (shadedPattern != null) {
++            this.shadedPattern = shadedPattern.replace('/', '.');
++            this.shadedPathPattern = shadedPattern.replace('.', '/');
++        } else {
++            this.shadedPattern = "hidden." + this.pattern;
++            this.shadedPathPattern = "hidden/" + this.pathPattern;
+         }
+-        else
+-        {
+-                this.pattern = patt.replace( '/', '.' );
+-                this.pathPattern = patt.replace( '.', '/' );
+-
+-            if ( shadedPattern != null )
+-            {
+-                this.shadedPattern = shadedPattern.replace( '/', '.' );
+-                this.shadedPathPattern = shadedPattern.replace( '.', '/' );
+-            }
+-            else
+-            {
+-                this.shadedPattern = "hidden." + this.pattern;
+-                this.shadedPathPattern = "hidden/" + this.pathPattern;
+-            }
+-        }
+-
+-        this.includes = normalizePatterns( includes );
+-        this.excludes = normalizePatterns( excludes );
+     }
+ 
++    this.includes = normalizePatterns(includes);
++    this.excludes = normalizePatterns(excludes);
++}
++
+     private static Set normalizePatterns( Collection patterns )
+     {
+         Set normalized = null;

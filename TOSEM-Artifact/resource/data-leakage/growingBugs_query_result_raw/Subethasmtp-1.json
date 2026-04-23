@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.9878640776699029,
+    "input": "    public static String extractEmailAddress(String args, int offset) {\n        String address = args.substring(offset).trim();\n        if (address.indexOf('<') == 0) {\n            address = address.substring(1, address.lastIndexOf('>'));\n            // spaces within the <> are also possible, Postfix apparently\n            // trims these away:\n            return address.trim();\n        }\n        // find space (e.g. SIZE argument)\n        int nextarg = address.indexOf(\" \");\n        if (nextarg > -1) {\n            address = address.substring(0, nextarg).trim();\n        }\n        return address;\n    }",
+    "query_result": [
+        "ing extractEmailAddress(String args, int offset) {\nString address = args.substring(offset).trim();\nif (address.indexOf('<') == 0) {\naddress = address.substring(1, address.lastIndexOf('>'));\n// spaces within the <> are also possible, Postfix apparently\n// trims these away:\nreturn address.trim();\n}\n// find space (e.g. SIZE argument)\nint nextarg = address.indexOf(\" \");\nif (nextarg > -1) {\naddress = address.substring(0, nextarg).trim();\n}\nreturn addr",
+        "e also possible, Postfix apparently\n// trims these away:\nreturn address.trim();\n}\n// find space (e.g. SIZE argument)\nint nextarg = address.indexOf(\" \");\nif (nextarg > -1) {\naddress = address.substring",
+        "mailAddress(String args, int offset) {\nString address = args.substring(offset).trim();\nif (address.indexOf('<') == 0) {\naddress = address.substring(1,",
+        "dress(String args, int offset) {\nString address = args.substring(offset).trim();\nif (address.indexOf",
+        "1, address.lastIndexOf('>'));\n// spaces within the <> are also possible, Postfix apparently\n// trims",
+        "public static String extractEmailAddress(String ar",
+        "thin the <> are also possible, Postfix apparently\n"
+    ]
+}

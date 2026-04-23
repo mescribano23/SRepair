@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.677860696517413,
+    "input": "private static PeriodFormatter toFormatter(List<Object> elementPairs, boolean notPrinter, boolean notParser) {\n    if (notPrinter && notParser) {\n        throw new IllegalStateException(\"Builder has created neither a printer nor a parser\");\n    }\n    int size = elementPairs.size();\n    if (size >= 2 && elementPairs.get(0) instanceof Separator) {\n        Separator sep = (Separator) elementPairs.get(0);\n        if (sep.iAfterParser == null && sep.iAfterPrinter == null) {\n            PeriodFormatter f = toFormatter(elementPairs.subList(2, size), notPrinter, notParser);\n            sep = sep.finish(f.getPrinter(), f.getParser());\n            return new PeriodFormatter(sep, sep);\n        }\n    }\n    Object[] comp = createComposite(elementPairs);\n    if (notPrinter) {\n        return new PeriodFormatter(null, (PeriodParser) comp[1]);\n    } else if (notParser) {\n        return new PeriodFormatter((PeriodPrinter) comp[0], null);\n    } else {\n        return new PeriodFormatter((PeriodPrinter) comp[0], (PeriodParser) comp[1]);\n    }\n}",
+    "query_result": [
+        "lementPairs, boolean notPrinter, boolean notParser) {\nif (notPrinter && notParser) {\nthrow new IllegalStateException(\"Builder has created neither a printer nor a parser\");\n}\nint size = elementPairs.size();\nif (size >= 2 && elementPairs.get(0) instanceof Separator) {\nSeparator sep = (Separator) eleme",
+        "rinter && notParser) {\nthrow new IllegalStateException(\"Builder has created neither a printer nor a ",
+        ") {\nthrow new IllegalStateException(\"Builder has created neither a printer nor a parser\");\n}\nint siz",
+        " >= 2 && elementPairs.get(0) instanceof Separator) {\nSeparator sep = (Separator) elementPairs.get(0)",
+        "rmatter f = toFormatter(elementPairs.subList(2, size), notPrinter, notParser);\nsep = sep.finish(f.ge",
+        "ementPairs.subList(2, size), notPrinter, notParser);\nsep = sep.finish(f.getPrinter(), f.getParser())",
+        "Formatter(List<Object> elementPairs, boolean notPr",
+        "egalStateException(\"Builder has created neither a ",
+        "Exception(\"Builder has created neither a printer n",
+        "xception(\"Builder has created neither a printer no",
+        "(\"Builder has created neither a printer nor a pars",
+        "\"Builder has created neither a printer nor a parse",
+        "r has created neither a printer nor a parser\");\n}\n",
+        "as created neither a printer nor a parser\");\n}\nint",
+        ".iAfterParser == null && sep.iAfterPrinter == null",
+        "PeriodFormatter f = toFormatter(elementPairs.subLi",
+        "odFormatter f = toFormatter(elementPairs.subList(2",
+        "lementPairs.subList(2, size), notPrinter, notParse",
+        "tParser());\nreturn new PeriodFormatter(sep, sep);\n",
+        " comp = createComposite(elementPairs);\nif (notPrin"
+    ]
+}

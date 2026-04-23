@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
+index befee541..fd3582b7 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
+@@ -236,8 +236,11 @@ public class ZipArchiveInputStream extends ArchiveInputStream {
+             } catch (DataFormatException e) {
+                 throw new ZipException(e.getMessage());
+             }
+-            if (read == 0 && inf.finished()) {
+-                return -1;
++            if (read == 0) {
++                if (inf.finished()) {
++                    return -1;
++                }
++                throw new ZipException("Truncated ZIP file");
+             }
+             crc.update(buffer, start, read);
+             return read;

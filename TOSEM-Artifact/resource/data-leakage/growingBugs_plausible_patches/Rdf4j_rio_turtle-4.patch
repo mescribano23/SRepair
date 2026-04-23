@@ -1,0 +1,38 @@
+diff --git a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+index ed989c7813..7787c2e964 100644
+--- a/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
++++ b/core/rio/turtle/src/main/java/org/eclipse/rdf4j/rio/turtle/TurtleParser.java
+@@ -1253,17 +1253,22 @@ public class TurtleParser extends AbstractRDFParser {
+ 	 * @param string the string to un-read.
+ 	 * @throws IOException
+ 	 */
+-	protected void unread(String string) throws IOException {
+-		for (int i = string.codePointCount(0, string.length()); i >= 1; i--) {
+-			final int codePoint = string.codePointBefore(i);
+-			if (Character.isSupplementaryCodePoint(codePoint)) {
+-				final char[] surrogatePair = Character.toChars(codePoint);
+-				reader.unread(surrogatePair);
+-			} else {
+-				reader.unread(codePoint);
+-			}
+-		}
+-	}
++protected void unread(String string) throws IOException {
++    for (int i = string.length(); i > 0; ) {
++        final int codePoint = string.codePointBefore(i);
++        if (Character.isSupplementaryCodePoint(codePoint)) {
++            i -= 2;  // Skip two units for a supplementary character
++        } else {
++            i--;  // Skip one unit for a BMP character
++        }
++        if (Character.isSupplementaryCodePoint(codePoint)) {
++            final char[] surrogatePair = Character.toChars(codePoint);
++            reader.unread(surrogatePair);
++        } else {
++            reader.unread(codePoint);
++        }
++    }
++}
+ 
+ 	/**
+ 	 * Peeks at the next Unicode code point without advancing the reader, and returns its value.

@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/Range.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/Range.java
+index 19ed201916..f317b94831 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/Range.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/Range.java
+@@ -52,6 +52,9 @@ final class Range {
+      * otherwise.
+      */
+     boolean includes(Revision r) {
++        if (r.getClusterId() != low.getClusterId() || r.getClusterId() != high.getClusterId()) {
++            return false;
++        }
+         return high.compareRevisionTime(r) >= 0
+                 && low.compareRevisionTime(r) <= 0;
+     }

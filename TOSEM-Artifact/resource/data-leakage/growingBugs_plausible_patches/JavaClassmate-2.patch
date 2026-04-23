@@ -1,0 +1,37 @@
+diff --git a/src/main/java/com/fasterxml/classmate/TypeResolver.java b/src/main/java/com/fasterxml/classmate/TypeResolver.java
+index 9a5a774..809939b 100644
+--- a/src/main/java/com/fasterxml/classmate/TypeResolver.java
++++ b/src/main/java/com/fasterxml/classmate/TypeResolver.java
+@@ -399,24 +399,27 @@ public class TypeResolver implements Serializable
+ 
+     private ResolvedType _constructType(ClassStack context, Class<?> rawType, TypeBindings typeBindings)
+     {
+-        // Ok: no easy shortcut, let's figure out type of type...
+         if (rawType.isArray()) {
+             ResolvedType elementType = _fromAny(context, rawType.getComponentType(), typeBindings);
+             return new ResolvedArrayType(rawType, typeBindings, elementType);
+         }
+-        // Work-around/fix for [#33]: if the type has no type parameters, don't include
+-        // typeBindings in the ResolvedType
+-        // For other types super interfaces are needed...
++        
++        if (rawType.isInterface() && (rawType.equals(Cloneable.class) || rawType.equals(Serializable.class))) {
++            return new ResolvedInterfaceType(rawType, null,
++                    _resolveSuperInterfaces(context, rawType, typeBindings));
++        }
++        
+         if (rawType.isInterface()) {
+             return new ResolvedInterfaceType(rawType, typeBindings,
+                     _resolveSuperInterfaces(context, rawType, typeBindings));
+-            
+         }
++        
+         if (rawType.getTypeParameters().length == 0) {
+             return new ResolvedObjectType(rawType, null,
+                     _resolveSuperClass(context, rawType, typeBindings),
+                     _resolveSuperInterfaces(context, rawType, typeBindings));
+         }
++        
+         return new ResolvedObjectType(rawType, typeBindings,
+                 _resolveSuperClass(context, rawType, typeBindings),
+                 _resolveSuperInterfaces(context, rawType, typeBindings));

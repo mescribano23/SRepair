@@ -1,0 +1,14 @@
+diff --git a/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java b/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
+index f261d40e..00bee8cd 100644
+--- a/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
++++ b/jdbc/src/main/java/org/apache/metamodel/jdbc/dialects/SQLServerQueryRewriter.java
+@@ -112,7 +112,8 @@ public class SQLServerQueryRewriter extends DefaultQueryRewriter {
+ 
+                 final Date date = (Date) operand;
+ 
+-                final DateFormat format = DateUtils.createDateFormat("yyyy-MM-dd HH:mm:ss");
++                // Change the format from "yyyy-MM-dd HH:mm:ss" to "yyyyMMdd HH:mm:ss"
++                final DateFormat format = DateUtils.createDateFormat("yyyyMMdd HH:mm:ss");
+                 final String dateTimeValue = "CAST('" + format.format(date) + "' AS DATETIME)";
+ 
+                 sb.append(dateTimeValue);

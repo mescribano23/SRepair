@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.17190635451505018,
+    "input": "  Request build() {\n    // Alter parameter list if path parameters are present.\n    Set<String> pathParams = new LinkedHashSet<String>(methodInfo.pathParams);\n    List<Parameter> paramList = createParamList();\n    String replacedPath = methodInfo.path;\n    for (String pathParam : pathParams) {\n      Parameter found = null;\n      for (Parameter param : paramList) {\n        if (param.getName().equals(pathParam)) {\n          found = param;\n          break;\n        }\n      }\n      if (found != null) {\n        String value = getUrlEncodedValue(found);\n        replacedPath = replacedPath.replace(\"{\" + found.getName() + \"}\", value);\n        paramList.remove(found);\n      } else {\n        throw new IllegalArgumentException(\n            \"URL param \" + pathParam + \" has no matching method @Name param.\");\n      }\n    }\n\n    if (methodInfo.singleEntityArgumentIndex != NO_SINGLE_ENTITY) {\n      // We're passing a JSON object as the entity: paramList should only contain path param values.\n      if (!paramList.isEmpty()) {\n        throw new IllegalStateException(\n            \"Found @Name param on single-entity request that was not used for path substitution.\");\n      }\n    }\n\n    StringBuilder url = new StringBuilder(apiUrl);\n    if (apiUrl.endsWith(\"/\")) {\n      // We enforce relative paths to start with '/'. Prevent a double-slash.\n      url.deleteCharAt(url.length() - 1);\n    }\n    url.append(replacedPath);\n\n    // Add query parameter(s), if specified.\n    for (QueryParam annotation : methodInfo.pathQueryParams) {\n      paramList.add(new Parameter(annotation.name(), annotation.value(), String.class));\n    }\n\n    TypedOutput body = null;\n    if (!methodInfo.restMethod.hasBody()) {\n      for (int i = 0, count = paramList.size(); i < count; i++) {\n        url.append((i == 0) ? '?' : '&');\n        Parameter nonPathParam = paramList.get(i);\n        String value = getUrlEncodedValue(nonPathParam);\n        url.append(nonPathParam.getName()).append(\"=\").append(value);\n      }\n    } els",
+    "query_result": [
+        "(Parameter param : paramList) {\nif (param.getName(",
+        "ve(found);\n} else {\nthrow new IllegalArgumentExcep",
+        "ound);\n} else {\nthrow new IllegalArgumentException",
+        "d);\n} else {\nthrow new IllegalArgumentException(\n\"",
+        ");\n} else {\nthrow new IllegalArgumentException(\n\"U",
+        "List.isEmpty()) {\nthrow new IllegalStateException(",
+        "sEmpty()) {\nthrow new IllegalStateException(\n\"Foun",
+        "ngBuilder(apiUrl);\nif (apiUrl.endsWith(\"/\")) {\n// ",
+        " to start with '/'. Prevent a double-slash.\nurl.de",
+        "nt a double-slash.\nurl.deleteCharAt(url.length() -"
+    ]
+}

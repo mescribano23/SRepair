@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.24236517218973358,
+    "input": "    @Override\n    public Jsonb build() {\n        if (jsonp != null) {\n            builder.setGeneratorFactory(jsonp.createGeneratorFactory(generatorConfig()));\n            builder.setReaderFactory(jsonp.createReaderFactory(readerConfig()));\n        }\n        final Supplier<JsonParserFactory> parserFactoryProvider = createJsonParserFactory();\n\n        if (config == null) {\n            config = new JsonbConfig();\n        }\n\n        if (config.getProperty(JsonbConfig.FORMATTING).map(Boolean.class::cast).orElse(false)) {\n            builder.setPretty(true);\n        }\n\n        config.getProperty(JsonbConfig.ENCODING).ifPresent(encoding -> builder.setEncoding(String.valueOf(encoding)));\n        config.getProperty(JsonbConfig.NULL_VALUES).ifPresent(serNulls -> builder.setSkipNull(!Boolean.class.cast(serNulls)));\n\n        final Optional<Object> namingStrategyValue = config.getProperty(JsonbConfig.PROPERTY_NAMING_STRATEGY);\n\n        final PropertyNamingStrategy propertyNamingStrategy = new PropertyNamingStrategyFactory(namingStrategyValue.orElse(IDENTITY)).create();\n        final String orderValue = config.getProperty(JsonbConfig.PROPERTY_ORDER_STRATEGY).map(String::valueOf).orElse(LEXICOGRAPHICAL);\n        final PropertyVisibilityStrategy visibilityStrategy = config.getProperty(JsonbConfig.PROPERTY_VISIBILITY_STRATEGY)\n                .map(PropertyVisibilityStrategy.class::cast).orElse(new PropertyVisibilityStrategy() {\n                    private final ConcurrentMap<Class<?>, PropertyVisibilityStrategy> strategies = new ConcurrentHashMap<>();\n\n                    @Override\n                    public boolean isVisible(final Field field) {\n                        if (field.getAnnotation(JsonbProperty.class) != null) {\n                            return true;\n                        }\n                        final PropertyVisibilityStrategy strategy = strategies.computeIfAbsent(field.getDeclaringClass(), this::visibilityStrategy);\n                        return strategy == th",
+    "query_result": [
+        "currentMap<Class<?>, PropertyVisibilityStrategy> strategies = new ConcurrentHashMap<>();\n@Override\npublic boolean isVisible(final Field field) {\nif (field.getAnnotation(JsonbProperty.class) != null) {",
+        " boolean isVisible(final Field field) {\nif (field.getAnnotation(JsonbProperty.class) != null) {\nreturn true;\n}\nfinal PropertyVisibilityStrategy strate",
+        "final Field field) {\nif (field.getAnnotation(JsonbProperty.class) != null) {\nreturn true;\n}\nfinal PropertyVisibilityStrategy strategy = strategies.com",
+        "ld field) {\nif (field.getAnnotation(JsonbProperty.class) != null) {\nreturn true;\n}\nfinal PropertyVisibilityStrategy strategy = strategies.computeIfAbs",
+        "ass<?>, PropertyVisibilityStrategy> strategies = new ConcurrentHashMap<>();\n@Override\npublic boolean",
+        "<?>, PropertyVisibilityStrategy> strategies = new ConcurrentHashMap<>();\n@Override\npublic boolean is",
+        " config.getProperty(JsonbConfig.PROPERTY_NAMING_ST",
+        "ERTY_NAMING_STRATEGY);\nfinal PropertyNamingStrateg",
+        "final PropertyNamingStrategy propertyNamingStrateg",
+        "PropertyNamingStrategy propertyNamingStrategy = ne",
+        "ertyNamingStrategy propertyNamingStrategy = new Pr",
+        "yNamingStrategy propertyNamingStrategy = new Prope",
+        "tMap<Class<?>, PropertyVisibilityStrategy> strateg",
+        "pertyVisibilityStrategy> strategies = new Concurre",
+        "rtyVisibilityStrategy> strategies = new Concurrent",
+        "strategies = new ConcurrentHashMap<>();\n@Override\n",
+        "ategies = new ConcurrentHashMap<>();\n@Override\npub",
+        "s = new ConcurrentHashMap<>();\n@Override\npublic bo",
+        " = new ConcurrentHashMap<>();\n@Override\npublic boo",
+        "= new ConcurrentHashMap<>();\n@Override\npublic bool"
+    ]
+}

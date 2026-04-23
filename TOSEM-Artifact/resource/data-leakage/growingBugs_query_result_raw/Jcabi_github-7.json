@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.7246049661399548,
+    "input": "    @Override\n    public Pull create(final String title, final String head,\n        final String base) throws IOException {\n        this.storage.lock();\n        final int number;\n        try {\n            final Issue issue = this.repo().issues().create(title, \"some body\");\n            number = issue.number();\n            this.storage.apply(\n                new Directives().xpath(this.xpath()).add(\"pull\")\n                    .add(\"number\").set(Integer.toString(number)).up()\n                    .add(\"head\").set(head).up()\n                    .add(\"base\").set(base).up()\n            );\n        } finally {\n            this.storage.unlock();\n        }\n        return this.get(number);\n    }",
+    "query_result": [
+        "ows IOException {\nthis.storage.lock();\nfinal int number;\ntry {\nfinal Issue issue = this.repo().issues().create(title, \"some body\");\nnumber = issue.number();\nthis.storage.apply(\nnew Directives().xpath(this.xpath()).add(\"pull\")\n.add(\"number\").set(Integer.toString(number)).up()\n.add(\"head\").set(head).up()\n.add(\"base\").set(base).up()\n);\n} finally {\nthi",
+        "try {\nfinal Issue issue = this.repo().issues().create(title, \"some body\");\nnumber = issue.number();\nthis.storage.apply(\nnew Directives().xpath(this.xpath()).add(\"pull\")\n.add(\"number\").set(Integer.toSt",
+        ").issues().create(title, \"some body\");\nnumber = issue.number();\nthis.storage.apply(\nnew Directives().xpath(this.xpath()).add(\"pull\")\n.add(\"number\").set(Integer.toString(number)).up()\n.add(\"head\").set(",
+        ".create(title, \"some body\");\nnumber = issue.number();\nthis.storage.apply(\nnew Directives().xpath(this.xpath()).add(\"pull\")\n.add(\"number\").set(Integer.toString(number)).up()\n.add(\"head\").set(head).up()",
+        "is.storage.apply(\nnew Directives().xpath(this.xpat",
+        ".storage.apply(\nnew Directives().xpath(this.xpath(",
+        "torage.apply(\nnew Directives().xpath(this.xpath())",
+        "ge.apply(\nnew Directives().xpath(this.xpath()).add",
+        "\").set(Integer.toString(number)).up()\n.add(\"head\")"
+    ]
+}

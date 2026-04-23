@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8478057889822596,
+    "input": "public WeldContainer initialize()\n   {\n      ResourceLoader resourceLoader = new WeldSEResourceLoader();\n      Bootstrap bootstrap = null;\n      try\n      {\n         bootstrap = (Bootstrap) resourceLoader.classForName(BOOTSTRAP_IMPL_CLASS_NAME).newInstance();\n      }\n      catch (InstantiationException ex)\n      {\n         throw new IllegalStateException(\"Error loading Weld bootstrap, check that Weld is on the classpath\", ex);\n      }\n      catch (IllegalAccessException ex)\n      {\n         throw new IllegalStateException(\"Error loading Weld bootstrap, check that Weld is on the classpath\", ex);\n      }\n\n      Deployment deployment = createDeployment(resourceLoader, bootstrap);\n      // Set up the container\n      bootstrap.startContainer(Environments.SE, deployment);\n\n      // Start the container\n      bootstrap.startInitialization();\n      bootstrap.deployBeans();\n      bootstrap.validateBeans();\n      bootstrap.endInitialization();\n\n      // Set up the ShutdownManager for later\n      this.shutdownManager = getInstanceByType(bootstrap.getManager(deployment.loadBeanDeploymentArchive(ShutdownManager.class)), ShutdownManager.class);\n      this.shutdownManager.setBootstrap(bootstrap);\n\n      return getInstanceByType(bootstrap.getManager(deployment.loadBeanDeploymentArchive(WeldContainer.class)), WeldContainer.class);\n   }",
+    "query_result": [
+        "{\nbootstrap = (Bootstrap) resourceLoader.classForName(BOOTSTRAP_IMPL_CLASS_NAME).newInstance();\n}\ncatch (InstantiationException ex)\n{\nthrow new IllegalStateException(\"Error loading Weld bootstrap, check that Weld is on the classpath\", ex);\n}\ncatch (IllegalAccessException ex)\n{\nthrow new IllegalStateException(\"Error loading Weld bootstrap, check tha",
+        "p the ShutdownManager for later\nthis.shutdownManager = getInstanceByType(bootstrap.getManager(deployment.loadBeanDeploymentArchive(ShutdownManager.class)), ShutdownManager.class);\nthis.shutdownManager",
+        "yment);\n// Start the container\nbootstrap.startInitialization();\nbootstrap.deployBeans();\nbootstrap.validateBeans();\nbootstrap.endInitialization();\n// ",
+        " deployment = createDeployment(resourceLoader, bootstrap);\n// Set up the container\nbootstrap.startCo",
+        "ceLoader, bootstrap);\n// Set up the container\nbootstrap.startContainer(Environments.SE, deployment);",
+        "rt the container\nbootstrap.startInitialization();\nbootstrap.deployBeans();\nbootstrap.validateBeans()",
+        "ntainer\nbootstrap.startInitialization();\nbootstrap.deployBeans();\nbootstrap.validateBeans();\nbootstr",
+        "otstrap.startInitialization();\nbootstrap.deployBeans();\nbootstrap.validateBeans();\nbootstrap.endInit",
+        "rap.startInitialization();\nbootstrap.deployBeans();\nbootstrap.validateBeans();\nbootstrap.endInitiali",
+        "e(bootstrap.getManager(deployment.loadBeanDeploymentArchive(WeldContainer.class)), WeldContainer.cla",
+        "initialize()\n{\nResourceLoader resourceLoader = new",
+        ").newInstance();\n}\ncatch (InstantiationException e",
+        ".newInstance();\n}\ncatch (InstantiationException ex",
+        "ewInstance();\n}\ncatch (InstantiationException ex)\n",
+        "wInstance();\n}\ncatch (InstantiationException ex)\n{",
+        "Instance();\n}\ncatch (InstantiationException ex)\n{\n",
+        "tance();\n}\ncatch (InstantiationException ex)\n{\nthr",
+        ");\n}\ncatch (InstantiationException ex)\n{\nthrow new",
+        "catch (InstantiationException ex)\n{\nthrow new Ille",
+        "ionException ex)\n{\nthrow new IllegalStateException"
+    ]
+}

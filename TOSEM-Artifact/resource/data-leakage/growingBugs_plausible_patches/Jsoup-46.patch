@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/jsoup/nodes/Entities.java b/src/main/java/org/jsoup/nodes/Entities.java
+index 6ccb84e..87a1171 100644
+--- a/src/main/java/org/jsoup/nodes/Entities.java
++++ b/src/main/java/org/jsoup/nodes/Entities.java
+@@ -112,10 +112,10 @@ public class Entities {
+                         accum.append("&amp;");
+                         break;
+                     case 0xA0:
+-                        if (escapeMode != EscapeMode.xhtml)
+-                            accum.append("&nbsp;");
++                        if (escapeMode == EscapeMode.xhtml)
++                            accum.append("&#xa0;");
+                         else
+-                            accum.append(c);
++                            accum.append("&nbsp;");
+                         break;
+                     case '<':
+                         if (!inAttribute)
+@@ -136,12 +136,13 @@ public class Entities {
+                             accum.append(c);
+                         break;
+                     default:
+-                        if (canEncode(coreCharset, c, encoder))
++                        if (canEncode(coreCharset, c, encoder)) {
+                             accum.append(c);
+-                        else if (map.containsKey(c))
++                        } else if (map.containsKey(c)) {
+                             accum.append('&').append(map.get(c)).append(';');
+-                        else
++                        } else {
+                             accum.append("&#x").append(Integer.toHexString(codePoint)).append(';');
++                        }
+                 }
+             } else {
+                 final String c = new String(Character.toChars(codePoint));

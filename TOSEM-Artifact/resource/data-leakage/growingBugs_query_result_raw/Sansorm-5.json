@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8840764331210191,
+    "input": "   public final T execute()\n   {\n      boolean hasTxManager = TransactionElf.hasTransactionManager();\n      boolean txOwner = !hasTxManager || TransactionElf.beginOrJoinTransaction();\n      Connection connection = null;\n      try {\n         connection = ConnectionProxy.wrapConnection(dataSource.getConnection());\n         if (txOwner && hasTxManager) {\n            connection.setAutoCommit(false);\n         }\n         return (args == null)\n            ? execute(connection)\n            : execute(connection, args);\n      }\n      catch (SQLException e) {\n         if (e.getNextException() != null) {\n            e = e.getNextException();\n         }\n         if (txOwner) {\n            // set the txOwner to false as we no longer own the transaction and we shouldn't try to commit it later\n            txOwner = false;\n            rollback(connection);\n         }\n         throw new RuntimeException(e);\n      }\n      catch (RuntimeException e) {\n         if (txOwner) {\n            txOwner = false;\n            rollback(connection);\n         }\n         throw e; // no need to wrap\n      }\n      finally {\n         try {\n            if (txOwner) {\n               commit(connection);\n            }\n         }\n         finally {\n            quietClose(connection);\n         }\n      }\n   }",
+    "query_result": [
+        "an hasTxManager = TransactionElf.hasTransactionManager();\nboolean txOwner = !hasTxManager || TransactionElf.beginOrJoinTransaction();\nConnection connection = null;\ntry {\nconnection = ConnectionProxy.wrapConnection(dataSource.getConnection());\nif (txOwner && hasTxManager) {\nconnection.setAutoCommit(false);\n}\nreturn (args == null)\n? execute(connection)\n: execute(connection, args);\n}\ncatch (SQLException e) {\nif (e.getNextException() != null) {\ne = e.getNextException();\n}\nif (txOwner) {\n// set the txOwner to false as we no longer own the transaction and we shouldn't try to commit it later\ntxOwner = false;\nrollback(connection);\n}\nthrow new RuntimeException(e);\n}\ncatch (RuntimeException e) {\nif (txOwner) {\ntxOwner = false;\nrollback(connection);\n}\nthrow e; // no need to wrap\n}\nfinally {\ntry {\nif ",
+        "xManager || TransactionElf.beginOrJoinTransaction();\nConnection connection = null;\ntry {\nconnection = ConnectionProxy.wrapConnection(dataSource.getCon",
+        "TransactionElf.beginOrJoinTransaction();\nConnection connection = null;\ntry {\nconnection = ConnectionProxy.wrapConnection(dataSource.getConnection());\n",
+        "mmit(false);\n}\nreturn (args == null)\n? execute(connection)\n: execute(connection, args);\n}\ncatch (SQLException e) {\nif (e.getNextException() != null) {",
+        "if (txOwner) {\n// set the txOwner to false as we no longer own the transaction and we shouldn't try to commit it later\ntxOwner = false;\nrollback(conne",
+        "ginOrJoinTransaction();\nConnection connection = null;\ntry {\nconnection = ConnectionProxy.wrapConnect",
+        "\nConnection connection = null;\ntry {\nconnection = ConnectionProxy.wrapConnection(dataSource.getConne",
+        "ction, args);\n}\ncatch (SQLException e) {\nif (e.getNextException() != null) {\ne = e.getNextException(",
+        "wner = false;\nrollback(connection);\n}\nthrow new RuntimeException(e);\n}\ncatch (RuntimeException e) {\n",
+        "RuntimeException(e);\n}\ncatch (RuntimeException e) {\nif (txOwner) {\ntxOwner = false;\nrollback(connect",
+        "ean hasTxManager = TransactionElf.hasTransactionMa",
+        "ction();\nConnection connection = null;\ntry {\nconne",
+        "ion();\nConnection connection = null;\ntry {\nconnect",
+        "n();\nConnection connection = null;\ntry {\nconnectio",
+        "();\nConnection connection = null;\ntry {\nconnection",
+        ";\nConnection connection = null;\ntry {\nconnection =",
+        "Connection connection = null;\ntry {\nconnection = C",
+        "onnection connection = null;\ntry {\nconnection = Co",
+        "nnection connection = null;\ntry {\nconnection = Con",
+        "nection connection = null;\ntry {\nconnection = Conn"
+    ]
+}

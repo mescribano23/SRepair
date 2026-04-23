@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8730769230769231,
+    "input": "private boolean flipIfWarranted(final int n, final int step) {\n    if (1.5 * work[pingPong] < work[4 * (n - 1) + pingPong]) {\n        // flip array\n        int j = 4 * (n - 1);\n        for (int i = 0; i < j; i += 4) {\n            for (int k = 0; k < 4; k += step) {\n                final double tmp = work[i + k];\n                work[i + k] = work[j - k];\n                work[j - k] = tmp;\n            }\n            j -= 4;\n        }\n        return true;\n    }\n    return false;\n}",
+    "query_result": [
+        "; i < j; i += 4) {\nfor (int k = 0; k < 4; k += step) {\nfinal double tmp = work[i + k];\nwork[i + k] = work[j - k];\nwork[j - k] = tmp;\n}\nj -= 4;\n}\nretur",
+        "e boolean flipIfWarranted(final int n, final int step) {\nif (1.5 * work[pingPong] < work[4 * (n - 1)",
+        "lipIfWarranted(final int n, final int step) {\nif (1.5 * work[pingPong] < work[4 * (n - 1) + pingPong",
+        "pIfWarranted(final int n, final int step) {\nif (1.5 * work[pingPong] < work[4 * (n - 1) + pingPong])",
+        "ranted(final int n, final int step) {\nif (1.5 * work[pingPong] < work[4 * (n - 1) + pingPong]) {\n// ",
+        "nted(final int n, final int step) {\nif (1.5 * work[pingPong] < work[4 * (n - 1) + pingPong]) {\n// fl",
+        "final int n, final int step) {\nif (1.5 * work[pingPong] < work[4 * (n - 1) + pingPong]) {\n// flip ar",
+        " 1);\nfor (int i = 0; i < j; i += 4) {\nfor (int k = 0; k < 4; k += step) {\nfinal double tmp = work[i ",
+        ");\nfor (int i = 0; i < j; i += 4) {\nfor (int k = 0; k < 4; k += step) {\nfinal double tmp = work[i + ",
+        "t i = 0; i < j; i += 4) {\nfor (int k = 0; k < 4; k += step) {\nfinal double tmp = work[i + k];\nwork[i",
+        "private boolean flipIfWarranted(final int n, final",
+        "rivate boolean flipIfWarranted(final int n, final ",
+        "ivate boolean flipIfWarranted(final int n, final i",
+        "vate boolean flipIfWarranted(final int n, final in",
+        "ate boolean flipIfWarranted(final int n, final int",
+        "te boolean flipIfWarranted(final int n, final int ",
+        " boolean flipIfWarranted(final int n, final int st",
+        "boolean flipIfWarranted(final int n, final int ste",
+        "oolean flipIfWarranted(final int n, final int step",
+        "olean flipIfWarranted(final int n, final int step)"
+    ]
+}

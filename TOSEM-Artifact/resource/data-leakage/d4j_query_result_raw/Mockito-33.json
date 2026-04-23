@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8674033149171271,
+    "input": "public boolean hasSameMethod(Invocation candidate) {        \n    //not using method.equals() for 1 good reason:\n    //sometimes java generates forwarding methods when generics are in play see JavaGenericsForwardingMethodsTest\n    Method m1 = invocation.getMethod();\n    Method m2 = candidate.getMethod();\n    \n    if (m1.getName() != null && m1.getName().equals(m2.getName())) {\n        /* Avoid unnecessary cloning */\n        Class[] params1 = m1.getParameterTypes();\n        Class[] params2 = m2.getParameterTypes();\n        if (params1.length == params2.length) {\n            for (int i = 0; i < params1.length; i++) {\n            if (params1[i] != params2[i])\n                return false;\n            }\n            return true;\n        }\n    }\n    return false;\n}",
+    "query_result": [
+        " reason:\n//sometimes java generates forwarding methods when generics are in play see JavaGenericsForwardingMethodsTest\nMethod m1 = invocation.getMethod();\nMethod m2 = candidate.getMethod();\n\nif (m1.getName() != null && m1.getName().equals(m2.getName())) {\n/* Avoid unnecessary cloning */\nClass[] params1 = m1.getParameterTypes();\nClass[] params2 = m2.getParameterTypes();\nif (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn false;\n}",
+        "Class[] params2 = m2.getParameterTypes();\nif (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn false;\n}\nreturn true;\n}\n}\nreturn false",
+        "terTypes();\nif (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn false;\n}\nreturn tr",
+        "pes();\nif (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn false;\n}\nreturn true;\n}",
+        "if (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn false;\n}\nreturn true;\n}\n}\nretu",
+        "s() for 1 good reason:\n//sometimes java generates forwarding methods when generics are in play see J",
+        "rameterTypes();\nif (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\ni",
+        "\nif (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] !",
+        "f (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != ",
+        " (params1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != p",
+        "rams1.length == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != param",
+        "ngth == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nr",
+        "gth == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nre",
+        "h == params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nretu",
+        "== params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn",
+        "= params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn ",
+        "params2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn fa",
+        "arams2.length) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn fal",
+        "ngth) {\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn false;\n}\nret",
+        "\nfor (int i = 0; i < params1.length; i++) {\nif (params1[i] != params2[i])\nreturn false;\n}\nreturn tru"
+    ]
+}

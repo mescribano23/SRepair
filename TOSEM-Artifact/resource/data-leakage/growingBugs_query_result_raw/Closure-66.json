@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.14696969696969697,
+    "input": "  public void visit(NodeTraversal t, Node n, Node parent) {\n    JSType childType;\n    JSType leftType, rightType;\n    Node left, right;\n    // To be explicitly set to false if the node is not typeable.\n    boolean typeable = true;\n\n    switch (n.getType()) {\n      case Token.NAME:\n        typeable = visitName(t, n, parent);\n        break;\n\n      case Token.LP:\n        // If this is under a FUNCTION node, it is a parameter list and can be\n        // ignored here.\n        if (parent.getType() != Token.FUNCTION) {\n          ensureTyped(t, n, getJSType(n.getFirstChild()));\n        } else {\n          typeable = false;\n        }\n        break;\n\n      case Token.COMMA:\n        ensureTyped(t, n, getJSType(n.getLastChild()));\n        break;\n\n      case Token.TRUE:\n      case Token.FALSE:\n        ensureTyped(t, n, BOOLEAN_TYPE);\n        break;\n\n      case Token.THIS:\n        ensureTyped(t, n, t.getScope().getTypeOfThis());\n        break;\n\n      case Token.REF_SPECIAL:\n        ensureTyped(t, n);\n        break;\n\n      case Token.GET_REF:\n        ensureTyped(t, n, getJSType(n.getFirstChild()));\n        break;\n\n      case Token.NULL:\n        ensureTyped(t, n, NULL_TYPE);\n        break;\n\n      case Token.NUMBER:\n        ensureTyped(t, n, NUMBER_TYPE);\n        break;\n\n      case Token.STRING:\n        // Object literal keys are handled with OBJECTLIT\n        if (!NodeUtil.isObjectLitKey(n, n.getParent())) {\n          ensureTyped(t, n, STRING_TYPE);\n        } else {\n          // Object literal keys are not typeable\n          typeable = false;\n        }\n        break;\n\n      case Token.GET:\n      case Token.SET:\n        // Object literal keys are handled with OBJECTLIT\n        break;\n\n      case Token.ARRAYLIT:\n        ensureTyped(t, n, ARRAY_TYPE);\n        break;\n\n      case Token.REGEXP:\n        ensureTyped(t, n, REGEXP_TYPE);\n        break;\n\n      case Token.GETPROP:\n        visitGetProp(t, n, parent);\n        typeable = !(parent.getType() == Token.ASSIGN &&\n                     pa",
+    "query_result": [
+        "\n// Object literal keys are handled with OBJECTLIT\nif (!NodeUtil.isObjectLitKey(n, n.getParent())) {",
+        "ject literal keys are handled with OBJECTLIT\nif (!NodeUtil.isObjectLitKey(n, n.getParent())) {\nensur",
+        "iteral keys are handled with OBJECTLIT\nif (!NodeUtil.isObjectLitKey(n, n.getParent())) {\nensureTyped",
+        "public void visit(NodeTraversal t, Node n, Node pa",
+        "ublic void visit(NodeTraversal t, Node n, Node par",
+        "blic void visit(NodeTraversal t, Node n, Node pare",
+        "lic void visit(NodeTraversal t, Node n, Node paren",
+        "ic void visit(NodeTraversal t, Node n, Node parent",
+        "c void visit(NodeTraversal t, Node n, Node parent)",
+        " void visit(NodeTraversal t, Node n, Node parent) ",
+        "void visit(NodeTraversal t, Node n, Node parent) {",
+        "oid visit(NodeTraversal t, Node n, Node parent) {\n",
+        "visit(NodeTraversal t, Node n, Node parent) {\nJSTy",
+        " OBJECTLIT\nif (!NodeUtil.isObjectLitKey(n, n.getPa",
+        "\n// Object literal keys are handled with OBJECTLIT"
+    ]
+}

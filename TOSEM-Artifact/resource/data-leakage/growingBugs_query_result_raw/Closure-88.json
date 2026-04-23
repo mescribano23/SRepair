@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.46472564389697646,
+    "input": "  private VariableLiveness isVariableReadBeforeKill(\n      Node n, String variable) {\n    if (NodeUtil.isName(n) && variable.equals(n.getString())) {\n      if (NodeUtil.isLhs(n, n.getParent())) {\n        Preconditions.checkState(n.getParent().getType() == Token.ASSIGN);\n        // The expression to which the assignment is made is evaluated before\n        // the RHS is evaluated (normal left to right evaluation) but the KILL\n        // occurs after the RHS is evaluated.\n        Node rhs = n.getNext();\n        VariableLiveness state = isVariableReadBeforeKill(rhs, variable);\n        if (state == VariableLiveness.READ) {\n          return state;\n        }\n        return VariableLiveness.KILL;\n      } else {\n        return VariableLiveness.READ;\n      }\n    }\n\n    // Expressions are evaluated left-right, depth first.\n    for (Node child = n.getFirstChild();\n        child != null; child = child.getNext()) {\n      if (!ControlFlowGraph.isEnteringNewCfgNode(child)) { // Not a FUNCTION\n        VariableLiveness state = isVariableReadBeforeKill(child, variable);\n        if (state != VariableLiveness.MAYBE_LIVE) {\n          return state;\n        }\n      }\n    }\n    return VariableLiveness.MAYBE_LIVE;\n  }",
+    "query_result": [
+        "(!ControlFlowGraph.isEnteringNewCfgNode(child)) { // Not a FUNCTION\nVariableLiveness state = isVariableReadBeforeKill(child, variable);\nif (state != V",
+        "h.isEnteringNewCfgNode(child)) { // Not a FUNCTION\nVariableLiveness state = isVariableReadBeforeKill(child, variable);\nif (state != VariableLiveness.M",
+        "sEnteringNewCfgNode(child)) { // Not a FUNCTION\nVariableLiveness state = isVariableReadBeforeKill(child, variable);\nif (state != VariableLiveness.MAYB",
+        "pressions are evaluated left-right, depth first.\nfor (Node child = n.getFirstChild();\nchild != null;",
+        "ssions are evaluated left-right, depth first.\nfor (Node child = n.getFirstChild();\nchild != null; ch",
+        "bleLiveness isVariableReadBeforeKill(\nNode n, Stri",
+        "& variable.equals(n.getString())) {\nif (NodeUtil.i",
+        "(n.getString())) {\nif (NodeUtil.isLhs(n, n.getPare",
+        "getString())) {\nif (NodeUtil.isLhs(n, n.getParent(",
+        "\nVariableLiveness state = isVariableReadBeforeKill",
+        "t, depth first.\nfor (Node child = n.getFirstChild(",
+        "for (Node child = n.getFirstChild();\nchild != null",
+        ".getFirstChild();\nchild != null; child = child.get"
+    ]
+}

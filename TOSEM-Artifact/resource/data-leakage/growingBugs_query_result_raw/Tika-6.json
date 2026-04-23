@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.615727002967359,
+    "input": "public void parse(\n            InputStream stream, ContentHandler handler, Metadata metadata)\n            throws IOException, SAXException, TikaException {\n        XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);\n        xhtml.startDocument();\n\n        boolean outlookExtracted = false;\n        POIFSFileSystem filesystem = new POIFSFileSystem(stream);\n        Iterator<?> entries = filesystem.getRoot().getEntries();\n        while (entries.hasNext()) {\n            Entry entry = (Entry) entries.next();\n            String name = entry.getName();\n            if (!(entry instanceof DocumentEntry)) {\n                // Skip directory entries\n            } else if (SUMMARY_INFORMATION.equals(name)\n                    || DOCUMENT_SUMMARY_INFORMATION.equals(name)) {\n                parse((DocumentEntry) entry, metadata);\n            } else if (\"WordDocument\".equals(name)) {\n                setType(metadata, \"application/msword\");\n                WordExtractor extractor = new WordExtractor(filesystem);\n                for (String paragraph : extractor.getParagraphText()) {\n                    xhtml.element(\"p\", paragraph);\n                }\n            } else if (\"PowerPoint Document\".equals(name)) {\n                setType(metadata, \"application/vnd.ms-powerpoint\");\n                PowerPointExtractor extractor =\n                    new PowerPointExtractor(filesystem);\n                xhtml.element(\"p\", extractor.getText(true, true));\n            } else if (\"Workbook\".equals(name)) {\n                setType(metadata, \"application/vnd.ms-excel\");\n                new ExcelExtractor().parse(filesystem, xhtml);\n            } else if (\"VisioDocument\".equals(name)) {\n                setType(metadata, \"application/vnd.visio\");\n                VisioTextExtractor extractor =\n                    new VisioTextExtractor(filesystem);\n                for (String text : extractor.getAllText()) {\n                    xhtml.element(\"p\", text);\n                }\n          ",
+    "query_result": [
+        "cument\".equals(name)) {\nsetType(metadata, \"application/vnd.ms-powerpoint\");\nPowerPointExtractor extractor =\nnew PowerPointExtractor(filesystem);\nxhtml.element(\"p\", extractor.getText(true, true));\n} else if (\"Workbook\".equals(name)) {\nsetType(metadata",
+        "void parse(\nInputStream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SAXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);\nxht",
+        "oid parse(\nInputStream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SAXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);\nxhtm",
+        "} else if (\"VisioDocument\".equals(name)) {\nsetType(metadata, \"application/vnd.visio\");\nVisioTextExtractor extractor =\nnew VisioTextExtractor(filesystem);\nfor (String text : extractor.getAllText()) {\nx",
+        "ontentHandler handler, Metadata metadata)\nthrows IOException, SAXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandler(handle",
+        "<?> entries = filesystem.getRoot().getEntries();\nwhile (entries.hasNext()) {\nEntry entry = (Entry) entries.next();\nString name = entry.getName();\nif (",
+        "blic void parse(\nInputStream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, ",
+        "ic void parse(\nInputStream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SA",
+        "rse(\nInputStream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SAXException",
+        "InputStream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SAXException, Tik",
+        "putStream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SAXException, TikaE",
+        "tream stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SAXException, TikaExcep",
+        " stream, ContentHandler handler, Metadata metadata)\nthrows IOException, SAXException, TikaException ",
+        "\nthrows IOException, SAXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandl",
+        "throws IOException, SAXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandle",
+        "hrows IOException, SAXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandler",
+        "ption, SAXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandler(handler, me",
+        "AXException, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);",
+        "on, TikaException {\nXHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);\nxhtml.st",
+        "name)) {\nsetType(metadata, \"application/msword\");\nWordExtractor extractor = new WordExtractor(filesy"
+    ]
+}

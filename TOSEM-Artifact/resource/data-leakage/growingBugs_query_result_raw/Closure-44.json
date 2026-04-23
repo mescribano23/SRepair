@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.9242053789731052,
+    "input": "  void add(String newcode) {\n    maybeEndStatement();\n\n    if (newcode.length() == 0) {\n      return;\n    }\n\n    char c = newcode.charAt(0);\n    if ((isWordChar(c) || c == '\\\\') &&\n        isWordChar(getLastChar())) {\n      // need space to separate. This is not pretty printing.\n      // For example: \"return foo;\"\n      append(\" \");\n    } else if (c == '/' && getLastChar() == '/') {\n      // Do not allow a forward slash to appear after a DIV.\n      // For example,\n      // REGEXP DIV REGEXP\n      // is valid and should print like\n      // / // / /\n      append(\" \");\n    }\n\n    append(newcode);\n  }",
+    "query_result": [
+        "{\n// need space to separate. This is not pretty printing.\n// For example: \"return foo;\"\nappend(\" \");\n} else if (c == '/' && getLastChar() == '/') {\n// Do not allow a forward slash to appear after a DIV.\n// For example,\n// REGEXP DIV REGEXP\n// is valid and should print like\n// / // / /\nappend(\" \");\n}",
+        " newcode) {\nmaybeEndStatement();\nif (newcode.length() == 0) {\nreturn;\n}\nchar c = newcode.charAt(0);\nif ((isWordChar(c) || c == '\\\\') &&\nisWordChar(getLastChar())) {\n// need space to separate. This is not pretty printing.\n// For example: \"return foo;\"",
+        "= '/') {\n// Do not allow a forward slash to appear after a DIV.\n// For example,\n// REGEXP DIV REGEXP",
+        "eturn;\n}\nchar c = newcode.charAt(0);\nif ((isWordCh",
+        "pretty printing.\n// For example: \"return foo;\"\napp"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.6886395511921458,
+    "input": "    @SuppressWarnings(\"deprecation\")\n    protected BeanPropertyWriter buildWriter(SerializerProvider prov,\n            BeanPropertyDefinition propDef, JavaType declaredType, JsonSerializer<?> ser,\n            TypeSerializer typeSer, TypeSerializer contentTypeSer,\n            AnnotatedMember am, boolean defaultUseStaticTyping)\n        throws JsonMappingException\n    {\n        // do we have annotation that forces type to use (to declared type or its super type)?\n        JavaType serializationType;\n        try {\n            serializationType = findSerializationType(am, defaultUseStaticTyping, declaredType);\n        } catch (JsonMappingException e) {\n            return prov.reportBadPropertyDefinition(_beanDesc, propDef, e.getMessage());\n        }\n\n        // Container types can have separate type serializers for content (value / element) type\n        if (contentTypeSer != null) {\n            /* 04-Feb-2010, tatu: Let's force static typing for collection, if there is\n             *    type information for contents. Should work well (for JAXB case); can be\n             *    revisited if this causes problems.\n             */\n            if (serializationType == null) {\n//                serializationType = TypeFactory.type(am.getGenericType(), _beanDesc.getType());\n                serializationType = declaredType;\n            }\n            JavaType ct = serializationType.getContentType();\n            // Not exactly sure why, but this used to occur; better check explicitly:\n            if (ct == null) {\n                prov.reportBadPropertyDefinition(_beanDesc, propDef,\n                        \"serialization type \"+serializationType+\" has no content\");\n            }\n            serializationType = serializationType.withContentTypeHandler(contentTypeSer);\n            ct = serializationType.getContentType();\n        }\n\n        Object valueToSuppress = null;\n        boolean suppressNulls = false;\n\n        // 12-Jul-2016, tatu: [databind#1256] Need to make sure we consider ty",
+    "query_result": [
+        "separate type serializers for content (value / element) type if (contentTypeSer != null) { /* 04-Feb-2010, tatu: Let's force static typing for collection, if there is * type information for contents. Should work well (for JAXB case); can be * revisited if this causes problems. */ if (serializationType == null) { // serializationType = TypeFactory.type(am.getGenericType(), _beanDesc.getType()); serializationType = declaredType; } JavaType ct = se",
+        "/ if (serializationType == null) { // serializationType = TypeFactory.type(am.getGenericType(), _beanDesc.getType()); serializationType = declaredType; } JavaType ct = serializationType.getContentType(); // Not exactly sure why, but this used to occu",
+        "s no content\"); } serializationType = serializationType.withContentTypeHandler(contentTypeSer); ct = serializationType.getContentType(); } Object valueToSuppress = null; boolean suppressNulls = false;",
+        "ype = serializationType.withContentTypeHandler(contentTypeSer); ct = serializationType.getContentType(); } Object valueToSuppress = null; boolean supp",
+        "aredType, JsonSerializer<?> ser, TypeSerializer typeSer, TypeSerializer contentTypeSer, AnnotatedMem",
+        "have annotation that forces type to use (to declared type or its super type)? JavaType serializatio",
+        "ner types can have separate type serializers for content (value / element) type if (contentTypeSer !",
+        "content\"); } serializationType = serializationType.withContentTypeHandler(contentTypeSer); ct = ser",
+        "tected BeanPropertyWriter buildWriter(SerializerPr",
+        "ropertyDefinition propDef, JavaType declaredType,",
+        "e to use (to declared type or its super type)? Jav",
+        "nType = findSerializationType(am, defaultUseStatic",
+        "tionType(am, defaultUseStaticTyping, declaredType)",
+        "mation for contents. Should work well (for JAXB ca",
+        "o content\"); } serializationType = serializationTy"
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.7258064516129032,
+    "input": "    public Complex add(Complex rhs)\n        throws NullArgumentException {\n        MathUtils.checkNotNull(rhs);\n        if (isNaN || rhs.isNaN) {\n            return NaN;\n        }\n        return createComplex(real + rhs.getReal(),\n            imaginary + rhs.getImaginary());\n    }",
+    "query_result": [
+        "omplex add(Complex rhs)\nthrows NullArgumentExcepti",
+        "add(Complex rhs)\nthrows NullArgumentException {\nMa",
+        "lex rhs)\nthrows NullArgumentException {\nMathUtils.",
+        "rhs)\nthrows NullArgumentException {\nMathUtils.chec",
+        "\nthrows NullArgumentException {\nMathUtils.checkNot",
+        "hrows NullArgumentException {\nMathUtils.checkNotNu",
+        "rows NullArgumentException {\nMathUtils.checkNotNul",
+        "ows NullArgumentException {\nMathUtils.checkNotNull",
+        " createComplex(real + rhs.getReal(),\nimaginary + r",
+        "(real + rhs.getReal(),\nimaginary + rhs.getImaginar",
+        " rhs.getReal(),\nimaginary + rhs.getImaginary());\n}"
+    ]
+}

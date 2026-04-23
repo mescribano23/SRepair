@@ -1,0 +1,54 @@
+diff --git a/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java b/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
+index ecd2e7b43..1bfbd1d67 100644
+--- a/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
++++ b/src/main/java/spoon/support/reflect/reference/CtTypeReferenceImpl.java
+@@ -495,27 +495,28 @@ public class CtTypeReferenceImpl<T> extends CtReferenceImpl implements CtTypeRef
+ 		return RtHelper.getModifiers(c.getModifiers());
+ 	}
+ 
+-	@Override
+-	public CtTypeReference<?> getSuperclass() {
+-		CtType<T> t = getDeclaration();
+-		if (t != null) {
+-			return t.getSuperclass();
+-		} else {
+-			try {
+-				Class<T> c = getActualClass();
+-				Class<?> sc = c.getSuperclass();
+-				if (sc == null) {
+-					return null;
+-				}
+-				return getFactory().Type().createReference(sc);
+-			} catch (final SpoonClassNotFoundException e) {
+-				if (getFactory().getEnvironment().getNoClasspath()) {
+-					return null;
+-				}
+-				throw e;
+-			}
+-		}
+-	}
++public CtTypeReference<?> getSuperclass() {
++    CtType<T> t = getDeclaration();
++    if (t != null) {
++        return t.getSuperclass();
++    } else {
++        try {
++            Class<T> c = getActualClass();
++            Class<?> sc = c.getSuperclass();
++            if (sc == null) {
++                return null;
++            }
++            return getFactory().Type().createReference(sc);
++        } catch (final SpoonClassNotFoundException e) {
++            // Instead of rethrowing, log and return null, or a default superclass
++            if (getFactory().getEnvironment().getNoClasspath()) {
++                return null;
++            }
++            System.err.println("Class not found: " + getQualifiedName() + ". Returning Object as fallback.");
++            return getFactory().Type().createReference(Object.class); // Fallback
++        }
++    }
++}
+ 
+ 	@Override
+ 	public Set<CtTypeReference<?>> getSuperInterfaces() {

@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.5689019896831246,
+    "input": "    private FileInfo readHeader(final InputStream is) throws ImageReadException,\n            IOException {\n        final byte identifier1 = readByte(\"Identifier1\", is, \"Not a Valid PNM File\");\n        final byte identifier2 = readByte(\"Identifier2\", is, \"Not a Valid PNM File\");\n\n        if (identifier1 != PnmConstants.PNM_PREFIX_BYTE) {\n            throw new ImageReadException(\"PNM file has invalid prefix byte 1\");\n        }\n        \n        final WhiteSpaceReader wsr = new WhiteSpaceReader(is);\n        \n        if (identifier2 == PnmConstants.PBM_TEXT_CODE\n                || identifier2 == PnmConstants.PBM_RAW_CODE\n                || identifier2 == PnmConstants.PGM_TEXT_CODE\n                || identifier2 == PnmConstants.PGM_RAW_CODE\n                || identifier2 == PnmConstants.PPM_TEXT_CODE\n                || identifier2 == PnmConstants.PPM_RAW_CODE) {\n            \n            final int width;\n            try {\n              width = Integer.parseInt(wsr.readtoWhiteSpace());\n            } catch (NumberFormatException e) {\n              throw new ImageReadException(\"Invalid width specified.\" , e);\n            }\n            final int height;\n            try {\n              height = Integer.parseInt(wsr.readtoWhiteSpace());\n            } catch (NumberFormatException e) {\n              throw new ImageReadException(\"Invalid height specified.\" , e);\n            }\n    \n            if (identifier2 == PnmConstants.PBM_TEXT_CODE) {\n                return new PbmFileInfo(width, height, false);\n            } else if (identifier2 == PnmConstants.PBM_RAW_CODE) {\n                return new PbmFileInfo(width, height, true);\n            } else if (identifier2 == PnmConstants.PGM_TEXT_CODE) {\n                final int maxgray = Integer.parseInt(wsr.readtoWhiteSpace());\n                return new PgmFileInfo(width, height, false, maxgray);\n            } else if (identifier2 == PnmConstants.PGM_RAW_CODE) {\n                final int maxgray = Integer.parseInt(wsr.readtoWhiteSpace());",
+    "query_result": [
+        "if (identifier2 == PnmConstants.PBM_TEXT_CODE\n|| identifier2 == PnmConstants.PBM_RAW_CODE\n|| identifier2 == PnmConstants.PGM_TEXT_CODE\n|| identifier2 == PnmConstants.PGM_RAW_CODE\n|| identifier2 == PnmConstants.PPM_TEXT_CODE\n|| identifier2 == PnmConst",
+        "tion,\nIOException {\nfinal byte identifier1 = readByte(\"Identifier1\", is, \"Not a Valid PNM File\");\nfinal byte identifier2 = readByte(\"Identifier2\", is, \"Not a Valid PNM File\");\nif (identifier1 != PnmCo",
+        "t maxgray = Integer.parseInt(wsr.readtoWhiteSpace());\nreturn new PgmFileInfo(width, height, false, m",
+        " WhiteSpaceReader wsr = new WhiteSpaceReader(is);\n",
+        "= Integer.parseInt(wsr.readtoWhiteSpace());\n} catc",
+        "e());\n} catch (NumberFormatException e) {\nthrow ne",
+        "());\n} catch (NumberFormatException e) {\nthrow new",
+        "));\n} catch (NumberFormatException e) {\nthrow new ",
+        ");\n} catch (NumberFormatException e) {\nthrow new I",
+        "nal int height;\ntry {\nheight = Integer.parseInt(ws",
+        "= Integer.parseInt(wsr.readtoWhiteSpace());\n} catc",
+        "e());\n} catch (NumberFormatException e) {\nthrow ne",
+        "());\n} catch (NumberFormatException e) {\nthrow new",
+        "));\n} catch (NumberFormatException e) {\nthrow new ",
+        ");\n} catch (NumberFormatException e) {\nthrow new I",
+        " int maxgray = Integer.parseInt(wsr.readtoWhiteSpa",
+        " int maxgray = Integer.parseInt(wsr.readtoWhiteSpa",
+        "t maxgray = Integer.parseInt(wsr.readtoWhiteSpace("
+    ]
+}

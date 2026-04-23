@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.20772442588726514,
+    "input": "static String strEscape(String s, char quote,\n                        String doublequoteEscape,\n                        String singlequoteEscape,\n                        String backslashEscape,\n                        CharsetEncoder outputCharsetEncoder) {\n  StringBuilder sb = new StringBuilder(s.length() + 2);\n  sb.append(quote);\n  for (int i = 0; i < s.length(); i++) {\n    char c = s.charAt(i);\n    switch (c) {\n      case '\\0': sb.append(\"\\\\000\"); break;\n      case '\\n': sb.append(\"\\\\n\"); break;\n      case '\\r': sb.append(\"\\\\r\"); break;\n      case '\\t': sb.append(\"\\\\t\"); break;\n      case '\\\\': sb.append(backslashEscape); break;\n      case '\\\"': sb.append(doublequoteEscape); break;\n      case '\\'': sb.append(singlequoteEscape); break;\n      case '>':                       // Break --> into --\\> or ]]> into ]]\\>\n        if (i >= 2 &&\n            ((s.charAt(i - 1) == '-' && s.charAt(i - 2) == '-') ||\n             (s.charAt(i - 1) == ']' && s.charAt(i - 2) == ']'))) {\n          sb.append(\"\\\\>\");\n        } else {\n          sb.append(c);\n        }\n        break;\n      case '<':\n        // Break </script into <\\/script\n        final String END_SCRIPT = \"/script\";\n\n        // Break <!-- into <\\!--\n        final String START_COMMENT = \"!--\";\n\n        if (s.regionMatches(true, i + 1, END_SCRIPT, 0,\n                            END_SCRIPT.length())) {\n          sb.append(\"<\\\\\");\n        } else if (s.regionMatches(false, i + 1, START_COMMENT, 0,\n                                   START",
+    "query_result": [
+        ";\ncase '\\n': sb.append(\"\\\\n\"); break;\ncase '\\r': sb.append(\"\\\\r\"); break;\ncase '\\t': sb.append(\"\\\\t\"",
+        "\ncase '\\n': sb.append(\"\\\\n\"); break;\ncase '\\r': sb.append(\"\\\\r\"); break;\ncase '\\t': sb.append(\"\\\\t\")",
+        "': sb.append(\"\\\\n\"); break;\ncase '\\r': sb.append(\"\\\\r\"); break;\ncase '\\t': sb.append(\"\\\\t\"); break;\n",
+        ": sb.append(\"\\\\n\"); break;\ncase '\\r': sb.append(\"\\\\r\"); break;\ncase '\\t': sb.append(\"\\\\t\"); break;\nc",
+        "pend(\"\\\\n\"); break;\ncase '\\r': sb.append(\"\\\\r\"); break;\ncase '\\t': sb.append(\"\\\\t\"); break;\ncase '\\\\",
+        "nd(\"\\\\n\"); break;\ncase '\\r': sb.append(\"\\\\r\"); break;\ncase '\\t': sb.append(\"\\\\t\"); break;\ncase '\\\\':",
+        ") {\nStringBuilder sb = new StringBuilder(s.length(",
+        " {\nStringBuilder sb = new StringBuilder(s.length()",
+        "{\nStringBuilder sb = new StringBuilder(s.length() ",
+        "\nStringBuilder sb = new StringBuilder(s.length() +",
+        "StringBuilder sb = new StringBuilder(s.length() + ",
+        "tringBuilder sb = new StringBuilder(s.length() + 2",
+        "uote);\nfor (int i = 0; i < s.length(); i++) {\nchar",
+        ");\nfor (int i = 0; i < s.length(); i++) {\nchar c =",
+        ";\nfor (int i = 0; i < s.length(); i++) {\nchar c = ",
+        "\nfor (int i = 0; i < s.length(); i++) {\nchar c = s",
+        "for (int i = 0; i < s.length(); i++) {\nchar c = s.",
+        "or (int i = 0; i < s.length(); i++) {\nchar c = s.c",
+        "r (int i = 0; i < s.length(); i++) {\nchar c = s.ch",
+        " (int i = 0; i < s.length(); i++) {\nchar c = s.cha"
+    ]
+}

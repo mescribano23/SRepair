@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.416403785488959,
+    "input": "private void copyAttributes(org.jsoup.nodes.Node source, Element el) {\n    for (Attribute attribute : source.attributes()) {\n        // valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]\n        String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");\n        if (key.matches(\"[a-zA-Z_:]{1}[-a-zA-Z0-9_:.]*\"))\n            el.setAttribute(key, attribute.getValue());\n    }\n}",
+    "query_result": [
+        ".nodes.Node source, Element el) {\nfor (Attribute attribute : source.attributes()) {\n// valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]\nStrin",
+        "/ valid xml attribute names are: ^[a-zA-Z_:][-a-zA",
+        "alid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0"
+    ]
+}

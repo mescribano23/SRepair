@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6522864538395168,
+    "input": "    @Override\n    public void returnObject(final K key, final T obj) {\n\n        final ObjectDeque<T> objectDeque = poolMap.get(key);\n\n        if (objectDeque == null) {\n            throw new IllegalStateException(\n                    \"Returned object not currently part of this pool\");\n        }\n\n        final PooledObject<T> p = objectDeque.getAllObjects().get(new IdentityWrapper<>(obj));\n\n        if (p == null) {\n            throw new IllegalStateException(\n                    \"Returned object not currently part of this pool\");\n        }\n\n        markReturningState(p);\n\n        final long activeTime = p.getActiveTimeMillis();\n\n        try {\n            if (getTestOnReturn() && !factory.validateObject(key, p)) {\n                try {\n                    destroy(key, p, true);\n                } catch (final Exception e) {\n                    swallowException(e);\n                }\n                whenWaitersAddObject(key, objectDeque.idleObjects);\n                return;\n            }\n\n            try {\n                factory.passivateObject(key, p);\n            } catch (final Exception e1) {\n                swallowException(e1);\n                try {\n                    destroy(key, p, true);\n                } catch (final Exception e) {\n                    swallowException(e);\n                }\n                whenWaitersAddObject(key, objectDeque.idleObjects);\n                return;\n            }\n\n            if (!p.deallocate()) {\n                throw new IllegalStateException(\n                        \"Object has already been returned to this pool\");\n            }\n\n            final int maxIdle = getMaxIdlePerKey();\n            final LinkedBlockingDeque<PooledObject<T>> idleObjects =\n                    objectDeque.getIdleObjects();\n\n            if (isClosed() || maxIdle > -1 && maxIdle <= idleObjects.size()) {\n                try {\n                    destroy(key, p, true);\n                } catch (final Exception e) {\n                    swallowException(e);\n",
+    "query_result": [
+        "on e) { swallowException(e); } whenWaitersAddObject(key, objectDeque.idleObjects); return; } if (!p.deallocate()) { throw new IllegalStateException( \"Object has already been returned to this pool\"); }",
+        "eque.getAllObjects().get(new IdentityWrapper<>(obj)); if (p == null) { throw new IllegalStateExcepti",
+        "if (p == null) { throw new IllegalStateException( \"Returned object not currently part of this pool\"",
+        "eTimeMillis(); try { if (getTestOnReturn() && !factory.validateObject(key, p)) { try { destroy(key,",
+        "(e); } whenWaitersAddObject(key, objectDeque.idleObjects); return; } try { factory.passivateObject(k",
+        "n; } if (!p.deallocate()) { throw new IllegalStateException( \"Object has already been returned to th",
+        "getIdleObjects(); if (isClosed() || maxIdle > -1 && maxIdle <= idleObjects.size()) { try { destroy(k",
+        "@Override public void returnObject(final K key, fi",
+        "ublic void returnObject(final K key, final T obj)",
+        "lic void returnObject(final K key, final T obj) {",
+        "final ObjectDeque<T> objectDeque = poolMap.get(ke",
+        "inal ObjectDeque<T> objectDeque = poolMap.get(key)",
+        "al ObjectDeque<T> objectDeque = poolMap.get(key);",
+        "ll) { throw new IllegalStateException( \"Returned o",
+        "hrow new IllegalStateException( \"Returned object n",
+        "w new IllegalStateException( \"Returned object not",
+        "ew IllegalStateException( \"Returned object not cur",
+        "StateException( \"Returned object not currently par",
+        "ion( \"Returned object not currently part of this p",
+        "\"Returned object not currently part of this pool\""
+    ]
+}

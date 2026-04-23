@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8421900161030595,
+    "input": "    @Override\n    public JsonToken nextToken() throws IOException {\n        _binaryValue = null;\n        if (_readContext == null) {\n            if (_closed) {\n                return null;\n            }\n            _closed = true;\n            JPropNode root = JPropNodeBuilder.build(_schema, _sourceProperties);\n            _readContext = JPropReadContext.create(root);\n\n            // 30-Mar-2016, tatu: For debugging can be useful:\n            /*\nSystem.err.println(\"SOURCE: (\"+root.getClass().getName()+\") <<\\n\"+new ObjectMapper().writerWithDefaultPrettyPrinter()\n.writeValueAsString(root.asRaw()));\nSystem.err.println(\"\\n>>\");\n*/\n        }\n        while ((_currToken = _readContext.nextToken()) == null) {\n            _readContext = _readContext.nextContext();\n            if (_readContext == null) { // end of content\n                return null;\n            }\n        }\n        return _currToken;\n    }",
+    "query_result": [
+        " = JPropReadContext.create(root);\n// 30-Mar-2016, tatu: For debugging can be useful:\n/*\nSystem.err.println(\"SOURCE: (\"+root.getClass().getName()+\") <<\\n\"+new ObjectMapper().writerWithDefaultPrettyPrinter()\n.writeValueAsString(root.asRaw()));\nSystem.err.println(\"\\n>>\");\n*/\n}\nwhile ((_currToken = _readContext.nextToken()) == null) {\n_readContext = _readContext.nextContext();\nif (_readContext == null",
+        "ken() throws IOException {\n_binaryValue = null;\nif (_readContext == null) {\nif (_closed) {\nreturn null;\n}\n_closed = true;\nJPropNode root = JPropNodeBu",
+        "@Override\npublic JsonToken nextToken() throws IOEx",
+        "Override\npublic JsonToken nextToken() throws IOExc",
+        "verride\npublic JsonToken nextToken() throws IOExce",
+        "erride\npublic JsonToken nextToken() throws IOExcep",
+        "rride\npublic JsonToken nextToken() throws IOExcept",
+        "ride\npublic JsonToken nextToken() throws IOExcepti",
+        "ide\npublic JsonToken nextToken() throws IOExceptio",
+        "de\npublic JsonToken nextToken() throws IOException",
+        "e\npublic JsonToken nextToken() throws IOException ",
+        "ublic JsonToken nextToken() throws IOException {\n_",
+        "new ObjectMapper().writerWithDefaultPrettyPrinter(",
+        "ew ObjectMapper().writerWithDefaultPrettyPrinter()",
+        "w ObjectMapper().writerWithDefaultPrettyPrinter()\n",
+        " ObjectMapper().writerWithDefaultPrettyPrinter()\n.",
+        "ObjectMapper().writerWithDefaultPrettyPrinter()\n.w",
+        "bjectMapper().writerWithDefaultPrettyPrinter()\n.wr",
+        "ectMapper().writerWithDefaultPrettyPrinter()\n.writ",
+        "tMapper().writerWithDefaultPrettyPrinter()\n.writeV"
+    ]
+}

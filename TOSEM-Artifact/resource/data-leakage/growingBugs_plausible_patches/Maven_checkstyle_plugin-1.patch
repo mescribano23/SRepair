@@ -1,0 +1,44 @@
+diff --git a/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java b/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java
+index b9b930d..a5868d5 100644
+--- a/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java
++++ b/src/main/java/org/apache/maven/plugin/checkstyle/CheckstyleReportListener.java
+@@ -120,22 +120,26 @@ public class CheckstyleReportListener
+     }
+ 
+     /** {@inheritDoc} */
+-    public void fileStarted( AuditEvent event )
+-    {
+-        for ( File sourceDirectory : sourceDirectories )
+-        {
+-            String sourceDirectoryPath = sourceDirectory.getPath();
+-            currentFile = StringUtils.substring( event.getFileName(), sourceDirectoryPath.length() + 1 );
+-            currentFile = StringUtils.replace( currentFile, "\\", "/" );
+-
+-                events = getResults().getFileViolations( currentFile );
++public void fileStarted(AuditEvent event) {
++    String longestMatchPath = "";
++    
++    for (File sourceDirectory : sourceDirectories) {
++        String sourceDirectoryPath = sourceDirectory.getPath();
++        if (event.getFileName().startsWith(sourceDirectoryPath) && sourceDirectoryPath.length() > longestMatchPath.length()) {
++            longestMatchPath = sourceDirectoryPath;
+         }
++    }
+ 
+-        if ( events == null )
+-        {
+-            events = new ArrayList<AuditEvent>();
+-        }
++    if (!longestMatchPath.isEmpty()) {
++        currentFile = StringUtils.substring(event.getFileName(), longestMatchPath.length() + 1);
++        currentFile = StringUtils.replace(currentFile, "\\", "/");
++        events = getResults().getFileViolations(currentFile);
++    }
++
++    if (events == null) {
++        events = new ArrayList<AuditEvent>();
+     }
++}
+ 
+     /** {@inheritDoc} */
+     public void fileFinished( AuditEvent event )

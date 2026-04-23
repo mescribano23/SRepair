@@ -1,0 +1,16 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/Renderer.java b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+index d4ad01d..19c0ddb 100644
+--- a/src/main/java/io/github/gitbucket/markedj/Renderer.java
++++ b/src/main/java/io/github/gitbucket/markedj/Renderer.java
+@@ -89,6 +89,11 @@ public class Renderer {
+             cellType = "td";
+         }
+ 
++        // Trim content to avoid unexpected spaces
++        content = content.trim();
++        if (content.isEmpty()) {
++            content = "&nbsp;";
++        }
+ 
+         String align = flags.getAlign();
+         if(align != null){

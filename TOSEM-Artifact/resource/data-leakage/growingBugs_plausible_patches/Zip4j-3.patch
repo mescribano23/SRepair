@@ -1,0 +1,66 @@
+diff --git a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+index 8dc19d1..fce289d 100644
+--- a/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
++++ b/src/main/java/net/lingala/zip4j/tasks/AbstractExtractFileTask.java
+@@ -27,37 +27,38 @@ public abstract class AbstractExtractFileTask<T> extends AsyncZipTask<T> {
+     this.zipModel = zipModel;
+   }
+ 
+-  protected void extractFile(ZipInputStream zipInputStream, FileHeader fileHeader, String outPath, String newFileName,
+-                             ProgressMonitor progressMonitor) throws IOException {
++protected void extractFile(ZipInputStream zipInputStream, FileHeader fileHeader, String outPath, String newFileName,
++                           ProgressMonitor progressMonitor) throws IOException {
+ 
+-    progressMonitor.setFileName(fileHeader.getFileName());
++  progressMonitor.setFileName(fileHeader.getFileName());
+ 
+-    if (!outPath.endsWith(FILE_SEPARATOR)) {
+-      outPath += FILE_SEPARATOR;
+-    }
++  if (!outPath.endsWith(FILE_SEPARATOR)) {
++    outPath += FILE_SEPARATOR;
++  }
+ 
+-    // make sure no file is extracted outside of the target directory (a.k.a zip slip)
+-    String fileName = fileHeader.getFileName();
+-    String completePath = outPath + fileName;
+-    if (!new File(completePath).getPath().startsWith(new File(outPath).getPath())) {
+-      throw new ZipException("illegal file name that breaks out of the target directory: "
+-          + fileHeader.getFileName());
+-    }
++  // Normalize the path before checking to prevent Zip Slip attacks
++  String fileName = fileHeader.getFileName();
++  String completePath = new File(outPath, fileName).getCanonicalPath();
++  String normalizedOutPath = new File(outPath).getCanonicalPath();
++  if (!completePath.startsWith(normalizedOutPath)) {
++    throw new ZipException("illegal file name that breaks out of the target directory: "
++        + fileHeader.getFileName());
++  }
+ 
+-    verifyNextEntry(zipInputStream, fileHeader);
++  verifyNextEntry(zipInputStream, fileHeader);
+ 
+-    if (fileHeader.isDirectory()) {
+-      File file = new File(completePath);
+-      if (!file.exists()) {
+-        if (!file.mkdirs()) {
+-          throw new ZipException("Could not create directory: " + file);
+-        }
++  if (fileHeader.isDirectory()) {
++    File file = new File(completePath);
++    if (!file.exists()) {
++      if (!file.mkdirs()) {
++        throw new ZipException("Could not create directory: " + file);
+       }
+-    } else {
+-      checkOutputDirectoryStructure(fileHeader, outPath, newFileName);
+-      unzipFile(zipInputStream, fileHeader, outPath, newFileName, progressMonitor);
+     }
++  } else {
++    checkOutputDirectoryStructure(fileHeader, outPath, newFileName);
++    unzipFile(zipInputStream, fileHeader, outPath, newFileName, progressMonitor);
+   }
++}
+ 
+   private void unzipFile(ZipInputStream inputStream, FileHeader fileHeader, String outputPath, String newFileName,
+                          ProgressMonitor progressMonitor) throws IOException {

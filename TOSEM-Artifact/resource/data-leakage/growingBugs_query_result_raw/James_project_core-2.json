@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.291970802919708,
+    "input": "    @Override\n    public final boolean equals(Object obj) {\n        if (obj == null) {\n            return false;\n        } else if (obj instanceof String) {\n            String theString = (String) obj;\n            return toString().equalsIgnoreCase(theString);\n        } else if (obj instanceof MailAddress) {\n            MailAddress addr = (MailAddress) obj;\n            if (isNullSender() && addr.isNullSender()) {\n                return true;\n            }\n            return equalsIgnoreCase(getLocalPart(), addr.getLocalPart())\n                && Objects.equals(getDomain(), addr.getDomain());\n        }\n        return false;\n    }",
+    "query_result": [
+        "@Override\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj ",
+        "Override\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj i",
+        "verride\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj in",
+        "erride\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj ins",
+        "rride\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj inst",
+        "ride\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj insta",
+        "ide\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instan",
+        "de\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanc",
+        "e\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instance",
+        "\npublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanceo",
+        "public final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanceof",
+        "ublic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanceof ",
+        "ic final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanceof Str",
+        "c final boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanceof Stri",
+        "al boolean equals(Object obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanceof String) {",
+        " obj) {\nif (obj == null) {\nreturn false;\n} else if (obj instanceof String) {\nString theString = (Str",
+        "blic final boolean equals(Object obj) {\nif (obj ==",
+        "lic final boolean equals(Object obj) {\nif (obj == ",
+        " final boolean equals(Object obj) {\nif (obj == nul",
+        "final boolean equals(Object obj) {\nif (obj == null"
+    ]
+}

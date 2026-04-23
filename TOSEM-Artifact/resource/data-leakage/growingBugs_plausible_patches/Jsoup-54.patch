@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/jsoup/helper/W3CDom.java b/src/main/java/org/jsoup/helper/W3CDom.java
+index 20aeeda..751a63c 100644
+--- a/src/main/java/org/jsoup/helper/W3CDom.java
++++ b/src/main/java/org/jsoup/helper/W3CDom.java
+@@ -119,13 +119,20 @@ public class W3CDom {
+             }
+         }
+ 
+-        private void copyAttributes(org.jsoup.nodes.Node source, Element el) {
+-            for (Attribute attribute : source.attributes()) {
+-                // valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]
+-                String key = attribute.getKey().replaceAll("[^-a-zA-Z0-9_:.]", "");
+-                    el.setAttribute(key, attribute.getValue());
+-            }
++private void copyAttributes(org.jsoup.nodes.Node source, Element el) {
++    for (Attribute attribute : source.attributes()) {
++        String key = attribute.getKey().replaceAll("[^-a-zA-Z0-9_:.]", "");
++        if (!isValidXmlName(key)) {
++            key = "invalid_" + key.hashCode();
+         }
++        el.setAttribute(key, attribute.getValue());
++    }
++}
++
++// Helper method to validate XML attribute names
++private boolean isValidXmlName(String name) {
++    return name.matches("[a-zA-Z_][a-zA-Z0-9_:.\\-]*");
++}
+ 
+         /**
+          * Finds any namespaces defined in this element. Returns any tag prefix.

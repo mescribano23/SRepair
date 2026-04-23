@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "private static QueryParameter parseQueryParameter(final String qp, final Charset charset)\n    {\n        int idxOfEquals = qp.indexOf('=');\n        if (idxOfEquals == -1)\n        {\n            // name => empty value\n            return new QueryParameter(decodeParameter(qp, charset), \"\");\n        }\n\n        String parameterName = qp.substring(0, idxOfEquals);\n        String parameterValue = qp.substring(idxOfEquals + 1);\n        return new QueryParameter(decodeParameter(parameterName, charset), decodeParameter(parameterValue, charset));\n    }",
+    "query_result": []
+}

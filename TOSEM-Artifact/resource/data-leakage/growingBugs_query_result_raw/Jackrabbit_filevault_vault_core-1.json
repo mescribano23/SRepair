@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.15439093484419264,
+    "input": "    private void print(Mode mode, String action, String path, String msg) {\n        try {\n            action = Text.encodeIllegalXMLCharacters(action);\n            path = Text.encodeIllegalXMLCharacters(path);\n            msg = msg == null ? null : Text.encodeIllegalXMLCharacters(msg);\n            out.write(\"<span class=\\\"\");\n            out.write(action);\n            out.write(\"\\\">\");\n            out.write(\"<b>\");\n            out.write(action);\n            out.write(\"</b>&nbsp;\");\n            out.write(path);\n            if (msg != null) {\n                out.write(\" (\");\n                out.write(msg);\n                out.write(\")\");\n            }\n            out.write(\"</span><br>\\r\\n\");\n            if (!noScrollTo) {\n                long now = System.currentTimeMillis();\n                if (now > lastScrolled + scrollDelay) {\n                    lastScrolled = now;\n                    out.write(\"<script>\\r\\n\");\n                    out.write(\"window.scrollTo(0, 1000000);\\r\\n\");\n                    out.write(\"</script>\\r\\n\");\n                }\n            }\n            out.flush();\n        } catch (IOException e) {\n            throw new IllegalStateException(e);\n        }\n    }",
+    "query_result": [
+        ") {\nlong now = System.currentTimeMillis();\nif (now",
+        " {\nlong now = System.currentTimeMillis();\nif (now ",
+        "{\nlong now = System.currentTimeMillis();\nif (now >",
+        "\nlong now = System.currentTimeMillis();\nif (now > ",
+        "long now = System.currentTimeMillis();\nif (now > l",
+        "ng now = System.currentTimeMillis();\nif (now > las",
+        "g now = System.currentTimeMillis();\nif (now > last",
+        " now = System.currentTimeMillis();\nif (now > lastS",
+        "tem.currentTimeMillis();\nif (now > lastScrolled + ",
+        "\n}\nout.flush();\n} catch (IOException e) {\nthrow ne",
+        "}\nout.flush();\n} catch (IOException e) {\nthrow new",
+        "\nout.flush();\n} catch (IOException e) {\nthrow new ",
+        "t.flush();\n} catch (IOException e) {\nthrow new Ill",
+        ".flush();\n} catch (IOException e) {\nthrow new Ille",
+        "flush();\n} catch (IOException e) {\nthrow new Illeg",
+        "lush();\n} catch (IOException e) {\nthrow new Illega",
+        "ush();\n} catch (IOException e) {\nthrow new Illegal",
+        "sh();\n} catch (IOException e) {\nthrow new IllegalS",
+        "h();\n} catch (IOException e) {\nthrow new IllegalSt",
+        "();\n} catch (IOException e) {\nthrow new IllegalSta"
+    ]
+}

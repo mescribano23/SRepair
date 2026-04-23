@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index a31b17a2..68fac9ec 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -325,11 +325,16 @@ public final class NodeUtil {
+       case Token.FALSE:
+         return true;
+ 
+-      // Binary operators are only valid if both children are valid.
++      // Binary operators are valid if both children are valid, or it's a valid string concatenation.
+       case Token.BITAND:
+       case Token.BITNOT:
+       case Token.BITOR:
+       case Token.BITXOR:
++      case Token.ADD: // Add this case for string concatenation.
++        if (val.getFirstChild().getType() == Token.STRING && val.getLastChild().getType() == Token.STRING) {
++          return true; // Return true for string concatenation.
++        }
++        return isValidDefineValue(val.getFirstChild(), defines) && isValidDefineValue(val.getLastChild(), defines);
+ 
+       // Uniary operators are valid if the child is valid.
+       case Token.NOT:

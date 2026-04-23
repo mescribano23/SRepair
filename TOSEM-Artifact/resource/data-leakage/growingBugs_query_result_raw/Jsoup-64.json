@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.9567567567567568,
+    "input": "    private static void handleRawtext(Token.StartTag startTag, HtmlTreeBuilder tb) {\n        tb.tokeniser.transition(TokeniserState.Rawtext);\n        tb.markInsertionMode();\n        tb.transition(Text);\n        tb.insert(startTag);\n    }",
+    "query_result": [
+        "ansition(TokeniserState.Rawtext);\ntb.markInsertionMode();\ntb.transition(Text);\ntb.insert(startTag);\n",
+        "vate static void handleRawtext(Token.StartTag star",
+        " void handleRawtext(Token.StartTag startTag, HtmlT",
+        "id handleRawtext(Token.StartTag startTag, HtmlTree",
+        " handleRawtext(Token.StartTag startTag, HtmlTreeBu",
+        "ndleRawtext(Token.StartTag startTag, HtmlTreeBuild",
+        "Rawtext(Token.StartTag startTag, HtmlTreeBuilder t",
+        "b.tokeniser.transition(TokeniserState.Rawtext);\ntb",
+        "on(TokeniserState.Rawtext);\ntb.markInsertionMode()",
+        "TokeniserState.Rawtext);\ntb.markInsertionMode();\nt",
+        "arkInsertionMode();\ntb.transition(Text);\ntb.insert",
+        "tionMode();\ntb.transition(Text);\ntb.insert(startTa"
+    ]
+}

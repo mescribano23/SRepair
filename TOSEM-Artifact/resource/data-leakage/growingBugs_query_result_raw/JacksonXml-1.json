@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.13654946852003272,
+    "input": "    @Override\n    public JsonToken nextToken() throws IOException\n    {\n        _binaryValue = null;\n        if (_nextToken != null) {\n            JsonToken t = _nextToken;\n            _currToken = t;\n            _nextToken = null;\n            switch (t) {\n            case START_OBJECT:\n                _parsingContext = _parsingContext.createChildObjectContext(-1, -1);\n                break;\n            case START_ARRAY:\n                _parsingContext = _parsingContext.createChildArrayContext(-1, -1);\n                break;\n            case END_OBJECT:\n            case END_ARRAY:\n                _parsingContext = _parsingContext.getParent();\n                _namesToWrap = _parsingContext.getNamesToWrap();\n                break;\n            case FIELD_NAME:\n                _parsingContext.setCurrentName(_xmlTokens.getLocalName());\n                break;\n            default: // VALUE_STRING, VALUE_NULL\n                // should be fine as is?\n            }\n            return t;\n        }\n        int token = _xmlTokens.next();\n\n        // Need to have a loop just because we may have to eat/convert\n        // a start-element that indicates an array element.\n        while (token == XmlTokenStream.XML_START_ELEMENT) {\n            // If we thought we might get leaf, no such luck\n            if (_mayBeLeaf) {\n                // leave _mayBeLeaf set, as we start a new context\n                _nextToken = JsonToken.FIELD_NAME;\n                _parsingContext = _parsingContext.createChildObjectContext(-1, -1);\n                return (_currToken = JsonToken.START_OBJECT);\n            }\n            if (_parsingContext.inArray()) {\n                // Yup: in array, so this element could be verified; but it won't be\n                // reported anyway, and we need to process following event.\n                token = _xmlTokens.next();\n                _mayBeLeaf = true;\n                continue;\n            }\n            String name = _xmlTokens.getLocalName();\n            _parsingC",
+    "query_result": [
+        "@Override\npublic JsonToken nextToken() throws IOEx",
+        "Override\npublic JsonToken nextToken() throws IOExc",
+        "verride\npublic JsonToken nextToken() throws IOExce",
+        "erride\npublic JsonToken nextToken() throws IOExcep",
+        "rride\npublic JsonToken nextToken() throws IOExcept",
+        "ride\npublic JsonToken nextToken() throws IOExcepti",
+        "ide\npublic JsonToken nextToken() throws IOExceptio",
+        "de\npublic JsonToken nextToken() throws IOException",
+        "\npublic JsonToken nextToken() throws IOException\n{",
+        "public JsonToken nextToken() throws IOException\n{\n",
+        "\n_parsingContext = _parsingContext.createChildObje",
+        "_parsingContext = _parsingContext.createChildObjec",
+        "parsingContext = _parsingContext.createChildObject",
+        "arsingContext = _parsingContext.createChildObjectC",
+        "rsingContext = _parsingContext.createChildObjectCo",
+        "singContext = _parsingContext.createChildObjectCon",
+        "ingContext = _parsingContext.createChildObjectCont",
+        "ngContext = _parsingContext.createChildObjectConte",
+        "Context = _parsingContext.createChildObjectContext",
+        "ontext = _parsingContext.createChildObjectContext("
+    ]
+}

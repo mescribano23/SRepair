@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6397849462365591,
+    "input": "public Object answer(InvocationOnMock invocation) {\n    if (methodsGuru.isToString(invocation.getMethod())) {\n        Object mock = invocation.getMock();\n        MockName name = mockUtil.getMockName(mock);\n        if (name.isDefault()) {\n            return \"Mock for \" + mockUtil.getMockSettings(mock).getTypeToMock().getSimpleName() + \", hashCode: \" + mock.hashCode();\n        } else {\n            return name.toString();\n        }\n    } else if (methodsGuru.isCompareToMethod(invocation.getMethod())) {\n        //see issue 184.\n        //mocks by default should return 0 if references are the same, otherwise some other value because they are not the same. Hence we return 1 (anything but 0 is good).\n        //Only for compareTo() method by the Comparable interface\n        return invocation.getMock() == invocation.getArguments()[0] ? 0 : 1;\n    }\n    \n    Class<?> returnType = invocation.getMethod().getReturnType();\n    return returnValueFor(returnType);\n}",
+    "query_result": [
+        "e issue 184.\n//mocks by default should return 0 if references are the same, otherwise some other value because they are not the same. Hence we return 1 (anything but 0 is good).\n//Only for compareTo() method by the Comparable interface\nreturn invocat",
+        "().getSimpleName() + \", hashCode: \" + mock.hashCode();\n} else {\nreturn name.toString();\n}\n} else if ",
+        "y for compareTo() method by the Comparable interface\nreturn invocation.getMock() == invocation.getAr",
+        "public Object answer(InvocationOnMock invocation) ",
+        "ublic Object answer(InvocationOnMock invocation) {",
+        "blic Object answer(InvocationOnMock invocation) {\n",
+        "lic Object answer(InvocationOnMock invocation) {\ni",
+        "ic Object answer(InvocationOnMock invocation) {\nif",
+        "c Object answer(InvocationOnMock invocation) {\nif ",
+        " Object answer(InvocationOnMock invocation) {\nif (",
+        "il.getMockName(mock);\nif (name.isDefault()) {\nretu",
+        "ame(mock);\nif (name.isDefault()) {\nreturn \"Mock fo",
+        "e(mock);\nif (name.isDefault()) {\nreturn \"Mock for ",
+        "ock.hashCode();\n} else {\nreturn name.toString();\n}",
+        "d return 0 if references are the same, otherwise s",
+        "value because they are not the same. Hence we retu",
+        "se they are not the same. Hence we return 1 (anyth",
+        "To() method by the Comparable interface\nreturn inv",
+        "\nClass<?> returnType = invocation.getMethod().getR",
+        "Class<?> returnType = invocation.getMethod().getRe"
+    ]
+}

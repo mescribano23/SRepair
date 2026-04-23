@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.9135802469135802,
+    "input": "        @Override\n        public int size() {\n            return (int) Math.ceil((double) list.size() / (double) size);\n        }",
+    "query_result": [
+        "Override\npublic int size() {\nreturn (int) Math.cei",
+        "verride\npublic int size() {\nreturn (int) Math.ceil",
+        "rride\npublic int size() {\nreturn (int) Math.ceil((",
+        "de\npublic int size() {\nreturn (int) Math.ceil((dou",
+        "\npublic int size() {\nreturn (int) Math.ceil((doubl",
+        "public int size() {\nreturn (int) Math.ceil((double",
+        "ublic int size() {\nreturn (int) Math.ceil((double)",
+        "blic int size() {\nreturn (int) Math.ceil((double) ",
+        "ic int size() {\nreturn (int) Math.ceil((double) li",
+        "t size() {\nreturn (int) Math.ceil((double) list.si",
+        "ize() {\nreturn (int) Math.ceil((double) list.size(",
+        ") {\nreturn (int) Math.ceil((double) list.size() / ",
+        "{\nreturn (int) Math.ceil((double) list.size() / (d",
+        "return (int) Math.ceil((double) list.size() / (dou",
+        "eturn (int) Math.ceil((double) list.size() / (doub",
+        "rn (int) Math.ceil((double) list.size() / (double)",
+        " (int) Math.ceil((double) list.size() / (double) s"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.8461538461538461,
+    "input": "    protected Object readResolve() {\n        calculateHashCode(keys);\n        return this;\n    }",
+    "query_result": [
+        " Object readResolve() {\ncalculateHashCode(keys);\nr",
+        "Resolve() {\ncalculateHashCode(keys);\nreturn this;\n"
+    ]
+}

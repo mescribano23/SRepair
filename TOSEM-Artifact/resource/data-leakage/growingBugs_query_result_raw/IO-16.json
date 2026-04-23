@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8054123711340206,
+    "input": "    long freeSpaceWindows(String path, long timeout) throws IOException {\n        path = FilenameUtils.normalize(path);\n        if (path.length() > 0 && path.charAt(0) != '\"') {\n            path = \"\\\"\" + path + \"\\\"\";\n        }\n        \n        // build and run the 'dir' command\n        String[] cmdAttribs = new String[] {\"cmd.exe\", \"/C\", \"dir /-c \" + path};\n        \n        // read in the output of the command to an ArrayList\n        List<String> lines = performCommand(cmdAttribs, Integer.MAX_VALUE, timeout);\n        \n        // now iterate over the lines we just read and find the LAST\n        // non-empty line (the free space bytes should be in the last element\n        // of the ArrayList anyway, but this will ensure it works even if it's\n        // not, still assuming it is on the last non-blank line)\n        for (int i = lines.size() - 1; i >= 0; i--) {\n            String line = lines.get(i);\n            if (line.length() > 0) {\n                return parseDir(line, path);\n            }\n        }\n        // all lines are blank\n        throw new IOException(\n                \"Command line 'dir /-c' did not return any info \" +\n                \"for path '\" + path + \"'\");\n    }",
+    "query_result": [
+        "ust read and find the LAST\n// non-empty line (the free space bytes should be in the last element\n// of the ArrayList anyway, but this will ensure it works even if it's\n// not, still assuming it is on the last non-blank line)\nfor (int i = lines.size() - 1; i >= 0; i--) {\nString line = lines.get(i);\nif (line.length() > 0) {\nreturn parseDir(line, path);\n}\n}\n// all lines are blank\nthrow new IOExceptio",
+        "lines we just read and find the LAST\n// non-empty line (the free space bytes should be in the last element\n// of the ArrayList anyway, but this will ensure it works even if it's\n// not, still assuming it is on the last non-blank line)\nfor (int i = li",
+        "e over the lines we just read and find the LAST\n// non-empty line (the free space bytes should be in the last element\n// of the ArrayList anyway, but this will ensure it works even if it's\n// not, sti",
+        "we just read and find the LAST\n// non-empty line (the free space bytes should be in the last element\n// of the ArrayList anyway, but this will ensure it works even if it's\n// not, still assuming it is",
+        "ceWindows(String path, long timeout) throws IOException {\npath = FilenameUtils.normalize(path);\nif (",
+        " output of the command to an ArrayList\nList<String> lines = performCommand(cmdAttribs, Integer.MAX_V",
+        ", still assuming it is on the last non-blank line)\nfor (int i = lines.size() - 1; i >= 0; i--) {\nStr",
+        "eSpaceWindows(String path, long timeout) throws IO",
+        "eWindows(String path, long timeout) throws IOExcep",
+        "(path.length() > 0 && path.charAt(0) != '\"') {\npat",
+        "[] cmdAttribs = new String[] {\"cmd.exe\", \"/C\", \"di",
+        "ist<String> lines = performCommand(cmdAttribs, Int",
+        "ines = performCommand(cmdAttribs, Integer.MAX_VALU",
+        "nes = performCommand(cmdAttribs, Integer.MAX_VALUE",
+        "performCommand(cmdAttribs, Integer.MAX_VALUE, time",
+        "erformCommand(cmdAttribs, Integer.MAX_VALUE, timeo",
+        "rformCommand(cmdAttribs, Integer.MAX_VALUE, timeou",
+        "/ now iterate over the lines we just read and find",
+        "ow iterate over the lines we just read and find th",
+        "w iterate over the lines we just read and find the"
+    ]
+}

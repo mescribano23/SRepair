@@ -1,0 +1,77 @@
+diff --git a/src/main/java/com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.java b/src/main/java/com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.java
+index eec386efa..ac6db8625 100644
+--- a/src/main/java/com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.java
++++ b/src/main/java/com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.java
+@@ -46,39 +46,44 @@ public abstract class DateTimeSerializerBase<T>
+ 
+     public abstract DateTimeSerializerBase<T> withFormat(Boolean timestamp, DateFormat customFormat);
+ 
+-    @Override
+-    public JsonSerializer<?> createContextual(SerializerProvider serializers,
+-            BeanProperty property) throws JsonMappingException
+-    {
+-        if (property != null) {
+-            JsonFormat.Value format = serializers.getAnnotationIntrospector().findFormat((Annotated)property.getMember());
+-            if (format != null) {
+-
+-            	// Simple case first: serialize as numeric timestamp?
+-                JsonFormat.Shape shape = format.getShape();
+-                if (shape.isNumeric()) {
+-                    return withFormat(Boolean.TRUE, null);
+-                }
++@Override
++public JsonSerializer<?> createContextual(SerializerProvider serializers,
++        BeanProperty property) throws JsonMappingException
++{
++    if (property != null) {
++        JsonFormat.Value format = serializers.getAnnotationIntrospector().findFormat((Annotated)property.getMember());
++        if (format != null) {
++
++            // Simple case first: serialize as numeric timestamp?
++            JsonFormat.Shape shape = format.getShape();
++            if (shape.isNumeric()) {
++                return withFormat(Boolean.TRUE, null);
++            }
++
++            // Check if ANY shape with additional formatting details, default to STRING
++            if (shape == JsonFormat.Shape.ANY && (format.hasPattern() || format.hasLocale() || format.getTimeZone() != null)) {
++                shape = JsonFormat.Shape.STRING;
++            }
+ 
+-                if (format.getShape() == JsonFormat.Shape.STRING) {
+-                    TimeZone tz = format.getTimeZone();
+-                    final String pattern = format.hasPattern()
+-                                    ? format.getPattern()
+-                                    : StdDateFormat.DATE_FORMAT_STR_ISO8601;
+-                    final Locale loc = format.hasLocale()
+-                                    ? format.getLocale()
+-                                    : serializers.getLocale();
+-                    SimpleDateFormat df = new SimpleDateFormat(pattern, loc);
+-                    if (tz == null) {
+-                        tz = serializers.getTimeZone();
+-                    }
+-                    df.setTimeZone(tz);
+-                    return withFormat(Boolean.FALSE, df);
++            if (shape == JsonFormat.Shape.STRING) {
++                TimeZone tz = format.getTimeZone();
++                final String pattern = format.hasPattern()
++                                ? format.getPattern()
++                                : StdDateFormat.DATE_FORMAT_STR_ISO8601;
++                final Locale loc = format.hasLocale()
++                                ? format.getLocale()
++                                : serializers.getLocale();
++                SimpleDateFormat df = new SimpleDateFormat(pattern, loc);
++                if (tz == null) {
++                    tz = serializers.getTimeZone();
+                 }
++                df.setTimeZone(tz);
++                return withFormat(Boolean.FALSE, df);
+             }
+         }
+-        return this;
+     }
++    return this;
++}
+ 
+     /*
+     /**********************************************************

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.792147806004619,
+    "input": "public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException\n{\n    if (_isInt) {\n        visitIntFormat(visitor, typeHint, JsonParser.NumberType.BIG_INTEGER);\n    } else {\n        Class<?> h = handledType();\n        if (h == BigDecimal.class) {\n            visitFloatFormat(visitor, typeHint, JsonParser.NumberType.BIG_DECIMAL);\n        } else {\n            // otherwise bit unclear what to call... but let's try:\n            /*JsonNumberFormatVisitor v2 =*/ visitor.expectNumberFormat(typeHint);\n        }\n    }\n}",
+    "query_result": [
+        "mat(visitor, typeHint, JsonParser.NumberType.BIG_DECIMAL);\n} else {\n// otherwise bit unclear what to call... but let's try:\n/*JsonNumberFormatVisitor v2 =*/ visitor.expectNumberFormat(typeHint);\n}\n}\n}",
+        "isitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException\n{\nif (_isInt) {\nvisitIntFormat(visitor, typeHint, JsonParser.N",
+        "public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws Json",
+        "ublic void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonM",
+        "ic void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMapp",
+        "c void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappi",
+        "void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMapping",
+        "d acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingExc",
+        " acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingExce",
+        "acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingExcep",
+        "cceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingExcept",
+        "ceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingExcepti",
+        "ptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException",
+        "blic void acceptJsonFormatVisitor(JsonFormatVisito",
+        "lic void acceptJsonFormatVisitor(JsonFormatVisitor",
+        " void acceptJsonFormatVisitor(JsonFormatVisitorWra",
+        "oid acceptJsonFormatVisitor(JsonFormatVisitorWrapp",
+        "id acceptJsonFormatVisitor(JsonFormatVisitorWrappe",
+        "eptJsonFormatVisitor(JsonFormatVisitorWrapper visi",
+        "tJsonFormatVisitor(JsonFormatVisitorWrapper visito"
+    ]
+}

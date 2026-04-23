@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.256198347107438,
+    "input": "    @Override\n    public ImageInfo getImageInfo(ByteSource byteSource, Map params)\n            throws ImageReadException, IOException {\n        // make copy of params; we'll clear keys as we consume them.\n        params = (params == null) ? new HashMap() : new HashMap(params);\n\n        boolean verbose = ParamMap.getParamBoolean(params, PARAM_KEY_VERBOSE,\n                false);\n\n        if (params.containsKey(PARAM_KEY_VERBOSE))\n            params.remove(PARAM_KEY_VERBOSE);\n\n        if (params.size() > 0) {\n            Object firstKey = params.keySet().iterator().next();\n            throw new ImageReadException(\"Unknown parameter: \" + firstKey);\n        }\n\n        InputStream is = null;\n        ImageContents ic = null;\n        try {\n            is = byteSource.getInputStream();\n            ic = readImageContents(is, FormatCompliance.getDefault(), verbose);\n        } finally {\n            if (is != null) {\n                try {\n                    is.close();\n                } catch (IOException ignore) {\n                }\n            }\n        }\n\n        if (ic == null)\n            throw new ImageReadException(\"Couldn't read BMP Data\");\n\n        BmpHeaderInfo bhi = ic.bhi;\n        byte colorTable[] = ic.colorTable;\n\n        if (bhi == null)\n            throw new ImageReadException(\"BMP: couldn't read header\");\n\n        int height = bhi.height;\n        int width = bhi.width;\n\n        List<String> comments = new ArrayList<String>();\n        // TODO: comments...\n\n        int bitsPerPixel = bhi.bitsPerPixel;\n        ImageFormat format = ImageFormat.IMAGE_FORMAT_BMP;\n        String name = \"BMP Windows Bitmap\";\n        String mimeType = \"image/x-ms-bmp\";\n        // we ought to count images, but don't yet.\n        int numberOfImages = -1;\n        // not accurate ... only reflects first\n        boolean isProgressive = false;\n        // boolean isProgressive = (fPNGChunkIHDR.InterlaceMethod != 0);\n        //\n        // pixels per meter\n        int physicalWidthDpi = (int) (b",
+    "query_result": [
+        "urce byteSource, Map params)\nthrows ImageReadException, IOException {\n// make copy of params; we'll clear keys as we consume them.\nparams = (params ==",
+        "tParamBoolean(params, PARAM_KEY_VERBOSE,\nfalse);\nif (params.containsKey(PARAM_KEY_VERBOSE))\nparams.r",
+        "c ImageInfo getImageInfo(ByteSource byteSource, Ma",
+        "geInfo getImageInfo(ByteSource byteSource, Map par",
+        "fo getImageInfo(ByteSource byteSource, Map params)",
+        "(ByteSource byteSource, Map params)\nthrows ImageRe",
+        "ource byteSource, Map params)\nthrows ImageReadExce",
+        "ce byteSource, Map params)\nthrows ImageReadExcepti",
+        " byteSource, Map params)\nthrows ImageReadException",
+        "urce, Map params)\nthrows ImageReadException, IOExc",
+        "ap params)\nthrows ImageReadException, IOException ",
+        " params.keySet().iterator().next();\nthrow new Imag",
+        "e);\n} finally {\nif (is != null) {\ntry {\nis.close()",
+        ");\n} finally {\nif (is != null) {\ntry {\nis.close();",
+        ";\n} finally {\nif (is != null) {\ntry {\nis.close();\n",
+        "\n} finally {\nif (is != null) {\ntry {\nis.close();\n}",
+        "} finally {\nif (is != null) {\ntry {\nis.close();\n} ",
+        " finally {\nif (is != null) {\ntry {\nis.close();\n} c",
+        "finally {\nif (is != null) {\ntry {\nis.close();\n} ca",
+        "inally {\nif (is != null) {\ntry {\nis.close();\n} cat"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9067357512953368,
+    "input": "  private String format(JSError error, boolean warning) {\n    // extract source excerpt\n    SourceExcerptProvider source = getSource();\n    String sourceExcerpt = source == null ? null :\n        excerpt.get(\n            source, error.sourceName, error.lineNumber, excerptFormatter);\n\n    // formatting the message\n    StringBuilder b = new StringBuilder();\n    if (error.sourceName != null) {\n      b.append(error.sourceName);\n      if (error.lineNumber > 0) {\n        b.append(':');\n        b.append(error.lineNumber);\n      }\n      b.append(\": \");\n    }\n\n    b.append(getLevelName(warning ? CheckLevel.WARNING : CheckLevel.ERROR));\n    b.append(\" - \");\n\n    b.append(error.description);\n    b.append('\\n');\n    if (sourceExcerpt != null) {\n      b.append(sourceExcerpt);\n      b.append('\\n');\n      int charno = error.getCharno();\n\n      // padding equal to the excerpt and arrow at the end\n      // charno == sourceExpert.length() means something is missing\n      // at the end of the line\n      if (excerpt.equals(LINE)\n          && 0 <= charno && charno <= sourceExcerpt.length()) {\n        for (int i = 0; i < charno; i++) {\n          char c = sourceExcerpt.charAt(i);\n          if (Character.isWhitespace(c)) {\n            b.append(c);\n          } else {\n            b.append(' ');\n          }\n        }\n        b.append(\"^\\n\");\n      }\n    }\n    return b.toString();\n  }",
+    "query_result": [
+        "r, boolean warning) {\n// extract source excerpt\nSourceExcerptProvider source = getSource();\nString sourceExcerpt = source == null ? null :\nexcerpt.get(\nsource, error.sourceName, error.lineNumber, excerptFormatter);\n// formatting the message\nStringBuilder b = new StringBuilder();\nif (error.sourceName != null) {\nb.append(error.sourceName);\nif (error.lineNumber > 0) {\nb.append(':');\nb.append(error.lineNumber);\n}\nb.append(\": \");\n}\nb.append(getLevelName(warning ? CheckLevel.WARNING : CheckLevel.ERROR));\nb.append(\" - \");\nb.append(error.description);\nb.append('\\n');\nif (sourceExcerpt != null) {\nb.append(sourceExcerpt);\nb.append('\\n');\nint charno = error.getCharno();\n// padding equal to the excerpt ",
+        "or (int i = 0; i < charno; i++) {\nchar c = sourceExcerpt.charAt(i);\nif (Character.isWhitespace(c)) {\nb.append(c);\n} else {\nb.append(' ');\n}\n}\nb.append",
+        "arno == sourceExpert.length() means something is missing\n// at the end of the line\nif (excerpt.equal",
+        " charno && charno <= sourceExcerpt.length()) {\nfor (int i = 0; i < charno; i++) {\nchar c = sourceExc",
+        " <= sourceExcerpt.length()) {\nfor (int i = 0; i < charno; i++) {\nchar c = sourceExcerpt.charAt(i);\ni",
+        "sourceExcerpt.length()) {\nfor (int i = 0; i < charno; i++) {\nchar c = sourceExcerpt.charAt(i);\nif (C",
+        "h()) {\nfor (int i = 0; i < charno; i++) {\nchar c = sourceExcerpt.charAt(i);\nif (Character.isWhitespa",
+        ") {\nfor (int i = 0; i < charno; i++) {\nchar c = sourceExcerpt.charAt(i);\nif (Character.isWhitespace(",
+        "ceExpert.length() means something is missing\n// at",
+        "ert.length() means something is missing\n// at the ",
+        "ength() means something is missing\n// at the end o",
+        "th() means something is missing\n// at the end of t",
+        "means something is missing\n// at the end of the li",
+        "ething is missing\n// at the end of the line\nif (ex",
+        "thing is missing\n// at the end of the line\nif (exc",
+        "hing is missing\n// at the end of the line\nif (exce",
+        "ng is missing\n// at the end of the line\nif (excerp",
+        " 0 <= charno && charno <= sourceExcerpt.length()) ",
+        "nt i = 0; i < charno; i++) {\nchar c = sourceExcerp",
+        "= 0; i < charno; i++) {\nchar c = sourceExcerpt.cha"
+    ]
+}

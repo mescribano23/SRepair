@@ -1,0 +1,44 @@
+diff --git a/src/main/java/net/e175/klaus/solarpositioning/SPA.java b/src/main/java/net/e175/klaus/solarpositioning/SPA.java
+index 8d35e75..a461d7a 100644
+--- a/src/main/java/net/e175/klaus/solarpositioning/SPA.java
++++ b/src/main/java/net/e175/klaus/solarpositioning/SPA.java
+@@ -301,22 +301,23 @@ public final class SPA {
+         };
+     }
+ 
+-    private static GregorianCalendar addFractionOfDay(GregorianCalendar day, final double fraction) {
+-        GregorianCalendar dayStart = (GregorianCalendar) day.clone();
+-        dayStart.set(Calendar.MINUTE, 0);
+-        dayStart.set(Calendar.SECOND, 0);
+-        dayStart.set(Calendar.MILLISECOND, 0);
+-        dayStart.set(Calendar.HOUR_OF_DAY, 12);
+-        final int offset = day.getTimeZone().getOffset(dayStart.getTimeInMillis());
+-
+-        dayStart.set(Calendar.HOUR_OF_DAY, 0);
+-        final double offsetFraction = (double) offset / MS_PER_DAY;
+-        final int addMs = (int) (MS_PER_DAY * limitTo(fraction + offsetFraction, 1.0));
+-        assert addMs >= 0 && addMs <= MS_PER_DAY;
+-        dayStart.setTimeInMillis(dayStart.getTimeInMillis() + addMs);
+-
+-        return dayStart;
+-    }
++private static GregorianCalendar addFractionOfDay(GregorianCalendar day, final double fraction) {
++    GregorianCalendar dayStart = (GregorianCalendar) day.clone();
++    dayStart.set(Calendar.MINUTE, 0);
++    dayStart.set(Calendar.SECOND, 0);
++    dayStart.set(Calendar.MILLISECOND, 0);
++    dayStart.set(Calendar.HOUR_OF_DAY, 0);
++
++    // Recalculate offset after setting to midnight
++    final int offset = day.getTimeZone().getOffset(dayStart.getTimeInMillis());
++
++    final double offsetFraction = (double) offset / MS_PER_DAY;
++    final int addMs = (int) (MS_PER_DAY * limitTo(fraction + offsetFraction, 1.0));
++    assert addMs >= 0 && addMs <= MS_PER_DAY;
++    dayStart.setTimeInMillis(dayStart.getTimeInMillis() + addMs);
++
++    return dayStart;
++}
+ 
+     /**
+      * limit H' values according to A.2.11

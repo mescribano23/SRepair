@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public Iterable<PublicKey> iterate() {\n        return new MkIterable<PublicKey>(\n            this.storage,\n            String.format(\"%s/key\", this.xpath()),\n            new MkIterable.Mapping<PublicKey>() {\n                @Override\n                public PublicKey map(final XML xml) {\n                    return MkPublicKeys.this.get(\n                        Integer.parseInt(xml.xpath(\"id/text()\").get(0))\n                    );\n                }\n            }\n        );\n    }",
+    "query_result": []
+}

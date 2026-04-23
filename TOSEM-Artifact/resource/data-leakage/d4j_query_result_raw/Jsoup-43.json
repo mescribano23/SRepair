@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.7878787878787878,
+    "input": "private static <E extends Element> Integer indexInList(Element search, List<E> elements) {\n    Validate.notNull(search);\n    Validate.notNull(elements);\n\n    for (int i = 0; i < elements.size(); i++) {\n        E element = elements.get(i);\n        if (element == search)\n            return i;\n    }\n    return null;\n}",
+    "query_result": [
+        "atic <E extends Element> Integer indexInList(Element search, List<E> elements) {\nValidate.notNull(search);\nValidate.notNull(elements);\nfor (int i = 0; i < elements.size(); i++) {\nE element = elements.",
+        " <E extends Element> Integer indexInList(Element search, List<E> elements) {\nValidate.notNull(search);\nValidate.notNull(elements);\nfor (int i = 0; i < elements.size(); i++) {\nE element = elements.get(",
+        "nt> Integer indexInList(Element search, List<E> elements) {\nValidate.notNull(search);\nValidate.notNull(elements);\nfor (int i = 0; i < elements.size();",
+        " indexInList(Element search, List<E> elements) {\nValidate.notNull(search);\nValidate.notNull(elements);\nfor (int i = 0; i < elements.size(); i++) {\nE e",
+        "ndexInList(Element search, List<E> elements) {\nValidate.notNull(search);\nValidate.notNull(elements);",
+        "(elements);\nfor (int i = 0; i < elements.size(); i",
+        "lements);\nfor (int i = 0; i < elements.size(); i++",
+        "ements);\nfor (int i = 0; i < elements.size(); i++)",
+        " < elements.size(); i++) {\nE element = elements.ge",
+        "ments.size(); i++) {\nE element = elements.get(i);\n"
+    ]
+}

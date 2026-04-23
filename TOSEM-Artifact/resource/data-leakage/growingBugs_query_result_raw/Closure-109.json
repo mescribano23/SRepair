@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.5512820512820513,
+    "input": "  private Node parseContextTypeExpression(JsDocToken token) {\n    if (token == JsDocToken.QMARK) {\n      return newNode(Token.QMARK);\n    } else {\n      return parseBasicTypeExpression(token);\n    }\n  }",
+    "query_result": [
+        "oken token) {\nif (token == JsDocToken.QMARK) {\nreturn newNode(Token.QMARK);\n} else {\nreturn parseBas"
+    ]
+}

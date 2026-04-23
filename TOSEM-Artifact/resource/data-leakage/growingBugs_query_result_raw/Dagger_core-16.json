@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4342235410484669,
+    "input": "  @Override public void getBindings(Map<String, Binding<?>> bindings) {\n    for (Class<?> c = moduleClass; c != Object.class; c = c.getSuperclass()) {\n      for (Method method : c.getDeclaredMethods()) {\n        Provides provides = method.getAnnotation(Provides.class);\n        if (provides != null) {\n          Type genericReturnType = method.getGenericReturnType();\n\n          Type typeToCheck = genericReturnType;\n          if (genericReturnType instanceof ParameterizedType) {\n            typeToCheck = ((ParameterizedType) genericReturnType).getRawType();\n          }\n          if (Provider.class.equals(typeToCheck)) {\n            throw new IllegalStateException(\"@Provides method must not return Provider directly: \"\n                + c.getName()\n                + \".\"\n                + method.getName());\n          }\n          if (Lazy.class.equals(typeToCheck)) {\n            throw new IllegalStateException(\"@Provides method must not return Lazy directly: \"\n                + c.getName()\n                + \".\"\n                + method.getName());\n          }\n\n          String key = Keys.get(genericReturnType, method.getAnnotations(), method);\n          switch (provides.type()) {\n            case UNIQUE:\n              handleBindings(bindings, method, key);\n              break;\n            case SET:\n              handleSetBindings(bindings, method, key);\n              break;\n            default:\n              throw new AssertionError(\"Unknown @Provides type \" + provides.type());\n          }\n        }\n      }\n    }\n  }",
+    "query_result": [
+        "nType = method.getGenericReturnType();\nType typeToCheck = genericReturnType;\nif (genericReturnType instanceof ParameterizedType) {\ntypeToCheck = ((ParameterizedType) genericReturnType).getRawType();\n}\nif (Provider.class.equals(typeToCheck)) {\nthrow new IllegalStateException(\"@Provides method must no",
+        "oCheck)) {\nthrow new IllegalStateException(\"@Provides method must not return Lazy directly: \"\n+ c.ge",
+        "lass; c != Object.class; c = c.getSuperclass()) {\n",
+        "ass; c != Object.class; c = c.getSuperclass()) {\nf",
+        "; c != Object.class; c = c.getSuperclass()) {\nfor ",
+        " c != Object.class; c = c.getSuperclass()) {\nfor (",
+        " != Object.class; c = c.getSuperclass()) {\nfor (Me",
+        "Object.class; c = c.getSuperclass()) {\nfor (Method",
+        "bject.class; c = c.getSuperclass()) {\nfor (Method ",
+        "; c = c.getSuperclass()) {\nfor (Method method : c.",
+        " = c.getSuperclass()) {\nfor (Method method : c.get",
+        "= c.getSuperclass()) {\nfor (Method method : c.getD",
+        "c.getSuperclass()) {\nfor (Method method : c.getDec",
+        "getSuperclass()) {\nfor (Method method : c.getDecla",
+        "etSuperclass()) {\nfor (Method method : c.getDeclar",
+        "tSuperclass()) {\nfor (Method method : c.getDeclare",
+        "uperclass()) {\nfor (Method method : c.getDeclaredM",
+        "erclass()) {\nfor (Method method : c.getDeclaredMet",
+        "rclass()) {\nfor (Method method : c.getDeclaredMeth",
+        "class()) {\nfor (Method method : c.getDeclaredMetho"
+    ]
+}

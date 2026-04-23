@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3058365758754864,
+    "input": "    private byte[] buildPostTable() throws IOException\n    {\n        PostScriptTable post = ttf.getPostScript();\n        if (post == null || keepTables != null && !keepTables.contains(\"post\"))\n        {\n            return null;\n        }\n\n        ByteArrayOutputStream bos = new ByteArrayOutputStream();\n        DataOutputStream out = new DataOutputStream(bos);\n\n        writeFixed(out, 2.0); // version\n        writeFixed(out, post.getItalicAngle());\n        writeSInt16(out, post.getUnderlinePosition());\n        writeSInt16(out, post.getUnderlineThickness());\n        writeUint32(out, post.getIsFixedPitch());\n        writeUint32(out, post.getMinMemType42());\n        writeUint32(out, post.getMaxMemType42());\n        writeUint32(out, post.getMinMemType1());\n        writeUint32(out, post.getMaxMemType1());\n\n        // version 2.0\n\n        // numberOfGlyphs\n        writeUint16(out, glyphIds.size());\n\n        // glyphNameIndex[numGlyphs]\n        Map<String, Integer> names = new LinkedHashMap<>();\n        for (int gid : glyphIds)\n        {\n            String name = post.getName(gid);\n            Integer macId = WGL4Names.MAC_GLYPH_NAMES_INDICES.get(name);\n            if (macId != null)\n            {\n                // the name is implicit, as it's from MacRoman\n                writeUint16(out, macId);\n            }\n            else\n            {\n                // the name will be written explicitly\n                Integer ordinal = names.get(name);\n                if (ordinal == null)\n                {\n                    ordinal = names.size();\n                    names.put(name, ordinal);\n                }\n                writeUint16(out, 258 + ordinal);\n            }\n        }\n\n        // names[numberNewGlyphs]\n        for (String name : names.keySet())\n        {\n            byte[] buf = name.getBytes(Charset.forName(\"US-ASCII\"));\n            writeUint8(out, buf.length);\n            out.write(buf);\n        }\n\n        out.flush();\n        return bos.toByteArray();\n    }",
+    "query_result": [
+        "writeSInt16(out, post.getUnderlinePosition());\nwriteSInt16(out, post.getUnderlineThickness());\nwriteUint32(out, post.getIsFixedPitch());\nwriteUint32(out, post.getMinMemType42());\nwriteUint32(out, post.getMaxMemType42());\nwriteUint32(out, post.getMinMemType1());\nwriteUint32(out, post.getMaxMemType1()",
+        "{\nreturn null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new",
+        "\nreturn null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new ",
+        "return null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new D",
+        "eturn null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new Da",
+        "turn null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new Dat",
+        "urn null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new Data",
+        "rn null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataO",
+        "n null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOu",
+        " null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOut",
+        "null;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutp",
+        "ll;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutput",
+        "l;\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputS",
+        ";\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputSt",
+        "\n}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputStr",
+        "}\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputStre",
+        "\nByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputStrea",
+        "ByteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputStream",
+        "yteArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputStream(",
+        "teArrayOutputStream bos = new ByteArrayOutputStream();\nDataOutputStream out = new DataOutputStream(b"
+    ]
+}

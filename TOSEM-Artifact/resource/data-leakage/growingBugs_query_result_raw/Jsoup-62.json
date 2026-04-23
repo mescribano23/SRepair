@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.8625277161862528,
+    "input": "        boolean anyOtherEndTag(Token t, HtmlTreeBuilder tb) {\n            String name = t.asEndTag().name(); // matches with case sensitivity if enabled\n            ArrayList<Element> stack = tb.getStack();\n            for (int pos = stack.size() -1; pos >= 0; pos--) {\n                Element node = stack.get(pos);\n                if (node.nodeName().equals(name)) {\n                    tb.generateImpliedEndTags(name);\n                    if (!name.equals(tb.currentElement().nodeName()))\n                        tb.error(this);\n                    tb.popStackToClose(name);\n                    break;\n                } else {\n                    if (tb.isSpecial(node)) {\n                        tb.error(this);\n                        return false;\n                    }\n                }\n            }\n            return true;\n        }",
+    "query_result": [
+        "etStack();\nfor (int pos = stack.size() -1; pos >= 0; pos--) {\nElement node = stack.get(pos);\nif (node.nodeName().equals(name)) {\ntb.generateImpliedEndTags(name);\nif (!name.equals(tb.currentElement().nodeName()))\ntb.error(this);\ntb.popStackToClose(name);\nbreak;\n} else {\nif (tb.isSpecial(node)) {\ntb.e",
+        ";\nif (node.nodeName().equals(name)) {\ntb.generateImpliedEndTags(name);\nif (!name.equals(tb.currentElement().nodeName()))\ntb.error(this);\ntb.popStackToClose(name);\nbreak;\n} else {\nif (tb.isSpecial(node)) {\ntb.error(this);\nreturn false;\n}\n}\n}\nreturn tr",
+        "quals(name)) {\ntb.generateImpliedEndTags(name);\nif (!name.equals(tb.currentElement().nodeName()))\ntb.error(this);\ntb.popStackToClose(name);\nbreak;\n} else {\nif (tb.isSpecial(node)) {\ntb.error(this);\nre",
+        ".get(pos);\nif (node.nodeName().equals(name)) {\ntb.generateImpliedEndTags(name);\nif (!name.equals(tb.currentElement().nodeName()))\ntb.error(this);\ntb.p",
+        " node = stack.get(pos);\nif (node.nodeName().equals(name)) {\ntb.generateImpliedEndTags(name);\nif (!na",
+        "\ntb.popStackToClose(name);\nbreak;\n} else {\nif (tb.isSpecial(node)) {\ntb.error(this);\nreturn false;\n}",
+        "olean anyOtherEndTag(Token t, HtmlTreeBuilder tb) ",
+        "erEndTag(Token t, HtmlTreeBuilder tb) {\nString nam",
+        "ag(Token t, HtmlTreeBuilder tb) {\nString name = t.",
+        "rrayList<Element> stack = tb.getStack();\nfor (int ",
+        " (int pos = stack.size() -1; pos >= 0; pos--) {\nEl",
+        " >= 0; pos--) {\nElement node = stack.get(pos);\nif ",
+        "teImpliedEndTags(name);\nif (!name.equals(tb.curren",
+        "lose(name);\nbreak;\n} else {\nif (tb.isSpecial(node)",
+        "pecial(node)) {\ntb.error(this);\nreturn false;\n}\n}\n"
+    ]
+}

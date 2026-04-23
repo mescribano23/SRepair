@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.8,
+    "input": "  public JavaWriter emitImports(Class<?>... types) throws IOException {\n    List<String> classNames = new ArrayList<String>(types.length);\n    for (Class<?> classToImport : types) {\n      classNames.add(classToImport.getCanonicalName());\n    }\n    return emitImports(classNames);\n  }",
+    "query_result": [
+        "tImports(Class<?>... types) throws IOException {\nList<String> classNames = new ArrayList<String>(types.length);\nfor (Class<?> classToImport : types) {\nclassNames.add(classToImport.getCanonicalName());",
+        "r emitImports(Class<?>... types) throws IOException {\nList<String> classNames = new ArrayList<String>(types.length);\nfor (Class<?> classToImport : typ",
+        "throws IOException {\nList<String> classNames = new",
+        "rows IOException {\nList<String> classNames = new A",
+        "ws IOException {\nList<String> classNames = new Arr",
+        " IOException {\nList<String> classNames = new Array",
+        "Exception {\nList<String> classNames = new ArrayLis",
+        "xception {\nList<String> classNames = new ArrayList",
+        "tion {\nList<String> classNames = new ArrayList<Str",
+        "ion {\nList<String> classNames = new ArrayList<Stri",
+        "on {\nList<String> classNames = new ArrayList<Strin",
+        " {\nList<String> classNames = new ArrayList<String>",
+        "{\nList<String> classNames = new ArrayList<String>("
+    ]
+}

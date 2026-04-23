@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4720992028343667,
+    "input": "private boolean isInlinableObject(List<Reference> refs) {\n  boolean ret = false;\n  Set<String> validProperties = Sets.newHashSet();\n  for (Reference ref : refs) {\n    Node name = ref.getNode();\n    Node parent = ref.getParent();\n    Node gramps = ref.getGrandparent();\n\n    // Ignore most indirect references, like x.y (but not x.y(),\n    // since the function referenced by y might reference 'this').\n    //\n    if (parent.isGetProp()) {\n      Preconditions.checkState(parent.getFirstChild() == name);\n      // A call target may be using the object as a 'this' value.\n      if (gramps.isCall()\n          && gramps.getFirstChild() == parent) {\n        return false;\n      }\n\n      // Deleting a property has different semantics from deleting\n      // a variable, so deleted properties should not be inlined.\n      if (gramps.isDelProp()) {\n        return false;\n      }\n\n      // NOTE(nicksantos): This pass's object-splitting algorithm has\n      // a blind spot. It assumes that if a property isn't defined on an\n      // object, then the value is undefined. This is not true, because\n      // Object.prototype can have arbitrary properties on it.\n      //\n      // We short-circuit this problem by bailing out if we see a reference\n      // to a property that isn't defined on the object literal. This\n      // isn't a perfect algorithm, but it should catch most cases.\n      String propName = parent.getLastChild().getString();\n      if (!validProperties.contains(propName)) {\n        if (NodeUtil",
+    "query_result": [
+        "We short-circuit this problem by bailing out if we see a reference\n// to a property that isn't defined on the object literal. This\n// isn't a perfect ",
+        " bailing out if we see a reference\n// to a property that isn't defined on the object literal. This\n// isn't a perfect algorithm, but it should catch m",
+        "ng out if we see a reference\n// to a property that isn't defined on the object literal. This\n// isn't a perfect algorithm, but it should catch most ca",
+        "et<String> validProperties = Sets.newHashSet();\nfor (Reference ref : refs) {\nNode name = ref.getNode",
+        "alidProperties = Sets.newHashSet();\nfor (Reference ref : refs) {\nNode name = ref.getNode();\nNode par",
+        "// Deleting a property has different semantics from deleting\n// a variable, so deleted properties sh",
+        "/ Deleting a property has different semantics from deleting\n// a variable, so deleted properties sho",
+        " Deleting a property has different semantics from deleting\n// a variable, so deleted properties shou",
+        "eting a property has different semantics from deleting\n// a variable, so deleted properties should n",
+        "erty has different semantics from deleting\n// a variable, so deleted properties should not be inline",
+        "santos): This pass's object-splitting algorithm has\n// a blind spot. It assumes that if a property i",
+        "eObject(List<Reference> refs) {\nboolean ret = fals",
+        "();\nfor (Reference ref : refs) {\nNode name = ref.g",
+        ") {\nPreconditions.checkState(parent.getFirstChild(",
+        "econditions.checkState(parent.getFirstChild() == n",
+        "ifferent semantics from deleting\n// a variable, so",
+        "fferent semantics from deleting\n// a variable, so ",
+        "rent semantics from deleting\n// a variable, so del",
+        "mantics from deleting\n// a variable, so deleted pr",
+        "able, so deleted properties should not be inlined."
+    ]
+}

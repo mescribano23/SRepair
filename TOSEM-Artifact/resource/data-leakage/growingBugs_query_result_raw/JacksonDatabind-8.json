@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.9898804047838087,
+    "input": "    protected void verifyNonDup(AnnotatedWithParams newOne, int typeIndex, boolean explicit)\n    {\n        final int mask = (1 << typeIndex);\n        _hasNonDefaultCreator = true;\n        AnnotatedWithParams oldOne = _creators[typeIndex];\n        // already had an explicitly marked one?\n        if (oldOne != null) {\n            boolean verify;\n\n            if ((_explicitCreators & mask) != 0) { // already had explicitly annotated, leave as-is\n                // but skip, if new one not annotated\n                if (!explicit) {\n                    return;\n                }\n                // both explicit: verify\n                verify = true;\n            } else {\n                // otherwise only verify if neither explicitly annotated.\n                verify = !explicit;\n            }\n\n            // one more thing: ok to override in sub-class\n            if (verify && (oldOne.getClass() == newOne.getClass())) {\n                // [databind#667]: avoid one particular class of bogus problems\n                Class<?> oldType = oldOne.getRawParameterType(0);\n                Class<?> newType = newOne.getRawParameterType(0);\n\n                if (oldType == newType) {\n                    throw new IllegalArgumentException(\"Conflicting \"+TYPE_DESCS[typeIndex]\n                            +\" creators: already had explicitly marked \"+oldOne+\", encountered \"+newOne);\n                }\n                // otherwise, which one to choose?\n                if (newType.isAssignableFrom(oldType)) {\n                    // new type more generic, use old\n                    return;\n                }\n                // new type more specific, use it\n            }\n        }\n        if (explicit) {\n            _explicitCreators |= mask;\n        }\n        _creators[typeIndex] = _fixAccess(newOne);\n    }",
+    "query_result": [
+        "protected void verifyNonDup(AnnotatedWithParams newOne, int typeIndex, boolean explicit) { final int mask = (1 << typeIndex); _hasNonDefaultCreator = true; AnnotatedWithParams oldOne = _creators[typeIndex]; // already had an explicitly marked one? if (oldOne != null) { boolean verify; if ((_explicitCreators & mask) != 0) { // already had explicitly annotated, leave as-is // but skip, if new one not annotated if (!explicit) { return; } // both explicit: verify verify = true; } else { // otherwise only verify if neither explicitly annotated. verify = !explicit; } // one more thing: ok to override in sub-class if (verify && (oldOne.getClass() == newOne.getClass())) { // [databind#667]: avoid one particular class of bogus problems Class<?> oldType = oldOne.getRawParameterType(0); Class<?> newType = newOne.getRawParameterType(0); if (oldType == newType) { throw new IllegalArgumentException(\"Conflicting \"+TYPE_DESCS[typeIndex] +\" creators: already had explicitly marked \"+oldOne+\", encountered \"+newOne); } // otherwise, which one to choose? if (newType.isAssignableFrom(oldType)) { // new type more generic, use old return; } // new type more specific, use it } } if (explicit) { _explicitCreators |= mask; } _creators[typeIndex] = _fixAcces",
+        "erifyNonDup(AnnotatedWithParams newOne, int typeIndex, boolean explicit) { final int mask = (1 << typeIndex); _hasNonDefaultCreator = true; AnnotatedWithParams oldOne = _creators[typeIndex]; // already had an explicitly marked one? if (oldOne != null) { boolean verify; if ((_explicitCreators & mask) != 0) { // already had explicitly annotated, leave as-is // but skip, if new one not annotated if (",
+        ".getRawParameterType(0); if (oldType == newType) { throw new IllegalArgumentException(\"Conflicting \"+TYPE_DESCS[typeIndex] +\" creators: already had explicitly marked \"+oldOne+\", encountered \"+newOne);",
+        "ify verify = true; } else { // otherwise only verify if neither explicitly annotated. verify = !explicit; } // one more thing: ok to override in sub-c",
+        "(oldOne.getClass() == newOne.getClass())) { // [databind#667]: avoid one particular class of bogus p",
+        "<?> oldType = oldOne.getRawParameterType(0); Class<?> newType = newOne.getRawParameterType(0); if (o",
+        "erType(0); Class<?> newType = newOne.getRawParameterType(0); if (oldType == newType) { throw new Ill",
+        "verifyNonDup(AnnotatedWithParams newOne, int type",
+        "rifyNonDup(AnnotatedWithParams newOne, int typeInd",
+        "tatedWithParams newOne, int typeIndex, boolean exp",
+        "dWithParams newOne, int typeIndex, boolean explici",
+        "_hasNonDefaultCreator = true; AnnotatedWithParams",
+        "Class<?> oldType = oldOne.getRawParameterType(0);",
+        "arameterType(0); Class<?> newType = newOne.getRawP",
+        "{ throw new IllegalArgumentException(\"Conflicting",
+        "{ throw new IllegalArgumentException(\"Conflicting",
+        "} if (explicit) { _explicitCreators |= mask; } _c",
+        "{ _explicitCreators |= mask; } _creators[typeInde",
+        "licitCreators |= mask; } _creators[typeIndex] = _f"
+    ]
+}

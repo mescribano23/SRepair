@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.7938144329896907,
+    "input": "    private String _resolveTypePlaceholders(JavaType sourceType, JavaType actualType)\n        throws IllegalArgumentException\n    {\n        List<JavaType> expectedTypes = sourceType.getBindings().getTypeParameters();\n        List<JavaType> actualTypes = actualType.getBindings().getTypeParameters();\n        for (int i = 0, len = expectedTypes.size(); i < len; ++i) {\n            JavaType exp = expectedTypes.get(i);\n            JavaType act = actualTypes.get(i);\n            if (!_verifyAndResolvePlaceholders(exp, act)) {\n                // 14-May-2018, tatu: As per [databind#2034] it seems we better relax assignment\n                //   rules further -- at least likely \"raw\" (untyped, non-generic) base should probably\n                //   allow specialization.\n                if (exp.hasRawClass(Object.class)) {\n                    continue;\n                }\n                // 19-Apr-2018, tatu: Hack for [databind#1964] -- allow type demotion\n                //    for `java.util.Map` key type if (and only if) target type is\n                //    `java.lang.Object`\n                if (i == 0) {\n                    if (sourceType.hasRawClass(Map.class)\n                            && act.hasRawClass(Object.class)) {\n                        continue;\n                    }\n                }\n                return String.format(\"Type parameter #%d/%d differs; can not specialize %s with %s\",\n                        (i+1), len, exp.toCanonical(), act.toCanonical());\n            }\n        }\n        return null;\n    }",
+    "query_result": [
+        "] it seems we better relax assignment\n// rules further -- at least likely \"raw\" (untyped, non-generic) base should probably\n// allow specialization.\nif (exp.hasRawClass(Object.class)) {\ncontinue;\n}\n// 19-Apr-2018, tatu: Hack for [databind#1964] -- allow type demotion\n// for `java.util.Map` key type if (and only if) target type is\n// `java.lang.Object`\nif (i == 0) {\nif (sourceType.hasRawClass(Map.class)\n&& act.hasRawClass(Object.class)) {\ncontinue",
+        "if (!_verifyAndResolvePlaceholders(exp, act)) {\n// 14-May-2018, tatu: As per [databind#2034] it seems we better relax assignment\n// rules further -- at least likely \"raw\" (untyped, non-generic) base should probably\n// allow specialization.\nif (exp.hasRawClass(Object.class)) {\ncontinue;\n}\n// 19-Apr-2018, tatu: Hack for [databind#1964] -- allow type demotion\n// for `java.util.Map` key type if (and o",
+        "lders(JavaType sourceType, JavaType actualType)\nthrows IllegalArgumentException\n{\nList<JavaType> expectedTypes = sourceType.getBindings().getTypeParameters();\nList<JavaType> actualTypes = actualType.g",
+        " _resolveTypePlaceholders(JavaType sourceType, JavaType actualType)\nthrows IllegalArgumentException\n",
+        "ters();\nfor (int i = 0, len = expectedTypes.size()",
+        "format(\"Type parameter #%d/%d differs; can not spe",
+        "at(\"Type parameter #%d/%d differs; can not special",
+        "t(\"Type parameter #%d/%d differs; can not speciali",
+        "Type parameter #%d/%d differs; can not specialize ",
+        "pe parameter #%d/%d differs; can not specialize %s"
+    ]
+}

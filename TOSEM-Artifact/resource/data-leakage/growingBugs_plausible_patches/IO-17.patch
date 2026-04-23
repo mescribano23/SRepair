@@ -1,0 +1,63 @@
+diff --git a/src/java/org/apache/commons/io/FileSystemUtils.java b/src/java/org/apache/commons/io/FileSystemUtils.java
+index c2aa4abf..97c8a3ad 100644
+--- a/src/java/org/apache/commons/io/FileSystemUtils.java
++++ b/src/java/org/apache/commons/io/FileSystemUtils.java
+@@ -289,33 +289,33 @@ public class FileSystemUtils {
+      * @return the amount of free drive space on the drive
+      * @throws IOException if an error occurs
+      */
+-    long freeSpaceWindows(String path, long timeout) throws IOException {
+-        path = FilenameUtils.normalize(path);
+-        if (path.length() > 0 && path.charAt(0) != '"') {
+-            path = "\"" + path + "\"";
+-        }
+-        
+-        // build and run the 'dir' command
+-        String[] cmdAttribs = new String[] {"cmd.exe", "/C", "dir /-c " + path};
+-        
+-        // read in the output of the command to an ArrayList
+-        List<String> lines = performCommand(cmdAttribs, Integer.MAX_VALUE, timeout);
+-        
+-        // now iterate over the lines we just read and find the LAST
+-        // non-empty line (the free space bytes should be in the last element
+-        // of the ArrayList anyway, but this will ensure it works even if it's
+-        // not, still assuming it is on the last non-blank line)
+-        for (int i = lines.size() - 1; i >= 0; i--) {
+-            String line = lines.get(i);
+-            if (line.length() > 0) {
+-                return parseDir(line, path);
+-            }
++long freeSpaceWindows(String path, long timeout) throws IOException {
++    // Preserve original path separators
++    if (path.length() > 0 && path.charAt(0) != '"') {
++        path = "\"" + path + "\"";
++    }
++    
++    // build and run the 'dir' command with unmodified path
++    String[] cmdAttribs = new String[] {"cmd.exe", "/C", "dir /-c " + path};
++    
++    // read in the output of the command to an ArrayList
++    List<String> lines = performCommand(cmdAttribs, Integer.MAX_VALUE, timeout);
++    
++    // now iterate over the lines we just read and find the LAST
++    // non-empty line (the free space bytes should be in the last element
++    // of the ArrayList anyway, but this will ensure it works even if it's
++    // not, still assuming it is on the last non-blank line)
++    for (int i = lines.size() - 1; i >= 0; i--) {
++        String line = lines.get(i);
++        if (line.length() > 0) {
++            return parseDir(line, path);
+         }
+-        // all lines are blank
+-        throw new IOException(
+-                "Command line 'dir /-c' did not return any info " +
+-                "for path '" + path + "'");
+     }
++    // all lines are blank
++    throw new IOException(
++            "Command line 'dir /-c' did not return any info " +
++            "for path '" + path + "'");
++}
+ 
+     /**
+      * Parses the Windows dir response last line

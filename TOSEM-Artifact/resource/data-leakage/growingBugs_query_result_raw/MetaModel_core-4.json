@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.9843081312410842,
+    "input": "    @Override\n    public void parse(String delim, String itemToken) throws MetaModelException {\n        if (\"*\".equals(itemToken)) {\n            _query.selectAll();\n            return;\n        }\n\n        String alias = null;\n        final int indexOfAlias = itemToken.toUpperCase().lastIndexOf(\" AS \");\n        if (indexOfAlias != -1) {\n            alias = itemToken.substring(indexOfAlias + \" AS \".length());\n            itemToken = itemToken.substring(0, indexOfAlias).trim();\n        }\n\n        try {\n            final SelectItem selectItem = findSelectItem(itemToken);\n            if (selectItem == null) {\n                throw new QueryParserException(\"Not capable of parsing SELECT token: \" + itemToken);\n            }\n\n            if (alias != null) {\n                selectItem.setAlias(alias);\n            }\n\n            _query.select(selectItem);\n        } catch (MultipleSelectItemsParsedException e) {\n            FromItem fromItem = e.getFromItem();\n            if (fromItem != null) {\n                _query.selectAll(fromItem);\n            } else {\n                throw e;\n            }\n        }\n    }",
+    "query_result": [
+        "ing itemToken) throws MetaModelException {\nif (\"*\".equals(itemToken)) {\n_query.selectAll();\nreturn;\n}\nString alias = null;\nfinal int indexOfAlias = itemToken.toUpperCase().lastIndexOf(\" AS \");\nif (indexOfAlias != -1) {\nalias = itemToken.substring(indexOfAlias + \" AS \".length());\nitemToken = itemToken.substring(0, indexOfAlias).trim();\n}\ntry {\nfinal SelectItem selectItem = findSelectItem(itemToken);\nif (selectItem == null) {\nthrow new QueryParserException(\"Not capable of parsing SELECT token: \" + itemToken);\n}\nif (alias != null) {\nselectItem.setAlias(alias);\n}\n_query.select(selectItem);\n} catch (MultipleSelectItemsParsedException e) {\nFromItem fromItem = e.getFromItem();\nif (fromItem != null) {\n_query.selectAll(fromItem);\n} else {\nthrow e;\n}",
+        "\npublic void parse(String delim, String itemToken)",
+        "_query.selectAll();\nreturn;\n}\nString alias = null;",
+        "throw new QueryParserException(\"Not capable of par",
+        "eryParserException(\"Not capable of parsing SELECT ",
+        "ctItem.setAlias(alias);\n}\n_query.select(selectItem",
+        "{\nFromItem fromItem = e.getFromItem();\nif (fromIte"
+    ]
+}

@@ -1,0 +1,21 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
+index d413b5e7..cd51b10d 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonStreamParserImpl.java
+@@ -194,10 +194,13 @@ public class JsonStreamParserImpl extends JohnzonJsonParserImpl implements JsonC
+             throw new ArrayIndexOutOfBoundsException("Buffer too small for such a long string");
+         }
+ 
+-        final char[] newArray = new char[fallBackCopyBuffer.length + Math.max(getBufferExtends(fallBackCopyBuffer.length), length)];
+-        // TODO: log to adjust size once?
++        final int newSize = fallBackCopyBufferLength + length;
++        final int extendSize = Math.max(getBufferExtends(fallBackCopyBuffer.length), newSize);
++        final char[] newArray = new char[fallBackCopyBuffer.length + extendSize];
++
+         System.arraycopy(fallBackCopyBuffer, 0, newArray, 0, fallBackCopyBufferLength);
+-            System.arraycopy(buffer, startOfValueInBuffer, newArray, fallBackCopyBufferLength, length);
++        System.arraycopy(buffer, startOfValueInBuffer, newArray, fallBackCopyBufferLength, Math.min(length, buffer.length - startOfValueInBuffer));
++
+         if (releaseFallBackCopyBufferLength) {
+             bufferProvider.release(fallBackCopyBuffer);
+             releaseFallBackCopyBufferLength = false;

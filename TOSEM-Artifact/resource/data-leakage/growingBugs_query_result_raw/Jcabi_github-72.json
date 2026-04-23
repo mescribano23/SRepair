@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    @NotNull(message = \"Iterable of contents is never NULL\")\n    public Iterable<Content> iterate(final String pattern, final String ref)\n        throws IOException {\n        final Collection<XML> nodes = this.storage.xml().nodes(\n            String.format(\"%s/content[@ref='%s']\", this.xpath(), ref)\n        );\n        final Collection<Content> result = new ArrayList<Content>(nodes.size());\n        for (final XML node : nodes) {\n            final String path = node.xpath(\"path/text()\").get(0);\n            if (path.startsWith(pattern)) {\n                result.add(\n                    this.mkContent(ref, path)\n                );\n            }\n        }\n        return result;\n    }",
+    "query_result": []
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.828125,
+    "input": "    public StrBuilder appendFixedWidthPadRight(Object obj, int width, char padChar) {\n        if (width > 0) {\n            ensureCapacity(size + width);\n            String str = (obj == null ? getNullText() : obj.toString());\n            int strLen = str.length();\n            if (strLen >= width) {\n                str.getChars(0, width, buffer, size);\n            } else {\n                int padLen = width - strLen;\n                str.getChars(0, strLen, buffer, size);\n                for (int i = 0; i < padLen; i++) {\n                    buffer[size + strLen + i] = padChar;\n                }\n            }\n            size += width;\n        }\n        return this;\n    }",
+    "query_result": [
+        ") {\nif (width > 0) {\nensureCapacity(size + width);\nString str = (obj == null ? getNullText() : obj.toString());\nint strLen = str.length();\nif (strLen ",
+        " strLen;\nstr.getChars(0, strLen, buffer, size);\nfor (int i = 0; i < padLen; i++) {\nbuffer[size + strLen + i] = padChar;\n}\n}\nsize += width;\n}\nreturn th",
+        "ar padChar) {\nif (width > 0) {\nensureCapacity(size + width);\nString str = (obj == null ? getNullText",
+        "adChar) {\nif (width > 0) {\nensureCapacity(size + width);\nString str = (obj == null ? getNullText() :",
+        " (width > 0) {\nensureCapacity(size + width);\nString str = (obj == null ? getNullText() : obj.toStrin",
+        "width);\nString str = (obj == null ? getNullText() : obj.toString());\nint strLen = str.length();\nif (",
+        "ing str = (obj == null ? getNullText() : obj.toString());\nint strLen = str.length();\nif (strLen >= w",
+        "0, strLen, buffer, size);\nfor (int i = 0; i < padLen; i++) {\nbuffer[size + strLen + i] = padChar;\n}\n",
+        " strLen, buffer, size);\nfor (int i = 0; i < padLen; i++) {\nbuffer[size + strLen + i] = padChar;\n}\n}\n",
+        "public StrBuilder appendFixedWidthPadRight(Object ",
+        "trBuilder appendFixedWidthPadRight(Object obj, int",
+        "rBuilder appendFixedWidthPadRight(Object obj, int ",
+        "endFixedWidthPadRight(Object obj, int width, char ",
+        "ht(Object obj, int width, char padChar) {\nif (widt",
+        "Capacity(size + width);\nString str = (obj == null ",
+        "String str = (obj == null ? getNullText() : obj.to",
+        "tring str = (obj == null ? getNullText() : obj.toS",
+        "ng str = (obj == null ? getNullText() : obj.toStri",
+        " str = (obj == null ? getNullText() : obj.toString",
+        "str = (obj == null ? getNullText() : obj.toString("
+    ]
+}

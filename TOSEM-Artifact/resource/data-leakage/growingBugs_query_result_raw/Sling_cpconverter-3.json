@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.16704545454545455,
+    "input": "        @Override\n        public void startElement(String uri, String localName, String qName, Attributes attributes)\n                throws SAXException {\n            if (onRepAclNode) {\n                String primaryType = attributes.getValue(JCR_PRIMARYTYPE);\n                if (REP_GRANT_ACE.equals(primaryType) || REP_DENY_ACE.equals(primaryType)) {\n                    String principalName = attributes.getValue(REP_PRINCIPAL_NAME);\n\n                    String operation = operations.get(primaryType);\n\n                    String privileges = attributes.getValue(REP_PRIVILEGES);\n                    int beginIndex = privileges.indexOf('[') + 1;\n                    int endIndex = privileges.indexOf(']');\n                    privileges = privileges.substring(beginIndex, endIndex);\n\n                    acls.add(aclManager.addAcl(principalName, operation, privileges, path));\n                } else if (REP_RESTRICTIONS.equals(primaryType) && !acls.isEmpty()) {\n                    String restriction = attributes.getValue(REP_GLOB);\n\n                    if (restriction != null && !restriction.isEmpty()) {\n                        acls.peek().addRestriction(REP_GLOB + ',' + restriction);\n                    }\n                }\n            } else {\n                super.startElement(uri, localName, qName, attributes);\n            }\n        }",
+    "query_result": [
+        "void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAXException {\nif (onRepAclNode) {\nString primaryType = at",
+        "@Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes",
+        "Override\npublic void startElement(String uri, String localName, String qName, Attributes attributes)",
+        "verride\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\n",
+        "erride\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\nt",
+        "rride\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\nth",
+        "ride\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\nthr",
+        "ide\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\nthro",
+        "de\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\nthrow",
+        "e\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows",
+        "\npublic void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows ",
+        "public void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows S",
+        "ublic void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SA",
+        "blic void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAX",
+        "lic void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAXE",
+        "ic void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAXEx",
+        "c void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAXExc",
+        " void startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAXExce",
+        "oid startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAXExcept",
+        "id startElement(String uri, String localName, String qName, Attributes attributes)\nthrows SAXExcepti"
+    ]
+}

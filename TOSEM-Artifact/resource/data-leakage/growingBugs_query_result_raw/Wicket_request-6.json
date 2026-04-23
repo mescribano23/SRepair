@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.9951807228915662,
+    "input": "@Override\n    public PageParameters decodePageParameters(final Url url)\n    {\n        PageParameters parameters = new PageParameters();\n\n        int i = 0;\n        for (String s : url.getSegments())\n        {\n            parameters.set(i, s);\n            ++i;\n        }\n\n        for (QueryParameter p : url.getQueryParameters())\n        {\n            String parameterName = p.getName();\n            if (Strings.isEmpty(parameterName) == false)\n            {\n                parameters.add(parameterName, p.getValue(), INamedParameters.Type.QUERY_STRING);\n            }\n        }\n\n        return parameters.isEmpty() ? null : parameters;\n    }",
+    "query_result": [
+        "eters decodePageParameters(final Url url)\n{\nPageParameters parameters = new PageParameters();\nint i = 0;\nfor (String s : url.getSegments())\n{\nparameters.set(i, s);\n++i;\n}\nfor (QueryParameter p : url.getQueryParameters())\n{\nString parameterName = p.getName();\nif (Strings.isEmpty(parameterName) == false)\n{\nparameters.add(parameterName, p.getValue(), INamedParameters.Type.QUERY_STRING);\n}\n}\nreturn pa",
+        "Override\npublic PageParameters decodePageParameter",
+        "verride\npublic PageParameters decodePageParameters",
+        "blic PageParameters decodePageParameters(final Url",
+        ")\n{\nPageParameters parameters = new PageParameters",
+        "{\nPageParameters parameters = new PageParameters()",
+        "\nPageParameters parameters = new PageParameters();",
+        "PageParameters parameters = new PageParameters();\n",
+        "ageParameters parameters = new PageParameters();\ni",
+        "meters parameters = new PageParameters();\nint i = ",
+        ");\n}\n}\nreturn parameters.isEmpty() ? null : parame",
+        "\nreturn parameters.isEmpty() ? null : parameters;\n"
+    ]
+}

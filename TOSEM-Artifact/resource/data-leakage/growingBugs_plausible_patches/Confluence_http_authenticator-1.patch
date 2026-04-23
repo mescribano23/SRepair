@@ -1,0 +1,44 @@
+diff --git a/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java b/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java
+index fc25379..da07c21 100644
+--- a/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java
++++ b/src/main/java/shibauth/confluence/authentication/shibboleth/StringUtil.java
+@@ -69,24 +69,25 @@ public class StringUtil {
+      * @return list of strings where deliminators are stripped off. if no content
+      * is found between 2 delimitors then empty string is returned in its place
+      */
+-    public static List toListOfStringsDelimitedByCommaOrSemicolon(String s) {
+-        if (s == null) {
+-            return Collections.EMPTY_LIST;
+-        }
++public static List<String> toListOfStringsDelimitedByCommaOrSemicolon(String s) {
++    if (s == null) {
++        return Collections.emptyList();
++    }
+ 
+-        List results = new ArrayList();
+-        // include empty last one, cft. http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#split%28java.lang.String,%20int%29
+-        String[] terms = s.split(SEPARATOR);
++    List<String> results = new ArrayList<>();
++    // Define SEPARATOR to match commas and semicolons
++    String SEPARATOR = "[,;]";
++    // include empty last one, cft. http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#split%28java.lang.String,%20int%29
++    String[] terms = s.split(SEPARATOR, -1);
+ 
+-        for (int i = 0; i < terms.length; i++) {
+-            //this has empty string if nothing is found
+-            String term = terms[i].trim();
+-            results.add(term);
+-        }
+-
+-        return results;
++    for (String term : terms) {
++        //this has empty string if nothing is found
++        results.add(term.trim());
+     }
+ 
++    return results;
++}
++
+     // PLEASE DO NOT CHANGE THIS METHOD WITHOUT GETTING AGREEMENT FROM JUHA OJALUOMA AND ERKKI AALTO. THIS METHOD WAS
+     // CONTRIBUTED BY HELSINKI IN BOTH SHBL-5 AND AGAIN IN SHBL-29.
+     public static String convertToUTF8(String s) {

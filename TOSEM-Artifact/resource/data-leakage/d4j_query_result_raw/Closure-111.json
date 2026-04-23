@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "protected JSType caseTopType(JSType topType) {\n  return topType.isAllType() ?\n      getNativeType(ARRAY_TYPE) : topType;\n}",
+    "query_result": []
+}

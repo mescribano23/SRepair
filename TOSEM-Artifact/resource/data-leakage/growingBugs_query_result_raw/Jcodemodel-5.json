@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "  @Nullable\n  public JPackage parent ()\n  {\n    if (m_sName.length () == 0)\n      return null;\n\n    final int idx = m_sName.lastIndexOf ('.');\n    if (idx < 0)\n      return null;\n    return m_aOwner._package (m_sName.substring (0, idx));\n  }",
+    "query_result": []
+}

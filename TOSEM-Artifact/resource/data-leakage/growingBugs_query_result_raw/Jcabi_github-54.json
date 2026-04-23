@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3888888888888889,
+    "input": "    @Override\n    public void remove(\n        @NotNull(message = \"coordinates can't be NULL\")\n        final Coordinates coords) {\n        try {\n            this.storage.apply(\n                new Directives().xpath(\n                    String.format(\"%s/repo[@coords='%s']\", this.xpath(), coords)\n                ).remove()\n            );\n        } catch (final IOException ex) {\n            throw new IllegalStateException(ex);\n        }\n    }",
+    "query_result": [
+        "{\nthis.storage.apply(\nnew Directives().xpath(\nStri",
+        ");\n} catch (final IOException ex) {\nthrow new Ille",
+        ";\n} catch (final IOException ex) {\nthrow new Illeg",
+        "\n} catch (final IOException ex) {\nthrow new Illega",
+        "} catch (final IOException ex) {\nthrow new Illegal",
+        " catch (final IOException ex) {\nthrow new IllegalS",
+        "catch (final IOException ex) {\nthrow new IllegalSt",
+        "atch (final IOException ex) {\nthrow new IllegalSta",
+        "tch (final IOException ex) {\nthrow new IllegalStat",
+        "ch (final IOException ex) {\nthrow new IllegalState",
+        "h (final IOException ex) {\nthrow new IllegalStateE",
+        " (final IOException ex) {\nthrow new IllegalStateEx",
+        "(final IOException ex) {\nthrow new IllegalStateExc",
+        "final IOException ex) {\nthrow new IllegalStateExce",
+        "inal IOException ex) {\nthrow new IllegalStateExcep",
+        "nal IOException ex) {\nthrow new IllegalStateExcept",
+        "al IOException ex) {\nthrow new IllegalStateExcepti",
+        "l IOException ex) {\nthrow new IllegalStateExceptio",
+        " IOException ex) {\nthrow new IllegalStateException",
+        "IOException ex) {\nthrow new IllegalStateException("
+    ]
+}

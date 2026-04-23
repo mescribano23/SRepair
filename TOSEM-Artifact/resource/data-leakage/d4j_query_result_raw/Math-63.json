@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.78125,
+    "input": "public static boolean equals(double x, double y) {\n    return equals(x, y, 1);\n}",
+    "query_result": [
+        "public static boolean equals(double x, double y) {",
+        " static boolean equals(double x, double y) {\nretur",
+        "atic boolean equals(double x, double y) {\nreturn e"
+    ]
+}

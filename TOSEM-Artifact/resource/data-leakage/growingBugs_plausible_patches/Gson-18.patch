@@ -1,0 +1,36 @@
+diff --git a/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java b/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
+index ec7222fa..63259699 100644
+--- a/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
++++ b/gson/src/main/java/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.java
+@@ -47,23 +47,26 @@ public final class JsonAdapterAnnotationTypeAdapterFactory implements TypeAdapte
+     return (TypeAdapter<T>) getTypeAdapter(constructorConstructor, gson, targetType, annotation);
+   }
+ 
++//
++// Fixed Function
+   @SuppressWarnings("unchecked") // Casts guarded by conditionals.
+   static TypeAdapter<?> getTypeAdapter(ConstructorConstructor constructorConstructor, Gson gson,
+       TypeToken<?> fieldType, JsonAdapter annotation) {
+     Class<?> value = annotation.value();
+-    TypeAdapter<?> typeAdapter;
++    TypeAdapter<?> typeAdapter = null;
+     if (TypeAdapter.class.isAssignableFrom(value)) {
+       Class<TypeAdapter<?>> typeAdapterClass = (Class<TypeAdapter<?>>) value;
+       typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterClass)).construct();
+     } else if (TypeAdapterFactory.class.isAssignableFrom(value)) {
+       Class<TypeAdapterFactory> typeAdapterFactory = (Class<TypeAdapterFactory>) value;
+-      typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterFactory))
+-          .construct()
+-          .create(gson, fieldType);
++      TypeAdapterFactory factory = constructorConstructor.get(TypeToken.get(typeAdapterFactory)).construct();
++      if (factory != null) {
++        typeAdapter = factory.create(gson, fieldType);
++      }
+     } else {
+       throw new IllegalArgumentException(
+           "@JsonAdapter value must be TypeAdapter or TypeAdapterFactory reference.");
+     }
+-    return typeAdapter.nullSafe();
++    return typeAdapter != null ? typeAdapter.nullSafe() : null;
+   }
+ }

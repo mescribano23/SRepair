@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.6205357142857143,
+    "input": "        private void readTypeVariables() {\n            for (Type type : typeVariable.getBounds()) {\n                registerTypeVariablesOn(type);\n            }\n            registerTypeParametersOn(new TypeVariable[] { typeVariable });\n            registerTypeVariablesOn(getActualTypeArgumentFor(typeVariable));\n        }",
+    "query_result": [
+        " readTypeVariables() {\nfor (Type type : typeVariable.getBounds()) {\nregisterTypeVariablesOn(type);\n}",
+        ";\nregisterTypeVariablesOn(getActualTypeArgumentFor"
+    ]
+}

@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+index 77b6386c..1ae4b4d1 100644
+--- a/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
++++ b/src/main/java/org/apache/commons/pool2/impl/DefaultPooledObject.java
+@@ -241,17 +241,18 @@ public class DefaultPooledObject<T> implements PooledObject<T> {
+         usedBy = new Exception("The last code to use this object was:");
+     }
+ 
+-    @Override
+-    public void printStackTrace(PrintWriter writer) {
+-        Exception borrowedByCopy = this.borrowedBy;
+-        if (borrowedByCopy != null) {
+-            borrowedByCopy.printStackTrace(writer);
+-        }
+-        Exception usedByCopy = this.usedBy;
+-        if (usedByCopy != null) {
+-            usedByCopy.printStackTrace(writer);
+-        }
++@Override
++public void printStackTrace(PrintWriter writer) {
++    Exception borrowedByCopy = this.borrowedBy;
++    if (borrowedByCopy != null) {
++        borrowedByCopy.printStackTrace(writer);
+     }
++    Exception usedByCopy = this.usedBy;
++    if (usedByCopy != null) {
++        usedByCopy.printStackTrace(writer);
++    }
++    writer.flush(); // Ensure the writer is flushed to capture all output
++}
+ 
+     /**
+      * Returns the state of this object.

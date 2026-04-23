@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.9587628865979382,
+    "input": "    public static boolean isAvailableLocale(Locale locale) {\n        return availableLocaleList().contains(locale);\n    }",
+    "query_result": [
+        "ublic static boolean isAvailableLocale(Locale locale) {\nreturn availableLocaleList().contains(locale"
+    ]
+}

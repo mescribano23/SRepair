@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.5357142857142857,
+    "input": "    @Override\n    public String getAWSSecretKey() {\n        return this.authenticationInfo.getPassword();\n    }",
+    "query_result": [
+        "@Override\npublic String getAWSSecretKey() {\nreturn",
+        "Override\npublic String getAWSSecretKey() {\nreturn "
+    ]
+}

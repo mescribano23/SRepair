@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.6666666666666666,
+    "input": "public static String newStringIso8859_1(final byte[] bytes) {\n    return newString(bytes, Charsets.ISO_8859_1);\n}",
+    "query_result": [
+        "lic static String newStringIso8859_1(final byte[] ",
+        "ng newStringIso8859_1(final byte[] bytes) {\nreturn",
+        "ingIso8859_1(final byte[] bytes) {\nreturn newStrin"
+    ]
+}

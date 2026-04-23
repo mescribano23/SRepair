@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.27419354838709675,
+    "input": "    public WeightedPath<V, WE> buildPath( V source, V target )\n    {\n        InMemoryWeightedPath<V, WE> path = new InMemoryWeightedPath<V, WE>( source, target );\n\n        V vertex = target;\n        while ( !source.equals( vertex ) )\n        {\n            WE edge = predecessors.get( vertex );\n\n            path.addEdgeInHead( edge );\n            path.addVertexInHead( vertex );\n\n            vertex = getConnectedVertex( vertex, edge );\n        }\n\n        return path;\n    }",
+    "query_result": [
+        "ath( V source, V target )\n{\nInMemoryWeightedPath<V",
+        ");\nV vertex = target;\nwhile ( !source.equals( vert"
+    ]
+}

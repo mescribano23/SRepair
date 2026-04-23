@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    protected void performPullIfRequired(long timeout, boolean forcePull) throws JMSException {\n        if ((isPullConsumer() || forcePull) && messageQueue.isRunning() && messageQueue.isEmpty()) {\n            connection.pull(getConsumerId(), timeout);\n        }\n    }",
+    "query_result": []
+}

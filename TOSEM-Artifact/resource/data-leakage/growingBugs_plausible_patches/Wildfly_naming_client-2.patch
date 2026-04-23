@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java b/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
+index 243d271..71c02d2 100644
+--- a/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
++++ b/src/main/java/org/jboss/naming/remote/client/InitialContextFactory.java
+@@ -93,8 +93,10 @@ public final class InitialContextFactory implements javax.naming.spi.InitialCont
+ 
+         // Now override with naming env entries
+         for (Map.Entry<?, ?> entry : env.entrySet()) {
+-            if (entry.getKey() instanceof String && entry.getValue() instanceof String) {
+-                properties.setProperty((String) entry.getKey(), (String) entry.getValue());
++            if (entry.getKey() instanceof String) {
++                String key = (String) entry.getKey();
++                String value = entry.getValue().toString();
++                properties.setProperty(key, value);
+             }
+         }
+ 

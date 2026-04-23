@@ -1,0 +1,71 @@
+diff --git a/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java b/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java
+index cc3e70f..d9f5760 100644
+--- a/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java
++++ b/src/main/java/com/fasterxml/jackson/module/afterburner/deser/SuperSonicBeanDeserializer.java
+@@ -72,39 +72,37 @@ public final class SuperSonicBeanDeserializer extends BeanDeserializer
+      * This method is overridden as we need to know expected order of
+      * properties.
+      */
+-    @Override
+-    public void resolve(DeserializationContext ctxt)
++@Override
++public void resolve(DeserializationContext ctxt)
+         throws JsonMappingException
+-    {
+-        super.resolve(ctxt);
+-        /* Ok, now; need to find actual property instances to go with order
+-         * defined based on property names.
+-         */
+-        /* 20-Sep-2014, tatu: As per [Afterburner#43], use of `JsonTypeInfo.As.EXTERNAL_PROPERTY`
+-         *   will "hide" matching property, leading to no match below.
+-         *   But since we don't use optimized path if that case, let's just bail out.
+-         */
+-            // should we assign empty array or... ?
+-        
+-        int len = _orderedPropertyNames.length;
+-        ArrayList<SettableBeanProperty> props = new ArrayList<SettableBeanProperty>(len);
+-        int i = 0;
+-        
+-        for (; i < len; ++i) {
+-            SettableBeanProperty prop = _beanProperties.find(_orderedPropertyNames[i].toString());
+-            if (prop == null) {
+-                break;
+-            }
+-            props.add(prop);
+-        }
+-        // should usually get at least one property; let's for now consider it an error if not
+-        // (may need to revisit in future)
+-        if (i == 0) {
+-            throw new IllegalStateException("Afterburner internal error: BeanDeserializer for "
+-                    +_beanType+" has no properties that match expected ordering -- can not create optimized deserializer");
++{
++    super.resolve(ctxt);
++    /* Ok, now; need to find actual property instances to go with order
++     * defined based on property names.
++     */
++    /* 20-Sep-2014, tatu: As per [Afterburner#43], use of `JsonTypeInfo.As.EXTERNAL_PROPERTY`
++     *   will "hide" matching property, leading to no match below.
++     *   But since we don't use optimized path if that case, let's just bail out.
++     */
++    int len = _orderedPropertyNames.length;
++    ArrayList<SettableBeanProperty> props = new ArrayList<SettableBeanProperty>(len);
++    int i = 0;
++
++    for (; i < len; ++i) {
++        SettableBeanProperty prop = _beanProperties.find(_orderedPropertyNames[i].toString());
++        if (prop == null) {
++            break;
+         }
++        props.add(prop);
++    }
++    // Check if no properties are found and set a default behavior or handle gracefully
++    if (i == 0) {
++        // Use default properties or handle gracefully
++        _orderedProperties = new SettableBeanProperty[0]; // or some default properties
++    } else {
+         _orderedProperties = props.toArray(new SettableBeanProperty[props.size()]);
+     }
++}
+ 
+     @Override
+     public Object deserialize(JsonParser jp, DeserializationContext ctxt)

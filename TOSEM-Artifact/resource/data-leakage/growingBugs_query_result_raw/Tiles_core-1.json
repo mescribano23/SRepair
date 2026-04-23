@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8850457782299085,
+    "input": "public void init(Map<String, String> parameters) {\n        String defaultRendererParam = parameters.get(DEFAULT_RENDERER_INIT_PARAM);\n        if (defaultRendererParam == null) {\n            defaultRendererParam = DEFAULT_RENDERER_CLASS_NAME;\n        }\n        defaultRenderer = (AttributeRenderer) ClassUtil\n                .instantiate(defaultRendererParam);\n        initializeRenderer(defaultRenderer);\n        String typeRenderersParam = parameters.get(TYPE_RENDERERS_INIT_PARAM);\n        Map<String, String> completeParams = new HashMap<String, String>(\n                DEFAULT_TYPE_2_RENDERER);\n        if (typeRenderersParam != null) {\n            String[] pairs = typeRenderersParam.split(\"\\\\s*;\\\\s*\");\n            for (int i = 0; i < pairs.length; i++) {\n                String[] pair = pairs[i].split(\"\\\\s*,\\\\s*\");\n                if (pair == null || pair.length != 2) {\n                    throw new RendererException(\"The string '\" + pairs[i]\n                            + \"' is not a valid type-renderer pair\");\n                }\n                completeParams.put(pair[0], pair[1]);\n            }\n        }\n\n        for (Map.Entry<String, String> entry : completeParams.entrySet()) {\n            AttributeRenderer renderer = (AttributeRenderer) ClassUtil\n                    .instantiate(entry.getValue());\n            initializeRenderer(renderer);\n            renderers.put(entry.getKey(), renderer);\n        }\n    }",
+    "query_result": [
+        "g defaultRendererParam = parameters.get(DEFAULT_RENDERER_INIT_PARAM);\nif (defaultRendererParam == null) {\ndefaultRendererParam = DEFAULT_RENDERER_CLASS_NAME;\n}\ndefaultRenderer = (AttributeRenderer) ClassUtil\n.instantiate(defaultRendererParam);\ninitializeRenderer(defaultRenderer);\nString typeRenderersParam = parameters.get(TYPE_RENDERERS_INIT_PARAM);\nMap<String, String> completeParams = new HashMap<String, String>(\nDEFAULT_TYPE_2_RENDERER);\nif (typeRenderersParam != null) {\nString[] pairs = typeR",
+        " < pairs.length; i++) {\nString[] pair = pairs[i].split(\"\\\\s*,\\\\s*\");\nif (pair == null || pair.length != 2) {\nthrow new RendererException(\"The string '\" + pairs[i]\n+ \"' is not a valid type-renderer pai",
+        "eParams.entrySet()) {\nAttributeRenderer renderer = (AttributeRenderer) ClassUtil\n.instantiate(entry.getValue());\ninitializeRenderer(renderer);\nrendere",
+        "ublic void init(Map<String, String> parameters) {\n",
+        ");\nfor (int i = 0; i < pairs.length; i++) {\nString",
+        ";\nfor (int i = 0; i < pairs.length; i++) {\nString[",
+        "\nfor (int i = 0; i < pairs.length; i++) {\nString[]",
+        "for (int i = 0; i < pairs.length; i++) {\nString[] ",
+        " (int i = 0; i < pairs.length; i++) {\nString[] pai",
+        "(int i = 0; i < pairs.length; i++) {\nString[] pair",
+        "int i = 0; i < pairs.length; i++) {\nString[] pair ",
+        " i = 0; i < pairs.length; i++) {\nString[] pair = p",
+        "= 0; i < pairs.length; i++) {\nString[] pair = pair",
+        "; i < pairs.length; i++) {\nString[] pair = pairs[i",
+        "i < pairs.length; i++) {\nString[] pair = pairs[i].",
+        "airs.length; i++) {\nString[] pair = pairs[i].split",
+        "irs.length; i++) {\nString[] pair = pairs[i].split(",
+        "rs.length; i++) {\nString[] pair = pairs[i].split(\"",
+        ".length; i++) {\nString[] pair = pairs[i].split(\"\\\\",
+        ");\n}\n}\nfor (Map.Entry<String, String> entry : comp"
+    ]
+}

@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
+index 3ef82df8..433adc69 100644
+--- a/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
++++ b/src/main/java/org/apache/commons/io/monitor/FileAlterationMonitor.java
+@@ -158,20 +158,23 @@ public synchronized void stop() throws Exception {
+      * @throws Exception if an error occurs initializing the observer
+      * @since 2.1
+      */
+-    public synchronized void stop(final long stopInterval) throws Exception {
+-        if (running == false) {
+-            throw new IllegalStateException("Monitor is not running");
+-        }
+-        running = false;
+-        try {
+-            thread.join(stopInterval);
+-        } catch (final InterruptedException e) {
+-            Thread.currentThread().interrupt();
+-        }
+-        for (final FileAlterationObserver observer : observers) {
+-            observer.destroy();
++public synchronized void stop(final long stopInterval) throws Exception {
++    if (running == false) {
++        throw new IllegalStateException("Monitor is not running");
++    }
++    running = false;
++    try {
++        thread.join(stopInterval);
++        while (thread.isAlive()) {
++            thread.join(100); // Repeatedly wait for 100 ms until the thread is dead
+         }
++    } catch (final InterruptedException e) {
++        Thread.currentThread().interrupt();
++    }
++    for (final FileAlterationObserver observer : observers) {
++        observer.destroy();
+     }
++}
+ 
+     /**
+      * Run.

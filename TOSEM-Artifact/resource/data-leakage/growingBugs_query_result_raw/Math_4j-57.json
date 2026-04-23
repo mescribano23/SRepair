@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3890547263681592,
+    "input": "    private static <T extends Clusterable<T>> List<Cluster<T>>\n        chooseInitialCenters(final Collection<T> points, final int k, final Random random) {\n\n        final List<T> pointSet = new ArrayList<T>(points);\n        final List<Cluster<T>> resultSet = new ArrayList<Cluster<T>>();\n\n        // Choose one center uniformly at random from among the data points.\n        final T firstPoint = pointSet.remove(random.nextInt(pointSet.size()));\n        resultSet.add(new Cluster<T>(firstPoint));\n\n        final double[] dx2 = new double[pointSet.size()];\n        while (resultSet.size() < k) {\n            // For each data point x, compute D(x), the distance between x and\n            // the nearest center that has already been chosen.\n            double sum = 0;\n            for (int i = 0; i < pointSet.size(); i++) {\n                final T p = pointSet.get(i);\n                final Cluster<T> nearest = getNearestCluster(resultSet, p);\n                final double d = p.distanceFrom(nearest.getCenter());\n                sum += d * d;\n                dx2[i] = sum;\n            }\n\n            // Add one new data point as a center. Each point x is chosen with\n            // probability proportional to D(x)2\n            final double r = random.nextDouble() * sum;\n            for (int i = 0 ; i < dx2.length; i++) {\n                if (dx2[i] >= r) {\n                    final T p = pointSet.remove(i);\n                    resultSet.add(new Cluster<T>(p));\n                    break;\n                }\n            }\n        }\n\n        return resultSet;\n\n    }",
+    "query_result": [
+        "i] = sum;\n}\n// Add one new data point as a center. Each point x is chosen with\n// probability proportional to D(x)2\nfinal double r = random.nextDouble() * sum;\nfor (int i = 0 ; i < dx2.length; i++) {\n",
+        "uble[pointSet.size()];\nwhile (resultSet.size() < k) {\n// For each data point x, compute D(x), the distance between x and\n// the nearest center that ha",
+        "ile (resultSet.size() < k) {\n// For each data point x, compute D(x), the distance between x and\n// t",
+        "le (resultSet.size() < k) {\n// For each data point x, compute D(x), the distance between x and\n// th",
+        "sultSet.size() < k) {\n// For each data point x, compute D(x), the distance between x and\n// the near",
+        "t.size() < k) {\n// For each data point x, compute D(x), the distance between x and\n// the nearest ce",
+        " k) {\n// For each data point x, compute D(x), the distance between x and\n// the nearest center that ",
+        " {\n// For each data point x, compute D(x), the distance between x and\n// the nearest center that has",
+        "/ For each data point x, compute D(x), the distance between x and\n// the nearest center that has alr",
+        "or each data point x, compute D(x), the distance between x and\n// the nearest center that has alread",
+        "h data point x, compute D(x), the distance between x and\n// the nearest center that has already been",
+        "a point x, compute D(x), the distance between x and\n// the nearest center that has already been chos",
+        " point x, compute D(x), the distance between x and\n// the nearest center that has already been chose",
+        "point x, compute D(x), the distance between x and\n// the nearest center that has already been chosen",
+        "int x, compute D(x), the distance between x and\n// the nearest center that has already been chosen.\n",
+        "um = 0;\nfor (int i = 0; i < pointSet.size(); i++) {\nfinal T p = pointSet.get(i);\nfinal Cluster<T> ne",
+        " = 0;\nfor (int i = 0; i < pointSet.size(); i++) {\nfinal T p = pointSet.get(i);\nfinal Cluster<T> near",
+        "= 0;\nfor (int i = 0; i < pointSet.size(); i++) {\nfinal T p = pointSet.get(i);\nfinal Cluster<T> neare",
+        "or (int i = 0; i < pointSet.size(); i++) {\nfinal T p = pointSet.get(i);\nfinal Cluster<T> nearest = g",
+        "r (int i = 0; i < pointSet.size(); i++) {\nfinal T p = pointSet.get(i);\nfinal Cluster<T> nearest = ge"
+    ]
+}

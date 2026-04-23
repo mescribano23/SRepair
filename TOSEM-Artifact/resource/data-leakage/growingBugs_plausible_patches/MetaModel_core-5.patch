@@ -1,0 +1,32 @@
+diff --git a/core/src/main/java/org/apache/metamodel/query/Query.java b/core/src/main/java/org/apache/metamodel/query/Query.java
+index ae1e530d..2c4c6526 100644
+--- a/core/src/main/java/org/apache/metamodel/query/Query.java
++++ b/core/src/main/java/org/apache/metamodel/query/Query.java
+@@ -517,19 +517,16 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
+      *            no limits
+      * @return this query
+      */
+-    public Query setMaxRows(Integer maxRows) {
+-        if (maxRows != null) {
+-            final int maxRowsValue = maxRows.intValue();
+-            if (maxRowsValue == 0) {
+-                throw new IllegalArgumentException("Max rows cannot be zero");
+-            }
+-            if (maxRowsValue < 0) {
+-                throw new IllegalArgumentException("Max rows cannot be negative");
+-            }
++public Query setMaxRows(Integer maxRows) {
++    if (maxRows != null) {
++        final int maxRowsValue = maxRows.intValue();
++        if (maxRowsValue < 0) {
++            throw new IllegalArgumentException("Max rows cannot be negative");
+         }
+-        _maxRows = maxRows;
+-        return this;
+     }
++    _maxRows = maxRows;
++    return this;
++}
+ 
+     /**
+      * @return the number of maximum rows to yield from executing this query or

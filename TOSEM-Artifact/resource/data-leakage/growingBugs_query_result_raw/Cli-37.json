@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.7023411371237458,
+    "input": "    private boolean isShortOption(String token)\n    {\n        // short options (-S, -SV, -S=V, -SV1=V2, -S1S2)\n        if (!token.startsWith(\"-\") || token.length() == 1)\n        {\n            return false;\n        }\n\n        // remove leading \"-\" and \"=value\"\n        int pos = token.indexOf(\"=\");\n        String optName = pos == -1 ? token.substring(1) : token.substring(1, pos);\n        return options.hasShortOption(optName);\n    }",
+    "query_result": [
+        "s (-S, -SV, -S=V, -SV1=V2, -S1S2)\nif (!token.startsWith(\"-\") || token.length() == 1)\n{\nreturn false;",
+        "oolean isShortOption(String token)\n{\n// short opti",
+        "g token)\n{\n// short options (-S, -SV, -S=V, -SV1=V",
+        "en)\n{\n// short options (-S, -SV, -S=V, -SV1=V2, -S",
+        "\n{\n// short options (-S, -SV, -S=V, -SV1=V2, -S1S2",
+        "t options (-S, -SV, -S=V, -SV1=V2, -S1S2)\nif (!tok",
+        "\nif (!token.startsWith(\"-\") || token.length() == 1",
+        "n.startsWith(\"-\") || token.length() == 1)\n{\nreturn",
+        "n false;\n}\n// remove leading \"-\" and \"=value\"\nint ",
+        "os == -1 ? token.substring(1) : token.substring(1,",
+        " == -1 ? token.substring(1) : token.substring(1, p"
+    ]
+}

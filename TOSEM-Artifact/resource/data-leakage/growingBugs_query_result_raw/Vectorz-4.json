@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.10141509433962265,
+    "input": "private static int indexPositionBig(int[] data, int x, int min, int max) {\n        int lx=data[min];\n        int hx=data[max-1];\n        if (x<=lx) {\n            if (x==lx) return min;\n            return -1;\n        }\n        if (x>=hx) {\n            if (x==hx) return max-1;\n            return -1;\n        }\n        \n        while ((min+10)<max) {\n            int mid = (int)((long)min+(((long)(max-min))*((long)(x-lx)))/(((long)(hx-lx))*2)); // best estimate of position\n            int mx=data[mid];\n            if (x==mx) return mid;\n            if (x<mx) {\n                max=mid;\n                hx=mx;\n            } else {\n                min=mid+1;\n                lx=mx;\n            }\n        }\n        return indexPositionSmall(data, x,min,max);                \n    }",
+    "query_result": [
+        "nt indexPositionBig(int[] data, int x, int min, in"
+    ]
+}

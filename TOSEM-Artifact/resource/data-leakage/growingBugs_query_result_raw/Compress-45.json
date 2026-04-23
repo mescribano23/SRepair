@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.8973913043478261,
+    "input": "    public static int formatLongOctalOrBinaryBytes(\n        final long value, final byte[] buf, final int offset, final int length) {\n\n        // Check whether we are dealing with UID/GID or SIZE field\n        final long maxAsOctalChar = length == TarConstants.UIDLEN ? TarConstants.MAXID : TarConstants.MAXSIZE;\n\n        final boolean negative = value < 0;\n        if (!negative && value <= maxAsOctalChar) { // OK to store as octal chars\n            return formatLongOctalBytes(value, buf, offset, length);\n        }\n\n        if (length < 9) {\n            formatLongBinary(value, buf, offset, length, negative);\n        } else {\n            formatBigIntegerBinary(value, buf, offset, length, negative);\n        }\n\n        buf[offset] = (byte) (negative ? 0xff : 0x80);\n        return offset + length;\n    }",
+    "query_result": [
+        "matLongOctalBytes(value, buf, offset, length);\n}\nif (length < 9) {\nformatLongBinary(value, buf, offset, length, negative);\n} else {\nformatBigIntegerBinary(value, buf, offset, length, negative);\n}\nbuf[offset] = (byte) (negative ? 0xff : 0x80);\nreturn ",
+        "th UID/GID or SIZE field\nfinal long maxAsOctalChar = length == TarConstants.UIDLEN ? TarConstants.MAXID : TarConstants.MAXSIZE;\nfinal boolean negative = value < 0;\nif (!negative && value <= maxAsOctal",
+        "final boolean negative = value < 0;\nif (!negative && value <= maxAsOctalChar) { // OK to store as octal chars\nreturn formatLongOctalBytes(value, buf, offset, length);\n}\nif (length < 9) {\nformatLongBin",
+        "ffset, final int length) {\n// Check whether we are dealing with UID/GID or SIZE field\nfinal long max",
+        "turn formatLongOctalBytes(value, buf, offset, length);\n}\nif (length < 9) {\nformatLongBinary(value, b",
+        "n formatLongOctalBytes(value, buf, offset, length);\n}\nif (length < 9) {\nformatLongBinary(value, buf,",
+        "final long value, final byte[] buf, final int offs",
+        "l long value, final byte[] buf, final int offset, ",
+        " long value, final byte[] buf, final int offset, f",
+        "ng value, final byte[] buf, final int offset, fina",
+        "value, final byte[] buf, final int offset, final i",
+        "e, final byte[] buf, final int offset, final int l",
+        "final byte[] buf, final int offset, final int leng",
+        "inal byte[] buf, final int offset, final int lengt",
+        "k whether we are dealing with UID/GID or SIZE fiel",
+        "tBigIntegerBinary(value, buf, offset, length, nega",
+        "ntegerBinary(value, buf, offset, length, negative)"
+    ]
+}

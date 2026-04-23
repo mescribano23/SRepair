@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.08098591549295775,
+    "input": "public final void afterRender()\n    {\n        try\n        {\n            setFlag(FLAG_AFTER_RENDERING, true);\n\n            // always detach children because components can be attached\n            // independently of their parents\n            onAfterRenderChildren();\n\n            onAfterRender();\n            getApplication().getComponentOnAfterRenderListeners().onAfterRender(this);\n            if (getFlag(FLAG_AFTER_RENDERING))\n            {\n                throw new IllegalStateException(Component.class.getName() +\n                    \" has not been properly detached. Something in the hierarchy of \" +\n                    getClass().getName() +\n                    \" has not called super.onAfterRender() in the override of onAfterRender() method\");\n            }\n        }\n        finally\n        {\n            // this flag must always be set to false.\n            markRendering(false);\n        }\n    }",
+    "query_result": [
+        "thing in the hierarchy of \" +\ngetClass().getName()",
+        "in the hierarchy of \" +\ngetClass().getName() +\n\" h"
+    ]
+}

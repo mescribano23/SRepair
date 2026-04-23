@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    public Iterable<Hook> iterate() {\n        return new RtPagination<Hook>(\n            this.request,\n            new RtPagination.Mapping<Hook, JsonObject>() {\n                @Override\n                public Hook map(final JsonObject object) {\n                    // @checkstyle MultipleStringLiterals (1 line)\n                    return RtHooks.this.get(object.getInt(\"id\"));\n                }\n            }\n        );\n    }",
+    "query_result": []
+}

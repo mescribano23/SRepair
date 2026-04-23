@@ -1,0 +1,23 @@
+diff --git a/commons-rdf-jena/src/main/java/org/apache/commons/rdf/jena/impl/JenaDatasetImpl.java b/commons-rdf-jena/src/main/java/org/apache/commons/rdf/jena/impl/JenaDatasetImpl.java
+index 55204d34..f1a780c5 100644
+--- a/commons-rdf-jena/src/main/java/org/apache/commons/rdf/jena/impl/JenaDatasetImpl.java
++++ b/commons-rdf-jena/src/main/java/org/apache/commons/rdf/jena/impl/JenaDatasetImpl.java
+@@ -146,12 +146,12 @@ class JenaDatasetImpl implements JenaDataset {
+                 .map(factory::asQuad);
+     }
+ 
+-    @Override
+-    public String toString() {
+-        final StringWriter sw = new StringWriter();
+-        RDFDataMgr.write(sw, datasetGraph, Lang.NT);
+-        return sw.toString();
+-    }
++@Override
++public String toString() {
++    final StringWriter sw = new StringWriter();
++    RDFDataMgr.write(sw, datasetGraph, Lang.NQ);
++    return sw.toString();
++}
+ 
+     @Override
+     public Graph getGraph() {

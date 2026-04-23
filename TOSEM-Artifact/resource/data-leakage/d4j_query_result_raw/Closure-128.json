@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6919191919191919,
+    "input": "static boolean isSimpleNumber(String s) {\n  int len = s.length();\n  if (len == 0) {\n    return false;\n  }\n  for (int index = 0; index < len; index++) {\n    char c = s.charAt(index);\n    if (c < '0' || c > '9') {\n      return false;\n    }\n  }\n  return len == 1 || s.charAt(0) != '0';\n}",
+    "query_result": [
+        "umber(String s) {\nint len = s.length();\nif (len ==",
+        "(String s) {\nint len = s.length();\nif (len == 0) {",
+        "String s) {\nint len = s.length();\nif (len == 0) {\n",
+        "tring s) {\nint len = s.length();\nif (len == 0) {\nr",
+        "ring s) {\nint len = s.length();\nif (len == 0) {\nre",
+        "ing s) {\nint len = s.length();\nif (len == 0) {\nret",
+        "ng s) {\nint len = s.length();\nif (len == 0) {\nretu",
+        "g s) {\nint len = s.length();\nif (len == 0) {\nretur",
+        " s) {\nint len = s.length();\nif (len == 0) {\nreturn",
+        "s) {\nint len = s.length();\nif (len == 0) {\nreturn ",
+        "\nint len = s.length();\nif (len == 0) {\nreturn fals",
+        "nt len = s.length();\nif (len == 0) {\nreturn false;",
+        " len = s.length();\nif (len == 0) {\nreturn false;\n}",
+        "len = s.length();\nif (len == 0) {\nreturn false;\n}\n",
+        "x = 0; index < len; index++) {\nchar c = s.charAt(i",
+        "n; index++) {\nchar c = s.charAt(index);\nif (c < '0",
+        " = s.charAt(index);\nif (c < '0' || c > '9') {\nretu",
+        "dex);\nif (c < '0' || c > '9') {\nreturn false;\n}\n}\n",
+        ");\nif (c < '0' || c > '9') {\nreturn false;\n}\n}\nret",
+        ";\nif (c < '0' || c > '9') {\nreturn false;\n}\n}\nretu"
+    ]
+}

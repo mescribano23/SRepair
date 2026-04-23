@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.06547208821502412,
+    "input": "    @Override\n    public void execute(SensorContext ctx) {\n        if (!this.settings.getBoolean(TypeScriptPlugin.SETTING_TS_LINT_ENABLED)) {\n            LOG.debug(\"Skipping tslint execution - \" + TypeScriptPlugin.SETTING_TS_LINT_ENABLED + \" set to false\");\n            return;\n        }\n\n        TsLintExecutorConfig config = TsLintExecutorConfig.fromSettings(this.settings, ctx, this.resolver);\n\n        if (!config.useExistingTsLintOutput()) {\n            if (config.getPathToTsLint() == null) {\n                LOG.warn(\"Path to tslint not defined or not found. Skipping tslint analysis.\");\n                return;\n            } else {\n                if (config.getConfigFile() == null && config.getPathToTsConfig() == null) {\n                    LOG.warn(\"Path to tslint.json and tsconfig.json configuration files either not defined or not found - at least one is required. Skipping tslint analysis.\");\n                    return;\n                }\n            }\n        }\n\n        boolean skipTypeDefFiles = settings.getBoolean(TypeScriptPlugin.SETTING_EXCLUDE_TYPE_DEFINITION_FILES);\n\n        Collection<ActiveRule> allRules = ctx.activeRules().findByRepository(TsRulesDefinition.REPOSITORY_NAME);\n        HashSet<String> ruleNames = new HashSet<>();\n        for (ActiveRule rule : allRules) {\n            ruleNames.add(rule.ruleKey().rule());\n        }\n\n        List<String> paths = new ArrayList<String>();\n\n        for (InputFile file : ctx.fileSystem().inputFiles(ctx.fileSystem().predicates().hasLanguage(TypeScriptLanguage.LANGUAGE_KEY))) {\n            if (shouldSkipFile(file.file(), skipTypeDefFiles)) {\n                continue;\n            }\n\n            String pathAdjusted = file.absolutePath();\n            paths.add(pathAdjusted);\n        }\n\n        List<String> jsonResults = this.executor.execute(config, paths);\n\n        Map<String, List<TsLintIssue>> issues = this.parser.parse(jsonResults);\n\n        if (issues == null) {\n            LOG.warn(\"TsLint returned no result at ",
+    "query_result": [
+        "onfig.getPathToTsConfig() == null) {\nLOG.warn(\"Pat",
+        "));\n}\nList<String> paths = new ArrayList<String>()",
+        ");\n}\nList<String> paths = new ArrayList<String>();",
+        "\nList<String> paths = new ArrayList<String>();\nfor",
+        "List<String> paths = new ArrayList<String>();\nfor ",
+        "ist<String> paths = new ArrayList<String>();\nfor ("
+    ]
+}

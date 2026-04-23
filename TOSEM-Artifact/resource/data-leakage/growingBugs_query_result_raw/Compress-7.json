@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6089965397923875,
+    "input": "    public static String parseName(byte[] buffer, final int offset, final int length) {\n        StringBuffer result = new StringBuffer(length);\n        int          end = offset + length;\n\n        for (int i = offset; i < end; ++i) {\n            byte b = buffer[i];\n            if (b == 0) { // Trailing null\n                break;\n            }\n            result.append((char) (b & 0xFF)); // Allow for sign-extension\n        }\n\n        return result.toString();\n    }",
+    "query_result": [
+        "al int length) {\nStringBuffer result = new StringBuffer(length);\nint end = offset + length;\nfor (int",
+        "ngth) {\nStringBuffer result = new StringBuffer(length);\nint end = offset + length;\nfor (int i = offs",
+        "StringBuffer result = new StringBuffer(length);\nint end = offset + length;\nfor (int i = offset; i < ",
+        "+ length;\nfor (int i = offset; i < end; ++i) {\nbyte b = buffer[i];\nif (b == 0) { // Trailing null\nbr",
+        "byte[] buffer, final int offset, final int length)",
+        "yte[] buffer, final int offset, final int length) ",
+        "te[] buffer, final int offset, final int length) {",
+        "int length) {\nStringBuffer result = new StringBuff",
+        "nt length) {\nStringBuffer result = new StringBuffe",
+        "t length) {\nStringBuffer result = new StringBuffer",
+        " length) {\nStringBuffer result = new StringBuffer(",
+        "gth) {\nStringBuffer result = new StringBuffer(leng",
+        "ffer result = new StringBuffer(length);\nint end = ",
+        "= new StringBuffer(length);\nint end = offset + len",
+        "tringBuffer(length);\nint end = offset + length;\nfo",
+        ");\nint end = offset + length;\nfor (int i = offset;",
+        ";\nint end = offset + length;\nfor (int i = offset; ",
+        "\nint end = offset + length;\nfor (int i = offset; i",
+        "int end = offset + length;\nfor (int i = offset; i ",
+        "nt end = offset + length;\nfor (int i = offset; i <"
+    ]
+}

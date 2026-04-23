@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.7823529411764706,
+    "input": "    public CsvConfiguration(int columnNameLineNumber, ColumnNamingStrategy columnNamingStrategy, String encoding,\n            char separatorChar, char quoteChar, char escapeChar, boolean failOnInconsistentRowLength,\n            boolean multilineValues) {\n        this.columnNameLineNumber = columnNameLineNumber;\n        this.encoding = encoding;\n        this.separatorChar = separatorChar;\n        this.quoteChar = quoteChar;\n        this.escapeChar = escapeChar;\n        this.failOnInconsistentRowLength = failOnInconsistentRowLength;\n        this.multilineValues = multilineValues;\n        this.columnNamingStrategy = columnNamingStrategy;\n    }",
+    "query_result": [
+        "neValues) {\nthis.columnNameLineNumber = columnNameLineNumber;\nthis.encoding = encoding;\nthis.separatorChar = separatorChar;\nthis.quoteChar = quoteChar;\nthis.escapeChar = escapeChar;\nthis.failOnInconsistentRowLength = failOnInconsistentRowLength;\nthis",
+        "lumnNameLineNumber = columnNameLineNumber;\nthis.encoding = encoding;\nthis.separatorChar = separatorChar;\nthis.quoteChar = quoteChar;\nthis.escapeChar = escapeChar;\nthis.failOnInconsistentRowLength = failOnInconsistentRowLength;\nthis.multilineValues = ",
+        "mnNameLineNumber = columnNameLineNumber;\nthis.encoding = encoding;\nthis.separatorChar = separatorChar;\nthis.quoteChar = quoteChar;\nthis.escapeChar = escapeChar;\nthis.failOnInconsistentRowLength = failOnInconsistentRowLength;\nthis.multilineValues = mu",
+        "{\nthis.columnNameLineNumber = columnNameLineNumber;\nthis.encoding = encoding;\nthis.separatorChar = s",
+        " columnNameLineNumber, ColumnNamingStrategy column",
+        "olumnNameLineNumber, ColumnNamingStrategy columnNa",
+        "LineNumber, ColumnNamingStrategy columnNamingStrat",
+        "ColumnNamingStrategy columnNamingStrategy, String ",
+        "NamingStrategy columnNamingStrategy, String encodi",
+        "r separatorChar, char quoteChar, char escapeChar, ",
+        "r, char quoteChar, char escapeChar, boolean failOn",
+        "uoteChar, char escapeChar, boolean failOnInconsist",
+        "oteChar, char escapeChar, boolean failOnInconsiste",
+        "char escapeChar, boolean failOnInconsistentRowLeng",
+        "this.columnNameLineNumber = columnNameLineNumber;\n",
+        "columnNameLineNumber = columnNameLineNumber;\nthis.",
+        "torChar = separatorChar;\nthis.quoteChar = quoteCha",
+        "torChar;\nthis.quoteChar = quoteChar;\nthis.escapeCh",
+        "is.quoteChar = quoteChar;\nthis.escapeChar = escape",
+        "s.quoteChar = quoteChar;\nthis.escapeChar = escapeC"
+    ]
+}

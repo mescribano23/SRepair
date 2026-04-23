@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.9504643962848297,
+    "input": "    public String output(String src){\n\n        StringBuilder out = new StringBuilder();\n        while(src.length() > 0){\n            //escape\n            {\n                List<String> cap = rules.get(\"escape\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.substring(cap.get(0).length());\n                    out.append(cap.get(1));\n                    continue;\n                }\n            }\n\n            // autolink\n            {\n                List<String> cap = rules.get(\"autolink\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.substring(cap.get(0).length());\n                    String text;\n                    String href;\n                    if(cap.get(2).equals(\"@\")){\n                        if(cap.get(1).startsWith(\"mailto:\")){\n                            text = cap.get(1).substring(7);\n                        } else {\n                            text = cap.get(1);\n                        }\n                        href = \"mailto:\" + text;\n                    } else {\n                        text = escape(cap.get(1));\n                        href = text;\n                    }\n                    out.append(renderer.link(href, null, text));\n                    continue;\n                }\n            }\n\n            // url (gfm)\n            if(!inLink){\n                List<String> cap = rules.get(\"url\").exec(src);\n                if(!cap.isEmpty()){\n                    src = src.substring(cap.get(0).length());\n                    String text = escape(cap.get(1));\n                    String href = text;\n                    out.append(renderer.link(text, null, href));\n                    continue;\n                }\n            }\n\n            // tag\n            {\n                List<String> cap = rules.get(\"tag\").exec(src);\n                if(!cap.isEmpty()){\n                    if(!inLink && Pattern.compile(\"^<a \").matcher(cap.get(0)).find()){\n                        inLink = true;\n                    ",
+    "query_result": [
+        "out = new StringBuilder();\nwhile(src.length() > 0){\n//escape\n{\nList<String> cap = rules.get(\"escape\").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get(0).length());\nout.append(cap.get(1));\ncontinue;\n}\n}\n// autolink\n{\nList<String> cap = rules.get(\"autolink\").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get(0).length());\nString text;\nString href;\nif(cap.get(2).equals(\"@\")){\nif(cap.get(1).startsWith(\"mailto:\")){\ntext = cap.get(1).substring(7);\n} else {\ntext = cap.get(1);\n}\nhref = \"mailto:\" + text;\n} else {\ntext = escape(cap.get",
+        "\nsrc = src.substring(cap.get(0).length());\nString text;\nString href;\nif(cap.get(2).equals(\"@\")){\nif(cap.get(1).startsWith(\"mailto:\")){\ntext = cap.get(1).substring(7);\n} else {\ntext = cap.get(1);\n}\nhref = \"mailto:\" + text;\n} else {\ntext = escape(cap.get(1));\nhref = text;\n}\nout.append(renderer.link(href, null, text));\ncontinue;\n}\n}\n// url (gfm)\nif(!inLink){\nList<String> cap = rules.get(\"url\").exec(s",
+        "g(cap.get(0).length());\nString text = escape(cap.get(1));\nString href = text;\nout.append(renderer.link(text, null, href));\ncontinue;\n}\n}\n// tag\n{\nList<String> cap = rules.get(\"tag\").exec(src);\nif(!cap",
+        "ringBuilder();\nwhile(src.length() > 0){\n//escape\n{\nList<String> cap = rules.get(\"escape\").exec(src);",
+        " = rules.get(\"escape\").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get(0).length());\nout.",
+        "p.get(0).length());\nout.append(cap.get(1));\ncontinue;\n}\n}\n// autolink\n{\nList<String> cap = rules.get",
+        "tring output(String src){\nStringBuilder out = new ",
+        ");\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get",
+        ").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substri",
+        ");\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get",
+        "ref = \"mailto:\" + text;\n} else {\ntext = escape(cap",
+        ").exec(src);\nif(!cap.isEmpty()){\nsrc = src.substri",
+        ");\nif(!cap.isEmpty()){\nsrc = src.substring(cap.get",
+        "\nsrc = src.substring(cap.get(0).length());\nString ",
+        "rc = src.substring(cap.get(0).length());\nString te",
+        "\"^<a \").matcher(cap.get(0)).find()){\ninLink = true"
+    ]
+}

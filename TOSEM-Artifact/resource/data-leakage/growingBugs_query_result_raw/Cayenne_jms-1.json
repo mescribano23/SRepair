@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.2127659574468085,
+    "input": "    @Override\n    public void configure(Binder binder) {\n        // init properties' defaults\n        contributeTopicConnectionFactory(binder, JMSBridge.TOPIC_CONNECTION_FACTORY_DEFAULT);\n\n        binder.bind(EventBridge.class).toProvider(JMSBridgeProvider.class).withoutScope();\n    }",
+    "query_result": [
+        "@Override\npublic void configure(Binder binder) {\n/",
+        "Override\npublic void configure(Binder binder) {\n//",
+        "e\npublic void configure(Binder binder) {\n// init p"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.5802469135802469,
+    "input": "    @Override\n    public void close() throws IOException\n    {\n        if (raf != null)\n        {\n            raf.close();\n            raf = null;\n        }\n    }",
+    "query_result": [
+        "@Override\npublic void close() throws IOException\n{",
+        "Override\npublic void close() throws IOException\n{\n",
+        "verride\npublic void close() throws IOException\n{\ni",
+        "erride\npublic void close() throws IOException\n{\nif",
+        "rride\npublic void close() throws IOException\n{\nif ",
+        "ride\npublic void close() throws IOException\n{\nif ("
+    ]
+}

@@ -1,0 +1,30 @@
+diff --git a/config/src/main/java/org/switchyard/config/DOMConfiguration.java b/config/src/main/java/org/switchyard/config/DOMConfiguration.java
+index ddd91273..6e8426a7 100644
+--- a/config/src/main/java/org/switchyard/config/DOMConfiguration.java
++++ b/config/src/main/java/org/switchyard/config/DOMConfiguration.java
+@@ -116,11 +116,21 @@ public class DOMConfiguration extends BaseConfiguration {
+     /**
+      * {@inheritDoc}
+      */
+-    @Override
+-    public String getValue() {
+-        Node text_node = getTextNode(false);
+-        return text_node != null ? text_node.getNodeValue() : null;
++@Override
++public String getValue() {
++    Node node = getTextNode(false);
++    if (node == null) {
++        return null;
+     }
++    StringBuilder value = new StringBuilder();
++    while (node != null) {
++        if (node.getNodeType() == Node.CDATA_SECTION_NODE || node.getNodeType() == Node.TEXT_NODE) {
++            value.append(node.getNodeValue());
++        }
++        node = node.getNextSibling();
++    }
++    return value.toString();
++}
+ 
+     /**
+      * {@inheritDoc}

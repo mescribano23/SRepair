@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8862433862433863,
+    "input": "        @Override\n        public void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\n            throws IOException\n        {\n            final String text;\n            if (gen.isEnabled(StreamWriteFeature.WRITE_BIGDECIMAL_AS_PLAIN)) {\n                final BigDecimal bd = (BigDecimal) value;\n                // 24-Aug-2016, tatu: [core#315] prevent possible DoS vector, so we need this\n                if (!_verifyBigDecimalRange(gen, bd)) {\n                    // ... but wouldn't it be nice to trigger error via generator? Alas,\n                    // no method to do that. So we'll do...\n                    final String errorMsg = String.format(\n                            \"Attempt to write plain `java.math.BigDecimal` (see JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN) with illegal scale (%d): needs to be between [-%d, %d]\",\n                            bd.scale(), MAX_BIG_DECIMAL_SCALE, MAX_BIG_DECIMAL_SCALE);\n                    provider.reportMappingProblem(errorMsg);\n                }\n                text = bd.toPlainString();\n            } else {\n                text = value.toString();\n            }\n            gen.writeString(text);\n        }",
+    "query_result": [
+        ")) {\nfinal BigDecimal bd = (BigDecimal) value;\n// 24-Aug-2016, tatu: [core#315] prevent possible DoS vector, so we need this\nif (!_verifyBigDecimalRange(gen, bd)) {\n// ... but wouldn't it be nice to trigger error via generator? Alas,\n// no method to do that. So we'll do...\nfinal String errorMsg = String.format(\n\"Attempt to write plain `java.math.BigDecimal` (see JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN) with illegal scale (%d): needs to be between [-%d, %d]\",\nbd.scale(), MAX_BIG_DECIMAL_SCALE, MAX_BIG_DECIMAL_SCALE);\nprovider.reportMappingProblem(errorMsg);\n}\ntext = bd.toPlainString();\n} else {\ntext = value.toString();\n}\ngen.writeStrin",
+        "at(\n\"Attempt to write plain `java.math.BigDecimal` (see JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN) with illegal scale (%d): needs to be between [-%d, %d]\",\nbd.scale(), MAX_BIG_DECIMAL_SCALE, MAX_BIG_DECIMAL_SCALE);\nprovider.reportMappingProblem",
+        "Attempt to write plain `java.math.BigDecimal` (see JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN) with illegal scale (%d): needs to be between [-%d,",
+        "ttempt to write plain `java.math.BigDecimal` (see JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN) with illegal scale (%d): needs to be between [-%d, ",
+        "@Override\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows",
+        "Override\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows ",
+        "verride\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows I",
+        "erride\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IO",
+        "rride\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOE",
+        "ride\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOEx",
+        "ide\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOExc",
+        "de\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOExce",
+        "e\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOExcep",
+        "\npublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOExcept",
+        "public void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOExcepti",
+        "ublic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOExceptio",
+        "blic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOException",
+        "lic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOException\n",
+        "ic void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOException\n{",
+        "c void serialize(Object value, JsonGenerator gen, SerializerProvider provider)\nthrows IOException\n{\n"
+    ]
+}

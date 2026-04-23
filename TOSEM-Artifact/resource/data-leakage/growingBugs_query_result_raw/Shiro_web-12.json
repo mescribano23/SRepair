@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.9726027397260274,
+    "input": "    protected String[] getPrincipalsAndCredentials(String scheme, String encoded) {\n        String decoded = Base64.decodeToString(encoded);\n        return decoded.split(\":\", 2);\n    }",
+    "query_result": [
+        "ected String[] getPrincipalsAndCredentials(String scheme, String encoded) {\nString decoded = Base64.decodeToString(encoded);\nreturn decoded.split(\":\",",
+        "cipalsAndCredentials(String scheme, String encoded) {\nString decoded = Base64.decodeToString(encoded",
+        "palsAndCredentials(String scheme, String encoded) {\nString decoded = Base64.decodeToString(encoded);",
+        "Credentials(String scheme, String encoded) {\nString decoded = Base64.decodeToString(encoded);\nreturn",
+        "protected String[] getPrincipalsAndCredentials(Str",
+        "rotected String[] getPrincipalsAndCredentials(Stri",
+        "tected String[] getPrincipalsAndCredentials(String",
+        "ed String[] getPrincipalsAndCredentials(String sch"
+    ]
+}

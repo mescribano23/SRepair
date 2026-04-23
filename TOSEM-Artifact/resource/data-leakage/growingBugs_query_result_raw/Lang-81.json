@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8626790227464195,
+    "input": "    private static long getFragment(final Calendar calendar, final int fragment, final int unit) {\n        if(calendar == null) {\n            throw  new IllegalArgumentException(\"The date must not be null\"); \n        }\n        final long millisPerUnit = getMillisPerUnit(unit);\n        long result = 0;\n        \n        // Fragments bigger than a day require a breakdown to days\n        switch (fragment) {\n            case Calendar.YEAR:\n                result += (calendar.get(Calendar.DAY_OF_YEAR) * MILLIS_PER_DAY) / millisPerUnit;\n                break;\n            case Calendar.MONTH:\n                result += (calendar.get(Calendar.DAY_OF_MONTH) * MILLIS_PER_DAY) / millisPerUnit;\n                break;\n        }\n\n        switch (fragment) {\n            // Number of days already calculated for these cases\n            case Calendar.YEAR:\n            case Calendar.MONTH:\n            \n            // The rest of the valid cases\n            case Calendar.DAY_OF_YEAR:\n            case Calendar.DATE:\n                result += (calendar.get(Calendar.HOUR_OF_DAY) * MILLIS_PER_HOUR) / millisPerUnit;\n                //$FALL-THROUGH$\n            case Calendar.HOUR_OF_DAY:\n                result += (calendar.get(Calendar.MINUTE) * MILLIS_PER_MINUTE) / millisPerUnit;\n                //$FALL-THROUGH$\n            case Calendar.MINUTE:\n                result += (calendar.get(Calendar.SECOND) * MILLIS_PER_SECOND) / millisPerUnit;\n                //$FALL-THROUGH$\n            case Calendar.SECOND:\n                result += (calendar.get(Calendar.MILLISECOND) * 1) / millisPerUnit;\n                break;\n            case Calendar.MILLISECOND: break;//never useful\n                default: throw new IllegalArgumentException(\"The fragment \" + fragment + \" is not supported\");\n        }\n        return result;\n    }",
+    "query_result": [
+        "ses\ncase Calendar.DAY_OF_YEAR:\ncase Calendar.DATE:\nresult += (calendar.get(Calendar.HOUR_OF_DAY) * MILLIS_PER_HOUR) / millisPerUnit;\n//$FALL-THROUGH$\ncase Calendar.HOUR_OF_DAY:\nresult += (calendar.get(Calendar.MINUTE) * MILLIS_PER_MINUTE) / millisPerUnit;\n//$FALL-THROUGH$\ncase Calendar.MINUTE:\nresult += (calendar.get(Calendar.SECOND) * MILLIS_PER_SECOND) / millisPerUnit;\n//$FALL-THROUGH$\ncase Calendar.SECOND:\nresult += (calendar.get(Calendar.MILLISECOND) * 1) / millisPerUnit;\nbreak;\ncase Calendar.MILLISECOND: break;//never useful\ndefault: throw new IllegalArgumentException(\"The fragment \" + fr",
+        "ar.DAY_OF_YEAR:\ncase Calendar.DATE:\nresult += (calendar.get(Calendar.HOUR_OF_DAY) * MILLIS_PER_HOUR) / millisPerUnit;\n//$FALL-THROUGH$\ncase Calendar.HOUR_OF_DAY:\nresult += (calendar.get(Calendar.MINUTE) * MILLIS_PER_MINUTE) / millisPerUnit;\n//$FALL-THROUGH$\ncase Calendar.MINUTE:\nresult += (calendar.get(Calendar.SECOND) * MILLIS_PER_SECOND) / millisPerUnit;\n//$FALL-THROUGH$\ncase Calendar.SECOND:\nresult += (calendar.get(Calendar.MILLISECOND) * 1) /",
+        "agments bigger than a day require a breakdown to days\nswitch (fragment) {\ncase Calendar.YEAR:\nresult += (calendar.get(Calendar.DAY_OF_YEAR) * MILLIS_PER_DAY) / millisPerUnit;\nbreak;\ncase Calendar.MONTH:\nresult += (calendar.get(Calendar.DAY_OF_MONTH) * MILLIS_PER_DAY) / millisPerUnit;\nbreak;\n}\nswitch (fragment) {\n// Number of days already calculated for these cases\ncase Calendar.YEAR:\ncase Calendar",
+        " breakdown to days\nswitch (fragment) {\ncase Calendar.YEAR:\nresult += (calendar.get(Calendar.DAY_OF_YEAR) * MILLIS_PER_DAY) / millisPerUnit;\nbreak;\ncase Calendar.MONTH:\nresult += (calendar.get(Calendar.DAY_OF_MONTH) * MILLIS_PER_DAY) / millisPerUnit;\nbreak;\n}\nswitch (fragment) {\n// Number of days already calculated for these cases\ncase Calendar.YEAR",
+        "dar calendar, final int fragment, final int unit) {\nif(calendar == null) {\nthrow new IllegalArgument",
+        "akdown to days\nswitch (fragment) {\ncase Calendar.YEAR:\nresult += (calendar.get(Calendar.DAY_OF_YEAR)",
+        "k;\n}\nswitch (fragment) {\n// Number of days already calculated for these cases\ncase Calendar.YEAR:\nca",
+        "agment) {\n// Number of days already calculated for these cases\ncase Calendar.YEAR:\ncase Calendar.MON",
+        "case Calendar.DAY_OF_YEAR:\ncase Calendar.DATE:\nresult += (calendar.get(Calendar.HOUR_OF_DAY) * MILLI",
+        ";\n//$FALL-THROUGH$\ncase Calendar.MINUTE:\nresult += (calendar.get(Calendar.SECOND) * MILLIS_PER_SECON",
+        "rivate static long getFragment(final Calendar cale",
+        "ate static long getFragment(final Calendar calenda",
+        "e static long getFragment(final Calendar calendar,",
+        " static long getFragment(final Calendar calendar, ",
+        "ic long getFragment(final Calendar calendar, final",
+        "ng getFragment(final Calendar calendar, final int ",
+        "getFragment(final Calendar calendar, final int fra",
+        "etFragment(final Calendar calendar, final int frag",
+        "tFragment(final Calendar calendar, final int fragm",
+        "ragment(final Calendar calendar, final int fragmen"
+    ]
+}

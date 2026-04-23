@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.8464566929133859,
+    "input": "public String toString() {\n        return \"{name=\"\n            + name\n            + \", template=\"\n            + (templateAttribute != null ? templateAttribute.getValue() : \"<null>\")\n            + \", role=\"\n            + (templateAttribute != null ? templateAttribute.getRoles() : \"<null>\")\n            + \", preparerInstance=\"\n            + preparer\n            + \", attributes=\"\n            + attributes\n            + \"}\";\n    }",
+    "query_result": [
+        "return \"{name=\"\n+ name\n+ \", template=\"\n+ (templateAttribute != null ? templateAttribute.getValue() : \"<null>\")\n+ \", role=\"\n+ (templateAttribute != null ? templateAttribute.getRoles() : \"<null>\")\n+ \", preparerInstance=\"\n+ preparer\n+ \", attributes=\"\n+ "
+    ]
+}

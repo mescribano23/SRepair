@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.8541666666666666,
+    "input": "public boolean apply(Node n) {\n  // When the node is null it means, we reached the implicit return\n  // where the function returns (possibly without an return statement)\n  if (n == null) {\n    return false;\n  }\n\n  // TODO(user): We only care about calls to functions that\n  // passes one of the dependent variable to a non-side-effect free\n  // function.\n  if (n.isCall() && NodeUtil.functionCallHasSideEffects(n)) {\n    return true;\n  }\n\n  if (n.isNew() && NodeUtil.constructorCallHasSideEffects(n)) {\n    return true;\n  }\n\n  if (n.isDelProp()) {\n    return true;\n  }\n\n  for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {\n    if (!ControlFlowGraph.isEnteringNewCfgNode(c) && apply(c)) {\n      return true;\n    }\n  }\n  return false;\n}",
+    "query_result": [
+        "ructorCallHasSideEffects(n)) {\nreturn true;\n}\nif (n.isDelProp()) {\nreturn true;\n}\nfor (Node c = n.getFirstChild(); c != null; c = c.getNext()) {\nif (!ControlFlowGraph.isEnteringNewCfgNode(c) && apply(",
+        "de n) {\n// When the node is null it means, we reached the implicit return\n// where the function returns (possibly without an return statement)\nif (n =",
+        "\n// TODO(user): We only care about calls to functions that\n// passes one of the dependent variable to a non-side-effect free\n// function.\nif (n.isCall",
+        " n.getFirstChild(); c != null; c = c.getNext()) {\nif (!ControlFlowGraph.isEnteringNewCfgNode(c) && a",
+        "rstChild(); c != null; c = c.getNext()) {\nif (!ControlFlowGraph.isEnteringNewCfgNode(c) && apply(c))",
+        "n.isCall() && NodeUtil.functionCallHasSideEffects(",
+        "if (n.isNew() && NodeUtil.constructorCallHasSideEf",
+        "(n.isNew() && NodeUtil.constructorCallHasSideEffec",
+        "sNew() && NodeUtil.constructorCallHasSideEffects(n",
+        "New() && NodeUtil.constructorCallHasSideEffects(n)",
+        "ew() && NodeUtil.constructorCallHasSideEffects(n))",
+        "\nfor (Node c = n.getFirstChild(); c != null; c = c",
+        "for (Node c = n.getFirstChild(); c != null; c = c.",
+        "or (Node c = n.getFirstChild(); c != null; c = c.g",
+        "r (Node c = n.getFirstChild(); c != null; c = c.ge",
+        "(Node c = n.getFirstChild(); c != null; c = c.getN",
+        "Node c = n.getFirstChild(); c != null; c = c.getNe",
+        "ode c = n.getFirstChild(); c != null; c = c.getNex",
+        "de c = n.getFirstChild(); c != null; c = c.getNext",
+        "e c = n.getFirstChild(); c != null; c = c.getNext("
+    ]
+}

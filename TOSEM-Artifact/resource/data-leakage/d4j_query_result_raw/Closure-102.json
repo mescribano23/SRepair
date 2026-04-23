@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5136612021857924,
+    "input": "public void process(Node externs, Node root) {\n  NodeTraversal.traverse(compiler, root, this);\n  removeDuplicateDeclarations(root);\n  if (MAKE_LOCAL_NAMES_UNIQUE) {\n    MakeDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();\n    NodeTraversal t = new NodeTraversal(compiler, renamer);\n    t.traverseRoots(externs, root);\n  }\n  new PropogateConstantAnnotations(compiler, assertOnChange)\n      .process(externs, root);\n}",
+    "query_result": [
+        "(MAKE_LOCAL_NAMES_UNIQUE) {\nMakeDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();\nNodeTra",
+        "eDeclaredNamesUnique renamer = new MakeDeclaredNamesUnique();\nNodeTraversal t = new NodeTraversal(co",
+        "ublic void process(Node externs, Node root) {\nNode",
+        "blic void process(Node externs, Node root) {\nNodeT",
+        "lic void process(Node externs, Node root) {\nNodeTr",
+        "ic void process(Node externs, Node root) {\nNodeTra",
+        "c void process(Node externs, Node root) {\nNodeTrav",
+        " void process(Node externs, Node root) {\nNodeTrave",
+        "void process(Node externs, Node root) {\nNodeTraver",
+        "oid process(Node externs, Node root) {\nNodeTravers",
+        "rocess(Node externs, Node root) {\nNodeTraversal.tr",
+        "ocess(Node externs, Node root) {\nNodeTraversal.tra",
+        "cess(Node externs, Node root) {\nNodeTraversal.trav",
+        "ss(Node externs, Node root) {\nNodeTraversal.traver",
+        "(Node externs, Node root) {\nNodeTraversal.traverse",
+        "Node externs, Node root) {\nNodeTraversal.traverse(",
+        "ode externs, Node root) {\nNodeTraversal.traverse(c",
+        " externs, Node root) {\nNodeTraversal.traverse(comp",
+        "externs, Node root) {\nNodeTraversal.traverse(compi",
+        "xterns, Node root) {\nNodeTraversal.traverse(compil"
+    ]
+}

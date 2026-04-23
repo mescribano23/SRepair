@@ -1,0 +1,54 @@
+diff --git a/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java b/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java
+index 15169bc..21adbfc 100644
+--- a/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java
++++ b/src/main/java/edu/ksu/canvas/net/SimpleRestClient.java
+@@ -253,29 +253,29 @@ public class SimpleRestClient implements RestClient {
+      * @param response HttpResponse object representing the error response from Canvas
+      * @return The Canvas human-readable error string or null if unable to extract it
+      */
+-    private String extractErrorMessageFromResponse(HttpResponse response) {
+-        String contentType = response.getEntity().getContentType().getValue();
+-        if(contentType.contains("application/json")) {
+-            Gson gson = GsonResponseParser.getDefaultGsonParser(false);
+-            String responseBody = null;
+-            try {
+-                responseBody = EntityUtils.toString(response.getEntity());
+-                LOG.error("Body of error response from Canvas: " + responseBody);
+-                CanvasErrorResponse errorResponse = gson.fromJson(responseBody, CanvasErrorResponse.class);
+-                List<ErrorMessage> errors = errorResponse.getErrors();
+-                if(errors != null) {
+-                    //I have only ever seen a single error message but it is an array so presumably there could be more.
+-                    return errors.stream().map(e -> e.getMessage()).collect(Collectors.joining(", "));
+-                }
+-            } catch (Exception e) {
+-                //Returned JSON was not in expected format. Fall back to returning the whole response body, if any
+-                if(StringUtils.isNotBlank(responseBody)) {
+-                    return responseBody;
+-                }
++private String extractErrorMessageFromResponse(HttpResponse response) {
++    String contentType = response.getEntity().getContentType().getValue();
++    if (contentType.contains("application/json")) {
++        Gson gson = GsonResponseParser.getDefaultGsonParser(false);
++        String responseBody = null;
++        try {
++            responseBody = EntityUtils.toString(response.getEntity());
++            LOG.error("Body of error response from Canvas: " + responseBody);
++            CanvasErrorResponse errorResponse = gson.fromJson(responseBody, CanvasErrorResponse.class);
++            List<ErrorMessage> errors = errorResponse.getErrors();
++            if (errors != null) {
++                return errors.stream().map(e -> e.getMessage()).collect(Collectors.joining(", "));
+             }
++        } catch (Exception e) {
++            LOG.error("Parsing error: ", e);
++        }
++        // Return response body if parsing fails or "errors" is null
++        if (StringUtils.isNotBlank(responseBody)) {
++            return responseBody;
+         }
+-        return null;
+     }
++    return null;
++}
+ 
+     private String handleResponse(HttpResponse httpResponse, HttpRequestBase request) throws IOException {
+         checkHeaders(httpResponse, request);

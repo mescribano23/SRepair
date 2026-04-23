@@ -1,0 +1,30 @@
+diff --git a/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java b/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
+index ff440e14..e806c3dc 100644
+--- a/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
++++ b/commons-numbers-angle/src/main/java/org/apache/commons/numbers/angle/PlaneAngle.java
+@@ -93,17 +93,15 @@ public class PlaneAngle {
+      * @return {@code a - k} with integer {@code k} such that
+      * {@code center - 0.5 <= a - k < center + 0.5} (in turns).
+      */
+-    public PlaneAngle normalize(PlaneAngle center) {
+-
+-
+-        // If value is too small to be representable compared to the floor
+-        // expression above (ie, if value + x = x), then we may end up with a number
+-        // exactly equal to the upper bound here. In that case, subtract
+-        // one from the normalized value so that we can fulfill the contract
+-        // of only returning results strictly less than the upper bound.
+-
+-        return new PlaneAngle(value - Math.floor(value + HALF_TURN - center.value));
++public PlaneAngle normalize(PlaneAngle center) {
++    double normalizedValue = value - Math.floor(value + HALF_TURN - center.value);
++    if (normalizedValue < center.value - 0.5) {
++        normalizedValue = center.value - 0.5;
++    } else if (normalizedValue >= center.value + 0.5) {
++        normalizedValue = center.value - 0.5;
+     }
++    return new PlaneAngle(normalizedValue);
++}
+ 
+     /**
+      * Test for equality with another object.

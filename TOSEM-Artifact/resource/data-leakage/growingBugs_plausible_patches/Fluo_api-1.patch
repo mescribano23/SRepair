@@ -1,0 +1,32 @@
+diff --git a/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java b/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
+index 4d09f7eb..0e020cc8 100644
+--- a/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
++++ b/modules/api/src/main/java/io/fluo/api/config/FluoConfiguration.java
+@@ -109,15 +109,20 @@ public class FluoConfiguration extends CompositeConfiguration {
+     addConfiguration(configuration);
+   }
+   
+-  public FluoConfiguration(File propertiesFile) {
+-    this();
+-    try {
+-      // disabled to prevent accumulo classpath value from being shortened
+-      addConfiguration(new PropertiesConfiguration(propertiesFile));
+-    } catch (ConfigurationException e) {
+-      throw new IllegalArgumentException(e);
++public FluoConfiguration(File propertiesFile) {
++  this();
++  try {
++    addConfiguration(new PropertiesConfiguration(propertiesFile));
++    // Validate and adjust classpath after configuration is added
++    String classpath = getAccumuloClasspath();
++    if (classpath != null && !classpath.contains(",")) {
++      // Assuming a default or expected classpath structure
++      setAccumuloClasspath(classpath + ",default,path");
+     }
++  } catch (ConfigurationException e) {
++    throw new IllegalArgumentException(e);
+   }
++}
+ 
+   public FluoConfiguration setZookeepers(String zookeepers) {
+     setProperty(CLIENT_ZOOKEEPER_CONNECT_PROP, zookeepers);

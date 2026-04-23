@@ -1,0 +1,34 @@
+diff --git a/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java b/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
+index e12798ff..14cd67ca 100644
+--- a/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
++++ b/core/src/main/java/org/apache/shiro/realm/AuthorizingRealm.java
+@@ -425,18 +425,20 @@ public abstract class AuthorizingRealm extends AuthenticatingRealm
+         }
+     }
+ 
+-    private Collection<Permission> resolvePermissions(Collection<String> stringPerms) {
+-        Collection<Permission> perms = Collections.emptySet();
+-        PermissionResolver resolver = getPermissionResolver();
+-        if (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {
+-            perms = new LinkedHashSet<Permission>(stringPerms.size());
+-            for (String strPermission : stringPerms) {
+-                    Permission permission = resolver.resolvePermission(strPermission);
+-                    perms.add(permission);
++private Collection<Permission> resolvePermissions(Collection<String> stringPerms) {
++    Collection<Permission> perms = Collections.emptySet();
++    PermissionResolver resolver = getPermissionResolver();
++    if (resolver != null && !CollectionUtils.isEmpty(stringPerms)) {
++        perms = new LinkedHashSet<Permission>(stringPerms.size());
++        for (String strPermission : stringPerms) {
++            if (strPermission != null && !strPermission.trim().isEmpty()) {
++                Permission permission = resolver.resolvePermission(strPermission);
++                perms.add(permission);
+             }
+         }
+-        return perms;
+     }
++    return perms;
++}
+ 
+     private Collection<Permission> resolveRolePermissions(Collection<String> roleNames) {
+         Collection<Permission> perms = Collections.emptySet();

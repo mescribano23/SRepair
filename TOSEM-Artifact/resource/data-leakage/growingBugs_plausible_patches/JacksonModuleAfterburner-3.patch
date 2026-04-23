@@ -1,0 +1,155 @@
+diff --git a/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java b/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java
+index b00519a..b6d27b0 100644
+--- a/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java
++++ b/src/main/java/com/fasterxml/jackson/module/afterburner/ser/SerializerModifier.java
+@@ -67,82 +67,84 @@ public class SerializerModifier extends BeanSerializerModifier
+         return beanProperties;
+     }
+ 
+-    protected PropertyAccessorCollector findProperties(Class<?> beanClass,
+-            SerializationConfig config, List<BeanPropertyWriter> beanProperties)
+-    {
+-        PropertyAccessorCollector collector = new PropertyAccessorCollector(beanClass);
+-        ListIterator<BeanPropertyWriter> it = beanProperties.listIterator();
+-        while (it.hasNext()) {
+-            BeanPropertyWriter bpw = it.next();
+-            Class<?> type = bpw.getPropertyType();
+-            AnnotatedMember member = bpw.getMember();
++protected PropertyAccessorCollector findProperties(Class<?> beanClass,
++        SerializationConfig config, List<BeanPropertyWriter> beanProperties)
++{
++    PropertyAccessorCollector collector = new PropertyAccessorCollector(beanClass);
++    ListIterator<BeanPropertyWriter> it = beanProperties.listIterator();
++    while (it.hasNext()) {
++        BeanPropertyWriter bpw = it.next();
++        Class<?> type = bpw.getPropertyType();
++        AnnotatedMember member = bpw.getMember();
+ 
+-            // 11-Sep-2015, tatu: Let's skip virtual members (related to #57)
+-            // We can't access private fields or methods, skip:
+-            if (Modifier.isPrivate(member.getMember().getModifiers())) {
++        // Add null check for `member`
++        if (member == null || member.getMember() == null || Modifier.isPrivate(member.getMember().getModifiers())) {
++            continue;
++        }
++        
++        // 11-Sep-2015, tatu: Let's skip virtual members (related to #57)
++        // We can't access private fields or methods, skip:
++        // (although, interestingly enough, can seem to access private classes...)
++        
++        // 30-Jul-2012, tatu: [Issue-6]: Needs to skip custom serializers, if any.
++        if (bpw.hasSerializer()) {
++            if (!isDefaultSerializer(config, bpw.getSerializer())) {
+                 continue;
+             }
+-            // (although, interestingly enough, can seem to access private classes...)
+-            
+-            // 30-Jul-2012, tatu: [Issue-6]: Needs to skip custom serializers, if any.
+-            if (bpw.hasSerializer()) {
+-                if (!isDefaultSerializer(config, bpw.getSerializer())) {
+-                    continue;
++        }
++        // [#9]: also skip unwrapping stuff...
++        if (bpw.isUnwrapping()) {
++            continue;
++        }
++        // [#51]: and any sub-classes as well
++        /* 04-Mar-2015, tatu: This might be too restrictive, as core databind has some 
++         *   other sub-classes; if this becomes problematic may start using annotation
++         *   to indicate "standard" implementations. But for now this solves the issue.
++         */
++        if (bpw.getClass() != BeanPropertyWriter.class) {
++            continue;
++        }
++        
++        boolean isMethod = (member instanceof AnnotatedMethod);
++        if (type.isPrimitive()) {
++            if (type == Integer.TYPE) {
++
++                if (isMethod) {
++                    it.set(collector.addIntGetter(bpw));
++                } else {
++                    it.set(collector.addIntField(bpw));
++                }
++            } else if (type == Long.TYPE) {
++                if (isMethod) {
++                    it.set(collector.addLongGetter(bpw));
++                } else {
++                    it.set(collector.addLongField(bpw));
++                }
++            } else if (type == Boolean.TYPE) {
++                if (isMethod) {
++                    it.set(collector.addBooleanGetter(bpw));
++                } else {
++                    it.set(collector.addBooleanField(bpw));
+                 }
+             }
+-            // [#9]: also skip unwrapping stuff...
+-            if (bpw.isUnwrapping()) {
+-                continue;
+-            }
+-            // [#51]: and any sub-classes as well
+-            /* 04-Mar-2015, tatu: This might be too restrictive, as core databind has some 
+-             *   other sub-classes; if this becomes problematic may start using annotation
+-             *   to indicate "standard" implementations. But for now this solves the issue.
+-             */
+-            if (bpw.getClass() != BeanPropertyWriter.class) {
+-                continue;
+-            }
+-            
+-            boolean isMethod = (member instanceof AnnotatedMethod);
+-            if (type.isPrimitive()) {
+-                if (type == Integer.TYPE) {
+-
+-                    if (isMethod) {
+-                        it.set(collector.addIntGetter(bpw));
+-                    } else {
+-                        it.set(collector.addIntField(bpw));
+-                    }
+-                } else if (type == Long.TYPE) {
+-                    if (isMethod) {
+-                        it.set(collector.addLongGetter(bpw));
+-                    } else {
+-                        it.set(collector.addLongField(bpw));
+-                    }
+-                } else if (type == Boolean.TYPE) {
+-                    if (isMethod) {
+-                        it.set(collector.addBooleanGetter(bpw));
+-                    } else {
+-                        it.set(collector.addBooleanField(bpw));
+-                    }
++        } else {
++            if (type == String.class) {
++                if (isMethod) {
++                    it.set(collector.addStringGetter(bpw));
++                } else {
++                    it.set(collector.addStringField(bpw));
+                 }
+-            } else {
+-                if (type == String.class) {
+-                    if (isMethod) {
+-                        it.set(collector.addStringGetter(bpw));
+-                    } else {
+-                        it.set(collector.addStringField(bpw));
+-                    }
+-                } else { // any other Object types; we can at least call accessor
+-                    if (isMethod) {
+-                        it.set(collector.addObjectGetter(bpw));
+-                    } else {
+-                        it.set(collector.addObjectField(bpw));
+-                    }
++            } else { // any other Object types; we can at least call accessor
++                if (isMethod) {
++                    it.set(collector.addObjectGetter(bpw));
++                } else {
++                    it.set(collector.addObjectField(bpw));
+                 }
+             }
+         }
+-        return collector;
+     }
++    return collector;
++}
+ 
+     /**
+      * Helper method used to check whether given serializer is the default

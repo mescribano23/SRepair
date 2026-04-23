@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.31952662721893493,
+    "input": "    @Deprecated\n    public void addValue(Object v) {\n        if (v instanceof Comparable<?>){\n            addValue((Comparable<?>) v);            \n        } else {\n            throw new IllegalArgumentException(\"Object must implement Comparable\");\n        }\n    }",
+    "query_result": [
+        " \n} else {\nthrow new IllegalArgumentException(\"Obj",
+        "\n} else {\nthrow new IllegalArgumentException(\"Obje",
+        "} else {\nthrow new IllegalArgumentException(\"Objec",
+        " else {\nthrow new IllegalArgumentException(\"Object",
+        "else {\nthrow new IllegalArgumentException(\"Object ",
+        " {\nthrow new IllegalArgumentException(\"Object must",
+        "{\nthrow new IllegalArgumentException(\"Object must ",
+        "hrow new IllegalArgumentException(\"Object must imp",
+        "row new IllegalArgumentException(\"Object must impl"
+    ]
+}

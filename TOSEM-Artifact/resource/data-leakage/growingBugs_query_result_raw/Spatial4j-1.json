@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.20833333333333334,
+    "input": "  @Override\n  public Shape deserialize(JsonParser jp, DeserializationContext ctxt)\n      throws IOException, JsonProcessingException {\n    \n    JsonToken t = jp.getCurrentToken();\n    if(t.isStructStart()) {\n      return read( jp, ctx.getShapeFactory() );\n    }\n    if (t.isScalarValue()) {\n      String txt = jp.getValueAsString();\n      if(txt!=null && txt.length()>0) {\n        try {\n          return ctx.getFormats().read(txt);\n        } catch (Exception e) {\n          throw new JsonParseException(jp, \"error reading shape\", e);\n        }\n      }\n      return null; // empty string\n    }\n    throw new JsonParseException(jp, \"can't read GeoJSON yet\");\n  }",
+    "query_result": [
+        "pe deserialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingExcepti",
+        "e deserialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingExceptio",
+        " deserialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingException",
+        "deserialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingException ",
+        "eserialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingException {",
+        "serialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingException {\n",
+        "erialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingException {\n\n",
+        "ialize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingException {\n\nJs",
+        "lize(JsonParser jp, DeserializationContext ctxt)\nthrows IOException, JsonProcessingException {\n\nJson",
+        "rialize(JsonParser jp, DeserializationContext ctxt",
+        "alize(JsonParser jp, DeserializationContext ctxt)\n",
+        "ize(JsonParser jp, DeserializationContext ctxt)\nth",
+        "ze(JsonParser jp, DeserializationContext ctxt)\nthr",
+        "e(JsonParser jp, DeserializationContext ctxt)\nthro",
+        "(JsonParser jp, DeserializationContext ctxt)\nthrow",
+        "JsonParser jp, DeserializationContext ctxt)\nthrows",
+        "sonParser jp, DeserializationContext ctxt)\nthrows ",
+        "onParser jp, DeserializationContext ctxt)\nthrows I",
+        "nParser jp, DeserializationContext ctxt)\nthrows IO",
+        "Parser jp, DeserializationContext ctxt)\nthrows IOE"
+    ]
+}

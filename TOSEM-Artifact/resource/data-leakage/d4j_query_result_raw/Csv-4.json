@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.6229508196721312,
+    "input": "public Map<String, Integer> getHeaderMap() {\n    return this.headerMap == null ? null : new LinkedHashMap<String, Integer>(this.headerMap);\n}",
+    "query_result": [
+        "n this.headerMap == null ? null : new LinkedHashMa",
+        "ew LinkedHashMap<String, Integer>(this.headerMap);"
+    ]
+}

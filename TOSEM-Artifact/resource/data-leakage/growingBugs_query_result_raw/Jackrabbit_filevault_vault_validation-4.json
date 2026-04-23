@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.35794871794871796,
+    "input": "    protected Collection<ValidationMessage> validateDocumentViewXml(InputStream input, @NotNull Path filePath, @NotNull Path basePath, String rootNodePath,\n            Map<String, Integer> nodePathsAndLineNumbers) throws IOException, SAXException {\n        List<ValidationMessage> enrichedMessages = new LinkedList<>();\n        XMLReader xr = saxParser.getXMLReader();\n        final DocumentViewXmlContentHandler handler = new DocumentViewXmlContentHandler(filePath, basePath, rootNodePath,\n                docViewValidators);\n        enrichedMessages.add(new ValidationMessage(ValidationMessageSeverity.DEBUG, \"Detected DocView...\"));\n        xr.setContentHandler(handler);\n        try {\n            xr.parse(new InputSource(new CloseShieldInputStream(input)));\n            enrichedMessages.addAll(ValidationViolation.wrapMessages(null, handler.getViolations(), filePath, basePath, rootNodePath, 0, 0));\n        } catch (SAXException e) {\n            enrichedMessages.add(new ValidationViolation(severity, \"Invalid XML found: \" + e.getMessage(), filePath, basePath, rootNodePath, 0, 0, e));\n        }\n        nodePathsAndLineNumbers.putAll(handler.getNodePaths());\n        return enrichedMessages;\n    }",
+    "query_result": [
+        "dateDocumentViewXml(InputStream input, @NotNull Path filePath, @NotNull Path basePath, String rootNodePath,\nMap<String, Integer> nodePathsAndLineNumbe",
+        "iolation.wrapMessages(null, handler.getViolations(), filePath, basePath, rootNodePath, 0, 0));\n} cat",
+        "Stream input, @NotNull Path filePath, @NotNull Pat",
+        "eam input, @NotNull Path filePath, @NotNull Path b",
+        "String, Integer> nodePathsAndLineNumbers) throws I",
+        ", Integer> nodePathsAndLineNumbers) throws IOExcep",
+        "Integer> nodePathsAndLineNumbers) throws IOExcepti",
+        "Messages.add(new ValidationMessage(ValidationMessa",
+        "ages.add(new ValidationMessage(ValidationMessageSe",
+        "l(handler.getNodePaths());\nreturn enrichedMessages"
+    ]
+}

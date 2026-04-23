@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.9873417721518988,
+    "input": "    @Override\n    public Repo repo() {\n        return new MkRepo(this.storage, this.self, this.coords);\n    }",
+    "query_result": [
+        "@Override\npublic Repo repo() {\nreturn new MkRepo(t",
+        "Override\npublic Repo repo() {\nreturn new MkRepo(th",
+        "\npublic Repo repo() {\nreturn new MkRepo(this.stora",
+        "public Repo repo() {\nreturn new MkRepo(this.storag",
+        "ublic Repo repo() {\nreturn new MkRepo(this.storage",
+        "lic Repo repo() {\nreturn new MkRepo(this.storage, ",
+        ") {\nreturn new MkRepo(this.storage, this.self, thi",
+        "\nreturn new MkRepo(this.storage, this.self, this.c",
+        "return new MkRepo(this.storage, this.self, this.co",
+        "eturn new MkRepo(this.storage, this.self, this.coo",
+        "urn new MkRepo(this.storage, this.self, this.coord",
+        " new MkRepo(this.storage, this.self, this.coords);"
+    ]
+}

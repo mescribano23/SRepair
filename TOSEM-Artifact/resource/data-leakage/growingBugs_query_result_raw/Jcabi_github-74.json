@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.6666666666666666,
+    "input": "    @Override\n    public Iterable<Repo> iterate(\n        @NotNull(message = \"identifier can't be NULL\")\n        final String identifier) {\n        return new MkIterable<Repo>(\n            this.storage,\n            \"/github/repos/repo\",\n            new MkIterable.Mapping<Repo>() {\n                @Override\n                public Repo map(final XML xml) {\n                    return new MkRepo(\n                        MkRepos.this.storage, MkRepos.this.self,\n                        new Coordinates.Simple(xml.xpath(\"@coords\").get(0))\n                    );\n                }\n            }\n        );\n    }",
+    "query_result": [
+        "Iterable<Repo>(\nthis.storage,\n\"/github/repos/repo\",\nnew MkIterable.Mapping<Repo>() {\n@Override\npublic Repo map(final XML xml) {\nreturn new MkRepo(\nMkRepos.this.storage, MkRepos.this.self,\nnew Coordinates.Simple(xml.xpath(\"@coords\").get(0))\n);\n}\n}\n);\n"
+    ]
+}

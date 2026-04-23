@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4770063119927863,
+    "input": "    public void serializeAsColumn(Object bean, JsonGenerator jgen, SerializerProvider prov)\n        throws Exception\n    {\n        Object value = get(bean);\n        if (value == null) { // nulls need specialized handling\n            if (_nullSerializer != null) {\n                _nullSerializer.serialize(null, jgen, prov);\n            } else { // can NOT suppress entries in tabular output\n                jgen.writeNull();\n            }\n            return;\n        }\n        // otherwise find serializer to use\n        JsonSerializer<Object> ser = _serializer;\n        if (ser == null) {\n            Class<?> cls = value.getClass();\n            PropertySerializerMap map = _dynamicSerializers;\n            ser = map.serializerFor(cls);\n            if (ser == null) {\n                ser = _findAndAddDynamic(map, cls, prov);\n            }\n        }\n        // and then see if we must suppress certain values (default, empty)\n        if (_suppressableValue != null) {\n            if (MARKER_FOR_EMPTY == _suppressableValue) {\n                if (ser.isEmpty(value)) { // can NOT suppress entries in tabular output\n                    serializeAsPlaceholder(bean, jgen, prov);\n                    return;\n                }\n            } else if (_suppressableValue.equals(value)) { // can NOT suppress entries in tabular output\n                serializeAsPlaceholder(bean, jgen, prov);\n                return;\n            }\n        }\n        // For non-nulls: simple check for direct cycles\n        if (value == bean) {\n            _handleSelfReference(bean, ser);\n        }\n        if (_typeSerializer == null) {\n            ser.serialize(value, jgen, prov);\n        } else {\n            ser.serializeWithType(value, jgen, prov, _typeSerializer);\n        }\n    }",
+    "query_result": [
+        "serializer to use JsonSerializer<Object> ser = _serializer; if (ser == null) { Class<?> cls = value.getClass(); PropertySerializerMap map = _dynamicSerializers; ser = map.serializerFor(cls); if (ser == null) { ser = _findAndAddDynamic(map, cls, prov); } } // and then see if we must suppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_EMPTY == _suppressableValue",
+        "zer<Object> ser = _serializer; if (ser == null) { Class<?> cls = value.getClass(); PropertySerializerMap map = _dynamicSerializers; ser = map.serializerFor(cls); if (ser == null) { ser = _findAndAddDynamic(map, cls, prov); } } // and then see if we must suppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_EMPTY == _suppressableValue) { if (ser.isEmpty(value)) {",
+        "f (ser == null) { Class<?> cls = value.getClass(); PropertySerializerMap map = _dynamicSerializers; ser = map.serializerFor(cls); if (ser == null) { s",
+        "cls, prov); } } // and then see if we must suppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_EMPTY == _suppres",
+        "rov); } } // and then see if we must suppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_EMPTY == _suppressableV",
+        "} // and then see if we must suppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_EMPTY == _suppressableValue) {",
+        "ee if we must suppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_EMPTY == _suppressableValue) { if (ser.isEmpty",
+        "d serializer to use JsonSerializer<Object> ser = _serializer; if (ser == null) { Class<?> cls = valu",
+        "use JsonSerializer<Object> ser = _serializer; if (ser == null) { Class<?> cls = value.getClass(); P",
+        "JsonSerializer<Object> ser = _serializer; if (ser == null) { Class<?> cls = value.getClass(); Proper",
+        "bject> ser = _serializer; if (ser == null) { Class<?> cls = value.getClass(); PropertySerializerMap",
+        "lizers; ser = map.serializerFor(cls); if (ser == null) { ser = _findAndAddDynamic(map, cls, prov); }",
+        "we must suppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_E",
+        "uppress certain values (default, empty) if (_suppressableValue != null) { if (MARKER_FOR_EMPTY == _s",
+        "f (_typeSerializer == null) { ser.serialize(value, jgen, prov); } else { ser.serializeWithType(value",
+        "= null) { ser.serialize(value, jgen, prov); } else { ser.serializeWithType(value, jgen, prov, _typeS",
+        "ll) { ser.serialize(value, jgen, prov); } else { ser.serializeWithType(value, jgen, prov, _typeSeria",
+        "(Object bean, JsonGenerator jgen, SerializerProvid",
+        "bject bean, JsonGenerator jgen, SerializerProvider",
+        "ject bean, JsonGenerator jgen, SerializerProvider"
+    ]
+}

@@ -1,0 +1,98 @@
+diff --git a/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java b/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
+index c5856a1..df1a82e 100644
+--- a/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
++++ b/src/main/java/com/ctc/wstx/sr/BasicStreamReader.java
+@@ -660,82 +660,37 @@ public abstract class BasicStreamReader
+      *</blockquote>
+      */
+     @Override
+-    public String getElementText()
+-        throws XMLStreamException
+-    {
++    public String getElementText() throws XMLStreamException {
+         if (mCurrToken != START_ELEMENT) {
+             throwParseError(ErrorConsts.ERR_STATE_NOT_STELEM, null, null);
+         }
+-        /* Ok, now: with START_ELEMENT we know that it's not partially
+-         * processed; that we are in-tree (not prolog or epilog).
+-         * The only possible complication would be:
+-         */
++        
+         if (mStEmptyElem) {
+-            /* And if so, we'll then get 'virtual' close tag; things
+-             * are simple as location info was set when dealing with
+-             * empty start element; and likewise, validation (if any)
+-             * has been taken care of
+-             */
+             mStEmptyElem = false;
+             mCurrToken = END_ELEMENT;
+             return "";
+         }
+ 
+-        // First need to find a textual event
++        StringBuilder sb = new StringBuilder();
+         while (true) {
+             int type = next();
+             if (type == END_ELEMENT) {
+-                return "";
+-            }
+-            if (type == COMMENT || type == PROCESSING_INSTRUCTION) {
+-                continue;
+-            }
+-            if (((1 << type) & MASK_GET_ELEMENT_TEXT) == 0) {
+-                throw _constructUnexpectedInTyped(type);
++                break;
+             }
+-            break;
+-        }
+ 
+-        if (mTokenState < TOKEN_FULL_SINGLE) {
+-            readCoalescedText(mCurrToken, false);
+-        }
+-
+-        /* Ok: then a quick check; if it looks like we are directly
+-         * followed by the end tag, we need not construct String
+-         * quite yet.
+-         */
+-        if ((mInputPtr + 1) < mInputEnd &&
+-            mInputBuffer[mInputPtr] == '<' && mInputBuffer[mInputPtr+1] == '/') {
+-            // Note: next() has validated text, no need for more validation
+-            mInputPtr += 2;
+-            mCurrToken = END_ELEMENT;
+-            // must first get text, as call to readEndElem may break it:
+-            String result = mTextBuffer.contentsAsString();
+-            // Can by-pass next(), nextFromTree(), in this case:
+-            readEndElem();
+-            // and then return results
+-            return result;
+-        }
+-
+-        // Otherwise, we'll need to do slower processing
+-        int extra = 1 + (mTextBuffer.size() >> 1); // let's add 50% space
+-        StringBuilder sb = mTextBuffer.contentsAsStringBuilder(extra);
+-        int type;
+-
+-        while ((type = next()) != END_ELEMENT) {
+-            if (((1 << type) & MASK_GET_ELEMENT_TEXT) != 0) {
++            if (type == CHARACTERS || type == CDATA) {
+                 if (mTokenState < mStTextThreshold) {
+                     finishToken(false);
+                 }
+-                verifyLimit("Text size", mConfig.getMaxTextLength(), sb.length());
+-                mTextBuffer.contentsToStringBuilder(sb);
+-                continue;
+-            }
+-            if (type != COMMENT && type != PROCESSING_INSTRUCTION) {
++                String text = mTextBuffer.contentsAsString();
++                sb.append(text);
++            } else if (type == COMMENT || type == PROCESSING_INSTRUCTION) {
++                // Ignore
++            } else {
+                 throw _constructUnexpectedInTyped(type);
+             }
+         }
+-        // Note: calls next() have validated text, no need for more validation
++
+         return sb.toString();
+     }
+ 

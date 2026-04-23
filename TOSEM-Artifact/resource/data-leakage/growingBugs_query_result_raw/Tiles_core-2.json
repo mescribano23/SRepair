@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.10385064177362893,
+    "input": "@Override\n        public void begin(String namespace, String name, Attributes attributes)\n                throws Exception {\n            Definition definition = (Definition) digester.peek();\n            definition.setName(attributes.getValue(\"name\"));\n            definition.setPreparer(attributes.getValue(\"preparer\"));\n            String extendsAttribute = attributes.getValue(\"extends\");\n            definition.setExtends(extendsAttribute);\n\n            String template = attributes.getValue(\"template\");\n            Attribute attribute = Attribute.createTemplateAttribute(template);\n            attribute.setExpressionObject(Expression\n                    .createExpressionFromDescribedExpression(attributes\n                            .getValue(\"templateExpression\")));\n            attribute.setRole(attributes.getValue(\"role\"));\n            String templateType = attributes.getValue(\"templateType\");\n            if (templateType != null) {\n                attribute.setRenderer(templateType);\n            } else if (extendsAttribute != null && templateType == null) {\n                attribute.setRenderer(null);\n            }\n            definition.setTemplateAttribute(attribute);\n        }",
+    "query_result": [
+        "@Override\npublic void begin(String namespace, String name, Attributes attributes)\nthrows Exception {",
+        "Override\npublic void begin(String namespace, String name, Attributes attributes)\nthrows Exception {\n",
+        "verride\npublic void begin(String namespace, String",
+        "erride\npublic void begin(String namespace, String ",
+        "rride\npublic void begin(String namespace, String n",
+        "ride\npublic void begin(String namespace, String na",
+        "ide\npublic void begin(String namespace, String nam",
+        "de\npublic void begin(String namespace, String name",
+        "e\npublic void begin(String namespace, String name,",
+        "\npublic void begin(String namespace, String name, ",
+        "public void begin(String namespace, String name, A",
+        "ublic void begin(String namespace, String name, At",
+        "blic void begin(String namespace, String name, Att",
+        "lic void begin(String namespace, String name, Attr",
+        "ic void begin(String namespace, String name, Attri",
+        "c void begin(String namespace, String name, Attrib",
+        " void begin(String namespace, String name, Attribu",
+        "void begin(String namespace, String name, Attribut",
+        "oid begin(String namespace, String name, Attribute",
+        "id begin(String namespace, String name, Attributes"
+    ]
+}

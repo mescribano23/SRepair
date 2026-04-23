@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.5703703703703704,
+    "input": "private void readUntilEndOfEntry() throws IOException {\n    if (localFileHeader.isDirectory()\n        || (localFileHeader.getCompressedSize() == 0 && !localFileHeader.isDataDescriptorExists())) {\n      return;\n    }\n\n    if (endOfEntryBuffer == null) {\n      endOfEntryBuffer = new byte[512];\n    }\n\n    while (read(endOfEntryBuffer) != -1);\n  }",
+    "query_result": [
+        "vate void readUntilEndOfEntry() throws IOException",
+        "fEntry() throws IOException {\nif (localFileHeader.",
+        "leHeader.getCompressedSize() == 0 && !localFileHea",
+        " {\nendOfEntryBuffer = new byte[512];\n}\nwhile (read"
+    ]
+}

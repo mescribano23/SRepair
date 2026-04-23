@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.7834158415841584,
+    "input": "    void configureDefaults() {\n        //always add maven central\n        remoteRepositories.add(\"https://repo1.maven.org/maven2/\");\n        String localRepositoryPath = System.getProperty(\"local.maven.repo.path\");\n        if (localRepositoryPath != null && !localRepositoryPath.trim().isEmpty()) {\n            System.out.println(\"Please use 'maven.repo.local' instead of 'local.maven.repo.path'\");\n            localRepository = java.nio.file.Paths.get(localRepositoryPath.split(File.pathSeparator)[0]);\n        }\n\n        localRepositoryPath = System.getProperty(\"maven.repo.local\");\n        if (localRepositoryPath != null && !localRepositoryPath.trim().isEmpty()) {\n            localRepository = java.nio.file.Paths.get(localRepositoryPath);\n        }\n        String remoteRepository = System.getProperty(\"remote.maven.repo\");\n        if (remoteRepository != null) {\n            for (String repo : remoteRepository.split(\",\")) {\n                if (!repo.endsWith(\"/\")) {\n                    repo += \"/\";\n                }\n                remoteRepositories.add(repo);\n            }\n        }\n    }",
+    "query_result": [
+        "stem.out.println(\"Please use 'maven.repo.local' instead of 'local.maven.repo.path'\");\nlocalRepository = java.nio.file.Paths.get(localRepositoryPath.split(File.pathSeparator)[0]);\n}\nlocalRepositoryPath = System.getProperty(\"maven.repo.local\");\nif (loc",
+        " {\n//always add maven central\nremoteRepositories.add(\"https://repo1.maven.org/maven2/\");\nString localRepositoryPath = System.getProperty(\"local.maven.",
+        "ory = System.getProperty(\"remote.maven.repo\");\nif (remoteRepository != null) {\nfor (String repo : remoteRepository.split(\",\")) {\nif (!repo.endsWith(\"/",
+        ".nio.file.Paths.get(localRepositoryPath);\n}\nString remoteRepository = System.getProperty(\"remote.mav",
+        "\nString localRepositoryPath = System.getProperty(\"",
+        "Path = System.getProperty(\"local.maven.repo.path\")",
+        " System.getProperty(\"local.maven.repo.path\");\nif (",
+        "Path.trim().isEmpty()) {\nSystem.out.println(\"Pleas",
+        "ositoryPath = System.getProperty(\"maven.repo.local",
+        "System.getProperty(\"maven.repo.local\");\nif (localR",
+        "maven.repo.local\");\nif (localRepositoryPath != nul"
+    ]
+}

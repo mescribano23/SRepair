@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.3007456503728252,
+    "input": "    private void prelim(double[] lowerBound,\n                        double[] upperBound) {\n        printMethod(); // XXX\n\n        final int n = currentBest.getDimension();\n        final int npt = numberOfInterpolationPoints;\n        final int ndim = bMatrix.getRowDimension();\n\n        final double rhosq = initialTrustRegionRadius * initialTrustRegionRadius;\n        final double recip = 1d / rhosq;\n        final int np = n + 1;\n\n        // Set XBASE to the initial vector of variables, and set the initial\n        // elements of XPT, BMAT, HQ, PQ and ZMAT to zero.\n\n        for (int j = 0; j < n; j++) {\n            originShift.setEntry(j, currentBest.getEntry(j));\n            for (int k = 0; k < npt; k++) {\n                interpolationPoints.setEntry(k, j, ZERO);\n            }\n            for (int i = 0; i < ndim; i++) {\n                bMatrix.setEntry(i, j, ZERO);\n            }\n        }\n        for (int i = 0, max = n * np / 2; i < max; i++) {\n            modelSecondDerivativesValues.setEntry(i, ZERO);\n        }\n        for (int k = 0; k < npt; k++) {\n            modelSecondDerivativesParameters.setEntry(k, ZERO);\n            for (int j = 0, max = npt - np; j < max; j++) {\n                zMatrix.setEntry(k, j, ZERO);\n            }\n        }\n\n        // Begin the initialization procedure. NF becomes one more than the number\n        // of function values so far. The coordinates of the displacement of the\n        // next initial interpolation point from XBASE are set in XPT(NF+1,.).\n\n        int ipt = 0;\n        int jpt = 0;\n        double fbeg = Double.NaN;\n        do {\n            final int nfm = getEvaluations();\n            final int nfx = nfm - n;\n            final int nfmm = nfm - 1;\n            final int nfxm = nfx - 1;\n            double stepa = 0;\n            double stepb = 0;\n            if (nfm <= 2 * n) {\n                if (nfm >= 1 &&\n                    nfm <= n) {\n                    stepa = initialTrustRegionRadius;\n                    if (upperDiffe",
+    "query_result": [
+        " initialization procedure. NF becomes one more than the number\n// of function values so far. The coordinates of the displacement of the\n// next initial interpolation point from XBASE are set in XPT(NF",
+        "cedure. NF becomes one more than the number\n// of function values so far. The coordinates of the displacement of the\n// next initial interpolation poi",
+        " XBASE to the initial vector of variables, and set the initial\n// elements of XPT, BMAT, HQ, PQ and ",
+        "ate void prelim(double[] lowerBound,\ndouble[] uppe",
+        "al double rhosq = initialTrustRegionRadius * initi",
+        "l double rhosq = initialTrustRegionRadius * initia",
+        "ble rhosq = initialTrustRegionRadius * initialTrus",
+        "e rhosq = initialTrustRegionRadius * initialTrustR",
+        "hosq = initialTrustRegionRadius * initialTrustRegi",
+        "q = initialTrustRegionRadius * initialTrustRegionR",
+        "// Set XBASE to the initial vector of variables, a",
+        " Set XBASE to the initial vector of variables, and",
+        "t XBASE to the initial vector of variables, and se",
+        "BASE to the initial vector of variables, and set t",
+        "SE to the initial vector of variables, and set the",
+        " the initial vector of variables, and set the init",
+        "ables, and set the initial\n// elements of XPT, BMA",
+        " Begin the initialization procedure. NF becomes on",
+        "Begin the initialization procedure. NF becomes one",
+        "in the initialization procedure. NF becomes one mo"
+    ]
+}

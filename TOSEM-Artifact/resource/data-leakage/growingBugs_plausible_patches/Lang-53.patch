@@ -1,0 +1,60 @@
+diff --git a/src/java/org/apache/commons/lang/time/DateUtils.java b/src/java/org/apache/commons/lang/time/DateUtils.java
+index 0dd0dedc..c74d7547 100644
+--- a/src/java/org/apache/commons/lang/time/DateUtils.java
++++ b/src/java/org/apache/commons/lang/time/DateUtils.java
+@@ -640,24 +640,41 @@ public class DateUtils {
+         int millisecs = val.get(Calendar.MILLISECOND);
+         if (!round || millisecs < 500) {
+             time = time - millisecs;
++        }
+         if (field == Calendar.SECOND) {
+             done = true;
++        }
++        else {
++            if (millisecs >= 500) {
++                time = time + (1000L - millisecs);
+             }
+         }
+ 
+         // truncate seconds
+         int seconds = val.get(Calendar.SECOND);
+-        if (!done && (!round || seconds < 30)) {
+-            time = time - (seconds * 1000L);
+-        if (field == Calendar.MINUTE) {
+-            done = true;
++        if (!done) {
++            if (!round || seconds < 30) {
++                time = time - (seconds * 1000L);
++            } else {
++                time = time + ((60 - seconds) * 1000L);
++            }
++            if (field == Calendar.MINUTE) {
++                done = true;
+             }
+         }
+ 
+         // truncate minutes
+         int minutes = val.get(Calendar.MINUTE);
+-        if (!done && (!round || minutes < 30)) {
+-            time = time - (minutes * 60000L);
++        if (!done) {
++            if (!round || minutes < 30) {
++                time = time - (minutes * 60000L);
++            } else {
++                time = time + ((60 - minutes) * 60000L);
++                time = time + (1000L * 30);
++            }
++            if (field == Calendar.HOUR) {
++                done = true;
++            }
+         }
+ 
+         // reset time
+@@ -740,7 +757,6 @@ public class DateUtils {
+             }
+         }
+         throw new IllegalArgumentException("The field " + field + " is not supported");
+-
+     }
+ 
+     //-----------------------------------------------------------------------

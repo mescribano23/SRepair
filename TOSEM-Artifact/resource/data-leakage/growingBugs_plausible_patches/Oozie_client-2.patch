@@ -1,0 +1,16 @@
+diff --git a/client/src/main/java/org/apache/oozie/client/rest/JsonToBean.java b/client/src/main/java/org/apache/oozie/client/rest/JsonToBean.java
+index a6a18895a..03465642c 100644
+--- a/client/src/main/java/org/apache/oozie/client/rest/JsonToBean.java
++++ b/client/src/main/java/org/apache/oozie/client/rest/JsonToBean.java
+@@ -234,10 +234,9 @@ public class JsonToBean {
+             }
+         }
+ 
+-        @SuppressWarnings("unchecked")
+         private Object parseType(Class type, Object obj) {
+             if (type == String.class) {
+-                return obj;
++                return obj instanceof Long ? ((Long) obj).toString() : obj;
+             }
+             else if (type == Integer.TYPE) {
+                 return (obj != null) ? new Integer(((Long) obj).intValue()) : new Integer(0);

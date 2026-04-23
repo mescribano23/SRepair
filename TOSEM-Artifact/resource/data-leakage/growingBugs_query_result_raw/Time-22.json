@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "protected BasePeriod(long duration) {\n        super();\n        // bug [3264409]\n        iType = PeriodType.time();\n        int[] values = ISOChronology.getInstanceUTC().get(this, duration);\n        iType = PeriodType.standard();\n        iValues = new int[8];\n        System.arraycopy(values, 0, iValues, 4, 4);\n    }",
+    "query_result": []
+}

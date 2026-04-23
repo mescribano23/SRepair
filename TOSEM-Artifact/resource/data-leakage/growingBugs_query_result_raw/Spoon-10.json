@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.30641330166270786,
+    "input": "public <T> void visitCtExecutableReference(\n            CtExecutableReference<T> reference) {\n        if (reference.getDeclaringType()!=null) { // null in noclasspath\n          write(reference.getDeclaringType().getQualifiedName());\n        }\n        write(CtExecutable.EXECUTABLE_SEPARATOR);\n        write(reference.getSimpleName());\n        write(\"(\");\n        for (CtTypeReference<?> ref : reference.getParameterTypes()) {\n            scan(ref);\n            write(\",\");\n        }\n        if (!reference.getParameterTypes().isEmpty())\n            clearLast();\n        write(\")\");\n    }",
+    "query_result": [
+        " void visitCtExecutableReference(\nCtExecutableRefe",
+        "tCtExecutableReference(\nCtExecutableReference<T> r",
+        "ExecutableReference<T> reference) {\nif (reference.",
+        "te(reference.getDeclaringType().getQualifiedName()"
+    ]
+}

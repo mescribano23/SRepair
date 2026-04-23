@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/graph/shortestpath/PredecessorsList.java b/src/main/java/org/apache/commons/graph/shortestpath/PredecessorsList.java
+index 5a9dd2b..486d0d7 100644
+--- a/src/main/java/org/apache/commons/graph/shortestpath/PredecessorsList.java
++++ b/src/main/java/org/apache/commons/graph/shortestpath/PredecessorsList.java
+@@ -76,7 +76,9 @@ final class PredecessorsList<V extends Vertex, WE extends WeightedEdge<V>>
+             vertex = getConnectedVertex( vertex, edge );
+         }
+ 
+-        path.addVertexInHead( source );
++        // Removed the addition of the source vertex
++        // path.addVertexInHead( source );
++        
+         return path;
+     }
+ 

@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.75,
+    "input": "    protected void addChildren(int index, Node... children) {\n        Validate.noNullElements(children);\n        ensureChildNodes();\n        for (int i = children.length - 1; i >= 0; i--) {\n            Node in = children[i];\n            reparentChild(in);\n            childNodes.add(index, in);\n            reindexChildren(index);\n        }\n    }",
+    "query_result": [
+        "eChildNodes();\nfor (int i = children.length - 1; i >= 0; i--) {\nNode in = children[i];\nreparentChild",
+        "ildNodes();\nfor (int i = children.length - 1; i >= 0; i--) {\nNode in = children[i];\nreparentChild(in",
+        "ected void addChildren(int index, Node... children",
+        "ted void addChildren(int index, Node... children) ",
+        "d void addChildren(int index, Node... children) {\n",
+        "ren(int index, Node... children) {\nValidate.noNull",
+        "(int index, Node... children) {\nValidate.noNullEle",
+        "ex, Node... children) {\nValidate.noNullElements(ch",
+        " Node... children) {\nValidate.noNullElements(child",
+        "e... children) {\nValidate.noNullElements(children)",
+        "();\nfor (int i = children.length - 1; i >= 0; i--)",
+        " (int i = children.length - 1; i >= 0; i--) {\nNode",
+        "ildren.length - 1; i >= 0; i--) {\nNode in = childr",
+        " i--) {\nNode in = children[i];\nreparentChild(in);\n",
+        "-) {\nNode in = children[i];\nreparentChild(in);\nchi"
+    ]
+}

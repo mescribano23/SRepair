@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9875776397515528,
+    "input": "    public static URL[] toURLs(File[] files) throws IOException {\n        URL[] urls = new URL[files.length];\n\n        for (int i = 0; i < urls.length; i++) {\n            urls[i] = files[i].toURI().toURL();\n        }\n\n        return urls;\n    }",
+    "query_result": [
+        "ic static URL[] toURLs(File[] files) throws IOException {\nURL[] urls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[",
+        "static URL[] toURLs(File[] files) throws IOException {\nURL[] urls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].",
+        "es) throws IOException {\nURL[] urls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL();\n}\nreturn urls",
+        "s) throws IOException {\nURL[] urls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL();\n}\nreturn urls;",
+        "le[] files) throws IOException {\nURL[] urls = new URL[files.length];\nfor (int i = 0; i < urls.length",
+        "throws IOException {\nURL[] urls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurl",
+        "s IOException {\nURL[] urls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] ",
+        "rls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toUR",
+        "ls = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL",
+        "s = new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL(",
+        "new URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL();\n}",
+        "w URL[files.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL();\n}\nr",
+        "iles.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL();\n}\nreturn u",
+        "les.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL();\n}\nreturn ur",
+        "es.length];\nfor (int i = 0; i < urls.length; i++) {\nurls[i] = files[i].toURI().toURL();\n}\nreturn url",
+        "ublic static URL[] toURLs(File[] files) throws IOE",
+        " static URL[] toURLs(File[] files) throws IOExcept",
+        "tion {\nURL[] urls = new URL[files.length];\nfor (in",
+        "\nURL[] urls = new URL[files.length];\nfor (int i = ",
+        "RL[] urls = new URL[files.length];\nfor (int i = 0;"
+    ]
+}

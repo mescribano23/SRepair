@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.38976377952755903,
+    "input": "    public JsonMappingException weirdKeyException(Class<?> keyClass, String keyValue, String msg) {\n        return InvalidFormatException.from(_parser,\n                String.format(\"Can not construct Map key of type %s from String \\\"%s\\\": %s\",\n                        keyClass.getName(), _desc(keyValue), msg),\n                keyValue, keyClass);\n    }",
+    "query_result": [
+        "public JsonMappingException weirdKeyException(Clas",
+        "lic JsonMappingException weirdKeyException(Class<?",
+        "ic JsonMappingException weirdKeyException(Class<?>",
+        "mat(\"Can not construct Map key of type %s from Str",
+        "(\"Can not construct Map key of type %s from String",
+        "n not construct Map key of type %s from String \\\"%"
+    ]
+}

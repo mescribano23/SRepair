@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.656934306569343,
+    "input": "    @Override\n    public String toString() {\n        final StringWriter sw = new StringWriter();\n        RDFDataMgr.write(sw, datasetGraph, Lang.NQUADS);\n        return sw.toString();\n    }",
+    "query_result": [
+        "verride\npublic String toString() {\nfinal StringWriter sw = new StringWriter();\nRDFDataMgr.write(sw, ",
+        "erride\npublic String toString() {\nfinal StringWriter sw = new StringWriter();\nRDFDataMgr.write(sw, d",
+        "Override\npublic String toString() {\nfinal StringWr",
+        "ride\npublic String toString() {\nfinal StringWriter",
+        "ublic String toString() {\nfinal StringWriter sw = ",
+        "String toString() {\nfinal StringWriter sw = new St",
+        "oString() {\nfinal StringWriter sw = new StringWrit",
+        "ing() {\nfinal StringWriter sw = new StringWriter()",
+        "tringWriter sw = new StringWriter();\nRDFDataMgr.wr",
+        "gWriter sw = new StringWriter();\nRDFDataMgr.write(",
+        "riter sw = new StringWriter();\nRDFDataMgr.write(sw"
+    ]
+}

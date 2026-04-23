@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.880781089414183,
+    "input": "    @Override\n    public String rewriteFilterItem(FilterItem item) {\n        if (item.isCompoundFilter()) {\n            return super.rewriteFilterItem(item);\n        }\n\n        final SelectItem selectItem = item.getSelectItem();\n        final Object operand = item.getOperand();\n        final OperatorType operator = item.getOperator();\n\n        if (selectItem == null || operand == null || operator == null) {\n            return super.rewriteFilterItem(item);\n        }\n\n        final Column column = selectItem.getColumn();\n        if (column == null) {\n            return super.rewriteFilterItem(item);\n        }\n\n        if (operand instanceof Date) {\n            final String nativeType = column.getNativeType();\n            if (\"TIMESTAMP\".equalsIgnoreCase(nativeType) || \"DATETIME\".equalsIgnoreCase(nativeType)) {\n                final StringBuilder sb = new StringBuilder();\n                sb.append(selectItem.getSameQueryAlias(true));\n\n                FilterItem.appendOperator(sb, operand, operator);\n\n                final Date date = (Date) operand;\n\n                final DateFormat format = DateUtils.createDateFormat(\"yyyyMMdd HH:mm:ss\");\n                final String dateTimeValue = \"CAST('\" + format.format(date) + \"' AS DATETIME)\";\n\n                sb.append(dateTimeValue);\n                return sb.toString();\n            }\n        }\n        return super.rewriteFilterItem(item);\n    }",
+    "query_result": [
+        "public String rewriteFilterItem(FilterItem item) {\nif (item.isCompoundFilter()) {\nreturn super.rewriteFilterItem(item);\n}\nfinal SelectItem selectItem = item.getSelectItem();\nfinal Object operand = item.getOperand();\nfinal OperatorType operator = item.getOperator();\nif (selectItem == null || operand == null || operator == null) {\nreturn super.rewriteFilterItem(item);\n}\nfinal Column column = selectItem.getColumn();\nif (column == null) {\nreturn super.rewriteFilterItem(item);\n}\nif (operand instanceof Date) {\nfinal String nativeType = column.getNativeType();\nif (\"TIMESTAMP\".equalsIgnoreCase(nativeType) || \"DATETIME\".equalsIgnoreCase(nativeType)) {\nfinal StringBuilder sb = new StringBuilder();\nsb.append(selectItem.getSameQueryAlias(true));\nFilterItem.appendOperator(sb, operand, operator);\nfinal Date date = (Date) operand;\nfinal DateFormat forma",
+        "mat.format(date) + \"' AS DATETIME)\";\nsb.append(dateTimeValue);\nreturn sb.toString();\n}\n}\nreturn supe",
+        "erride\npublic String rewriteFilterItem(FilterItem ",
+        "\npublic String rewriteFilterItem(FilterItem item) ",
+        "g rewriteFilterItem(FilterItem item) {\nif (item.is",
+        " operand = item.getOperand();\nfinal OperatorType o",
+        "nd = item.getOperand();\nfinal OperatorType operato",
+        "TAMP\".equalsIgnoreCase(nativeType) || \"DATETIME\".e",
+        "e)) {\nfinal StringBuilder sb = new StringBuilder()",
+        ")) {\nfinal StringBuilder sb = new StringBuilder();",
+        ") {\nfinal StringBuilder sb = new StringBuilder();\n",
+        " {\nfinal StringBuilder sb = new StringBuilder();\ns",
+        "{\nfinal StringBuilder sb = new StringBuilder();\nsb",
+        "final StringBuilder sb = new StringBuilder();\nsb.a",
+        "inal StringBuilder sb = new StringBuilder();\nsb.ap",
+        "nal StringBuilder sb = new StringBuilder();\nsb.app",
+        "al StringBuilder sb = new StringBuilder();\nsb.appe",
+        "l StringBuilder sb = new StringBuilder();\nsb.appen",
+        " StringBuilder sb = new StringBuilder();\nsb.append",
+        "StringBuilder sb = new StringBuilder();\nsb.append("
+    ]
+}

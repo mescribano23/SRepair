@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math/optimization/fitting/GaussianFitter.java b/src/main/java/org/apache/commons/math/optimization/fitting/GaussianFitter.java
+index ae7ac3994..d375f7c93 100644
+--- a/src/main/java/org/apache/commons/math/optimization/fitting/GaussianFitter.java
++++ b/src/main/java/org/apache/commons/math/optimization/fitting/GaussianFitter.java
+@@ -116,10 +116,17 @@ public class GaussianFitter extends CurveFitter {
+      * @return the parameters of the Gaussian function that best fits the
+      * observed points (in the same order as above).
+      */
+-    public double[] fit() {
+-        final double[] guess = (new ParameterGuesser(getObservations())).guess();
+-        return fit(new Gaussian.Parametric(), guess);
+-    }
++public double[] fit() {
++    final double[] guess = (new ParameterGuesser(getObservations())).guess();
++    guess[2] = Math.abs(guess[2]); // Ensure initial guess of sigma is positive
++    return fit(new Gaussian.Parametric() {
++        @Override
++        public double value(double x, double... parameters) {
++            parameters[2] = Math.abs(parameters[2]); // Use absolute value of sigma
++            return super.value(x, parameters);
++        }
++    }, guess);
++}
+ 
+     /**
+      * Guesses the parameters {@code norm}, {@code mean}, and {@code sigma}

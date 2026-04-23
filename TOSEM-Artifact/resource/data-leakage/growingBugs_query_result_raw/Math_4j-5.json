@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.5252808988764045,
+    "input": "    public Complex reciprocal() {\n        if (isNaN) {\n            return NaN;\n        }\n\n        if (real == 0.0 && imaginary == 0.0) {\n            return INF;\n        }\n\n        if (isInfinite) {\n            return ZERO;\n        }\n\n        if (FastMath.abs(real) < FastMath.abs(imaginary)) {\n            double q = real / imaginary;\n            double scale = 1. / (real * q + imaginary);\n            return createComplex(scale * q, -scale);\n        } else {\n            double q = imaginary / real;\n            double scale = 1. / (imaginary * q + real);\n            return createComplex(scale, -scale * q);\n        }\n    }",
+    "query_result": [
+        "ublic Complex reciprocal() {\nif (isNaN) {\nreturn NaN;\n}\nif (real == 0.0 && imaginary == 0.0) {\nretur",
+        "l == 0.0 && imaginary == 0.0) {\nreturn INF;\n}\nif (",
+        "inary);\nreturn createComplex(scale * q, -scale);\n}",
+        "urn createComplex(scale * q, -scale);\n} else {\ndou",
+        "ginary * q + real);\nreturn createComplex(scale, -s",
+        "nary * q + real);\nreturn createComplex(scale, -sca"
+    ]
+}

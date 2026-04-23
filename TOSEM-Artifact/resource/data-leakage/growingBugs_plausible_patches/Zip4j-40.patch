@@ -1,0 +1,33 @@
+diff --git a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+index 314c858..9f45a43 100755
+--- a/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
++++ b/src/main/java/net/lingala/zip4j/io/inputstream/ZipInputStream.java
+@@ -187,17 +187,19 @@ public class ZipInputStream extends InputStream {
+     return initializeDecompressorForThisEntry(cipherInputStream, localFileHeader);
+   }
+ 
+-  private CipherInputStream initializeCipherInputStream(ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader) throws IOException {
+-    if (!localFileHeader.isEncrypted()) {
+-      return new NoCipherInputStream(zipEntryInputStream, localFileHeader, password);
+-    }
++private CipherInputStream initializeCipherInputStream(ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader) throws IOException {
++  if (!localFileHeader.isEncrypted()) {
++    return new NoCipherInputStream(zipEntryInputStream, localFileHeader, password);
++  }
+ 
+-    if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES) {
+-      return new AesCipherInputStream(zipEntryInputStream, localFileHeader, password);
+-    } else {
+-      return new ZipStandardCipherInputStream(zipEntryInputStream, localFileHeader, password);
+-    }
++  if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES) {
++    return new AesCipherInputStream(zipEntryInputStream, localFileHeader, password);
++  } else if (localFileHeader.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD) {
++    return new ZipStandardCipherInputStream(zipEntryInputStream, localFileHeader, password);
++  } else {
++    throw new ZipException("Entry [" + localFileHeader.getFileName() + "] Strong Encryption not supported");
+   }
++}
+ 
+   private DecompressedInputStream initializeDecompressorForThisEntry(CipherInputStream cipherInputStream, LocalFileHeader localFileHeader) {
+     CompressionMethod compressionMethod = getCompressionMethod(localFileHeader);

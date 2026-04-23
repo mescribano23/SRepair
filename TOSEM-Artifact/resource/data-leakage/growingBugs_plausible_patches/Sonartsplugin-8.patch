@@ -1,0 +1,61 @@
+diff --git a/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java b/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java
+index 3e7b3f1..e1b7c45 100644
+--- a/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java
++++ b/src/main/java/com/pablissimo/sonar/LCOVParserImpl.java
+@@ -151,38 +151,29 @@ public class LCOVParserImpl implements LCOVParser {
+     String filePath = line.substring(SF.length());
+     FileData fileData = null;
+     
+-    // some tools (like Istanbul, Karma) provide relative paths, so let's consider them relative to project directory
+-    InputFile inputFile = null;
+-    try {
+-        Paths.get(filePath);
+-        inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(filePath));    
+-    }
+-    catch (InvalidPathException ex) {
+-        LOG.debug("LCOV file referred to path that appears invalid (not just not on disk): " + filePath);
+-    }   
+-        
+-    // Try to accommodate Angular projects that, when the angular template loader's used
+-    // by checking for a ! in the filepath if the path isn't found - have a bash at seeking
+-    // everything after the last ! as a second fallback pass
+-    if (inputFile == null && filePath.contains("!") && (filePath.indexOf("!") + 1) < filePath.length()) {
+-        String amendedPath = filePath.substring(filePath.indexOf("!") + 1);
+-        
+-        LOG.debug("Failed to resolve " + filePath + " as a valid source file, so attempting " + amendedPath + " instead");
+-        
++    // Attempt to resolve the path using the file system
++    InputFile inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(filePath));
++    
++    // If the path resolution fails, and the path contains a "!", attempt to resolve the path after the last "!"
++    if (inputFile == null && filePath.contains("!")) {
++        String amendedPath = filePath.substring(filePath.lastIndexOf("!") + 1);
+         inputFile = context.fileSystem().inputFile(context.fileSystem().predicates().hasPath(amendedPath));
+     }
+     
+-    if (inputFile != null) {
+-      fileData = files.get(inputFile);
+-      if (fileData == null) {
+-        fileData = new FileData(inputFile);
+-        files.put(inputFile, fileData);
+-      }
+-    } else {
+-      LOG.debug("Failed to resolve path " + filePath + " to a file in the analysis set");
++    // If the input file is still null, log a warning and return null
++    if (inputFile == null) {
++      LOG.debug("Failed to resolve path " + filePath + " to a valid input file");
+       unresolvedPaths.add(filePath);
++      return null;
+     }
+-    return fileData;
++    
++    // If the file data for the input file does not exist, create it and add it to the map
++    if (!files.containsKey(inputFile)) {
++      fileData = new FileData(inputFile);
++      files.put(inputFile, fileData);
++    }
++    
++    return files.get(inputFile);
+   }
+ 
+   private static class FileData {

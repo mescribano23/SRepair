@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.43283582089552236,
+    "input": "    @Override\n    @SuppressWarnings(\"unchecked\")\n    protected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {\n        this.keyType = ReferenceStrength.resolve(in.readInt());\n        this.valueType = ReferenceStrength.resolve(in.readInt());\n        this.purgeValues = in.readBoolean();\n        this.loadFactor = in.readFloat();\n        final int capacity = in.readInt();\n        init();\n        data = new HashEntry[capacity];\n\n        // COLLECTIONS-599: Calculate threshold before populating, otherwise it will be 0 \n        // when it hits AbstractHashedMap.checkCapacity() and so will unnecessarily \n        // double up the size of the \"data\" array during population.\n        //\n        // NB: AbstractHashedMap.doReadObject() DOES calculate the threshold before populating.\n        //\n        threshold = calculateThreshold(data.length, loadFactor);\n        \n        while (true) {\n            final K key = (K) in.readObject();\n            if (key == null) {\n                break;\n            }\n            final V value = (V) in.readObject();\n            put(key, value);\n        }\n        // do not call super.doReadObject() as code there doesn't work for reference map\n    }",
+    "query_result": [
+        "ect(final ObjectInputStream in) throws IOException, ClassNotFoundException {\nthis.keyType = ReferenceStrength.resolve(in.readInt());\nthis.valueType = ReferenceStrength.resolve(in.readInt());\nthis.purgeValues = in.readBoolean();\nthis.loadFactor = in.r",
+        "inal ObjectInputStream in) throws IOException, ClassNotFoundException {\nthis.keyType = ReferenceStrength.resolve(in.readInt());\nthis.valueType = ReferenceStrength.resolve(in.readInt());\nthis.purgeValues = in.readBoolean();\nthis.loadFactor = in.readFl",
+        "\n@SuppressWarnings(\"unchecked\")\nprotected void doReadObject(final ObjectInputStream in) throws IOExc",
+        "ssWarnings(\"unchecked\")\nprotected void doReadObject(final ObjectInputStream in) throws IOException, ",
+        "protected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {",
+        "otected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {\nt",
+        "ected void doReadObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {\nthi",
+        "hile (true) {\nfinal K key = (K) in.readObject();\nif (key == null) {\nbreak;\n}\nfinal V value = (V) in.",
+        "@Override\n@SuppressWarnings(\"unchecked\")\nprotected",
+        "Override\n@SuppressWarnings(\"unchecked\")\nprotected ",
+        "verride\n@SuppressWarnings(\"unchecked\")\nprotected v",
+        "erride\n@SuppressWarnings(\"unchecked\")\nprotected vo",
+        "rride\n@SuppressWarnings(\"unchecked\")\nprotected voi",
+        "ride\n@SuppressWarnings(\"unchecked\")\nprotected void",
+        "ide\n@SuppressWarnings(\"unchecked\")\nprotected void ",
+        "de\n@SuppressWarnings(\"unchecked\")\nprotected void d",
+        "e\n@SuppressWarnings(\"unchecked\")\nprotected void do",
+        "ed void doReadObject(final ObjectInputStream in) t",
+        "adObject(final ObjectInputStream in) throws IOExce",
+        "dObject(final ObjectInputStream in) throws IOExcep"
+    ]
+}

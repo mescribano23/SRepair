@@ -1,0 +1,11 @@
+{
+    "coverage_ratio": 0.8830022075055187,
+    "input": "    final void html(final Appendable accum, final Document.OutputSettings out) throws IOException {\n        final int sz = size;\n        for (int i = 0; i < sz; i++) {\n            // inlined from Attribute.html()\n            final String key = keys[i];\n            final String val = vals[i];\n            accum.append(' ').append(key);\n\n            // collapse checked=null, checked=\"\", checked=checked; write out others\n            if (!Attribute.shouldCollapseAttribute(key, val, out)) {\n                accum.append(\"=\\\"\");\n                Entities.escape(accum, val == null ? EmptyString : val, out, true, false, false);\n                accum.append('\"');\n            }\n        }\n    }",
+    "query_result": [
+        "ribute.html()\nfinal String key = keys[i];\nfinal String val = vals[i];\naccum.append(' ').append(key);\n// collapse checked=null, checked=\"\", checked=checked; write out others\nif (!Attribute.shouldCollapseAttribute(key, val, out)) {\naccum.append(\"=\\\"\");\nEntities.escape(accum, val == null ? EmptyString : val, out, true, false, false);\naccum.append('\"')",
+        "d html(final Appendable accum, final Document.OutputSettings out) throws IOException {\nfinal int sz ",
+        "oid html(final Appendable accum, final Document.Ou",
+        "l Document.OutputSettings out) throws IOException ",
+        "\"\", checked=checked; write out others\nif (!Attribu"
+    ]
+}

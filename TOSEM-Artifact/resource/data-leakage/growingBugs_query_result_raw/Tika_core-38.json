@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.45993031358885017,
+    "input": "@Override\n    protected synchronized Class<?> findClass(String name)\n            throws ClassNotFoundException {\n        try {\n            // Send a request to load the class data\n            output.write(ForkServer.RESOURCE);\n            output.write(resource);\n            output.write(1);\n            output.writeUTF(name.replace('.', '/') + \".class\");\n            output.flush();\n\n            // Receive the response\n            if (input.readBoolean()) {\n                byte[] data = readStream();\n                Class<?> clazz = defineClass(name, data, 0, data.length);\n                definePackageIfNecessary(name, clazz);\n                return clazz;\n            } else {\n                throw new ClassNotFoundException(\"Unable to find class \" + name);\n            }\n        } catch (IOException e) {\n            throw new ClassNotFoundException(\"Unable to load class \" + name, e);\n        }\n    }",
+    "query_result": [
+        "de\nprotected synchronized Class<?> findClass(String name)\nthrows ClassNotFoundException {\ntry {\n// Send a request to load the class data\noutput.write(",
+        "verride\nprotected synchronized Class<?> findClass(String name)\nthrows ClassNotFoundException {\ntry {",
+        "'/') + \".class\");\noutput.flush();\n// Receive the response\nif (input.readBoolean()) {\nbyte[] data = r",
+        "rotected synchronized Class<?> findClass(String na",
+        "tected synchronized Class<?> findClass(String name",
+        "nchronized Class<?> findClass(String name)\nthrows ",
+        "ed Class<?> findClass(String name)\nthrows ClassNot",
+        "d Class<?> findClass(String name)\nthrows ClassNotF",
+        " Class<?> findClass(String name)\nthrows ClassNotFo",
+        "s<?> findClass(String name)\nthrows ClassNotFoundEx",
+        "<?> findClass(String name)\nthrows ClassNotFoundExc",
+        "> findClass(String name)\nthrows ClassNotFoundExcep",
+        " findClass(String name)\nthrows ClassNotFoundExcept",
+        "findClass(String name)\nthrows ClassNotFoundExcepti",
+        "indClass(String name)\nthrows ClassNotFoundExceptio",
+        "dClass(String name)\nthrows ClassNotFoundException ",
+        "Class(String name)\nthrows ClassNotFoundException {",
+        "lass(String name)\nthrows ClassNotFoundException {\n",
+        "(String name)\nthrows ClassNotFoundException {\ntry ",
+        ");\nClass<?> clazz = defineClass(name, data, 0, dat"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.4719626168224299,
+    "input": "    public synchronized void setContext(String context)\n    {\n        // Ensure the context is also well-formed by removing any extra leading \"/\".\n        this.context = context.trim();\n        if (this.context.startsWith(\"/\")) \n        {\n            this.context = this.context.substring(1); \n        }\n    }",
+    "query_result": [
+        "ed void setContext(String context)\n{\n// Ensure the context is also well-formed by removing any extra",
+        "public synchronized void setContext(String context",
+        "ynchronized void setContext(String context)\n{\n// E"
+    ]
+}

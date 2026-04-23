@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6115107913669064,
+    "input": "    @Override\n    public LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOException\n    {\n        switch(parser.getCurrentTokenId())\n        {\n            case JsonTokenId.ID_START_ARRAY:\n                if(parser.nextToken() == JsonToken.END_ARRAY) {\n                    return null;\n                }\n                int year = parser.getIntValue();\n\n                parser.nextToken();\n                int month = parser.getIntValue();\n\n                parser.nextToken();\n                int day = parser.getIntValue();\n\n                if (parser.nextToken() != JsonToken.END_ARRAY) {\n                    throw context.wrongTokenException(parser, JsonToken.END_ARRAY, \"Expected array to end.\");\n                }\n                return LocalDate.of(year, month, day);\n\n            case JsonTokenId.ID_STRING:\n                String string = parser.getText().trim();\n                if(string.length() == 0) {\n                    return null;\n                }\n\n                if(string.contains(\"T\")) {\n                    return LocalDate.parse(string, DateTimeFormatter.ISO_LOCAL_DATE_TIME);\n                }\n                \n                return LocalDate.parse(string, _formatter);\n        }\n\n        throw context.wrongTokenException(parser, JsonToken.START_ARRAY, \"Expected array or string.\");\n    }",
+    "query_result": [
+        "en() == JsonToken.END_ARRAY) {\nreturn null;\n}\nint year = parser.getIntValue();\nparser.nextToken();\nint month = parser.getIntValue();\nparser.nextToken(",
+        ") == JsonToken.END_ARRAY) {\nreturn null;\n}\nint year = parser.getIntValue();\nparser.nextToken();\nint month = parser.getIntValue();\nparser.nextToken();\n",
+        "en.END_ARRAY) {\nreturn null;\n}\nint year = parser.getIntValue();\nparser.nextToken();\nint month = parser.getIntValue();\nparser.nextToken();\nint day = pa",
+        "er.getIntValue();\nif (parser.nextToken() != JsonToken.END_ARRAY) {\nthrow context.wrongTokenException(parser, JsonToken.END_ARRAY, \"Expected array to e",
+        "n() != JsonToken.END_ARRAY) {\nthrow context.wrongTokenException(parser, JsonToken.END_ARRAY, \"Expected array to end.\");\n}\nreturn LocalDate.of(year, mo",
+        "@Override\npublic LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOE",
+        "Override\npublic LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOEx",
+        "verride\npublic LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOExc",
+        "erride\npublic LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOExce",
+        "rride\npublic LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOExcep",
+        "de\npublic LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOExceptio",
+        "ublic LocalDate deserialize(JsonParser parser, DeserializationContext context) throws IOException\n{\n",
+        "\nif (parser.nextToken() != JsonToken.END_ARRAY) {\nthrow context.wrongTokenException(parser, JsonToke",
+        "if (parser.nextToken() != JsonToken.END_ARRAY) {\nthrow context.wrongTokenException(parser, JsonToken",
+        "f (parser.nextToken() != JsonToken.END_ARRAY) {\nthrow context.wrongTokenException(parser, JsonToken.",
+        "tring, _formatter);\n}\nthrow context.wrongTokenException(parser, JsonToken.START_ARRAY, \"Expected arr",
+        "\npublic LocalDate deserialize(JsonParser parser, D",
+        "blic LocalDate deserialize(JsonParser parser, Dese",
+        "lic LocalDate deserialize(JsonParser parser, Deser",
+        "c LocalDate deserialize(JsonParser parser, Deseria"
+    ]
+}

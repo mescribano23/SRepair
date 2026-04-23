@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.5672268907563025,
+    "input": "    protected final boolean _add(Annotation ann) {\n        if (_annotations == null) {\n            _annotations = new HashMap<Class<? extends Annotation>,Annotation>();\n        }\n        Annotation previous = _annotations.put(ann.annotationType(), ann);\n        return (previous == null) || !previous.equals(ann);\n    }",
+    "query_result": [
+        "{ if (_annotations == null) { _annotations = new",
+        "notations = new HashMap<Class<? extends Annotation",
+        "otations = new HashMap<Class<? extends Annotation>",
+        "tations = new HashMap<Class<? extends Annotation>,",
+        "w HashMap<Class<? extends Annotation>,Annotation>(",
+        "HashMap<Class<? extends Annotation>,Annotation>()",
+        "_annotations.put(ann.annotationType(), ann); retur"
+    ]
+}

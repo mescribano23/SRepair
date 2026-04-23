@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.4004106776180698,
+    "input": "    protected void checkRequiredOptions()\n        throws MissingOptionException\n    {\n        // if there are required options that have not been\n        // processsed\n        if (getRequiredOptions().size() > 0)\n        {\n            Iterator iter = getRequiredOptions().iterator();\n            StringBuffer buff = new StringBuffer(\"Missing required option\");\n            buff.append(getRequiredOptions().size() == 1 ? \"\" : \"s\");\n            buff.append(\": \");\n\n\n            // loop through the required options\n            while (iter.hasNext())\n            {\n                buff.append(iter.next());\n                buff.append(\", \");\n            }\n\n            throw new MissingOptionException(buff.substring(0, buff.length() - 2));\n        }\n    }",
+    "query_result": [
+        "ssingOptionException\n{\n// if there are required op",
+        "tion\n{\n// if there are required options that have ",
+        "\n// if there are required options that have not be",
+        "are required options that have not been\n// process",
+        "required options that have not been\n// processsed\n",
+        ".iterator();\nStringBuffer buff = new StringBuffer(",
+        "ew StringBuffer(\"Missing required option\");\nbuff.a",
+        "oop through the required options\nwhile (iter.hasNe"
+    ]
+}

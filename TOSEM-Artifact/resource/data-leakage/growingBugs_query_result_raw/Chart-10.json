@@ -1,0 +1,15 @@
+{
+    "coverage_ratio": 0.8828125,
+    "input": "    public String generateToolTipFragment(String toolTipText) {\n        return \" title=\\\"\" + ImageMapUtilities.htmlEscape(toolTipText) \n            + \"\\\" alt=\\\"\\\"\";\n    }",
+    "query_result": [
+        "olTipFragment(String toolTipText) {\nreturn \" title=\\\"\" + ImageMapUtilities.htmlEscape(toolTipText) \n",
+        "public String generateToolTipFragment(String toolT",
+        "blic String generateToolTipFragment(String toolTip",
+        "String generateToolTipFragment(String toolTipText)",
+        "ing generateToolTipFragment(String toolTipText) {\n",
+        "rateToolTipFragment(String toolTipText) {\nreturn \"",
+        "urn \" title=\\\"\" + ImageMapUtilities.htmlEscape(too",
+        "n \" title=\\\"\" + ImageMapUtilities.htmlEscape(toolT",
+        "tle=\\\"\" + ImageMapUtilities.htmlEscape(toolTipText"
+    ]
+}

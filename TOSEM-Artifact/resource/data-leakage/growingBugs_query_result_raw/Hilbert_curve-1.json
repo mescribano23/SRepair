@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.9343629343629344,
+    "input": "    private long toIndex(long... transposedIndex) {\n        long b = 0;\n        int bIndex = length - 1;\n        long mask = 1L << (bits - 1);\n        for (int i = 0; i < bits; i++) {\n            for (int j = 0; j < transposedIndex.length; j++) {\n                if ((transposedIndex[j] & mask) != 0) {\n                    b |= 1L << bIndex;\n                }\n                bIndex--;\n            }\n            mask >>= 1;\n        }\n        // b is expected to be BigEndian\n        return b;\n    }",
+    "query_result": [
+        "rivate long toIndex(long... transposedIndex) {\nlong b = 0;\nint bIndex = length - 1;\nlong mask = 1L << (bits - 1);\nfor (int i = 0; i < bits; i++) {\nfor (int j = 0; j < transposedIndex.length; j++) {\nif ((transposedIndex[j] & mask) != 0) {\nb |= 1L << bIndex;\n}\nbIndex--;\n}\nmask >>= 1;\n}\n// b is expecte",
+        "g toIndex(long... transposedIndex) {\nlong b = 0;\nint bIndex = length - 1;\nlong mask = 1L << (bits - 1);\nfor (int i = 0; i < bits; i++) {\nfor (int j = 0; j < transposedIndex.length; j++) {\nif ((transposedIndex[j] & mask) != 0) {\nb |= 1L << bIndex;\n}\nbIndex--;\n}\nmask >>= 1;\n}\n// b is expected to be Bi",
+        " = length - 1;\nlong mask = 1L << (bits - 1);\nfor (int i = 0; i < bits; i++) {\nfor (int j = 0; j < transposedIndex.length; j++) {\nif ((transposedIndex["
+    ]
+}

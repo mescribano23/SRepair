@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.14151624548736463,
+    "input": "  static boolean functionCallHasSideEffects(\n      Node callNode, @Nullable AbstractCompiler compiler) {\n    if (callNode.getType() != Token.CALL) {\n      throw new IllegalStateException(\n          \"Expected CALL node, got \" + Token.name(callNode.getType()));\n    }\n\n    if (callNode.isNoSideEffectsCall()) {\n      return false;\n    }\n\n    Node nameNode = callNode.getFirstChild();\n\n    // Built-in functions with no side effects.\n    if (nameNode.getType() == Token.NAME) {\n      String name = nameNode.getString();\n      if (BUILTIN_FUNCTIONS_WITHOUT_SIDEEFFECTS.contains(name)) {\n        return false;\n      }\n    } else if (nameNode.getType() == Token.GETPROP) {\n      if (callNode.hasOneChild()\n          && OBJECT_METHODS_WITHOUT_SIDEEFFECTS.contains(\n                nameNode.getLastChild().getString())) {\n        return false;\n      }\n\n      if (callNode.isOnlyModifiesThisCall()\n          && evaluatesToLocalValue(nameNode.getFirstChild())) {\n        return false;\n      }\n\n      // Functions in the \"Math\" namespace have no side effects.\n      if (nameNode.getFirstChild().getType() == Token.NAME) {\n        String namespaceName = nameNode.getFirstChild().getString();\n        if (namespaceName.equals(\"Math\")) {\n          return false;\n        }\n      }\n\n      if (compiler != null && !compiler.hasRegExpGlobalReferences()) {\n        if (nameNode.getFirstChild().getType() == Token.REGEXP\n            && REGEXP_METHODS.contains(nameNode.getLastChild().getString())) {\n          return false;\n        } else if (nameNode.getFirstChild().getType() == Token.STRING\n            && STRING_REGEXP_METHODS.contains(\n                nameNode.getLastChild().getString())) {\n          Node param = nameNode.getNext();\n          if (param != null &&\n              (param.getType() == Token.STRING\n                  || param.getType() == Token.REGEXP))\n          return false;\n        }\n      }\n    }\n\n    return true;\n  }",
+    "query_result": [
+        "if (compiler != null && !compiler.hasRegExpGlobalReferences()) {\nif (nameNode.getFirstChild().getTyp",
+        "= null && !compiler.hasRegExpGlobalReferences()) {\nif (nameNode.getFirstChild().getType() == Token.R",
+        "tions in the \"Math\" namespace have no side effects",
+        "ing namespaceName = nameNode.getFirstChild().getSt",
+        " namespaceName = nameNode.getFirstChild().getStrin",
+        "iler.hasRegExpGlobalReferences()) {\nif (nameNode.g"
+    ]
+}

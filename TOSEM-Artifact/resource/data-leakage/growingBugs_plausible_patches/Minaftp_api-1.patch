@@ -1,0 +1,28 @@
+diff --git a/ftplet-api/src/main/java/org/apache/ftpserver/ftplet/DefaultFtpReply.java b/ftplet-api/src/main/java/org/apache/ftpserver/ftplet/DefaultFtpReply.java
+index 09690d98..2dbd8d49 100644
+--- a/ftplet-api/src/main/java/org/apache/ftpserver/ftplet/DefaultFtpReply.java
++++ b/ftplet-api/src/main/java/org/apache/ftpserver/ftplet/DefaultFtpReply.java
+@@ -107,9 +107,12 @@ public class DefaultFtpReply implements FtpReply {
+         StringBuffer sb = new StringBuffer();
+ 
+         // remove any carriage returns
+-        
++        notNullMessage = notNullMessage.replaceAll("\r", "");
++
+         // remove trailing line feeds
+-        
++        if (notNullMessage.endsWith("\n")) {
++            notNullMessage = notNullMessage.substring(0, notNullMessage.length() - 1);
++        }
+ 
+         // no newline
+         if (notNullMessage.indexOf('\n') == -1) {
+@@ -118,7 +121,7 @@ public class DefaultFtpReply implements FtpReply {
+             sb.append(notNullMessage);
+             sb.append(CRLF);
+         } else {
+-            String[] lines = notNullMessage.split("\n");
++            String[] lines = notNullMessage.split("\r?\n");
+ 
+             sb.append(code);
+             sb.append("-");

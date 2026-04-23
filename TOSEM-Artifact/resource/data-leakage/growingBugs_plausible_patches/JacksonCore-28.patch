@@ -1,0 +1,58 @@
+diff --git a/src/main/java/com/fasterxml/jackson/core/sym/ByteQuadsCanonicalizer.java b/src/main/java/com/fasterxml/jackson/core/sym/ByteQuadsCanonicalizer.java
+index 54684191..b552783f 100644
+--- a/src/main/java/com/fasterxml/jackson/core/sym/ByteQuadsCanonicalizer.java
++++ b/src/main/java/com/fasterxml/jackson/core/sym/ByteQuadsCanonicalizer.java
+@@ -693,30 +693,34 @@ public final class ByteQuadsCanonicalizer
+         return null;
+     }
+ 
+-    private String _findSecondary(int origOffset, int hash, int[] q, int qlen)
+-    {
+-        int offset = _tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift);
+-        final int[] hashArea = _hashArea;
+-
+-        final int bucketSize = (1 << _tertiaryShift);
+-        for (int end = offset + bucketSize; offset < end; offset += 4) {
+-            int len = hashArea[offset+3];
+-            if ((hash == hashArea[offset]) && (qlen == len)) {
+-                    return _names[offset >> 2];
+-            }
+-            if (len == 0) {
+-                return null;
++private String _findSecondary(int origOffset, int hash, int[] q, int qlen) {
++    int offset = _tertiaryStart + ((origOffset >> (_tertiaryShift + 2)) << _tertiaryShift);
++    final int[] hashArea = _hashArea;
++
++    final int bucketSize = (1 << _tertiaryShift);
++    for (int end = offset + bucketSize; offset < end; offset += 4) {
++        int len = hashArea[offset + 3];
++        if ((hash == hashArea[offset]) && (qlen == len)) {
++            // Check for the actual symbol
++            if (Arrays.equals(Arrays.copyOfRange(q, 0, len), Arrays.copyOfRange(hashArea, offset + 1, offset + 1 + len))) {
++                return _names[offset >> 2];
+             }
+         }
+-        for (offset = _spilloverStart(); offset < _spilloverEnd; offset += 4) {
+-            if ((hash == hashArea[offset]) && (qlen == hashArea[offset+3])) {
+-                if (_verifyLongName(q, qlen, hashArea[offset+1])) {
+-                    return _names[offset >> 2];
+-                }
++        if (len == 0) {
++            return null;
++        }
++    }
++    for (offset = _spilloverStart(); offset < _spilloverEnd; offset += 4) {
++        int len = hashArea[offset + 3];
++        if ((hash == hashArea[offset]) && (qlen == len)) {
++            // Check for the actual symbol
++            if (Arrays.equals(Arrays.copyOfRange(q, 0, len), Arrays.copyOfRange(hashArea, offset + 1, offset + 1 + len))) {
++                return _names[offset >> 2];
+             }
+         }
+-        return null;
+     }
++    return null;
++}
+     
+     private boolean _verifyLongName(int[] q, int qlen, int spillOffset)
+     {

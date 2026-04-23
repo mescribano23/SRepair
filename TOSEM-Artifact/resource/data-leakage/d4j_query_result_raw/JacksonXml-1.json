@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.22037218413320275,
+    "input": "public JsonToken nextToken() throws IOException\n{\n    _binaryValue = null;\n    if (_nextToken != null) {\n        JsonToken t = _nextToken;\n        _currToken = t;\n        _nextToken = null;\n        switch (t) {\n        case START_OBJECT:\n            _parsingContext = _parsingContext.createChildObjectContext(-1, -1);\n            break;\n        case START_ARRAY:\n            _parsingContext = _parsingContext.createChildArrayContext(-1, -1);\n            break;\n        case END_OBJECT:\n        case END_ARRAY:\n            _parsingContext = _parsingContext.getParent();\n            _namesToWrap = _parsingContext.getNamesToWrap();\n            break;\n        case FIELD_NAME:\n            _parsingContext.setCurrentName(_xmlTokens.getLocalName());\n            break;\n        default: // VALUE_STRING, VALUE_NULL\n            // should be fine as is?\n        }\n        return t;\n    }\n    int token = _xmlTokens.next();\n\n    // Need to have a loop just because we may have to eat/convert\n    // a start-element that indicates an array element.\n    while (token == XmlTokenStream.XML_START_ELEMENT) {\n        // If we thought we might get leaf, no such luck\n        if (_mayBeLeaf) {\n            // leave _mayBeLeaf set, as we start a new context\n            _nextToken = JsonToken.FIELD_NAME;\n            _parsingContext = _parsingContext.createChildObjectContext(-1, -1);\n            return (_currToken = JsonToken.START_OBJECT);\n        }\n        if (_parsingContext.inArray()) {\n            // Yup: in ",
+    "query_result": [
+        "public JsonToken nextToken() throws IOException\n{\n",
+        "\n_parsingContext = _parsingContext.createChildObje",
+        "_parsingContext = _parsingContext.createChildObjec",
+        "parsingContext = _parsingContext.createChildObject",
+        "arsingContext = _parsingContext.createChildObjectC",
+        "rsingContext = _parsingContext.createChildObjectCo",
+        "singContext = _parsingContext.createChildObjectCon",
+        "ingContext = _parsingContext.createChildObjectCont",
+        "ngContext = _parsingContext.createChildObjectConte",
+        "Context = _parsingContext.createChildObjectContext",
+        "ontext = _parsingContext.createChildObjectContext(",
+        "ext = _parsingContext.createChildObjectContext(-1,",
+        " _parsingContext.createChildObjectContext(-1, -1);",
+        "\n_parsingContext = _parsingContext.createChildArra",
+        "_parsingContext = _parsingContext.createChildArray",
+        "parsingContext = _parsingContext.createChildArrayC",
+        "arsingContext = _parsingContext.createChildArrayCo",
+        "rsingContext = _parsingContext.createChildArrayCon",
+        "singContext = _parsingContext.createChildArrayCont",
+        "ingContext = _parsingContext.createChildArrayConte"
+    ]
+}

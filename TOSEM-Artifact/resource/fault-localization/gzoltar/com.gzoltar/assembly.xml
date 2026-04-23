@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2020 GZoltar contributors.
+
+  This file is part of GZoltar.
+
+  GZoltar is free software: you can redistribute it and/or modify it under the terms of the GNU
+  Lesser General Public License as published by the Free Software Foundation, either version 3 of
+  the License, or (at your option) any later version.
+
+  GZoltar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+  General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License along with GZoltar. If
+  not, see <https://www.gnu.org/licenses/>.
+-->
+<assembly>
+  <id>distribution</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <dependencySets>
+    <!--
+      Libraries and Plugins
+    -->
+    <dependencySet>
+      <outputDirectory>/lib</outputDirectory>
+      <outputFileNameMapping>gzoltarant.jar</outputFileNameMapping>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>${project.groupId}:com.gzoltar.ant:jar:jar-with-dependencies</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>/lib</outputDirectory>
+      <outputFileNameMapping>gzoltarcli.jar</outputFileNameMapping>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>${project.groupId}:com.gzoltar.cli:jar:jar-with-dependencies</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>/lib</outputDirectory>
+      <outputFileNameMapping>gzoltaragent.jar</outputFileNameMapping>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>${project.groupId}:com.gzoltar.agent:*:runtime</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>/lib</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}-${dist.version}.${artifact.extension}</outputFileNameMapping>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>${project.groupId}:com.gzoltar.core</include>
+        <include>${project.groupId}:com.gzoltar.agent</include>
+        <include>${project.groupId}:com.gzoltar.fl</include>
+        <include>${project.groupId}:com.gzoltar.report</include>
+        <include>${project.groupId}:com.gzoltar.ant</include>
+      </includes>
+      <excludes>
+        <exclude>${project.groupId}:com.gzoltar*:*:javadoc</exclude>
+        <exclude>${project.groupId}:com.gzoltar*:*:sources</exclude>
+        <exclude>${project.groupId}:com.gzoltar.agent:*:runtime</exclude>
+        <exclude>${project.groupId}:com.gzoltar.ant:*:jar-with-dependencies</exclude>
+        <exclude>${project.groupId}:com.gzoltar.cli:*:jar-with-dependencies</exclude>
+      </excludes>
+    </dependencySet>
+    <!--
+      Javadoc
+    -->
+    <dependencySet>
+      <outputDirectory>/api</outputDirectory>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+      <unpackOptions>
+        <excludes>
+          <exclude>META-INF/</exclude>
+        </excludes>
+      </unpackOptions>
+      <includes>
+        <include>${project.groupId}:com.gzoltar.doc:*:javadoc</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>/api/jar</outputDirectory>
+      <unpack>false</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>${project.groupId}:com.gzoltar.core:*:javadoc</include>
+        <include>${project.groupId}:com.gzoltar.agent:*:javadoc</include>
+        <include>${project.groupId}:com.gzoltar.agent.rt:*:javadoc</include>
+        <include>${project.groupId}:com.gzoltar.fl:*:javadoc</include>
+        <include>${project.groupId}:com.gzoltar.report:*:javadoc</include>
+      </includes>
+    </dependencySet>
+    <!--
+      Sources
+    -->
+    <dependencySet>
+      <outputDirectory>/src</outputDirectory>
+      <unpack>false</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>${project.groupId}:com.gzoltar.core:*:sources</include>
+        <include>${project.groupId}:com.gzoltar.agent:*:sources</include>
+        <include>${project.groupId}:com.gzoltar.agent.rt:*:sources</include>
+        <include>${project.groupId}:com.gzoltar.fl:*:sources</include>
+        <include>${project.groupId}:com.gzoltar.report:*:sources</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+</assembly>

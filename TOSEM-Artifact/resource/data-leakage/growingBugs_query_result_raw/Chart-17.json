@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.6894409937888198,
+    "input": "    public Object clone() throws CloneNotSupportedException {\n        TimeSeries clone = (TimeSeries) super.clone();\n        clone.data = (List) ObjectUtilities.deepClone(this.data);\n        return clone;\n    }",
+    "query_result": [
+        "public Object clone() throws CloneNotSupportedExce",
+        "ublic Object clone() throws CloneNotSupportedExcep",
+        "blic Object clone() throws CloneNotSupportedExcept",
+        "lic Object clone() throws CloneNotSupportedExcepti",
+        "ic Object clone() throws CloneNotSupportedExceptio",
+        "c Object clone() throws CloneNotSupportedException",
+        " Object clone() throws CloneNotSupportedException ",
+        "Object clone() throws CloneNotSupportedException {",
+        "bject clone() throws CloneNotSupportedException {\n",
+        "ject clone() throws CloneNotSupportedException {\nT",
+        "ect clone() throws CloneNotSupportedException {\nTi",
+        "clone();\nclone.data = (List) ObjectUtilities.deepC",
+        "clone.data = (List) ObjectUtilities.deepClone(this",
+        "one.data = (List) ObjectUtilities.deepClone(this.d"
+    ]
+}

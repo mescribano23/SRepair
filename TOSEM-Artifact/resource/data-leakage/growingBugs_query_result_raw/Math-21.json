@@ -1,0 +1,25 @@
+{
+    "coverage_ratio": 0.9947826086956522,
+    "input": "        private void addContribution(final SubHyperplane<Euclidean3D> facet, final boolean reversed) {\n\n            final Region<Euclidean2D> polygon = ((SubPlane) facet).getRemainingRegion();\n            final double area    = polygon.getSize();\n\n            if (Double.isInfinite(area)) {\n                setSize(Double.POSITIVE_INFINITY);\n                setBarycenter(Vector3D.NaN);\n            } else {\n\n                final Plane    plane  = (Plane) facet.getHyperplane();\n                final Vector3D facetB = plane.toSpace(polygon.getBarycenter());\n                double   scaled = area * facetB.dotProduct(plane.getNormal());\n                if (reversed) {\n                    scaled = -scaled;\n                }\n\n                setSize(getSize() + scaled);\n                setBarycenter(new Vector3D(1.0, (Vector3D) getBarycenter(), scaled, facetB));\n\n            }\n\n        }",
+    "query_result": [
+        "tion(final SubHyperplane<Euclidean3D> facet, final boolean reversed) {\nfinal Region<Euclidean2D> polygon = ((SubPlane) facet).getRemainingRegion();\nfinal double area = polygon.getSize();\nif (Double.isInfinite(area)) {\nsetSize(Double.POSITIVE_INFINITY);\nsetBarycenter(Vector3D.NaN);\n} else {\nfinal Plane plane = (Plane) facet.getHyperplane();\nfinal Vector3D facetB = plane.toSpace(polygon.getBarycenter());\ndouble scaled = area * facetB.dotProduct(plane.getNormal());\nif (reversed) {\nscaled = -scaled;\n}\nsetSize(getSize() + scaled);\nsetBarycenter(new Vector3D(1.0, (Vector3D) getBarycenter(), scaled, ",
+        "addContribution(final SubHyperplane<Euclidean3D> facet, final boolean reversed) {\nfinal Region<Euclidean2D> polygon = ((SubPlane) facet).getRemainingRegion();\nfinal double area = polygon.getSize();\nif (Double.isInfinite(area)) {\nsetSize(Double.POSITI",
+        "ector3D.NaN);\n} else {\nfinal Plane plane = (Plane) facet.getHyperplane();\nfinal Vector3D facetB = plane.toSpace(polygon.getBarycenter());\ndouble scaled = area * facetB.dotProduct(plane.getNormal());\nif (reversed) {\nscaled = -scaled;\n}\nsetSize(getSize",
+        "arycenter());\ndouble scaled = area * facetB.dotProduct(plane.getNormal());\nif (reversed) {\nscaled = ",
+        "rivate void addContribution(final SubHyperplane<Eu",
+        " void addContribution(final SubHyperplane<Euclidea",
+        "void addContribution(final SubHyperplane<Euclidean",
+        "d addContribution(final SubHyperplane<Euclidean3D>",
+        "rplane<Euclidean3D> facet, final boolean reversed)",
+        "{\nsetSize(Double.POSITIVE_INFINITY);\nsetBarycenter",
+        "etSize(Double.POSITIVE_INFINITY);\nsetBarycenter(Ve",
+        "Size(Double.POSITIVE_INFINITY);\nsetBarycenter(Vect",
+        "final Plane plane = (Plane) facet.getHyperplane();",
+        "3D facetB = plane.toSpace(polygon.getBarycenter())",
+        "e(polygon.getBarycenter());\ndouble scaled = area *",
+        "etBarycenter());\ndouble scaled = area * facetB.dot",
+        "caled = area * facetB.dotProduct(plane.getNormal()",
+        "ew Vector3D(1.0, (Vector3D) getBarycenter(), scale",
+        "1.0, (Vector3D) getBarycenter(), scaled, facetB));"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.1357615894039735,
+    "input": "public static String sanitize(String s) {\n        final char[] cs = s.toCharArray();\n        final char[] chars = cs.length <= MAX_SANITIZED_NAME_LENGTH ? cs : Arrays.copyOf(cs, MAX_SANITIZED_NAME_LENGTH);\n        if (cs.length > MAX_SANITIZED_NAME_LENGTH) {\n            for (int i = MAX_SANITIZED_NAME_LENGTH - 3; i < MAX_SANITIZED_NAME_LENGTH; i++) {\n                chars[i] = '.';\n            }\n        }\n        final int len = chars.length;\n        final StringBuilder sb = new StringBuilder();\n        for (int i = 0; i < len; i++) {\n            final char c = chars[i];\n            if (!Character.isISOControl(c)) {\n                Character.UnicodeBlock block = Character.UnicodeBlock.of(c);\n                if (block != null && block != Character.UnicodeBlock.SPECIALS) {\n                    sb.append(c);\n                    continue;\n                }\n            }\n            sb.append('?');\n        }\n        return sb.toString();\n    }",
+    "query_result": [
+        "ars.length;\nfinal StringBuilder sb = new StringBuilder();\nfor (int i = 0; i < len; i++) {\nfinal char",
+        "s.length;\nfinal StringBuilder sb = new StringBuild",
+        ".length;\nfinal StringBuilder sb = new StringBuilde",
+        "length;\nfinal StringBuilder sb = new StringBuilder",
+        "gth;\nfinal StringBuilder sb = new StringBuilder();",
+        "th;\nfinal StringBuilder sb = new StringBuilder();\n",
+        ";\nfinal StringBuilder sb = new StringBuilder();\nfo",
+        "\nfinal StringBuilder sb = new StringBuilder();\nfor",
+        "final StringBuilder sb = new StringBuilder();\nfor ",
+        "inal StringBuilder sb = new StringBuilder();\nfor (",
+        "nal StringBuilder sb = new StringBuilder();\nfor (i",
+        "al StringBuilder sb = new StringBuilder();\nfor (in",
+        "l StringBuilder sb = new StringBuilder();\nfor (int",
+        " StringBuilder sb = new StringBuilder();\nfor (int ",
+        "StringBuilder sb = new StringBuilder();\nfor (int i",
+        "tringBuilder sb = new StringBuilder();\nfor (int i ",
+        "ringBuilder sb = new StringBuilder();\nfor (int i =",
+        "ingBuilder sb = new StringBuilder();\nfor (int i = ",
+        "ngBuilder sb = new StringBuilder();\nfor (int i = 0",
+        "gBuilder sb = new StringBuilder();\nfor (int i = 0;"
+    ]
+}

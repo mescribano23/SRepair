@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.9565217391304348,
+    "input": "    public long getTimeout() throws InvalidSessionException {\n        try {\n            return httpSession.getMaxInactiveInterval() * 1000L;\n        } catch (Exception e) {\n            throw new InvalidSessionException(e);\n        }\n    }",
+    "query_result": [
+        "SessionException {\ntry {\nreturn httpSession.getMaxInactiveInterval() * 1000L;\n} catch (Exception e) ",
+        " long getTimeout() throws InvalidSessionException ",
+        "ong getTimeout() throws InvalidSessionException {\n",
+        "\n} catch (Exception e) {\nthrow new InvalidSessionE",
+        "catch (Exception e) {\nthrow new InvalidSessionExce",
+        "tch (Exception e) {\nthrow new InvalidSessionExcept",
+        "ption e) {\nthrow new InvalidSessionException(e);\n}"
+    ]
+}

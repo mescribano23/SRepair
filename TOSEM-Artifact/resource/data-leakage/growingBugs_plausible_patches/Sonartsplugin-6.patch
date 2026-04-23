@@ -1,0 +1,23 @@
+diff --git a/src/main/java/com/pablissimo/sonar/TsLintParserImpl.java b/src/main/java/com/pablissimo/sonar/TsLintParserImpl.java
+index a246b0f..a04268c 100644
+--- a/src/main/java/com/pablissimo/sonar/TsLintParserImpl.java
++++ b/src/main/java/com/pablissimo/sonar/TsLintParserImpl.java
+@@ -22,11 +22,13 @@ public class TsLintParserImpl implements TsLintParser {
+         List<TsLintIssue> allIssues = new ArrayList<TsLintIssue>();
+         
+         for (String batch : toParse) {
+-            TsLintIssue[] batchIssues = gson.fromJson(getFixedUpOutput(batch), TsLintIssue[].class);
+-            
+-            
+-            for (TsLintIssue batchIssue : batchIssues) {
+-                allIssues.add(batchIssue);
++            if (batch != null && !batch.trim().isEmpty()) {
++                TsLintIssue[] batchIssues = gson.fromJson(getFixedUpOutput(batch), TsLintIssue[].class);
++                if (batchIssues != null) {
++                    for (TsLintIssue batchIssue : batchIssues) {
++                        allIssues.add(batchIssue);
++                    }
++                }
+             }
+         }
+ 

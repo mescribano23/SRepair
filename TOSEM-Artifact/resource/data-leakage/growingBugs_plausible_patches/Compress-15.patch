@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
+index 1833227c..8f0efc62 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
+@@ -665,11 +665,7 @@ public class ZipArchiveEntry extends java.util.zip.ZipEntry
+         }
+         String myComment = getComment();
+         String otherComment = other.getComment();
+-        if (myComment == null) {
+-            if (otherComment != null) {
+-                return false;
+-            }
+-        } else if (!myComment.equals(otherComment)) {
++        if (!commentsEqual(myComment, otherComment)) {
+             return false;
+         }
+         return getTime() == other.getTime()
+@@ -686,4 +682,8 @@ public class ZipArchiveEntry extends java.util.zip.ZipEntry
+                              other.getLocalFileDataExtra())
+             && gpb.equals(other.gpb);
+     }
++
++    private boolean commentsEqual(String c1, String c2) {
++        return (c1 == null ? "" : c1).equals(c2 == null ? "" : c2);
++    }
+ }

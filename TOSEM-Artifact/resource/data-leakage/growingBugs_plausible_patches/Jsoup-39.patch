@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/jsoup/helper/DataUtil.java b/src/main/java/org/jsoup/helper/DataUtil.java
+index d43bfe4..88a1798 100644
+--- a/src/main/java/org/jsoup/helper/DataUtil.java
++++ b/src/main/java/org/jsoup/helper/DataUtil.java
+@@ -73,11 +73,11 @@ public class DataUtil {
+     // reads bytes first into a buffer, then decodes with the appropriate charset. done this way to support
+     // switching the chartset midstream when a meta http-equiv tag defines the charset.
+     // todo - this is getting gnarly. needs a rewrite.
++
+     static Document parseByteData(ByteBuffer byteData, String charsetName, String baseUri, Parser parser) {
+         String docData;
+         Document doc = null;
+         if (charsetName == null) { // determine from meta. safe parse as UTF-8
+-            // look for <meta http-equiv="Content-Type" content="text/html;charset=gb2312"> or HTML5 <meta charset="gb2312">
+             docData = Charset.forName(defaultCharset).decode(byteData).toString();
+             doc = parser.parseInput(docData, baseUri);
+             Element meta = doc.select("meta[http-equiv=content-type], meta[charset]").first();
+@@ -103,7 +103,7 @@ public class DataUtil {
+                     charsetName = foundCharset;
+                     byteData.rewind();
+                     docData = Charset.forName(foundCharset).decode(byteData).toString();
+-                    doc = null;
++                    doc = null; // Reset doc before re-parsing
+                 }
+             }
+         } else { // specified by content type header (or by user on file load)
+@@ -116,6 +116,7 @@ public class DataUtil {
+             docData = Charset.forName(defaultCharset).decode(byteData).toString();
+             docData = docData.substring(1);
+             charsetName = defaultCharset;
++            doc = null; // Reset doc before re-parsing
+         }
+         if (doc == null) {
+             doc = parser.parseInput(docData, baseUri);
+@@ -124,6 +125,7 @@ public class DataUtil {
+         return doc;
+     }
+ 
++
+     /**
+      * Read the input stream into a byte buffer.
+      * @param inStream the input stream to read from

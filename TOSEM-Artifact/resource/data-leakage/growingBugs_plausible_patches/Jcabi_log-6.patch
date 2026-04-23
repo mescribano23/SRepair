@@ -1,0 +1,44 @@
+diff --git a/src/main/java/com/jcabi/log/VerboseProcess.java b/src/main/java/com/jcabi/log/VerboseProcess.java
+index 2fe764d..1931ee6 100644
+--- a/src/main/java/com/jcabi/log/VerboseProcess.java
++++ b/src/main/java/com/jcabi/log/VerboseProcess.java
+@@ -131,21 +131,25 @@ public final class VerboseProcess implements Closeable {
+      * @param stderr Log level for stderr
+      * @since 0.11
+      */
+-    public VerboseProcess(final Process prc, final Level stdout,
+-        final Level stderr) {
+-        if (prc == null) {
+-            throw new IllegalArgumentException("process can't be NULL");
+-        }
+-        if (stdout == null) {
+-            throw new IllegalArgumentException("stdout LEVEL can't be NULL");
+-        }
+-        if (stderr == null) {
+-            throw new IllegalArgumentException("stderr LEVEL can't be NULL");
+-        }
+-        this.process = prc;
+-        this.olevel = stdout;
+-        this.elevel = stderr;
++public VerboseProcess(final Process prc, final Level stdout,
++    final Level stderr) {
++    if (prc == null) {
++        throw new IllegalArgumentException("process can't be NULL");
++    }
++    if (!isValidLogLevel(stdout)) {
++        throw new IllegalArgumentException("Invalid stdout LEVEL");
+     }
++    if (!isValidLogLevel(stderr)) {
++        throw new IllegalArgumentException("Invalid stderr LEVEL");
++    }
++    this.process = prc;
++    this.olevel = stdout;
++    this.elevel = stderr;
++}
++
++private boolean isValidLogLevel(Level level) {
++    return level != null && level != Level.ALL;
++}
+ 
+     /**
+      * Public ctor, with a given process and logging levels for {@code stdout}

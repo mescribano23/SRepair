@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.5112676056338028,
+    "input": "@Override\n    public ContentHandler getNewContentHandler() {\n\n        if (type == HANDLER_TYPE.BODY) {\n            return new BodyContentHandler(writeLimit);\n        } else if (type == HANDLER_TYPE.IGNORE) {\n            return new DefaultHandler();\n        }\n        if (writeLimit > -1) {\n            switch(type) {\n                case TEXT:\n                    return new WriteOutContentHandler(new ToTextContentHandler(), writeLimit);\n                case HTML:\n                    return new WriteOutContentHandler(new ToHTMLContentHandler(), writeLimit);\n                case XML:\n                    return new WriteOutContentHandler(new ToXMLContentHandler(), writeLimit);\n                default:\n                    return new WriteOutContentHandler(new ToTextContentHandler(), writeLimit);\n            }\n        } else {\n            switch (type) {\n                case TEXT:\n                    return new ToTextContentHandler();\n                case HTML:\n                    return new ToHTMLContentHandler();\n                case XML:\n                    return new ToXMLContentHandler();\n                default:\n                    return new ToTextContentHandler();\n\n            }\n        }\n    }",
+    "query_result": [
+        " ToTextContentHandler();\ncase HTML:\nreturn new ToHTMLContentHandler();\ncase XML:\nreturn new ToXMLContentHandler();\ndefault:\nreturn new ToTextContentHa",
+        "@Override\npublic ContentHandler getNewContentHandl",
+        "NewContentHandler() {\nif (type == HANDLER_TYPE.BOD",
+        "e if (type == HANDLER_TYPE.IGNORE) {\nreturn new De",
+        " HANDLER_TYPE.IGNORE) {\nreturn new DefaultHandler(",
+        "ntentHandler(new ToTextContentHandler(), writeLimi",
+        "ntentHandler(new ToTextContentHandler(), writeLimi"
+    ]
+}

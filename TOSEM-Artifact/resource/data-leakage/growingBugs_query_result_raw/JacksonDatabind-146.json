@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.8330308529945554,
+    "input": "        protected long _convertNumberToLong(Number n) throws IOException\n        {\n            if (n instanceof BigInteger) {\n                BigInteger big = (BigInteger) n;\n                if (BI_MIN_LONG.compareTo(big) > 0 \n                        || BI_MAX_LONG.compareTo(big) < 0) {\n                    reportOverflowLong();\n                }\n            } else if ((n instanceof Double) || (n instanceof Float)) {\n                double d = n.doubleValue();\n                // Need to check boundaries\n                if (d < MIN_LONG_D || d > MAX_LONG_D) {\n                    reportOverflowLong();\n                }\n                return (long) d;\n            } else if (n instanceof BigDecimal) {\n                BigDecimal big = (BigDecimal) n;\n                if (BD_MIN_LONG.compareTo(big) > 0 \n                    || BD_MAX_LONG.compareTo(big) < 0) {\n                    reportOverflowLong();\n                }\n            } else {\n                _throwInternal();\n            }\n            return n.longValue();\n        }",
+    "query_result": [
+        "X_LONG.compareTo(big) < 0) {\nreportOverflowLong();\n}\n} else if ((n instanceof Double) || (n instanceof Float)) {\ndouble d = n.doubleValue();\n// Need to check boundaries\nif (d < MIN_LONG_D || d > MAX_LONG_D) {\nreportOverflowLong();\n}\nreturn (long) d;\n} else if (n instanceof BigDecimal) {\nBigDecimal big = (BigDecimal) n;\nif (BD_MIN_LONG.compareTo(big",
+        "umberToLong(Number n) throws IOException\n{\nif (n instanceof BigInteger) {\nBigInteger big = (BigInteg",
+        "(n instanceof BigInteger) {\nBigInteger big = (BigI",
+        "|| (n instanceof Float)) {\ndouble d = n.doubleValu",
+        "X_LONG.compareTo(big) < 0) {\nreportOverflowLong();",
+        "verflowLong();\n}\n} else {\n_throwInternal();\n}\nretu"
+    ]
+}

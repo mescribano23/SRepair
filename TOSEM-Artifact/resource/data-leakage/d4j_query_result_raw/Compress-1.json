@@ -1,0 +1,23 @@
+{
+    "coverage_ratio": 0.5757575757575758,
+    "input": "public void close() throws IOException {\n    if (!this.closed) {\n        this.finish();\n        super.close();\n        this.closed = true;\n    }\n}",
+    "query_result": [
+        "public void close() throws IOException {\nif (!this",
+        "ublic void close() throws IOException {\nif (!this.",
+        "blic void close() throws IOException {\nif (!this.c",
+        "lic void close() throws IOException {\nif (!this.cl",
+        "ic void close() throws IOException {\nif (!this.clo",
+        "c void close() throws IOException {\nif (!this.clos",
+        " void close() throws IOException {\nif (!this.close",
+        "void close() throws IOException {\nif (!this.closed",
+        "oid close() throws IOException {\nif (!this.closed)",
+        "id close() throws IOException {\nif (!this.closed) ",
+        "d close() throws IOException {\nif (!this.closed) {",
+        " close() throws IOException {\nif (!this.closed) {\n",
+        "close() throws IOException {\nif (!this.closed) {\nt",
+        "lose() throws IOException {\nif (!this.closed) {\nth",
+        "ose() throws IOException {\nif (!this.closed) {\nthi",
+        "se() throws IOException {\nif (!this.closed) {\nthis",
+        "e() throws IOException {\nif (!this.closed) {\nthis."
+    ]
+}

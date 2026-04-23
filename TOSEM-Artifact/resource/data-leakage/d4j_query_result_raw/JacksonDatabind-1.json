@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.40344168260038243,
+    "input": "public void serializeAsColumn(Object bean, JsonGenerator jgen, SerializerProvider prov)\n    throws Exception\n{\n    Object value = get(bean);\n    if (value == null) { // nulls need specialized handling\n        if (_nullSerializer != null) {\n            _nullSerializer.serialize(null, jgen, prov);\n        } else { // can NOT suppress entries in tabular output\n            jgen.writeNull();\n        }\n        return;\n    }\n    // otherwise find serializer to use\n    JsonSerializer<Object> ser = _serializer;\n    if (ser == null) {\n        Class<?> cls = value.getClass();\n        PropertySerializerMap map = _dynamicSerializers;\n        ser = map.serializerFor(cls);\n        if (ser == null) {\n            ser = _findAndAddDynamic(map, cls, prov);\n        }\n    }\n    // and then see if we must suppress certain values (default, empty)\n    if (_suppressableValue != null) {\n        if (MARKER_FOR_EMPTY == _suppressableValue) {\n            if (ser.isEmpty(value)) { // can NOT suppress entries in tabular output\n                serializeAsPlaceholder(bean, jgen, prov);\n                return;\n            }\n        } else if (_suppressableValue.equals(value)) { // can NOT suppress entries in tabular output\n            serializeAsPlaceholder(bean, jgen, prov);\n            return;\n        }\n    }\n    // For non-nulls: simple check for direct cycles\n    if (value == bean) {\n        _handleSelfReference(bean, ser);\n    }\n    if (_typeSerializer == null) {\n        ser.serialize(value, jgen, prov);",
+    "query_result": [
+        "serializer to use\nJsonSerializer<Object> ser = _serializer;\nif (ser == null) {\nClass<?> cls = value.getClass();\nPropertySerializerMap map = _dynamicSerializers;\nser = map.serializerFor(cls);\nif (ser == null) {\nser = _findAndAddDynamic(map, cls, prov);\n}\n}\n// and then see if we must suppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_EMPTY == _suppressableValue",
+        "zer<Object> ser = _serializer;\nif (ser == null) {\nClass<?> cls = value.getClass();\nPropertySerializerMap map = _dynamicSerializers;\nser = map.serializerFor(cls);\nif (ser == null) {\nser = _findAndAddDynamic(map, cls, prov);\n}\n}\n// and then see if we must suppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_EMPTY == _suppressableValue) {\nif (ser.isEmpty(value)) {",
+        "f (ser == null) {\nClass<?> cls = value.getClass();\nPropertySerializerMap map = _dynamicSerializers;\nser = map.serializerFor(cls);\nif (ser == null) {\ns",
+        "cls, prov);\n}\n}\n// and then see if we must suppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_EMPTY == _suppres",
+        "rov);\n}\n}\n// and then see if we must suppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_EMPTY == _suppressableV",
+        "}\n// and then see if we must suppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_EMPTY == _suppressableValue) {\n",
+        "ee if we must suppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_EMPTY == _suppressableValue) {\nif (ser.isEmpty",
+        "d serializer to use\nJsonSerializer<Object> ser = _serializer;\nif (ser == null) {\nClass<?> cls = valu",
+        " use\nJsonSerializer<Object> ser = _serializer;\nif (ser == null) {\nClass<?> cls = value.getClass();\nP",
+        "JsonSerializer<Object> ser = _serializer;\nif (ser == null) {\nClass<?> cls = value.getClass();\nProper",
+        "bject> ser = _serializer;\nif (ser == null) {\nClass<?> cls = value.getClass();\nPropertySerializerMap ",
+        "lizers;\nser = map.serializerFor(cls);\nif (ser == null) {\nser = _findAndAddDynamic(map, cls, prov);\n}",
+        " we must suppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_E",
+        "uppress certain values (default, empty)\nif (_suppressableValue != null) {\nif (MARKER_FOR_EMPTY == _s",
+        "(Object bean, JsonGenerator jgen, SerializerProvid",
+        "bject bean, JsonGenerator jgen, SerializerProvider",
+        "ject bean, JsonGenerator jgen, SerializerProvider ",
+        "ect bean, JsonGenerator jgen, SerializerProvider p",
+        "ct bean, JsonGenerator jgen, SerializerProvider pr",
+        "t bean, JsonGenerator jgen, SerializerProvider pro"
+    ]
+}

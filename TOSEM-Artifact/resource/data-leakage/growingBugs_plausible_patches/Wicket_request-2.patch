@@ -1,0 +1,37 @@
+diff --git a/wicket-request/src/main/java/org/apache/wicket/request/Url.java b/wicket-request/src/main/java/org/apache/wicket/request/Url.java
+index 41f84bba59..a07498986c 100755
+--- a/wicket-request/src/main/java/org/apache/wicket/request/Url.java
++++ b/wicket-request/src/main/java/org/apache/wicket/request/Url.java
+@@ -335,19 +335,19 @@ public class Url implements Serializable
+ 	 * @param charset
+ 	 * @return query parameters
+ 	 */
+-	private static QueryParameter parseQueryParameter(final String qp, final Charset charset)
+-	{
+-		int idxOfEquals = qp.indexOf('=');
+-		if (idxOfEquals == -1)
+-		{
+-			// name => empty value
+-			return new QueryParameter(decodeParameter(qp, charset), "");
+-		}
+-
+-		String parts[] = Strings.split(qp, '=');
+-		return new QueryParameter(decodeParameter(parts[0], charset), decodeParameter(parts[1],
+-			charset));
+-	}
++private static QueryParameter parseQueryParameter(final String qp, final Charset charset)
++{
++    int idxOfEquals = qp.indexOf('=');
++    if (idxOfEquals == -1)
++    {
++        // name => empty value
++        return new QueryParameter(decodeParameter(qp, charset), "");
++    }
++
++    String name = qp.substring(0, idxOfEquals);
++    String value = qp.substring(idxOfEquals + 1);
++    return new QueryParameter(decodeParameter(name, charset), decodeParameter(value, charset));
++}
+ 
+ 	/**
+ 	 * get default port number for protocol

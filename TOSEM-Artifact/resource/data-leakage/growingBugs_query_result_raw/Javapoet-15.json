@@ -1,0 +1,16 @@
+{
+    "coverage_ratio": 0.9696312364425163,
+    "input": "  public JavaWriter emitField(String type, String name, Set<Modifier> modifiers,\n      String initialValue) throws IOException {\n    indent();\n    emitModifiers(modifiers);\n    emitCompressedType(type);\n    out.write(\" \");\n    out.write(name);\n\n    if (initialValue != null) {\n      out.write(\" =\");\n      if (!initialValue.startsWith(\"\\n\")) {\n        out.write(\" \");\n      }\n\n      String[] lines = initialValue.split(\"\\n\", -1);\n      out.write(lines[0]);\n      for (int i = 1; i < lines.length; i++) {\n        out.write(\"\\n\");\n        hangingIndent();\n        out.write(lines[i]);\n      }\n    }\n    out.write(\";\\n\");\n    return this;\n  }",
+    "query_result": [
+        "public JavaWriter emitField(String type, String name, Set<Modifier> modifiers,\nString initialValue) throws IOException {\nindent();\nemitModifiers(modifiers);\nemitCompressedType(type);\nout.write(\" \");\nout.write(name);\nif (initialValue != null) {\nout.write(\" =\");\nif (!initialValue.startsWith(\"\\n\")) {\nout.write(\" \");\n}\nString[] lines = initialValue.split(\"\\n\", -1);\nout.write(lines[0]);\nfor (int i = 1; i < lines.length; i++) {\nout.write(\"\\n\");\nhangingIndent();\nout.write(lines[i]);\n}\n}\nout.write(\";\\n\"",
+        "\")) {\nout.write(\" \");\n}\nString[] lines = initialValue.split(\"\\n\", -1);\nout.write(lines[0]);\nfor (int i = 1; i < lines.length; i++) {\nout.write(\"\\n\");\nhangingIndent();\nout.write(lines[i]);\n}\n}\nout.writ",
+        "ifiers);\nemitCompressedType(type);\nout.write(\" \");\nout.write(name);\nif (initialValue != null) {\nout.",
+        "t.write(lines[0]);\nfor (int i = 1; i < lines.length; i++) {\nout.write(\"\\n\");\nhangingIndent();\nout.wr",
+        ".write(lines[0]);\nfor (int i = 1; i < lines.length; i++) {\nout.write(\"\\n\");\nhangingIndent();\nout.wri",
+        "riter emitField(String type, String name, Set<Modi",
+        "emitField(String type, String name, Set<Modifier> ",
+        "ype);\nout.write(\" \");\nout.write(name);\nif (initial",
+        "(lines[0]);\nfor (int i = 1; i < lines.length; i++)",
+        "ines[0]);\nfor (int i = 1; i < lines.length; i++) {"
+    ]
+}

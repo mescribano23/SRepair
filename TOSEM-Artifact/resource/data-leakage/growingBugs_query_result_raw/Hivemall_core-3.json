@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.8349514563106796,
+    "input": "    @VisibleForTesting\n    public void finalizeTraining() throws HiveException {\n        if (count == 0L) {\n            return;\n        }\n        if (is_mini_batch) { // Update model with accumulated delta\n            batchUpdate();\n        }\n        if (iterations > 1) {\n            runIterativeTraining(iterations);\n        }\n    }",
+    "query_result": [
+        "id finalizeTraining() throws HiveException {\nif (count == 0L) {\nreturn;\n}\nif (is_mini_batch) { // Update model with accumulated delta\nbatchUpdate();\n}\nif (iterations > 1) {\nrunIterativeTraining(iterat",
+        "/ Update model with accumulated delta\nbatchUpdate(",
+        " model with accumulated delta\nbatchUpdate();\n}\nif "
+    ]
+}

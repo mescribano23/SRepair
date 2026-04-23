@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6459627329192547,
+    "input": "    private static JsonGenerator writePrimitives(final JsonGenerator generator, final Object value) {\n        if (value == null) {\n            return null; // fake a write\n        }\n\n        final Class<?> type = value.getClass();\n        if (type == String.class) {\n            return generator.write(value.toString());\n        } else if (type == long.class || type == Long.class) {\n            return generator.write(Long.class.cast(value).longValue());\n        } else if (isInt(type)) {\n            return generator.write(Number.class.cast(value).intValue());\n        } else if (isFloat(type)) {\n            final double doubleValue = Number.class.cast(value).doubleValue();\n            if (Double.isNaN(doubleValue)) {\n                return generator;\n            }\n            return generator.write(doubleValue);\n        } else if (type == boolean.class || type == Boolean.class) {\n            return generator.write(Boolean.class.cast(value));\n        } else if (type == BigDecimal.class) {\n            return generator.write(BigDecimal.class.cast(value));\n        } else if (type == BigInteger.class) {\n            return generator.write(BigInteger.class.cast(value));\n        } else if (type == char.class || type == Character.class) {\n            return generator.write(Character.class.cast(value).toString());\n        }\n        return null;\n    }",
+    "query_result": [
+        "tic JsonGenerator writePrimitives(final JsonGenerator generator, final Object value) {\nif (value == null) {\nreturn null; // fake a write\n}\nfinal Class<?> type = value.getClass();\nif (type == String.class) {\nreturn generator.write(value.toString());\n} else if (type == long.class || type == Long.class) {\nreturn generator.write(Long.class.cast(value).",
+        "gDecimal.class) {\nreturn generator.write(BigDecimal.class.cast(value));\n} else if (type == BigInteger.class) {\nreturn generator.write(BigInteger.class",
+        ";\n} else if (type == boolean.class || type == Boolean.class) {\nreturn generator.write(Boolean.class.",
+        "== char.class || type == Character.class) {\nreturn generator.write(Character.class.cast(value).toStr",
+        "tatic JsonGenerator writePrimitives(final JsonGene",
+        ", final Object value) {\nif (value == null) {\nretur",
+        " final Object value) {\nif (value == null) {\nreturn",
+        "final Object value) {\nif (value == null) {\nreturn ",
+        "inal Object value) {\nif (value == null) {\nreturn n",
+        "nal Object value) {\nif (value == null) {\nreturn nu",
+        "al Object value) {\nif (value == null) {\nreturn nul",
+        "l Object value) {\nif (value == null) {\nreturn null",
+        " Object value) {\nif (value == null) {\nreturn null;",
+        "ass<?> type = value.getClass();\nif (type == String",
+        "ue.toString());\n} else if (type == long.class || t",
+        "String());\n} else if (type == long.class || type =",
+        "));\n} else if (type == long.class || type == Long.",
+        ");\n} else if (type == long.class || type == Long.c",
+        ";\n} else if (type == long.class || type == Long.cl",
+        "\n} else if (type == long.class || type == Long.cla"
+    ]
+}

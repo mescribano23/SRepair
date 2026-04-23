@@ -1,0 +1,13 @@
+{
+    "coverage_ratio": 0.42829076620825146,
+    "input": "private boolean isPrototypePropertyAssign(Node assign) {\n  Node n = assign.getFirstChild();\n  if (n != null && NodeUtil.isVarOrSimpleAssignLhs(n, assign)\n      && n.getType() == Token.GETPROP\n      && assign.getParent().getType() == Token.EXPR_RESULT) {\n    // We want to exclude the assignment itself from the usage list\n    boolean isChainedProperty =\n        n.getFirstChild().getType() == Token.GETPROP;\n\n    if (isChainedProperty) {\n      Node child = n.getFirstChild().getFirstChild().getNext();\n\n      if (child.getType() == Token.STRING &&\n          child.getString().equals(\"prototype\")) {\n        return true;\n      }\n    }\n  }\n\n  return false;\n}",
+    "query_result": [
+        "ode n = assign.getFirstChild();\nif (n != null && NodeUtil.isVarOrSimpleAssignLhs(n, assign)\n&& n.get",
+        "rstChild();\nif (n != null && NodeUtil.isVarOrSimpleAssignLhs(n, assign)\n&& n.getType() == Token.GETP",
+        "e want to exclude the assignment itself from the usage list\nboolean isChainedProperty =\nn.getFirstCh",
+        "o exclude the assignment itself from the usage list\nboolean isChainedProperty =\nn.getFirstChild().ge",
+        "ment itself from the usage list\nboolean isChainedProperty =\nn.getFirstChild().getType() == Token.GET",
+        " (n != null && NodeUtil.isVarOrSimpleAssignLhs(n, ",
+        "ull && NodeUtil.isVarOrSimpleAssignLhs(n, assign)\n"
+    ]
+}

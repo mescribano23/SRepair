@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    private void addChildren(int aLevel, byte[] aBuf, int aOffset, String levelPadding, int aTagBytesCount, int aDataBytesCount, int valueLength, ArrayList<BerTlv> list) {\n        int startPosition = aOffset + aTagBytesCount + aDataBytesCount;\n        int len = valueLength;\n        while (startPosition <= aOffset + valueLength) {\n            ParseResult result = parseWithResult(aLevel+1, aBuf, startPosition, len);\n            list.add(result.tlv);\n\n            startPosition = result.offset;\n            len           = valueLength - startPosition;\n\n            if(log.isDebugEnabled()) {\n                log.debug(\"{}level {}: adding {} with offset {}, startPosition={}, aDataBytesCount={}, valueLength={}\"\n                        , levelPadding, aLevel, result.tlv.getTag(), result.offset, startPosition, aDataBytesCount, valueLength);\n            }\n        }\n    }",
+    "query_result": []
+}

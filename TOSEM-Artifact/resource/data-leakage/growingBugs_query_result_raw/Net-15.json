@@ -1,0 +1,12 @@
+{
+    "coverage_ratio": 0.42777777777777776,
+    "input": "     public NTFTPEntryParser(FTPClientConfig config)\n    {\n        super(REGEX, Pattern.DOTALL);\n        configure(config);\n        FTPClientConfig config2 = new FTPClientConfig(\n                FTPClientConfig.SYST_NT,\n                DEFAULT_DATE_FORMAT2,\n                null, null, null, null);\n        config2.setDefaultDateFormatStr(DEFAULT_DATE_FORMAT2);\n        this.timestampParser = new FTPTimestampParserImpl();\n        ((Configurable)this.timestampParser).configure(config2);\n    }",
+    "query_result": [
+        "g);\nFTPClientConfig config2 = new FTPClientConfig(",
+        "tStr(DEFAULT_DATE_FORMAT2);\nthis.timestampParser =",
+        "EFAULT_DATE_FORMAT2);\nthis.timestampParser = new F",
+        ";\nthis.timestampParser = new FTPTimestampParserImp",
+        "s.timestampParser = new FTPTimestampParserImpl();\n",
+        "ampParserImpl();\n((Configurable)this.timestampPars"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "coverage_ratio": 0.9220183486238532,
+    "input": "    public double probability(int x) {\n        double ret;\n        if (x < 0 || x > numberOfTrials) {\n            ret = 0.0;\n        } else {\n            ret = FastMath.exp(SaddlePointExpansion.logBinomialProbability(x,\n                    numberOfTrials, probabilityOfSuccess,\n                    1.0 - probabilityOfSuccess));\n        }\n        return ret;\n    }",
+    "query_result": [
+        "e probability(int x) {\ndouble ret;\nif (x < 0 || x > numberOfTrials) {\nret = 0.0;\n} else {\nret = FastMath.exp(SaddlePointExpansion.logBinomialProbability(x,\nnumberOfTrials, probabilityOfSuccess,\n1.0 - ",
+        "Expansion.logBinomialProbability(x,\nnumberOfTrials, probabilityOfSuccess,\n1.0 - probabilityOfSuccess",
+        "blic double probability(int x) {\ndouble ret;\nif (x",
+        "s) {\nret = 0.0;\n} else {\nret = FastMath.exp(Saddle",
+        "ion.logBinomialProbability(x,\nnumberOfTrials, prob",
+        "ogBinomialProbability(x,\nnumberOfTrials, probabili",
+        "x,\nnumberOfTrials, probabilityOfSuccess,\n1.0 - pro",
+        "berOfTrials, probabilityOfSuccess,\n1.0 - probabili"
+    ]
+}

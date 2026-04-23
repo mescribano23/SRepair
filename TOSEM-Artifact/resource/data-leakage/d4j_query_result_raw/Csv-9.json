@@ -1,0 +1,10 @@
+{
+    "coverage_ratio": 0.5537190082644629,
+    "input": "<M extends Map<String, String>> M putIn(final M map) {\n    if (mapping == null) {\n        return map;\n    }\n    for (final Entry<String, Integer> entry : mapping.entrySet()) {\n        final int col = entry.getValue().intValue();\n        if (col < values.length) {\n            map.put(entry.getKey(), values[col]);\n        }\n    }\n    return map;\n}",
+    "query_result": [
+        "extends Map<String, String>> M putIn(final M map) ",
+        "nds Map<String, String>> M putIn(final M map) {\nif",
+        "ry<String, Integer> entry : mapping.entrySet()) {\n",
+        ").intValue();\nif (col < values.length) {\nmap.put(e"
+    ]
+}

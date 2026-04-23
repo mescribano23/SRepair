@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4666666666666667,
+    "input": "    @Override\n    public void writeTo(final T t, final Class<?> rawType, final Type genericType,\n                        final Annotation[] annotations, final MediaType mediaType,\n                        final MultivaluedMap<String, Object> httpHeaders,\n                        final OutputStream entityStream) throws IOException {\n        if (rawType.isArray()) {\n            mapper.writeArray(t, entityStream);\n        } else if (Collection.class.isInstance(t)) {\n            mapper.writeArray(Collection.class.cast(t), entityStream);\n        } else {\n            mapper.writeObject(t, entityStream);\n        }\n    }",
+    "query_result": [
+        "e genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) throws IOException {\nif (rawType.isArray())",
+        "awType, final Type genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal Out",
+        " final Type genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStre",
+        "final Type genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStrea",
+        "nal Type genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream ",
+        "l Type genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream en",
+        " Type genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream ent",
+        "Type genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream enti",
+        "ype genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entit",
+        "pe genericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entity",
+        "enericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStre",
+        "nericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStrea",
+        "ericType,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream",
+        "ype,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) thr",
+        "pe,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) thro",
+        "e,\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) throw",
+        ",\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) throws",
+        "\nfinal Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) throws ",
+        "l Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) throws IOExc",
+        "Annotation[] annotations, final MediaType mediaType,\nfinal MultivaluedMap<String, Object> httpHeaders,\nfinal OutputStream entityStream) throws IOExcep"
+    ]
+}

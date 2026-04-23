@@ -1,0 +1,57 @@
+diff --git a/src/main/java/com/squareup/javawriter/JavaWriter.java b/src/main/java/com/squareup/javawriter/JavaWriter.java
+index 38e81fb..ae5537f 100644
+--- a/src/main/java/com/squareup/javawriter/JavaWriter.java
++++ b/src/main/java/com/squareup/javawriter/JavaWriter.java
+@@ -325,30 +325,31 @@ public class JavaWriter implements Closeable {
+   }
+ 
+   /** Emits a field declaration. */
+-  public JavaWriter emitField(String type, String name, Set<Modifier> modifiers,
+-      String initialValue) throws IOException {
+-    indent();
+-    emitModifiers(modifiers);
+-    emitCompressedType(type);
+-    out.write(" ");
+-    out.write(name);
+-
+-    if (initialValue != null) {
+-      out.write(" = ");
+-      if (!initialValue.startsWith("\n")) {
+-      }
++public JavaWriter emitField(String type, String name, Set<Modifier> modifiers,
++    String initialValue) throws IOException {
++  indent();
++  emitModifiers(modifiers);
++  emitCompressedType(type);
++  out.write(" ");
++  out.write(name);
++
++  if (initialValue != null) {
++    out.write(" =");
++    if (!initialValue.startsWith("\n")) {
++      out.write(" ");
++    }
+ 
+-      String[] lines = initialValue.split("\n", -1);
+-      out.write(lines[0]);
+-      for (int i = 1; i < lines.length; i++) {
+-        out.write("\n");
+-        hangingIndent();
+-        out.write(lines[i]);
+-      }
++    String[] lines = initialValue.split("\n", -1);
++    out.write(lines[0]);
++    for (int i = 1; i < lines.length; i++) {
++      out.write("\n");
++      hangingIndent();
++      out.write(lines[i]);
+     }
+-    out.write(";\n");
+-    return this;
+   }
++  out.write(";\n");
++  return this;
++}
+ 
+   /**
+    * Emit a method declaration.

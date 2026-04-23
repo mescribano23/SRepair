@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.11685823754789272,
+    "input": "    @Override\n    public Subscriber<? super T> call(final Subscriber<? super T> child) {\n        final MinMaxPriorityQueue<T> q = MinMaxPriorityQueue.orderedBy(comparator)\n                .maximumSize(maximumSize).create();\n        return new Subscriber<T>(child) {\n\n            @Override\n            public void onCompleted() {\n                while (true) {\n                    T t = q.poll();\n                    if (t == null)\n                        break;\n                    else if (!isUnsubscribed())\n                        child.onNext(t);\n                    else\n                        return;\n                }\n                if (isUnsubscribed())\n                    return;\n                child.onCompleted();\n            }\n\n            @Override\n            public void onError(Throwable t) {\n                if (!isUnsubscribed())\n                    child.onError(t);\n            }\n\n            @Override\n            public void onNext(T t) {\n                if (!isUnsubscribed())\n                    q.add(t);\n            }\n        };\n    }",
+    "query_result": [
+        "@Override\npublic Subscriber<? super T> call(final ",
+        "Override\npublic Subscriber<? super T> call(final S",
+        "verride\npublic Subscriber<? super T> call(final Su",
+        "erride\npublic Subscriber<? super T> call(final Sub",
+        "rride\npublic Subscriber<? super T> call(final Subs",
+        "ride\npublic Subscriber<? super T> call(final Subsc",
+        "ide\npublic Subscriber<? super T> call(final Subscr",
+        "de\npublic Subscriber<? super T> call(final Subscri",
+        "e\npublic Subscriber<? super T> call(final Subscrib",
+        "\npublic Subscriber<? super T> call(final Subscribe",
+        "public Subscriber<? super T> call(final Subscriber",
+        "ublic Subscriber<? super T> call(final Subscriber<",
+        "blic Subscriber<? super T> call(final Subscriber<?",
+        "lic Subscriber<? super T> call(final Subscriber<? ",
+        "ic Subscriber<? super T> call(final Subscriber<? s",
+        "c Subscriber<? super T> call(final Subscriber<? su",
+        " Subscriber<? super T> call(final Subscriber<? sup",
+        "Subscriber<? super T> call(final Subscriber<? supe",
+        "ubscriber<? super T> call(final Subscriber<? super",
+        "bscriber<? super T> call(final Subscriber<? super "
+    ]
+}

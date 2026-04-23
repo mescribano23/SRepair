@@ -1,0 +1,22 @@
+diff --git a/src/main/java/io/github/gitbucket/markedj/InlineLexer.java b/src/main/java/io/github/gitbucket/markedj/InlineLexer.java
+index 6a1ce1a..0ba6875 100644
+--- a/src/main/java/io/github/gitbucket/markedj/InlineLexer.java
++++ b/src/main/java/io/github/gitbucket/markedj/InlineLexer.java
+@@ -23,6 +23,7 @@ public class InlineLexer {
+         this.renderer = renderer;
+     }
+ 
++// Fixed Function
+     public String output(String src){
+ 
+         StringBuilder out = new StringBuilder();
+@@ -118,7 +119,8 @@ public class InlineLexer {
+                     } else {
+                         key = cap.get(1).replaceAll("\\s+", "");
+                     }
+-                    Lexer.Link link = links.get(key);
++                    // Case-insensitive lookup
++                    Lexer.Link link = links.get(key.toLowerCase());
+                     if(link == null || isEmpty(link.getHref())){
+                         out.append(renderer.nolink(cap.get(0)));
+                         continue;

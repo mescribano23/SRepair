@@ -1,0 +1,18 @@
+{
+    "coverage_ratio": 0.6127717391304348,
+    "input": "    private void findAliases(NodeTraversal t) {\n      Scope scope = t.getScope();\n      for (Var v : scope.getVarIterable()) {\n        Node n = v.getNode();\n        int type = n.getType();\n        Node parent = n.getParent();\n        if (parent.isVar() &&\n            n.hasChildren() && n.getFirstChild().isQualifiedName()) {\n          String name = n.getString();\n          Var aliasVar = scope.getVar(name);\n          aliases.put(name, aliasVar);\n\n          String qualifiedName =\n              aliasVar.getInitialValue().getQualifiedName();\n          transformation.addAlias(name, qualifiedName);\n        } else if (v.isBleedingFunction()) {\n          // Bleeding functions already get a BAD_PARAMETERS error, so just\n          // do nothing.\n        } else if (parent.getType() == Token.LP) {\n          // Parameters of the scope function also get a BAD_PARAMETERS\n          // error.\n        } else {\n          // TODO(robbyw): Support using locals for private variables.\n          report(t, n, GOOG_SCOPE_NON_ALIAS_LOCAL, n.getString());\n        }\n      }\n    }",
+    "query_result": [
+        "e if (parent.getType() == Token.LP) {\n// Parameters of the scope function also get a BAD_PARAMETERS\n// error.\n} else {\n// TODO(robbyw): Support using locals for private variables.\nreport(t, n, GOOG_SC",
+        "n.getFirstChild().isQualifiedName()) {\nString name = n.getString();\nVar aliasVar = scope.getVar(name",
+        "leedingFunction()) {\n// Bleeding functions already get a BAD_PARAMETERS error, so just\n// do nothing",
+        " v.getNode();\nint type = n.getType();\nNode parent ",
+        "asChildren() && n.getFirstChild().isQualifiedName(",
+        "ildren() && n.getFirstChild().isQualifiedName()) {",
+        "alue().getQualifiedName();\ntransformation.addAlias",
+        "nction()) {\n// Bleeding functions already get a BA",
+        "Type() == Token.LP) {\n// Parameters of the scope f",
+        "rameters of the scope function also get a BAD_PARA",
+        "meters of the scope function also get a BAD_PARAME",
+        " of the scope function also get a BAD_PARAMETERS\n/"
+    ]
+}

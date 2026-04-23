@@ -1,0 +1,19 @@
+{
+    "coverage_ratio": 0.8271028037383178,
+    "input": "    public Fraction reduce() {\n        if (numerator == 0) {\n            return equals(ZERO) ? this : ZERO;\n        }\n        int gcd = greatestCommonDivisor(Math.abs(numerator), denominator);\n        if (gcd == 1) {\n            return this;\n        }\n        return Fraction.getFraction(numerator / gcd, denominator / gcd);\n    }",
+    "query_result": [
+        "rator == 0) {\nreturn equals(ZERO) ? this : ZERO;\n}",
+        "t gcd = greatestCommonDivisor(Math.abs(numerator),",
+        " gcd = greatestCommonDivisor(Math.abs(numerator), ",
+        "cd = greatestCommonDivisor(Math.abs(numerator), de",
+        "greatestCommonDivisor(Math.abs(numerator), denomin",
+        "reatestCommonDivisor(Math.abs(numerator), denomina",
+        "atestCommonDivisor(Math.abs(numerator), denominato",
+        "stCommonDivisor(Math.abs(numerator), denominator);",
+        "merator), denominator);\nif (gcd == 1) {\nreturn thi",
+        "eturn Fraction.getFraction(numerator / gcd, denomi",
+        "action.getFraction(numerator / gcd, denominator / ",
+        "tion.getFraction(numerator / gcd, denominator / gc",
+        "n.getFraction(numerator / gcd, denominator / gcd);"
+    ]
+}

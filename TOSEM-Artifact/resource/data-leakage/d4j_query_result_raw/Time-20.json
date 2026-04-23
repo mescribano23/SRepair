@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.6180124223602484,
+    "input": "public int parseInto(DateTimeParserBucket bucket, String text, int position) {\n    String str = text.substring(position);\n    String best = null;\n    for (String id : ALL_IDS) {\n        if (str.startsWith(id)) {\n            if (best == null || id.length() > best.length()) {\n                best = id;\n            }\n        }\n    }\n    if (best != null) {\n        bucket.setZone(DateTimeZone.forID(best));\n        return position + best.length();\n    }\n    return ~position;\n}",
+    "query_result": [
+        "d.length() > best.length()) {\nbest = id;\n}\n}\n}\nif (best != null) {\nbucket.setZone(DateTimeZone.forID(best));\nreturn position + best.length();\n}\nreturn",
+        "public int parseInto(DateTimeParserBucket bucket, ",
+        "blic int parseInto(DateTimeParserBucket bucket, St",
+        "ic int parseInto(DateTimeParserBucket bucket, Stri",
+        "c int parseInto(DateTimeParserBucket bucket, Strin",
+        " int parseInto(DateTimeParserBucket bucket, String",
+        " parseInto(DateTimeParserBucket bucket, String tex",
+        "parseInto(DateTimeParserBucket bucket, String text",
+        "rseInto(DateTimeParserBucket bucket, String text, ",
+        "seInto(DateTimeParserBucket bucket, String text, i",
+        "Into(DateTimeParserBucket bucket, String text, int",
+        "o(DateTimeParserBucket bucket, String text, int po",
+        "(DateTimeParserBucket bucket, String text, int pos",
+        "DateTimeParserBucket bucket, String text, int posi",
+        "teTimeParserBucket bucket, String text, int positi",
+        "eTimeParserBucket bucket, String text, int positio",
+        "TimeParserBucket bucket, String text, int position",
+        "imeParserBucket bucket, String text, int position)",
+        "meParserBucket bucket, String text, int position) ",
+        "eParserBucket bucket, String text, int position) {"
+    ]
+}

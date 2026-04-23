@@ -1,0 +1,24 @@
+diff --git a/src/main/java/com/pablissimo/sonar/TsLintSensor.java b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+index ed8249a..abc9291 100644
+--- a/src/main/java/com/pablissimo/sonar/TsLintSensor.java
++++ b/src/main/java/com/pablissimo/sonar/TsLintSensor.java
+@@ -56,7 +56,10 @@ public class TsLintSensor implements Sensor {
+     }
+ 
+     public void analyse(Project project, SensorContext context) {
+-
++        String pathToTsLint = settings.getString(TypeScriptPlugin.SETTING_TS_LINT_PATH);
++        if (pathToTsLint == null) {
++            return;
++        }
+ 
+         TsLintExecutor executor = this.getTsLintExecutor();
+         TsLintParser parser = this.getTsLintParser();
+@@ -82,7 +85,6 @@ public class TsLintSensor implements Sensor {
+             Resource resource = this.getFileFromIOFile(file, project);
+             Issuable issuable = perspectives.as(Issuable.class, resource);
+ 
+-            String pathToTsLint = settings.getString(TypeScriptPlugin.SETTING_TS_LINT_PATH);
+             String jsonResult = executor.execute(pathToTsLint, configFile.getPath(), file.getAbsolutePath());
+ 
+             TsLintIssue[] issues = parser.parse(jsonResult);

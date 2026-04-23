@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.10114702815432743,
+    "input": "@Override\n    public void serializeWithType(Object bean, JsonGenerator gen, SerializerProvider provider,\n            TypeSerializer typeSer0) throws IOException\n    {\n        // Regardless of other parts, first need to find value to serialize:\n        Object value = null;\n        try {\n            value = _accessorMethod.getValue(bean);\n            // and if we got null, can also just write it directly\n            if (value == null) {\n                provider.defaultSerializeNull(gen);\n                return;\n            }\n            JsonSerializer<Object> ser = _valueSerializer;\n            if (ser == null) { // no serializer yet? Need to fetch\n//                ser = provider.findTypedValueSerializer(value.getClass(), true, _property);\n                ser = provider.findValueSerializer(value.getClass(), _property);\n            } else {\n                /* 09-Dec-2010, tatu: To work around natural type's refusal to add type info, we do\n                 *    this (note: type is for the wrapper type, not enclosed value!)\n                 */\n                if (_forceTypeInformation) {\n                    typeSer0.writeTypePrefixForScalar(bean, gen);\n                    ser.serialize(value, gen, provider);\n                    typeSer0.writeTypeSuffixForScalar(bean, gen);\n                    return;\n                }\n            }\n            // 28-Sep-2016, tatu: As per [databind#1385], we do need to do some juggling\n            //    to use different Object for type id (logica",
+    "query_result": [
+        "ublic void serializeWithType(Object bean, JsonGene",
+        "c void serializeWithType(Object bean, JsonGenerato",
+        " void serializeWithType(Object bean, JsonGenerator",
+        "izeWithType(Object bean, JsonGenerator gen, Serial",
+        "WithType(Object bean, JsonGenerator gen, Serialize",
+        "e(Object bean, JsonGenerator gen, SerializerProvid",
+        "(Object bean, JsonGenerator gen, SerializerProvide",
+        "Object bean, JsonGenerator gen, SerializerProvider",
+        "bject bean, JsonGenerator gen, SerializerProvider ",
+        "ject bean, JsonGenerator gen, SerializerProvider p",
+        "ect bean, JsonGenerator gen, SerializerProvider pr",
+        "ct bean, JsonGenerator gen, SerializerProvider pro",
+        "t bean, JsonGenerator gen, SerializerProvider prov",
+        " bean, JsonGenerator gen, SerializerProvider provi",
+        "ean, JsonGenerator gen, SerializerProvider provide",
+        "an, JsonGenerator gen, SerializerProvider provider",
+        " JsonGenerator gen, SerializerProvider provider,\nT",
+        "nGenerator gen, SerializerProvider provider,\nTypeS",
+        "ator gen, SerializerProvider provider,\nTypeSeriali",
+        "gen, SerializerProvider provider,\nTypeSerializer t"
+    ]
+}

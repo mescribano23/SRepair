@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.4522096608427544,
+    "input": "    protected String[] flatten(Options options, String[] arguments, boolean stopAtNonOption)\n    {\n        List tokens = new ArrayList();\n\n        boolean eatTheRest = false;\n\n        for (int i = 0; i < arguments.length; i++)\n        {\n            String arg = arguments[i];\n\n            if (\"--\".equals(arg))\n            {\n                eatTheRest = true;\n                tokens.add(\"--\");\n            }\n            else if (\"-\".equals(arg))\n            {\n                tokens.add(\"-\");\n            }\n            else if (arg.startsWith(\"-\"))\n            {\n                String opt = Util.stripLeadingHyphens(arg);\n\n                if (options.hasOption(opt))\n                {\n                    tokens.add(arg);\n                }\n                else\n                {\n                    if (opt.indexOf('=') != -1 && options.hasOption(opt.substring(0, opt.indexOf('='))))\n                    {\n                        // the format is --foo=value or -foo=value\n                        tokens.add(arg.substring(0, arg.indexOf('='))); // --foo\n                        tokens.add(arg.substring(arg.indexOf('=') + 1)); // value\n                    }\n                    else if (options.hasOption(arg.substring(0, 2)))\n                    {\n                        // the format is a special properties option (-Dproperty=value)\n                        tokens.add(arg.substring(0, 2)); // -D\n                        tokens.add(arg.substring(2)); // property=value\n                    }\n                    else\n                    {\n                        eatTheRest = stopAtNonOption;\n                        tokens.add(arg);\n                    }\n                }\n            }\n            else\n            {\n                tokens.add(arg);\n            }\n\n            if (eatTheRest)\n            {\n                for (i++; i < arguments.length; i++)\n                {\n                    tokens.add(arguments[i]);\n                }\n            }\n        }\n\n        return (String[]) to",
+    "query_result": [
+        "or -foo=value\ntokens.add(arg.substring(0, arg.indexOf('='))); // --foo\ntokens.add(arg.substring(arg.",
+        " special properties option (-Dproperty=value)\ntokens.add(arg.substring(0, 2)); // -D\ntokens.add(arg.",
+        "rotected String[] flatten(Options options, String[",
+        "ected String[] flatten(Options options, String[] a",
+        "cted String[] flatten(Options options, String[] ar",
+        "ted String[] flatten(Options options, String[] arg",
+        "[] flatten(Options options, String[] arguments, bo",
+        "(Options options, String[] arguments, boolean stop",
+        "Options options, String[] arguments, boolean stopA",
+        "tions options, String[] arguments, boolean stopAtN",
+        "ions options, String[] arguments, boolean stopAtNo",
+        "s options, String[] arguments, boolean stopAtNonOp",
+        "ptions, String[] arguments, boolean stopAtNonOptio",
+        "w ArrayList();\nboolean eatTheRest = false;\nfor (in",
+        "\nboolean eatTheRest = false;\nfor (int i = 0; i < a",
+        "eatTheRest = false;\nfor (int i = 0; i < arguments.",
+        "or (int i = 0; i < arguments.length; i++)\n{\nString",
+        " i < arguments.length; i++)\n{\nString arg = argumen",
+        "eRest = true;\ntokens.add(\"--\");\n}\nelse if (\"-\".equ",
+        "ith(\"-\"))\n{\nString opt = Util.stripLeadingHyphens("
+    ]
+}

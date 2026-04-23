@@ -1,0 +1,17 @@
+{
+    "coverage_ratio": 0.37610619469026546,
+    "input": "public static Number createNumber(String str)\n    {\n        try\n        {\n            if( str != null )\n            {\n                if( str.indexOf('.') != -1 )\n                {\n                    return Double.valueOf(str);\n                }\n                else\n                {\n                    return Long.valueOf(str);\n                }\n            }\n        }\n        catch (NumberFormatException nfe)\n        {\n            System.err.println(nfe.getMessage());\n        }\n\n        return null;\n    }",
+    "query_result": [
+        "} } } catch (NumberFormatException nfe) { System.",
+        "} catch (NumberFormatException nfe) { System.err.",
+        "} catch (NumberFormatException nfe) { System.err.p",
+        "catch (NumberFormatException nfe) { System.err.pr",
+        "catch (NumberFormatException nfe) { System.err.pri",
+        "atch (NumberFormatException nfe) { System.err.prin",
+        "tch (NumberFormatException nfe) { System.err.print",
+        "h (NumberFormatException nfe) { System.err.println",
+        "mberFormatException nfe) { System.err.println(nfe.",
+        "Exception nfe) { System.err.println(nfe.getMessage",
+        "em.err.println(nfe.getMessage()); } return null; }"
+    ]
+}

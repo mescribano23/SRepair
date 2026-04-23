@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.9129172714078374,
+    "input": "    @Override\n    public Promise<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executor executor) {\n        AbstractCompletableTask<T> nextStage = internalCreateCompletionStage(executor);\n        addCallbacks(\n            nextStage, \n            result -> {\n                try {\n                    action.accept(result, null);\n                    return result;\n                } catch (Throwable e) {\n                    // CompletableFuture wraps exception here\n                    // Copying this behavior                    \n                    return forwardException(e);\n                }\n            }, \n            // exceptions are handled in regular way\n            failure -> {\n                try {\n                    action.accept(null, failure);\n                } catch (Throwable e) {\n                    // CompletableFuture does not override exception here\n                    // unlike as in handle[Async](BiFunction)\n                    // Preserve this behavior, but let us add at least \n                    // suppressed exception\n                    failure.addSuppressed(e);\n                }\n                return forwardException(failure);\n            }, \n            executor\n        );\n        return nextStage;\n    }",
+    "query_result": [
+        "ide\npublic Promise<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executor executor) {\nAbstractCompletableTask<T> nextStage = internalCreateCompletionStage(executor);\naddCallbacks(\nnextStage, \nresult -> {\ntry {\naction.accept(result, null);\nreturn result;\n} catch (Throwable e) {\n// CompletableFuture wraps exception here\n// Copying this behavior \nreturn forwardException(e);\n}\n}, \n// exceptions are handled in regular way\nfailu",
+        "handled in regular way\nfailure -> {\ntry {\naction.accept(null, failure);\n} catch (Throwable e) {\n// CompletableFuture does not override exception here\n// unlike as in handle[Async](BiFunction)\n// Preserve this behavior, but let us add at least \n// suppressed exception\nfailure.addSuppressed(e);\n}\nretu",
+        "n regular way\nfailure -> {\ntry {\naction.accept(null, failure);\n} catch (Throwable e) {\n// CompletableFuture does not override exception here\n// unlike as in handle[Async](BiFunction)\n// Preserve this behavior, but let us add at least \n// suppressed e",
+        " (Throwable e) {\n// CompletableFuture does not override exception here\n// unlike as in handle[Async](BiFunction)\n// Preserve this behavior, but let us add at least \n// suppressed exception\nfailure.add",
+        "wable e) {\n// CompletableFuture does not override exception here\n// unlike as in handle[Async](BiFunction)\n// Preserve this behavior, but let us add at least \n// suppressed exception\nfailure.addSuppre",
+        " {\n// CompletableFuture does not override exception here\n// unlike as in handle[Async](BiFunction)\n// Preserve this behavior, but let us add at least \n// suppressed exception\nfailure.addSuppressed(e);",
+        "{\n// CompletableFuture does not override exception here\n// unlike as in handle[Async](BiFunction)\n// Preserve this behavior, but let us add at least \n// suppressed exception\nfailure.addSuppressed(e);\n",
+        "erride\npublic Promise<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executor",
+        " e) {\n// CompletableFuture wraps exception here\n// Copying this behavior \nreturn forwardException(e)",
+        "Promise<T> whenCompleteAsync(BiConsumer<? super T,",
+        "se<T> whenCompleteAsync(BiConsumer<? super T, ? su",
+        "<T> whenCompleteAsync(BiConsumer<? super T, ? supe",
+        "T> whenCompleteAsync(BiConsumer<? super T, ? super",
+        "> whenCompleteAsync(BiConsumer<? super T, ? super ",
+        " whenCompleteAsync(BiConsumer<? super T, ? super T",
+        "whenCompleteAsync(BiConsumer<? super T, ? super Th",
+        "henCompleteAsync(BiConsumer<? super T, ? super Thr",
+        "enCompleteAsync(BiConsumer<? super T, ? super Thro",
+        "nCompleteAsync(BiConsumer<? super T, ? super Throw",
+        "CompleteAsync(BiConsumer<? super T, ? super Throwa"
+    ]
+}

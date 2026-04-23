@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.1902834008097166,
+    "input": "public DefaultPrettyPrinter createInstance() {\n    if (getClass() != DefaultPrettyPrinter.class) { // since 2.10\n        throw new IllegalStateException(\"Failed `createInstance()`: \"+getClass().getName()\n                +\" does not override method; it has to\");\n    }\n    return new DefaultPrettyPrinter(this);\n}",
+    "query_result": [
+        "w new IllegalStateException(\"Failed `createInstanc"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.702247191011236,
+    "input": "    public int nameToGID(String name) throws IOException\n    {\n        // look up in 'post' table\n        readPostScriptNames();\n        if (postScriptNames != null)\n        {\n            Integer gid = postScriptNames.get(name);\n            if (gid != null && gid > 0 && gid < getMaximumProfile().getNumGlyphs())\n            {\n                return gid;\n            }\n        }\n\n        // look up in 'cmap'\n        int uni = parseUniName(name);\n        if (uni > -1)\n        {\n            CmapSubtable cmap = getUnicodeCmap(false);\n            return cmap.getGlyphId(uni);\n        }\n        \n        return 0;\n    }",
+    "query_result": [
+        "throws IOException\n{\n// look up in 'post' table\nreadPostScriptNames();\nif (postScriptNames != null)\n{\nInteger gid = postScriptNames.get(name);\nif (gid != null && gid > 0 && gid < getMaximumProfile().getNumGlyphs())\n{\nreturn gid;\n}\n}\n// look up in 'cmap'\nint uni = parseUniName(name);\nif (uni > -1)\n{\n"
+    ]
+}

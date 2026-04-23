@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.55,
+    "input": "    public BaseSettings withDateFormat(DateFormat df) {\n        if (_dateFormat == df) {\n            return this;\n        }\n        return new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy, _typeFactory,\n                _typeResolverBuilder, df, _handlerInstantiator, _locale,\n                _timeZone, _defaultBase64);\n    }",
+    "query_result": [
+        "} return new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy, _typeFactory, _typeResolverBuilde",
+        "{ return this; } return new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChe",
+        "return this; } return new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChec",
+        "} return new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _property",
+        "return new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyN",
+        "eturn new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNam",
+        "rn new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNaming",
+        "new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingSt",
+        "new BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStr",
+        "ew BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStra",
+        "BaseSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrateg",
+        "seSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy,",
+        "eSettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy,",
+        "Settings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy, _",
+        "ettings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy, _t",
+        "ttings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy, _ty",
+        "tings(_classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy, _typ",
+        "classIntrospector, _annotationIntrospector, _visibilityChecker, _propertyNamingStrategy, _typeFactor",
+        ") { return this; } return new BaseSettings(_classI",
+        "n new BaseSettings(_classIntrospector, _annotation"
+    ]
+}

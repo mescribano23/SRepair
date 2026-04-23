@@ -1,0 +1,8 @@
+{
+    "coverage_ratio": 0.3136094674556213,
+    "input": "    private byte[] expandBuffer(byte[] buffer, int newSize) \n    {\n        byte[] expandedBuffer = new byte[newSize];\n        System.arraycopy(buffer, 0, expandedBuffer, 0, buffer.length);\n        return expandedBuffer;\n    }",
+    "query_result": [
+        "te[] expandedBuffer = new byte[newSize];\nSystem.ar",
+        "andedBuffer = new byte[newSize];\nSystem.arraycopy("
+    ]
+}

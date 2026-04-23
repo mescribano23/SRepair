@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.3655913978494624,
+    "input": "private void readUntilEndOfEntry() throws IOException {\n    // If data descriptor exists, proceed to reading the entry, or else skip if the entry is directory\n    // or compressed size is 0\n    if (!localFileHeader.isDataDescriptorExists()\n        && (localFileHeader.isDirectory() || localFileHeader.getCompressedSize() == 0)) {\n      return;\n    }\n\n    if (endOfEntryBuffer == null) {\n      endOfEntryBuffer = new byte[512];\n    }\n\n    while (read(endOfEntryBuffer) != -1);\n  }",
+    "query_result": [
+        "vate void readUntilEndOfEntry() throws IOException",
+        "isDirectory() || localFileHeader.getCompressedSize",
+        " {\nendOfEntryBuffer = new byte[512];\n}\nwhile (read"
+    ]
+}

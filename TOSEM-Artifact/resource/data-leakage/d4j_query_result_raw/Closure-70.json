@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.29383116883116883,
+    "input": "private void declareArguments(Node functionNode) {\n  Node astParameters = functionNode.getFirstChild().getNext();\n  Node body = astParameters.getNext();\n  FunctionType functionType = (FunctionType) functionNode.getJSType();\n  if (functionType != null) {\n    Node jsDocParameters = functionType.getParametersNode();\n    if (jsDocParameters != null) {\n      Node jsDocParameter = jsDocParameters.getFirstChild();\n      for (Node astParameter : astParameters.children()) {\n        if (jsDocParameter != null) {\n          defineSlot(astParameter, functionNode,\n              jsDocParameter.getJSType(), false);\n          jsDocParameter = jsDocParameter.getNext();\n        } else {\n          defineSlot(astParameter, functionNode, null, true);\n        }\n      }\n    }\n  }\n} // end declareArguments",
+    "query_result": [
+        "eter : astParameters.children()) {\nif (jsDocParameter != null) {\ndefineSlot(astParameter, functionNo",
+        ";\nFunctionType functionType = (FunctionType) funct",
+        "cParameter.getNext();\n} else {\ndefineSlot(astParam"
+    ]
+}

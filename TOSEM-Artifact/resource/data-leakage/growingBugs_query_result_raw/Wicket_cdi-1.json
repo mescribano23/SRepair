@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.3776435045317221,
+    "input": "@Override\n    public void onInstantiation(Component component)\n    {\n        Class<? extends Component> componentClass = component.getClass();\n\n        if (componentClass.isAnonymousClass() ||\n            (componentClass.isMemberClass() && Modifier.isStatic(componentClass.getModifiers()) == false))\n        {\n            LOG.debug(\"Skipping non-static inner class '{}' \", componentClass);\n        }\n        else\n        {\n            inject(component);\n        }\n    }",
+    "query_result": [
+        "erride\npublic void onInstantiation(Component compo",
+        "rride\npublic void onInstantiation(Component compon",
+        "ride\npublic void onInstantiation(Component compone",
+        "ide\npublic void onInstantiation(Component componen",
+        "de\npublic void onInstantiation(Component component",
+        "e\npublic void onInstantiation(Component component)",
+        "Class<? extends Component> componentClass = compon",
+        "lass<? extends Component> componentClass = compone",
+        "ass<? extends Component> componentClass = componen",
+        "ss<? extends Component> componentClass = component",
+        "? extends Component> componentClass = component.ge",
+        " extends Component> componentClass = component.get",
+        "tends Component> componentClass = component.getCla",
+        "nds Component> componentClass = component.getClass",
+        "ds Component> componentClass = component.getClass(",
+        "s Component> componentClass = component.getClass()",
+        "Component> componentClass = component.getClass();\n",
+        "onentClass = component.getClass();\nif (componentCl"
+    ]
+}

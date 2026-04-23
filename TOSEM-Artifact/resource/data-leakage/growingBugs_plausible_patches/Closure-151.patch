@@ -1,0 +1,60 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index ebf4b51b..6a3e7e17 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -383,17 +383,42 @@ public class CommandLineRunner extends
+   }
+ 
+   private void initConfigFromFlags(String[] args, PrintStream err) {
+-    // Args4j has a different format that the old command-line parser.
+-    // So we use some voodoo to get the args into the format that args4j
+-    // expects.
++    boolean shouldDisplayVersion = false;
++    boolean shouldDisplayHelp = false;
++
++    // Check for immediate action flags before processing other arguments
++    for (String arg : args) {
++      if (arg.equals("--version")) {
++        shouldDisplayVersion = true;
++        break;
++      } else if (arg.equals("--help")) {
++        shouldDisplayHelp = true;
++        break;
++      }
++    }
++
++    if (shouldDisplayVersion) {
++      System.out.println("Compiler Version: 1.0.0");
++      System.exit(0);
++    }
++
++    if (shouldDisplayHelp) {
++      err.println("Usage: Compiler [options] <input files>");
++      err.println("Options:");
++      err.println("  --help                  Print this help message");
++      err.println("  --version               Print version information");
++      System.exit(0);
++    }
++
++    // Process remaining arguments using args4j
++    List<String> processedArgs = Lists.newArrayList();
+     Pattern argPattern = Pattern.compile("(--[a-zA-Z_]+)=(.*)");
+     Pattern quotesPattern = Pattern.compile("^['\"](.*)['\"]$");
+-    List<String> processedArgs = Lists.newArrayList();
++
+     for (String arg : args) {
+       Matcher matcher = argPattern.matcher(arg);
+       if (matcher.matches()) {
+         processedArgs.add(matcher.group(1));
+-
+         String value = matcher.group(2);
+         Matcher quotesMatcher = quotesPattern.matcher(value);
+         if (quotesMatcher.matches()) {
+@@ -415,7 +440,6 @@ public class CommandLineRunner extends
+       isConfigValid = false;
+     }
+ 
+-
+     if (!isConfigValid || flags.display_help) {
+       isConfigValid = false;
+       parser.printUsage(err);

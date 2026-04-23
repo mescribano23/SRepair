@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    public boolean setPosition(int position) {\n        if (!prepared) {\n            prepared = true;\n            BasicNodeSet nodeSet = (BasicNodeSet) getNodeSet();\n            ArrayList pointers = new ArrayList();\n            for (int i = 0; i < contexts.length; i++) {\n                EvalContext ctx = (EvalContext) contexts[i];\n                while (ctx.nextSet()) {\n                    while (ctx.nextNode()) {\n                        NodePointer ptr = ctx.getCurrentNodePointer();\n                        if (!pointers.contains(ptr)) {\n                            pointers.add(ptr);\n                        }\n                    }\n                }\n            }\n            sortPointers(pointers);\n\n            for (Iterator it = pointers.iterator(); it.hasNext();) {\n                nodeSet.add((Pointer) it.next());\n            }\n        }\n        return super.setPosition(position);\n    }",
+    "query_result": []
+}

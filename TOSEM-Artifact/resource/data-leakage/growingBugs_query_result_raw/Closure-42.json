@@ -1,0 +1,5 @@
+{
+    "coverage_ratio": 0,
+    "input": "    @Override\n    Node processForInLoop(ForInLoop loopNode) {\n      if (loopNode.isForEach()) {\n        errorReporter.error(\n            \"unsupported language extension: for each\",\n            sourceName,\n            loopNode.getLineno(), \"\", 0);\n\n        // Return the bare minimum to put the AST in a valid state.\n        return newNode(Token.EXPR_RESULT, Node.newNumber(0));\n      }\n      return newNode(\n          Token.FOR,\n          transform(loopNode.getIterator()),\n          transform(loopNode.getIteratedObject()),\n          transformBlock(loopNode.getBody()));\n    }",
+    "query_result": []
+}

@@ -1,0 +1,22 @@
+{
+    "coverage_ratio": 0.058935361216730035,
+    "input": "  protected String getUrl(final Repository repository, final String jenkinsBase,\n      final String cloneType, final String customCloneUrl, final String strRef, final String strSha1, boolean omitHashCode, boolean omitBranchName) {\n      String cloneUrl = customCloneUrl;\n    // Older installs won't have a cloneType value - treat as custom\n    if (cloneType != null && !cloneType.equals(\"custom\")) {\n        if (cloneType.equals(\"http\")) {\n            cloneUrl = httpScmProtocol.getCloneUrl(repository, null);\n        } else if (cloneType.equals(\"ssh\")) {\n            // The user just pushed to the repo, so must have had access\n            cloneUrl = securityService.withPermission(Permission.REPO_READ, \"Retrieving SSH clone url\")\n                    .call(() -> scmProtocol.getCloneUrl(repository, null));\n        } else {\n            LOGGER.error(\"Unknown cloneType: {}\", cloneType);\n            throw new RuntimeException(\"Unknown cloneType: \" + cloneType);\n        }\n    }\n\n    StringBuilder url = new StringBuilder();\n    url.append(String.format(BASE_URL, jenkinsBase, urlEncode(cloneUrl)));\n\n    if(strRef != null && !omitBranchName)\n      url.append(String.format(BRANCH_URL_PARAMETER, urlEncode(strRef)));\n    if(strSha1 != null && !omitHashCode)\n      url.append(String.format(HASH_URL_PARAMETER, strSha1));\n\n    return url.toString();\n  }",
+    "query_result": [
+        "\n}\nStringBuilder url = new StringBuilder();\nurl.ap",
+        "}\nStringBuilder url = new StringBuilder();\nurl.app",
+        "\nStringBuilder url = new StringBuilder();\nurl.appe",
+        "StringBuilder url = new StringBuilder();\nurl.appen",
+        "tringBuilder url = new StringBuilder();\nurl.append",
+        "ringBuilder url = new StringBuilder();\nurl.append(",
+        "ingBuilder url = new StringBuilder();\nurl.append(S",
+        "gBuilder url = new StringBuilder();\nurl.append(Str",
+        "uilder url = new StringBuilder();\nurl.append(Strin",
+        "ilder url = new StringBuilder();\nurl.append(String",
+        "lder url = new StringBuilder();\nurl.append(String.",
+        "er url = new StringBuilder();\nurl.append(String.fo",
+        "r url = new StringBuilder();\nurl.append(String.for",
+        " url = new StringBuilder();\nurl.append(String.form",
+        "url = new StringBuilder();\nurl.append(String.forma",
+        "l = new StringBuilder();\nurl.append(String.format("
+    ]
+}

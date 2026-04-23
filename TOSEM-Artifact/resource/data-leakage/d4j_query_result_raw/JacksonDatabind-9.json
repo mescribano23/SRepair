@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.5,
+    "input": "public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\n    String str;\n    Class<?> cls = value.getClass();\n    \n    if (cls == String.class) {\n        str = (String) value;\n    } else if (Date.class.isAssignableFrom(cls)) {\n        provider.defaultSerializeDateKey((Date) value, jgen);\n        return;\n    } else if (cls == Class.class) {\n        str = ((Class<?>) value).getName();\n    } else {\n        str = value.toString();\n    }\n    jgen.writeFieldName(str);\n}",
+    "query_result": [
+        "public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExcept",
+        "ublic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExcepti",
+        "blic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOExceptio",
+        "lic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException",
+        "ic void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException ",
+        "c void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {",
+        " void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\n",
+        "void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\nS",
+        "oid serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\nSt",
+        "id serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\nStr",
+        "d serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\nStri",
+        " serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\nStrin",
+        "serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\nString",
+        "erialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {\nString ",
+        "ring) value;\n} else if (Date.class.isAssignableFrom(cls)) {\nprovider.defaultSerializeDateKey((Date) ",
+        "rialize(Object value, JsonGenerator jgen, Serializ",
+        "ialize(Object value, JsonGenerator jgen, Serialize",
+        "alize(Object value, JsonGenerator jgen, Serializer",
+        "lize(Object value, JsonGenerator jgen, SerializerP",
+        "ize(Object value, JsonGenerator jgen, SerializerPr"
+    ]
+}

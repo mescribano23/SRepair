@@ -1,0 +1,7 @@
+{
+    "coverage_ratio": 0.5365853658536586,
+    "input": "public int getHour(final Calendar calendar)\n    {\n        return get(calendar, Calendar.HOUR_OF_DAY);\n    }",
+    "query_result": [
+        "al Calendar calendar)\n{\nreturn get(calendar, Calen"
+    ]
+}

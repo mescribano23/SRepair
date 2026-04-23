@@ -1,0 +1,24 @@
+{
+    "coverage_ratio": 0.91,
+    "input": "public static JsonDeserializer<?> find(Class<?> rawType, String clsName)\n    {\n        if (_classNames.contains(clsName)) {\n            JsonDeserializer<?> d = FromStringDeserializer.findDeserializer(rawType);\n            if (d != null) {\n                return d;\n            }\n            if (rawType == UUID.class) {\n                return new UUIDDeserializer();\n            }\n            if (rawType == StackTraceElement.class) {\n                return new StackTraceElementDeserializer();\n            }\n            if (rawType == AtomicBoolean.class) {\n                // (note: AtomicInteger/Long work due to single-arg constructor. For now?\n                return new AtomicBooleanDeserializer();\n            }\n            if (rawType == ByteBuffer.class) {\n                return new ByteBufferDeserializer();\n            }\n            if (rawType == Void.class) {\n                return NullifyingDeserializer.instance;\n            }\n        }\n        return null;\n    }",
+    "query_result": [
+        "Name)) { JsonDeserializer<?> d = FromStringDeserializer.findDeserializer(rawType); if (d != null) { return d; } if (rawType == UUID.class) { return new UUIDDeserializer(); } if (rawType == StackTraceElement.class) { return new StackTraceElementDeserializer(); } if (rawType == AtomicBoolean.class) {",
+        "lsName)) { JsonDeserializer<?> d = FromStringDeserializer.findDeserializer(rawType); if (d != null) { return d; } if (rawType == UUID.class) { return new UUIDDeserializer(); } if (rawType == StackTrac",
+        "er(); } if (rawType == ByteBuffer.class) { return new ByteBufferDeserializer(); } if (rawType == Void.class) { return NullifyingDeserializer.instance;",
+        "return new AtomicBooleanDeserializer(); } if (rawType == ByteBuffer.class) { return new ByteBufferDe",
+        "blic static JsonDeserializer<?> find(Class<?> rawT",
+        "lic static JsonDeserializer<?> find(Class<?> rawTy",
+        "c JsonDeserializer<?> find(Class<?> rawType, Strin",
+        "sonDeserializer<?> find(Class<?> rawType, String c",
+        "erializer<?> find(Class<?> rawType, String clsName",
+        "?> rawType, String clsName) { if (_classNames.cont",
+        "rawType, String clsName) { if (_classNames.contai",
+        "== StackTraceElement.class) { return new StackTra",
+        "t.class) { return new StackTraceElementDeserialize",
+        "ass) { return new StackTraceElementDeserializer();",
+        "oolean.class) { // (note: AtomicInteger/Long work",
+        "== ByteBuffer.class) { return new ByteBufferDeseri",
+        "ByteBuffer.class) { return new ByteBufferDeseriali",
+        "er.class) { return new ByteBufferDeserializer(); }"
+    ]
+}

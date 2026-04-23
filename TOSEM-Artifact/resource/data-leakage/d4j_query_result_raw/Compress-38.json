@@ -1,0 +1,9 @@
+{
+    "coverage_ratio": 0.6614583333333334,
+    "input": "public boolean isDirectory() {\n    if (file != null) {\n        return file.isDirectory();\n    }\n\n    if (linkFlag == LF_DIR) {\n        return true;\n    }\n\n    if (!isPaxHeader() && !isGlobalPaxHeader() && getName().endsWith(\"/\")) {\n        return true;\n    }\n\n    return false;\n}",
+    "query_result": [
+        "Directory() {\nif (file != null) {\nreturn file.isDirectory();\n}\nif (linkFlag == LF_DIR) {\nreturn true",
+        ") {\nif (file != null) {\nreturn file.isDirectory();",
+        "().endsWith(\"/\")) {\nreturn true;\n}\nreturn false;\n}"
+    ]
+}

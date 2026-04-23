@@ -1,0 +1,21 @@
+{
+    "coverage_ratio": 0.8002466091245376,
+    "input": "    @Override\n    public int compareTo( GpgVersion other )\n    {\n        Pattern p = Pattern.compile( \"(\\\\d+\\\\.)+(\\\\d+)\" );\n\n        String[] thisSegments;\n        Matcher m = p.matcher( rawVersion );\n        if ( m.find() )\n        {\n            thisSegments  = m.group( 0 ).split( \"\\\\.\" );\n        }\n        else\n        {\n          throw new IllegalArgumentException( \"Can't parse version of \" + this.rawVersion );\n        }\n\n        String[] otherSegments;\n        m = p.matcher( other.rawVersion );\n        if ( m.find() )\n        {\n            otherSegments  = m.group( 0 ).split( \"\\\\.\" );\n        }\n        else\n        {\n          throw new IllegalArgumentException( \"Can't parse version of \" + other.rawVersion );\n        }\n\n        int minSegments = Math.min( thisSegments.length, otherSegments.length );\n\n        for ( int index = 0; index < minSegments; index++ )\n        {\n            int thisValue = Integer.parseInt( thisSegments[index] );\n\n            int otherValue = Integer.parseInt( otherSegments[index] );\n\n            int compareValue = Integer.compare( thisValue, otherValue );\n\n            if ( compareValue != 0 )\n            {\n                return compareValue;\n            }\n        }\n\n        return ( thisSegments.length - otherSegments.length );\n    }",
+    "query_result": [
+        "hrow new IllegalArgumentException( \"Can't parse version of \" + other.rawVersion );\n}\nint minSegments = Math.min( thisSegments.length, otherSegments.length );\nfor ( int index = 0; index < minSegments; index++ )\n{\nint thisValue = Integer.parseInt( thisSegments[index] );\nint otherValue = Integer.parseInt( otherSegments[index] );\nint compareValue = Integer.compare( thisValue, otherValue );\nif ( compareValue != 0 )\n{\nreturn compareValue;\n}\n}\nreturn ( ",
+        "ArgumentException( \"Can't parse version of \" + this.rawVersion );\n}\nString[] otherSegments;\nm = p.matcher( other.rawVersion );\nif ( m.find() )\n{\nother",
+        " int index = 0; index < minSegments; index++ )\n{\nint thisValue = Integer.parseInt( thisSegments[index] );\nint otherValue = Integer.parseInt( otherSegm",
+        ";\nString[] thisSegments;\nMatcher m = p.matcher( rawVersion );\nif ( m.find() )\n{\nthisSegments = m.gro",
+        " );\n}\nelse\n{\nthrow new IllegalArgumentException( \"",
+        ";\n}\nelse\n{\nthrow new IllegalArgumentException( \"Ca",
+        "\n}\nelse\n{\nthrow new IllegalArgumentException( \"Can",
+        "\nthrow new IllegalArgumentException( \"Can't parse ",
+        "hrow new IllegalArgumentException( \"Can't parse ve",
+        " );\n}\nelse\n{\nthrow new IllegalArgumentException( \"",
+        ";\n}\nelse\n{\nthrow new IllegalArgumentException( \"Ca",
+        "\n}\nelse\n{\nthrow new IllegalArgumentException( \"Can",
+        "\nthrow new IllegalArgumentException( \"Can't parse ",
+        "nts.length, otherSegments.length );\nfor ( int inde",
+        "turn compareValue;\n}\n}\nreturn ( thisSegments.lengt"
+    ]
+}

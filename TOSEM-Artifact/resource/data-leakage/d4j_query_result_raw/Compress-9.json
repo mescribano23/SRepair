@@ -1,0 +1,20 @@
+{
+    "coverage_ratio": 0.9149700598802395,
+    "input": "@Override\n    public void write(byte[] wBuf, int wOffset, int numToWrite) throws IOException {\n        if ((currBytes + numToWrite) > currSize) {\n            throw new IOException(\"request to write '\" + numToWrite\n                                  + \"' bytes exceeds size in header of '\"\n                                  + currSize + \"' bytes for entry '\"\n                                  + currName + \"'\");\n\n            //\n            // We have to deal with assembly!!!\n            // The programmer can be writing little 32 byte chunks for all\n            // we know, and we must assemble complete records for writing.\n            // REVIEW Maybe this should be in TarBuffer? Could that help to\n            // eliminate some of the buffer copying.\n            //\n        }\n\n        if (assemLen > 0) {\n            if ((assemLen + numToWrite) >= recordBuf.length) {\n                int aLen = recordBuf.length - assemLen;\n\n                System.arraycopy(assemBuf, 0, recordBuf, 0,\n                                 assemLen);\n                System.arraycopy(wBuf, wOffset, recordBuf,\n                                 assemLen, aLen);\n                buffer.writeRecord(recordBuf);\n\n                currBytes += recordBuf.length;\n                wOffset += aLen;\n                numToWrite -= aLen;\n                assemLen = 0;\n            } else {\n                System.arraycopy(wBuf, wOffset, assemBuf, assemLen,\n                                 numToWrite);\n\n                wOffset += num",
+    "query_result": [
+        "wBuf, int wOffset, int numToWrite) throws IOException { if ((currBytes + numToWrite) > currSize) { throw new IOException(\"request to write '\" + numToWrite + \"' bytes exceeds size in header of '\" + currSize + \"' bytes for entry '\" + currName + \"'\"); // // We have to deal with assembly!!! // The programmer can be writing little 32 byte chunks for all // we know, and we must assemble complete records for writing. // REVIEW Maybe this should be in TarBuffer? Could that help to // eliminate some of the buffer copying. // } if (assemLen > 0) { if ((assemLen + numToWrite) >= recordBuf.length) { int aLen = recordBuf.length - assemLen; System.arraycopy(assemBuf, 0, recordBuf, 0, assemLen); System.arraycopy(wBuf, wOffset, recordBuf, assemLen, aLen);",
+        "\"' bytes exceeds size in header of '\" + currSize + \"' bytes for entry '\" + currName + \"'\"); // // We have to deal with assembly!!! // The programmer can be writing little 32 byte chunks for all // we know, and we must assemble complete records for writing. // REVIEW Maybe this should be in TarBuffer? Could that help to // eliminate some of the buffer copying. // } if (assemLen > 0) { if ((assemLe",
+        "e to deal with assembly!!! // The programmer can be writing little 32 byte chunks for all // we know, and we must assemble complete records for writing. // REVIEW Maybe this should be in TarBuffer? Could that help to // eliminate some of the buffer c",
+        "bly!!! // The programmer can be writing little 32 byte chunks for all // we know, and we must assemb",
+        "cordBuf.length) { int aLen = recordBuf.length - assemLen; System.arraycopy(assemBuf, 0, recordBuf, 0",
+        "f); currBytes += recordBuf.length; wOffset += aLen; numToWrite -= aLen; assemLen = 0; } else { Syste",
+        "ngth; wOffset += aLen; numToWrite -= aLen; assemLen = 0; } else { System.arraycopy(wBuf, wOffset, as",
+        "uf, int wOffset, int numToWrite) throws IOExceptio",
+        "throw new IOException(\"request to write '\" + numT",
+        "new IOException(\"request to write '\" + numToWrite",
+        "to write '\" + numToWrite + \"' bytes exceeds size",
+        "ceeds size in header of '\" + currSize + \"' bytes f",
+        "be this should be in TarBuffer? Could that help to",
+        "ssemLen, aLen); buffer.writeRecord(recordBuf); cur"
+    ]
+}

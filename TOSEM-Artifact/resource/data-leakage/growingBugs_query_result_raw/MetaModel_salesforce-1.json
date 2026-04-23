@@ -1,0 +1,26 @@
+{
+    "coverage_ratio": 0.11056268509378085,
+    "input": "    private Object convert(Object value, ColumnType columnType) {\n        if (value instanceof String && !columnType.isLiteral()) {\n            if (columnType.isBoolean()) {\n                return BooleanComparator.toBoolean(value);\n            }\n            if (columnType.isNumber()) {\n                return NumberComparator.toNumber(value);\n            }\n            if (columnType.isTimeBased()) {\n                final SimpleDateFormat dateFormat;\n                if (columnType == ColumnType.DATE) {\n                    // note: we don't apply the timezone for DATE fields, since\n                    // they don't contain time-of-day information.\n                    dateFormat = new SimpleDateFormat(SalesforceDataContext.SOQL_DATE_FORMAT_IN, Locale.ENGLISH);\n                } else if (columnType == ColumnType.TIME) {\n                    dateFormat = new SimpleDateFormat(SalesforceDataContext.SOQL_TIME_FORMAT_IN, Locale.ENGLISH);\n                    dateFormat.setTimeZone(SalesforceDataContext.SOQL_TIMEZONE);\n                } else {\n                    dateFormat = new SimpleDateFormat(SalesforceDataContext.SOQL_DATE_TIME_FORMAT_IN, Locale.ENGLISH);\n                    dateFormat.setTimeZone(SalesforceDataContext.SOQL_TIMEZONE);\n                }\n\n                try {\n                    return dateFormat.parse(value.toString());\n                } catch (ParseException e) {\n                    throw new IllegalStateException(\"Unable to parse date/time value: \" + value);\n                }\n            }\n        }\n        return value;\n    }",
+    "query_result": [
+        "ry {\nreturn dateFormat.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateE",
+        "eturn dateFormat.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateExcepti",
+        " dateFormat.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"U",
+        "eFormat.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unabl",
+        "Format.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable",
+        "ormat.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable ",
+        "rmat.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable t",
+        "mat.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable to",
+        "t.parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable to p",
+        ".parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable to pa",
+        "parse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable to par",
+        "arse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable to pars",
+        "rse(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable to parse",
+        "se(value.toString());\n} catch (ParseException e) {\nthrow new IllegalStateException(\"Unable to parse ",
+        "e(value.toString());\n} catch (ParseException e) {\n",
+        "value.toString());\n} catch (ParseException e) {\nth",
+        "alue.toString());\n} catch (ParseException e) {\nthr",
+        "lue.toString());\n} catch (ParseException e) {\nthro",
+        "ue.toString());\n} catch (ParseException e) {\nthrow",
+        "e.toString());\n} catch (ParseException e) {\nthrow "
+    ]
+}

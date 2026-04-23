@@ -5,7 +5,9 @@
 - ***NO** need for costly statement-level fault location.*
 - *Fixes **multi-funciton bugs (32)** for the first time ever in business*
 
-
+> [!NOTE]
+> 🎉 **SRepair has been accepted by ACM TOSEM (Transactions on Software Engineering and Methodology).**  
+> 📦 The artifact for the accepted TOSEM paper is available in [`TOSEM-Artifact/`](./TOSEM-Artifact/).
 
 ## About
 

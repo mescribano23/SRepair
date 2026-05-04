@@ -10,15 +10,26 @@ from gen_solution_prompt import mf_construct_prompt
 
 
 def query_model(prompt, sample_size):
-    os.environ["OPENAI_API_KEY"] = 'OPENAI_API'
+    if not os.environ.get("OPENAI_API_KEY"):
+        raise EnvironmentError(
+            "OPENAI_API_KEY is not set. Export your OpenAI API key before running this script."
+        )
     delay = 10
     while(True):
         try:
             response = api_gpt3_5_response(prompt, sample_size)
             break
+        except openai.AuthenticationError as e:
+            raise RuntimeError(
+                "OpenAI authentication failed. Check that OPENAI_API_KEY contains a valid API key."
+            ) from e
         except openai.APIError as e:
             if "Please reduce " in str(e):
                 raise ValueError("Over Length")
+            if getattr(e, "status_code", None) == 401:
+                raise RuntimeError(
+                    "OpenAI authentication failed. Check that OPENAI_API_KEY contains a valid API key."
+                ) from e
             print(f"OpenAI API returned an API Error: {e}")
             time.sleep(delay)
         except Exception as e:

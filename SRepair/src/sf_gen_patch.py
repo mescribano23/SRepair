@@ -1,14 +1,18 @@
 import re
 import json
 import argparse
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+import os
+import time
 from gen_patch_prompt import sf_build_apr_prompt_auto
 
 
 model_base_path = './Model'
 model_path = f'{model_base_path}/ise-uiuc/Magicoder-S-CL-7B'
 model_format_prompt = '''Return your fixed function surrounded with ```java\\n```.\n@@ Instruction\n{apr_prompt}\n@@ Response'''
+openai_patch_prompt = '''Return only the fixed Java function surrounded with ```java and ```.
+Do not modify tests, add helper methods, or include explanations.
+
+{apr_prompt}'''
 
 
 def extract_test_method(testcase_lst):
@@ -85,6 +89,9 @@ class AprInfo():
 
 
 def opensrc_model_apr(apr_info):
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+
     dataset = apr_info.dataset
     suggestions = apr_info.suggestions
     
@@ -153,6 +160,70 @@ def opensrc_model_apr(apr_info):
     return patches
 
 
+def query_openai_patch(prompt, model, sample_size):
+    import openai
+
+    if not os.environ.get("OPENAI_API_KEY"):
+        raise EnvironmentError(
+            "OPENAI_API_KEY is not set. Export your OpenAI API key before running this script."
+        )
+
+    delay = 10
+    while True:
+        try:
+            response = openai.chat.completions.create(
+                messages=[{"role": "user", "content": prompt}],
+                model=model,
+                n=sample_size,
+                temperature=0.8,
+            )
+            return [choice.message.content for choice in response.choices if choice.message]
+        except openai.AuthenticationError as e:
+            raise RuntimeError(
+                "OpenAI authentication failed. Check that OPENAI_API_KEY contains a valid API key."
+            ) from e
+        except openai.APIError as e:
+            if "Please reduce " in str(e):
+                raise ValueError("Over Length")
+            if getattr(e, "status_code", None) == 401:
+                raise RuntimeError(
+                    "OpenAI authentication failed. Check that OPENAI_API_KEY contains a valid API key."
+                ) from e
+            print(f"OpenAI API returned an API Error: {e}")
+            time.sleep(delay)
+        except Exception as e:
+            print(f"Exception in query_openai_patch {e}")
+            if "Please reduce " in str(e):
+                raise ValueError("Over Length")
+            time.sleep(delay)
+
+
+def openai_model_apr(apr_info, model, sample_size):
+    dataset = apr_info.dataset
+    suggestions = apr_info.suggestions
+
+    patches = {}
+    for bug_name in dataset:
+        curr_patch = {'prompt': [], 'patches': []}
+
+        for root_cause in suggestions[bug_name].keys():
+            for suggestion in suggestions[bug_name][root_cause]:
+                apr_prompt = sf_build_apr_prompt_auto(dataset[bug_name]['buggy'], root_cause, suggestion)
+                prompt = openai_patch_prompt.format(apr_prompt=apr_prompt.strip())
+                curr_patch['prompt'].append(apr_prompt)
+                curr_patch['patches'].extend(query_openai_patch(prompt, model, sample_size))
+
+                print(
+                    f"### [APR-OPENAI]:bug_name:{bug_name:25}  |  "
+                    f"curr_patch_cnt:{len(curr_patch['patches']):>3}  |  "
+                    f"sample_size:{sample_size:2} ###"
+                )
+
+        patches[bug_name] = curr_patch
+
+    return patches
+
+
 def main():
     apr_result = {}
     apr_info = AprInfo(
@@ -161,7 +232,10 @@ def main():
         args.o,
         args.bug
     )
-    apr_result = opensrc_model_apr(apr_info)
+    if args.backend == 'local':
+        apr_result = opensrc_model_apr(apr_info)
+    else:
+        apr_result = openai_model_apr(apr_info, args.model, args.patch_samples)
     apr_result = extract_patch(apr_info.dataset, apr_result)
     with open(apr_info.out_path, 'w') as f:
         json.dump(apr_result, f, indent=2)
@@ -173,6 +247,24 @@ def parse_arguments():
     parser.add_argument('-s', type=str, required=True, help='suggestions path')
     parser.add_argument('-o', type=str, required=True, help='patch_result path')
     parser.add_argument('-bug', type=str, required=False, help='bug')
+    parser.add_argument(
+        '-backend',
+        choices=['openai', 'local'],
+        default='openai',
+        help='patch generation backend; openai avoids local Torch/Magicoder requirements'
+    )
+    parser.add_argument(
+        '-model',
+        type=str,
+        default=os.environ.get('OPENAI_MODEL', 'gpt-4o-mini'),
+        help='OpenAI model to use when -backend openai'
+    )
+    parser.add_argument(
+        '-patch_samples',
+        type=int,
+        default=5,
+        help='number of OpenAI patch candidates to request per suggestion'
+    )
     return parser.parse_args()
 
 

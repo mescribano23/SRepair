@@ -22,6 +22,16 @@ def clean_tmp_folder(tmp_dir):
     os.makedirs(tmp_dir)
 
 
+def check_defects4j_available():
+    if shutil.which('defects4j'):
+        return
+    raise RuntimeError(
+        "[ERROR] defects4j was not found on PATH. Install Defects4J or add "
+        "its framework/bin directory to PATH, e.g. "
+        "export PATH=/path/to/defects4j/framework/bin:$PATH"
+    )
+
+
 def strip_lines(lines):
     return [line.strip() for line in lines]
 
@@ -424,6 +434,23 @@ def shuffle_validated_patches(candidate_patches):
     return shuffled_patches
 
 
+def prepare_output_dir(output_result_dir, force=False):
+    if not os.path.exists(output_result_dir):
+        os.makedirs(output_result_dir)
+        return
+    if not os.path.isdir(output_result_dir):
+        raise RuntimeError(f"[ERROR] output path exists and is not a directory: {output_result_dir}")
+    if len(os.listdir(output_result_dir)) == 0:
+        return
+    if not force:
+        raise RuntimeError(
+            f"[ERROR] output directory is not empty: {output_result_dir}. "
+            "Use a new -o path, empty the directory, or rerun with --force."
+        )
+    shutil.rmtree(output_result_dir)
+    os.makedirs(output_result_dir)
+
+
 if __name__ == '__main__':
     start_val_time = time.time()
 
@@ -433,6 +460,7 @@ if __name__ == '__main__':
                         default='/tmp/llm4apr_validation/result')
     parser.add_argument('-d', type=str, required=False, help='validation dataset path path')
     parser.add_argument('-log', action='store_true', help='log mode(std-o/e to validation.log).')
+    parser.add_argument('-f', '--force', action='store_true', help='overwrite a non-empty output directory.')
     args = parser.parse_args()
     
     validation_config = {
@@ -448,17 +476,16 @@ if __name__ == '__main__':
     validation_config_path = '/tmp/llm4apr_validation/config.json'
     log_file_path = os.path.join(os.path.abspath(args.o), 'validation.log')
 
+    check_defects4j_available()
+
     clean_tmp_folder(validation_tmp_path)
     with open(validation_config_path, 'w') as f:
         json.dump(validation_config, f, indent=2)
 
-    assert not os.path.exists(output_result_dir) or (os.path.isdir(output_result_dir) and len(os.listdir(output_result_dir)) == 0), \
-        f"[ERROR] [ASSERT FAILURE] {output_result_dir} should either not exist or be an empty directory."
-    
     candidate_patches = json.load(open(input_patch_file, 'r'))
     candidate_patches = shuffle_validated_patches(candidate_patches)
 
-    os.makedirs(output_result_dir)
+    prepare_output_dir(output_result_dir, force=args.force)
     with log_or_print(log_mode=args.log, log_path=log_file_path):
         validate_defects4j(candidate_patches)
         print(f'[TIME INFO] total_time = {int(time.time() - start_val_time)} s')

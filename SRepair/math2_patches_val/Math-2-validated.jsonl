@@ -1,0 +1,752 @@
+[
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return ((double) sampleSize * (double) numberOfSuccesses) / (double) populationSize;\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    if (getPopulationSize() <= 0) {\n        throw new IllegalArgumentException(\"Population size must be greater than zero.\");\n    }\n    return (double) getSampleSize() * getNumberOfSuccesses() / getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return (double) (sampleSize * numberOfSuccesses) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    double successes = getNumberOfSuccesses();\n    double populationSize = getPopulationSize();\n    if (populationSize <= 0) {\n        throw new IllegalArgumentException(\"Population size must be greater than zero.\");\n    }\n    return (getSampleSize() > 0 ? (successes / populationSize) : 0.0);\n}",
+    "patch_status": "RELEVANT_ERROR",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMoments",
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testInverseCumulativeProbabilities",
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testSampling"
+      ],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    if (populationSize <= 0) {\n        throw new IllegalArgumentException(\"Population size must be greater than zero.\");\n    }\n    return (double) (sampleSize * numberOfSuccesses) / (double) populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return (double) (sampleSize * numberOfSuccesses) / (double) populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return ((double) sampleSize * numberOfSuccesses) / populationSize;\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    if (getPopulationSize() == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero.\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return (double) (sampleSize * numberOfSuccesses) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return ((double) sampleSize * numberOfSuccesses) / populationSize;\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    \n    if (populationSize <= 0) {\n        throw new IllegalArgumentException(\"Population size must be greater than zero\");\n    }\n    \n    return (double) (sampleSize * numberOfSuccesses) / (double) populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    if (getPopulationSize() == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / getPopulationSize();\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return ((double) sampleSize * numberOfSuccesses) / populationSize;\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return ((double) sampleSize * (double) numberOfSuccesses) / (double) populationSize;\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    double mean = (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();\n    return mean >= 0 ? mean : 0; // Ensure mean is non-negative\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    if (getPopulationSize() == 0) {\n        return 0;\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return ((double) sampleSize * (double) numberOfSuccesses) / (double) populationSize;\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0);\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    double mean = (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();\n    return mean >= 0 ? mean : 0; // Ensure mean is non-negative\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) getSampleSize() * getNumberOfSuccesses() / (double) getPopulationSize();\n}",
+    "patch_status": "PLAUSIBLE",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int populationSize = getPopulationSize();\n    if (populationSize == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero\");\n    }\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return Math.floor((double) (getSampleSize() * getNumberOfSuccesses()) / Math.max((double) getPopulationSize(), 1.0));\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    int sampleSize = getSampleSize();\n    int numberOfSuccesses = getNumberOfSuccesses();\n    int populationSize = getPopulationSize();\n    return (double) (sampleSize * numberOfSuccesses) / populationSize;\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    double successes = getNumberOfSuccesses();\n    double size = getSampleSize();\n    double population = getPopulationSize();\n    \n    // Ensure population size is not zero to avoid division by zero\n    if (population == 0) {\n        throw new IllegalArgumentException(\"Population size cannot be zero.\");\n    }\n\n    return (size > 0 && successes >= 0) ? (successes / population) : 0.0;\n}",
+    "patch_status": "RELEVANT_ERROR",
+    "failing_tests": {
+      "TRIGGER": [],
+      "RELEVANT": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMoments",
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testInverseCumulativeProbabilities",
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testSampling"
+      ],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  },
+  {
+    "patch_code": "public double getNumericalMean() {\n    return (double) (getSampleSize() * getNumberOfSuccesses()) / getPopulationSize();\n}",
+    "patch_status": "TRIGGER_ERROR",
+    "failing_tests": {
+      "TRIGGER": [
+        "org.apache.commons.math3.distribution.HypergeometricDistributionTest::testMath1021"
+      ],
+      "RELEVANT": [],
+      "TIMEOUT": []
+    },
+    "val_cnt": 1,
+    "bug_name": "Math-2"
+  }
+]

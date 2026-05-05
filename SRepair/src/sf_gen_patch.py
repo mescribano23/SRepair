@@ -4,6 +4,7 @@ import argparse
 import os
 import time
 from gen_patch_prompt import sf_build_apr_prompt_auto
+from usage_tracker import record_openai_usage
 
 
 model_base_path = './Model'
@@ -177,6 +178,7 @@ def query_openai_patch(prompt, model, sample_size):
                 n=sample_size,
                 temperature=0.8,
             )
+            record_openai_usage(response, "sf_gen_patch", model)
             return [choice.message.content for choice in response.choices if choice.message]
         except openai.AuthenticationError as e:
             raise RuntimeError(

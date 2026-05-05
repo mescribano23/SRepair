@@ -3,6 +3,7 @@ import argparse
 import os
 import time
 from gen_patch_prompt import mf_build_apr_prompt_auto
+from usage_tracker import record_openai_usage
 
 model_base_path = './Model'
 model_path = f'{model_base_path}/ise-uiuc/Magicoder-S-CL-7B'
@@ -207,6 +208,7 @@ def query_openai_patch(prompt, model, sample_size):
                 n=sample_size,
                 temperature=0.8,
             )
+            record_openai_usage(response, "mf_gen_patch", model)
             return [choice.message.content for choice in response.choices if choice.message]
         except openai.AuthenticationError as e:
             raise RuntimeError(

@@ -7,9 +7,10 @@ import openai
 import argparse
 from tqdm import tqdm
 from gen_solution_prompt import mf_construct_prompt
+from usage_tracker import record_openai_usage
 
 
-def query_model(prompt, sample_size):
+def query_model(prompt, sample_size, model):
     if not os.environ.get("OPENAI_API_KEY"):
         raise EnvironmentError(
             "OPENAI_API_KEY is not set. Export your OpenAI API key before running this script."
@@ -17,7 +18,8 @@ def query_model(prompt, sample_size):
     delay = 10
     while(True):
         try:
-            response = api_gpt3_5_response(prompt, sample_size)
+            response = api_chat_response(prompt, sample_size, model)
+            record_openai_usage(response, "mf_gen_solution", model)
             break
         except openai.AuthenticationError as e:
             raise RuntimeError(
@@ -45,17 +47,17 @@ def query_model(prompt, sample_size):
     return response_list
 
 
-def api_gpt3_5_response(prompt, n):
+def api_chat_response(prompt, n, model):
     response = openai.chat.completions.create(    
         messages=[{"role": "user", "content": prompt}],
-        model="gpt-3.5-turbo-1106",
+        model=model,
         n=n,
         temperature=0.8)
     return response
 
 
 class SolInfo():
-    def __init__(self, dataset_path, solution_path, extracted_solution_path, sample_size, target_bug):
+    def __init__(self, dataset_path, solution_path, extracted_solution_path, sample_size, target_bug, model):
         with open(dataset_path, 'r') as f:
             self.dataset = json.load(f)
         if target_bug is not None:
@@ -73,6 +75,7 @@ class SolInfo():
             self.extracted_solution_path = extracted_solution_path
         self.sample_size = sample_size
         self.target_bug = target_bug
+        self.model = model
         return
 
 
@@ -102,7 +105,7 @@ def get_solutions(sol_info):
         solutions[bug_name] = {}
         prompt = mf_construct_prompt(sol_info.dataset, bug_name)
         solutions[bug_name]['prompt'] = prompt
-        solutions[bug_name]['solutions'] = query_model(prompt, sol_info.sample_size)
+        solutions[bug_name]['solutions'] = query_model(prompt, sol_info.sample_size, sol_info.model)
     return solutions
 
 
@@ -128,7 +131,8 @@ def main():
         args.o,
         args.eo,
         args.s,
-        args.bug
+        args.bug,
+        args.model
     )
     solutions = get_solutions(sol_info)
     with open(sol_info.solution_path, 'w') as f:
@@ -146,6 +150,12 @@ def parse_arguments():
     parser.add_argument('-eo', type=str, required=False, help='extracted_solution path')
     parser.add_argument('-s', type=int, required=False, help='sample_size', default=1)
     parser.add_argument('-bug', type=str, required=False, help='bug')
+    parser.add_argument(
+        '-model',
+        type=str,
+        default=os.environ.get('OPENAI_MODEL', 'gpt-3.5-turbo-1106'),
+        help='OpenAI model to use for repair suggestions'
+    )
     return parser.parse_args()
 
 
